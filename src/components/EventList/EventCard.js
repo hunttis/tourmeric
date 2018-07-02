@@ -115,13 +115,13 @@ export default class EventCard extends Component {
 }
 
 EventCard.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  userid: PropTypes.string.isRequired,
-  profile: PropTypes.object.isRequired,
-  events: PropTypes.array.isRequired,
-  settings: PropTypes.object.isRequired,
-  participations: PropTypes.object.isRequired,
-  categories: PropTypes.object.isRequired,
-  openModal: PropTypes.func.isRequired,
-  uploadedCategoryLogos: PropTypes.object.isRequired,
+  eventId: PropTypes.string,
+  userid: PropTypes.string,
+  profile: PropTypes.object,
+  events: PropTypes.array,
+  settings: PropTypes.object,
+  participations: PropTypes.object,
+  categories: PropTypes.object,
+  openModal: PropTypes.func,
+  uploadedCategoryLogos: PropTypes.object,
 };

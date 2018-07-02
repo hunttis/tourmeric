@@ -107,16 +107,16 @@ const MainViewTab = ({ isActive, switchAction, icon, translationKey, notificatio
 );
 
 MainViewTab.propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  switchAction: PropTypes.func.isRequired,
-  icon: PropTypes.string.isRequired,
-  translationKey: PropTypes.string.isRequired,
-  notification: PropTypes.string.isRequired,
-  isDisabled: PropTypes.bool.isRequired,
+  isActive: PropTypes.bool,
+  switchAction: PropTypes.func,
+  icon: PropTypes.string,
+  translationKey: PropTypes.string,
+  notification: PropTypes.string,
+  isDisabled: PropTypes.bool,
 };
 
 MainView.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  settings: PropTypes.object.isRequired,
+  dispatch: PropTypes.func,
+  profile: PropTypes.object,
+  settings: PropTypes.object,
 };

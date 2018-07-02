@@ -29,7 +29,7 @@ export const UserEntry = ({ openEditModal, openDeleteModal, userData }) => (
           <li>Email: {userData.email}</li>
           {userData.avatarUrl &&
             <li>Avatar URL:&nbsp;
-              <a target="_blank" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
+              <a target="_blank" rel="noopener noreferrer" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
             </li>
           }
           {userData.dciNumber &&
@@ -50,7 +50,7 @@ export const UserEntry = ({ openEditModal, openDeleteModal, userData }) => (
 );
 
 UserEntry.propTypes = {
-  openEditModal: PropTypes.func.isRequired,
-  openDeleteModal: PropTypes.func.isRequired,
-  userData: PropTypes.object.isRequired,
+  openEditModal: PropTypes.func,
+  openDeleteModal: PropTypes.func,
+  userData: PropTypes.object,
 };

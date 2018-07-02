@@ -155,7 +155,7 @@ export default class UserEditor extends Component {
             <li>Email: {userData.email}</li>
             {userData.avatarUrl &&
               <li>Avatar URL:&nbsp;
-                <a target="_blank" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
+                <a target="_blank" rel="noopener noreferrer" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
               </li>
             }
             {userData.dciNumber &&
@@ -220,5 +220,5 @@ export default class UserEditor extends Component {
 }
 
 UserEditor.propTypes = {
-  users: PropTypes.array.isRequired,
+  users: PropTypes.array,
 };
