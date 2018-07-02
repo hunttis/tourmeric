@@ -1,4 +1,4 @@
-export const mockEventId = '-LDI56zLiXQtEMWZsV1K';
+export const mockEventId = 'mockEventId1';
 
 export const mockUserId = 'mockUserId';
 
@@ -9,14 +9,18 @@ export const mockProfile = {
   email: 'fake@fake.com',
   firstName: 'Test',
   lastName: 'Person',
-  providerData: [{ displayName: 'Test Person', email: 'fake@fake.com', photoURL: 'https://foo.com/picture', providerId: 'facebook.com', uid: '1234567890' }],
+  providerData: [{ displayName: 'Test Person',
+    email: 'fake@fake.com',
+    photoURL: 'https://foo.com/picture',
+    providerId: 'facebook.com',
+    uid: '1234567890' }],
   role: 'admin',
   isEmpty: false,
   isLoaded: true,
 };
 
 export const mockSingleEvent = {
-  category: '-LAMddmRE2WVqr1U9guz',
+  category: 'category1',
   createDate: '2018-05-24T17:00:46.500Z',
   date: '2018-09-24',
   entryFee: '10',
@@ -32,9 +36,9 @@ export const mockSingleEvent = {
 };
 
 export const mockEvents = [
-  { key: '-LCyRVRydihk6goyNw8X',
+  { key: 'mockEvent2',
     value: {
-      category: '-LAMd_vpWt-iiSv4f-ID',
+      category: 'category2',
       createDate: '2018-05-20T16:46:32.009Z',
       date: '2018-05-20',
       entryFee: '6',
@@ -46,9 +50,9 @@ export const mockEvents = [
       rulesLevel: 'Competitive',
       time: '10:00',
     } },
-  { key: '-LCyHsYigJZGBhD06IId',
+  { key: 'mockEvent3',
     value: {
-      category: '-LAMd_vpWt-iiSv4f-ID',
+      category: 'category2',
       createDate: '2018-05-20T16:04:29.595Z',
       date: '2018-05-21',
       entryFee: '5',
@@ -62,7 +66,7 @@ export const mockEvents = [
       rulesLevel: 'Regular',
       time: '19:00',
     } },
-  { key: '-LDIwRJt9XsXRt0qiBhb',
+  { key: 'mockEvent4',
     value: {
       category: '-LDIw-1LFgiM0EJZGfus',
       createDate: '2018-05-24T20:58:06.938Z',
@@ -78,7 +82,7 @@ export const mockEvents = [
       rulesLevel: 'Casual',
       time: '17:00',
     } },
-  { key: '-LDI5NRaGsGjm5GNGeTW',
+  { key: 'mockEvent5',
     value: {
       category: '-LAlvCmIWNzYKpa7-7HI',
       createDate: '2018-05-24T17:01:53.909Z',
@@ -94,28 +98,9 @@ export const mockEvents = [
       rulesLevel: 'Casual',
       time: '00:00',
     } },
-  { key: '-LDIt6Dqcl5lCnVF4YI7',
+  { key: 'mockEventId1',
     value: {
-      category: '-LDImTAGxkzrorL0tQdi',
-      createDate: '2018-05-24T20:43:34.143Z',
-      date: '2018-05-26',
-      entryFee: '5',
-      format: 'Casual',
-      link: 'http://www.metacritic.com/browse/games/score/metascore/all/all/filtered',
-      name: 'Video Game',
-      notes: 'Nönnönnöö',
-      playerSlots: '20',
-      prizes: 'Glory!',
-      published: true,
-      rulesLevel: 'Casual',
-      time: '00:00',
-    } },
-  { key: '-LDpI3p7_305bkve0s20',
-    value: { createDate: '2018-05-31T08:24:26.759Z',
-      date: '2018-05-31' } },
-  { key: '-LDI56zLiXQtEMWZsV1K',
-    value: {
-      category: '-LAMddmRE2WVqr1U9guz',
+      category: 'category1',
       createDate: '2018-05-24T17:00:46.500Z',
       date: '2018-09-24',
       entryFee: '10',
@@ -129,38 +114,7 @@ export const mockEvents = [
       rulesLevel: 'Casual',
       time: 'Kill everything',
     } },
-  { key: '-LCyHtHaY7D13k5FzqNt',
-    value: {
-      category: '-LAMd_vpWt-iiSv4f-ID',
-      createDate: '2018-05-20T16:04:32.601Z',
-      date: '2018-12-15',
-      entryFee: '10',
-      format: 'Standard',
-      link: 'https://mtgsuomi.fi/decklist.pdf',
-      name: 'PTPQ Near Future Testing',
-      notes: 'Remember to bring water, a lifepad, paper and most importantly your decklist!',
-      playerSlots: '65',
-      prizes: '7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.',
-      published: true,
-      rulesLevel: 'Competitive',
-      time: '10:00',
-    } },
-  { key: '-LDGfDMHuH2Iu1zQkg8I',
-    value: {
-      category: '-LCmESny8m9JVEFQ_qOt',
-      createDate: '2018-05-24T10:23:37.507Z',
-      date: '2018-12-24',
-      entryFee: '10',
-      format: 'Pokematch',
-      link: 'http://www.pokemon.com',
-      name: 'Pokemon duel',
-      notes: 'Poison pokemon suck',
-      playerSlots: '10',
-      prizes: 'No poison pokemon',
-      published: true,
-      rulesLevel: 'Trainer',
-      time: '10:00',
-    } }];
+];
 
 export const mockSettings = {
   activeLogo: 'http://foo.com/image.png',
@@ -178,28 +132,39 @@ export const mockSettings = {
 
 export const mockUploadedLogos =
   {
-    '152715467988520466': { downloadURL: 'http://foo.com/image.png' },
-    '1527176436609335002': { downloadURL: 'http://foo.com/image.png' },
-    15271767113156952: { downloadURL: 'http://foo.com/image.png' },
-    '152719272536668394': { downloadURL: 'http://foo.com/image.png' },
-    '152719285517486364': { downloadURL: 'http://foo.com/image.png' },
-    '152719293031022177': { downloadURL: 'http://foo.com/image.png' },
-    '152719372155055672': { downloadURL: 'http://foo.com/image.png' },
-    '1527195222417120304': { downloadURL: 'http://foo.com/image.png' },
     15271953483568546: { downloadURL: 'http://foo.com/image.png' },
+    '152719372155055672': { downloadURL: 'http://foo.com/image.png' },
+    '152719272536668394': { downloadURL: 'http://foo.com/image.png' },
     '1527227370219137123': { downloadURL: 'http://foo.com/image.png' },
-    '152722741975567107': { downloadURL: 'http://foo.com/image.png' },
-    '152722747904159438': { downloadURL: 'http://foo.com/image.png' },
     '152722965771313789': { downloadURL: 'http://foo.com/image.png' },
-    '152722968412212601': { downloadURL: 'http://foo.com/image.png' },
-    '152722996249973342': { downloadURL: 'http://foo.com/image.png' },
+    '152722747904159438': { downloadURL: 'http://foo.com/image.png' },
   };
 
-export const mockParticipations = { '-LDI56zLiXQtEMWZsV1K': { mockUserId: { comment: 'Jee', date: '2018-06-23T09:40:26.992Z', firstName: 'Test', lastName: 'Person', userId: 'mockUserId' } } };
+export const mockParticipations = { mockEventId1: { mockUserId: { comment: 'Jee',
+  date: '2018-06-23T09:40:26.992Z',
+  firstName: 'Test',
+  lastName: 'Person',
+  userId: 'mockUserId' } } };
 
-export const mockCategories = { '-LAMd_vpWt-iiSv4f-ID': { abbreviation: 'MtG', logo: '152722965771313789', name: 'Magic: The Gathering', type: 'TCG' },
-  '-LAMddmRE2WVqr1U9guz': { abbreviation: 'WH40K', logo: '1527227370219137123', name: 'Warhammer 40,000', type: 'Miniatures' },
-  '-LAlvCmIWNzYKpa7-7HI': { abbreviation: 'Lautapelit', logo: '152719272536668394', name: 'Lautapelit / Board games' },
-  '-LCmESny8m9JVEFQ_qOt': { abbreviation: 'PKM', logo: '152722747904159438', name: 'Pokémon', type: 'TCG' },
-  '-LDImTAGxkzrorL0tQdi': { abbreviation: 'VG', logo: '152719372155055672', name: 'Videogames' },
-  '-LDIw-1LFgiM0EJZGfus': { abbreviation: 'Necromunda', logo: '15271953483568546', name: 'Necromunda', type: 'Miniatures' } };
+export const mockCategories = { category1: { abbreviation: 'WH40K',
+  logo: '1527227370219137123',
+  name: 'Warhammer 40,000',
+  type: 'Miniatures' },
+category2: { abbreviation: 'MtG',
+  logo: '152722965771313789',
+  name: 'Magic: The Gathering',
+  type: 'TCG' },
+'-LAlvCmIWNzYKpa7-7HI': { abbreviation: 'Lautapelit',
+  logo: '152719272536668394',
+  name: 'Lautapelit / Board games' },
+'-LCmESny8m9JVEFQ_qOt': { abbreviation: 'PKM',
+  logo: '152722747904159438',
+  name: 'Pokémon',
+  type: 'TCG' },
+'-LDImTAGxkzrorL0tQdi': { abbreviation: 'VG',
+  logo: '152719372155055672',
+  name: 'Videogames' },
+'-LDIw-1LFgiM0EJZGfus': { abbreviation: 'Necromunda',
+  logo: '15271953483568546',
+  name: 'Necromunda',
+  type: 'Miniatures' } };

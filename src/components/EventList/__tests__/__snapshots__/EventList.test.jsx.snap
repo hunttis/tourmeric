@@ -7,18 +7,6 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <EventList
     categories={
       Object {
-        "-LAMd_vpWt-iiSv4f-ID": Object {
-          "abbreviation": "MtG",
-          "logo": "152722965771313789",
-          "name": "Magic: The Gathering",
-          "type": "TCG",
-        },
-        "-LAMddmRE2WVqr1U9guz": Object {
-          "abbreviation": "WH40K",
-          "logo": "1527227370219137123",
-          "name": "Warhammer 40,000",
-          "type": "Miniatures",
-        },
         "-LAlvCmIWNzYKpa7-7HI": Object {
           "abbreviation": "Lautapelit",
           "logo": "152719272536668394",
@@ -41,14 +29,26 @@ ShallowWrapper {
           "name": "Necromunda",
           "type": "Miniatures",
         },
+        "category1": Object {
+          "abbreviation": "WH40K",
+          "logo": "1527227370219137123",
+          "name": "Warhammer 40,000",
+          "type": "Miniatures",
+        },
+        "category2": Object {
+          "abbreviation": "MtG",
+          "logo": "152722965771313789",
+          "name": "Magic: The Gathering",
+          "type": "TCG",
+        },
       }
     }
     events={
       Array [
         Object {
-          "key": "-LCyRVRydihk6goyNw8X",
+          "key": "mockEvent2",
           "value": Object {
-            "category": "-LAMd_vpWt-iiSv4f-ID",
+            "category": "category2",
             "createDate": "2018-05-20T16:46:32.009Z",
             "date": "2018-05-20",
             "entryFee": "6",
@@ -62,9 +62,9 @@ ShallowWrapper {
           },
         },
         Object {
-          "key": "-LCyHsYigJZGBhD06IId",
+          "key": "mockEvent3",
           "value": Object {
-            "category": "-LAMd_vpWt-iiSv4f-ID",
+            "category": "category2",
             "createDate": "2018-05-20T16:04:29.595Z",
             "date": "2018-05-21",
             "entryFee": "5",
@@ -80,7 +80,7 @@ ShallowWrapper {
           },
         },
         Object {
-          "key": "-LDIwRJt9XsXRt0qiBhb",
+          "key": "mockEvent4",
           "value": Object {
             "category": "-LDIw-1LFgiM0EJZGfus",
             "createDate": "2018-05-24T20:58:06.938Z",
@@ -98,7 +98,7 @@ ShallowWrapper {
           },
         },
         Object {
-          "key": "-LDI5NRaGsGjm5GNGeTW",
+          "key": "mockEvent5",
           "value": Object {
             "category": "-LAlvCmIWNzYKpa7-7HI",
             "createDate": "2018-05-24T17:01:53.909Z",
@@ -116,34 +116,9 @@ ShallowWrapper {
           },
         },
         Object {
-          "key": "-LDIt6Dqcl5lCnVF4YI7",
+          "key": "mockEventId1",
           "value": Object {
-            "category": "-LDImTAGxkzrorL0tQdi",
-            "createDate": "2018-05-24T20:43:34.143Z",
-            "date": "2018-05-26",
-            "entryFee": "5",
-            "format": "Casual",
-            "link": "http://www.metacritic.com/browse/games/score/metascore/all/all/filtered",
-            "name": "Video Game",
-            "notes": "Nönnönnöö",
-            "playerSlots": "20",
-            "prizes": "Glory!",
-            "published": true,
-            "rulesLevel": "Casual",
-            "time": "00:00",
-          },
-        },
-        Object {
-          "key": "-LDpI3p7_305bkve0s20",
-          "value": Object {
-            "createDate": "2018-05-31T08:24:26.759Z",
-            "date": "2018-05-31",
-          },
-        },
-        Object {
-          "key": "-LDI56zLiXQtEMWZsV1K",
-          "value": Object {
-            "category": "-LAMddmRE2WVqr1U9guz",
+            "category": "category1",
             "createDate": "2018-05-24T17:00:46.500Z",
             "date": "2018-09-24",
             "entryFee": "10",
@@ -158,47 +133,11 @@ ShallowWrapper {
             "time": "Kill everything",
           },
         },
-        Object {
-          "key": "-LCyHtHaY7D13k5FzqNt",
-          "value": Object {
-            "category": "-LAMd_vpWt-iiSv4f-ID",
-            "createDate": "2018-05-20T16:04:32.601Z",
-            "date": "2018-12-15",
-            "entryFee": "10",
-            "format": "Standard",
-            "link": "https://mtgsuomi.fi/decklist.pdf",
-            "name": "PTPQ Near Future Testing",
-            "notes": "Remember to bring water, a lifepad, paper and most importantly your decklist!",
-            "playerSlots": "65",
-            "prizes": "7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.",
-            "published": true,
-            "rulesLevel": "Competitive",
-            "time": "10:00",
-          },
-        },
-        Object {
-          "key": "-LDGfDMHuH2Iu1zQkg8I",
-          "value": Object {
-            "category": "-LCmESny8m9JVEFQ_qOt",
-            "createDate": "2018-05-24T10:23:37.507Z",
-            "date": "2018-12-24",
-            "entryFee": "10",
-            "format": "Pokematch",
-            "link": "http://www.pokemon.com",
-            "name": "Pokemon duel",
-            "notes": "Poison pokemon suck",
-            "playerSlots": "10",
-            "prizes": "No poison pokemon",
-            "published": true,
-            "rulesLevel": "Trainer",
-            "time": "10:00",
-          },
-        },
       ]
     }
     participations={
       Object {
-        "-LDI56zLiXQtEMWZsV1K": Object {
+        "mockEventId1": Object {
           "mockUserId": Object {
             "comment": "Jee",
             "date": "2018-06-23T09:40:26.992Z",
@@ -248,28 +187,10 @@ ShallowWrapper {
     }
     uploadedCategoryLogos={
       Object {
-        "152715467988520466": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
-        "1527176436609335002": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
-        "15271767113156952": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
         "152719272536668394": Object {
           "downloadURL": "http://foo.com/image.png",
         },
-        "152719285517486364": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
-        "152719293031022177": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
         "152719372155055672": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
-        "1527195222417120304": Object {
           "downloadURL": "http://foo.com/image.png",
         },
         "15271953483568546": Object {
@@ -278,19 +199,10 @@ ShallowWrapper {
         "1527227370219137123": Object {
           "downloadURL": "http://foo.com/image.png",
         },
-        "152722741975567107": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
         "152722747904159438": Object {
           "downloadURL": "http://foo.com/image.png",
         },
         "152722965771313789": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
-        "152722968412212601": Object {
-          "downloadURL": "http://foo.com/image.png",
-        },
-        "152722996249973342": Object {
           "downloadURL": "http://foo.com/image.png",
         },
       }
@@ -315,7 +227,7 @@ ShallowWrapper {
           closeModal={[Function]}
           eventContent={
             Object {
-              "category": "-LAMddmRE2WVqr1U9guz",
+              "category": "category1",
               "createDate": "2018-05-24T17:00:46.500Z",
               "date": "2018-09-24",
               "entryFee": "10",
@@ -330,7 +242,7 @@ ShallowWrapper {
               "time": "Kill everything",
             }
           }
-          eventId="-LDI56zLiXQtEMWZsV1K"
+          eventId="mockEventId1"
           participations={
             Array [
               Object {
@@ -342,50 +254,6 @@ ShallowWrapper {
               },
             ]
           }
-        />
-        <EventModal
-          closeModal={[Function]}
-          eventContent={
-            Object {
-              "category": "-LAMd_vpWt-iiSv4f-ID",
-              "createDate": "2018-05-20T16:04:32.601Z",
-              "date": "2018-12-15",
-              "entryFee": "10",
-              "format": "Standard",
-              "link": "https://mtgsuomi.fi/decklist.pdf",
-              "name": "PTPQ Near Future Testing",
-              "notes": "Remember to bring water, a lifepad, paper and most importantly your decklist!",
-              "playerSlots": "65",
-              "prizes": "7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.",
-              "published": true,
-              "rulesLevel": "Competitive",
-              "time": "10:00",
-            }
-          }
-          eventId="-LCyHtHaY7D13k5FzqNt"
-          participations={Array []}
-        />
-        <EventModal
-          closeModal={[Function]}
-          eventContent={
-            Object {
-              "category": "-LCmESny8m9JVEFQ_qOt",
-              "createDate": "2018-05-24T10:23:37.507Z",
-              "date": "2018-12-24",
-              "entryFee": "10",
-              "format": "Pokematch",
-              "link": "http://www.pokemon.com",
-              "name": "Pokemon duel",
-              "notes": "Poison pokemon suck",
-              "playerSlots": "10",
-              "prizes": "No poison pokemon",
-              "published": true,
-              "rulesLevel": "Trainer",
-              "time": "10:00",
-            }
-          }
-          eventId="-LDGfDMHuH2Iu1zQkg8I"
-          participations={Array []}
         />
         <h1
           className="title"
@@ -535,35 +403,7 @@ ShallowWrapper {
               className="column is-2"
             />
             <Connect(Connect(EventCard))
-              eventId="-LDI56zLiXQtEMWZsV1K"
-              openModal={[Function]}
-            />
-            <div
-              className="column is-2"
-            />
-          </div>
-          <div
-            className="column is-12 columns"
-          >
-            <div
-              className="column is-2"
-            />
-            <Connect(Connect(EventCard))
-              eventId="-LCyHtHaY7D13k5FzqNt"
-              openModal={[Function]}
-            />
-            <div
-              className="column is-2"
-            />
-          </div>
-          <div
-            className="column is-12 columns"
-          >
-            <div
-              className="column is-2"
-            />
-            <Connect(Connect(EventCard))
-              eventId="-LDGfDMHuH2Iu1zQkg8I"
+              eventId="mockEventId1"
               openModal={[Function]}
             />
             <div
@@ -586,7 +426,7 @@ ShallowWrapper {
               closeModal={[Function]}
               eventContent={
                 Object {
-                  "category": "-LAMddmRE2WVqr1U9guz",
+                  "category": "category1",
                   "createDate": "2018-05-24T17:00:46.500Z",
                   "date": "2018-09-24",
                   "entryFee": "10",
@@ -601,7 +441,7 @@ ShallowWrapper {
                   "time": "Kill everything",
                 }
               }
-              eventId="-LDI56zLiXQtEMWZsV1K"
+              eventId="mockEventId1"
               participations={
                 Array [
                   Object {
@@ -613,50 +453,6 @@ ShallowWrapper {
                   },
                 ]
               }
-            />,
-            <EventModal
-              closeModal={[Function]}
-              eventContent={
-                Object {
-                  "category": "-LAMd_vpWt-iiSv4f-ID",
-                  "createDate": "2018-05-20T16:04:32.601Z",
-                  "date": "2018-12-15",
-                  "entryFee": "10",
-                  "format": "Standard",
-                  "link": "https://mtgsuomi.fi/decklist.pdf",
-                  "name": "PTPQ Near Future Testing",
-                  "notes": "Remember to bring water, a lifepad, paper and most importantly your decklist!",
-                  "playerSlots": "65",
-                  "prizes": "7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.",
-                  "published": true,
-                  "rulesLevel": "Competitive",
-                  "time": "10:00",
-                }
-              }
-              eventId="-LCyHtHaY7D13k5FzqNt"
-              participations={Array []}
-            />,
-            <EventModal
-              closeModal={[Function]}
-              eventContent={
-                Object {
-                  "category": "-LCmESny8m9JVEFQ_qOt",
-                  "createDate": "2018-05-24T10:23:37.507Z",
-                  "date": "2018-12-24",
-                  "entryFee": "10",
-                  "format": "Pokematch",
-                  "link": "http://www.pokemon.com",
-                  "name": "Pokemon duel",
-                  "notes": "Poison pokemon suck",
-                  "playerSlots": "10",
-                  "prizes": "No poison pokemon",
-                  "published": true,
-                  "rulesLevel": "Trainer",
-                  "time": "10:00",
-                }
-              }
-              eventId="-LDGfDMHuH2Iu1zQkg8I"
-              participations={Array []}
             />,
           ],
           <h1
@@ -807,35 +603,7 @@ ShallowWrapper {
                 className="column is-2"
               />
               <Connect(Connect(EventCard))
-                eventId="-LDI56zLiXQtEMWZsV1K"
-                openModal={[Function]}
-              />
-              <div
-                className="column is-2"
-              />
-            </div>
-            <div
-              className="column is-12 columns"
-            >
-              <div
-                className="column is-2"
-              />
-              <Connect(Connect(EventCard))
-                eventId="-LCyHtHaY7D13k5FzqNt"
-                openModal={[Function]}
-              />
-              <div
-                className="column is-2"
-              />
-            </div>
-            <div
-              className="column is-12 columns"
-            >
-              <div
-                className="column is-2"
-              />
-              <Connect(Connect(EventCard))
-                eventId="-LDGfDMHuH2Iu1zQkg8I"
+                eventId="mockEventId1"
                 openModal={[Function]}
               />
               <div
@@ -850,12 +618,12 @@ ShallowWrapper {
       "rendered": Array [
         Object {
           "instance": null,
-          "key": "modal-LDI56zLiXQtEMWZsV1K",
+          "key": "modalmockEventId1",
           "nodeType": "function",
           "props": Object {
             "closeModal": [Function],
             "eventContent": Object {
-              "category": "-LAMddmRE2WVqr1U9guz",
+              "category": "category1",
               "createDate": "2018-05-24T17:00:46.500Z",
               "date": "2018-09-24",
               "entryFee": "10",
@@ -869,7 +637,7 @@ ShallowWrapper {
               "rulesLevel": "Casual",
               "time": "Kill everything",
             },
-            "eventId": "-LDI56zLiXQtEMWZsV1K",
+            "eventId": "mockEventId1",
             "participations": Array [
               Object {
                 "comment": "Jee",
@@ -879,62 +647,6 @@ ShallowWrapper {
                 "userId": "mockUserId",
               },
             ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": "modal-LCyHtHaY7D13k5FzqNt",
-          "nodeType": "function",
-          "props": Object {
-            "closeModal": [Function],
-            "eventContent": Object {
-              "category": "-LAMd_vpWt-iiSv4f-ID",
-              "createDate": "2018-05-20T16:04:32.601Z",
-              "date": "2018-12-15",
-              "entryFee": "10",
-              "format": "Standard",
-              "link": "https://mtgsuomi.fi/decklist.pdf",
-              "name": "PTPQ Near Future Testing",
-              "notes": "Remember to bring water, a lifepad, paper and most importantly your decklist!",
-              "playerSlots": "65",
-              "prizes": "7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.",
-              "published": true,
-              "rulesLevel": "Competitive",
-              "time": "10:00",
-            },
-            "eventId": "-LCyHtHaY7D13k5FzqNt",
-            "participations": Array [],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": "modal-LDGfDMHuH2Iu1zQkg8I",
-          "nodeType": "function",
-          "props": Object {
-            "closeModal": [Function],
-            "eventContent": Object {
-              "category": "-LCmESny8m9JVEFQ_qOt",
-              "createDate": "2018-05-24T10:23:37.507Z",
-              "date": "2018-12-24",
-              "entryFee": "10",
-              "format": "Pokematch",
-              "link": "http://www.pokemon.com",
-              "name": "Pokemon duel",
-              "notes": "Poison pokemon suck",
-              "playerSlots": "10",
-              "prizes": "No poison pokemon",
-              "published": true,
-              "rulesLevel": "Trainer",
-              "time": "10:00",
-            },
-            "eventId": "-LDGfDMHuH2Iu1zQkg8I",
-            "participations": Array [],
           },
           "ref": null,
           "rendered": null,
@@ -1236,7 +948,7 @@ ShallowWrapper {
               "rendered": Array [
                 Object {
                   "instance": null,
-                  "key": "categoryfilter--LAMd_vpWt-iiSv4f-ID",
+                  "key": "categoryfilter-category1",
                   "nodeType": "host",
                   "props": Object {
                     "children": <button
@@ -1285,7 +997,7 @@ ShallowWrapper {
                 },
                 Object {
                   "instance": null,
-                  "key": "categoryfilter--LAMddmRE2WVqr1U9guz",
+                  "key": "categoryfilter-category2",
                   "nodeType": "host",
                   "props": Object {
                     "children": <button
@@ -1644,35 +1356,7 @@ ShallowWrapper {
                   className="column is-2"
                 />
                 <Connect(Connect(EventCard))
-                  eventId="-LDI56zLiXQtEMWZsV1K"
-                  openModal={[Function]}
-                />
-                <div
-                  className="column is-2"
-                />
-              </div>,
-              <div
-                className="column is-12 columns"
-              >
-                <div
-                  className="column is-2"
-                />
-                <Connect(Connect(EventCard))
-                  eventId="-LCyHtHaY7D13k5FzqNt"
-                  openModal={[Function]}
-                />
-                <div
-                  className="column is-2"
-                />
-              </div>,
-              <div
-                className="column is-12 columns"
-              >
-                <div
-                  className="column is-2"
-                />
-                <Connect(Connect(EventCard))
-                  eventId="-LDGfDMHuH2Iu1zQkg8I"
+                  eventId="mockEventId1"
                   openModal={[Function]}
                 />
                 <div
@@ -1686,7 +1370,7 @@ ShallowWrapper {
           "rendered": Array [
             Object {
               "instance": null,
-              "key": "-LDI56zLiXQtEMWZsV1K",
+              "key": "mockEventId1",
               "nodeType": "host",
               "props": Object {
                 "children": Array [
@@ -1694,7 +1378,7 @@ ShallowWrapper {
                     className="column is-2"
                   />,
                   <Connect(Connect(EventCard))
-                    eventId="-LDI56zLiXQtEMWZsV1K"
+                    eventId="mockEventId1"
                     openModal={[Function]}
                   />,
                   <div
@@ -1721,123 +1405,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "eventId": "-LDI56zLiXQtEMWZsV1K",
-                    "openModal": [Function],
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "className": "column is-2",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "div",
-                },
-              ],
-              "type": "div",
-            },
-            Object {
-              "instance": null,
-              "key": "-LCyHtHaY7D13k5FzqNt",
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <div
-                    className="column is-2"
-                  />,
-                  <Connect(Connect(EventCard))
-                    eventId="-LCyHtHaY7D13k5FzqNt"
-                    openModal={[Function]}
-                  />,
-                  <div
-                    className="column is-2"
-                  />,
-                ],
-                "className": "column is-12 columns",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "className": "column is-2",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "div",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "eventId": "-LCyHtHaY7D13k5FzqNt",
-                    "openModal": [Function],
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "className": "column is-2",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "div",
-                },
-              ],
-              "type": "div",
-            },
-            Object {
-              "instance": null,
-              "key": "-LDGfDMHuH2Iu1zQkg8I",
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <div
-                    className="column is-2"
-                  />,
-                  <Connect(Connect(EventCard))
-                    eventId="-LDGfDMHuH2Iu1zQkg8I"
-                    openModal={[Function]}
-                  />,
-                  <div
-                    className="column is-2"
-                  />,
-                ],
-                "className": "column is-12 columns",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "className": "column is-2",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "div",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "eventId": "-LDGfDMHuH2Iu1zQkg8I",
+                    "eventId": "mockEventId1",
                     "openModal": [Function],
                   },
                   "ref": null,
@@ -1879,7 +1447,7 @@ ShallowWrapper {
             closeModal={[Function]}
             eventContent={
               Object {
-                "category": "-LAMddmRE2WVqr1U9guz",
+                "category": "category1",
                 "createDate": "2018-05-24T17:00:46.500Z",
                 "date": "2018-09-24",
                 "entryFee": "10",
@@ -1894,7 +1462,7 @@ ShallowWrapper {
                 "time": "Kill everything",
               }
             }
-            eventId="-LDI56zLiXQtEMWZsV1K"
+            eventId="mockEventId1"
             participations={
               Array [
                 Object {
@@ -1906,50 +1474,6 @@ ShallowWrapper {
                 },
               ]
             }
-          />
-          <EventModal
-            closeModal={[Function]}
-            eventContent={
-              Object {
-                "category": "-LAMd_vpWt-iiSv4f-ID",
-                "createDate": "2018-05-20T16:04:32.601Z",
-                "date": "2018-12-15",
-                "entryFee": "10",
-                "format": "Standard",
-                "link": "https://mtgsuomi.fi/decklist.pdf",
-                "name": "PTPQ Near Future Testing",
-                "notes": "Remember to bring water, a lifepad, paper and most importantly your decklist!",
-                "playerSlots": "65",
-                "prizes": "7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.",
-                "published": true,
-                "rulesLevel": "Competitive",
-                "time": "10:00",
-              }
-            }
-            eventId="-LCyHtHaY7D13k5FzqNt"
-            participations={Array []}
-          />
-          <EventModal
-            closeModal={[Function]}
-            eventContent={
-              Object {
-                "category": "-LCmESny8m9JVEFQ_qOt",
-                "createDate": "2018-05-24T10:23:37.507Z",
-                "date": "2018-12-24",
-                "entryFee": "10",
-                "format": "Pokematch",
-                "link": "http://www.pokemon.com",
-                "name": "Pokemon duel",
-                "notes": "Poison pokemon suck",
-                "playerSlots": "10",
-                "prizes": "No poison pokemon",
-                "published": true,
-                "rulesLevel": "Trainer",
-                "time": "10:00",
-              }
-            }
-            eventId="-LDGfDMHuH2Iu1zQkg8I"
-            participations={Array []}
           />
           <h1
             className="title"
@@ -2099,35 +1623,7 @@ ShallowWrapper {
                 className="column is-2"
               />
               <Connect(Connect(EventCard))
-                eventId="-LDI56zLiXQtEMWZsV1K"
-                openModal={[Function]}
-              />
-              <div
-                className="column is-2"
-              />
-            </div>
-            <div
-              className="column is-12 columns"
-            >
-              <div
-                className="column is-2"
-              />
-              <Connect(Connect(EventCard))
-                eventId="-LCyHtHaY7D13k5FzqNt"
-                openModal={[Function]}
-              />
-              <div
-                className="column is-2"
-              />
-            </div>
-            <div
-              className="column is-12 columns"
-            >
-              <div
-                className="column is-2"
-              />
-              <Connect(Connect(EventCard))
-                eventId="-LDGfDMHuH2Iu1zQkg8I"
+                eventId="mockEventId1"
                 openModal={[Function]}
               />
               <div
@@ -2150,7 +1646,7 @@ ShallowWrapper {
                 closeModal={[Function]}
                 eventContent={
                   Object {
-                    "category": "-LAMddmRE2WVqr1U9guz",
+                    "category": "category1",
                     "createDate": "2018-05-24T17:00:46.500Z",
                     "date": "2018-09-24",
                     "entryFee": "10",
@@ -2165,7 +1661,7 @@ ShallowWrapper {
                     "time": "Kill everything",
                   }
                 }
-                eventId="-LDI56zLiXQtEMWZsV1K"
+                eventId="mockEventId1"
                 participations={
                   Array [
                     Object {
@@ -2177,50 +1673,6 @@ ShallowWrapper {
                     },
                   ]
                 }
-              />,
-              <EventModal
-                closeModal={[Function]}
-                eventContent={
-                  Object {
-                    "category": "-LAMd_vpWt-iiSv4f-ID",
-                    "createDate": "2018-05-20T16:04:32.601Z",
-                    "date": "2018-12-15",
-                    "entryFee": "10",
-                    "format": "Standard",
-                    "link": "https://mtgsuomi.fi/decklist.pdf",
-                    "name": "PTPQ Near Future Testing",
-                    "notes": "Remember to bring water, a lifepad, paper and most importantly your decklist!",
-                    "playerSlots": "65",
-                    "prizes": "7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.",
-                    "published": true,
-                    "rulesLevel": "Competitive",
-                    "time": "10:00",
-                  }
-                }
-                eventId="-LCyHtHaY7D13k5FzqNt"
-                participations={Array []}
-              />,
-              <EventModal
-                closeModal={[Function]}
-                eventContent={
-                  Object {
-                    "category": "-LCmESny8m9JVEFQ_qOt",
-                    "createDate": "2018-05-24T10:23:37.507Z",
-                    "date": "2018-12-24",
-                    "entryFee": "10",
-                    "format": "Pokematch",
-                    "link": "http://www.pokemon.com",
-                    "name": "Pokemon duel",
-                    "notes": "Poison pokemon suck",
-                    "playerSlots": "10",
-                    "prizes": "No poison pokemon",
-                    "published": true,
-                    "rulesLevel": "Trainer",
-                    "time": "10:00",
-                  }
-                }
-                eventId="-LDGfDMHuH2Iu1zQkg8I"
-                participations={Array []}
               />,
             ],
             <h1
@@ -2371,35 +1823,7 @@ ShallowWrapper {
                   className="column is-2"
                 />
                 <Connect(Connect(EventCard))
-                  eventId="-LDI56zLiXQtEMWZsV1K"
-                  openModal={[Function]}
-                />
-                <div
-                  className="column is-2"
-                />
-              </div>
-              <div
-                className="column is-12 columns"
-              >
-                <div
-                  className="column is-2"
-                />
-                <Connect(Connect(EventCard))
-                  eventId="-LCyHtHaY7D13k5FzqNt"
-                  openModal={[Function]}
-                />
-                <div
-                  className="column is-2"
-                />
-              </div>
-              <div
-                className="column is-12 columns"
-              >
-                <div
-                  className="column is-2"
-                />
-                <Connect(Connect(EventCard))
-                  eventId="-LDGfDMHuH2Iu1zQkg8I"
+                  eventId="mockEventId1"
                   openModal={[Function]}
                 />
                 <div
@@ -2414,12 +1838,12 @@ ShallowWrapper {
         "rendered": Array [
           Object {
             "instance": null,
-            "key": "modal-LDI56zLiXQtEMWZsV1K",
+            "key": "modalmockEventId1",
             "nodeType": "function",
             "props": Object {
               "closeModal": [Function],
               "eventContent": Object {
-                "category": "-LAMddmRE2WVqr1U9guz",
+                "category": "category1",
                 "createDate": "2018-05-24T17:00:46.500Z",
                 "date": "2018-09-24",
                 "entryFee": "10",
@@ -2433,7 +1857,7 @@ ShallowWrapper {
                 "rulesLevel": "Casual",
                 "time": "Kill everything",
               },
-              "eventId": "-LDI56zLiXQtEMWZsV1K",
+              "eventId": "mockEventId1",
               "participations": Array [
                 Object {
                   "comment": "Jee",
@@ -2443,62 +1867,6 @@ ShallowWrapper {
                   "userId": "mockUserId",
                 },
               ],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "modal-LCyHtHaY7D13k5FzqNt",
-            "nodeType": "function",
-            "props": Object {
-              "closeModal": [Function],
-              "eventContent": Object {
-                "category": "-LAMd_vpWt-iiSv4f-ID",
-                "createDate": "2018-05-20T16:04:32.601Z",
-                "date": "2018-12-15",
-                "entryFee": "10",
-                "format": "Standard",
-                "link": "https://mtgsuomi.fi/decklist.pdf",
-                "name": "PTPQ Near Future Testing",
-                "notes": "Remember to bring water, a lifepad, paper and most importantly your decklist!",
-                "playerSlots": "65",
-                "prizes": "7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.",
-                "published": true,
-                "rulesLevel": "Competitive",
-                "time": "10:00",
-              },
-              "eventId": "-LCyHtHaY7D13k5FzqNt",
-              "participations": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "modal-LDGfDMHuH2Iu1zQkg8I",
-            "nodeType": "function",
-            "props": Object {
-              "closeModal": [Function],
-              "eventContent": Object {
-                "category": "-LCmESny8m9JVEFQ_qOt",
-                "createDate": "2018-05-24T10:23:37.507Z",
-                "date": "2018-12-24",
-                "entryFee": "10",
-                "format": "Pokematch",
-                "link": "http://www.pokemon.com",
-                "name": "Pokemon duel",
-                "notes": "Poison pokemon suck",
-                "playerSlots": "10",
-                "prizes": "No poison pokemon",
-                "published": true,
-                "rulesLevel": "Trainer",
-                "time": "10:00",
-              },
-              "eventId": "-LDGfDMHuH2Iu1zQkg8I",
-              "participations": Array [],
             },
             "ref": null,
             "rendered": null,
@@ -2800,7 +2168,7 @@ ShallowWrapper {
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "categoryfilter--LAMd_vpWt-iiSv4f-ID",
+                    "key": "categoryfilter-category1",
                     "nodeType": "host",
                     "props": Object {
                       "children": <button
@@ -2849,7 +2217,7 @@ ShallowWrapper {
                   },
                   Object {
                     "instance": null,
-                    "key": "categoryfilter--LAMddmRE2WVqr1U9guz",
+                    "key": "categoryfilter-category2",
                     "nodeType": "host",
                     "props": Object {
                       "children": <button
@@ -3208,35 +2576,7 @@ ShallowWrapper {
                     className="column is-2"
                   />
                   <Connect(Connect(EventCard))
-                    eventId="-LDI56zLiXQtEMWZsV1K"
-                    openModal={[Function]}
-                  />
-                  <div
-                    className="column is-2"
-                  />
-                </div>,
-                <div
-                  className="column is-12 columns"
-                >
-                  <div
-                    className="column is-2"
-                  />
-                  <Connect(Connect(EventCard))
-                    eventId="-LCyHtHaY7D13k5FzqNt"
-                    openModal={[Function]}
-                  />
-                  <div
-                    className="column is-2"
-                  />
-                </div>,
-                <div
-                  className="column is-12 columns"
-                >
-                  <div
-                    className="column is-2"
-                  />
-                  <Connect(Connect(EventCard))
-                    eventId="-LDGfDMHuH2Iu1zQkg8I"
+                    eventId="mockEventId1"
                     openModal={[Function]}
                   />
                   <div
@@ -3250,7 +2590,7 @@ ShallowWrapper {
             "rendered": Array [
               Object {
                 "instance": null,
-                "key": "-LDI56zLiXQtEMWZsV1K",
+                "key": "mockEventId1",
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
@@ -3258,7 +2598,7 @@ ShallowWrapper {
                       className="column is-2"
                     />,
                     <Connect(Connect(EventCard))
-                      eventId="-LDI56zLiXQtEMWZsV1K"
+                      eventId="mockEventId1"
                       openModal={[Function]}
                     />,
                     <div
@@ -3285,123 +2625,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "eventId": "-LDI56zLiXQtEMWZsV1K",
-                      "openModal": [Function],
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "className": "column is-2",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": "div",
-                  },
-                ],
-                "type": "div",
-              },
-              Object {
-                "instance": null,
-                "key": "-LCyHtHaY7D13k5FzqNt",
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <div
-                      className="column is-2"
-                    />,
-                    <Connect(Connect(EventCard))
-                      eventId="-LCyHtHaY7D13k5FzqNt"
-                      openModal={[Function]}
-                    />,
-                    <div
-                      className="column is-2"
-                    />,
-                  ],
-                  "className": "column is-12 columns",
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "className": "column is-2",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": "div",
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "eventId": "-LCyHtHaY7D13k5FzqNt",
-                      "openModal": [Function],
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "className": "column is-2",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": "div",
-                  },
-                ],
-                "type": "div",
-              },
-              Object {
-                "instance": null,
-                "key": "-LDGfDMHuH2Iu1zQkg8I",
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <div
-                      className="column is-2"
-                    />,
-                    <Connect(Connect(EventCard))
-                      eventId="-LDGfDMHuH2Iu1zQkg8I"
-                      openModal={[Function]}
-                    />,
-                    <div
-                      className="column is-2"
-                    />,
-                  ],
-                  "className": "column is-12 columns",
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "className": "column is-2",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": "div",
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "eventId": "-LDGfDMHuH2Iu1zQkg8I",
+                      "eventId": "mockEventId1",
                       "openModal": [Function],
                     },
                     "ref": null,

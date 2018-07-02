@@ -8,7 +8,7 @@ ShallowWrapper {
     closeModal={[Function]}
     eventContent={
       Object {
-        "category": "-LAMddmRE2WVqr1U9guz",
+        "category": "category1",
         "createDate": "2018-05-24T17:00:46.500Z",
         "date": "2018-09-24",
         "entryFee": "10",
@@ -23,11 +23,11 @@ ShallowWrapper {
         "time": "Kill everything",
       }
     }
-    eventId="-LDI56zLiXQtEMWZsV1K"
+    eventId="mockEventId1"
     participations={
       Array [
         Object {
-          "-LDI56zLiXQtEMWZsV1K": Object {
+          "mockEventId1": Object {
             "mockUserId": Object {
               "comment": "Jee",
               "date": "2018-06-23T09:40:26.992Z",
@@ -49,7 +49,7 @@ ShallowWrapper {
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
-    "key": "modal-LDI56zLiXQtEMWZsV1K",
+    "key": "modalmockEventId1",
     "nodeType": "host",
     "props": Object {
       "children": Array [
@@ -107,7 +107,7 @@ ShallowWrapper {
                     participations={
                       Array [
                         Object {
-                          "-LDI56zLiXQtEMWZsV1K": Object {
+                          "mockEventId1": Object {
                             "mockUserId": Object {
                               "comment": "Jee",
                               "date": "2018-06-23T09:40:26.992Z",
@@ -132,7 +132,7 @@ ShallowWrapper {
         />,
       ],
       "className": "modal",
-      "id": "modal-LDI56zLiXQtEMWZsV1K",
+      "id": "modalmockEventId1",
     },
     "ref": null,
     "rendered": Array [
@@ -200,7 +200,7 @@ ShallowWrapper {
                     participations={
                       Array [
                         Object {
-                          "-LDI56zLiXQtEMWZsV1K": Object {
+                          "mockEventId1": Object {
                             "mockUserId": Object {
                               "comment": "Jee",
                               "date": "2018-06-23T09:40:26.992Z",
@@ -269,7 +269,7 @@ ShallowWrapper {
                     participations={
                       Array [
                         Object {
-                          "-LDI56zLiXQtEMWZsV1K": Object {
+                          "mockEventId1": Object {
                             "mockUserId": Object {
                               "comment": "Jee",
                               "date": "2018-06-23T09:40:26.992Z",
@@ -335,7 +335,7 @@ ShallowWrapper {
                       participations={
                         Array [
                           Object {
-                            "-LDI56zLiXQtEMWZsV1K": Object {
+                            "mockEventId1": Object {
                               "mockUserId": Object {
                                 "comment": "Jee",
                                 "date": "2018-06-23T09:40:26.992Z",
@@ -474,7 +474,7 @@ ShallowWrapper {
                       participations={
                         Array [
                           Object {
-                            "-LDI56zLiXQtEMWZsV1K": Object {
+                            "mockEventId1": Object {
                               "mockUserId": Object {
                                 "comment": "Jee",
                                 "date": "2018-06-23T09:40:26.992Z",
@@ -508,7 +508,7 @@ ShallowWrapper {
                         participations={
                           Array [
                             Object {
-                              "-LDI56zLiXQtEMWZsV1K": Object {
+                              "mockEventId1": Object {
                                 "mockUserId": Object {
                                   "comment": "Jee",
                                   "date": "2018-06-23T09:40:26.992Z",
@@ -556,7 +556,7 @@ ShallowWrapper {
                       "props": Object {
                         "participations": Array [
                           Object {
-                            "-LDI56zLiXQtEMWZsV1K": Object {
+                            "mockEventId1": Object {
                               "mockUserId": Object {
                                 "comment": "Jee",
                                 "date": "2018-06-23T09:40:26.992Z",
@@ -603,7 +603,7 @@ ShallowWrapper {
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
-      "key": "modal-LDI56zLiXQtEMWZsV1K",
+      "key": "modalmockEventId1",
       "nodeType": "host",
       "props": Object {
         "children": Array [
@@ -661,7 +661,7 @@ ShallowWrapper {
                       participations={
                         Array [
                           Object {
-                            "-LDI56zLiXQtEMWZsV1K": Object {
+                            "mockEventId1": Object {
                               "mockUserId": Object {
                                 "comment": "Jee",
                                 "date": "2018-06-23T09:40:26.992Z",
@@ -686,7 +686,7 @@ ShallowWrapper {
           />,
         ],
         "className": "modal",
-        "id": "modal-LDI56zLiXQtEMWZsV1K",
+        "id": "modalmockEventId1",
       },
       "ref": null,
       "rendered": Array [
@@ -754,7 +754,7 @@ ShallowWrapper {
                       participations={
                         Array [
                           Object {
-                            "-LDI56zLiXQtEMWZsV1K": Object {
+                            "mockEventId1": Object {
                               "mockUserId": Object {
                                 "comment": "Jee",
                                 "date": "2018-06-23T09:40:26.992Z",
@@ -823,7 +823,7 @@ ShallowWrapper {
                       participations={
                         Array [
                           Object {
-                            "-LDI56zLiXQtEMWZsV1K": Object {
+                            "mockEventId1": Object {
                               "mockUserId": Object {
                                 "comment": "Jee",
                                 "date": "2018-06-23T09:40:26.992Z",
@@ -889,7 +889,7 @@ ShallowWrapper {
                         participations={
                           Array [
                             Object {
-                              "-LDI56zLiXQtEMWZsV1K": Object {
+                              "mockEventId1": Object {
                                 "mockUserId": Object {
                                   "comment": "Jee",
                                   "date": "2018-06-23T09:40:26.992Z",
@@ -1028,7 +1028,7 @@ ShallowWrapper {
                         participations={
                           Array [
                             Object {
-                              "-LDI56zLiXQtEMWZsV1K": Object {
+                              "mockEventId1": Object {
                                 "mockUserId": Object {
                                   "comment": "Jee",
                                   "date": "2018-06-23T09:40:26.992Z",
@@ -1062,7 +1062,7 @@ ShallowWrapper {
                           participations={
                             Array [
                               Object {
-                                "-LDI56zLiXQtEMWZsV1K": Object {
+                                "mockEventId1": Object {
                                   "mockUserId": Object {
                                     "comment": "Jee",
                                     "date": "2018-06-23T09:40:26.992Z",
@@ -1110,7 +1110,7 @@ ShallowWrapper {
                         "props": Object {
                           "participations": Array [
                             Object {
-                              "-LDI56zLiXQtEMWZsV1K": Object {
+                              "mockEventId1": Object {
                                 "mockUserId": Object {
                                   "comment": "Jee",
                                   "date": "2018-06-23T09:40:26.992Z",

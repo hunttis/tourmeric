@@ -5,10 +5,10 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ParticipateButton
-    eventId="-LDI56zLiXQtEMWZsV1K"
+    eventId="mockEventId1"
     participations={
       Object {
-        "-LDI56zLiXQtEMWZsV1K": Object {
+        "mockEventId1": Object {
           "mockUserId": Object {
             "comment": "Jee",
             "date": "2018-06-23T09:40:26.992Z",
@@ -267,10 +267,10 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ParticipateButton
-    eventId="-LDI56zLiXQtEMWZsV1K"
+    eventId="mockEventId1"
     participations={
       Object {
-        "-LDI56zLiXQtEMWZsV1K": Object {
+        "mockEventId1": Object {
           "mockUserId": Object {
             "comment": "Jee",
             "date": "2018-06-23T09:40:26.992Z",
@@ -477,10 +477,10 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ParticipateButton
-    eventId="-LDI56zLiXQtEMWZsV1K"
+    eventId="mockEventId1"
     participations={
       Object {
-        "-LDI56zLiXQtEMWZsV1K": Object {
+        "mockEventId1": Object {
           "mockUserId": Object {
             "comment": "Jee",
             "date": "2018-06-23T09:40:26.992Z",
@@ -739,10 +739,10 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ParticipateButton
-    eventId="-LDI56zLiXQtEMWZsV1K"
+    eventId="mockEventId1"
     participations={
       Object {
-        "-LDI56zLiXQtEMWZsV1K": Object {
+        "mockEventId1": Object {
           "mockUserId": Object {
             "comment": "Jee",
             "date": "2018-06-23T09:40:26.992Z",

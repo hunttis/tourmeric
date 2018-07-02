@@ -1,18 +1,18 @@
 {
-  "name": "omg-tournament",
+  "name": "tourmeric",
   "version": "1.0.0",
   "description": "This project is for a tournament calendar that let's you create events, edit them and then allows users to pre-register for the events",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/hunttis/omg-tournament.git"
+    "url": "git+ssh://git@gitlab.com/hunttis/tourmeric.git"
   },
   "author": "Ville Nuutinen",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/hunttis/omg-tournament/issues"
+    "url": "https://gitlab.com/hunttis/tourmeric/issues"
   },
-  "homepage": "https://gitlab.com/hunttis/omg-tournament#README",
+  "homepage": "https://gitlab.com/hunttis/tourmeric#README",
   "scripts": {
     "dev": "parcel ./src/index.html",
     "build": "parcel build ./src/index.html -d dist --public-url . --no-source-maps",
