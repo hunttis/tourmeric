@@ -1,0 +1,2681 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventCard Tests Compares EventCard to snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <EventCard
+    categories={
+      Object {
+        "-LAMd_vpWt-iiSv4f-ID": Object {
+          "abbreviation": "MtG",
+          "logo": "152722965771313789",
+          "name": "Magic: The Gathering",
+          "type": "TCG",
+        },
+        "-LAMddmRE2WVqr1U9guz": Object {
+          "abbreviation": "WH40K",
+          "logo": "1527227370219137123",
+          "name": "Warhammer 40,000",
+          "type": "Miniatures",
+        },
+        "-LAlvCmIWNzYKpa7-7HI": Object {
+          "abbreviation": "Lautapelit",
+          "logo": "152719272536668394",
+          "name": "Lautapelit / Board games",
+        },
+        "-LCmESny8m9JVEFQ_qOt": Object {
+          "abbreviation": "PKM",
+          "logo": "152722747904159438",
+          "name": "Pokémon",
+          "type": "TCG",
+        },
+        "-LDImTAGxkzrorL0tQdi": Object {
+          "abbreviation": "VG",
+          "logo": "152719372155055672",
+          "name": "Videogames",
+        },
+        "-LDIw-1LFgiM0EJZGfus": Object {
+          "abbreviation": "Necromunda",
+          "logo": "15271953483568546",
+          "name": "Necromunda",
+          "type": "Miniatures",
+        },
+      }
+    }
+    eventId="-LDI56zLiXQtEMWZsV1K"
+    events={
+      Array [
+        Object {
+          "key": "-LCyRVRydihk6goyNw8X",
+          "value": Object {
+            "category": "-LAMd_vpWt-iiSv4f-ID",
+            "createDate": "2018-05-20T16:46:32.009Z",
+            "date": "2018-05-20",
+            "entryFee": "6",
+            "format": "Standard",
+            "name": "Tapahtuma",
+            "notes": "FIJoijgasdsdgasdggagads",
+            "playerSlots": "14",
+            "prizes": "Foooooooooooooooo",
+            "rulesLevel": "Competitive",
+            "time": "10:00",
+          },
+        },
+        Object {
+          "key": "-LCyHsYigJZGBhD06IId",
+          "value": Object {
+            "category": "-LAMd_vpWt-iiSv4f-ID",
+            "createDate": "2018-05-20T16:04:29.595Z",
+            "date": "2018-05-21",
+            "entryFee": "5",
+            "format": "Modern",
+            "link": "https://magic.wizards.com/en/game-info/gameplay/formats/modern",
+            "name": "Monday Modern",
+            "notes": "Bring a friend!",
+            "playerSlots": "31",
+            "prizes": "Three (3) OMG credits per player into the prizepool.",
+            "published": true,
+            "rulesLevel": "Regular",
+            "time": "19:00",
+          },
+        },
+        Object {
+          "key": "-LDIwRJt9XsXRt0qiBhb",
+          "value": Object {
+            "category": "-LDIw-1LFgiM0EJZGfus",
+            "createDate": "2018-05-24T20:58:06.938Z",
+            "date": "2018-05-24",
+            "entryFee": "5",
+            "format": "League",
+            "link": "jokulinkki.fi",
+            "name": "Necromunda League",
+            "notes": "Shame! Shame! Shame! *DING DING DING*",
+            "playerSlots": "12",
+            "prizes": "I am Loot.",
+            "published": true,
+            "rulesLevel": "Casual",
+            "time": "17:00",
+          },
+        },
+        Object {
+          "key": "-LDI5NRaGsGjm5GNGeTW",
+          "value": Object {
+            "category": "-LAlvCmIWNzYKpa7-7HI",
+            "createDate": "2018-05-24T17:01:53.909Z",
+            "date": "2018-05-26",
+            "entryFee": "0",
+            "format": "Board game",
+            "link": "https://geekandsundry.com/international-tabletop-day-april-28-2018/",
+            "name": "Lautapeli Lauantai",
+            "notes": "Bring a friend and get a surprise gift!",
+            "playerSlots": "30",
+            "prizes": "A Supi's surprise prize for all participants!",
+            "published": true,
+            "rulesLevel": "Casual",
+            "time": "00:00",
+          },
+        },
+        Object {
+          "key": "-LDIt6Dqcl5lCnVF4YI7",
+          "value": Object {
+            "category": "-LDImTAGxkzrorL0tQdi",
+            "createDate": "2018-05-24T20:43:34.143Z",
+            "date": "2018-05-26",
+            "entryFee": "5",
+            "format": "Casual",
+            "link": "http://www.metacritic.com/browse/games/score/metascore/all/all/filtered",
+            "name": "Video Game",
+            "notes": "Nönnönnöö",
+            "playerSlots": "20",
+            "prizes": "Glory!",
+            "published": true,
+            "rulesLevel": "Casual",
+            "time": "00:00",
+          },
+        },
+        Object {
+          "key": "-LDpI3p7_305bkve0s20",
+          "value": Object {
+            "createDate": "2018-05-31T08:24:26.759Z",
+            "date": "2018-05-31",
+          },
+        },
+        Object {
+          "key": "-LDI56zLiXQtEMWZsV1K",
+          "value": Object {
+            "category": "-LAMddmRE2WVqr1U9guz",
+            "createDate": "2018-05-24T17:00:46.500Z",
+            "date": "2018-09-24",
+            "entryFee": "10",
+            "format": "Miniatures",
+            "link": "http://www.google.fi",
+            "name": "Warhammer thing",
+            "notes": "Bring your war face!",
+            "playerSlots": "10",
+            "prizes": "Glory!",
+            "published": true,
+            "rulesLevel": "Casual",
+            "time": "Kill everything",
+          },
+        },
+        Object {
+          "key": "-LCyHtHaY7D13k5FzqNt",
+          "value": Object {
+            "category": "-LAMd_vpWt-iiSv4f-ID",
+            "createDate": "2018-05-20T16:04:32.601Z",
+            "date": "2018-12-15",
+            "entryFee": "10",
+            "format": "Standard",
+            "link": "https://mtgsuomi.fi/decklist.pdf",
+            "name": "PTPQ Near Future Testing",
+            "notes": "Remember to bring water, a lifepad, paper and most importantly your decklist!",
+            "playerSlots": "65",
+            "prizes": "7 OMG credits/player will go into the prizepool. 3 OMG credits/player will go to judge fees.",
+            "published": true,
+            "rulesLevel": "Competitive",
+            "time": "10:00",
+          },
+        },
+        Object {
+          "key": "-LDGfDMHuH2Iu1zQkg8I",
+          "value": Object {
+            "category": "-LCmESny8m9JVEFQ_qOt",
+            "createDate": "2018-05-24T10:23:37.507Z",
+            "date": "2018-12-24",
+            "entryFee": "10",
+            "format": "Pokematch",
+            "link": "http://www.pokemon.com",
+            "name": "Pokemon duel",
+            "notes": "Poison pokemon suck",
+            "playerSlots": "10",
+            "prizes": "No poison pokemon",
+            "published": true,
+            "rulesLevel": "Trainer",
+            "time": "10:00",
+          },
+        },
+      ]
+    }
+    openModal={[Function]}
+    participations={
+      Object {
+        "-LDI56zLiXQtEMWZsV1K": Object {
+          "mockUserId": Object {
+            "comment": "Jee",
+            "date": "2018-06-23T09:40:26.992Z",
+            "firstName": "Test",
+            "lastName": "Person",
+            "userId": "mockUserId",
+          },
+        },
+      }
+    }
+    profile={
+      Object {
+        "avatarUrl": "https://foo.com/picture",
+        "dciNumber": "123512351112",
+        "displayName": "Test Person",
+        "email": "fake@fake.com",
+        "firstName": "Test",
+        "isEmpty": false,
+        "isLoaded": true,
+        "lastName": "Person",
+        "providerData": Array [
+          Object {
+            "displayName": "Test Person",
+            "email": "fake@fake.com",
+            "photoURL": "https://foo.com/picture",
+            "providerId": "facebook.com",
+            "uid": "1234567890",
+          },
+        ],
+        "role": "admin",
+      }
+    }
+    settings={
+      Object {
+        "activeLogo": "http://foo.com/image.png",
+        "dateFormat": "DD.MM.YYYY",
+        "pageSubtitle": "",
+        "pageTitle": "",
+        "subtitleTextColor": "#000",
+        "theme": "darkly",
+        "titleBarAngle": "150",
+        "titleBarColor": "#000",
+        "titleBarColor2": "#ec1c22",
+        "titleBarPercentage": "50",
+        "titleTextColor": "",
+      }
+    }
+    uploadedCategoryLogos={
+      Object {
+        "152715467988520466": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "1527176436609335002": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "15271767113156952": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152719272536668394": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152719285517486364": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152719293031022177": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152719372155055672": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "1527195222417120304": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "15271953483568546": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "1527227370219137123": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152722741975567107": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152722747904159438": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152722965771313789": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152722968412212601": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+        "152722996249973342": Object {
+          "downloadURL": "http://foo.com/image.png",
+        },
+      }
+    }
+    userid="mockUserId"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h2
+          className="subtitle date-item"
+        >
+          <t
+            ago={false}
+            calendar={false}
+            decimal={false}
+            element="time"
+            filter={[Function]}
+            format="DD.MM.YYYY"
+            fromNow={false}
+            interval={60000}
+            onChange={[Function]}
+            toNow={false}
+            unit={null}
+            unix={false}
+            utc={false}
+          >
+            2018-09-24
+          </t>
+        </h2>,
+        <div
+          className="card card-shadow"
+        >
+          <div
+            className="card-header eventheader"
+          >
+            <div
+              className="card-header-icon eventheader-text tooltip"
+              data-tooltip="Warhammer 40,000"
+            >
+              <img
+                alt=""
+                className="image is-64x64"
+                src="http://foo.com/image.png"
+              />
+              WH40K
+              :
+            </div>
+            <div
+              className="card-header-title eventheader-text"
+            >
+              <div>
+                Warhammer thing
+              </div>
+            </div>
+          </div>
+          <div
+            className="card-content"
+          >
+            <div
+              className="has-icons-left card-item"
+            >
+              <span
+                className="tooltip"
+                data-tooltip="Starting time"
+              >
+                <i
+                  className="fas fa-clock"
+                />
+                  
+                Kill everything
+              </span>
+            </div>
+            <div
+              className="has-icons-left card-item"
+            >
+              <span
+                className="tooltip"
+                data-tooltip="Entry fee"
+              >
+                <i
+                  className="fas fa-money-bill-alt"
+                />
+                  
+                10
+                 €
+              </span>
+            </div>
+            <div
+              className="has-icons-left card-item"
+            >
+              <span
+                className="tooltip"
+                data-tooltip="People already enrolled"
+              >
+                <i
+                  className="fas fa-users"
+                />
+                  
+                1
+                 / 
+                10
+                 
+              </span>
+            </div>
+            <div
+              className="has-icons-left card-item"
+            >
+              <div
+                className="level"
+              >
+                <div
+                  className="level-left card-footer-items"
+                >
+                  <span
+                    className="tooltip card-margin-right"
+                    data-tooltip="Format"
+                  >
+                    <i
+                      className="fas fa-book"
+                    />
+                      
+                    Miniatures
+                     
+                  </span>
+                </div>
+                <div
+                  className="level-right card-footer-items "
+                >
+                  <a
+                    className="card-footer-link"
+                    onClick={[Function]}
+                  >
+                    <i
+                      className="fas fa-trophy"
+                    />
+                      
+                    <Translate
+                      id="allinfo"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+        <p>
+           
+        </p>,
+        <div
+          className="level participation-level"
+        >
+          <div
+            className="level-left"
+          >
+            <Connect(Connect(EditableField))
+              defaultValue="Jee"
+              inputClasses="is-rounded"
+              labelContent=""
+              leftIcon="comment"
+              path="/participations/-LDI56zLiXQtEMWZsV1K/mockUserId"
+              placeHolder="comment"
+              targetName="comment"
+            />
+          </div>
+          <div
+            className="level-right is-pulled-right"
+          >
+            <ParticipateButton
+              eventId="-LDI56zLiXQtEMWZsV1K"
+              participations={
+                Object {
+                  "-LDI56zLiXQtEMWZsV1K": Object {
+                    "mockUserId": Object {
+                      "comment": "Jee",
+                      "date": "2018-06-23T09:40:26.992Z",
+                      "firstName": "Test",
+                      "lastName": "Person",
+                      "userId": "mockUserId",
+                    },
+                  },
+                }
+              }
+              profile={
+                Object {
+                  "avatarUrl": "https://foo.com/picture",
+                  "dciNumber": "123512351112",
+                  "displayName": "Test Person",
+                  "email": "fake@fake.com",
+                  "firstName": "Test",
+                  "isEmpty": false,
+                  "isLoaded": true,
+                  "lastName": "Person",
+                  "providerData": Array [
+                    Object {
+                      "displayName": "Test Person",
+                      "email": "fake@fake.com",
+                      "photoURL": "https://foo.com/picture",
+                      "providerId": "facebook.com",
+                      "uid": "1234567890",
+                    },
+                  ],
+                  "role": "admin",
+                }
+              }
+              userId="mockUserId"
+            />
+          </div>
+        </div>,
+      ],
+      "className": "column is-8 eventcard",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <t
+            ago={false}
+            calendar={false}
+            decimal={false}
+            element="time"
+            filter={[Function]}
+            format="DD.MM.YYYY"
+            fromNow={false}
+            interval={60000}
+            onChange={[Function]}
+            toNow={false}
+            unit={null}
+            unix={false}
+            utc={false}
+          >
+            2018-09-24
+          </t>,
+          "className": "subtitle date-item",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "ago": false,
+            "calendar": false,
+            "children": "2018-09-24",
+            "decimal": false,
+            "element": "time",
+            "filter": [Function],
+            "format": "DD.MM.YYYY",
+            "fromNow": false,
+            "interval": 60000,
+            "onChange": [Function],
+            "toNow": false,
+            "unit": null,
+            "unix": false,
+            "utc": false,
+          },
+          "ref": null,
+          "rendered": "2018-09-24",
+          "type": [Function],
+        },
+        "type": "h2",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="card-header eventheader"
+            >
+              <div
+                className="card-header-icon eventheader-text tooltip"
+                data-tooltip="Warhammer 40,000"
+              >
+                <img
+                  alt=""
+                  className="image is-64x64"
+                  src="http://foo.com/image.png"
+                />
+                WH40K
+                :
+              </div>
+              <div
+                className="card-header-title eventheader-text"
+              >
+                <div>
+                  Warhammer thing
+                </div>
+              </div>
+            </div>,
+            <div
+              className="card-content"
+            >
+              <div
+                className="has-icons-left card-item"
+              >
+                <span
+                  className="tooltip"
+                  data-tooltip="Starting time"
+                >
+                  <i
+                    className="fas fa-clock"
+                  />
+                    
+                  Kill everything
+                </span>
+              </div>
+              <div
+                className="has-icons-left card-item"
+              >
+                <span
+                  className="tooltip"
+                  data-tooltip="Entry fee"
+                >
+                  <i
+                    className="fas fa-money-bill-alt"
+                  />
+                    
+                  10
+                   €
+                </span>
+              </div>
+              <div
+                className="has-icons-left card-item"
+              >
+                <span
+                  className="tooltip"
+                  data-tooltip="People already enrolled"
+                >
+                  <i
+                    className="fas fa-users"
+                  />
+                    
+                  1
+                   / 
+                  10
+                   
+                </span>
+              </div>
+              <div
+                className="has-icons-left card-item"
+              >
+                <div
+                  className="level"
+                >
+                  <div
+                    className="level-left card-footer-items"
+                  >
+                    <span
+                      className="tooltip card-margin-right"
+                      data-tooltip="Format"
+                    >
+                      <i
+                        className="fas fa-book"
+                      />
+                        
+                      Miniatures
+                       
+                    </span>
+                  </div>
+                  <div
+                    className="level-right card-footer-items "
+                  >
+                    <a
+                      className="card-footer-link"
+                      onClick={[Function]}
+                    >
+                      <i
+                        className="fas fa-trophy"
+                      />
+                        
+                      <Translate
+                        id="allinfo"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>,
+          ],
+          "className": "card card-shadow",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="card-header-icon eventheader-text tooltip"
+                  data-tooltip="Warhammer 40,000"
+                >
+                  <img
+                    alt=""
+                    className="image is-64x64"
+                    src="http://foo.com/image.png"
+                  />
+                  WH40K
+                  :
+                </div>,
+                <div
+                  className="card-header-title eventheader-text"
+                >
+                  <div>
+                    Warhammer thing
+                  </div>
+                </div>,
+              ],
+              "className": "card-header eventheader",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <img
+                      alt=""
+                      className="image is-64x64"
+                      src="http://foo.com/image.png"
+                    />,
+                    "WH40K",
+                    ":",
+                  ],
+                  "className": "card-header-icon eventheader-text tooltip",
+                  "data-tooltip": "Warhammer 40,000",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "",
+                      "className": "image is-64x64",
+                      "src": "http://foo.com/image.png",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "WH40K",
+                  ":",
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <div>
+                    Warhammer thing
+                  </div>,
+                  "className": "card-header-title eventheader-text",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Warhammer thing",
+                  },
+                  "ref": null,
+                  "rendered": "Warhammer thing",
+                  "type": "div",
+                },
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="has-icons-left card-item"
+                >
+                  <span
+                    className="tooltip"
+                    data-tooltip="Starting time"
+                  >
+                    <i
+                      className="fas fa-clock"
+                    />
+                      
+                    Kill everything
+                  </span>
+                </div>,
+                <div
+                  className="has-icons-left card-item"
+                >
+                  <span
+                    className="tooltip"
+                    data-tooltip="Entry fee"
+                  >
+                    <i
+                      className="fas fa-money-bill-alt"
+                    />
+                      
+                    10
+                     €
+                  </span>
+                </div>,
+                <div
+                  className="has-icons-left card-item"
+                >
+                  <span
+                    className="tooltip"
+                    data-tooltip="People already enrolled"
+                  >
+                    <i
+                      className="fas fa-users"
+                    />
+                      
+                    1
+                     / 
+                    10
+                     
+                  </span>
+                </div>,
+                <div
+                  className="has-icons-left card-item"
+                >
+                  <div
+                    className="level"
+                  >
+                    <div
+                      className="level-left card-footer-items"
+                    >
+                      <span
+                        className="tooltip card-margin-right"
+                        data-tooltip="Format"
+                      >
+                        <i
+                          className="fas fa-book"
+                        />
+                          
+                        Miniatures
+                         
+                      </span>
+                    </div>
+                    <div
+                      className="level-right card-footer-items "
+                    >
+                      <a
+                        className="card-footer-link"
+                        onClick={[Function]}
+                      >
+                        <i
+                          className="fas fa-trophy"
+                        />
+                          
+                        <Translate
+                          id="allinfo"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>,
+              ],
+              "className": "card-content",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <span
+                    className="tooltip"
+                    data-tooltip="Starting time"
+                  >
+                    <i
+                      className="fas fa-clock"
+                    />
+                      
+                    Kill everything
+                  </span>,
+                  "className": "has-icons-left card-item",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <i
+                        className="fas fa-clock"
+                      />,
+                      "  ",
+                      "Kill everything",
+                    ],
+                    "className": "tooltip",
+                    "data-tooltip": "Starting time",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "fas fa-clock",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "i",
+                    },
+                    "  ",
+                    "Kill everything",
+                  ],
+                  "type": "span",
+                },
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <span
+                    className="tooltip"
+                    data-tooltip="Entry fee"
+                  >
+                    <i
+                      className="fas fa-money-bill-alt"
+                    />
+                      
+                    10
+                     €
+                  </span>,
+                  "className": "has-icons-left card-item",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <i
+                        className="fas fa-money-bill-alt"
+                      />,
+                      "  ",
+                      "10",
+                      " €",
+                    ],
+                    "className": "tooltip",
+                    "data-tooltip": "Entry fee",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "fas fa-money-bill-alt",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "i",
+                    },
+                    "  ",
+                    "10",
+                    " €",
+                  ],
+                  "type": "span",
+                },
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <span
+                    className="tooltip"
+                    data-tooltip="People already enrolled"
+                  >
+                    <i
+                      className="fas fa-users"
+                    />
+                      
+                    1
+                     / 
+                    10
+                     
+                  </span>,
+                  "className": "has-icons-left card-item",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <i
+                        className="fas fa-users"
+                      />,
+                      "  ",
+                      1,
+                      " / ",
+                      "10",
+                      " ",
+                    ],
+                    "className": "tooltip",
+                    "data-tooltip": "People already enrolled",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "fas fa-users",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "i",
+                    },
+                    "  ",
+                    1,
+                    " / ",
+                    "10",
+                    " ",
+                  ],
+                  "type": "span",
+                },
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <div
+                    className="level"
+                  >
+                    <div
+                      className="level-left card-footer-items"
+                    >
+                      <span
+                        className="tooltip card-margin-right"
+                        data-tooltip="Format"
+                      >
+                        <i
+                          className="fas fa-book"
+                        />
+                          
+                        Miniatures
+                         
+                      </span>
+                    </div>
+                    <div
+                      className="level-right card-footer-items "
+                    >
+                      <a
+                        className="card-footer-link"
+                        onClick={[Function]}
+                      >
+                        <i
+                          className="fas fa-trophy"
+                        />
+                          
+                        <Translate
+                          id="allinfo"
+                        />
+                      </a>
+                    </div>
+                  </div>,
+                  "className": "has-icons-left card-item",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <div
+                        className="level-left card-footer-items"
+                      >
+                        <span
+                          className="tooltip card-margin-right"
+                          data-tooltip="Format"
+                        >
+                          <i
+                            className="fas fa-book"
+                          />
+                            
+                          Miniatures
+                           
+                        </span>
+                      </div>,
+                      undefined,
+                      <div
+                        className="level-right card-footer-items "
+                      >
+                        <a
+                          className="card-footer-link"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fas fa-trophy"
+                          />
+                            
+                          <Translate
+                            id="allinfo"
+                          />
+                        </a>
+                      </div>,
+                    ],
+                    "className": "level",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <span
+                          className="tooltip card-margin-right"
+                          data-tooltip="Format"
+                        >
+                          <i
+                            className="fas fa-book"
+                          />
+                            
+                          Miniatures
+                           
+                        </span>,
+                        "className": "level-left card-footer-items",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <i
+                              className="fas fa-book"
+                            />,
+                            "  ",
+                            "Miniatures",
+                            " ",
+                          ],
+                          "className": "tooltip card-margin-right",
+                          "data-tooltip": "Format",
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "className": "fas fa-book",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": "i",
+                          },
+                          "  ",
+                          "Miniatures",
+                          " ",
+                        ],
+                        "type": "span",
+                      },
+                      "type": "div",
+                    },
+                    undefined,
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <a
+                          className="card-footer-link"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fas fa-trophy"
+                          />
+                            
+                          <Translate
+                            id="allinfo"
+                          />
+                        </a>,
+                        "className": "level-right card-footer-items ",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <i
+                              className="fas fa-trophy"
+                            />,
+                            "  ",
+                            <Translate
+                              id="allinfo"
+                            />,
+                          ],
+                          "className": "card-footer-link",
+                          "onClick": [Function],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "className": "fas fa-trophy",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": "i",
+                          },
+                          "  ",
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "id": "allinfo",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                        ],
+                        "type": "a",
+                      },
+                      "type": "div",
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": " ",
+        },
+        "ref": null,
+        "rendered": " ",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="level-left"
+            >
+              <Connect(Connect(EditableField))
+                defaultValue="Jee"
+                inputClasses="is-rounded"
+                labelContent=""
+                leftIcon="comment"
+                path="/participations/-LDI56zLiXQtEMWZsV1K/mockUserId"
+                placeHolder="comment"
+                targetName="comment"
+              />
+            </div>,
+            false,
+            <div
+              className="level-right is-pulled-right"
+            >
+              <ParticipateButton
+                eventId="-LDI56zLiXQtEMWZsV1K"
+                participations={
+                  Object {
+                    "-LDI56zLiXQtEMWZsV1K": Object {
+                      "mockUserId": Object {
+                        "comment": "Jee",
+                        "date": "2018-06-23T09:40:26.992Z",
+                        "firstName": "Test",
+                        "lastName": "Person",
+                        "userId": "mockUserId",
+                      },
+                    },
+                  }
+                }
+                profile={
+                  Object {
+                    "avatarUrl": "https://foo.com/picture",
+                    "dciNumber": "123512351112",
+                    "displayName": "Test Person",
+                    "email": "fake@fake.com",
+                    "firstName": "Test",
+                    "isEmpty": false,
+                    "isLoaded": true,
+                    "lastName": "Person",
+                    "providerData": Array [
+                      Object {
+                        "displayName": "Test Person",
+                        "email": "fake@fake.com",
+                        "photoURL": "https://foo.com/picture",
+                        "providerId": "facebook.com",
+                        "uid": "1234567890",
+                      },
+                    ],
+                    "role": "admin",
+                  }
+                }
+                userId="mockUserId"
+              />
+            </div>,
+          ],
+          "className": "level participation-level",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Connect(Connect(EditableField))
+                defaultValue="Jee"
+                inputClasses="is-rounded"
+                labelContent=""
+                leftIcon="comment"
+                path="/participations/-LDI56zLiXQtEMWZsV1K/mockUserId"
+                placeHolder="comment"
+                targetName="comment"
+              />,
+              "className": "level-left",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "defaultValue": "Jee",
+                "inputClasses": "is-rounded",
+                "labelContent": "",
+                "leftIcon": "comment",
+                "path": "/participations/-LDI56zLiXQtEMWZsV1K/mockUserId",
+                "placeHolder": "comment",
+                "targetName": "comment",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+          false,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <ParticipateButton
+                eventId="-LDI56zLiXQtEMWZsV1K"
+                participations={
+                  Object {
+                    "-LDI56zLiXQtEMWZsV1K": Object {
+                      "mockUserId": Object {
+                        "comment": "Jee",
+                        "date": "2018-06-23T09:40:26.992Z",
+                        "firstName": "Test",
+                        "lastName": "Person",
+                        "userId": "mockUserId",
+                      },
+                    },
+                  }
+                }
+                profile={
+                  Object {
+                    "avatarUrl": "https://foo.com/picture",
+                    "dciNumber": "123512351112",
+                    "displayName": "Test Person",
+                    "email": "fake@fake.com",
+                    "firstName": "Test",
+                    "isEmpty": false,
+                    "isLoaded": true,
+                    "lastName": "Person",
+                    "providerData": Array [
+                      Object {
+                        "displayName": "Test Person",
+                        "email": "fake@fake.com",
+                        "photoURL": "https://foo.com/picture",
+                        "providerId": "facebook.com",
+                        "uid": "1234567890",
+                      },
+                    ],
+                    "role": "admin",
+                  }
+                }
+                userId="mockUserId"
+              />,
+              "className": "level-right is-pulled-right",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "eventId": "-LDI56zLiXQtEMWZsV1K",
+                "participations": Object {
+                  "-LDI56zLiXQtEMWZsV1K": Object {
+                    "mockUserId": Object {
+                      "comment": "Jee",
+                      "date": "2018-06-23T09:40:26.992Z",
+                      "firstName": "Test",
+                      "lastName": "Person",
+                      "userId": "mockUserId",
+                    },
+                  },
+                },
+                "profile": Object {
+                  "avatarUrl": "https://foo.com/picture",
+                  "dciNumber": "123512351112",
+                  "displayName": "Test Person",
+                  "email": "fake@fake.com",
+                  "firstName": "Test",
+                  "isEmpty": false,
+                  "isLoaded": true,
+                  "lastName": "Person",
+                  "providerData": Array [
+                    Object {
+                      "displayName": "Test Person",
+                      "email": "fake@fake.com",
+                      "photoURL": "https://foo.com/picture",
+                      "providerId": "facebook.com",
+                      "uid": "1234567890",
+                    },
+                  ],
+                  "role": "admin",
+                },
+                "userId": "mockUserId",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h2
+            className="subtitle date-item"
+          >
+            <t
+              ago={false}
+              calendar={false}
+              decimal={false}
+              element="time"
+              filter={[Function]}
+              format="DD.MM.YYYY"
+              fromNow={false}
+              interval={60000}
+              onChange={[Function]}
+              toNow={false}
+              unit={null}
+              unix={false}
+              utc={false}
+            >
+              2018-09-24
+            </t>
+          </h2>,
+          <div
+            className="card card-shadow"
+          >
+            <div
+              className="card-header eventheader"
+            >
+              <div
+                className="card-header-icon eventheader-text tooltip"
+                data-tooltip="Warhammer 40,000"
+              >
+                <img
+                  alt=""
+                  className="image is-64x64"
+                  src="http://foo.com/image.png"
+                />
+                WH40K
+                :
+              </div>
+              <div
+                className="card-header-title eventheader-text"
+              >
+                <div>
+                  Warhammer thing
+                </div>
+              </div>
+            </div>
+            <div
+              className="card-content"
+            >
+              <div
+                className="has-icons-left card-item"
+              >
+                <span
+                  className="tooltip"
+                  data-tooltip="Starting time"
+                >
+                  <i
+                    className="fas fa-clock"
+                  />
+                    
+                  Kill everything
+                </span>
+              </div>
+              <div
+                className="has-icons-left card-item"
+              >
+                <span
+                  className="tooltip"
+                  data-tooltip="Entry fee"
+                >
+                  <i
+                    className="fas fa-money-bill-alt"
+                  />
+                    
+                  10
+                   €
+                </span>
+              </div>
+              <div
+                className="has-icons-left card-item"
+              >
+                <span
+                  className="tooltip"
+                  data-tooltip="People already enrolled"
+                >
+                  <i
+                    className="fas fa-users"
+                  />
+                    
+                  1
+                   / 
+                  10
+                   
+                </span>
+              </div>
+              <div
+                className="has-icons-left card-item"
+              >
+                <div
+                  className="level"
+                >
+                  <div
+                    className="level-left card-footer-items"
+                  >
+                    <span
+                      className="tooltip card-margin-right"
+                      data-tooltip="Format"
+                    >
+                      <i
+                        className="fas fa-book"
+                      />
+                        
+                      Miniatures
+                       
+                    </span>
+                  </div>
+                  <div
+                    className="level-right card-footer-items "
+                  >
+                    <a
+                      className="card-footer-link"
+                      onClick={[Function]}
+                    >
+                      <i
+                        className="fas fa-trophy"
+                      />
+                        
+                      <Translate
+                        id="allinfo"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>,
+          <p>
+             
+          </p>,
+          <div
+            className="level participation-level"
+          >
+            <div
+              className="level-left"
+            >
+              <Connect(Connect(EditableField))
+                defaultValue="Jee"
+                inputClasses="is-rounded"
+                labelContent=""
+                leftIcon="comment"
+                path="/participations/-LDI56zLiXQtEMWZsV1K/mockUserId"
+                placeHolder="comment"
+                targetName="comment"
+              />
+            </div>
+            <div
+              className="level-right is-pulled-right"
+            >
+              <ParticipateButton
+                eventId="-LDI56zLiXQtEMWZsV1K"
+                participations={
+                  Object {
+                    "-LDI56zLiXQtEMWZsV1K": Object {
+                      "mockUserId": Object {
+                        "comment": "Jee",
+                        "date": "2018-06-23T09:40:26.992Z",
+                        "firstName": "Test",
+                        "lastName": "Person",
+                        "userId": "mockUserId",
+                      },
+                    },
+                  }
+                }
+                profile={
+                  Object {
+                    "avatarUrl": "https://foo.com/picture",
+                    "dciNumber": "123512351112",
+                    "displayName": "Test Person",
+                    "email": "fake@fake.com",
+                    "firstName": "Test",
+                    "isEmpty": false,
+                    "isLoaded": true,
+                    "lastName": "Person",
+                    "providerData": Array [
+                      Object {
+                        "displayName": "Test Person",
+                        "email": "fake@fake.com",
+                        "photoURL": "https://foo.com/picture",
+                        "providerId": "facebook.com",
+                        "uid": "1234567890",
+                      },
+                    ],
+                    "role": "admin",
+                  }
+                }
+                userId="mockUserId"
+              />
+            </div>
+          </div>,
+        ],
+        "className": "column is-8 eventcard",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <t
+              ago={false}
+              calendar={false}
+              decimal={false}
+              element="time"
+              filter={[Function]}
+              format="DD.MM.YYYY"
+              fromNow={false}
+              interval={60000}
+              onChange={[Function]}
+              toNow={false}
+              unit={null}
+              unix={false}
+              utc={false}
+            >
+              2018-09-24
+            </t>,
+            "className": "subtitle date-item",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "ago": false,
+              "calendar": false,
+              "children": "2018-09-24",
+              "decimal": false,
+              "element": "time",
+              "filter": [Function],
+              "format": "DD.MM.YYYY",
+              "fromNow": false,
+              "interval": 60000,
+              "onChange": [Function],
+              "toNow": false,
+              "unit": null,
+              "unix": false,
+              "utc": false,
+            },
+            "ref": null,
+            "rendered": "2018-09-24",
+            "type": [Function],
+          },
+          "type": "h2",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="card-header eventheader"
+              >
+                <div
+                  className="card-header-icon eventheader-text tooltip"
+                  data-tooltip="Warhammer 40,000"
+                >
+                  <img
+                    alt=""
+                    className="image is-64x64"
+                    src="http://foo.com/image.png"
+                  />
+                  WH40K
+                  :
+                </div>
+                <div
+                  className="card-header-title eventheader-text"
+                >
+                  <div>
+                    Warhammer thing
+                  </div>
+                </div>
+              </div>,
+              <div
+                className="card-content"
+              >
+                <div
+                  className="has-icons-left card-item"
+                >
+                  <span
+                    className="tooltip"
+                    data-tooltip="Starting time"
+                  >
+                    <i
+                      className="fas fa-clock"
+                    />
+                      
+                    Kill everything
+                  </span>
+                </div>
+                <div
+                  className="has-icons-left card-item"
+                >
+                  <span
+                    className="tooltip"
+                    data-tooltip="Entry fee"
+                  >
+                    <i
+                      className="fas fa-money-bill-alt"
+                    />
+                      
+                    10
+                     €
+                  </span>
+                </div>
+                <div
+                  className="has-icons-left card-item"
+                >
+                  <span
+                    className="tooltip"
+                    data-tooltip="People already enrolled"
+                  >
+                    <i
+                      className="fas fa-users"
+                    />
+                      
+                    1
+                     / 
+                    10
+                     
+                  </span>
+                </div>
+                <div
+                  className="has-icons-left card-item"
+                >
+                  <div
+                    className="level"
+                  >
+                    <div
+                      className="level-left card-footer-items"
+                    >
+                      <span
+                        className="tooltip card-margin-right"
+                        data-tooltip="Format"
+                      >
+                        <i
+                          className="fas fa-book"
+                        />
+                          
+                        Miniatures
+                         
+                      </span>
+                    </div>
+                    <div
+                      className="level-right card-footer-items "
+                    >
+                      <a
+                        className="card-footer-link"
+                        onClick={[Function]}
+                      >
+                        <i
+                          className="fas fa-trophy"
+                        />
+                          
+                        <Translate
+                          id="allinfo"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>,
+            ],
+            "className": "card card-shadow",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="card-header-icon eventheader-text tooltip"
+                    data-tooltip="Warhammer 40,000"
+                  >
+                    <img
+                      alt=""
+                      className="image is-64x64"
+                      src="http://foo.com/image.png"
+                    />
+                    WH40K
+                    :
+                  </div>,
+                  <div
+                    className="card-header-title eventheader-text"
+                  >
+                    <div>
+                      Warhammer thing
+                    </div>
+                  </div>,
+                ],
+                "className": "card-header eventheader",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <img
+                        alt=""
+                        className="image is-64x64"
+                        src="http://foo.com/image.png"
+                      />,
+                      "WH40K",
+                      ":",
+                    ],
+                    "className": "card-header-icon eventheader-text tooltip",
+                    "data-tooltip": "Warhammer 40,000",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "",
+                        "className": "image is-64x64",
+                        "src": "http://foo.com/image.png",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    "WH40K",
+                    ":",
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <div>
+                      Warhammer thing
+                    </div>,
+                    "className": "card-header-title eventheader-text",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Warhammer thing",
+                    },
+                    "ref": null,
+                    "rendered": "Warhammer thing",
+                    "type": "div",
+                  },
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="has-icons-left card-item"
+                  >
+                    <span
+                      className="tooltip"
+                      data-tooltip="Starting time"
+                    >
+                      <i
+                        className="fas fa-clock"
+                      />
+                        
+                      Kill everything
+                    </span>
+                  </div>,
+                  <div
+                    className="has-icons-left card-item"
+                  >
+                    <span
+                      className="tooltip"
+                      data-tooltip="Entry fee"
+                    >
+                      <i
+                        className="fas fa-money-bill-alt"
+                      />
+                        
+                      10
+                       €
+                    </span>
+                  </div>,
+                  <div
+                    className="has-icons-left card-item"
+                  >
+                    <span
+                      className="tooltip"
+                      data-tooltip="People already enrolled"
+                    >
+                      <i
+                        className="fas fa-users"
+                      />
+                        
+                      1
+                       / 
+                      10
+                       
+                    </span>
+                  </div>,
+                  <div
+                    className="has-icons-left card-item"
+                  >
+                    <div
+                      className="level"
+                    >
+                      <div
+                        className="level-left card-footer-items"
+                      >
+                        <span
+                          className="tooltip card-margin-right"
+                          data-tooltip="Format"
+                        >
+                          <i
+                            className="fas fa-book"
+                          />
+                            
+                          Miniatures
+                           
+                        </span>
+                      </div>
+                      <div
+                        className="level-right card-footer-items "
+                      >
+                        <a
+                          className="card-footer-link"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fas fa-trophy"
+                          />
+                            
+                          <Translate
+                            id="allinfo"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>,
+                ],
+                "className": "card-content",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <span
+                      className="tooltip"
+                      data-tooltip="Starting time"
+                    >
+                      <i
+                        className="fas fa-clock"
+                      />
+                        
+                      Kill everything
+                    </span>,
+                    "className": "has-icons-left card-item",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <i
+                          className="fas fa-clock"
+                        />,
+                        "  ",
+                        "Kill everything",
+                      ],
+                      "className": "tooltip",
+                      "data-tooltip": "Starting time",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "fas fa-clock",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "i",
+                      },
+                      "  ",
+                      "Kill everything",
+                    ],
+                    "type": "span",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <span
+                      className="tooltip"
+                      data-tooltip="Entry fee"
+                    >
+                      <i
+                        className="fas fa-money-bill-alt"
+                      />
+                        
+                      10
+                       €
+                    </span>,
+                    "className": "has-icons-left card-item",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <i
+                          className="fas fa-money-bill-alt"
+                        />,
+                        "  ",
+                        "10",
+                        " €",
+                      ],
+                      "className": "tooltip",
+                      "data-tooltip": "Entry fee",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "fas fa-money-bill-alt",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "i",
+                      },
+                      "  ",
+                      "10",
+                      " €",
+                    ],
+                    "type": "span",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <span
+                      className="tooltip"
+                      data-tooltip="People already enrolled"
+                    >
+                      <i
+                        className="fas fa-users"
+                      />
+                        
+                      1
+                       / 
+                      10
+                       
+                    </span>,
+                    "className": "has-icons-left card-item",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <i
+                          className="fas fa-users"
+                        />,
+                        "  ",
+                        1,
+                        " / ",
+                        "10",
+                        " ",
+                      ],
+                      "className": "tooltip",
+                      "data-tooltip": "People already enrolled",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "fas fa-users",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "i",
+                      },
+                      "  ",
+                      1,
+                      " / ",
+                      "10",
+                      " ",
+                    ],
+                    "type": "span",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <div
+                      className="level"
+                    >
+                      <div
+                        className="level-left card-footer-items"
+                      >
+                        <span
+                          className="tooltip card-margin-right"
+                          data-tooltip="Format"
+                        >
+                          <i
+                            className="fas fa-book"
+                          />
+                            
+                          Miniatures
+                           
+                        </span>
+                      </div>
+                      <div
+                        className="level-right card-footer-items "
+                      >
+                        <a
+                          className="card-footer-link"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fas fa-trophy"
+                          />
+                            
+                          <Translate
+                            id="allinfo"
+                          />
+                        </a>
+                      </div>
+                    </div>,
+                    "className": "has-icons-left card-item",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <div
+                          className="level-left card-footer-items"
+                        >
+                          <span
+                            className="tooltip card-margin-right"
+                            data-tooltip="Format"
+                          >
+                            <i
+                              className="fas fa-book"
+                            />
+                              
+                            Miniatures
+                             
+                          </span>
+                        </div>,
+                        undefined,
+                        <div
+                          className="level-right card-footer-items "
+                        >
+                          <a
+                            className="card-footer-link"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="fas fa-trophy"
+                            />
+                              
+                            <Translate
+                              id="allinfo"
+                            />
+                          </a>
+                        </div>,
+                      ],
+                      "className": "level",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <span
+                            className="tooltip card-margin-right"
+                            data-tooltip="Format"
+                          >
+                            <i
+                              className="fas fa-book"
+                            />
+                              
+                            Miniatures
+                             
+                          </span>,
+                          "className": "level-left card-footer-items",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <i
+                                className="fas fa-book"
+                              />,
+                              "  ",
+                              "Miniatures",
+                              " ",
+                            ],
+                            "className": "tooltip card-margin-right",
+                            "data-tooltip": "Format",
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "className": "fas fa-book",
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": "i",
+                            },
+                            "  ",
+                            "Miniatures",
+                            " ",
+                          ],
+                          "type": "span",
+                        },
+                        "type": "div",
+                      },
+                      undefined,
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <a
+                            className="card-footer-link"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="fas fa-trophy"
+                            />
+                              
+                            <Translate
+                              id="allinfo"
+                            />
+                          </a>,
+                          "className": "level-right card-footer-items ",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <i
+                                className="fas fa-trophy"
+                              />,
+                              "  ",
+                              <Translate
+                                id="allinfo"
+                              />,
+                            ],
+                            "className": "card-footer-link",
+                            "onClick": [Function],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "className": "fas fa-trophy",
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": "i",
+                            },
+                            "  ",
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "class",
+                              "props": Object {
+                                "id": "allinfo",
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": [Function],
+                            },
+                          ],
+                          "type": "a",
+                        },
+                        "type": "div",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": " ",
+          },
+          "ref": null,
+          "rendered": " ",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="level-left"
+              >
+                <Connect(Connect(EditableField))
+                  defaultValue="Jee"
+                  inputClasses="is-rounded"
+                  labelContent=""
+                  leftIcon="comment"
+                  path="/participations/-LDI56zLiXQtEMWZsV1K/mockUserId"
+                  placeHolder="comment"
+                  targetName="comment"
+                />
+              </div>,
+              false,
+              <div
+                className="level-right is-pulled-right"
+              >
+                <ParticipateButton
+                  eventId="-LDI56zLiXQtEMWZsV1K"
+                  participations={
+                    Object {
+                      "-LDI56zLiXQtEMWZsV1K": Object {
+                        "mockUserId": Object {
+                          "comment": "Jee",
+                          "date": "2018-06-23T09:40:26.992Z",
+                          "firstName": "Test",
+                          "lastName": "Person",
+                          "userId": "mockUserId",
+                        },
+                      },
+                    }
+                  }
+                  profile={
+                    Object {
+                      "avatarUrl": "https://foo.com/picture",
+                      "dciNumber": "123512351112",
+                      "displayName": "Test Person",
+                      "email": "fake@fake.com",
+                      "firstName": "Test",
+                      "isEmpty": false,
+                      "isLoaded": true,
+                      "lastName": "Person",
+                      "providerData": Array [
+                        Object {
+                          "displayName": "Test Person",
+                          "email": "fake@fake.com",
+                          "photoURL": "https://foo.com/picture",
+                          "providerId": "facebook.com",
+                          "uid": "1234567890",
+                        },
+                      ],
+                      "role": "admin",
+                    }
+                  }
+                  userId="mockUserId"
+                />
+              </div>,
+            ],
+            "className": "level participation-level",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <Connect(Connect(EditableField))
+                  defaultValue="Jee"
+                  inputClasses="is-rounded"
+                  labelContent=""
+                  leftIcon="comment"
+                  path="/participations/-LDI56zLiXQtEMWZsV1K/mockUserId"
+                  placeHolder="comment"
+                  targetName="comment"
+                />,
+                "className": "level-left",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "defaultValue": "Jee",
+                  "inputClasses": "is-rounded",
+                  "labelContent": "",
+                  "leftIcon": "comment",
+                  "path": "/participations/-LDI56zLiXQtEMWZsV1K/mockUserId",
+                  "placeHolder": "comment",
+                  "targetName": "comment",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <ParticipateButton
+                  eventId="-LDI56zLiXQtEMWZsV1K"
+                  participations={
+                    Object {
+                      "-LDI56zLiXQtEMWZsV1K": Object {
+                        "mockUserId": Object {
+                          "comment": "Jee",
+                          "date": "2018-06-23T09:40:26.992Z",
+                          "firstName": "Test",
+                          "lastName": "Person",
+                          "userId": "mockUserId",
+                        },
+                      },
+                    }
+                  }
+                  profile={
+                    Object {
+                      "avatarUrl": "https://foo.com/picture",
+                      "dciNumber": "123512351112",
+                      "displayName": "Test Person",
+                      "email": "fake@fake.com",
+                      "firstName": "Test",
+                      "isEmpty": false,
+                      "isLoaded": true,
+                      "lastName": "Person",
+                      "providerData": Array [
+                        Object {
+                          "displayName": "Test Person",
+                          "email": "fake@fake.com",
+                          "photoURL": "https://foo.com/picture",
+                          "providerId": "facebook.com",
+                          "uid": "1234567890",
+                        },
+                      ],
+                      "role": "admin",
+                    }
+                  }
+                  userId="mockUserId"
+                />,
+                "className": "level-right is-pulled-right",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "eventId": "-LDI56zLiXQtEMWZsV1K",
+                  "participations": Object {
+                    "-LDI56zLiXQtEMWZsV1K": Object {
+                      "mockUserId": Object {
+                        "comment": "Jee",
+                        "date": "2018-06-23T09:40:26.992Z",
+                        "firstName": "Test",
+                        "lastName": "Person",
+                        "userId": "mockUserId",
+                      },
+                    },
+                  },
+                  "profile": Object {
+                    "avatarUrl": "https://foo.com/picture",
+                    "dciNumber": "123512351112",
+                    "displayName": "Test Person",
+                    "email": "fake@fake.com",
+                    "firstName": "Test",
+                    "isEmpty": false,
+                    "isLoaded": true,
+                    "lastName": "Person",
+                    "providerData": Array [
+                      Object {
+                        "displayName": "Test Person",
+                        "email": "fake@fake.com",
+                        "photoURL": "https://foo.com/picture",
+                        "providerId": "facebook.com",
+                        "uid": "1234567890",
+                      },
+                    ],
+                    "role": "admin",
+                  },
+                  "userId": "mockUserId",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

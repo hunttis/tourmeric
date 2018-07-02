@@ -1,0 +1,17 @@
+image: node:8.11.3-alpine
+
+cache:
+  paths:
+  - node_modules/
+
+stages:
+  - test
+
+test:
+  stage: test
+  script: 
+    - yarn
+    - yarn check-translations
+    - yarn lint
+    - yarn test
+    - yarn build

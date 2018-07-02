@@ -1,0 +1,120 @@
+{
+  "rules": {
+    "events": {
+      ".validate": "newData.hasChildren(['category', 'createDate', 'date', 'entryFee', 'format', 'link', 'name', 'notes', 'playerSlots', 'prizes', 'published', 'rulesLevel', 'time'])",
+      "category": {
+        ".validate": "newData.isString()"
+      },
+      "createDate": {
+        ".validate": "newData.isString()"
+      },
+      "date": {
+        ".validate": "newData.isString()"
+      },
+      "entryFee": {
+        ".validate": "newData.isNumber()"
+      },
+      "format": {
+        ".validate": "newData.isString()"
+      },
+      "link": {
+        ".validate": "newData.isString()"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "notes": {
+        ".validate": "newData.isString()"
+      },
+      "playerSlots": {
+        ".validate": "newData.isNumber()"
+      },
+      "prizes": {
+        ".validate": "newData.isString()"
+      },
+      "published": {
+        ".validate": "newData.isBoolean()"
+      },
+      "rulesLevel": {
+        ".validate": "newData.isString()"
+      },
+      "time": {
+        ".validate": "newData.isString()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "auth != null"
+    },
+    "users": {
+      "$uid": {
+        ".validate": "newData.hasChildren(['avatarUrl', 'dciNumber', 'displayName', 'email', 'role', 'uid', 'username'])",
+        "avatarUrl": {
+          ".validate": "newData.isString()"
+        },
+        "dciNumber": {
+          ".validate": "newData.isNumber()"
+        },
+        "displayName": {
+          ".validate": "newData.isString()"
+        },
+        "email": {
+          ".validate": "newData.isString()"
+        },
+        "role": {
+          ".validate": "newData.isString()"
+        },
+        "uid": {
+          ".validate": "newData.isNumber()"
+        },
+        "username": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "auth != null && auth.uid == $uid || auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin'",
+        ".write": "auth != null && auth.uid == $uid || auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin'"
+      }
+    },
+    "participations": {
+      ".read": "true",
+      ".write": "auth != null"
+    },
+    "categories": {
+      ".validate": "newData.hasChildren(['name', 'abbreviation', 'type'])",
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "abbreviation": {
+        ".validate": "newData.isString()"
+      },
+      "type": {
+        ".validate": "newData.isString()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin'"
+    },
+    "settings": {
+      ".validate": "newData.hasChildren(['dateFormat', 'pageTitle', 'pageSubtitle'])",
+      "dateFormat": {
+        ".validate": "newData.isString()"
+      },
+      "pageTitle": {
+        ".validate": "newData.isString()"
+      },
+      "pageSubtitle": {
+        ".validate": "newData.isString()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin'"
+    }
+  }
+}

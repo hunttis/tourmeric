@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "events": {
+	    ".read": true,
+  	  ".write": "auth != null"
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid"
+      },
+      ".write": "auth != null"
+    },
+    "participations": {
+			".write": "auth != null",
+      ".read": true
+    },
+    "categories": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "settings": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "uploadedFiles": {
+      ".read": true,
+      ".write": true
+    },
+    "uploadedCategoryLogos": {
+      ".read": true,
+      ".write": true
+    },
+    ".read": true,
+    ".write": false
+  }
+}

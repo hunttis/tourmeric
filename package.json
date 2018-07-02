@@ -1,0 +1,77 @@
+{
+  "name": "omg-tournament",
+  "version": "1.0.0",
+  "description": "This project is for a tournament calendar that let's you create events, edit them and then allows users to pre-register for the events",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/hunttis/omg-tournament.git"
+  },
+  "author": "Ville Nuutinen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/hunttis/omg-tournament/issues"
+  },
+  "homepage": "https://gitlab.com/hunttis/omg-tournament#README",
+  "scripts": {
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html -d dist --public-url . --no-source-maps",
+    "clean": "rm -rf dist; rm -rf .cache;",
+    "clean-build": "yarn clean; yarn build",
+    "bolt": "firebase-bolt < firebase-rules/firebase-rules.bolt > firebase-rules/rules.json",
+    "lint": "eslint .",
+    "lint-watch": "nodemon --exec yarn lint",
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "check-translations": "json-diff --keys-only src/translations/en.json src/translations/fi.json"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "bulma": "^0.7.1",
+    "bulma-extensions": "^1.0.30",
+    "bulmaswatch": "^0.6.2",
+    "enzyme": "^3.3.0",
+    "firebase": "4.6.0",
+    "json-diff": "^0.5.2",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-dropzone": "^4.2.10",
+    "react-image-fallback": "^7.0.1",
+    "react-localize-redux": "^2.17.5",
+    "react-moment": "^0.7.0",
+    "react-redux": "^5.0.7",
+    "react-redux-firebase": "^2.1.3",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.2.0",
+    "translate": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "firebase-bolt": "^0.8.3",
+    "jest": "^23.2.0",
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.17.4",
+    "p-locate": "^2.0.0",
+    "parcel-bundler": "^1.9.3",
+    "parcel-plugin-compress": "^1.0.4",
+    "sass": "^1.3.2"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>src/__mocks__/setupTests.js"
+  }
+}

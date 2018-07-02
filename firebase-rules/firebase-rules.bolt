@@ -1,0 +1,70 @@
+path /events is Event {
+  read() { true }
+  write() { auth != null }
+}
+
+path /users/{uid} is User {
+  read() { isCurrentUser(uid) || isAdmin() }
+  write() { isCurrentUser(uid) || isAdmin() }
+}
+
+path /participations is Participation {
+  read() { true }
+  write() { auth != null }
+  validate() { true }
+}
+
+path /categories is Category {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /settings is Settings {
+  read() { true }
+  write() { isAdmin() }
+}
+
+type Event {
+  category: String,
+  createDate: String,
+  date: String,
+  entryFee: Number,
+  format: String,
+  link: String,
+  name: String,
+  notes: String,
+  playerSlots: Number,
+  prizes: String,
+  published: Boolean,
+  rulesLevel: String,
+  time: String
+}
+
+type Category {
+  name: String,
+  abbreviation: String,
+  type: String
+}
+
+type Participation {
+
+}
+
+type User {
+  avatarUrl: String,
+  dciNumber: Number,
+  displayName: String,
+  email: String,
+  role: String,
+  uid: Number,
+  username: String
+}
+
+type Settings {
+  dateFormat: String,
+  pageTitle: String,
+  pageSubtitle: String
+}
+
+isCurrentUser(uid) { auth != null && auth.uid == uid }
+isAdmin() { auth != null && root.users[auth.uid].role == 'admin' }
