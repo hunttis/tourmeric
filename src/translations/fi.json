@@ -161,6 +161,12 @@
   "momentdateformatdocs": "Moment formatointidokumentaatio",
   "pagetitleplaceholder": "Sivun otsikko, kaupan nimi tms.",
   "pagesubtitleplaceholder": "Sivun aliotsikko, slogan tms.",
-  "clicktousedefaultdateformat": "Ota käyttöön oletusmuoto päivämäärille"
+  "clicktousedefaultdateformat": "Ota käyttöön oletusmuoto päivämäärille",
 
+  "storecredit": "Krediitit",
+  "transactionid": "Transaktion ID",
+  "entrymadeby": "Tapahtuman syötti",
+  "note": "Viesti",
+  "value": "Arvo",
+  "total": "Loppusumma"
 }

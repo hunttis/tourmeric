@@ -162,5 +162,12 @@
   "momentdateformatdocs": "Moment date format docs",
   "pagetitleplaceholder": "Page title, shop name etc",
   "pagesubtitleplaceholder": "Page subtitle, slogan or something",
-  "clicktousedefaultdateformat": "Click to use default date format"
+  "clicktousedefaultdateformat": "Click to use default date format",
+
+  "storecredit": "Store credit",
+  "transactionid": "Transaction ID",
+  "entrymadeby": "Entry made by",
+  "note": "Note",
+  "value": "Value",
+  "total": "Total"
 }
