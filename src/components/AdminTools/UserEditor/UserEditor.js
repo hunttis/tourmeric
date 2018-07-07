@@ -3,9 +3,10 @@ import { isLoaded } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import UserEntry from './UserEntry-container';
 import EditableField from '../../Common/EditableField-container';
+import StoreCreditTable from '../StoreCredit/StoreCreditTable-container';
 
 export default class UserEditor extends Component {
 
@@ -20,6 +21,8 @@ export default class UserEditor extends Component {
     modalOpenClass: '',
     modalUser: '',
     modalMode: '',
+    creditFormAmount: 0.0,
+    creditFormNote: '',
   }
 
   componentDidMount() {
@@ -65,16 +68,44 @@ export default class UserEditor extends Component {
     this.setState({ modalUser: userid, modalMode: 'edit', modalOpenClass: 'is-active' });
   }
 
+  openCreditModal(userid) {
+    this.setState({ modalUser: userid, modalMode: 'credit', modalOpenClass: 'is-active' });
+  }
+
   openDisableModal(userid) {
     this.setState({ modalUser: userid, modalMode: 'disable', modalOpenClass: 'is-active' });
   }
 
   closeModal() {
-    this.setState({ modalUser: '', modalMode: '', modalOpenClass: '' });
+    this.setState({ modalUser: '', modalMode: '', modalOpenClass: '', creditFormAmount: '', creditFormNote: '' });
   }
 
   disableUser(userId) {
     firebase.update(`/users/${userId}`, { active: false });
+  }
+
+  calculateTotal(creditData) {
+    let total = 0.0;
+    if (creditData[1]) {
+      for (const dataItem of Object.values(creditData[1])) {
+        total += dataItem.value;
+      }
+    }
+    return total;
+  }
+
+  changeCreditNote(event) {
+    this.setState({ creditFormNote: event.target.value });
+  }
+
+  changeCreditAmount(event) {
+    this.setState({ creditFormAmount: event.target.value });
+  }
+
+  saveCredit(userId, note, amount) {
+    const storedObject = { creditAddedBy: firebase.auth().currentUser.uid, date: new Date().toUTCString(), note, value: Number.parseFloat(amount) };
+    firebase.push(`/storecredit/${userId}`, storedObject);
+    this.setState({ creditFormNote: '', creditFormAmount: 0.0 });
   }
 
   renderEditModal(userId, userData) {
@@ -139,27 +170,56 @@ export default class UserEditor extends Component {
     );
   }
 
+  renderCreditModal(userId, storecredit) {
+    const userCreditData = storecredit[userId];
+    return (
+      <Fragment>
+        {userCreditData &&
+          <StoreCreditTable key={userId} userId={userId} creditData={userCreditData} />
+        }
+        <div className="level">
+
+          <div className="level-left">
+            <div className="field">
+              <label className="label">Note</label>
+              <input className="input" type="text" defaultValue={this.state.creditFormNote} placeholder="Credit change note" onChange={event => this.changeCreditNote(event)} />
+            </div>
+          </div>
+          <div className="level-item">
+            <div className="field">
+              <label className="label">Credit Amount</label>
+              <input className="input" type="number" defaultValue={this.state.creditFormAmount} placeholder="Credit amount" onChange={event => this.changeCreditAmount(event)} />
+            </div>
+          </div>
+          <div>
+            <button className="button is-primary" onClick={() => this.saveCredit(this.state.modalUser, this.state.creditFormNote, this.state.creditFormAmount)}>Save</button>
+          </div>
+        </div>
+      </Fragment>
+    );
+  }
+
   renderDisableModal(userId, userData) {
     return (
       <Fragment>
 
         <div className="box">
-          <h1 className="title">Disable this user?</h1>
+          <h1 className="title"><Translate id="disablethisuser" /></h1>
           <ul>
             {userData.displayName &&
-              <li>DisplayName: {userData.displayName}</li>
+              <li><Translate id="displayname" />: {userData.displayName}</li>
             }
             {userData.username &&
-              <li>User name: {userData.username}</li>
+              <li><Translate id="username" />: {userData.username}</li>
             }
-            <li>Email: {userData.email}</li>
+            <li><Translate id="email" />: {userData.email}</li>
             {userData.avatarUrl &&
-              <li>Avatar URL:&nbsp;
+              <li><Translate id="avatarurl" />:&nbsp;
                 <a target="_blank" rel="noopener noreferrer" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
               </li>
             }
             {userData.dciNumber &&
-              <li>DCI Number: {userData.dciNumber}</li>
+              <li><Translate id="dcinumber" />: {userData.dciNumber}</li>
             }
           </ul>
           <hr />
@@ -175,21 +235,21 @@ export default class UserEditor extends Component {
   }
 
   render() {
-    const { users } = this.props;
+    const { users, storecredit } = this.props;
     const { filteredUsers, modalOpenClass, modalUser, modalMode } = this.state;
 
-    const currentUser = this.getUser(modalUser);
-    const userId = currentUser ? currentUser.key : '';
-    const userData = currentUser ? currentUser.value : {};
-
-    if (isLoaded(users)) {
+    if (isLoaded(users) && isLoaded(storecredit)) {
+      const currentUser = this.getUser(modalUser);
+      const userId = currentUser ? currentUser.key : '';
+      const userData = currentUser ? currentUser.value : {};
       const usedList = _.isEmpty(filteredUsers) ? Object.values(users) : filteredUsers;
       return (
         <Fragment>
           <div className={`modal ${modalOpenClass}`}>
-            <div className="modal-background" />
+            <div className="modal-background" onClick={() => this.closeModal()} />
             <div className="modal-content">
               {modalMode === 'edit' && this.renderEditModal(userId, userData)}
+              {modalMode === 'credit' && this.renderCreditModal(userId, storecredit)}
               {modalMode === 'disable' && this.renderDisableModal(userId, userData)}
             </div>
             <button className="modal-close is-large" aria-label="close" onClick={() => this.closeModal()} />
@@ -210,15 +270,31 @@ export default class UserEditor extends Component {
             </div>
           </div>
           <div className="columns is-multiline">
-            {usedList.map(userEntry => <UserEntry key={userEntry.key} openEditModal={() => this.openEditModal(userEntry.key)} openDisableModal={() => this.openDisableModal(userEntry.key)} userData={userEntry.value} />)}
+            {usedList.map((userEntry) => {
+              const result = Object.entries(storecredit).filter((storecreditEntry) => {
+                const creditId = storecreditEntry[0];
+                return creditId === userEntry.key;
+              });
+              const total = _.isEmpty(result) ? 0 : this.calculateTotal(result[0]);
+
+              return (<UserEntry
+                key={userEntry.key}
+                openEditModal={() => this.openEditModal(userEntry.key)}
+                openCreditModal={() => this.openCreditModal(userEntry.key)}
+                openDisableModal={() => this.openDisableModal(userEntry.key)}
+                userData={userEntry.value}
+                creditAmount={Number.parseFloat(total)}
+              />);
+            }) };
           </div>
         </Fragment>
       );
     }
-    return <div>Loading</div>;
+    return <div><Translate id="loading" /></div>;
   }
 }
 
 UserEditor.propTypes = {
   users: PropTypes.array,
+  storecredit: PropTypes.object,
 };

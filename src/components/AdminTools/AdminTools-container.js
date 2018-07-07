@@ -9,6 +9,7 @@ export default compose(
     { path: '/events', queryParams: ['orderByChild=date'] },
     { path: '/categories' },
     { path: '/participations' },
+    { path: '/storecredit' },
   ]),
   connect(state => ({
     events: state.firebase.data.events,

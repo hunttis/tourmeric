@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export const StoreCreditRow = ({ dataId, data, entryMadeBy }) => (
   <tr>
-    <td>{dataId}</td>
+    <td className="is-size-7">{dataId}</td>
     <td>{moment(data.date).format('DD-MM-YYYY - hh:mm')}</td>
     <td>{entryMadeBy}</td>
     <td>{data.note}</td>

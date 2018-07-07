@@ -164,10 +164,12 @@
   "pagesubtitleplaceholder": "Page subtitle, slogan or something",
   "clicktousedefaultdateformat": "Click to use default date format",
 
+  "edit": "Edit",
   "storecredit": "Store credit",
   "transactionid": "Transaction ID",
   "entrymadeby": "Entry made by",
   "note": "Note",
   "value": "Value",
-  "total": "Total"
+  "total": "Total",
+  "nocredithistory": "No credit history"
 }
