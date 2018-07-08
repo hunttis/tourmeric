@@ -135,6 +135,7 @@
   "adduserparticipation": "Lisää käyttäjä tähän tapahtumaan",
 
   "yourinfo": "Tietosi",
+  "personalinfo": "Henkilökohtaiset tietosi",
   "shownname": "Näytetty nimi",
   "dcinumber": "DCI Numero",
   "avatarurl": "Avatar URL",
@@ -161,6 +162,14 @@
   "momentdateformatdocs": "Moment formatointidokumentaatio",
   "pagetitleplaceholder": "Sivun otsikko, kaupan nimi tms.",
   "pagesubtitleplaceholder": "Sivun aliotsikko, slogan tms.",
-  "clicktousedefaultdateformat": "Ota käyttöön oletusmuoto päivämäärille"
+  "clicktousedefaultdateformat": "Ota käyttöön oletusmuoto päivämäärille",
 
+  "edit": "Muokkaa",
+  "storecredit": "Krediitit",
+  "transactionid": "Transaktion ID",
+  "entrymadeby": "Tapahtuman syötti",
+  "note": "Viesti",
+  "value": "Arvo",
+  "total": "Loppusumma",
+  "nocredithistory": "Ei krediittihistoriaa"
 }

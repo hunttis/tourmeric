@@ -12,7 +12,7 @@ import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-containe
 
 export default class AdminTools extends Component {
 
-  state = { activeItem: 'user' }
+  state = { activeItem: 'unpublished' }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });

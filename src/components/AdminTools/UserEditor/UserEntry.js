@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Translate } from 'react-localize-redux';
 
-export const UserEntry = ({ openEditModal, openDeleteModal, userData }) => (
+export const UserEntry = ({ openEditModal, openCreditModal, openDeleteModal, userData, creditAmount }) => (
   <div className="userentry column is-half is-one-third-desktop is-one-third-widescreen is-one-quarter-fullhd">
     <div className="card">
 
@@ -21,28 +22,32 @@ export const UserEntry = ({ openEditModal, openDeleteModal, userData }) => (
       <div className="card-content">
         <ul>
           {userData.displayName &&
-            <li>DisplayName: {userData.displayName}</li>
+            <li><Translate id="displayname" />: {userData.displayName}</li>
           }
           {userData.username &&
-            <li>User name: {userData.username}</li>
+            <li><Translate id="username" />: {userData.username}</li>
           }
-          <li>Email: {userData.email}</li>
+          <li><Translate id="email" />: {userData.email}</li>
           {userData.avatarUrl &&
-            <li>Avatar URL:&nbsp;
+            <li><Translate id="avatarurl" />:&nbsp;
               <a target="_blank" rel="noopener noreferrer" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
             </li>
           }
           {userData.dciNumber &&
-            <li>DCI Number: {userData.dciNumber}</li>
+            <li><Translate id="dcinumber" />: {userData.dciNumber}</li>
           }
+          <li><Translate id="storecredit" />: <span className="has-text-success">{creditAmount} €</span></li>
         </ul>
       </div>
       <div className="card-footer">
         <div className="card-footer-item button is-primary" onClick={openEditModal} >
-          Edit
+          <Translate id="edit" />
+        </div>
+        <div className="card-footer-item button is-info" onClick={openCreditModal} >
+          <Translate id="storecredit" />
         </div>
         <div className="card-footer-item button is-danger" onClick={openDeleteModal} >
-          Delete
+          <Translate id="delete" />
         </div>
       </div>
     </div>
@@ -52,5 +57,7 @@ export const UserEntry = ({ openEditModal, openDeleteModal, userData }) => (
 UserEntry.propTypes = {
   openEditModal: PropTypes.func,
   openDeleteModal: PropTypes.func,
+  openCreditModal: PropTypes.func,
   userData: PropTypes.object,
+  creditAmount: PropTypes.number,
 };

@@ -38,7 +38,21 @@ ShallowWrapper {
         >
           <ul>
             <li>
-              Email: 
+              <Translate
+                id="email"
+              />
+              : 
+            </li>
+            <li>
+              <Translate
+                id="storecredit"
+              />
+              : 
+              <span
+                className="has-text-success"
+              >
+                 €
+              </span>
             </li>
           </ul>
         </div>
@@ -49,13 +63,24 @@ ShallowWrapper {
             className="card-footer-item button is-primary"
             onClick={[Function]}
           >
-            Edit
+            <Translate
+              id="edit"
+            />
+          </div>
+          <div
+            className="card-footer-item button is-info"
+          >
+            <Translate
+              id="storecredit"
+            />
           </div>
           <div
             className="card-footer-item button is-danger"
             onClick={[Function]}
           >
-            Delete
+            <Translate
+              id="delete"
+            />
           </div>
         </div>
       </div>,
@@ -82,7 +107,21 @@ ShallowWrapper {
           >
             <ul>
               <li>
-                Email: 
+                <Translate
+                  id="email"
+                />
+                : 
+              </li>
+              <li>
+                <Translate
+                  id="storecredit"
+                />
+                : 
+                <span
+                  className="has-text-success"
+                >
+                   €
+                </span>
               </li>
             </ul>
           </div>,
@@ -93,13 +132,24 @@ ShallowWrapper {
               className="card-footer-item button is-primary"
               onClick={[Function]}
             >
-              Edit
+              <Translate
+                id="edit"
+              />
+            </div>
+            <div
+              className="card-footer-item button is-info"
+            >
+              <Translate
+                id="storecredit"
+              />
             </div>
             <div
               className="card-footer-item button is-danger"
               onClick={[Function]}
             >
-              Delete
+              <Translate
+                id="delete"
+              />
             </div>
           </div>,
         ],
@@ -155,7 +205,21 @@ ShallowWrapper {
           "props": Object {
             "children": <ul>
               <li>
-                Email: 
+                <Translate
+                  id="email"
+                />
+                : 
+              </li>
+              <li>
+                <Translate
+                  id="storecredit"
+                />
+                : 
+                <span
+                  className="has-text-success"
+                >
+                   €
+                </span>
               </li>
             </ul>,
             "className": "card-content",
@@ -170,10 +234,24 @@ ShallowWrapper {
                 undefined,
                 undefined,
                 <li>
-                  Email: 
+                  <Translate
+                    id="email"
+                  />
+                  : 
                 </li>,
                 undefined,
                 undefined,
+                <li>
+                  <Translate
+                    id="storecredit"
+                  />
+                  : 
+                  <span
+                    className="has-text-success"
+                  >
+                     €
+                  </span>
+                </li>,
               ],
             },
             "ref": null,
@@ -186,19 +264,85 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    "Email: ",
+                    <Translate
+                      id="email"
+                    />,
+                    ": ",
                     undefined,
                   ],
                 },
                 "ref": null,
                 "rendered": Array [
-                  "Email: ",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "id": "email",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  ": ",
                   undefined,
                 ],
                 "type": "li",
               },
               undefined,
               undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <Translate
+                      id="storecredit"
+                    />,
+                    ": ",
+                    <span
+                      className="has-text-success"
+                    >
+                       €
+                    </span>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "id": "storecredit",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  ": ",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        undefined,
+                        " €",
+                      ],
+                      "className": "has-text-success",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      undefined,
+                      " €",
+                    ],
+                    "type": "span",
+                  },
+                ],
+                "type": "li",
+              },
             ],
             "type": "ul",
           },
@@ -214,13 +358,24 @@ ShallowWrapper {
                 className="card-footer-item button is-primary"
                 onClick={[Function]}
               >
-                Edit
+                <Translate
+                  id="edit"
+                />
+              </div>,
+              <div
+                className="card-footer-item button is-info"
+              >
+                <Translate
+                  id="storecredit"
+                />
               </div>,
               <div
                 className="card-footer-item button is-danger"
                 onClick={[Function]}
               >
-                Delete
+                <Translate
+                  id="delete"
+                />
               </div>,
             ],
             "className": "card-footer",
@@ -232,12 +387,24 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Edit",
+                "children": <Translate
+                  id="edit"
+                />,
                 "className": "card-footer-item button is-primary",
                 "onClick": [Function],
               },
               "ref": null,
-              "rendered": "Edit",
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "id": "edit",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": "div",
             },
             Object {
@@ -245,12 +412,49 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Delete",
+                "children": <Translate
+                  id="storecredit"
+                />,
+                "className": "card-footer-item button is-info",
+                "onClick": undefined,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "id": "storecredit",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <Translate
+                  id="delete"
+                />,
                 "className": "card-footer-item button is-danger",
                 "onClick": [Function],
               },
               "ref": null,
-              "rendered": "Delete",
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "id": "delete",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": "div",
             },
           ],
@@ -284,7 +488,21 @@ ShallowWrapper {
           >
             <ul>
               <li>
-                Email: 
+                <Translate
+                  id="email"
+                />
+                : 
+              </li>
+              <li>
+                <Translate
+                  id="storecredit"
+                />
+                : 
+                <span
+                  className="has-text-success"
+                >
+                   €
+                </span>
               </li>
             </ul>
           </div>
@@ -295,13 +513,24 @@ ShallowWrapper {
               className="card-footer-item button is-primary"
               onClick={[Function]}
             >
-              Edit
+              <Translate
+                id="edit"
+              />
+            </div>
+            <div
+              className="card-footer-item button is-info"
+            >
+              <Translate
+                id="storecredit"
+              />
             </div>
             <div
               className="card-footer-item button is-danger"
               onClick={[Function]}
             >
-              Delete
+              <Translate
+                id="delete"
+              />
             </div>
           </div>
         </div>,
@@ -328,7 +557,21 @@ ShallowWrapper {
             >
               <ul>
                 <li>
-                  Email: 
+                  <Translate
+                    id="email"
+                  />
+                  : 
+                </li>
+                <li>
+                  <Translate
+                    id="storecredit"
+                  />
+                  : 
+                  <span
+                    className="has-text-success"
+                  >
+                     €
+                  </span>
                 </li>
               </ul>
             </div>,
@@ -339,13 +582,24 @@ ShallowWrapper {
                 className="card-footer-item button is-primary"
                 onClick={[Function]}
               >
-                Edit
+                <Translate
+                  id="edit"
+                />
+              </div>
+              <div
+                className="card-footer-item button is-info"
+              >
+                <Translate
+                  id="storecredit"
+                />
               </div>
               <div
                 className="card-footer-item button is-danger"
                 onClick={[Function]}
               >
-                Delete
+                <Translate
+                  id="delete"
+                />
               </div>
             </div>,
           ],
@@ -401,7 +655,21 @@ ShallowWrapper {
             "props": Object {
               "children": <ul>
                 <li>
-                  Email: 
+                  <Translate
+                    id="email"
+                  />
+                  : 
+                </li>
+                <li>
+                  <Translate
+                    id="storecredit"
+                  />
+                  : 
+                  <span
+                    className="has-text-success"
+                  >
+                     €
+                  </span>
                 </li>
               </ul>,
               "className": "card-content",
@@ -416,10 +684,24 @@ ShallowWrapper {
                   undefined,
                   undefined,
                   <li>
-                    Email: 
+                    <Translate
+                      id="email"
+                    />
+                    : 
                   </li>,
                   undefined,
                   undefined,
+                  <li>
+                    <Translate
+                      id="storecredit"
+                    />
+                    : 
+                    <span
+                      className="has-text-success"
+                    >
+                       €
+                    </span>
+                  </li>,
                 ],
               },
               "ref": null,
@@ -432,19 +714,85 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": Array [
-                      "Email: ",
+                      <Translate
+                        id="email"
+                      />,
+                      ": ",
                       undefined,
                     ],
                   },
                   "ref": null,
                   "rendered": Array [
-                    "Email: ",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "email",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    ": ",
                     undefined,
                   ],
                   "type": "li",
                 },
                 undefined,
                 undefined,
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <Translate
+                        id="storecredit"
+                      />,
+                      ": ",
+                      <span
+                        className="has-text-success"
+                      >
+                         €
+                      </span>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "storecredit",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    ": ",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          undefined,
+                          " €",
+                        ],
+                        "className": "has-text-success",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        undefined,
+                        " €",
+                      ],
+                      "type": "span",
+                    },
+                  ],
+                  "type": "li",
+                },
               ],
               "type": "ul",
             },
@@ -460,13 +808,24 @@ ShallowWrapper {
                   className="card-footer-item button is-primary"
                   onClick={[Function]}
                 >
-                  Edit
+                  <Translate
+                    id="edit"
+                  />
+                </div>,
+                <div
+                  className="card-footer-item button is-info"
+                >
+                  <Translate
+                    id="storecredit"
+                  />
                 </div>,
                 <div
                   className="card-footer-item button is-danger"
                   onClick={[Function]}
                 >
-                  Delete
+                  <Translate
+                    id="delete"
+                  />
                 </div>,
               ],
               "className": "card-footer",
@@ -478,12 +837,24 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Edit",
+                  "children": <Translate
+                    id="edit"
+                  />,
                   "className": "card-footer-item button is-primary",
                   "onClick": [Function],
                 },
                 "ref": null,
-                "rendered": "Edit",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "id": "edit",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
                 "type": "div",
               },
               Object {
@@ -491,12 +862,49 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Delete",
+                  "children": <Translate
+                    id="storecredit"
+                  />,
+                  "className": "card-footer-item button is-info",
+                  "onClick": undefined,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "id": "storecredit",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Translate
+                    id="delete"
+                  />,
                   "className": "card-footer-item button is-danger",
                   "onClick": [Function],
                 },
                 "ref": null,
-                "rendered": "Delete",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "id": "delete",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
                 "type": "div",
               },
             ],
