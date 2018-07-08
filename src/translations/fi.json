@@ -48,6 +48,8 @@
   "select": "- Valitse -",
   "date": "Päivämäärä",
   "time": "Aika",
+  "hour": "Hour",
+  "minute": "Minute",
   "titlebarcolor": "Otsikkorivin väri",
   "titlebarcolor2": "Otsikkorivin toinen väri",
   "titletextcolor": "Otsikon tekstin väri",

@@ -38,7 +38,6 @@ export default class UserInfo extends Component {
       profile, events, participations, userid, settings, storecredit,
     } = this.props;
 
-
     if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && !isEmpty(events) && isLoaded(storecredit)) {
       const userCredit = storecredit[userid];
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
