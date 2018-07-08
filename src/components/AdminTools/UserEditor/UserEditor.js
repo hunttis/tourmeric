@@ -86,10 +86,8 @@ export default class UserEditor extends Component {
 
   calculateTotal(creditData) {
     let total = 0.0;
-    if (creditData[1]) {
-      for (const dataItem of Object.values(creditData[1])) {
-        total += dataItem.value;
-      }
+    for (const dataItem of Object.values(creditData)) {
+      total += dataItem.value;
     }
     return total;
   }
@@ -103,7 +101,7 @@ export default class UserEditor extends Component {
   }
 
   saveCredit(userId, note, amount) {
-    const storedObject = { creditAddedBy: firebase.auth().currentUser.uid, date: new Date().toUTCString(), note, value: Number.parseFloat(amount) };
+    const storedObject = { creditAddedBy: firebase.auth().currentUser.uid, creditAddedByName: firebase.auth().currentUser.displayName, date: new Date().toUTCString(), note, value: Number.parseFloat(amount) };
     firebase.push(`/storecredit/${userId}`, storedObject);
     this.setState({ creditFormNote: '', creditFormAmount: 0.0 });
   }
@@ -174,25 +172,27 @@ export default class UserEditor extends Component {
     const userCreditData = storecredit[userId];
     return (
       <Fragment>
-        {userCreditData &&
-          <StoreCreditTable key={userId} userId={userId} creditData={userCreditData} />
-        }
-        <div className="level">
+        <div className="box">
+          {userCreditData &&
+            <StoreCreditTable key={userId} userId={userId} creditData={userCreditData} />
+          }
+          <div className="level">
 
-          <div className="level-left">
-            <div className="field">
-              <label className="label">Note</label>
-              <input className="input" type="text" defaultValue={this.state.creditFormNote} placeholder="Credit change note" onChange={event => this.changeCreditNote(event)} />
+            <div className="level-left">
+              <div className="field">
+                <label className="label">Note</label>
+                <input className="input" type="text" value={this.state.creditFormNote} placeholder="Credit change note" onChange={event => this.changeCreditNote(event)} />
+              </div>
             </div>
-          </div>
-          <div className="level-item">
-            <div className="field">
-              <label className="label">Credit Amount</label>
-              <input className="input" type="number" defaultValue={this.state.creditFormAmount} placeholder="Credit amount" onChange={event => this.changeCreditAmount(event)} />
+            <div className="level-item">
+              <div className="field">
+                <label className="label">Credit Amount</label>
+                <input className="input" type="number" value={this.state.creditFormAmount} placeholder="Credit amount" onChange={event => this.changeCreditAmount(event)} />
+              </div>
             </div>
-          </div>
-          <div>
-            <button className="button is-primary" onClick={() => this.saveCredit(this.state.modalUser, this.state.creditFormNote, this.state.creditFormAmount)}>Save</button>
+            <div>
+              <button className="button is-primary" onClick={() => this.saveCredit(this.state.modalUser, this.state.creditFormNote, this.state.creditFormAmount)}>Save</button>
+            </div>
           </div>
         </div>
       </Fragment>
@@ -271,11 +271,8 @@ export default class UserEditor extends Component {
           </div>
           <div className="columns is-multiline">
             {usedList.map((userEntry) => {
-              const result = Object.entries(storecredit).filter((storecreditEntry) => {
-                const creditId = storecreditEntry[0];
-                return creditId === userEntry.key;
-              });
-              const total = _.isEmpty(result) ? 0 : this.calculateTotal(result[0]);
+              const userCredit = storecredit[userEntry.key];
+              const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
 
               return (<UserEntry
                 key={userEntry.key}
