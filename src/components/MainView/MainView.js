@@ -18,7 +18,7 @@ export default class MainView extends Component {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { activeItem: 'admintools', forceUserInfo: false };
+    this.state = { activeItem: 'events', forceUserInfo: false };
   }
 
   componentWillReceiveProps(nextProps) {

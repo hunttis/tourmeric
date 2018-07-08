@@ -137,6 +137,7 @@
   "adduserparticipation": "Add user to this event",
 
   "yourinfo": "Your info",
+  "personalinfo": "Personal info",
   "shownname": "Shown Name",
   "dcinumber": "DCI Number",
   "avatarurl": "Avatar URL",
@@ -172,4 +173,5 @@
   "value": "Value",
   "total": "Total",
   "nocredithistory": "No credit history"
+  
 }
