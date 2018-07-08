@@ -3,7 +3,6 @@ import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import moment from 'moment/min/moment-with-locales';
 
 export default class ValidatedDateField extends Component {
 
