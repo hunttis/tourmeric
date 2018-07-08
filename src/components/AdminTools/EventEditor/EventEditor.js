@@ -7,6 +7,7 @@ import Moment from 'react-moment';
 import ValidatedEditableField from './ValidatedEditableField-container';
 import EditableTextarea from './EditableTextarea-container';
 import ValidatedDateField from './ValidatedDateField-container';
+import ValidatedTimeField from './ValidatedTimeField';
 import ValidatedDropdown from './ValidatedDropdown-container';
 
 export default class EditableEvent extends Component {
@@ -127,16 +128,14 @@ export default class EditableEvent extends Component {
           <Translate id="abovedateinterpretedas" /> : <Moment format={dateFormat}>{eventContent.date}</Moment>
         </div>
 
-        <div className="column is-6">
-          <ValidatedEditableField
+        <div className="column is-12">
+          <ValidatedTimeField
             isOk={this.state.timeOk}
             updateFieldStatus={this.updateFieldStatus}
             labelContent="time"
             placeHolder="timeformat"
             defaultValue={eventContent.time}
-            inputType="time"
             path={`/events/${eventId}`}
-            targetName="time"
           />
         </div>
 

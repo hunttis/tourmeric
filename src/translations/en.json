@@ -48,6 +48,8 @@
   "select": "- Select -",
   "date": "Date",
   "time": "Time",
+  "hour": "Hour",
+  "minute": "Minute",
   "dateformat": "Date format",
   "titlebarcolor": "Title bar color",
   "titlebarcolor2": "Secondary Title bar color",
