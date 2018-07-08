@@ -18,9 +18,7 @@ export default class UserInfo extends Component {
 
   calculateTotal(creditData) {
     let total = 0.0;
-    console.log(creditData);
     for (const dataItem of Object.values(creditData)) {
-      console.log('processing', dataItem);
       total += dataItem.value;
     }
     return total;
@@ -43,7 +41,6 @@ export default class UserInfo extends Component {
 
     if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && !isEmpty(events) && isLoaded(storecredit)) {
       const userCredit = storecredit[userid];
-      console.log('userCredit', JSON.stringify(userCredit));
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
       const publishedEvents = Object.values(events).filter(event => event.value.published);
       const futureEvents = publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations));
