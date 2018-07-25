@@ -2,21 +2,61 @@ import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 export default class HighLights extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { foo: true };
+    this.state = { currentlyShowing: '', currentlyShowingIndex: 0 };
+  }
+
+  componentDidMount() {
+    this.activateNext();
+  }
+
+  componentWillUnmount() {
+    this.timeout = null;
+  }
+
+  activateNext() {
+    const { highlights } = this.props;
+
+    if (isLoaded(highlights)) {
+      const nextIndex = (this.state.currentlyShowingIndex + 1) % Object.keys(highlights).length;
+      const nextKey = Object.keys(highlights)[nextIndex];
+      this.setState({ currentlyShowing: nextKey, currentlyShowingIndex: nextIndex });
+    }
+    this.timeout = setTimeout(() => this.activateNext(), 5000);
   }
 
   render() {
-    return (
-      <Fragment>
-        <figure className="image">
-          <img alt="" src="https://firebasestorage.googleapis.com/v0/b/omg-tournament-test.appspot.com/o/uploadedCategoryLogos%2Fomg01-2.jpg?alt=media&token=723eaa6d-5f37-4a89-933d-94d4b88e72d6" />
-        </figure>
-      </Fragment>);
-  }
+    const { highlights } = this.props;
 
+    if (isLoaded(highlights) && !isEmpty(highlights)) {
+
+      if (this.state.currentlyShowing) {
+        const highlightId = this.state.currentlyShowing;
+        const highlight = highlights[highlightId];
+
+        return (
+          <Fragment>
+
+            <div className="highlights fadeIn">
+              <figure key={highlightId} className="image is-background">
+                <img alt="" src={highlight.image} />
+              </figure>
+            </div>
+
+          </Fragment>
+        );
+      }
+    }
+    return <div><Translate id="loading" /></div>;
+
+  }
 }
+
+HighLights.propTypes = {
+  highlights: PropTypes.object,
+};

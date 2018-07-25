@@ -102,11 +102,7 @@ export default class EventList extends Component {
           })}
 
 
-          <div className="level">
-            <div className="level-item">
-              <HighLights />
-            </div>
-          </div>
+          <HighLights />
 
           <h1 className="title"><Translate id="nextevents" /></h1>
 

@@ -9,10 +9,11 @@ import CategoryEditor from './CategoryEditor/CategoryEditor-container';
 import UserEditor from './UserEditor/UserEditor-container';
 import ParticipationEditor from './ParticipationEditor/ParticipationEditor-container';
 import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-container';
+import HighlightEditor from './HighlightEditor/HightlightEditor-container';
 
 export default class AdminTools extends Component {
 
-  state = { activeItem: 'unpublished' }
+  state = { activeItem: 'highlight' }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });
@@ -33,6 +34,7 @@ export default class AdminTools extends Component {
       const categoryLogoUploaderVisible = this.state.activeItem === 'categorylogouploader';
       const userVisible = this.state.activeItem === 'user';
       const participationVisible = this.state.activeItem === 'participation';
+      const highlightVisible = this.state.activeItem === 'highlight';
 
       return (
         <div>
@@ -44,6 +46,7 @@ export default class AdminTools extends Component {
               <AdminToolsTab isActive={categoryLogoUploaderVisible} switchAction={() => this.switchActiveTab('categorylogouploader')} icon="fa-bars" translationKey="categorylogouploader" />
               <AdminToolsTab isActive={userVisible} switchAction={() => this.switchActiveTab('user')} icon="fa-users" translationKey="users" />
               <AdminToolsTab isActive={participationVisible} switchAction={() => this.switchActiveTab('participation')} icon="fa-clipboard-list" translationKey="participations" />
+              <AdminToolsTab isActive={highlightVisible} switchAction={() => this.switchActiveTab('highlight')} icon="fa-lightbulb" translationKey="highlights" />
             </ul>
           </div>
           <section className="section">
@@ -53,6 +56,7 @@ export default class AdminTools extends Component {
             {categoryLogoUploaderVisible && <CategoryLogoUploader />}
             {userVisible && <UserEditor />}
             {participationVisible && <ParticipationEditor />}
+            {highlightVisible && <HighlightEditor />}
           </section>
         </div>
       );
