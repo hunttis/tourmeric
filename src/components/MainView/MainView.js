@@ -12,6 +12,7 @@ import TitleBar from './TitleBar-container';
 import Login from './Account/Login-container';
 import Register from './Account/Register-container';
 import ThemeHandler from './ThemeHandler-container';
+import Highlights from '../HighLights/HighLights-container';
 
 export default class MainView extends Component {
   constructor(props) {
@@ -61,6 +62,8 @@ export default class MainView extends Component {
         <div>
           <ThemeHandler />
           <TitleBar />
+
+          <Highlights />
 
           {isProfileLoaded &&
             <div className="tabs is-boxed is-marginless">

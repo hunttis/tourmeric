@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import EventCard from './EventCard-container';
 import { EventModal } from './EventModal';
-import HighLights from './HighLights/HighLights-container';
 
 export default class EventList extends Component {
 
@@ -100,9 +99,6 @@ export default class EventList extends Component {
 
             return <EventModal key={`modal${eventId}`} eventId={eventId} eventContent={eventContent} closeModal={() => this.closeModal(eventId)} participations={participationsForEvent} />;
           })}
-
-
-          <HighLights />
 
           <h1 className="title"><Translate id="nextevents" /></h1>
 
