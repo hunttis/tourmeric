@@ -58,17 +58,21 @@ export default class MainView extends Component {
       const loginVisible = Boolean(!isLoggedIn && activeItem === 'login');
       const registerVisible = Boolean(!isLoggedIn && activeItem === 'register');
 
+      const features = _.get(settings, 'features', {});
+      const highlightsActive = _.get(features, 'highlights.active', false);
+      const eventsActive = _.get(features, 'events.active', false);
+
       return (
         <div>
           <ThemeHandler />
           <TitleBar />
 
-          <Highlights />
+          {highlightsActive && <Highlights />}
 
           {isProfileLoaded &&
             <div className="tabs is-boxed is-marginless">
               <ul>
-                <MainViewTab isDisabled={!hasProfileData} isActive={eventContentVisible} switchAction={() => this.switchActiveTab('events')} icon="fa-calendar-alt" translationKey="events" />
+                {eventsActive && <MainViewTab isDisabled={!hasProfileData} isActive={eventContentVisible} switchAction={() => this.switchActiveTab('events')} icon="fa-calendar-alt" translationKey="events" />}
                 {isLoggedIn && <MainViewTab isActive={userInfoVisible} switchAction={() => this.switchActiveTab('userinfo')} icon="fa-user" translationKey="userinfo" notification={hasProfileData ? null : 'fa-exclamation-triangle'} />}
                 {!isLoggedIn && <MainViewTab isActive={loginVisible} switchAction={() => this.switchActiveTab('login')} icon="fa-sign-in-alt" translationKey="login" />}
                 {!isLoggedIn && <MainViewTab isActive={registerVisible} switchAction={() => this.switchActiveTab('register')} icon="fa-pencil-alt" translationKey="register" />}
@@ -78,7 +82,7 @@ export default class MainView extends Component {
             </div>
           }
 
-          {eventContentVisible && <EventList />}
+          {eventsActive && eventContentVisible && <EventList />}
           {userInfoVisible && <UserInfo />}
           {adminToolsVisible && <AdminTools />}
           {adminSiteSettingsVisible && <AdminSiteSettings />}

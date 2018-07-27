@@ -52,8 +52,6 @@ export default class HighlightEditor extends Component {
 
   openModal(highlightId, highlight) {
     this.setState({ modalOpenClass: 'is-active', highlightId, highlightName: highlight.name, highlightImage: highlight.image, highlightDate: highlight.date, highlightActive: highlight.active });
-
-    console.log('Open modal?');
   }
 
   closeModal() {
@@ -110,7 +108,6 @@ export default class HighlightEditor extends Component {
     const { modalOpenClass, highlightId, highlightName, highlightImage, highlightDate, highlightActive } = this.state;
 
     if (isLoaded(highlights)) {
-      console.log('modal open? ', modalOpenClass);
       return (
         <Fragment>
           <button className="button" onClick={() => this.createNewHighlight()}>New highlight</button>
