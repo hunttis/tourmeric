@@ -23,6 +23,7 @@
     "lint-watch": "nodemon --exec yarn lint",
     "test": "jest",
     "test-watch": "jest --watch",
+    "all-tests": "yarn test; yarn lint; yarn check-translations",
     "check-translations": "json-diff --keys-only src/translations/en.json src/translations/fi.json"
   },
   "dependencies": {

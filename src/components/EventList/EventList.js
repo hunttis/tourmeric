@@ -31,11 +31,15 @@ export default class EventList extends Component {
   }
 
   runEventFilters(events) {
-    const potentialEvents = this.state.showPastEventsFilter ? Object.values(events).filter(event => moment(event.value.date).isBefore(moment())) : Object.values(events).filter(event => moment(event.value.date).isAfter(moment()));
+    const potentialEvents = this.state.showPastEventsFilter ?
+      Object.values(events).filter(event => moment(event.value.date).isBefore(moment())) :
+      Object.values(events).filter(event => moment(event.value.date).isAfter(moment()));
+
     const publishedEvents = potentialEvents.filter(event => event.value.published);
     if (_.isEmpty(this.state.categoryFilter)) {
       return publishedEvents;
     }
+
     const publishedAndFilteredEvents = publishedEvents.filter(event =>
       _.includes(this.state.categoryFilter, event.value.category));
     return publishedAndFilteredEvents;

@@ -25,13 +25,12 @@ export default class TitleBar extends Component {
     const profileLoaded = isLoaded(profile);
     const loggedIn = isLoaded(profile) && !isEmpty(profile);
 
-
     if (settingsLoaded) {
       return (
         <section className="hero titlebar animated">
           <div className="hero-body">
-            <div className="level is-marginless">
-              <div className="level-left">
+            <div className="columns is-marginless is-tablet">
+              <div className="column is-6">
                 {settings.activeLogo &&
                   <div id="logo">
                     <img src={settings.activeLogo} alt="" />
@@ -44,7 +43,7 @@ export default class TitleBar extends Component {
                 }
               </div>
 
-              <div className="level-right button-container">
+              <div className="column is-6 button-container">
                 {!profileLoaded &&
                   <button className="button is-rounded is-loading is-half" />
                 }

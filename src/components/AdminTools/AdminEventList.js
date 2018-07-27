@@ -29,9 +29,10 @@ export default class AdminEventList extends Component {
     if (_.isEmpty(eventList)) {
       return <div><Translate id="noevents" /></div>;
     }
+    const sortedList = _.sortBy(eventList, [e => e[1].date]);
     return (
       <div className="columns is-multiline">
-        {eventList.map(tournament =>
+        {sortedList.map(tournament =>
           <EditableEvent tournamentEntry={tournament} key={tournament[0]} />)}
       </div>
     );

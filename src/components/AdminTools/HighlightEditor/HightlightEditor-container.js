@@ -1,18 +1,17 @@
-import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { firebaseConnect } from 'react-redux-firebase';
 
-import MainView from './MainView';
+import HighlightEditor from './HighlightEditor';
 
 export default compose(
   firebaseConnect([
-    { path: '/settings' },
     { path: '/highlights' },
+    { path: '/uploadedHighlightBanners' },
   ]),
   connect(state => ({
-    languages: state.locale.languages,
-    settings: state.firebase.data.settings,
     highlights: state.firebase.data.highlights,
+    uploadedHighlightBanners: state.firebase.data.uploadedHighlightBanners,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-)(MainView);
+)(HighlightEditor);

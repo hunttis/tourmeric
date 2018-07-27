@@ -6,12 +6,15 @@ import firebase from 'firebase/app';
 import { PageTitles } from './PageTitles';
 import { Localization } from './Localization';
 import { Themes } from './Themes';
+import FeatureEditor from '../FeatureEditor/FeatureEditor-container';
 
 export default class AdminSiteSettings extends Component {
 
-  constructor(props) {
-    super(props);
-    this.changeTheme = this.changeTheme.bind(this);
+
+  state = { activeItem: 'features' }
+
+  switchActiveTab(type) {
+    this.setState({ activeItem: type });
   }
 
   defaultDateFormat() {
@@ -21,25 +24,6 @@ export default class AdminSiteSettings extends Component {
   changeTheme(newTheme) {
     firebase.update('/settings', { theme: newTheme });
   }
-
-  switchActiveSiteSettingsTab(type) {
-    const tabs = document.getElementsByClassName('sitesettingstab');
-    const contents = document.getElementsByClassName('sitesettingscontent');
-
-    for (const tab of tabs) {
-      tab.classList.remove('is-active');
-    }
-
-    for (const content of contents) {
-      content.classList.add('is-hidden');
-    }
-
-    const activeTab = document.getElementById(`${type}tab`);
-    activeTab.classList.add('is-active');
-    const activeContent = document.getElementById(`${type}content`);
-    activeContent.classList.remove('is-hidden');
-  }
-
 
   render() {
     const { settings } = this.props;
@@ -51,6 +35,11 @@ export default class AdminSiteSettings extends Component {
       'Minty', 'Nuclear', 'Pulse', 'Sandstone', 'Simplex', 'Slate', 'Solar',
       'Spacelab', 'Superhero', 'United', 'Yeti'];
 
+    const pageTitlesVisible = this.state.activeItem === 'pagetitles';
+    const localizationVisible = this.state.activeItem === 'localization';
+    const themesVisible = this.state.activeItem === 'themes';
+    const featuresVisible = this.state.activeItem === 'features';
+
     if (!isLoaded(settings)) {
       return <div><Translate id="loading" /></div>;
     } else if (isLoaded(settings)) {
@@ -59,23 +48,17 @@ export default class AdminSiteSettings extends Component {
         <div>
           <div className="tabs is-boxed is-marginless is-multiline">
             <ul>
-              <SiteSettingsTab tabid="pagetitlestab" isActive switchAction={() => this.switchActiveSiteSettingsTab('pagetitles')} icon="fa-pencil-alt" translationKey="pagetitles" />
-              <SiteSettingsTab tabid="localizationtab" isActive={false} switchAction={() => this.switchActiveSiteSettingsTab('localization')} icon="fa-globe" translationKey="localization" />
-              <SiteSettingsTab tabid="themestab" isActive={false} switchAction={() => this.switchActiveSiteSettingsTab('themes')} icon="fa-star" translationKey="themes" />
-
+              <SiteSettingsTab tabid="pagetitlestab" isActive={pageTitlesVisible} switchAction={() => this.switchActiveSiteSettingsTab('pagetitles')} icon="fa-pencil-alt" translationKey="pagetitles" />
+              <SiteSettingsTab tabid="localizationtab" isActive={localizationVisible} switchAction={() => this.switchActiveSiteSettingsTab('localization')} icon="fa-globe" translationKey="localization" />
+              <SiteSettingsTab tabid="themestab" isActive={themesVisible} switchAction={() => this.switchActiveSiteSettingsTab('themes')} icon="fa-star" translationKey="themes" />
+              <SiteSettingsTab tabid="featurestab" isActive={featuresVisible} switchAction={() => this.switchActiveSiteSettingsTab('features')} icon="fa-star" translationKey="features" />
             </ul>
           </div>
           <div className="section">
-            <div id="pagetitlescontent" className="sitesettingscontent">
-              <PageTitles settings={settings} />
-            </div>
-            <div id="localizationcontent" className="sitesettingscontent is-hidden">
-              <Localization settings={settings} showDefaultButton={showDefaultButton} />
-            </div>
-            <div id="themescontent" className="sitesettingscontent is-hidden">
-              <Themes settings={settings} themes={themes} changeTheme={this.changeTheme} />
-            </div>
-
+            {pageTitlesVisible && <PageTitles settings={settings} />}
+            {localizationVisible && <Localization settings={settings} showDefaultButton={showDefaultButton} />}
+            {themesVisible && <Themes settings={settings} themes={themes} changeTheme={this.changeTheme} />}
+            {featuresVisible && <FeatureEditor settings={settings} themes={themes} changeTheme={this.changeTheme} />}
           </div>
         </div>
       );
