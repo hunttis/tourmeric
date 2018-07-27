@@ -173,5 +173,10 @@
   "note": "Viesti",
   "value": "Arvo",
   "total": "Loppusumma",
-  "nocredithistory": "Ei krediittihistoriaa"
+  "nocredithistory": "Ei krediittihistoriaa",
+
+  "highlights": "Valokeilassa",
+
+  "features": "Ominaisuudet"
+
 }

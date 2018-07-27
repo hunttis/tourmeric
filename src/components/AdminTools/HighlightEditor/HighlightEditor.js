@@ -2,16 +2,27 @@ import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
+import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
 import moment from 'moment';
 
 import EditableField from '../../Common/EditableField-container';
+
+const filesPath = 'uploadedHighlightBanners';
 
 export default class HighlightEditor extends Component {
 
   constructor(props) {
     super(props);
     this.state = { modalOpenClass: '' };
+    this.changeBanner = this.changeBanner.bind(this);
+  }
+
+  onFilesDrop = async (files) => {
+    const result = await firebase.uploadFiles(filesPath, [files[0]]);
+    const downloadURL = await result[0].uploadTaskSnapshot.ref.getDownloadURL();
+    firebase.set(`/${filesPath}/${files[0].lastModified}${files[0].size}`, { name: files[0].name, downloadURL });
+    return result;
   }
 
   setActiveStatus(highlightId, newStatus) {
@@ -19,8 +30,19 @@ export default class HighlightEditor extends Component {
     this.setState({ highlightActive: newStatus });
   }
 
+  deleteFile = async (file, key) => {
+    const storageRef = firebase.storage().ref(filesPath);
+    await storageRef.child(file.name).delete();
+    firebase.set(`/${filesPath}/${key}/`, {});
+  }
+
   createNewHighlight() {
     firebase.push('/highlights', { createDate: moment().toISOString(), date: moment().format('YYYY-MM-DD') });
+  }
+
+  changeBanner(path, value) {
+    firebase.update(`/${path}`, value);
+    this.setState({ highlightImage: value.image });
   }
 
   listHighlights(highlights) {
@@ -58,7 +80,10 @@ export default class HighlightEditor extends Component {
     this.setState({ modalOpenClass: '', highlightId: '', highlightName: '', highlightDate: '', highlightImage: '', highlightActive: '' });
   }
 
-  highlightModal(modalOpenClass, highlightId, highlightName, highlightImage, highlightDate, highlightActive) {
+  highlightModal() {
+    const { uploadedHighlightBanners } = this.props;
+    const { modalOpenClass, highlightId, highlightName, highlightImage, highlightDate, highlightActive } = this.state;
+
     return (
       <div className={`modal ${modalOpenClass}`}>
         <div className="modal-background" onClick={() => this.closeModal()} />
@@ -79,13 +104,22 @@ export default class HighlightEditor extends Component {
               path={`/highlights/${highlightId}`}
               targetName="date"
             />
-            <EditableField
+            {/* <EditableField
               defaultValue={highlightImage}
               labelContent="image"
               placeHolder="image"
               path={`/highlights/${highlightId}`}
               targetName="image"
+            /> */}
+            <FileSelector
+              files={uploadedHighlightBanners}
+              defaultValue={highlightImage}
+              onChange={this.changeBanner}
+              path={`/highlights/${highlightId}`}
+              targetName="image"
             />
+            {highlightImage && <img alt="" src={highlightImage} />}
+
 
             {highlightActive &&
               <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)} >Deactivate</button>
@@ -104,14 +138,25 @@ export default class HighlightEditor extends Component {
   }
 
   render() {
-    const { highlights } = this.props;
-    const { modalOpenClass, highlightId, highlightName, highlightImage, highlightDate, highlightActive } = this.state;
+    const { highlights, uploadedHighlightBanners } = this.props;
 
-    if (isLoaded(highlights)) {
+    if (isLoaded(highlights) && isLoaded(uploadedHighlightBanners)) {
       return (
         <Fragment>
-          <button className="button" onClick={() => this.createNewHighlight()}>New highlight</button>
-          {this.highlightModal(modalOpenClass, highlightId, highlightName, highlightImage, highlightDate, highlightActive)}
+
+          <div className="level is-mobile">
+            <div className="level-left">
+              <button className="button" onClick={() => this.createNewHighlight()}>New highlight</button>
+            </div>
+            <div className="level-right">
+              <Dropzone onDrop={this.onFilesDrop}>
+                <div>
+                  <Translate id="dropfileshere" />
+                </div>
+              </Dropzone>
+            </div>
+          </div>
+          {this.highlightModal()}
           {!isEmpty(highlights) && this.listHighlights(highlights)}
           {isEmpty(highlights) && <div>No highlights created, yet...</div>}
         </Fragment>
@@ -122,6 +167,30 @@ export default class HighlightEditor extends Component {
   }
 }
 
+const FileSelector = ({ path, files, defaultValue, onChange }) => (
+  <div>
+    <label className="label">
+      <Translate id="categorylogo" />
+    </label>
+    <div className="control">
+      <div className="select">
+        <select defaultValue={defaultValue} onChange={event => onChange(path, { image: event.target.value })}>
+          <option value=""><Translate id="select" /></option>
+          {Object.keys(files).map(fileKey => <option key={fileKey} value={files[fileKey].downloadURL}>{files[fileKey].name}</option>)}
+        </select>
+      </div>
+    </div>
+  </div>
+);
+
+FileSelector.propTypes = {
+  path: PropTypes.string,
+  files: PropTypes.object,
+  defaultValue: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
 HighlightEditor.propTypes = {
   highlights: PropTypes.object,
+  uploadedHighlightBanners: PropTypes.object,
 };
