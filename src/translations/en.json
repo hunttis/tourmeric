@@ -190,9 +190,14 @@
   "saturday": "Saturday",
   "sunday": "Sunday",
 
+  "additionalinfo": "Additional info",
+  "additionalopeninghoursinfo": "For example 'If tournaments run later, will be open later!'",
+
   "closed": "Closed",
   "regularopeninghours": "Regular opening hours",
   "upcomingexceptionstoopeninghours": "Upcoming exceptions to opening hours",
-  "locationinfo": "Location info"
+  "locationinfo": "Location info",
+  "directions": "Directions",
+  "directionsplaceholder": "For example 'South on 6th ave, turn left at the 43rd street and it's on your left'"
   
 }

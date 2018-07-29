@@ -189,9 +189,15 @@
   "saturday": "Lauantai",
   "sunday": "Sunnuntai",
 
+  "additionalinfo": "Lisätietoja",
+  "additionalopeninghoursinfo": "Esimerkiksi 'Jos turnaukset venyvät, kauppa on pidempään auki!'",
+
   "closed": "Suljettu",
   "regularopeninghours": "Aukioloajat",
   "upcomingexceptionstoopeninghours": "Tulevia poikkeuksia aukioloaikoihin",
-  "locationinfo": "Sijaintitiedot"
+  "locationinfo": "Sijainti",
+  "directions": "Ohjeet paikalle",
+  "directionsplaceholder": "Esimerkiksi 'Etelään Mannerheimintietä, vasemmalle Ruskeasuolta ja liike on vasemmalla'"
+
 
 }

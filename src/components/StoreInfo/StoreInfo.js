@@ -13,6 +13,7 @@ export default class StoreInfo extends Component {
   render() {
     const { settings } = this.props;
     if (isLoaded(settings)) {
+      const { openingHours } = settings;
       return (
         <Fragment>
           <div className="section">
@@ -20,27 +21,49 @@ export default class StoreInfo extends Component {
             <h1 className="title">
               <Translate id="storeinfo" />
             </h1>
-            <h2 className="subtitle">
-              <Translate id="regularopeninghours" />
-            </h2>
-            <table className="table">
-              <tbody>
-                <OpeningHourRow dayName="Monday" settings={settings} />
-                <OpeningHourRow dayName="Tuesday" settings={settings} />
-                <OpeningHourRow dayName="Wednesday" settings={settings} />
-                <OpeningHourRow dayName="Thursday" settings={settings} />
-                <OpeningHourRow dayName="Friday" settings={settings} />
-                <OpeningHourRow dayName="Saturday" settings={settings} />
-                <OpeningHourRow dayName="Sunday" settings={settings} />
-              </tbody>
-            </table>
+            <div className="box">
+              <h2 className="subtitle">
+                <Translate id="regularopeninghours" />
+              </h2>
+              <table className="table">
+                <tbody>
+                  <OpeningHourRow dayName="Monday" settings={settings} />
+                  <OpeningHourRow dayName="Tuesday" settings={settings} />
+                  <OpeningHourRow dayName="Wednesday" settings={settings} />
+                  <OpeningHourRow dayName="Thursday" settings={settings} />
+                  <OpeningHourRow dayName="Friday" settings={settings} />
+                  <OpeningHourRow dayName="Saturday" settings={settings} />
+                  <OpeningHourRow dayName="Sunday" settings={settings} />
+                </tbody>
+              </table>
 
-            <h2 className="subtitle">
-              <Translate id="upcomingexceptionstoopeninghours" />
-            </h2>
-            <h2 className="subtitle">
-              <Translate id="locationinfo" />
-            </h2>
+              {openingHours && openingHours.additionalinfo &&
+              <div>
+                {openingHours.additionalinfo}
+              </div>
+              }
+
+              <div />
+
+              {openingHours && openingHours.exceptions &&
+                <h2 className="subtitle">
+                  <Translate id="upcomingexceptionstoopeninghours" />
+                </h2>
+              }
+            </div>
+
+            {settings.location && settings.location.directions &&
+              <Fragment>
+                <div className="box">
+                  <h2 className="subtitle">
+                    <Translate id="directions" />
+                  </h2>
+                  <div>
+                    {settings.location.directions}
+                  </div>
+                </div>
+              </Fragment>
+            }
           </div>
         </Fragment>
       );
