@@ -15,7 +15,7 @@ export default class FeatureEditor extends Component {
     const { settings } = this.props;
     const features = _.get(settings, 'features', {});
 
-    const featureList = ['highlights', 'events'];
+    const featureList = ['highlights', 'events', 'storeinfo'];
 
     if (isLoaded(settings)) {
       return (

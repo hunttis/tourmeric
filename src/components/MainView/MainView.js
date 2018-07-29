@@ -13,13 +13,14 @@ import Login from './Account/Login-container';
 import Register from './Account/Register-container';
 import ThemeHandler from './ThemeHandler-container';
 import Highlights from '../HighLights/HighLights-container';
+import StoreInfo from '../StoreInfo/StoreInfo-container';
 
 export default class MainView extends Component {
   constructor(props) {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { activeItem: 'events', forceUserInfo: false };
+    this.state = { activeItem: 'storeinfo', forceUserInfo: false };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,16 +52,18 @@ export default class MainView extends Component {
       const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
       const hasProfileData = isProfileLoaded && profile.firstName && profile.lastName && profile.email;
 
-      const eventContentVisible = Boolean(isProfileLoaded && !forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'events');
+      const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'events');
       const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activeItem === 'userinfo' || !hasProfileData));
       const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'admintools');
       const adminSiteSettingsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'adminsitesettings');
       const loginVisible = Boolean(!isLoggedIn && activeItem === 'login');
       const registerVisible = Boolean(!isLoggedIn && activeItem === 'register');
+      const storeInfoVisible = Boolean(activeItem === 'storeinfo');
 
       const features = _.get(settings, 'features', {});
       const highlightsActive = _.get(features, 'highlights.active', false);
       const eventsActive = _.get(features, 'events.active', false);
+      const storeInfoActive = _.get(features, 'storeinfo.active', false);
 
       return (
         <div>
@@ -73,6 +76,7 @@ export default class MainView extends Component {
             <div className="tabs is-boxed is-marginless">
               <ul>
                 {eventsActive && <MainViewTab isDisabled={!hasProfileData} isActive={eventContentVisible} switchAction={() => this.switchActiveTab('events')} icon="fa-calendar-alt" translationKey="events" />}
+                {storeInfoActive && <MainViewTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />}
                 {isLoggedIn && <MainViewTab isActive={userInfoVisible} switchAction={() => this.switchActiveTab('userinfo')} icon="fa-user" translationKey="userinfo" notification={hasProfileData ? null : 'fa-exclamation-triangle'} />}
                 {!isLoggedIn && <MainViewTab isActive={loginVisible} switchAction={() => this.switchActiveTab('login')} icon="fa-sign-in-alt" translationKey="login" />}
                 {!isLoggedIn && <MainViewTab isActive={registerVisible} switchAction={() => this.switchActiveTab('register')} icon="fa-pencil-alt" translationKey="register" />}
@@ -83,6 +87,7 @@ export default class MainView extends Component {
           }
 
           {eventsActive && eventContentVisible && <EventList />}
+          {storeInfoActive && storeInfoVisible && <StoreInfo />}
           {userInfoVisible && <UserInfo />}
           {adminToolsVisible && <AdminTools />}
           {adminSiteSettingsVisible && <AdminSiteSettings />}

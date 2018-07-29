@@ -177,6 +177,21 @@
 
   "highlights": "Valokeilassa",
 
-  "features": "Ominaisuudet"
+  "features": "Ominaisuudet",
+
+  "storeinfo": "Liikkeen tiedot",
+  "openinghoursfordayplaceholder": "Esimerkiksi'8am - 4pm' tai '08:00 - 16:00', jätä tyhjäksi jos päivä on suljettu",
+  "monday": "Maanantai",
+  "tuesday": "Tiistai",
+  "wednesday": "Keskiviikko",
+  "thursday": "Torstai",
+  "friday": "Perjantai",
+  "saturday": "Lauantai",
+  "sunday": "Sunnuntai",
+
+  "closed": "Suljettu",
+  "regularopeninghours": "Aukioloajat",
+  "upcomingexceptionstoopeninghours": "Tulevia poikkeuksia aukioloaikoihin",
+  "locationinfo": "Sijaintitiedot"
 
 }

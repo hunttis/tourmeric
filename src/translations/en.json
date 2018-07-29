@@ -178,6 +178,21 @@
 
   "highlights": "Highlights",
 
-  "features": "Features"
+  "features": "Features",
+
+  "storeinfo": "Store Info",
+  "openinghoursfordayplaceholder": "For example '8am - 4pm' or '08:00 - 16:00', leave empty for 'closed'",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+
+  "closed": "Closed",
+  "regularopeninghours": "Regular opening hours",
+  "upcomingexceptionstoopeninghours": "Upcoming exceptions to opening hours",
+  "locationinfo": "Location info"
   
 }
