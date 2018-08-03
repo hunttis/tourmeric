@@ -21,49 +21,63 @@ export default class StoreInfo extends Component {
             <h1 className="title">
               <Translate id="storeinfo" />
             </h1>
-            <div className="box">
-              <h2 className="subtitle">
-                <Translate id="regularopeninghours" />
-              </h2>
-              <table className="table">
-                <tbody>
-                  <OpeningHourRow dayName="Monday" settings={settings} />
-                  <OpeningHourRow dayName="Tuesday" settings={settings} />
-                  <OpeningHourRow dayName="Wednesday" settings={settings} />
-                  <OpeningHourRow dayName="Thursday" settings={settings} />
-                  <OpeningHourRow dayName="Friday" settings={settings} />
-                  <OpeningHourRow dayName="Saturday" settings={settings} />
-                  <OpeningHourRow dayName="Sunday" settings={settings} />
-                </tbody>
-              </table>
 
-              {openingHours && openingHours.additionalinfo &&
-              <div>
-                {openingHours.additionalinfo}
+            <div className="columns">
+              <div className="column is-6">
+                <div className="box">
+                  <h2 className="subtitle">
+                    <Translate id="regularopeninghours" />
+                  </h2>
+                  <table className="table">
+                    <tbody>
+                      <OpeningHourRow dayName="Monday" settings={settings} />
+                      <OpeningHourRow dayName="Tuesday" settings={settings} />
+                      <OpeningHourRow dayName="Wednesday" settings={settings} />
+                      <OpeningHourRow dayName="Thursday" settings={settings} />
+                      <OpeningHourRow dayName="Friday" settings={settings} />
+                      <OpeningHourRow dayName="Saturday" settings={settings} />
+                      <OpeningHourRow dayName="Sunday" settings={settings} />
+                    </tbody>
+                  </table>
+
+                  {openingHours && openingHours.additionalinfo &&
+                  <div>
+                    {openingHours.additionalinfo}
+                  </div>
+                  }
+
+                  <div />
+
+                  {openingHours && openingHours.exceptions &&
+                    <h2 className="subtitle">
+                      <Translate id="upcomingexceptionstoopeninghours" />
+                    </h2>
+                  }
+                </div>
               </div>
-              }
 
-              <div />
+              {settings.location && settings.location.directions &&
+                <div className="column is-6">
+                  <div className="box">
+                    <h2 className="subtitle">
+                      <Translate id="directions" />
+                    </h2>
 
-              {openingHours && openingHours.exceptions &&
-                <h2 className="subtitle">
-                  <Translate id="upcomingexceptionstoopeninghours" />
-                </h2>
+                    {settings.activeLocationImage &&
+                      <div>
+                        <a href={settings.activeLocationImage}>
+                          <img alt="" className="image" src={settings.activeLocationImage} />
+                        </a>
+                      </div>
+                    }
+                    <div>
+                      {settings.location.directions}
+                    </div>
+                  </div>
+                </div>
               }
             </div>
 
-            {settings.location && settings.location.directions &&
-              <Fragment>
-                <div className="box">
-                  <h2 className="subtitle">
-                    <Translate id="directions" />
-                  </h2>
-                  <div>
-                    {settings.location.directions}
-                  </div>
-                </div>
-              </Fragment>
-            }
           </div>
         </Fragment>
       );
@@ -95,7 +109,7 @@ const OpeningHourRow = ({ settings, dayName }) => {
   }
   return (
     <tr>
-      <td>ERROR</td>
+      <td><Translate id="error" /></td>
     </tr>
   );
 };

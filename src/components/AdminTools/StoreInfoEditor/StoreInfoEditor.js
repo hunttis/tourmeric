@@ -4,29 +4,47 @@ import { isLoaded } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 // import firebase from 'firebase/app';
 import _ from 'lodash';
+import Dropzone from 'react-dropzone';
+import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField';
 import EditableTextarea from '../../Common/EditableTextarea';
 
+const filesPath = 'uploadedStoreinfoFiles';
+
 export default class StoreInfoEditor extends Component {
 
-  foo() {
-    // firebase.update(`settings/features/${featureName}`, { active: newStatus });
+
+  onFilesDrop = async (files) => {
+    const result = await firebase.uploadFiles(filesPath, [files[0]]);
+    const downloadURL = await result[0].uploadTaskSnapshot.ref.getDownloadURL();
+    firebase.set(`/${filesPath}/${files[0].lastModified}${files[0].size}`, { name: files[0].name, downloadURL });
+    return result;
+  }
+
+  deleteFile = async (file, key) => {
+    const storageRef = firebase.storage().ref(filesPath);
+    await storageRef.child(file.name).delete();
+    firebase.set(`/${filesPath}/${key}/`, {});
+  }
+
+  useAsLocationImage = (file) => {
+    firebase.update('/settings/', { activeLocationImage: file.downloadURL });
   }
 
   render() {
-    const { settings } = this.props;
+    const { settings, uploadedStoreinfoFiles } = this.props;
     const { openingHours, location } = settings;
 
     if (isLoaded(settings)) {
       return (
         <Fragment>
           <h1 className="title">
-            Store info
+            <Translate id="storeinfo" />
           </h1>
           <h2 className="subtitle">
-            Regular Opening Hours
+            <Translate id="regularopeninghours" />
           </h2>
-          <div className="columns is-multiline">
+          <div className="box columns is-multiline">
             <div className="column is-6">
               <EditableField
                 defaultValue={_.get(openingHours, 'monday', '')}
@@ -90,7 +108,7 @@ export default class StoreInfoEditor extends Component {
                 targetName="sunday"
               />
             </div>
-            <div className="column is-12">
+            <div className="column is-6">
               <EditableField
                 defaultValue={_.get(openingHours, 'additionalinfo', '')}
                 labelContent="additionalinfo"
@@ -101,19 +119,26 @@ export default class StoreInfoEditor extends Component {
             </div>
           </div>
           <h2 className="subtitle">
-            Exceptions to opening hours
+            <Translate id="exceptionstoopeninghours" />
           </h2>
-          <div>
-            <button className="button is-primary">Show current exceptions</button>
-            &nbsp;
-            <button className="button is-primary">Add exception</button>
+          <div className="box columns">
+            <div className="column">
+              <div className="field is-grouped">
+                <p className="control">
+                  <button className="button is-primary"><Translate id="showcurrentexceptions" /></button>
+                </p>
+                <p className="control">
+                  <button className="button is-primary"><Translate id="addexception" /></button>
+                </p>
+              </div>
+            </div>
           </div>
 
           <h2 className="subtitle">
-            Store location
+            <Translate id="storelocation" />
           </h2>
-          <div className="columns is-multiline">
-            <div className="column is-12">
+          <div className="box columns is-multiline">
+            <div className="column is-6">
               <EditableTextarea
                 defaultValue={_.get(location, 'directions', '')}
                 labelContent="directions"
@@ -122,8 +147,62 @@ export default class StoreInfoEditor extends Component {
                 targetName="directions"
               />
             </div>
+            <div className="column is-6">
+              <Dropzone onDrop={this.onFilesDrop}>
+                <div>
+                  <Translate id="dropfileshere" />
+                </div>
+              </Dropzone>
+            </div>
           </div>
-          {/* <iframe title="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.1812648250936!2d24.850865115876747!3d60.26046024305865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x468df7a9432c58d3%3A0x440b6d3a3701872a!2sOh+My+Game!5e0!3m2!1sfi!2sfi!4v1532872364083" width="600" height="450" frameBorder="0" allowFullScreen /> */}
+          <div>
+            {
+        uploadedStoreinfoFiles &&
+          <div>
+            <h1 className="title">
+              <Translate id="uploadedfiles" />
+            </h1>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th><Translate id="image" /></th>
+                  <th><Translate id="filename" /></th>
+                  <th><Translate id="actions" /></th>
+                </tr>
+              </thead>
+              {
+              _.map(uploadedStoreinfoFiles, (file, key) => (
+                <tbody key={file.name + key}>
+                  <tr className={(settings.activeLogo === file.downloadURL) ? 'is-selected' : ''}>
+                    <td>
+                      <img className="thumbnail" src={file.downloadURL} alt="" />
+                    </td>
+                    <td>
+                      <span>{file.name}</span>
+                    </td>
+                    <td>
+                      <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                        <Translate id="deletefile" />
+                      </button>
+                      {(settings.locationImage !== file.downloadURL) &&
+                      <button className="button is-info" onClick={() => this.useAsLocationImage(file)}>
+                        <Translate id="useaslocationimage" />
+                      </button>
+                      }
+                      {(settings.activeLogo === file.downloadURL) &&
+                      <button className="button is-warning" onClick={() => this.disableLogo()}>
+                        <Translate id="disableaslogo" />
+                      </button>
+                      }
+                    </td>
+                  </tr>
+                </tbody>
+              ))
+              }
+            </table>
+          </div>
+        }
+          </div>
         </Fragment>
       );
 
@@ -134,4 +213,5 @@ export default class StoreInfoEditor extends Component {
 
 StoreInfoEditor.propTypes = {
   settings: PropTypes.object,
+  uploadedStoreinfoFiles: PropTypes.object,
 };
