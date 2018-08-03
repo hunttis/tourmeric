@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 
-export const Localization = ({ settings, showDefaultButton }) => (
+export const Localization = ({ settings, showDefaultButton, defaultDateFormat }) => (
   <div className="columns is-multiline">
     <div className="column is-12">
       <h1 className="title">
@@ -35,7 +35,7 @@ export const Localization = ({ settings, showDefaultButton }) => (
         <div className="field-body">
           <div className="field">
             <p className="control is-expanded has-icons-right">
-              <button className="button" onClick={() => this.defaultDateFormat()}>DD.MM.YYYY</button>
+              <button className="button" onClick={() => defaultDateFormat()}>DD.MM.YYYY</button>
             </p>
           </div>
         </div>
@@ -52,4 +52,5 @@ export const Localization = ({ settings, showDefaultButton }) => (
 Localization.propTypes = {
   settings: PropTypes.object,
   showDefaultButton: PropTypes.bool,
+  defaultDateFormat: PropTypes.func,
 };

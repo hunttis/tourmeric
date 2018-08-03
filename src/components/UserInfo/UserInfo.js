@@ -205,10 +205,10 @@ const DateBasedEvents = ({ title, events, settings }) => (
   <div>
     <h1 className="title"><Translate id={title} /></h1>
     {Object.entries(events).map((eventEntry) => {
-        const eventId = eventEntry[1].key;
-        const event = eventEntry[1].value;
-        return <EventParticipation key={`usereventlist${eventId}`} event={event} settings={settings} />;
-      })}
+      const eventId = eventEntry[1].key;
+      const event = eventEntry[1].value;
+      return <EventParticipation key={`usereventlist${eventId}`} event={event} settings={settings} />;
+    })}
   </div>
 );
 

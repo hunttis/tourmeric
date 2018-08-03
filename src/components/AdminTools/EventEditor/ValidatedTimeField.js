@@ -6,6 +6,16 @@ import PropTypes from 'prop-types';
 
 export default class ValidatedDateField extends Component {
 
+  delayedSave = _.debounce((value) => {
+    firebase.update(this.props.path, value);
+    this.setState({ saved: true, editing: false });
+    this.delayedNormalize();
+  }, 300)
+
+  delayedNormalize = _.debounce(() => {
+    this.setState({ saved: false, editing: false });
+  }, 2000);
+
   constructor(props) {
     super(props);
 
@@ -22,16 +32,6 @@ export default class ValidatedDateField extends Component {
     this.setState({ editing: true, saved: false });
     this.delayedSave({ time: newTime });
   }
-
-  delayedSave = _.debounce((value) => {
-    firebase.update(this.props.path, value);
-    this.setState({ saved: true, editing: false });
-    this.delayedNormalize();
-  }, 300)
-
-  delayedNormalize = _.debounce(() => {
-    this.setState({ saved: false, editing: false });
-  }, 2000);
 
   updateHour(hour) {
     this.setState({ hour });
@@ -67,14 +67,13 @@ export default class ValidatedDateField extends Component {
                 <p className="control is-expanded has-icons-right">
 
                   <Translate>
-                    {translate =>
-                      (<input
-                        type="number"
-                        className={`input ${!hourOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                        placeholder={translate('hour')}
-                        defaultValue={this.state.hour}
-                        onChange={event => this.updateHour(event.target.value)}
-                      />)
+                    {translate => (<input
+                      type="number"
+                      className={`input ${!hourOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                      placeholder={translate('hour')}
+                      defaultValue={this.state.hour}
+                      onChange={event => this.updateHour(event.target.value)}
+                    />)
                     }
                   </Translate>
                   {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
@@ -97,14 +96,13 @@ export default class ValidatedDateField extends Component {
                 <p className="control is-expanded has-icons-right">
 
                   <Translate>
-                    {translate =>
-                      (<input
-                        type="number"
-                        className={`input ${!minuteOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                        placeholder={translate('minute')}
-                        defaultValue={this.state.minute}
-                        onChange={event => this.updateMinute(event.target.value)}
-                      />)
+                    {translate => (<input
+                      type="number"
+                      className={`input ${!minuteOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                      placeholder={translate('minute')}
+                      defaultValue={this.state.minute}
+                      onChange={event => this.updateMinute(event.target.value)}
+                    />)
                     }
                   </Translate>
                   {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}

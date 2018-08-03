@@ -24,7 +24,9 @@ export default class AdminTools extends Component {
     const { events } = this.props;
     if (!isLoaded(events)) {
       return <div><img src={loadingImage} alt="Loading" /></div>;
-    } else if (isLoaded(events) && !isEmpty(events)) {
+    }
+
+    if (isLoaded(events) && !isEmpty(events)) {
       const sortedEvents = _.sortBy(Object.entries(events), ['date', 'time']);
       const publishedEvents = sortedEvents.filter(event => event[1].published);
       const unpublishedEvents = sortedEvents.filter(event => !event[1].published);
@@ -64,11 +66,14 @@ export default class AdminTools extends Component {
           </section>
         </div>
       );
-    } else if (isLoaded(events) && isEmpty(events)) {
+    }
+
+    if (isLoaded(events) && isEmpty(events)) {
       return (
         <AdminEventList events={[]} showNewEventButton />
       );
     }
+
     return <div><img src={loadingImage} alt="Loading" /></div>;
   }
 }

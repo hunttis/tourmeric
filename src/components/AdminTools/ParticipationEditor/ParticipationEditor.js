@@ -16,7 +16,8 @@ export default class ParticipationEditor extends Component {
   }
 
   toggleParticipantVisibility() {
-    this.setState({ participantsHidden: !this.state.participantsHidden });
+    const { participantsHidden } = this.state;
+    this.setState({ participantsHidden: !participantsHidden });
   }
 
   render() {
@@ -75,18 +76,18 @@ export default class ParticipationEditor extends Component {
                             >
                               <option value=""><Translate id="select" /></option>
                               {users.map((userEntry) => {
-                              const userId = userEntry.key;
-                              const user = userEntry.value;
-                              const alreadyParticipated = Boolean(_.get(participations, `${eventId}.${userId}`));
-                              if (alreadyParticipated) {
-                                return '';
-                              }
-                              return (
-                                <option key={`part${eventId}${userId}`} value={userId}>
-                                  {user.displayName} - {user.email} - {userId}
-                                </option>
-                              );
-                            })}
+                                const userId = userEntry.key;
+                                const user = userEntry.value;
+                                const alreadyParticipated = Boolean(_.get(participations, `${eventId}.${userId}`));
+                                if (alreadyParticipated) {
+                                  return '';
+                                }
+                                return (
+                                  <option key={`part${eventId}${userId}`} value={userId}>
+                                    {user.displayName} - {user.email} - {userId}
+                                  </option>
+                                );
+                              })}
                             </select>
                           </div>
                         </div>

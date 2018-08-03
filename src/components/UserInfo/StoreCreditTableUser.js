@@ -30,10 +30,10 @@ export default class StoreCreditTableUser extends Component {
           </thead>
           <tbody>
             {Object.entries(creditData).map((dataItem) => {
-                const dataId = dataItem[0];
-                const data = dataItem[1];
-                return <StoreCreditRowUser key={`${userId}-${dataId}`} userId={userId} data={data} />;
-              })}
+              const dataId = dataItem[0];
+              const data = dataItem[1];
+              return <StoreCreditRowUser key={`${userId}-${dataId}`} userId={userId} data={data} />;
+            })}
           </tbody>
           <tfoot>
             <tr>

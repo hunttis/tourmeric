@@ -6,14 +6,6 @@ import PropTypes from 'prop-types';
 
 export default class ValidatedDropdown extends Component {
 
-  state = { saved: false, editing: false, selectedValue: this.props.defaultValue }
-
-  handleChange(path, targetName, value) {
-    this.setState({ editing: true, saved: false, selectedValue: value });
-    this.props.updateFieldStatus(this.props.targetName, !_.isEmpty(value));
-    this.delayedSave(path, { [targetName]: value });
-  }
-
   delayedSave = _.debounce((path, value) => {
     firebase.update(path, value);
     this.setState({ saved: true, editing: false });
@@ -23,6 +15,14 @@ export default class ValidatedDropdown extends Component {
   delayedNormalize = _.debounce(() => {
     this.setState({ saved: false, editing: false });
   }, 2000);
+
+  state = { saved: false, editing: false, selectedValue: this.props.defaultValue }
+
+  handleChange(path, targetName, value) {
+    this.setState({ editing: true, saved: false, selectedValue: value });
+    this.props.updateFieldStatus(this.props.targetName, !_.isEmpty(value));
+    this.delayedSave(path, { [targetName]: value });
+  }
 
   render() {
     const {
@@ -48,14 +48,14 @@ export default class ValidatedDropdown extends Component {
                 >
                   <option value=""><Translate id="select" /></option>
                   {Object.entries(dropdownItems).map((categoryEntry) => {
-                      const categoryId = categoryEntry[0];
-                      const category = categoryEntry[1];
-                      return (
-                        <option key={categoryId} value={categoryId}>
-                          {category.name}
-                        </option>
-                      );
-                    })}
+                    const categoryId = categoryEntry[0];
+                    const category = categoryEntry[1];
+                    return (
+                      <option key={categoryId} value={categoryId}>
+                        {category.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               {saved &&

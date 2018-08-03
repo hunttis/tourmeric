@@ -122,10 +122,10 @@ export default class HighlightEditor extends Component {
 
 
             {highlightActive &&
-              <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)} >Deactivate</button>
+              <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}>Deactivate</button>
             }
             {!highlightActive &&
-              <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)} >Activate</button>
+              <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}>Activate</button>
             }
 
             <div>ID: {highlightId}</div>

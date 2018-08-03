@@ -15,7 +15,8 @@ export default class EditableEvent extends Component {
   state = { hidden: true }
 
   toggleEventVisibility() {
-    this.setState({ hidden: !this.state.hidden });
+    const { hidden } = this.state;
+    this.setState({ hidden: !hidden });
   }
 
   participantCount(tournamentid, participations) {
@@ -63,7 +64,9 @@ export default class EditableEvent extends Component {
 
     if (categoriesDone && !this.state.hidden) {
       return <EventEditor categories={categories} eventId={eventId} eventContent={eventContent} toggleEventVisibility={this.toggleEventVisibility} />;
-    } else if (categoriesDone && this.state.hidden) {
+    }
+
+    if (categoriesDone && this.state.hidden) {
       return this.renderEventListItem(categories, eventId, eventContent);
     }
     return <div><Translate id="loading" /></div>;

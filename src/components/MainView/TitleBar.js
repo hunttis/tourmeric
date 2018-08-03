@@ -86,7 +86,7 @@ export default class TitleBar extends Component {
     return (
       <div className="title has-text-centered">
         <div className="level" />
-        <button disabled className="button is-loading is-purple" ><Translate id="loading" />.</button>
+        <button disabled className="button is-loading is-purple"><Translate id="loading" />.</button>
       </div>
     );
   }

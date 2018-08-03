@@ -38,7 +38,8 @@ export default class MainView extends Component {
   }
 
   changeLanguage(newLanguage) {
-    this.props.dispatch(setActiveLanguage(newLanguage));
+    const { dispatch } = this.props;
+    dispatch(setActiveLanguage(newLanguage));
     Moment.globalLocale = newLanguage;
   }
 
@@ -100,7 +101,7 @@ export default class MainView extends Component {
     return (
       <div className="title has-text-centered">
         <div className="level" />
-        <button disabled className="button is-loading is-black" >Loading..</button>
+        <button disabled className="button is-loading is-black">Loading..</button>
       </div>
     );
   }

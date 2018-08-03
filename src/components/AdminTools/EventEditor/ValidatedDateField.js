@@ -7,6 +7,16 @@ import moment from 'moment/min/moment-with-locales';
 
 export default class ValidatedDateField extends Component {
 
+  delayedSave = _.debounce((value) => {
+    firebase.update(this.props.path, value);
+    this.setState({ saved: true, editing: false });
+    this.delayedNormalize();
+  }, 300)
+
+  delayedNormalize = _.debounce(() => {
+    this.setState({ saved: false, editing: false });
+  }, 2000);
+
   constructor(props) {
     super(props);
 
@@ -25,16 +35,6 @@ export default class ValidatedDateField extends Component {
     this.setState({ editing: true, saved: false });
     this.delayedSave({ [targetName]: newDate.format('YYYY-MM-DD') });
   }
-
-  delayedSave = _.debounce((value) => {
-    firebase.update(this.props.path, value);
-    this.setState({ saved: true, editing: false });
-    this.delayedNormalize();
-  }, 300)
-
-  delayedNormalize = _.debounce(() => {
-    this.setState({ saved: false, editing: false });
-  }, 2000);
 
   updateDay(day) {
     this.setState({ day });
@@ -81,14 +81,13 @@ export default class ValidatedDateField extends Component {
                 <p className="control is-expanded has-icons-right">
 
                   <Translate>
-                    {translate =>
-                      (<input
-                        type="number"
-                        className={`input ${!dayOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                        placeholder={translate('day')}
-                        defaultValue={this.state.day}
-                        onChange={event => this.updateDay(event.target.value)}
-                      />)
+                    {translate => (<input
+                      type="number"
+                      className={`input ${!dayOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                      placeholder={translate('day')}
+                      defaultValue={this.state.day}
+                      onChange={event => this.updateDay(event.target.value)}
+                    />)
                     }
                   </Translate>
                   {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
@@ -116,14 +115,14 @@ export default class ValidatedDateField extends Component {
                     >
                       <option value=""><Translate id="select" /></option>
                       {Object.entries(months).map((month) => {
-                          const monthNumber = month[0];
-                          const monthName = moment().month(monthNumber).format('MMMM');
-                          return (
-                            <option key={`monthselector${this.props.targetName}${monthNumber}`} value={monthNumber}>
-                              {monthName}
-                            </option>
-                          );
-                        })}
+                        const monthNumber = month[0];
+                        const monthName = moment().month(monthNumber).format('MMMM');
+                        return (
+                          <option key={`monthselector${this.props.targetName}${monthNumber}`} value={monthNumber}>
+                            {monthName}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                   {saved &&
@@ -154,14 +153,13 @@ export default class ValidatedDateField extends Component {
                 <p className="control is-expanded has-icons-right">
 
                   <Translate>
-                    {translate =>
-                      (<input
-                        type="number"
-                        className={`input ${!yearOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                        placeholder={translate('year')}
-                        defaultValue={this.state.year}
-                        onChange={event => this.updateYear(event.target.value)}
-                      />)
+                    {translate => (<input
+                      type="number"
+                      className={`input ${!yearOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                      placeholder={translate('year')}
+                      defaultValue={this.state.year}
+                      onChange={event => this.updateYear(event.target.value)}
+                    />)
                     }
                   </Translate>
                   {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
