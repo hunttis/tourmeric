@@ -17,4 +17,3 @@ export default compose(
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 )(ParticipationEditor);
-

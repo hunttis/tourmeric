@@ -46,11 +46,11 @@ export default class StoreCreditTable extends Component {
           </thead>
           <tbody>
             {Object.entries(creditData).map((dataItem) => {
-                const dataId = dataItem[0];
-                const data = dataItem[1];
-                const entryMadeBy = this.getUser(data.creditAddedBy).value.displayName;
-                return <StoreCreditRow key={`${userId}-${dataId}`} userId={userId} dataId={dataId} data={data} entryMadeBy={entryMadeBy} />;
-              })}
+              const dataId = dataItem[0];
+              const data = dataItem[1];
+              const entryMadeBy = this.getUser(data.creditAddedBy).value.displayName;
+              return <StoreCreditRow key={`${userId}-${dataId}`} userId={userId} dataId={dataId} data={data} entryMadeBy={entryMadeBy} />;
+            })}
           </tbody>
           <tfoot>
             <tr>

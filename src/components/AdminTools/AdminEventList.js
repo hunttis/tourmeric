@@ -15,8 +15,8 @@ export default class AdminEventList extends Component {
             <button
               className="button"
               onClick={() => {
-              firebase.push('/events', { createDate: moment().toISOString(), date: moment().format('YYYY-MM-DD') });
-            }}
+                firebase.push('/events', { createDate: moment().toISOString(), date: moment().format('YYYY-MM-DD') });
+              }}
             ><Translate id="addevent" />
             </button>
           </div>
@@ -32,8 +32,7 @@ export default class AdminEventList extends Component {
     const sortedList = _.sortBy(eventList, [e => e[1].date]);
     return (
       <div className="columns is-multiline">
-        {sortedList.map(tournament =>
-          <EditableEvent tournamentEntry={tournament} key={tournament[0]} />)}
+        {sortedList.map(tournament => <EditableEvent tournamentEntry={tournament} key={tournament[0]} />)}
       </div>
     );
   }

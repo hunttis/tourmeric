@@ -40,13 +40,13 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDeleteModal, use
         </ul>
       </div>
       <div className="card-footer">
-        <div className="card-footer-item button is-primary" onClick={openEditModal} >
+        <div className="card-footer-item button is-primary" onClick={openEditModal}>
           <Translate id="edit" />
         </div>
-        <div className="card-footer-item button is-info" onClick={openCreditModal} >
+        <div className="card-footer-item button is-info" onClick={openCreditModal}>
           <Translate id="storecredit" />
         </div>
-        <div className="card-footer-item button is-danger" onClick={openDeleteModal} >
+        <div className="card-footer-item button is-danger" onClick={openDeleteModal}>
           <Translate id="delete" />
         </div>
       </div>

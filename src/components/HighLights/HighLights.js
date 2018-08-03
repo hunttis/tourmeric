@@ -24,7 +24,8 @@ export default class HighLights extends Component {
 
     if (!this.unmounting) {
       if (isLoaded(highlights)) {
-        const nextIndex = (this.state.currentlyShowingIndex + 1) % Object.keys(highlights).length;
+        const { currentlyShowingIndex } = this.state;
+        const nextIndex = (currentlyShowingIndex + 1) % Object.keys(highlights).length;
         const nextKey = Object.keys(highlights)[nextIndex];
         this.setState({ currentlyShowing: nextKey, currentlyShowingIndex: nextIndex });
       }

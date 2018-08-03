@@ -1,0 +1,217 @@
+import React, { Component, Fragment } from 'react';
+import { Translate } from 'react-localize-redux';
+import { isLoaded } from 'react-redux-firebase';
+import PropTypes from 'prop-types';
+// import firebase from 'firebase/app';
+import _ from 'lodash';
+import Dropzone from 'react-dropzone';
+import firebase from 'firebase/app';
+import EditableField from '../../Common/EditableField';
+import EditableTextarea from '../../Common/EditableTextarea';
+
+const filesPath = 'uploadedStoreinfoFiles';
+
+export default class StoreInfoEditor extends Component {
+
+
+  onFilesDrop = async (files) => {
+    const result = await firebase.uploadFiles(filesPath, [files[0]]);
+    const downloadURL = await result[0].uploadTaskSnapshot.ref.getDownloadURL();
+    firebase.set(`/${filesPath}/${files[0].lastModified}${files[0].size}`, { name: files[0].name, downloadURL });
+    return result;
+  }
+
+  deleteFile = async (file, key) => {
+    const storageRef = firebase.storage().ref(filesPath);
+    await storageRef.child(file.name).delete();
+    firebase.set(`/${filesPath}/${key}/`, {});
+  }
+
+  useAsLocationImage = (file) => {
+    firebase.update('/settings/', { activeLocationImage: file.downloadURL });
+  }
+
+  render() {
+    const { settings, uploadedStoreinfoFiles } = this.props;
+    const { openingHours, location } = settings;
+
+    if (isLoaded(settings)) {
+      return (
+        <Fragment>
+          <h1 className="title">
+            <Translate id="storeinfo" />
+          </h1>
+          <h2 className="subtitle">
+            <Translate id="regularopeninghours" />
+          </h2>
+          <div className="box columns is-multiline">
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(openingHours, 'monday', '')}
+                labelContent="monday"
+                placeHolder="openinghoursfordayplaceholder"
+                path="/settings/openingHours"
+                targetName="monday"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(openingHours, 'tuesday', '')}
+                labelContent="tuesday"
+                placeHolder="openinghoursfordayplaceholder"
+                path="/settings/openingHours"
+                targetName="tuesday"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(openingHours, 'wednesday', '')}
+                labelContent="wednesday"
+                placeHolder="openinghoursfordayplaceholder"
+                path="/settings/openingHours"
+                targetName="wednesday"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(openingHours, 'thursday', '')}
+                labelContent="thursday"
+                placeHolder="openinghoursfordayplaceholder"
+                path="/settings/openingHours"
+                targetName="thursday"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(openingHours, 'friday', '')}
+                labelContent="friday"
+                placeHolder="openinghoursfordayplaceholder"
+                path="/settings/openingHours"
+                targetName="friday"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(openingHours, 'saturday', '')}
+                labelContent="saturday"
+                placeHolder="openinghoursfordayplaceholder"
+                path="/settings/openingHours"
+                targetName="saturday"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(openingHours, 'sunday', '')}
+                labelContent="sunday"
+                placeHolder="openinghoursfordayplaceholder"
+                path="/settings/openingHours"
+                targetName="sunday"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(openingHours, 'additionalinfo', '')}
+                labelContent="additionalinfo"
+                placeHolder="additionalopeninghoursinfo"
+                path="/settings/openingHours"
+                targetName="additionalinfo"
+              />
+            </div>
+          </div>
+          <h2 className="subtitle">
+            <Translate id="exceptionstoopeninghours" />
+          </h2>
+          <div className="box columns">
+            <div className="column">
+              <div className="field is-grouped">
+                <p className="control">
+                  <button className="button is-primary"><Translate id="showcurrentexceptions" /></button>
+                </p>
+                <p className="control">
+                  <button className="button is-primary"><Translate id="addexception" /></button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h2 className="subtitle">
+            <Translate id="storelocation" />
+          </h2>
+          <div className="box columns is-multiline">
+            <div className="column is-6">
+              <EditableTextarea
+                defaultValue={_.get(location, 'directions', '')}
+                labelContent="directions"
+                placeHolder="directionsplaceholder"
+                path="/settings/location"
+                targetName="directions"
+              />
+            </div>
+            <div className="column is-6">
+              <Dropzone onDrop={this.onFilesDrop}>
+                <div>
+                  <Translate id="dropfileshere" />
+                </div>
+              </Dropzone>
+            </div>
+          </div>
+          <div>
+            {
+        uploadedStoreinfoFiles &&
+          <div>
+            <h1 className="title">
+              <Translate id="uploadedfiles" />
+            </h1>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th><Translate id="image" /></th>
+                  <th><Translate id="filename" /></th>
+                  <th><Translate id="actions" /></th>
+                </tr>
+              </thead>
+              {
+              _.map(uploadedStoreinfoFiles, (file, key) => (
+                <tbody key={file.name + key}>
+                  <tr className={(settings.activeLogo === file.downloadURL) ? 'is-selected' : ''}>
+                    <td>
+                      <img className="thumbnail" src={file.downloadURL} alt="" />
+                    </td>
+                    <td>
+                      <span>{file.name}</span>
+                    </td>
+                    <td>
+                      <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                        <Translate id="deletefile" />
+                      </button>
+                      {(settings.locationImage !== file.downloadURL) &&
+                      <button className="button is-info" onClick={() => this.useAsLocationImage(file)}>
+                        <Translate id="useaslocationimage" />
+                      </button>
+                      }
+                      {(settings.activeLogo === file.downloadURL) &&
+                      <button className="button is-warning" onClick={() => this.disableLogo()}>
+                        <Translate id="disableaslogo" />
+                      </button>
+                      }
+                    </td>
+                  </tr>
+                </tbody>
+              ))
+              }
+            </table>
+          </div>
+        }
+          </div>
+        </Fragment>
+      );
+
+    }
+    return <div><Translate id="loading" /></div>;
+  }
+}
+
+StoreInfoEditor.propTypes = {
+  settings: PropTypes.object,
+  uploadedStoreinfoFiles: PropTypes.object,
+};

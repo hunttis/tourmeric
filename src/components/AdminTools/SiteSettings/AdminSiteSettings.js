@@ -40,9 +40,7 @@ export default class AdminSiteSettings extends Component {
     const themesVisible = this.state.activeItem === 'themes';
     const featuresVisible = this.state.activeItem === 'features';
 
-    if (!isLoaded(settings)) {
-      return <div><Translate id="loading" /></div>;
-    } else if (isLoaded(settings)) {
+    if (isLoaded(settings)) {
       return (
 
         <div>
@@ -56,15 +54,16 @@ export default class AdminSiteSettings extends Component {
           </div>
           <div className="section">
             {pageTitlesVisible && <PageTitles settings={settings} />}
-            {localizationVisible && <Localization settings={settings} showDefaultButton={showDefaultButton} />}
+            {localizationVisible && <Localization settings={settings} showDefaultButton={showDefaultButton} defaultDateFormat={this.defaultDateFormat} />}
             {themesVisible && <Themes settings={settings} themes={themes} changeTheme={this.changeTheme} />}
             {featuresVisible && <FeatureEditor settings={settings} themes={themes} changeTheme={this.changeTheme} />}
           </div>
         </div>
       );
     }
-    return <div><Translate id="error" /></div>;
+    return <div><Translate id="loading" /></div>;
   }
+
 }
 
 const SiteSettingsTab = ({ tabid, isActive, switchAction, icon, translationKey }) => (

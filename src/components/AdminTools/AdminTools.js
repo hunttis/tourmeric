@@ -10,10 +10,11 @@ import UserEditor from './UserEditor/UserEditor-container';
 import ParticipationEditor from './ParticipationEditor/ParticipationEditor-container';
 import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-container';
 import HighlightEditor from './HighlightEditor/HightlightEditor-container';
+import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
 
 export default class AdminTools extends Component {
 
-  state = { activeItem: 'highlight' }
+  state = { activeItem: 'storeinfo' }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });
@@ -23,7 +24,9 @@ export default class AdminTools extends Component {
     const { events } = this.props;
     if (!isLoaded(events)) {
       return <div><img src={loadingImage} alt="Loading" /></div>;
-    } else if (isLoaded(events) && !isEmpty(events)) {
+    }
+
+    if (isLoaded(events) && !isEmpty(events)) {
       const sortedEvents = _.sortBy(Object.entries(events), ['date', 'time']);
       const publishedEvents = sortedEvents.filter(event => event[1].published);
       const unpublishedEvents = sortedEvents.filter(event => !event[1].published);
@@ -35,6 +38,7 @@ export default class AdminTools extends Component {
       const userVisible = this.state.activeItem === 'user';
       const participationVisible = this.state.activeItem === 'participation';
       const highlightVisible = this.state.activeItem === 'highlight';
+      const storeInfoVisible = this.state.activeItem === 'storeinfo';
 
       return (
         <div>
@@ -47,6 +51,7 @@ export default class AdminTools extends Component {
               <AdminToolsTab isActive={userVisible} switchAction={() => this.switchActiveTab('user')} icon="fa-users" translationKey="users" />
               <AdminToolsTab isActive={participationVisible} switchAction={() => this.switchActiveTab('participation')} icon="fa-clipboard-list" translationKey="participations" />
               <AdminToolsTab isActive={highlightVisible} switchAction={() => this.switchActiveTab('highlight')} icon="fa-lightbulb" translationKey="highlights" />
+              <AdminToolsTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
             </ul>
           </div>
           <section className="section">
@@ -57,14 +62,18 @@ export default class AdminTools extends Component {
             {userVisible && <UserEditor />}
             {participationVisible && <ParticipationEditor />}
             {highlightVisible && <HighlightEditor />}
+            {storeInfoVisible && <StoreInfoEditor />}
           </section>
         </div>
       );
-    } else if (isLoaded(events) && isEmpty(events)) {
+    }
+
+    if (isLoaded(events) && isEmpty(events)) {
       return (
         <AdminEventList events={[]} showNewEventButton />
       );
     }
+
     return <div><img src={loadingImage} alt="Loading" /></div>;
   }
 }

@@ -17,7 +17,9 @@ export const ParticipateButton = ({
           </span>
         </button>
       </div>);
-  } else if (profile.isLoaded && !profile.isEmpty) {
+  }
+
+  if (profile.isLoaded && !profile.isEmpty) {
     return (
       <button className="participatebutton button is-rounded is-primary" onClick={() => participate(eventId, userId, profile.firstName, profile.lastName)}>
         <p><Translate id="participate" /></p>

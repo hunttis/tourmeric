@@ -177,6 +177,34 @@
 
   "highlights": "Valokeilassa",
 
-  "features": "Ominaisuudet"
+  "features": "Ominaisuudet",
+
+  "storeinfo": "Liikkeen tiedot",
+  "openinghoursfordayplaceholder": "Esimerkiksi '8am - 4pm' tai '08:00 - 16:00', jätä tyhjäksi jos päivä on suljettu",
+  "monday": "Maanantai",
+  "tuesday": "Tiistai",
+  "wednesday": "Keskiviikko",
+  "thursday": "Torstai",
+  "friday": "Perjantai",
+  "saturday": "Lauantai",
+  "sunday": "Sunnuntai",
+
+  "addexception": "Lisää poikkeus",
+  "showcurrentexceptions": "Näytä nykyiset poikkeukset",
+
+  "additionalinfo": "Lisätietoja",
+  "additionalopeninghoursinfo": "Esimerkiksi 'Jos turnaukset venyvät, kauppa on pidempään auki!'",
+
+  "closed": "Suljettu",
+  "regularopeninghours": "Aukioloajat",
+  "upcomingexceptionstoopeninghours": "Tulevia poikkeuksia aukioloaikoihin",
+  "exceptionstoopeninghours": "Poikkeukset aukioloaikoihin",
+
+  "locationinfo": "Sijainti",
+  "directions": "Ohjeet paikalle",
+  "directionsplaceholder": "Esimerkiksi 'Etelään Mannerheimintietä, vasemmalle Ruskeasuolta ja liike on vasemmalla'",
+  "storelocation": "Liikkeen sijainti",
+  "useaslocationimage": "Käytä sijainnin kuvana"
+
 
 }

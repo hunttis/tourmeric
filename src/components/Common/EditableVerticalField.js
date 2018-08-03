@@ -5,6 +5,21 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 export default class EditableVerticalField extends Component {
+
+  delayedSave = _.debounce((path, value) => {
+    firebase.update(path, value); // Error handling?
+    if (!this.unmounting) {
+      this.setState({ saved: true, editing: false });
+      this.delayedNormalize();
+    }
+  }, 1000)
+
+  delayedNormalize = _.debounce(() => {
+    if (!this.unmounting) {
+      this.setState({ saved: false, editing: false });
+    }
+  }, 2000);
+
   constructor(props) {
     super(props);
     this.state = { saved: false, editing: false, fieldValue: props.defaultValue };
@@ -24,20 +39,6 @@ export default class EditableVerticalField extends Component {
     this.delayedSave(path, { [targetName]: value });
   }
 
-  delayedSave = _.debounce((path, value) => {
-    firebase.update(path, value); // Error handling?
-    if (!this.unmounting) {
-      this.setState({ saved: true, editing: false });
-      this.delayedNormalize();
-    }
-  }, 1000)
-
-  delayedNormalize = _.debounce(() => {
-    if (!this.unmounting) {
-      this.setState({ saved: false, editing: false });
-    }
-  }, 2000);
-
   render() {
     const {
       labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', idleIcon, emptyClass,
@@ -53,14 +54,13 @@ export default class EditableVerticalField extends Component {
           <p className={`control is-expanded ${idleIcon ? 'has-icons-left' : 'has-icons-right'}`}>
 
             <Translate>
-              {translate =>
-                (<input
-                  type={inputType}
-                  className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${emptyClass && !fieldValue ? 'is-danger' : ''}`}
-                  placeholder={translate(placeHolder)}
-                  defaultValue={defaultValue}
-                  onChange={event => this.handleChange(path, targetName, event.target.value)}
-                />)
+              {translate => (<input
+                type={inputType}
+                className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${emptyClass && !fieldValue ? 'is-danger' : ''}`}
+                placeholder={translate(placeHolder)}
+                defaultValue={defaultValue}
+                onChange={event => this.handleChange(path, targetName, event.target.value)}
+              />)
               }
             </Translate>
             {(idleIcon && !saved && !editing) && <span className="icon is-small is-left"><i className={`fas ${idleIcon}`} /></span>}

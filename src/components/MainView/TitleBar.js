@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import Translate, { setActiveLanguage } from 'react-localize-redux';
+import { Translate, setActiveLanguage } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import Moment from 'react-moment';
 import { logout } from '../../api/loginApi';
@@ -60,7 +60,7 @@ export default class TitleBar extends Component {
                     {loggedIn &&
                       <p className="control">
                         <button className="button is-rounded" onClick={() => logout()}>
-                          <p>Log out</p>
+                          <p><Translate id="logout" /></p>
                           <span className="icon">
                             <i className="fas fa-sign-out-alt" />
                           </span>
@@ -86,7 +86,7 @@ export default class TitleBar extends Component {
     return (
       <div className="title has-text-centered">
         <div className="level" />
-        <button disabled className="button is-loading is-purple" ><Translate id="loading" />.</button>
+        <button disabled className="button is-loading is-purple"><Translate id="loading" />.</button>
       </div>
     );
   }

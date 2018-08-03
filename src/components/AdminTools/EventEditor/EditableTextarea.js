@@ -5,6 +5,12 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 export default class EditableTextarea extends Component {
+
+  delayedSave = _.debounce((path, value) => {
+    firebase.update(path, value);
+    this.setState({ saved: true, editing: false });
+  }, 300)
+
   state = { saved: false, editing: false }
 
   handleChange(path, value) {
@@ -12,11 +18,6 @@ export default class EditableTextarea extends Component {
     this.props.updateFieldStatus(this.props.targetName, !_.isEmpty(value));
     this.delayedSave(path, value);
   }
-
-  delayedSave = _.debounce((path, value) => {
-    firebase.update(path, value);
-    this.setState({ saved: true, editing: false });
-  }, 300)
 
   render() {
     const {
@@ -29,8 +30,7 @@ export default class EditableTextarea extends Component {
         <label className="label"><Translate id={labelContent} />:</label>
         <div className="field-body control is-expanded has-icons-right">
           <Translate>
-            {translate =>
-            (<textarea
+            {translate => (<textarea
               className={`textarea ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
               placeholder={translate(placeHolder)}
               defaultValue={defaultValue}

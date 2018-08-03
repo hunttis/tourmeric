@@ -83,7 +83,9 @@ export default class CategoryEditor extends Component {
           </div>
         </div>
       );
-    } else if (!isLoaded(categories)) {
+    }
+
+    if (!isLoaded(categories)) {
       return <div><Translate id="loading" /></div>;
     }
 

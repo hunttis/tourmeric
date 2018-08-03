@@ -19,29 +19,31 @@ export default class EventList extends Component {
   }
 
   toggleFilter(categoryId) {
-    if (_.includes(this.state.categoryFilter, categoryId)) {
-      const newFilter = this.state.categoryFilter.slice();
+    const { categoryFilter } = this.state;
+    if (_.includes(categoryFilter, categoryId)) {
+      const newFilter = categoryFilter.slice();
       newFilter.splice(newFilter.indexOf(categoryId), 1);
       this.setState({ categoryFilter: newFilter });
     } else {
-      const newFilter = this.state.categoryFilter.slice();
+      const newFilter = categoryFilter.slice();
       newFilter.push(categoryId);
       this.setState({ categoryFilter: newFilter });
     }
   }
 
   runEventFilters(events) {
+    const { categoryFilter } = this.state;
+
     const potentialEvents = this.state.showPastEventsFilter ?
       Object.values(events).filter(event => moment(event.value.date).isBefore(moment())) :
       Object.values(events).filter(event => moment(event.value.date).isAfter(moment()));
 
     const publishedEvents = potentialEvents.filter(event => event.value.published);
-    if (_.isEmpty(this.state.categoryFilter)) {
+    if (_.isEmpty(categoryFilter)) {
       return publishedEvents;
     }
 
-    const publishedAndFilteredEvents = publishedEvents.filter(event =>
-      _.includes(this.state.categoryFilter, event.value.category));
+    const publishedAndFilteredEvents = publishedEvents.filter(event => _.includes(this.state.categoryFilter, event.value.category));
     return publishedAndFilteredEvents;
   }
 
@@ -56,7 +58,8 @@ export default class EventList extends Component {
   }
 
   togglePastEventFilter() {
-    this.setState({ showPastEventsFilter: !this.state.showPastEventsFilter });
+    const { showPastEventsFilter } = this.state;
+    this.setState({ showPastEventsFilter: !showPastEventsFilter });
   }
 
   modalItem(translationKey, content) {
@@ -80,7 +83,7 @@ export default class EventList extends Component {
 
     if (!isLoaded(participations) || !isLoaded(profile) || !isLoaded(events) || !isLoaded(settings) || !isLoaded(uploadedCategoryLogos)) {
       return <div><Translate id="loading" /></div>;
-    } else if (isLoaded(events) && isEmpty(events)) {
+    } if (isLoaded(events) && isEmpty(events)) {
       return <div><Translate id="noevents" /></div>;
     }
     const publishedEvents = this.runEventFilters(events);
@@ -121,23 +124,23 @@ export default class EventList extends Component {
 
             <div className="column is-8 columns is-multiline is-mobile">
               {isLoaded(categories) && Object.entries(categories).map((categoryEntry) => {
-                    const activeStatus = _.includes(this.state.categoryFilter, categoryEntry[0]) ? 'is-primary' : '';
-                    const buttonClass = `button is-rounded image-square ${activeStatus} `;
+                const activeStatus = _.includes(this.state.categoryFilter, categoryEntry[0]) ? 'is-primary' : '';
+                const buttonClass = `button is-rounded image-square ${activeStatus} `;
 
-                    const category = categories[categoryEntry[0]];
-                    const logo = category.logo ? uploadedCategoryLogos[category.logo] : null;
+                const category = categories[categoryEntry[0]];
+                const logo = category.logo ? uploadedCategoryLogos[category.logo] : null;
 
-                    return (
-                      <div key={`categoryfilter-${categoryEntry[0]}`} className="column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered">
-                        <button
-                          className={buttonClass}
-                          onClick={() => this.toggleFilter(categoryEntry[0])}
-                        >
-                          <img className="image is-48x48" src={logo.downloadURL} alt="" />
-                        </button>
-                      </div>
-                      );
-                  })
+                return (
+                  <div key={`categoryfilter-${categoryEntry[0]}`} className="column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered">
+                    <button
+                      className={buttonClass}
+                      onClick={() => this.toggleFilter(categoryEntry[0])}
+                    >
+                      <img className="image is-48x48" src={logo.downloadURL} alt="" />
+                    </button>
+                  </div>
+                );
+              })
                   }
             </div>
             <div className="column is-2" />
@@ -156,20 +159,20 @@ export default class EventList extends Component {
 
           <div className="columns is-multiline">
             {isLoaded(events) && publishedEvents.map((eventEntry) => {
-                const eventId = eventEntry.key;
+              const eventId = eventEntry.key;
 
-                return (
-                  <div key={eventId} className="column is-12 columns">
-                    <div className="column is-2" />
-                    <EventCard
-                      eventId={eventId}
-                      openModal={() => this.openModal(eventId)}
-                    />
-                    <div className="column is-2" />
-                  </div>
-                );
+              return (
+                <div key={eventId} className="column is-12 columns">
+                  <div className="column is-2" />
+                  <EventCard
+                    eventId={eventId}
+                    openModal={() => this.openModal(eventId)}
+                  />
+                  <div className="column is-2" />
+                </div>
+              );
 
-              })}
+            })}
           </div>
         </div>
       </section>
@@ -186,4 +189,3 @@ EventList.propTypes = {
   settings: PropTypes.object,
   uploadedCategoryLogos: PropTypes.object,
 };
-

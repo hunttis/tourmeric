@@ -42,6 +42,12 @@
     "object-curly-newline": ["error", {
         "minProperties": 10,
         "consistent": true
-    }]
+    }],
+    "react/jsx-no-literals": [0, {"noStrings": true}],
+    "operator-linebreak": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/button-has-type": "off",
+    "react/destructuring-assignment": "off"
   }
 }

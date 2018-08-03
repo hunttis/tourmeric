@@ -27,8 +27,10 @@ import finnishTranslations from './translations/fi.json';
 
 import eventReducer from './reducers/eventReducer';
 
+const defaultLanguage = 'fi';
+
 Moment.globalMoment = moment;
-Moment.globalLocale = 'en';
+Moment.globalLocale = defaultLanguage;
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(config);
@@ -58,7 +60,7 @@ const store = createStoreWithFirebase(
 );
 
 const languages = ['en', 'fi'];
-store.dispatch(initialize(languages, { defaultLanguage: 'en' }));
+store.dispatch(initialize(languages, { defaultLanguage }));
 
 store.dispatch(addTranslationForLanguage(englishTranslations, 'en'));
 store.dispatch(addTranslationForLanguage(finnishTranslations, 'fi'));
@@ -70,4 +72,3 @@ const Main = () => (
 );
 
 ReactDOM.render(<Main />, document.getElementById('app'));
-

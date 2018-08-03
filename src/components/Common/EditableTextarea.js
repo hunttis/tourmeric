@@ -4,7 +4,7 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
-export default class ValidatedEditableField extends Component {
+export default class EditableField extends Component {
 
   delayedSave = _.debounce((path, value) => {
     firebase.update(path, value);
@@ -20,37 +20,39 @@ export default class ValidatedEditableField extends Component {
 
   handleChange(path, targetName, value) {
     this.setState({ editing: true, saved: false });
-    this.props.updateFieldStatus(this.props.targetName, !_.isEmpty(value));
     this.delayedSave(path, { [targetName]: value });
   }
 
   render() {
     const {
-      labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', isOk,
+      labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', inputClasses, leftIcon,
     } = this.props;
     const { saved, editing } = this.state;
 
     return (
-      <div className="field is-horizontal">
+      <div className="editablefield field is-horizontal">
+        {labelContent &&
         <div className="field-label is-normal">
           <label className="label">
             <Translate id={labelContent} />
           </label>
         </div>
+        }
         <div className="field-body">
           <div className="field">
-            <p className="control is-expanded has-icons-right">
+            <p className={`control is-expanded ${leftIcon && 'has-icons-left'} has-icons-right`}>
 
               <Translate>
-                {translate => (<input
+                {translate => (<textarea
                   type={inputType}
-                  className={`input ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
+                  className={`textarea ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${inputClasses}`}
                   placeholder={translate(placeHolder)}
                   defaultValue={defaultValue}
                   onChange={event => this.handleChange(path, targetName, event.target.value)}
                 />)
                 }
               </Translate>
+              {leftIcon && <span className="icon is-small is-left"><i className={`fas fa-${leftIcon}`} /></span>}
               {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
               {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
             </p>
@@ -61,13 +63,13 @@ export default class ValidatedEditableField extends Component {
   }
 }
 
-ValidatedEditableField.propTypes = {
+EditableField.propTypes = {
   labelContent: PropTypes.string,
   placeHolder: PropTypes.string,
   defaultValue: PropTypes.string,
   path: PropTypes.string,
   targetName: PropTypes.string,
   inputType: PropTypes.string,
-  isOk: PropTypes.bool,
-  updateFieldStatus: PropTypes.func,
+  inputClasses: PropTypes.string,
+  leftIcon: PropTypes.string,
 };

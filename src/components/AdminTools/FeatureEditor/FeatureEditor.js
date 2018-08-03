@@ -15,18 +15,18 @@ export default class FeatureEditor extends Component {
     const { settings } = this.props;
     const features = _.get(settings, 'features', {});
 
-    const featureList = ['highlights', 'events'];
+    const featureList = ['highlights', 'events', 'storeinfo', 'language-fi', 'language-en'];
 
     if (isLoaded(settings)) {
       return (
         <Fragment>
-          <div className="tile is-ancestor">
+          <div className="columns is-multiline">
 
             {featureList.map((feature) => {
               const featureActive = _.get(features, `${feature}.active`, false);
               return (
-                <div key={feature} className="tile is-parent is-4">
-                  <div className="tile is-child box">
+                <div key={feature} className="column is-4">
+                  <div className="box">
                     <div className="level">
                       <div className="level-item">
                         {feature}
@@ -38,8 +38,8 @@ export default class FeatureEditor extends Component {
                     </div>
                   </div>
                 </div>
-                );
-              })
+              );
+            })
             }
           </div>
         </Fragment>
