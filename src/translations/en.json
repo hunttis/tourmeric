@@ -1,4 +1,10 @@
 {
+  "changelanguage": "Change language",
+  "english": "English",
+  "finnish": "Finnish",
+
+  "menu": "Menu",
+
   "pagetitle": "Page title",
   "pagesubtitle": "Page subtitle",
   "appname": "EVENT ORGANIZER",
@@ -9,8 +15,9 @@
   "logout": "Log out",
   "events": "Events",
   "admin": "Admin",
+  "admingeneric": "Admin - Generic",
   "adminevents": "Admin - Events",
-  "sitesettings": "Admin - Site Settings",
+  "adminsitesettings": "Admin - Site Settings",
   "userinfo": "User",
   "loading": "Loading",
   "yes": "Yes",
@@ -174,7 +181,9 @@
   "note": "Note",
   "value": "Value",
   "total": "Total",
+  "credithistory": "Credit history",
   "nocredithistory": "No credit history",
+  "creditamount": "Credit amount",
 
   "highlights": "Highlights",
 

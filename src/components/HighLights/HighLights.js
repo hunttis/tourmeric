@@ -48,7 +48,7 @@ export default class HighLights extends Component {
               {Object.entries(highlights).map(hiliteEntry => <img key={hiliteEntry[0]} alt="" src={hiliteEntry[1].image} />)}
             </div>
 
-            <div className="highlights fadeIn">
+            <div className="highlights fadeIn card">
               <figure className="image is-3by1">
                 <img alt="" src={highlight.image} />
               </figure>

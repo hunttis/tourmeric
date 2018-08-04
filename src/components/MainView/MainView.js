@@ -5,6 +5,7 @@ import { Translate, setActiveLanguage } from 'react-localize-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import AdminTools from '../AdminTools/AdminTools-container';
+import AdminToolsEvents from '../AdminTools/AdminToolsEvents-container';
 import AdminSiteSettings from '../AdminTools/SiteSettings/AdminSiteSettings-container';
 import UserInfo from '../UserInfo/UserInfo-container';
 import EventList from '../EventList/EventList-container';
@@ -12,8 +13,8 @@ import TitleBar from './TitleBar-container';
 import Login from './Account/Login-container';
 import Register from './Account/Register-container';
 import ThemeHandler from './ThemeHandler-container';
-import Highlights from '../HighLights/HighLights-container';
 import StoreInfo from '../StoreInfo/StoreInfo-container';
+import Navbar from './Navbar-container';
 
 export default class MainView extends Component {
   constructor(props) {
@@ -53,44 +54,30 @@ export default class MainView extends Component {
       const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
       const hasProfileData = isProfileLoaded && profile.firstName && profile.lastName && profile.email;
 
+      const features = _.get(settings, 'features', {});
+      const eventsActive = _.get(features, 'events.active', false);
+      const storeInfoActive = _.get(features, 'storeinfo.active', false);
+
       const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'events');
       const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activeItem === 'userinfo' || !hasProfileData));
       const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'admintools');
+      const adminToolsEventsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'admintoolsevents');
       const adminSiteSettingsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'adminsitesettings');
       const loginVisible = Boolean(!isLoggedIn && activeItem === 'login');
       const registerVisible = Boolean(!isLoggedIn && activeItem === 'register');
       const storeInfoVisible = Boolean(activeItem === 'storeinfo');
 
-      const features = _.get(settings, 'features', {});
-      const highlightsActive = _.get(features, 'highlights.active', false);
-      const eventsActive = _.get(features, 'events.active', false);
-      const storeInfoActive = _.get(features, 'storeinfo.active', false);
-
       return (
         <div>
           <ThemeHandler />
           <TitleBar />
-
-          {highlightsActive && <Highlights />}
-
-          {isProfileLoaded &&
-            <div className="tabs is-boxed is-marginless">
-              <ul>
-                {eventsActive && <MainViewTab isDisabled={!hasProfileData} isActive={eventContentVisible} switchAction={() => this.switchActiveTab('events')} icon="fa-calendar-alt" translationKey="events" />}
-                {storeInfoActive && <MainViewTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />}
-                {isLoggedIn && <MainViewTab isActive={userInfoVisible} switchAction={() => this.switchActiveTab('userinfo')} icon="fa-user" translationKey="userinfo" notification={hasProfileData ? null : 'fa-exclamation-triangle'} />}
-                {!isLoggedIn && <MainViewTab isActive={loginVisible} switchAction={() => this.switchActiveTab('login')} icon="fa-sign-in-alt" translationKey="login" />}
-                {!isLoggedIn && <MainViewTab isActive={registerVisible} switchAction={() => this.switchActiveTab('register')} icon="fa-pencil-alt" translationKey="register" />}
-                {isAdmin && <MainViewTab isActive={adminToolsVisible} switchAction={() => this.switchActiveTab('admintools')} icon="fa-calendar-plus" translationKey="adminevents" />}
-                {isAdmin && <MainViewTab isActive={adminSiteSettingsVisible} switchAction={() => this.switchActiveTab('adminsitesettings')} icon="fa-cogs" translationKey="sitesettings" />}
-              </ul>
-            </div>
-          }
+          <Navbar switchActiveTab={this.switchActiveTab} activeItem={activeItem} changeLanguage={this.changeLanguage} />
 
           {eventsActive && eventContentVisible && <EventList />}
           {storeInfoActive && storeInfoVisible && <StoreInfo />}
           {userInfoVisible && <UserInfo />}
           {adminToolsVisible && <AdminTools />}
+          {adminToolsEventsVisible && <AdminToolsEvents />}
           {adminSiteSettingsVisible && <AdminSiteSettings />}
           {loginVisible && <Login />}
           {registerVisible && <Register />}

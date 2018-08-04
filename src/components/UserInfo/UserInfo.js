@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -44,6 +44,8 @@ export default class UserInfo extends Component {
       const publishedEvents = Object.values(events).filter(event => event.value.published);
       const futureEvents = publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations));
       const pastEvents = publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations));
+      const features = _.get(settings, 'features', {});
+      const eventsActive = _.get(features, 'events.active', false);
 
       return (
         <div>
@@ -112,29 +114,33 @@ export default class UserInfo extends Component {
                   </div>
                   <div className="column is-6 has-text-right">
                     {userCredit &&
-                      <button className="button is-primary" onClick={() => this.openCreditModal()}>Credit history</button>
+                      <button className="button is-primary" onClick={() => this.openCreditModal()}><Translate id="credithistory" /></button>
                     }
                   </div>
                 </div>
               </div>
 
-              {!_.isEmpty(futureEvents) &&
-              <DateBasedEvents
-                title="nextparticipations"
-                events={futureEvents}
-                userid={userid}
-                participations={participations}
-                settings={settings}
-              />}
-              <p>&nbsp;</p>
-              {!_.isEmpty(pastEvents) &&
-              <DateBasedEvents
-                title="pastparticipations"
-                events={pastEvents}
-                userid={userid}
-                participations={participations}
-                settings={settings}
-              />}
+              {eventsActive &&
+                <Fragment>
+                  {!_.isEmpty(futureEvents) &&
+                  <DateBasedEvents
+                    title="nextparticipations"
+                    events={futureEvents}
+                    userid={userid}
+                    participations={participations}
+                    settings={settings}
+                  />}
+                  <p>&nbsp;</p>
+                  {!_.isEmpty(pastEvents) &&
+                  <DateBasedEvents
+                    title="pastparticipations"
+                    events={pastEvents}
+                    userid={userid}
+                    participations={participations}
+                    settings={settings}
+                  />}
+                </Fragment>
+              }
             </div>
 
           </div>
@@ -215,7 +221,6 @@ const DateBasedEvents = ({ title, events, settings }) => (
 const EventParticipation = ({ event, settings }) => (
   <div className="box">
     <div className="level">
-
       <div className="level-left">
         <div>
           <strong>{event.name}</strong><br />
@@ -227,16 +232,6 @@ const EventParticipation = ({ event, settings }) => (
         <button className="button is-primary">More info</button>
       </div>
     </div>
-    {/* <div className="columns">
-      <div className="column is-3">
-      </div>
-      <div className="column is-2">
-        {event.time}
-      </div>
-      <div className="column is-7">
-        {event.name}
-      </div>
-    </div> */}
   </div>
 );
 

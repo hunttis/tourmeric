@@ -1,4 +1,10 @@
 {
+  "changelanguage": "Vaihda kieltä",
+  "english": "Englanti",
+  "finnish": "Suomi",
+
+  "menu": "Valikko",
+
   "pagetitle": "Sivun otsikko",
   "pagesubtitle": "Sivun alaotsikko",
   "appname": "Tapahtumajärjestäjä",
@@ -9,8 +15,9 @@
   "logout": "Kirjaudu ulos",
   "events": "Tapahtumat",
   "admin": "Ylläpito",
+  "admingeneric": "Ylläpito - Yleiset",
   "adminevents": "Ylläpito - Tapahtumat",
-  "sitesettings": "Ylläpito - Sivuston asetukset",
+  "adminsitesettings": "Ylläpito - Sivuston asetukset",
   "userinfo": "Käyttäjätiedot",
   "loading": "Ladataan",
   "yes": "Kyllä",
@@ -173,7 +180,9 @@
   "note": "Viesti",
   "value": "Arvo",
   "total": "Loppusumma",
+  "credithistory": "Krediittihistoria",
   "nocredithistory": "Ei krediittihistoriaa",
+  "creditamount": "Krediittien määrä",
 
   "highlights": "Valokeilassa",
 
