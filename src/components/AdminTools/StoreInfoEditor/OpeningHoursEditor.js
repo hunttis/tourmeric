@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import EditableField from '../../Common/EditableField';
 
 export const OpeningHoursEditor = ({ openingHours }) => (
@@ -99,3 +100,7 @@ export const OpeningHoursEditor = ({ openingHours }) => (
     </div>
   </Fragment>
 );
+
+OpeningHoursEditor.propTypes = {
+  openingHours: PropTypes.object,
+};
