@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-export const StoreCreditRow = ({ dataId, data, entryMadeBy }) => (
+export const StoreCreditRow = ({ dataId, data, entryMadeBy, isAdmin }) => (
   <tr>
-    <td className="is-size-7">{dataId}</td>
+    {isAdmin &&
+      <td className="is-size-7">{dataId}</td>
+    }
     <td>{moment(data.date).format('DD-MM-YYYY - hh:mm')}</td>
     <td>{entryMadeBy}</td>
     <td>{data.note}</td>
@@ -16,4 +18,5 @@ StoreCreditRow.propTypes = {
   dataId: PropTypes.string,
   data: PropTypes.object,
   entryMadeBy: PropTypes.string,
+  isAdmin: PropTypes.bool,
 };

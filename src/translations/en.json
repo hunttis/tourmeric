@@ -214,6 +214,10 @@
   "directions": "Directions",
   "directionsplaceholder": "For example 'South on 6th ave, turn left at the 43rd street and it's on your left'",
   "storelocation": "Store location",
-  "useaslocationimage": "Use as location image"
+  "useaslocationimage": "Use as location image",
+  "address": "Address",
+  "phone": "Phone",
+  "phoneplaceholder": "Input your phone number this way: +358-(40)-123-1234",
+  "contactinfo": "Contact info"
   
 }

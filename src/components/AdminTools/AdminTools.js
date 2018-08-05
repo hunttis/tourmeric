@@ -14,7 +14,7 @@ import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
 
 export default class AdminTools extends Component {
 
-  state = { activeItem: 'user' }
+  state = { activeItem: 'storeinfo' }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });

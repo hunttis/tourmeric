@@ -3,7 +3,7 @@ import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import { logout } from '../../api/loginApi';
+import { logout } from '../../../api/loginApi';
 
 // import flagFI from '../../images/fi.png';
 // import flagEN from '../../images/uk.png';
@@ -52,7 +52,7 @@ export default class Navbar extends Component {
                 <NavbarItem onClick={() => { switchActiveTab('events'); }} translationKey="events" icon="fa-calendar-alt" />
               }
               {storeInfoActive &&
-                <NavbarItem onClick={() => { switchActiveTab('storeinfo'); }} translationKey="storeinfo" icon="fa-store" />
+                <NavbarItem onClick={() => { switchActiveTab('storeinfo'); }} translationKey="contactinfo" icon="fa-store" />
               }
               {isLoggedIn &&
                 <NavbarItem onClick={() => { switchActiveTab('userinfo'); }} translationKey="userinfo" icon="fa-user" />
@@ -84,6 +84,7 @@ export default class Navbar extends Component {
                   <span className="icon">
                     <i className="fas fa-globe" />
                   </span>
+                  <span className="is-hidden-desktop">&nbsp;&nbsp;<Translate id="changelanguage" /></span>
                 </a>
                 <div className="navbar-dropdown">
                   <div className="navbar-item">

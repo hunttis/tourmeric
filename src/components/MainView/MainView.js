@@ -14,7 +14,7 @@ import Login from './Account/Login-container';
 import Register from './Account/Register-container';
 import ThemeHandler from './ThemeHandler-container';
 import StoreInfo from '../StoreInfo/StoreInfo-container';
-import Navbar from './Navbar-container';
+import Navbar from './Navbar/Navbar-container';
 
 export default class MainView extends Component {
   constructor(props) {

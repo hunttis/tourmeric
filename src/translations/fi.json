@@ -213,7 +213,10 @@
   "directions": "Ohjeet paikalle",
   "directionsplaceholder": "Esimerkiksi 'Etelään Mannerheimintietä, vasemmalle Ruskeasuolta ja liike on vasemmalla'",
   "storelocation": "Liikkeen sijainti",
-  "useaslocationimage": "Käytä sijainnin kuvana"
-
+  "useaslocationimage": "Käytä sijainnin kuvana",
+  "address": "Osoite",
+  "phone": "Puhelin",
+  "phoneplaceholder": "Syötä puhelinnumero muodossa: +358-(40)-123-1234",
+  "contactinfo": "Yhteystiedot"
 
 }

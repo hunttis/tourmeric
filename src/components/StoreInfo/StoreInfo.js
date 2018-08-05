@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
-import _ from 'lodash';
+import { OpeningHourRow } from './OpeningHourRow';
 
 export default class StoreInfo extends Component {
 
@@ -13,16 +13,44 @@ export default class StoreInfo extends Component {
   render() {
     const { settings } = this.props;
     if (isLoaded(settings)) {
-      const { openingHours } = settings;
+      const { openingHours, location } = settings;
       return (
         <Fragment>
           <div className="section">
 
             <h1 className="title">
-              <Translate id="storeinfo" />
+              <Translate id="contactinfo" />
             </h1>
 
-            <div className="columns">
+            <div className="columns is-multiline">
+
+              <div className="column is-12">
+                <div className="box">
+
+                  <div className="columns">
+
+                    {location.address &&
+                      <div className="column is-6">
+                        <h2 className="subtitle">
+                          <span className="icon"><i className="fas fa-address-book" /></span>&nbsp;&nbsp;<Translate id="address" />
+                        </h2>
+                        {location.address.split('\n').map(line => <div>{line}</div>)}
+                      </div>
+                    }
+
+                    {location.phone &&
+                      <div className="column is-6">
+                        <h2 className="subtitle">
+                          <span className="icon"><i className="fas fa-phone" /></span>&nbsp;&nbsp;<Translate id="phone" />
+                        </h2>
+                        <div><a href={`tel:${location.phone}`}>{location.phone}</a></div>
+                      </div>
+                    }
+                  </div>
+
+                </div>
+              </div>
+
               <div className="column is-6">
                 <div className="box">
                   <h2 className="subtitle">
@@ -86,38 +114,6 @@ export default class StoreInfo extends Component {
   }
 
 }
-
-const OpeningHourRow = ({ settings, dayName }) => {
-  const { openingHours } = settings;
-  const storeIsOpen = !_.isEmpty(openingHours[dayName.toLowerCase()]);
-
-  if (!storeIsOpen) {
-    return (
-      <tr>
-        <td>{dayName}</td>
-        <td><Translate id="closed" /></td>
-      </tr>
-    );
-  }
-  if (storeIsOpen) {
-    return (
-      <tr>
-        <td>{dayName}</td>
-        <td>{openingHours[dayName.toLowerCase()]}</td>
-      </tr>
-    );
-  }
-  return (
-    <tr>
-      <td><Translate id="error" /></td>
-    </tr>
-  );
-};
-
-OpeningHourRow.propTypes = {
-  settings: PropTypes.object,
-  dayName: PropTypes.string,
-};
 
 StoreInfo.propTypes = {
   settings: PropTypes.object,

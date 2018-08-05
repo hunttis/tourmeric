@@ -8,11 +8,11 @@ import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField';
 import EditableTextarea from '../../Common/EditableTextarea';
+import { OpeningHoursEditor } from './OpeningHoursEditor';
 
 const filesPath = 'uploadedStoreinfoFiles';
 
 export default class StoreInfoEditor extends Component {
-
 
   onFilesDrop = async (files) => {
     const result = await firebase.uploadFiles(filesPath, [files[0]]);
@@ -41,98 +41,8 @@ export default class StoreInfoEditor extends Component {
           <h1 className="title">
             <Translate id="storeinfo" />
           </h1>
-          <h2 className="subtitle">
-            <Translate id="regularopeninghours" />
-          </h2>
-          <div className="box columns is-multiline">
-            <div className="column is-6">
-              <EditableField
-                defaultValue={_.get(openingHours, 'monday', '')}
-                labelContent="monday"
-                placeHolder="openinghoursfordayplaceholder"
-                path="/settings/openingHours"
-                targetName="monday"
-              />
-            </div>
-            <div className="column is-6">
-              <EditableField
-                defaultValue={_.get(openingHours, 'tuesday', '')}
-                labelContent="tuesday"
-                placeHolder="openinghoursfordayplaceholder"
-                path="/settings/openingHours"
-                targetName="tuesday"
-              />
-            </div>
-            <div className="column is-6">
-              <EditableField
-                defaultValue={_.get(openingHours, 'wednesday', '')}
-                labelContent="wednesday"
-                placeHolder="openinghoursfordayplaceholder"
-                path="/settings/openingHours"
-                targetName="wednesday"
-              />
-            </div>
-            <div className="column is-6">
-              <EditableField
-                defaultValue={_.get(openingHours, 'thursday', '')}
-                labelContent="thursday"
-                placeHolder="openinghoursfordayplaceholder"
-                path="/settings/openingHours"
-                targetName="thursday"
-              />
-            </div>
-            <div className="column is-6">
-              <EditableField
-                defaultValue={_.get(openingHours, 'friday', '')}
-                labelContent="friday"
-                placeHolder="openinghoursfordayplaceholder"
-                path="/settings/openingHours"
-                targetName="friday"
-              />
-            </div>
-            <div className="column is-6">
-              <EditableField
-                defaultValue={_.get(openingHours, 'saturday', '')}
-                labelContent="saturday"
-                placeHolder="openinghoursfordayplaceholder"
-                path="/settings/openingHours"
-                targetName="saturday"
-              />
-            </div>
-            <div className="column is-6">
-              <EditableField
-                defaultValue={_.get(openingHours, 'sunday', '')}
-                labelContent="sunday"
-                placeHolder="openinghoursfordayplaceholder"
-                path="/settings/openingHours"
-                targetName="sunday"
-              />
-            </div>
-            <div className="column is-6">
-              <EditableField
-                defaultValue={_.get(openingHours, 'additionalinfo', '')}
-                labelContent="additionalinfo"
-                placeHolder="additionalopeninghoursinfo"
-                path="/settings/openingHours"
-                targetName="additionalinfo"
-              />
-            </div>
-          </div>
-          <h2 className="subtitle">
-            <Translate id="exceptionstoopeninghours" />
-          </h2>
-          <div className="box columns">
-            <div className="column">
-              <div className="field is-grouped">
-                <p className="control">
-                  <button className="button is-primary"><Translate id="showcurrentexceptions" /></button>
-                </p>
-                <p className="control">
-                  <button className="button is-primary"><Translate id="addexception" /></button>
-                </p>
-              </div>
-            </div>
-          </div>
+
+          <OpeningHoursEditor openingHours={openingHours} />
 
           <h2 className="subtitle">
             <Translate id="storelocation" />
@@ -145,6 +55,24 @@ export default class StoreInfoEditor extends Component {
                 placeHolder="directionsplaceholder"
                 path="/settings/location"
                 targetName="directions"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableTextarea
+                defaultValue={_.get(location, 'address', '')}
+                labelContent="address"
+                placeHolder="addressplaceholder"
+                path="/settings/location"
+                targetName="address"
+              />
+            </div>
+            <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(location, 'phone', '')}
+                labelContent="phone"
+                placeHolder="phoneplaceholder"
+                path="/settings/location"
+                targetName="phone"
               />
             </div>
             <div className="column is-6">
@@ -189,7 +117,7 @@ export default class StoreInfoEditor extends Component {
                         <Translate id="useaslocationimage" />
                       </button>
                       }
-                      {(settings.activeLogo === file.downloadURL) &&
+                      {(settings.locationImage === file.downloadURL) &&
                       <button className="button is-warning" onClick={() => this.disableLogo()}>
                         <Translate id="disableaslogo" />
                       </button>

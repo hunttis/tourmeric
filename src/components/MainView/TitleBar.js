@@ -71,5 +71,4 @@ export default class TitleBar extends Component {
 TitleBar.propTypes = {
   settings: PropTypes.object,
   dispatch: PropTypes.func,
-  features: PropTypes.object,
 };
