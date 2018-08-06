@@ -19,9 +19,18 @@ export default class Navbar extends Component {
     this.setState({ burgerOpen: !burgerOpen });
   }
 
+  switchTab(tabName) {
+    const { switchActiveTab } = this.props;
+    switchActiveTab(tabName);
+    const { burgerOpen } = this.state;
+    if (burgerOpen) {
+      this.setState({ burgerOpen: false });
+    }
+  }
+
   render() {
 
-    const { profile, settings, switchActiveTab, changeLanguage } = this.props;
+    const { profile, settings, changeLanguage } = this.props;
     const isProfileLoaded = isLoaded(profile) && isLoaded(settings);
 
     const features = _.get(settings, 'features', {});
@@ -49,13 +58,13 @@ export default class Navbar extends Component {
           <div className={`navbar-menu ${burgerOpen && 'is-active'}`} id="navbarTarget">
             <div className="navbar-start">
               {eventsActive &&
-                <NavbarItem onClick={() => { switchActiveTab('events'); }} translationKey="events" icon="fa-calendar-alt" />
+                <NavbarItem onClick={() => { this.switchTab('events'); }} translationKey="events" icon="fa-calendar-alt" />
               }
               {storeInfoActive &&
-                <NavbarItem onClick={() => { switchActiveTab('storeinfo'); }} translationKey="contactinfo" icon="fa-store" />
+                <NavbarItem onClick={() => { this.switchTab('storeinfo'); }} translationKey="contactinfo" icon="fa-store" />
               }
               {isLoggedIn &&
-                <NavbarItem onClick={() => { switchActiveTab('userinfo'); }} translationKey="userinfo" icon="fa-user" />
+                <NavbarItem onClick={() => { this.switchTab('userinfo'); }} translationKey="userinfo" icon="fa-user" />
               }
 
               {isAdmin &&
@@ -68,9 +77,9 @@ export default class Navbar extends Component {
                     <Translate id="admin" />
                   </a>
                   <div className="navbar-dropdown">
-                    <NavbarItem onClick={() => { switchActiveTab('admintools'); }} translationKey="admingeneric" icon="fa-calendar" />
-                    <NavbarItem onClick={() => { switchActiveTab('admintoolsevents'); }} translationKey="adminevents" icon="fa-calendar-plus" />
-                    <NavbarItem onClick={() => { switchActiveTab('adminsitesettings'); }} translationKey="adminsitesettings" icon="fa-cogs" />
+                    <NavbarItem onClick={() => { this.switchTab('admintools'); }} translationKey="admingeneric" icon="fa-calendar" />
+                    <NavbarItem onClick={() => { this.switchTab('admintoolsevents'); }} translationKey="adminevents" icon="fa-calendar-plus" />
+                    <NavbarItem onClick={() => { this.switchTab('adminsitesettings'); }} translationKey="adminsitesettings" icon="fa-cogs" />
                   </div>
                 </div>
               }
@@ -104,8 +113,8 @@ export default class Navbar extends Component {
 
               {!isLoggedIn &&
                 <Fragment>
-                  <NavbarItem onClick={() => { switchActiveTab('login'); }} translationKey="login" icon="fa-sign-in-alt" />
-                  <NavbarItem onClick={() => { switchActiveTab('register'); }} translationKey="register" icon="fa-pencil-alt" />
+                  <NavbarItem onClick={() => { this.switchTab('login'); }} translationKey="login" icon="fa-sign-in-alt" />
+                  <NavbarItem onClick={() => { this.switchTab('register'); }} translationKey="register" icon="fa-pencil-alt" />
                 </Fragment>
               }
 

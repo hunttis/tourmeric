@@ -5,11 +5,8 @@ import PropTypes from 'prop-types';
 import loadingImage from '../../images/Ripple-1s-64px.svg';
 import AdminEventList from './AdminEventList-container';
 import CategoryEditor from './CategoryEditor/CategoryEditor-container';
-import UserEditor from './UserEditor/UserEditor-container';
 import ParticipationEditor from './ParticipationEditor/ParticipationEditor-container';
 import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-container';
-import HighlightEditor from './HighlightEditor/HightlightEditor-container';
-import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
 import { AdminToolsTab } from './AdminToolsTab';
 
 export default class AdminToolsEvents extends Component {
@@ -35,10 +32,7 @@ export default class AdminToolsEvents extends Component {
       const publishedEventsVisible = this.state.activeItem === 'published';
       const categoryVisible = this.state.activeItem === 'category';
       const categoryLogoUploaderVisible = this.state.activeItem === 'categorylogouploader';
-      const userVisible = this.state.activeItem === 'user';
       const participationVisible = this.state.activeItem === 'participation';
-      const highlightVisible = this.state.activeItem === 'highlight';
-      const storeInfoVisible = this.state.activeItem === 'storeinfo';
 
       return (
         <div>
@@ -48,7 +42,6 @@ export default class AdminToolsEvents extends Component {
               <AdminToolsTab isActive={publishedEventsVisible} switchAction={() => this.switchActiveTab('published')} icon="fa-book" translationKey="publishedevents" />
               <AdminToolsTab isActive={categoryVisible} switchAction={() => this.switchActiveTab('category')} icon="fa-bars" translationKey="categories" />
               <AdminToolsTab isActive={categoryLogoUploaderVisible} switchAction={() => this.switchActiveTab('categorylogouploader')} icon="fa-bars" translationKey="categorylogouploader" />
-              <AdminToolsTab isActive={userVisible} switchAction={() => this.switchActiveTab('user')} icon="fa-users" translationKey="users" />
               <AdminToolsTab isActive={participationVisible} switchAction={() => this.switchActiveTab('participation')} icon="fa-clipboard-list" translationKey="participations" />
             </ul>
           </div>
@@ -57,10 +50,7 @@ export default class AdminToolsEvents extends Component {
             {publishedEventsVisible && <AdminEventList events={publishedEvents} showNewEventButton={false} />}
             {categoryVisible && <CategoryEditor />}
             {categoryLogoUploaderVisible && <CategoryLogoUploader />}
-            {userVisible && <UserEditor />}
             {participationVisible && <ParticipationEditor />}
-            {highlightVisible && <HighlightEditor />}
-            {storeInfoVisible && <StoreInfoEditor />}
           </section>
         </div>
       );

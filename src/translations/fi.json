@@ -217,6 +217,11 @@
   "address": "Osoite",
   "phone": "Puhelin",
   "phoneplaceholder": "Syötä puhelinnumero muodossa: +358-(40)-123-1234",
-  "contactinfo": "Yhteystiedot"
+  "contactinfo": "Yhteystiedot",
+
+  "news": "Uutiset",
+  "text": "Teksti",
+  "noname": "Ei nimeä",
+  "noimage": "Ei kuvaa"
 
 }

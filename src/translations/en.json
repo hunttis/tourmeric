@@ -218,6 +218,11 @@
   "address": "Address",
   "phone": "Phone",
   "phoneplaceholder": "Input your phone number this way: +358-(40)-123-1234",
-  "contactinfo": "Contact info"
+  "contactinfo": "Contact info",
+
+  "news": "News",
+  "text": "Text",
+  "noname": "No name",
+  "noimage": "No image"
   
 }

@@ -34,7 +34,7 @@ export default class StoreInfo extends Component {
                         <h2 className="subtitle">
                           <span className="icon"><i className="fas fa-address-book" /></span>&nbsp;&nbsp;<Translate id="address" />
                         </h2>
-                        {location.address.split('\n').map(line => <div>{line}</div>)}
+                        {location.address.split('\n').map((line, index) => <div key={index}>{line}</div>)}
                       </div>
                     }
 

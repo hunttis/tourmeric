@@ -10,7 +10,7 @@ export const OpeningHourRow = ({ settings, dayName }) => {
   if (!storeIsOpen) {
     return (
       <tr>
-        <td>{dayName}</td>
+        <td><Translate id={dayName.toLowerCase()} /></td>
         <td><Translate id="closed" /></td>
       </tr>
     );
@@ -18,7 +18,7 @@ export const OpeningHourRow = ({ settings, dayName }) => {
   if (storeIsOpen) {
     return (
       <tr>
-        <td>{dayName}</td>
+        <td><Translate id={dayName.toLowerCase()} /></td>
         <td>{openingHours[dayName.toLowerCase()]}</td>
       </tr>
     );
