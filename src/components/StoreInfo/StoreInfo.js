@@ -27,25 +27,38 @@ export default class StoreInfo extends Component {
               <div className="column is-12">
                 <div className="box">
 
-                  <div className="columns">
+                  <div className="columns is-multiline">
 
-                    {location.address &&
-                      <div className="column is-6">
-                        <h2 className="subtitle">
-                          <span className="icon"><i className="fas fa-address-book" /></span>&nbsp;&nbsp;<Translate id="address" />
-                        </h2>
-                        {location.address.split('\n').map((line, index) => <div key={index}>{line}</div>)}
-                      </div>
-                    }
 
-                    {location.phone &&
-                      <div className="column is-6">
+                    <div className="column is-6">
+                      {location.phone &&
+                      <Fragment>
                         <h2 className="subtitle">
                           <span className="icon"><i className="fas fa-phone" /></span>&nbsp;&nbsp;<Translate id="phone" />
                         </h2>
                         <div><a href={`tel:${location.phone}`}>{location.phone}</a></div>
-                      </div>
-                    }
+                      </Fragment>
+                      }
+                    </div>
+                    {location.address &&
+                    <div className="column is-6">
+                      <h2 className="subtitle">
+                        <span className="icon"><i className="fas fa-address-book" /></span>&nbsp;&nbsp;<Translate id="address" />
+                      </h2>
+                      {location.address.split('\n').map((line, index) => <div key={index}>{line}</div>)}
+                    </div>
+                      }
+                    <div className="column is-6">
+                      {location.email &&
+                      <Fragment>
+                        <h2 className="subtitle">
+                          <span className="icon"><i className="fas fa-envelope" /></span>&nbsp;&nbsp;<Translate id="email" />
+                        </h2>
+                        <div><a href={`mailto:${location.email}`}>{location.email}</a></div>
+                      </Fragment>
+                      }
+                    </div>
+
                   </div>
 
                 </div>

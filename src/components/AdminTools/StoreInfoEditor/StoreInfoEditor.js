@@ -76,6 +76,15 @@ export default class StoreInfoEditor extends Component {
               />
             </div>
             <div className="column is-6">
+              <EditableField
+                defaultValue={_.get(location, 'email', '')}
+                labelContent="email"
+                placeHolder="emailplaceholder"
+                path="/settings/location"
+                targetName="email"
+              />
+            </div>
+            <div className="column is-6">
               <Dropzone onDrop={this.onFilesDrop}>
                 <div>
                   <Translate id="dropfileshere" />

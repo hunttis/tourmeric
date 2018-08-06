@@ -24,9 +24,15 @@ export default class HighLights extends Component {
 
     if (!this.unmounting) {
       if (isLoaded(highlights)) {
+        const activeKeys = Object.entries(highlights).map((highlight) => {
+          if (highlight[1].active) {
+            return highlight[0];
+          }
+          return null;
+        }).filter(item => item);
         const { currentlyShowingIndex } = this.state;
-        const nextIndex = (currentlyShowingIndex + 1) % Object.keys(highlights).length;
-        const nextKey = Object.keys(highlights)[nextIndex];
+        const nextIndex = (currentlyShowingIndex + 1) % activeKeys.length;
+        const nextKey = activeKeys[nextIndex];
         this.setState({ currentlyShowing: nextKey, currentlyShowingIndex: nextIndex });
       }
       this.timeout = setTimeout(() => this.activateNext(), 10000);
@@ -44,9 +50,6 @@ export default class HighLights extends Component {
 
         return (
           <Fragment>
-            <div className="is-hidden">
-              {Object.entries(highlights).map(hiliteEntry => <img key={hiliteEntry[0]} alt="" src={hiliteEntry[1].image} />)}
-            </div>
 
             <div className="highlights fadeIn card">
               <figure className="image is-3by1">
