@@ -64,6 +64,12 @@ export default class HighlightEditor extends Component {
 
               <div className="column is-3">
                 <button className="button" onClick={() => this.openModal(highlightId, highlight)}>Edit highlight</button>
+                {highlight.active &&
+                  <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}>Deactivate</button>
+                }
+                {!highlight.active &&
+                  <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}>Activate</button>
+                }
               </div>
             </div>
           );
