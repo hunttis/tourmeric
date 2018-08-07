@@ -12,6 +12,16 @@ div {
   margin: 0em 1em;
 }
 
+.margin-leftright {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.is-higher {
+  margin-top: -3em;
+  margin-right: 2em;
+}
+
 .eventcard {
   perspective: 800px;
   animation-name: fadein;

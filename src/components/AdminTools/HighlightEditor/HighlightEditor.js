@@ -58,7 +58,11 @@ export default class HighlightEditor extends Component {
               {/* <div className="column is-3">{moment(highlight.date).format('DD-MM-YYYY')}</div> */}
               <div className="column is-3">{highlight.name || 'No name'}</div>
               <div className="column is-3">
-                {highlightImageExists && <img alt="" src={highlight.image} /> }
+                {highlightImageExists &&
+                <figure className="image is-3by1">
+                  <img alt="" src={highlight.image} />
+                </figure>
+                  }
                 {!highlightImageExists && 'No image'}
               </div>
 
