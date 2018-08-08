@@ -15,6 +15,9 @@ div {
 .margin-leftright {
   margin-left: 1em;
   margin-right: 1em;
+  background-color: transparent !important;
+  border: 0px !important;
+  background: alpha($color: #ffffff) !important;
 }
 
 .is-higher {

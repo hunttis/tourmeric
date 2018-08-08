@@ -64,22 +64,20 @@ export default class HighLights extends Component {
     const { highlights } = this.props;
     const { currentlyShowingIndex } = this.state;
 
-    const thing = this.findActiveKeys(highlights).map((hilite, index) => {
-
+    return this.findActiveKeys(highlights).map((hilite, index) => {
       if (currentlyShowingIndex === index) {
         return (
-          <button className="button margin-leftright is-white is-small is-paddingless" key={`highlightbutton-${index}`} onClick={() => { this.activateSpecific(hilite); }}>
+          <button className="button is-rounded margin-leftright is-small is-paddingless has-text-black" key={`highlightbutton-${index}`} onClick={() => { this.activateSpecific(hilite); }}>
             <i className="fas fa-circle" />
           </button>
         );
       }
       return (
-        <button className="button margin-leftright is-black is-small is-paddingless" key={`highlightbutton-${index}`} onClick={() => { this.activateSpecific(hilite); }}>
+        <button className="button is-rounded  margin-leftright is-small is-paddingless has-text-white" key={`highlightbutton-${index}`} onClick={() => { this.activateSpecific(hilite); }}>
           <i className="fas fa-circle" />
         </button>
       );
     });
-    return thing;
   }
 
   render() {
@@ -93,6 +91,7 @@ export default class HighLights extends Component {
 
       return (
         <Fragment>
+          {this.findActiveKeys(highlights).map((hilite, index) => <div key={`hiddenhilite-${index}`} className="is-hidden"><img alt="" src={highlights[hilite].image} /></div>)}
           <div className="highlights fadeIn card">
             <figure className="image is-3by1">
               <img alt="" src={highlight.image} />
