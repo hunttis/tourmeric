@@ -30,6 +30,30 @@
       ".read": true,
       ".write": true
     },
+    "uploadedHighlightBanners": {
+      ".read": true,
+      ".write": true
+    },
+    "uploadedStoreinfoFiles": {
+      ".read": true,
+      ".write": true
+    },
+    "uploadedNewsImages": {
+      ".read": true,
+      ".write": true
+    },
+    "storecredit": {
+      ".read": true,
+      ".write": true
+    },
+    "highlights": {
+      ".read": true,
+      ".write": true        
+    },
+    "news": {
+      ".read": true,
+      ".write": true        
+    },
     ".read": true,
     ".write": false
   }
