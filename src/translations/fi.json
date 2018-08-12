@@ -185,6 +185,10 @@
   "creditamount": "Krediittien määrä",
 
   "highlights": "Valokeilassa",
+  "newhighlight": "Uusi valokeila",
+  "activate": "Aktivoi",
+  "deactivate": "Deaktivoi",
+  "nohighlightscreated": "Ei yhtään kuvaa lisätty valokeilaan",
 
   "features": "Ominaisuudet",
 
@@ -222,6 +226,7 @@
   "news": "Uutiset",
   "text": "Teksti",
   "noname": "Ei nimeä",
-  "noimage": "Ei kuvaa"
+  "noimage": "Ei kuvaa",
+  "newnewsitem": "Uusi uutinen"
 
 }

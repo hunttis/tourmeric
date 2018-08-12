@@ -71,7 +71,7 @@ export default class NewsEditor extends Component {
               </div>
 
               <div className="column is-3">
-                <button className="button" onClick={() => this.openModal(newsId, newsItem)}>Edit news</button>
+                <button className="button" onClick={() => this.openModal(newsId, newsItem)}><Translate id="edit" /></button>
               </div>
             </div>
           );
@@ -83,7 +83,6 @@ export default class NewsEditor extends Component {
   newsModal() {
     const { uploadedNewsImages } = this.props;
     const { modalOpenClass, newsId, newsName, newsImage, newsDate, newsActive, newsText } = this.state;
-    console.log('image', newsImage);
     return (
       <div className={`modal ${modalOpenClass}`}>
         <div className="modal-background" onClick={() => this.closeModal()} />
@@ -124,10 +123,10 @@ export default class NewsEditor extends Component {
 
 
             {newsActive &&
-              <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}>Deactivate</button>
+              <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><Translate id="deactivate" /></button>
             }
             {!newsActive &&
-              <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}>Activate</button>
+              <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}><Translate id="activate" /></button>
             }
 
             <div>ID: {newsId}</div>
@@ -148,7 +147,7 @@ export default class NewsEditor extends Component {
 
           <div className="level is-mobile">
             <div className="level-left">
-              <button className="button" onClick={() => this.createNewsItem()}>New news item</button>
+              <button className="button" onClick={() => this.createNewsItem()}><Translate id="newnewsitem" /></button>
             </div>
             <div className="level-right">
               <Dropzone onDrop={this.onFilesDrop}>

@@ -33,8 +33,8 @@ export default class FeatureEditor extends Component {
                         {feature}
                       </div>
                       <div className="level-right">
-                        {featureActive && <button className="button is-danger is-outlined" onClick={() => this.setFeatureStatus(feature, false)}>Deactivate</button>}
-                        {!featureActive && <button className="button is-success is-outlined" onClick={() => this.setFeatureStatus(feature, true)}>Activate</button>}
+                        {featureActive && <button className="button is-danger is-outlined" onClick={() => this.setFeatureStatus(feature, false)}><Translate id="deactivate" /></button>}
+                        {!featureActive && <button className="button is-success is-outlined" onClick={() => this.setFeatureStatus(feature, true)}><Translate id="activate" /></button>}
                       </div>
                     </div>
                   </div>

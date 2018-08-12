@@ -186,6 +186,10 @@
   "creditamount": "Credit amount",
 
   "highlights": "Highlights",
+  "newhighlight": "New highlight",
+  "activate": "Activate",
+  "deactivate": "Deactivate",
+  "nohighlightscreated": "No highlights created yet",
 
   "features": "Features",
 
@@ -223,6 +227,7 @@
   "news": "News",
   "text": "Text",
   "noname": "No name",
-  "noimage": "No image"
+  "noimage": "No image",
+  "newnewsitem": "New news item"
   
 }

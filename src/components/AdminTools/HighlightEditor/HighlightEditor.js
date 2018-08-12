@@ -36,6 +36,10 @@ export default class HighlightEditor extends Component {
     firebase.set(`/${filesPath}/${key}/`, {});
   }
 
+  deleteHighlight(highlightId) {
+    firebase.set(`/highlights/${highlightId}`, {});
+  }
+
   createNewHighlight() {
     firebase.push('/highlights', { createDate: moment().toISOString(), date: moment().format('YYYY-MM-DD') });
   }
@@ -67,12 +71,13 @@ export default class HighlightEditor extends Component {
               </div>
 
               <div className="column is-3">
-                <button className="button" onClick={() => this.openModal(highlightId, highlight)}>Edit highlight</button>
+                <button className="button" onClick={() => this.openModal(highlightId, highlight)}><Translate id="edit" /></button>
+                <button className="button is-danger" onClick={() => this.deleteHighlight(highlightId)}><Translate id="delete" /></button>
                 {highlight.active &&
-                  <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}>Deactivate</button>
+                  <button className="button is-warning" onClick={() => this.setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
                 }
                 {!highlight.active &&
-                  <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}>Activate</button>
+                  <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
                 }
               </div>
             </div>
@@ -132,10 +137,10 @@ export default class HighlightEditor extends Component {
 
 
             {highlightActive &&
-              <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}>Deactivate</button>
+              <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
             }
             {!highlightActive &&
-              <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}>Activate</button>
+              <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
             }
 
             <div>ID: {highlightId}</div>
@@ -156,7 +161,7 @@ export default class HighlightEditor extends Component {
 
           <div className="level is-mobile">
             <div className="level-left">
-              <button className="button" onClick={() => this.createNewHighlight()}>New highlight</button>
+              <button className="button" onClick={() => this.createNewHighlight()}><Translate id="newhighlight" /></button>
             </div>
             <div className="level-right">
               <Dropzone onDrop={this.onFilesDrop}>
@@ -168,7 +173,7 @@ export default class HighlightEditor extends Component {
           </div>
           {this.highlightModal()}
           {!isEmpty(highlights) && this.listHighlights(highlights)}
-          {isEmpty(highlights) && <div>No highlights created, yet...</div>}
+          {isEmpty(highlights) && <div><Translate id="nohighlightscreated" /></div>}
         </Fragment>
       );
 
