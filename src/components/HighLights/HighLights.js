@@ -8,32 +8,29 @@ export default class HighLights extends Component {
   constructor(props) {
     super(props);
     this.state = { currentlyShowing: '', currentlyShowingIndex: 0 };
-    this.unmounting = false;
   }
 
   componentDidMount() {
-    this.unmounting = false;
     this.activateNext();
   }
 
   componentWillUnmount() {
-    this.unmounting = true;
+		clearTimeout(this.timeout);
   }
 
   activateNext() {
     const { highlights } = this.props;
 
-    if (!this.unmounting) {
-      if (isLoaded(highlights)) {
-        const activeKeys = this.findActiveKeys(highlights);
-        const { currentlyShowingIndex } = this.state;
-        const nextIndex = (currentlyShowingIndex + 1) % activeKeys.length;
-        const nextKey = activeKeys[nextIndex];
-        this.setState({ currentlyShowing: nextKey, currentlyShowingIndex: nextIndex });
-      }
-      clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => this.activateNext(), 10000);
-    }
+		if (isLoaded(highlights)) {
+			const activeKeys = this.findActiveKeys(highlights);
+			const { currentlyShowingIndex } = this.state;
+			const nextIndex = (currentlyShowingIndex + 1) % activeKeys.length;
+			const nextKey = activeKeys[nextIndex];
+			this.setState({ currentlyShowing: nextKey, currentlyShowingIndex: nextIndex });
+			this.timeout = setTimeout(() => this.activateNext(), 10000);
+		} else {
+			this.timeout = setTimeout(() => this.activateNext(), 100);
+		}
   }
 
   activateSpecific(specificId) {
