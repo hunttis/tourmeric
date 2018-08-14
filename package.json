@@ -15,8 +15,8 @@
   "homepage": "https://gitlab.com/hunttis/tourmeric#README",
   "scripts": {
     "dev": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html -d dist --public-url . --no-source-maps",
-    "clean": "rm -rf dist; rm -rf .cache;",
+    "build": "parcel build ./src/index.html -d deploy --public-url . --no-source-maps",
+    "clean": "rm -rf dist; rm -rf deploy; rm -rf .cache;",
     "clean-build": "yarn clean; yarn build",
     "bolt": "firebase-bolt < firebase-rules/firebase-rules.bolt > firebase-rules/rules.json",
     "lint": "eslint .",

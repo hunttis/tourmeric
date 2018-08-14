@@ -4,10 +4,6 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { logout } from '../../../api/loginApi';
-
-// import flagFI from '../../images/fi.png';
-// import flagEN from '../../images/uk.png';
-
 import { NavbarItem } from './NavbarItem';
 
 export default class Navbar extends Component {
@@ -97,13 +93,11 @@ export default class Navbar extends Component {
                 </a>
                 <div className="navbar-dropdown">
                   <div className="navbar-item">
-                    {/* <span className="image"><img src={flagEN} className="languageflag" alt="English" /></span> */}
                     <a onClick={() => { changeLanguage('en'); }}>
                       <Translate id="english" />
                     </a>
                   </div>
                   <div className="navbar-item">
-                    {/* <span className="image"><img src={flagFI} className="languageflag" alt="Finnish" /></span> */}
                     <a onClick={() => { changeLanguage('fi'); }}>
                       <Translate id="finnish" />
                     </a>
@@ -119,12 +113,13 @@ export default class Navbar extends Component {
               }
 
               {isLoggedIn &&
-                <div className="navbar-item" onClick={() => logout()}>
+                <a className="navbar-item" onClick={() => logout()}>
+
                   <span className="icon">
                     <i className="fas fa-sign-out-alt" />
                   </span>
                   <p><Translate id="logout" /></p>
-                </div>
+                </a>
               }
             </div>
 
