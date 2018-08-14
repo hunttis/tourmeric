@@ -5,6 +5,7 @@ import _ from 'lodash';
 export default class ThemeHandler extends Component {
 
   componentWillMount() {
+    this.handleTitleChange(null, this.props.settings.browserTitle);
     this.handleTheme(null, this.props.settings.theme);
     this.handleTitleBarColorChange(null, this.props.settings.titleBarColor, null, this.props.settings.titleBarColor2, null, this.props.settings.titleBarPercentage, null, this.props.settings.titleBarAngle);
     this.handleTitleTextColor(null, this.props.settings.titleTextColor);
@@ -12,10 +13,23 @@ export default class ThemeHandler extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.handleTitleChange(this.props.settings.browserTitle, nextProps.settings.browserTitle);
     this.handleTheme(this.props.settings.theme, nextProps.settings.theme);
     this.handleTitleBarColorChange(this.props.settings.titleBarColor, nextProps.settings.titleBarColor, this.props.settings.titleBarColor2, nextProps.settings.titleBarColor2, this.props.settings.titleBarPercentage, nextProps.settings.titleBarPercentage, this.props.settings.titleBarAngle, nextProps.settings.titleBarAngle);
     this.handleTitleTextColor(this.props.settings.titleTextColor, nextProps.settings.titleTextColor);
     this.handleSubtitleTextColor(this.props.settings.subtitleTextColor, nextProps.settings.subtitleTextColor);
+  }
+
+  handleTitleChange(oldTitle, newTitle) {
+    if (oldTitle === newTitle) {
+      return;
+    }
+
+    if (_.isEmpty(newTitle)) {
+      document.title = 'Tourmeric';
+    } else {
+      document.title = newTitle;
+    }
   }
 
   handleTheme(oldTheme, newTheme) {

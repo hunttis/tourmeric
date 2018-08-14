@@ -5,6 +5,7 @@
 
   "menu": "Menu",
 
+  "browsertitle": "Browser title",
   "pagetitle": "Page title",
   "pagesubtitle": "Page subtitle",
   "appname": "EVENT ORGANIZER",
@@ -170,6 +171,7 @@
   "lookslike": "Current dateformat looks like",
   "help": "Help",
   "momentdateformatdocs": "Moment date format docs",
+  "browsertitleplaceholder": "The text shown at the top of the browser",
   "pagetitleplaceholder": "Page title, shop name etc",
   "pagesubtitleplaceholder": "Page subtitle, slogan or something",
   "clicktousedefaultdateformat": "Click to use default date format",

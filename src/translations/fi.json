@@ -5,6 +5,7 @@
 
   "menu": "Valikko",
 
+  "browsertitle": "Selaimen otsikko",
   "pagetitle": "Sivun otsikko",
   "pagesubtitle": "Sivun alaotsikko",
   "appname": "Tapahtumajärjestäjä",
@@ -169,6 +170,7 @@
   "lookslike": "Päivämäärämuotoilu näyttää tältä",
   "help": "Apua",
   "momentdateformatdocs": "Moment formatointidokumentaatio",
+  "browsertitleplaceholder": "Selaimen palkissa näytettävä teksti",
   "pagetitleplaceholder": "Sivun otsikko, kaupan nimi tms.",
   "pagesubtitleplaceholder": "Sivun aliotsikko, slogan tms.",
   "clicktousedefaultdateformat": "Ota käyttöön oletusmuoto päivämäärille",

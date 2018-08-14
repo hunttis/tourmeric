@@ -10,7 +10,7 @@ import FeatureEditor from '../FeatureEditor/FeatureEditor-container';
 
 export default class AdminSiteSettings extends Component {
 
-  state = { activeItem: 'features' }
+  state = { activeItem: 'pagetitles' }
 
   switchActiveSiteSettingsTab(type) {
     this.setState({ activeItem: type });
