@@ -230,6 +230,9 @@
   "text": "Text",
   "noname": "No name",
   "noimage": "No image",
-  "newnewsitem": "New news item"
+  "newnewsitem": "New news item",
+
+  "today": "Today",
+  "todaysevents": "Today's Events"
   
 }

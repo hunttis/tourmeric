@@ -229,6 +229,10 @@
   "text": "Teksti",
   "noname": "Ei nimeä",
   "noimage": "Ei kuvaa",
-  "newnewsitem": "Uusi uutinen"
+  "newnewsitem": "Uusi uutinen",
+
+  "today": "Tänään",
+  "todaysevents": "Tapahtumat tänään"
+
 
 }

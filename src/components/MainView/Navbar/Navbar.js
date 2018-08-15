@@ -53,6 +53,7 @@ export default class Navbar extends Component {
           </div>
           <div className={`navbar-menu ${burgerOpen && 'is-active'}`} id="navbarTarget">
             <div className="navbar-start">
+              <NavbarItem onClick={() => { this.switchTab('today'); }} translationKey="today" icon="fa-calendar" />
               {eventsActive &&
                 <NavbarItem onClick={() => { this.switchTab('events'); }} translationKey="events" icon="fa-calendar-alt" />
               }

@@ -6,7 +6,7 @@ import NewsEditor from './NewsEditor';
 
 export default compose(
   firebaseConnect([
-    { path: '/news' },
+    { path: '/news', queryParams: ['orderByChild=createDate'] },
     { path: '/uploadedNewsImages' },
   ]),
   connect(state => ({

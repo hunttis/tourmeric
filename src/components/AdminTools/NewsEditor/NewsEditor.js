@@ -62,15 +62,20 @@ export default class NewsEditor extends Component {
           const newsImageExists = Boolean(newsItem.image);
           return (
             <div key={newsId} className="columns is-tablet">
-              <div className="column is-3">{moment(newsItem.createDate).format('DD-MM-YYYY')}</div>
+              <div className="column is-2">{moment(newsItem.createDate).format('DD-MM-YYYY')}</div>
               {/* <div className="column is-3">{moment(newsItem.date).format('DD-MM-YYYY')}</div> */}
-              <div className="column is-3">{newsItem.name || <Translate id="noname" />}</div>
-              <div className="column is-3">
+              <div className="column is-2">{newsItem.name || <Translate id="noname" />}</div>
+              <div className="column is-2">
                 {newsImageExists && <img alt="" src={newsItem.image} /> }
                 {!newsImageExists && <Translate id="noimage" />}
               </div>
+              <div className="column">
+                <pre>
+                  {newsItem.text}
+                </pre>
+              </div>
 
-              <div className="column is-3">
+              <div className="column is-2">
                 <button className="button" onClick={() => this.openModal(newsId, newsItem)}><Translate id="edit" /></button>
               </div>
             </div>

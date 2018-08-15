@@ -86,7 +86,7 @@ export default class EventCard extends Component {
 
         </div>
         <p>&nbsp;</p>
-        { moment(eventContent.date).isAfter(moment()) &&
+        { moment(eventContent.date).isSameOrAfter(moment(), 'day') &&
           <div className="level participation-level">
             { alreadyParticipated &&
               <div className="level-left">
