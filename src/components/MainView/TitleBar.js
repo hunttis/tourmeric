@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Translate, setActiveLanguage } from 'react-localize-redux';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
+import { isLoaded } from 'react-redux-firebase';
 import Moment from 'react-moment';
-import { logout } from '../../api/loginApi';
-import flagFI from '../../images/fi.png';
-import flagEN from '../../images/uk.png';
+import Highlights from '../HighLights/HighLights-container';
 
 export default class TitleBar extends Component {
 
@@ -16,24 +14,28 @@ export default class TitleBar extends Component {
   }
 
   render() {
-    const { settings, languages, profile } = this.props;
+    const { settings } = this.props;
 
-    const currentLanguage = _.find(languages, 'active').code;
+    const { features } = settings;
+    const highlightsActive = _.get(features, 'highlights.active', false);
+
     const pageTitle = _.get(settings, 'pageTitle', 'Pagetitle not set');
     const pageSubtitle = _.get(settings, 'pageSubtitle', '');
     const settingsLoaded = isLoaded(settings);
-    const profileLoaded = isLoaded(profile);
-    const loggedIn = isLoaded(profile) && !isEmpty(profile);
 
     if (settingsLoaded) {
       return (
         <section className="hero titlebar animated">
           <div className="hero-body">
-            <div className="columns is-marginless is-tablet">
-              <div className="column is-6">
+            <div className="columns is-marginless">
+              <div className="column is-4 has-text-centered-mobile is-vcentered">
                 {settings.activeLogo &&
                   <div id="logo">
-                    <img src={settings.activeLogo} alt="" />
+                    <img src={settings.activeLogo} alt="" className="is-hidden-tablet" />
+
+                    <figure className="image is-hidden-mobile">
+                      <img src={settings.activeLogo} alt="" />
+                    </figure>
                   </div>
                 }
                 {settings.pageTitle &&
@@ -42,34 +44,8 @@ export default class TitleBar extends Component {
                   </div>
                 }
               </div>
-
-              <div className="column is-6 button-container">
-                {!profileLoaded &&
-                  <button className="button is-rounded is-loading is-half" />
-                }
-                {profileLoaded &&
-                  <div className="field has-addons language-and-log-buttons">
-
-                    <p className="control">
-                      <button className={`button is-rounded ${(currentLanguage === 'en') ? 'is-primary' : ''}`} onClick={() => this.changeLanguage('en')}><img src={flagEN} className="languageflag" alt="Finnish" /> En</button>
-                    </p>
-                    <p className="control">
-                      <button className={`button is-rounded ${(currentLanguage === 'fi') ? 'is-primary' : ''}`} onClick={() => this.changeLanguage('fi')}><img src={flagFI} className="languageflag" alt="Finnish" /> Fi</button>
-                    </p>
-
-                    {loggedIn &&
-                      <p className="control">
-                        <button className="button is-rounded" onClick={() => logout()}>
-                          <p><Translate id="logout" /></p>
-                          <span className="icon">
-                            <i className="fas fa-sign-out-alt" />
-                          </span>
-                        </button>
-                      </p>
-                    }
-
-                  </div>
-                }
+              <div className="column is-8 button-container">
+                {highlightsActive && <Highlights />}
               </div>
 
             </div>
@@ -94,7 +70,5 @@ export default class TitleBar extends Component {
 
 TitleBar.propTypes = {
   settings: PropTypes.object,
-  languages: PropTypes.array,
-  profile: PropTypes.object,
   dispatch: PropTypes.func,
 };

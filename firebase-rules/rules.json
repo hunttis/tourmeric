@@ -1,7 +1,27 @@
 {
   "rules": {
+    "categories": {
+      ".validate": "newData.hasChildren()",
+      "name": {
+        ".validate": "(newData.isString() && newData.isString())"
+      },
+      "abbreviation": {
+        ".validate": "(newData.isString() && newData.isString())"
+      },
+      "type": {
+        ".validate": "(newData.isString() && newData.isString())"
+      },
+      "logo": {
+        ".validate": "(newData.isString() && newData.isString())"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "((auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin') && (auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin'))"
+    },
     "events": {
-      ".validate": "newData.hasChildren(['category', 'createDate', 'date', 'entryFee', 'format', 'link', 'name', 'notes', 'playerSlots', 'prizes', 'published', 'rulesLevel', 'time'])",
+      ".validate": "newData.hasChildren(['createDate'])",
       "category": {
         ".validate": "newData.isString()"
       },
@@ -45,11 +65,180 @@
         ".validate": "false"
       },
       ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "highlights": {
+      ".validate": "newData.hasChildren(['createDate'])",
+      "active": {
+        ".validate": "newData.isBoolean()"
+      },
+      "createDate": {
+        ".validate": "newData.isString()"
+      },
+      "date": {
+        ".validate": "newData.isString()"
+      },
+      "image": {
+        ".validate": "newData.isString()"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "news": {
+      ".validate": "newData.hasChildren(['createDate'])",
+      "active": {
+        ".validate": "newData.isBoolean()"
+      },
+      "createDate": {
+        ".validate": "newData.isString()"
+      },
+      "date": {
+        ".validate": "newData.isString()"
+      },
+      "image": {
+        ".validate": "newData.isString()"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "text": {
+        ".validate": "newData.isString()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "participations": {
+      ".validate": "newData.hasChildren()",
+      "comment": {
+        ".validate": "newData.isString()"
+      },
+      "date": {
+        ".validate": "newData.isString()"
+      },
+      "firstName": {
+        ".validate": "newData.isString()"
+      },
+      "lastName": {
+        ".validate": "newData.isString()"
+      },
+      "userId": {
+        ".validate": "newData.isString()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
       ".write": "auth != null"
     },
+    "settings": {
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "storecredit": {
+      "$userid": {
+        ".read": "((auth != null && auth.uid == $userid) || (auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin'))",
+        ".write": "(auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+      },
+      ".read": "(auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin')",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "uploadedCategoryLogos": {
+      ".validate": "newData.hasChildren()",
+      "downloadURL": {
+        ".validate": "newData.isString()"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "activeLogo": {
+        ".validate": "newData.isBoolean()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "uploadedFiles": {
+      ".validate": "newData.hasChildren()",
+      "downloadURL": {
+        ".validate": "newData.isString()"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "activeLogo": {
+        ".validate": "newData.isBoolean()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "uploadedHighlightBanners": {
+      ".validate": "newData.hasChildren()",
+      "downloadURL": {
+        ".validate": "newData.isString()"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "activeLogo": {
+        ".validate": "newData.isBoolean()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "uploadedNewsImages": {
+      ".validate": "newData.hasChildren()",
+      "downloadURL": {
+        ".validate": "newData.isString()"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "activeLogo": {
+        ".validate": "newData.isBoolean()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "uploadedStoreinfoFiles": {
+      ".validate": "newData.hasChildren()",
+      "downloadURL": {
+        ".validate": "newData.isString()"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      "activeLogo": {
+        ".validate": "newData.isBoolean()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
     "users": {
-      "$uid": {
-        ".validate": "newData.hasChildren(['avatarUrl', 'dciNumber', 'displayName', 'email', 'role', 'uid', 'username'])",
+      "$userid": {
+        ".validate": "newData.hasChildren()",
         "avatarUrl": {
           ".validate": "newData.isString()"
         },
@@ -61,6 +250,9 @@
         },
         "email": {
           ".validate": "newData.isString()"
+        },
+        "providerData": {
+          ".validate": "newData.hasChildren()"
         },
         "role": {
           ".validate": "newData.isString()"
@@ -74,47 +266,11 @@
         "$other": {
           ".validate": "false"
         },
-        ".read": "auth != null && auth.uid == $uid || auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin'",
-        ".write": "auth != null && auth.uid == $uid || auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin'"
-      }
-    },
-    "participations": {
-      ".read": "true",
-      ".write": "auth != null"
-    },
-    "categories": {
-      ".validate": "newData.hasChildren(['name', 'abbreviation', 'type'])",
-      "name": {
-        ".validate": "newData.isString()"
+        ".read": "((auth != null && auth.uid == $userid) || (auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin'))",
+        ".write": "((auth != null && auth.uid == $userid) || (auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin'))"
       },
-      "abbreviation": {
-        ".validate": "newData.isString()"
-      },
-      "type": {
-        ".validate": "newData.isString()"
-      },
-      "$other": {
-        ".validate": "false"
-      },
-      ".read": "true",
-      ".write": "auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin'"
-    },
-    "settings": {
-      ".validate": "newData.hasChildren(['dateFormat', 'pageTitle', 'pageSubtitle'])",
-      "dateFormat": {
-        ".validate": "newData.isString()"
-      },
-      "pageTitle": {
-        ".validate": "newData.isString()"
-      },
-      "pageSubtitle": {
-        ".validate": "newData.isString()"
-      },
-      "$other": {
-        ".validate": "false"
-      },
-      ".read": "true",
-      ".write": "auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin'"
+      ".read": "(auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin')",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     }
   }
 }

@@ -180,13 +180,13 @@ export default class UserEditor extends Component {
 
             <div className="level-left">
               <div className="field">
-                <label className="label">Note</label>
+                <label className="label"><Translate id="note" /></label>
                 <input className="input" type="text" value={this.state.creditFormNote} placeholder="Credit change note" onChange={event => this.changeCreditNote(event)} />
               </div>
             </div>
             <div className="level-item">
               <div className="field">
-                <label className="label">Credit Amount</label>
+                <label className="label"><Translate id="creditamount" /></label>
                 <input className="input" type="number" value={this.state.creditFormAmount} placeholder="Credit amount" onChange={event => this.changeCreditAmount(event)} />
               </div>
             </div>

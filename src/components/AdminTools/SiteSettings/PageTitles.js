@@ -11,6 +11,15 @@ export const PageTitles = ({ settings }) => (
         <Translate id="pagetitles" />
       </h1>
     </div>
+    <div className="column is-12">
+      <EditableVerticalField
+        defaultValue={settings.browserTitle}
+        labelContent="browsertitle"
+        placeHolder="browsertitleplaceholder"
+        path="/settings"
+        targetName="browserTitle"
+      />
+    </div>
 
     <div className="column is-half-tablet">
       <EditableVerticalField

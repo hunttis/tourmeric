@@ -1,4 +1,11 @@
 {
+  "changelanguage": "Change language",
+  "english": "English",
+  "finnish": "Finnish",
+
+  "menu": "Menu",
+
+  "browsertitle": "Browser title",
   "pagetitle": "Page title",
   "pagesubtitle": "Page subtitle",
   "appname": "EVENT ORGANIZER",
@@ -9,8 +16,9 @@
   "logout": "Log out",
   "events": "Events",
   "admin": "Admin",
+  "admingeneric": "Admin - Generic",
   "adminevents": "Admin - Events",
-  "sitesettings": "Admin - Site Settings",
+  "adminsitesettings": "Admin - Site Settings",
   "userinfo": "User",
   "loading": "Loading",
   "yes": "Yes",
@@ -163,6 +171,7 @@
   "lookslike": "Current dateformat looks like",
   "help": "Help",
   "momentdateformatdocs": "Moment date format docs",
+  "browsertitleplaceholder": "The text shown at the top of the browser",
   "pagetitleplaceholder": "Page title, shop name etc",
   "pagesubtitleplaceholder": "Page subtitle, slogan or something",
   "clicktousedefaultdateformat": "Click to use default date format",
@@ -174,9 +183,15 @@
   "note": "Note",
   "value": "Value",
   "total": "Total",
+  "credithistory": "Credit history",
   "nocredithistory": "No credit history",
+  "creditamount": "Credit amount",
 
   "highlights": "Highlights",
+  "newhighlight": "New highlight",
+  "activate": "Activate",
+  "deactivate": "Deactivate",
+  "nohighlightscreated": "No highlights created yet",
 
   "features": "Features",
 
@@ -205,6 +220,16 @@
   "directions": "Directions",
   "directionsplaceholder": "For example 'South on 6th ave, turn left at the 43rd street and it's on your left'",
   "storelocation": "Store location",
-  "useaslocationimage": "Use as location image"
+  "useaslocationimage": "Use as location image",
+  "address": "Address",
+  "phone": "Phone",
+  "phoneplaceholder": "Input your phone number this way: +358-(40)-123-1234",
+  "contactinfo": "Contact info",
+
+  "news": "News",
+  "text": "Text",
+  "noname": "No name",
+  "noimage": "No image",
+  "newnewsitem": "New news item"
   
 }

@@ -1,17 +1,76 @@
-path /events is Event {
+path /categories is Category {
   read() { true }
-  write() { auth != null }
+  write() { isAdmin() }
 }
 
-path /users/{uid} is User {
-  read() { isCurrentUser(uid) || isAdmin() }
-  write() { isCurrentUser(uid) || isAdmin() }
+path /events is Event {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /highlights is Highlight {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /news is News {
+  read() { true }
+  write() { isAdmin() }
 }
 
 path /participations is Participation {
   read() { true }
   write() { auth != null }
-  validate() { true }
+}
+
+path /settings {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /storecredit/{userid} {
+  read() { isCurrentUser(userid) || isAdmin() }
+  write() { isAdmin() }
+}
+
+path /storecredit {
+  read() { isAdmin() }
+  write() { isAdmin() }
+}
+
+path /uploadedCategoryLogos is File {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /uploadedFiles is File {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /uploadedHighlightBanners is File {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /uploadedNewsImages is File {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /uploadedStoreinfoFiles is File {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /users/{userid} is User {
+  read() { isCurrentUser(userid) || isAdmin() }
+  write() { isCurrentUser(userid) || isAdmin() }
+}
+
+path /users {
+  read() { isAdmin() }
+  write() { isAdmin() }
 }
 
 path /categories is Category {
@@ -19,51 +78,69 @@ path /categories is Category {
   write() { isAdmin() }
 }
 
-path /settings is Settings {
-  read() { true }
-  write() { isAdmin() }
+type Category {
+  name: String | Null,
+  abbreviation: String | Null,
+  type: String | Null,
+  logo: String | Null
 }
 
 type Event {
-  category: String,
+  category: String | Null,
   createDate: String,
-  date: String,
-  entryFee: Number,
-  format: String,
-  link: String,
-  name: String,
-  notes: String,
-  playerSlots: Number,
-  prizes: String,
-  published: Boolean,
-  rulesLevel: String,
-  time: String
+  date: String | Null,
+  entryFee: Number | Null,
+  format: String | Null,
+  link: String | Null,
+  name: String | Null,
+  notes: String | Null,
+  playerSlots: Number | Null,
+  prizes: String | Null,
+  published: Boolean | Null,
+  rulesLevel: String | Null,
+  time: String | Null
 }
 
-type Category {
-  name: String,
-  abbreviation: String,
-  type: String
+type Highlight {
+  active: Boolean | Null,
+  createDate: String,
+  date: String | Null,
+  image: String | Null,
+  name: String | Null
+}
+
+type News {
+  active: Boolean | Null,
+  createDate: String,
+  date: String | Null,
+  image: String | Null,
+  name: String | Null,
+  text: String | Null
 }
 
 type Participation {
+  comment: String | Null,
+  date: String | Null,
+  firstName: String | Null,
+  lastName: String | Null,
+  userId: String | Null
+}
 
+type File {
+  downloadURL: String | Null,
+  name: String | Null,
+  activeLogo: Boolean | Null
 }
 
 type User {
-  avatarUrl: String,
-  dciNumber: Number,
-  displayName: String,
-  email: String,
-  role: String,
-  uid: Number,
-  username: String
-}
-
-type Settings {
-  dateFormat: String,
-  pageTitle: String,
-  pageSubtitle: String
+  avatarUrl: String | Null,
+  dciNumber: Number | Null,
+  displayName: String | Null,
+  email: String | Null,
+  providerData: Object | Null,
+  role: String | Null,
+  uid: Number | Null,
+  username: String | Null
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }

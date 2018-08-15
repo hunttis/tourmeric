@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import loadingImage from '../../images/Ripple-1s-64px.svg';
 import AdminEventList from './AdminEventList-container';
-import CategoryEditor from './CategoryEditor/CategoryEditor-container';
 import UserEditor from './UserEditor/UserEditor-container';
-import ParticipationEditor from './ParticipationEditor/ParticipationEditor-container';
-import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-container';
-import HighlightEditor from './HighlightEditor/HightlightEditor-container';
+import HighlightEditor from './HighlightEditor/HighlightEditor-container';
 import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
+import NewsEditor from './NewsEditor/NewsEditor-container';
 
 export default class AdminTools extends Component {
 
-  state = { activeItem: 'storeinfo' }
+  state = { activeItem: 'news' }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });
@@ -27,42 +24,26 @@ export default class AdminTools extends Component {
     }
 
     if (isLoaded(events) && !isEmpty(events)) {
-      const sortedEvents = _.sortBy(Object.entries(events), ['date', 'time']);
-      const publishedEvents = sortedEvents.filter(event => event[1].published);
-      const unpublishedEvents = sortedEvents.filter(event => !event[1].published);
-
-      const unpublishedEventsVisible = this.state.activeItem === 'unpublished';
-      const publishedEventsVisible = this.state.activeItem === 'published';
-      const categoryVisible = this.state.activeItem === 'category';
-      const categoryLogoUploaderVisible = this.state.activeItem === 'categorylogouploader';
       const userVisible = this.state.activeItem === 'user';
-      const participationVisible = this.state.activeItem === 'participation';
       const highlightVisible = this.state.activeItem === 'highlight';
       const storeInfoVisible = this.state.activeItem === 'storeinfo';
+      const newsVisible = this.state.activeItem === 'news';
 
       return (
         <div>
           <div className="tabs is-boxed is-marginless is-multiline">
             <ul>
-              <AdminToolsTab isActive={unpublishedEventsVisible} switchAction={() => this.switchActiveTab('unpublished')} icon="fa-pencil-alt" translationKey="unpublishedevents" />
-              <AdminToolsTab isActive={publishedEventsVisible} switchAction={() => this.switchActiveTab('published')} icon="fa-book" translationKey="publishedevents" />
-              <AdminToolsTab isActive={categoryVisible} switchAction={() => this.switchActiveTab('category')} icon="fa-bars" translationKey="categories" />
-              <AdminToolsTab isActive={categoryLogoUploaderVisible} switchAction={() => this.switchActiveTab('categorylogouploader')} icon="fa-bars" translationKey="categorylogouploader" />
               <AdminToolsTab isActive={userVisible} switchAction={() => this.switchActiveTab('user')} icon="fa-users" translationKey="users" />
-              <AdminToolsTab isActive={participationVisible} switchAction={() => this.switchActiveTab('participation')} icon="fa-clipboard-list" translationKey="participations" />
               <AdminToolsTab isActive={highlightVisible} switchAction={() => this.switchActiveTab('highlight')} icon="fa-lightbulb" translationKey="highlights" />
               <AdminToolsTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
+              <AdminToolsTab isActive={newsVisible} switchAction={() => this.switchActiveTab('news')} icon="fa-store" translationKey="news" />
             </ul>
           </div>
           <section className="section">
-            {unpublishedEventsVisible && <AdminEventList events={unpublishedEvents} showNewEventButton />}
-            {publishedEventsVisible && <AdminEventList events={publishedEvents} showNewEventButton={false} />}
-            {categoryVisible && <CategoryEditor />}
-            {categoryLogoUploaderVisible && <CategoryLogoUploader />}
             {userVisible && <UserEditor />}
-            {participationVisible && <ParticipationEditor />}
             {highlightVisible && <HighlightEditor />}
             {storeInfoVisible && <StoreInfoEditor />}
+            {newsVisible && <NewsEditor />}
           </section>
         </div>
       );

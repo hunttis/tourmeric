@@ -1,151 +1,28 @@
-// @import url('https://fonts.googleapis.com/css?family=Montserrat');
-// @import "node_modules/bulma/sass/utilities/initial-variables";
-// @import "node_modules/bulma/sass/utilities/functions";
-
-// // 5. Add new color variables to the color map.
-// @import "node_modules/bulma/sass/utilities/derived-variables";
-
-// $purple: #625483;
-// $purple-invert: findColorInvert($purple);
-
-// $addColors: (
-//   "purple":($purple, $purple-invert)
-// );
-// $colors: map-merge($colors, $addColors);
-
-// $family-serif: "Montserrat", sans-serif;
-// $family-primary: $family-serif;
-
-// .titlebar {
-//   background-image: linear-gradient(276deg, #4f2053, #65799b 100%);
-// }
-
-// .title.titletext {
-//   font-weight: bold;
-//   letter-spacing: 1.4px;
-//   color: #ffffff;
-// }
-
-// .subtitle.subtitletext {
-//   letter-spacing: 1.4px;
-//   color: #ffffff;
-// }
-
-// .dateformattext {
-//   padding-top: 40px;
-// }
-
-// .eventheader {
-//   background-image: linear-gradient(274deg, #5e2563, #65799b);
-// }
-
-// div.eventheader-text {
-//   font-size: 21px;
-//   font-weight: normal;
-//   font-style: normal;
-//   font-stretch: normal;
-//   line-height: normal;
-//   letter-spacing: 0.9px;
-//   text-align: left;
-//   color: #ffffff;
-// }
-
-// div.card-item {
-  
-//   font-weight: bold;
-//   font-size: 16px;
-//   // font-weight: normal;
-//   font-style: normal;
-//   font-stretch: normal;
-//   line-height: 2.25;
-//   letter-spacing: 0.7px;
-//   text-align: left;
-//   color: #000000;
-// }
-
-// div.subtitle.date-item{
-//   font-size: 20px;
-//   font-weight: bold;
-//   font-style: normal;
-//   font-stretch: normal;
-//   line-height: normal;
-//   letter-spacing: 0.9px;
-//   color: #313131;
-// }
-
-// footer.card-footer {
-//   font-size: 14px;
-//   font-weight: normal;
-//   font-style: normal;
-//   font-stretch: normal;
-//   line-height: 1.43;
-//   letter-spacing: 0.6px;
-//   text-align: left;
-//   color: #000000;
-//   border: none;
-// }
-
-// div.card-footer-item:not(:last-child) {
-//   border: none;
-// }
-
-// div.card-footer-item.event-card-footer {
-//   justify-content: left;
-// }
-
-// div.card.card-shadow {
-//   box-shadow: 0 4px 13px 2px #ddd3e2;
-// }
-
-// button.is-rounded.joinbutton {
-//   padding-left: 2em;
-//   padding-right: 2em;
-//   box-shadow: 0 4px 13px 2px #ddd3e2;
-// }
-
-// div.card-header-icon.eventheader-text {
-//   font-size: 21px;
-//   font-weight: normal;
-//   font-style: normal;
-//   font-stretch: normal;
-//   line-height: normal;
-//   letter-spacing: 0.9px;
-//   text-align: left;
-//   color: #ffffff;
-// }
-
-// div.card-item {
-//   line-height: 1.5em;
-// }
-
-// div.card-footer-items {
-//   justify-content: left;
-// }
-
-// div.card-footer-items.level-item:not(:last-child) {
-//   margin-bottom: 0px;
-// }
-
-// div.level-right.card-footer-items {
-//   margin-top: 0px;
-// }
-
-// .card-margin-right {
-//   padding-right: 2em;
-// }
-
-// div.level:not(:last-child).participation-level  {
-//   margin-bottom: 0px;
-// }
-
-// .card-footer-link {
-//   color: black;
-//   text-decoration: underline;
-// }
-
 div {
   animation-name: fadein;
   animation-duration: 250ms;
+}
+
+
+.highlights {
+  margin: 0em 1em;
+}
+
+#logo {
+  margin: 0em 1em;
+}
+
+.margin-leftright {
+  margin-left: 1em;
+  margin-right: 1em;
+  background-color: transparent !important;
+  border: 0px !important;
+  background: alpha($color: #ffffff) !important;
+}
+
+.is-higher {
+  margin-top: -3em;
+  margin-right: 2em;
 }
 
 .eventcard {
@@ -153,34 +30,6 @@ div {
   animation-name: fadein;
   animation-duration: 500ms;
 }
-
-// .is-success, .is-danger, .is-warning, .is-normal {
-//   transition: all 250ms linear;
-// }
-
-// button.is-rounded.is-purple {
-//   font-weight: bold;
-// }
-
-// .hero.titlebar.animated {
-//   animation-name: scrollin;
-//   animation-duration: 500ms;
-// }
-
-// .menucontent, .admincontent, .admintab, .editableevent, .field.language-and-log-buttons {
-//   animation-name: fadein;
-//   animation-duration: 500ms;
-// }
-
-// .eventlistitem {
-//   animation-name: plainfadein;
-//   animation-duration: 500ms;
-// }
-
-// .visible-userentry {
-//   animation-name: plainfadein;
-//   animation-duration: 500ms;
-// }
 
 .languageflag {
   height: 1em;
@@ -190,12 +39,7 @@ div {
 .thumbnail {
   height: 4em;
   border: 1px solid white;
-  // background-color: white;
   padding: 0px;
-}
-
-button.high-button {
-  // height: 96px;
 }
 
 button.image-square {

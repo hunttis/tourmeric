@@ -1,4 +1,11 @@
 {
+  "changelanguage": "Vaihda kieltä",
+  "english": "Englanti",
+  "finnish": "Suomi",
+
+  "menu": "Valikko",
+
+  "browsertitle": "Selaimen otsikko",
   "pagetitle": "Sivun otsikko",
   "pagesubtitle": "Sivun alaotsikko",
   "appname": "Tapahtumajärjestäjä",
@@ -9,8 +16,9 @@
   "logout": "Kirjaudu ulos",
   "events": "Tapahtumat",
   "admin": "Ylläpito",
+  "admingeneric": "Ylläpito - Yleiset",
   "adminevents": "Ylläpito - Tapahtumat",
-  "sitesettings": "Ylläpito - Sivuston asetukset",
+  "adminsitesettings": "Ylläpito - Sivuston asetukset",
   "userinfo": "Käyttäjätiedot",
   "loading": "Ladataan",
   "yes": "Kyllä",
@@ -162,6 +170,7 @@
   "lookslike": "Päivämäärämuotoilu näyttää tältä",
   "help": "Apua",
   "momentdateformatdocs": "Moment formatointidokumentaatio",
+  "browsertitleplaceholder": "Selaimen palkissa näytettävä teksti",
   "pagetitleplaceholder": "Sivun otsikko, kaupan nimi tms.",
   "pagesubtitleplaceholder": "Sivun aliotsikko, slogan tms.",
   "clicktousedefaultdateformat": "Ota käyttöön oletusmuoto päivämäärille",
@@ -173,9 +182,15 @@
   "note": "Viesti",
   "value": "Arvo",
   "total": "Loppusumma",
+  "credithistory": "Krediittihistoria",
   "nocredithistory": "Ei krediittihistoriaa",
+  "creditamount": "Krediittien määrä",
 
   "highlights": "Valokeilassa",
+  "newhighlight": "Uusi valokeila",
+  "activate": "Aktivoi",
+  "deactivate": "Deaktivoi",
+  "nohighlightscreated": "Ei yhtään kuvaa lisätty valokeilaan",
 
   "features": "Ominaisuudet",
 
@@ -204,7 +219,16 @@
   "directions": "Ohjeet paikalle",
   "directionsplaceholder": "Esimerkiksi 'Etelään Mannerheimintietä, vasemmalle Ruskeasuolta ja liike on vasemmalla'",
   "storelocation": "Liikkeen sijainti",
-  "useaslocationimage": "Käytä sijainnin kuvana"
+  "useaslocationimage": "Käytä sijainnin kuvana",
+  "address": "Osoite",
+  "phone": "Puhelin",
+  "phoneplaceholder": "Syötä puhelinnumero muodossa: +358-(40)-123-1234",
+  "contactinfo": "Yhteystiedot",
 
+  "news": "Uutiset",
+  "text": "Teksti",
+  "noname": "Ei nimeä",
+  "noimage": "Ei kuvaa",
+  "newnewsitem": "Uusi uutinen"
 
 }
