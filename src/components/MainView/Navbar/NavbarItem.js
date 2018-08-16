@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 
-export const NavbarItem = ({ onClick, translationKey, icon, styleClass = '' }) => (
+export const NavbarItem = ({ onClick, translationKey, icon, styleClass }) => (
   <div className={`navbar-item ${styleClass}`}>
     <a onClick={onClick}>
       <span className="icon">

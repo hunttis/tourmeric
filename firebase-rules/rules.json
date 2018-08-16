@@ -134,30 +134,32 @@
     },
     "participations": {
       "$id": {
-        ".validate": "newData.hasChildren()",
-        "comment": {
-          ".validate": "newData.isString()"
-        },
-        "date": {
-          ".validate": "newData.isString()"
-        },
-        "firstName": {
-          ".validate": "newData.isString()"
-        },
-        "lastName": {
-          ".validate": "newData.isString()"
-        },
-        "userId": {
-          ".validate": "newData.isString()"
-        },
-        "$other": {
-          ".validate": "false"
-        },
-        ".read": "true",
-        ".write": "auth != null"
+        "$userid": {
+          ".validate": "newData.hasChildren()",
+          "comment": {
+            ".validate": "newData.isString()"
+          },
+          "date": {
+            ".validate": "newData.isString()"
+          },
+          "firstName": {
+            ".validate": "newData.isString()"
+          },
+          "lastName": {
+            ".validate": "newData.isString()"
+          },
+          "userId": {
+            ".validate": "newData.isString()"
+          },
+          "$other": {
+            ".validate": "false"
+          },
+          ".read": "true",
+          ".write": "((auth != null && auth.uid == $userid) || (auth != null && newData.parent().parent().parent().child('users').child(auth.uid).child('role').val() == 'admin'))"
+        }
       },
       ".read": "true",
-      ".write": "auth != null"
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
     "settings": {
       ".read": "true",

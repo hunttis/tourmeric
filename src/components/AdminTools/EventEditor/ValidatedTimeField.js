@@ -4,7 +4,7 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
-export default class ValidatedDateField extends Component {
+export default class ValidatedTimeField extends Component {
 
   delayedSave = _.debounce((value) => {
     firebase.update(this.props.path, value);
@@ -19,8 +19,9 @@ export default class ValidatedDateField extends Component {
   constructor(props) {
     super(props);
 
-    const hour = props.defaultValue.split(':')[0];
-    const minute = props.defaultValue.split(':')[1];
+    const defaultTime = _.get(props, 'defaultValue', '10:00');
+    const hour = defaultTime.split(':')[0];
+    const minute = defaultTime.split(':')[1];
 
     this.state = {
       saved: false, editing: false, hour, minute,
@@ -117,7 +118,7 @@ export default class ValidatedDateField extends Component {
   }
 }
 
-ValidatedDateField.propTypes = {
+ValidatedTimeField.propTypes = {
   defaultValue: PropTypes.string,
   path: PropTypes.string,
 };

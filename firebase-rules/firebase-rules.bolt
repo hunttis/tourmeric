@@ -38,14 +38,14 @@ path /news {
   write() { isAdmin() }
 }
 
-path /participations/{id} is Participation {
+path /participations/{id}/{userid} is Participation {
   read() { true }
-  write() { auth != null }
+  write() { isCurrentUser(userid) || isAdmin() }
 }
 
 path /participations {
   read() { true }
-  write() { auth != null }
+  write() { isAdmin() }
 }
 
 path /settings {

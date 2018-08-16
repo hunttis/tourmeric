@@ -13,12 +13,13 @@ export default class Today extends Component {
   state = { shownItems: 'today' }
 
   findNextEvents(events) {
+    const now = moment();
+    const after7Days = moment().add(7, 'days');
     const nextEvents = events.filter((eventEntry) => {
       const eventData = eventEntry.value;
-      if (eventData.published && moment().isBefore(eventData.date, 'day') && moment().add(7, 'days').isAfter(eventData.date, 'day')) {
-        return true;
-      }
-      return false;
+      const eventDate = moment(eventData.date, 'YYYY-MM-DD');
+      const isWithinAWeek = eventDate.isAfter(now, 'day') && eventDate.isBefore(after7Days, 'day');
+      return eventData.published && isWithinAWeek;
     });
 
     return nextEvents;
