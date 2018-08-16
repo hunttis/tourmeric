@@ -232,7 +232,10 @@
   "newnewsitem": "Uusi uutinen",
 
   "today": "Tänään",
-  "todaysevents": "Tapahtumat tänään"
-
+  "todaysevents": "Tapahtumat tänään",
+  "noeventstoday": "Ei tapahtumia tänään",
+  "noeventsinnextsevendays": "Ei tapahtumia seuraavaan 7 päivään",
+  "toseeeventsfurtherinthefuturegotoeventspage": "Nähdäksesi tapahtumia kauemmas tulevaisuuteen, mene 'Tapahtumat'-sivulle.",
+  "filtereventsbychoosingcategories": "Suodata tapahtumia valitsemalla kategorioita"
 
 }

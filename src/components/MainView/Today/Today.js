@@ -10,10 +10,12 @@ import { EventModal } from '../../EventList/EventModal';
 
 export default class Today extends Component {
 
+  state = { shownItems: 'today' }
+
   findNextEvents(events) {
     const nextEvents = events.filter((eventEntry) => {
       const eventData = eventEntry.value;
-      if (eventData.published && moment().isBefore(eventData.date, 'day')) {
+      if (eventData.published && moment().isBefore(eventData.date, 'day') && moment().add(7, 'days').isAfter(eventData.date, 'day')) {
         return true;
       }
       return false;
@@ -62,11 +64,107 @@ export default class Today extends Component {
     return <div />;
   }
 
+
+  switchView(newView) {
+    this.setState({ shownItems: newView });
+  }
+
+  renderEventModal(eventEntry, participations) {
+    const eventId = eventEntry.key;
+    const eventContent = eventEntry.value;
+    const participationsForEvent = Object.values(_.get(participations, eventId, []));
+
+    return <EventModal
+      key={`modal${eventId}`}
+      eventId={eventId}
+      eventContent={eventContent}
+      closeModal={() => this.closeModal(eventId)}
+      participations={participationsForEvent}
+    />;
+  }
+
+  renderTodaysEventItems(todaysEvents) {
+    if (!_.isEmpty(todaysEvents)) {
+      return (
+        <Fragment>
+          <div className="column is-6">
+            <h1 className="title"><Translate id="todaysevents" /></h1>
+            <button className="button" onClick={() => this.switchView('future')}>Näytä seuraavat 7 päivää</button>
+            {todaysEvents.map((eventEntry) => {
+              const eventId = eventEntry.key;
+
+              return (
+                <div key={eventId} className="columns">
+                  <EventCard
+                    eventId={eventId}
+                    openModal={() => this.openModal(eventId)}
+                  />
+                </div>
+              );
+
+            })}
+          </div>
+        </Fragment>
+      );
+    }
+    return (
+      <Fragment>
+        <div className="column is-6">
+          <h1 className="title"><Translate id="todaysevents" /></h1>
+          <button className="button" onClick={() => this.switchView('future')}>Näytä seuraavat 7 päivää</button>
+          <div><Translate id="noeventstoday" /></div>
+        </div>
+      </Fragment>
+    );
+  }
+
+  renderFutureEventItems(nextEvents) {
+    if (!_.isEmpty(nextEvents)) {
+
+      return (
+        <Fragment>
+          <div className="column is-6">
+            <h1 className="title"><Translate id="nextevents" /></h1>
+            <button className="button" onClick={() => this.switchView('today')}>Näytä tämän päivän tapahtumat</button>
+            {nextEvents.map((eventEntry) => {
+              const eventId = eventEntry.key;
+              return (
+                <div key={eventId} className="columns">
+                  <EventCard
+                    eventId={eventId}
+                    openModal={() => this.openModal(eventId)}
+                  />
+                </div>
+              );
+
+            })}
+            <div><Translate id="toseeeventsfurtherinthefuturegotoeventspage" /></div>
+
+          </div>
+        </Fragment>
+      );
+    }
+    return (
+      <Fragment>
+        <div className="column is-6">
+          <h1 className="title"><Translate id="todaysevents" /></h1>
+          <button className="button" onClick={() => this.switchView('today')}>Näytä tämän päivän tapahtumat</button>
+          <div><Translate id="noeventsinnextsevendays" /></div>
+          <div><Translate id="toseeeventsfurtherinthefuturegotoeventspage" /></div>
+
+        </div>
+      </Fragment>
+    );
+
+  }
+
   render() {
 
     const {
       events, participations, categories, uploadedCategoryLogos,
     } = this.props;
+
+    const { shownItems } = this.state;
 
     if (isLoaded(events) && isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
       const nextEvents = this.findNextEvents(events);
@@ -76,58 +174,19 @@ export default class Today extends Component {
         <div className="section">
           <div className="columns is-multiline">
 
-            {isLoaded(events) && todaysEvents.map((eventEntry) => {
-              const eventId = eventEntry.key;
-              const eventContent = eventEntry.value;
-              const participationsForEvent = Object.values(_.get(participations, eventId, []));
+            {isLoaded(events) && todaysEvents.map(eventEntry => this.renderEventModal(eventEntry, participations))}
 
-              return <EventModal key={`modal${eventId}`} eventId={eventId} eventContent={eventContent} closeModal={() => this.closeModal(eventId)} participations={participationsForEvent} />;
-            })}
+            {isLoaded(events) && nextEvents.map(eventEntry => this.renderEventModal(eventEntry, participations))}
+
 
             {/* <pre>{JSON.stringify(todaysEvents)}</pre> */}
-            {!_.isEmpty(todaysEvents) &&
-              <Fragment>
-                <div className="column is-6">
-                  <h1 className="title"><Translate id="todaysevents" /></h1>
-                  {todaysEvents.map((eventEntry) => {
-                    const eventId = eventEntry.key;
 
-                    return (
-                      <div key={eventId} className="columns">
-                        <div className="column is-2" />
-                        <EventCard
-                          eventId={eventId}
-                          openModal={() => this.openModal(eventId)}
-                        />
-                        <div className="column is-2" />
-                      </div>
-                    );
-
-                  })}
-                </div>
-              </Fragment>
+            {shownItems === 'today' &&
+              this.renderTodaysEventItems(todaysEvents)
             }
 
-            {_.isEmpty(todaysEvents) &&
-            <Fragment>
-              <div className="column is-6">
-                <h1 className="title"><Translate id="nextevents" /></h1>
-                {nextEvents.map((eventEntry) => {
-                  const eventId = eventEntry.key;
-                  return (
-                    <div key={eventId} className="columns">
-                      <div className="column is-2" />
-                      <EventCard
-                        eventId={eventId}
-                        openModal={() => this.openModal(eventId)}
-                      />
-                      <div className="column is-2" />
-                    </div>
-                  );
-
-                })}
-              </div>
-            </Fragment>
+            {shownItems === 'future' &&
+              this.renderFutureEventItems(nextEvents)
             }
 
             <div className="column is-6">

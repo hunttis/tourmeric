@@ -3,6 +3,19 @@ div {
   animation-duration: 250ms;
 }
 
+.navbar-item a {
+  color: #bbbbbb;
+}
+
+.active-navbar-item a {
+  color: white;
+  font-weight: bolder;
+}
+
+a.adminactive {
+  color: white;
+  font-weight: bolder;
+}
 
 .highlights {
   margin: 0em 1em;

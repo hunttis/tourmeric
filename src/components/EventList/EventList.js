@@ -109,6 +109,7 @@ export default class EventList extends Component {
             <div className="column is-2" />
             <div className="column is-8">
 
+              <Translate id="filtereventsbychoosingcategories" />
               <Translate>
                 { translate => (
                   <div>

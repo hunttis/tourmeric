@@ -233,6 +233,10 @@
   "newnewsitem": "New news item",
 
   "today": "Today",
-  "todaysevents": "Today's Events"
-  
+  "todaysevents": "Today's Events",
+  "noeventstoday": "No events today",
+  "noeventsinnextsevendays": "No events in the next 7 days",
+  "toseeeventsfurtherinthefuturegotoeventspage": "To see events further into the future, go to the 'Events'-page.",
+  "filtereventsbychoosingcategories": "Filter events by choosing categories"
+
 }
