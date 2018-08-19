@@ -75,7 +75,7 @@ export default class EditableEvent extends Component {
           </div>
         </div>
 
-        <div className="column is-6">
+        <div className="column is-12">
           <ValidatedEditableField
             isOk={this.state.nameOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -87,7 +87,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
+        <div className="column is-12">
           <ValidatedDropdown
             isOk={this.state.categoryOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -100,7 +100,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
+        <div className="column is-12">
           <ValidatedEditableField
             isOk={this.state.formatOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -124,9 +124,6 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-12">
-          <Translate id="abovedateinterpretedas" /> : <Moment format={dateFormat}>{eventContent.date}</Moment>
-        </div>
 
         <div className="column is-12">
           <ValidatedTimeField
@@ -137,6 +134,10 @@ export default class EditableEvent extends Component {
             defaultValue={eventContent.time}
             path={`/events/${eventId}`}
           />
+        </div>
+
+        <div className="column is-12">
+          <Translate id="abovedateinterpretedas" /> : <Moment format={dateFormat}>{eventContent.date}</Moment> {eventContent.time}
         </div>
 
         <div className="column is-6">

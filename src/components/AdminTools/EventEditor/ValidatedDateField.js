@@ -68,104 +68,92 @@ export default class ValidatedDateField extends Component {
     const months = moment.monthsShort();
 
     return (
-      <div className="level">
-        <div className="level-item">
-          <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">
-                <Translate id="day" />
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <p className="control is-expanded has-icons-right">
+      <div className="columns">
+        <div className="column">
+          <div className="field">
+            <label className="label">
+              <Translate id="day" />
+            </label>
+            <div className="field">
+              <p className="control has-icons-right">
 
-                  <Translate>
-                    {translate => (<input
-                      type="number"
-                      className={`input ${!dayOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                      placeholder={translate('day')}
-                      defaultValue={this.state.day}
-                      onChange={event => this.updateDay(event.target.value)}
-                    />)
+                <Translate>
+                  {translate => (<input
+                    type="number"
+                    className={`input ${!dayOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                    placeholder={translate('day')}
+                    defaultValue={this.state.day}
+                    onChange={event => this.updateDay(event.target.value)}
+                  />)
                     }
-                  </Translate>
-                  {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                  {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-                </p>
-              </div>
+                </Translate>
+                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
+                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+              </p>
             </div>
           </div>
         </div>
-        <div className="level-item">
-          <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">
-                <Translate id="month" />
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control is-expanded has-icons-right">
-                  <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
-                    <select
-                      defaultValue={this.state.month}
-                      onChange={event => this.updateMonth(event.target.value)}
-                      className={`input ${!monthOk && 'is-danger'}`}
-                    >
-                      <option value=""><Translate id="select" /></option>
-                      {Object.entries(months).map((month) => {
-                        const monthNumber = month[0];
-                        const monthName = moment().month(monthNumber).format('MMMM');
-                        return (
-                          <option key={`monthselector${this.props.targetName}${monthNumber}`} value={monthNumber}>
-                            {monthName}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  {saved &&
-                    <div className="icon is-small is-right">
-                      <i className="fas fa-check-circle has-text-success" />
-                    </div>
-                  }
-                  {editing &&
-                    <div className="icon is-small is-right">
-                      <i className="fas fa-pencil-alt has-text-warning" />
-                    </div>
-                  }
+        <div className="column">
+          <div className="field">
+            <label className="label">
+              <Translate id="month" />
+            </label>
+            <div className="field">
+              <div className="control has-icons-right">
+                <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
+                  <select
+                    defaultValue={this.state.month}
+                    onChange={event => this.updateMonth(event.target.value)}
+                    className={`input ${!monthOk && 'is-danger'}`}
+                  >
+                    <option value=""><Translate id="select" /></option>
+                    {Object.entries(months).map((month) => {
+                      const monthNumber = month[0];
+                      const monthName = moment().month(monthNumber).format('MMMM');
+                      return (
+                        <option key={`monthselector${this.props.targetName}${monthNumber}`} value={monthNumber}>
+                          {monthName}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
+                {saved &&
+                <div className="icon is-small is-right">
+                  <i className="fas fa-check-circle has-text-success" />
+                </div>
+                  }
+                {editing &&
+                <div className="icon is-small is-right">
+                  <i className="fas fa-pencil-alt has-text-warning" />
+                </div>
+                  }
               </div>
             </div>
           </div>
 
         </div>
-        <div className="level-item">
-          <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">
-                <Translate id="year" />
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <p className="control is-expanded has-icons-right">
+        <div className="column">
+          <div className="field">
+            <label className="label">
+              <Translate id="year" />
+            </label>
+            <div className="field">
+              <p className="control has-icons-right">
 
-                  <Translate>
-                    {translate => (<input
-                      type="number"
-                      className={`input ${!yearOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                      placeholder={translate('year')}
-                      defaultValue={this.state.year}
-                      onChange={event => this.updateYear(event.target.value)}
-                    />)
+                <Translate>
+                  {translate => (<input
+                    type="number"
+                    className={`input ${!yearOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                    placeholder={translate('year')}
+                    defaultValue={this.state.year}
+                    onChange={event => this.updateYear(event.target.value)}
+                  />)
                     }
-                  </Translate>
-                  {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                  {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-                </p>
-              </div>
+                </Translate>
+                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
+                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+              </p>
             </div>
           </div>
         </div>

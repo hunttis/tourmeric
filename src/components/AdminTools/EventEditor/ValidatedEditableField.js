@@ -31,30 +31,27 @@ export default class ValidatedEditableField extends Component {
     const { saved, editing } = this.state;
 
     return (
-      <div className="field is-horizontal">
-        <div className="field-label is-normal">
+      <div className="field">
+        <div className="label">
           <label className="label">
             <Translate id={labelContent} />
           </label>
         </div>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded has-icons-right">
-
-              <Translate>
-                {translate => (<input
-                  type={inputType}
-                  className={`input ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
-                  placeholder={translate(placeHolder)}
-                  defaultValue={defaultValue}
-                  onChange={event => this.handleChange(path, targetName, event.target.value)}
-                />)
+        <div className="field">
+          <p className="control is-expanded has-icons-right">
+            <Translate>
+              {translate => (<input
+                type={inputType}
+                className={`input ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
+                placeholder={translate(placeHolder)}
+                defaultValue={defaultValue}
+                onChange={event => this.handleChange(path, targetName, event.target.value)}
+              />)
                 }
-              </Translate>
-              {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-              {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-            </p>
-          </div>
+            </Translate>
+            {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
+            {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+          </p>
         </div>
       </div>
     );

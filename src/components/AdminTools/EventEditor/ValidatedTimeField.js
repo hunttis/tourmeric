@@ -57,59 +57,52 @@ export default class ValidatedTimeField extends Component {
     return (
       <div className="level">
         <div className="level-item">
-          <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">
-                <Translate id="hour" />
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <p className="control is-expanded has-icons-right">
+          <div className="field ">
 
-                  <Translate>
-                    {translate => (<input
-                      type="number"
-                      className={`input ${!hourOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                      placeholder={translate('hour')}
-                      defaultValue={this.state.hour}
-                      onChange={event => this.updateHour(event.target.value)}
-                    />)
+            <label className="label">
+              <Translate id="hour" />
+            </label>
+            <div className="field">
+              <p className="control is-expanded has-icons-right">
+
+                <Translate>
+                  {translate => (<input
+                    type="number"
+                    className={`input ${!hourOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                    placeholder={translate('hour')}
+                    defaultValue={this.state.hour}
+                    onChange={event => this.updateHour(event.target.value)}
+                  />)
                     }
-                  </Translate>
-                  {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                  {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-                </p>
-              </div>
+                </Translate>
+                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
+                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+              </p>
             </div>
           </div>
         </div>
 
         <div className="level-item">
-          <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">
-                <Translate id="minute" />
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <p className="control is-expanded has-icons-right">
+          <div className="field">
+            <label className="label">
+              <Translate id="minute" />
+            </label>
+            <div className="field">
+              <p className="control is-expanded has-icons-right">
 
-                  <Translate>
-                    {translate => (<input
-                      type="number"
-                      className={`input ${!minuteOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                      placeholder={translate('minute')}
-                      defaultValue={this.state.minute}
-                      onChange={event => this.updateMinute(event.target.value)}
-                    />)
+                <Translate>
+                  {translate => (<input
+                    type="number"
+                    className={`input ${!minuteOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                    placeholder={translate('minute')}
+                    defaultValue={this.state.minute}
+                    onChange={event => this.updateMinute(event.target.value)}
+                  />)
                     }
-                  </Translate>
-                  {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                  {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-                </p>
-              </div>
+                </Translate>
+                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
+                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+              </p>
             </div>
           </div>
         </div>
