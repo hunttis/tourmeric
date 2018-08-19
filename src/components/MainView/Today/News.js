@@ -8,7 +8,11 @@ import _ from 'lodash';
 
 export default class News extends Component {
 
-  foo() {}
+  state = { activeNewsItem: '' }
+
+  setActiveNewsItem(newsId) {
+    this.setState({ activeNewsItem: newsId });
+  }
 
   render() {
     const { news, settings } = this.props;
@@ -24,10 +28,51 @@ export default class News extends Component {
           {publishedNews.map((newsItem) => {
             const newsData = newsItem.value;
             const newsDate = moment(newsData.date, 'YYYY-MM-DD').format(dateFormat);
+            const footerNeeded = newsData.link || newsData.summary;
+            const currentActiveNewsItem = newsItem.key === this.state.activeNewsItem;
+            const content = (currentActiveNewsItem || !newsData.summary) ? newsData.text : newsData.summary;
+            const formattedContent = content.split('\n');
+
             return (
               <Fragment key={newsItem.key}>
-                <h2 className="subtitle">{newsDate} - {newsData.name}</h2>
-                <pre>{newsData.text}</pre>
+                <div className="card">
+                  <div className="card-header">
+                    <div className="card-header-title">
+                      {newsData.name}
+                    </div>
+                    <div className="card-header-title">
+                      {newsDate}
+                    </div>
+                  </div>
+                  {/* {newsData.image &&
+                  <div className="card-image">
+                    <figure className="image">
+                      <img src={newsData.image} alt="" />
+                    </figure>
+                  </div>
+                  } */}
+
+                  <div className="card-content">
+                    <div className="content">
+                      {formattedContent.map((paragraph, index) => <p key={`${newsItem.key}-${index}`}>{paragraph}</p>)}
+                    </div>
+                  </div>
+
+                  {footerNeeded &&
+                    <div className="card-footer">
+                      {(newsData.summary && !currentActiveNewsItem) &&
+                        <a className="card-footer-item" onClick={() => this.setActiveNewsItem(newsItem.key)}><Translate id="showfullnewsitem" /></a>
+                      }
+                      {currentActiveNewsItem &&
+                        <a className="card-footer-item" onClick={() => this.setActiveNewsItem('')}><Translate id="showless" /></a>
+                      }
+                      {(!newsData.summary && newsData.link) &&
+                        <a className="card-footer-item" target="_blank" rel="noopener noreferrer" href={newsData.link}>{newsData.linkName ? newsData.linkName : newsData.link}</a>
+                      }
+                    </div>
+                  }
+
+                </div>
                 <div>&nbsp;</div>
               </Fragment>
             );

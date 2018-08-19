@@ -16,6 +16,7 @@ export default class NewsEditor extends Component {
   constructor(props) {
     super(props);
     this.state = { modalOpenClass: '' };
+    this.changeImage.bind(this);
   }
 
   onFilesDrop = async (files) => {
@@ -41,11 +42,24 @@ export default class NewsEditor extends Component {
   }
 
   openModal(newsId, newsItem) {
-    this.setState({ modalOpenClass: 'is-active', newsId, newsName: newsItem.name, newsImage: newsItem.image, newsDate: newsItem.date, newsActive: newsItem.active, newsText: newsItem.text });
+    this.setState({
+      modalOpenClass: 'is-active',
+      newsId,
+      newsName: newsItem.name,
+      newsImage: newsItem.image,
+      newsDate: newsItem.date,
+      newsActive: newsItem.active,
+      newsText: newsItem.text,
+      newsLink: newsItem.link,
+      newsLinkName: newsItem.linkName,
+      newsSummary: newsItem.summary,
+    });
   }
 
   closeModal() {
-    this.setState({ modalOpenClass: '', newsId: '', newsName: '', newsDate: '', newsImage: '', newsActive: '', newsText: '' });
+    this.setState({
+      modalOpenClass: '', newsId: '', newsName: '', newsDate: '', newsImage: '', newsActive: '', newsText: '', newsLink: '', newsLinkName: '', newsSummary: '',
+    });
   }
 
   changeImage(path, value) {
@@ -87,7 +101,9 @@ export default class NewsEditor extends Component {
 
   newsModal() {
     const { uploadedNewsImages } = this.props;
-    const { modalOpenClass, newsId, newsName, newsImage, newsDate, newsActive, newsText } = this.state;
+    const {
+      modalOpenClass, newsId, newsName, newsImage, newsDate, newsActive, newsText, newsLink, newsLinkName, newsSummary,
+    } = this.state;
     return (
       <div className={`modal ${modalOpenClass}`}>
         <div className="modal-background" onClick={() => this.closeModal()} />
@@ -108,8 +124,17 @@ export default class NewsEditor extends Component {
               path={`/news/${newsId}`}
               targetName="date"
             />
+
             <EditableTextarea
-              isOk={this.state.prizesOk}
+              updateFieldStatus={this.updateFieldStatus}
+              labelContent="summary"
+              placeHolder="summaryplaceholder"
+              defaultValue={newsSummary}
+              path={`/news/${newsId}`}
+              targetName="summary"
+            />
+
+            <EditableTextarea
               updateFieldStatus={this.updateFieldStatus}
               labelContent="text"
               placeHolder="newstextplaceholder"
@@ -117,14 +142,39 @@ export default class NewsEditor extends Component {
               path={`/news/${newsId}`}
               targetName="text"
             />
-            <FileSelector
-              files={uploadedNewsImages}
-              defaultValue={newsImage}
-              onChange={this.changeImage}
+
+            <EditableField
+              updateFieldStatus={this.updateFieldStatus}
+              labelContent="linkname"
+              placeHolder="linknameplaceholder"
+              defaultValue={newsLinkName}
               path={`/news/${newsId}`}
-              targetName="image"
+              targetName="linkName"
             />
-            {newsImage && <img alt="" src={newsImage} />}
+
+            <EditableField
+              updateFieldStatus={this.updateFieldStatus}
+              labelContent="link"
+              placeHolder="linkplaceholder"
+              defaultValue={newsLink}
+              path={`/news/${newsId}`}
+              targetName="link"
+            />
+
+            <div className="level">
+              <div className="level-item">
+                <FileSelector
+                  files={uploadedNewsImages}
+                  defaultValue={newsImage}
+                  onChange={this.changeImage}
+                  path={`/news/${newsId}`}
+                  targetName="image"
+                />
+              </div>
+              <div className="level-item">
+                {newsImage && <span><img alt="" src={newsImage} /></span>}
+              </div>
+            </div>
 
 
             {newsActive &&
@@ -155,7 +205,7 @@ export default class NewsEditor extends Component {
               <button className="button" onClick={() => this.createNewsItem()}><Translate id="newnewsitem" /></button>
             </div>
             <div className="level-right">
-              <Dropzone onDrop={this.onFilesDrop}>
+              <Dropzone onDrop={this.onFilesDrop} className="box">
                 <div>
                   <Translate id="dropfileshere" />
                 </div>

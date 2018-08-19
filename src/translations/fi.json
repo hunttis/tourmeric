@@ -227,9 +227,14 @@
 
   "news": "Uutiset",
   "text": "Teksti",
+  "summary": "Yhteenveto",
   "noname": "Ei nimeä",
   "noimage": "Ei kuvaa",
+  "newsimage": "Uutisen kuva",
   "newnewsitem": "Uusi uutinen",
+  "linkname": "Linkin nimi. Jos tätä ei syötetä, koko URL näytetään",
+  "showfullnewsitem": "Näytä koko uutinen",
+  "showless": "Näytä vähemmän",
 
   "today": "Tänään",
   "todaysevents": "Tapahtumat tänään",

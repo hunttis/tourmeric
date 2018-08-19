@@ -228,9 +228,14 @@
 
   "news": "News",
   "text": "Text",
+  "summary": "Summary",
   "noname": "No name",
   "noimage": "No image",
+  "newsimage": "News image",
   "newnewsitem": "New news item",
+  "linkname": "Name for the link, if no name is input, the URL will be shown",
+  "showfullnewsitem": "Show full text",
+  "showless": "Show less",
 
   "today": "Today",
   "todaysevents": "Today's Events",

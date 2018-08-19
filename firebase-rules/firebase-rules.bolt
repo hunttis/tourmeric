@@ -78,10 +78,16 @@ path /uploadedHighlightBanners is File {
   write() { isAdmin() }
 }
 
-path /uploadedNewsImages is File {
+path /uploadedNewsImages/{id} is File {
   read() { true }
   write() { isAdmin() }
 }
+
+path /uploadedNewsImages {
+  read() { true }
+  write() { isAdmin() }
+}
+
 
 path /uploadedStoreinfoFiles is File {
   read() { true }
@@ -135,7 +141,10 @@ type News {
   date: String | Null,
   image: String | Null,
   name: String | Null,
-  text: String | Null
+  text: String | Null,
+  summary: String | Null,
+  link: String | Null,
+  linkName: String | Null
 }
 
 type Participation {

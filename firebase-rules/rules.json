@@ -123,6 +123,15 @@
         "text": {
           ".validate": "newData.isString()"
         },
+        "summary": {
+          ".validate": "newData.isString()"
+        },
+        "link": {
+          ".validate": "newData.isString()"
+        },
+        "linkName": {
+          ".validate": "newData.isString()"
+        },
         "$other": {
           ".validate": "false"
         },
@@ -225,18 +234,22 @@
       ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
     "uploadedNewsImages": {
-      ".validate": "newData.hasChildren()",
-      "downloadURL": {
-        ".validate": "newData.isString()"
-      },
-      "name": {
-        ".validate": "newData.isString()"
-      },
-      "activeLogo": {
-        ".validate": "newData.isBoolean()"
-      },
-      "$other": {
-        ".validate": "false"
+      "$id": {
+        ".validate": "newData.hasChildren()",
+        "downloadURL": {
+          ".validate": "newData.isString()"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "activeLogo": {
+          ".validate": "newData.isBoolean()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin')"
       },
       ".read": "true",
       ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
