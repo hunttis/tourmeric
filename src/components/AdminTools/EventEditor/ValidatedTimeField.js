@@ -112,6 +112,5 @@ export default class ValidatedTimeField extends Component {
 }
 
 ValidatedTimeField.propTypes = {
-  defaultValue: PropTypes.string,
   path: PropTypes.string,
 };

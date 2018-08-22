@@ -72,7 +72,7 @@ export default class MainView extends Component {
       return (
         <div>
           <ThemeHandler />
-          <TitleBar />
+          <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
           <Navbar switchActiveTab={this.switchActiveTab} activeItem={activeItem} changeLanguage={this.changeLanguage} />
           {todayVisible && <Today />}
           {eventsActive && eventContentVisible && <EventList />}

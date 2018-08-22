@@ -14,7 +14,7 @@ export default class TitleBar extends Component {
   }
 
   render() {
-    const { settings } = this.props;
+    const { settings, returnToFrontpage } = this.props;
 
     const { features } = settings;
     const highlightsActive = _.get(features, 'highlights.active', false);
@@ -30,13 +30,15 @@ export default class TitleBar extends Component {
             <div className="columns is-marginless">
               <div className="column is-4 has-text-centered-mobile is-vcentered">
                 {settings.activeLogo &&
-                  <div id="logo">
-                    <img src={settings.activeLogo} alt="" className="is-hidden-tablet" />
+                  <a onClick={() => returnToFrontpage()}>
+                    <div id="logo">
+                      <img src={settings.activeLogo} alt="" className="is-hidden-tablet" />
 
-                    <figure className="image is-hidden-mobile">
-                      <img src={settings.activeLogo} alt="" />
-                    </figure>
-                  </div>
+                      <figure className="image is-hidden-mobile">
+                        <img src={settings.activeLogo} alt="" />
+                      </figure>
+                    </div>
+                  </a>
                 }
                 {settings.pageTitle &&
                   <div id="titletext" className="title is-2">
@@ -71,4 +73,5 @@ export default class TitleBar extends Component {
 TitleBar.propTypes = {
   settings: PropTypes.object,
   dispatch: PropTypes.func,
+  returnToFrontpage: PropTypes.func,
 };

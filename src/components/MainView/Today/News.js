@@ -28,10 +28,10 @@ export default class News extends Component {
           {publishedNews.map((newsItem) => {
             const newsData = newsItem.value;
             const newsDate = moment(newsData.date, 'YYYY-MM-DD').format(dateFormat);
-            const footerNeeded = newsData.link || newsData.summary;
             const currentActiveNewsItem = newsItem.key === this.state.activeNewsItem;
-            const content = (currentActiveNewsItem || !newsData.summary) ? newsData.text : newsData.summary;
-            const formattedContent = content.split('\n');
+            const formattedContent = newsData.text.split('\n');
+            const longNewsItem = formattedContent.length > 3;
+            const footerNeeded = newsData.link || longNewsItem;
 
             return (
               <Fragment key={newsItem.key}>
@@ -44,30 +44,31 @@ export default class News extends Component {
                       {newsDate}
                     </div>
                   </div>
-                  {/* {newsData.image &&
-                  <div className="card-image">
-                    <figure className="image">
-                      <img src={newsData.image} alt="" />
-                    </figure>
-                  </div>
-                  } */}
 
                   <div className="card-content">
                     <div className="content">
-                      {formattedContent.map((paragraph, index) => <p key={`${newsItem.key}-${index}`}>{paragraph}</p>)}
+                      {(!longNewsItem || (longNewsItem && currentActiveNewsItem)) && formattedContent.map((paragraph, index) => <p key={`${newsItem.key}-${index}`}>{paragraph}</p>)}
+
+                      {(longNewsItem && !currentActiveNewsItem) && formattedContent.map((paragraph, index) => {
+                        if (index < 2 && !_.isEmpty(paragraph)) {
+                          return <p key={`${newsItem.key}-${index}`}>{paragraph}&nbsp;</p>;
+                        }
+                        return '';
+                      })}
+                      {(longNewsItem && !currentActiveNewsItem) && <p>...<Translate id="continues" /></p>}
                     </div>
                   </div>
 
                   {footerNeeded &&
                     <div className="card-footer">
-                      {(newsData.summary && !currentActiveNewsItem) &&
-                        <a className="card-footer-item" onClick={() => this.setActiveNewsItem(newsItem.key)}><Translate id="showfullnewsitem" /></a>
+                      {(longNewsItem && !currentActiveNewsItem) &&
+                        <a className="card-footer-item" onClick={() => this.setActiveNewsItem(newsItem.key)}><i className="fas fa-caret-square-down" />&nbsp;&nbsp;<Translate id="showfullnewsitem" /></a>
                       }
                       {currentActiveNewsItem &&
-                        <a className="card-footer-item" onClick={() => this.setActiveNewsItem('')}><Translate id="showless" /></a>
+                        <a className="card-footer-item" onClick={() => this.setActiveNewsItem('')}><i className="fas fa-caret-square-up" />&nbsp;&nbsp;<Translate id="showless" /></a>
                       }
                       {(!newsData.summary && newsData.link) &&
-                        <a className="card-footer-item" target="_blank" rel="noopener noreferrer" href={newsData.link}>{newsData.linkName ? newsData.linkName : newsData.link}</a>
+                        <a className="card-footer-item" target="_blank" rel="noopener noreferrer" href={newsData.link}><i className="fas fa-external-link-alt" />&nbsp;&nbsp;{newsData.linkName ? newsData.linkName : newsData.link}</a>
                       }
                     </div>
                   }

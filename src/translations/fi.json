@@ -235,12 +235,16 @@
   "linkname": "Linkin nimi. Jos tätä ei syötetä, koko URL näytetään",
   "showfullnewsitem": "Näytä koko uutinen",
   "showless": "Näytä vähemmän",
+  "continues": "Jatkuu...",
+  "nonewscreatedyet": "Ei vielä luotuja uutisia..",
 
   "today": "Tänään",
   "todaysevents": "Tapahtumat tänään",
   "noeventstoday": "Ei tapahtumia tänään",
   "noeventsinnextsevendays": "Ei tapahtumia seuraavaan 7 päivään",
   "toseeeventsfurtherinthefuturegotoeventspage": "Nähdäksesi tapahtumia kauemmas tulevaisuuteen, mene 'Tapahtumat'-sivulle.",
-  "filtereventsbychoosingcategories": "Suodata tapahtumia valitsemalla kategorioita"
+  "filtereventsbychoosingcategories": "Suodata tapahtumia valitsemalla kategorioita",
+  "shownext7days": "Näytä seuraavat 7 päivää",
+  "showeventstoday": "Näytä tämän päivän tapahtumat"
 
 }

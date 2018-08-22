@@ -142,7 +142,6 @@ type News {
   image: String | Null,
   name: String | Null,
   text: String | Null,
-  summary: String | Null,
   link: String | Null,
   linkName: String | Null
 }

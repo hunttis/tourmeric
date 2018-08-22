@@ -90,7 +90,7 @@ export default class Today extends Component {
         <Fragment>
           <div className="column is-6">
             <h1 className="title"><Translate id="todaysevents" /></h1>
-            <button className="button" onClick={() => this.switchView('future')}>Näytä seuraavat 7 päivää</button>
+            <button className="button" onClick={() => this.switchView('future')}><Translate id="shownext7days" /></button>
             {todaysEvents.map((eventEntry) => {
               const eventId = eventEntry.key;
 
@@ -112,8 +112,9 @@ export default class Today extends Component {
       <Fragment>
         <div className="column is-6">
           <h1 className="title"><Translate id="todaysevents" /></h1>
-          <button className="button" onClick={() => this.switchView('future')}>Näytä seuraavat 7 päivää</button>
-          <div><Translate id="noeventstoday" /></div>
+          <div className="has-text-warning"><Translate id="noeventstoday" /></div>
+          <p>&nbsp;</p>
+          <button className="button" onClick={() => this.switchView('future')}><Translate id="shownext7days" /></button>
         </div>
       </Fragment>
     );
@@ -126,7 +127,7 @@ export default class Today extends Component {
         <Fragment>
           <div className="column is-6">
             <h1 className="title"><Translate id="nextevents" /></h1>
-            <button className="button" onClick={() => this.switchView('today')}>Näytä tämän päivän tapahtumat</button>
+            <button className="button" onClick={() => this.switchView('today')}><Translate id="showeventstoday" /></button>
             {nextEvents.map((eventEntry) => {
               const eventId = eventEntry.key;
               return (
@@ -148,10 +149,12 @@ export default class Today extends Component {
     return (
       <Fragment>
         <div className="column is-6">
-          <h1 className="title"><Translate id="todaysevents" /></h1>
-          <button className="button" onClick={() => this.switchView('today')}>Näytä tämän päivän tapahtumat</button>
-          <div><Translate id="noeventsinnextsevendays" /></div>
+          <h1 className="title"><Translate id="nextevents" /></h1>
+          <div className="has-text-warning"><Translate id="noeventsinnextsevendays" /></div>
+          <p>&nbsp;</p>
           <div><Translate id="toseeeventsfurtherinthefuturegotoeventspage" /></div>
+          <p>&nbsp;</p>
+          <button className="button" onClick={() => this.switchView('today')}><Translate id="showeventstoday" /></button>
 
         </div>
       </Fragment>
