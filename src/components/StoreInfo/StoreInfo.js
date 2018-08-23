@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { isLoaded } from 'react-redux-firebase';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 import { OpeningHourRow } from './OpeningHourRow';
@@ -12,7 +12,7 @@ export default class StoreInfo extends Component {
 
   render() {
     const { settings } = this.props;
-    if (isLoaded(settings)) {
+    if (isLoaded(settings) && !isEmpty(settings.location)) {
       const { openingHours, location } = settings;
       return (
         <Fragment>
@@ -119,6 +119,9 @@ export default class StoreInfo extends Component {
           </div>
         </Fragment>
       );
+    }
+    if (isEmpty(settings.location)) {
+      return <div><Translate id="nostoreinfo" /></div>;
     }
     return <div><Translate id="loading" /></div>;
   }

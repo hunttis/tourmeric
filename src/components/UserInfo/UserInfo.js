@@ -38,12 +38,13 @@ export default class UserInfo extends Component {
       profile, events, participations, userid, settings, storecredit,
     } = this.props;
 
-    if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && !isEmpty(events) && isLoaded(storecredit)) {
+    if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && isLoaded(storecredit)) {
       const userCredit = storecredit[userid];
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
-      const publishedEvents = Object.values(events).filter(event => event.value.published);
-      const futureEvents = publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations));
-      const pastEvents = publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations));
+
+      const publishedEvents = events ? Object.values(events).filter(event => event.value.published) : [];
+      const futureEvents = publishedEvents ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
+      const pastEvents = pastEvents ? publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
       const features = _.get(settings, 'features', {});
       const eventsActive = _.get(features, 'events.active', false);
 

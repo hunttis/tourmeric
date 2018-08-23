@@ -93,7 +93,7 @@ export default class NewsEditor extends Component {
     const { openNewsModalId } = this.state;
     return (
       <Fragment>
-        {Object.entries(news).map((newsEntry, index) => {
+        {news && Object.entries(news).map((newsEntry, index) => {
           const newsId = newsEntry[0];
           const newsItem = newsEntry[1];
           const modalOpenClass = newsId === openNewsModalId && 'is-active';

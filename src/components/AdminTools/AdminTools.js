@@ -11,7 +11,7 @@ import NewsEditor from './NewsEditor/NewsEditor-container';
 
 export default class AdminTools extends Component {
 
-  state = { activeItem: 'news' }
+  state = { activeItem: 'user' }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });

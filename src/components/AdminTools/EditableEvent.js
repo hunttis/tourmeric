@@ -69,6 +69,10 @@ export default class EditableEvent extends Component {
     if (categoriesDone && this.state.hidden) {
       return this.renderEventListItem(categories, eventId, eventContent);
     }
+
+    if (isLoaded(categories) && isEmpty(categories)) {
+      return <div><Translate id="nocategoriesgocreatesome" /></div>;
+    }
     return <div><Translate id="loading" /></div>;
   }
 

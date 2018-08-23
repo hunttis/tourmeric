@@ -28,53 +28,62 @@ export default class CategoryLogoUploader extends Component {
 
     return (
       <section className="section">
-        <Dropzone onDrop={this.onFilesDrop}>
-          <div>
-            <Translate id="dropfileshere" />
-          </div>
-        </Dropzone>
-        <br />
-        {
-        uploadedCategoryLogos &&
-          <div>
-            <h1 className="title">
-              <Translate id="uploadedfiles" />:
-            </h1>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th><Translate id="image" /></th>
-                  <th><Translate id="filename" /></th>
-                  <th><Translate id="actions" /></th>
-                </tr>
-              </thead>
-              {
-              map(uploadedCategoryLogos, (file, key) => {
-                // console.log(file, key);
-                if (!file || !key) {
-                  return <div>No file or key</div>;
-                }
-                return (
-                  <tbody key={file.name + key}>
-                    <tr className="">
-                      <td>
-                        <img className="thumbnail" src={file.downloadURL} alt="" />
-                      </td>
-                      <td>
-                        <span>{file.name}</span>
-                      </td>
-                      <td>
-                        <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                          <Translate id="deletefile" />
-                        </button>
-                      </td>
+        <div className="columns">
+
+          <div className="column is-8">
+            {
+            uploadedCategoryLogos &&
+              <div>
+                <h1 className="title">
+                  <Translate id="uploadedfiles" />:
+                </h1>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th><Translate id="image" /></th>
+                      <th><Translate id="filename" /></th>
+                      <th><Translate id="actions" /></th>
                     </tr>
-                  </tbody>
-                );
-              })}
-            </table>
+                  </thead>
+                  {
+                  map(uploadedCategoryLogos, (file, key) => {
+                    // console.log(file, key);
+                    if (!file || !key) {
+                      return <div>No file or key</div>;
+                    }
+                    return (
+                      <tbody key={file.name + key}>
+                        <tr className="">
+                          <td>
+                            <img className="thumbnail" src={file.downloadURL} alt="" />
+                          </td>
+                          <td>
+                            <span>{file.name}</span>
+                          </td>
+                          <td>
+                            <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                              <Translate id="deletefile" />
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    );
+                  })}
+                </table>
+              </div>
+            }
           </div>
-        }
+
+
+          <div className="column is-4">
+            <Dropzone onDrop={this.onFilesDrop}>
+              <div>
+                <Translate id="dropfileshere" />
+              </div>
+            </Dropzone>
+          </div>
+
+        </div>
 
       </section>
     );

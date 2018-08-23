@@ -62,7 +62,7 @@ export default class StoreCreditTable extends Component {
           </tbody>
           <tfoot>
             <tr>
-              <th colSpan="4" className="has-text-right">
+              <th colSpan="3" className="has-text-right">
                 <Translate id="total" />
               </th>
               <th>
