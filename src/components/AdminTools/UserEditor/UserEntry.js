@@ -8,7 +8,7 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDeleteModal, use
 
       <div className="card-header">
         <div className="card-header-title">
-          {userData.displayName} - {userData.email}
+          {userData.firstName} {userData.lastName} - {userData.email}
         </div>
         {userData.avatarUrl &&
         <div className="card-header-icon">
@@ -21,8 +21,11 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDeleteModal, use
 
       <div className="card-content">
         <ul>
-          {userData.displayName &&
-            <li><Translate id="displayname" />: {userData.displayName}</li>
+          {userData.firstName &&
+            <li><Translate id="firstname" />: {userData.firstName}</li>
+          }
+          {userData.lastName &&
+            <li><Translate id="lastname" />: {userData.lastName}</li>
           }
           {userData.username &&
             <li><Translate id="username" />: {userData.username}</li>
