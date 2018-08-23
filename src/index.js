@@ -25,8 +25,7 @@ import finnishTranslations from './translations/fi.json';
 
 import eventReducer from './reducers/eventReducer';
 
-// This eslint rule is ignored, because the file doesn't exist in the repository on purpose. User must create it.
-const config = require('./config').get(process.env.NODE_ENV); // eslint-disable-line import/no-unresolved
+const config = require('./config').get(process.env.NODE_ENV);
 
 const defaultLanguage = 'fi';
 
