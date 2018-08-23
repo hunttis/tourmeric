@@ -15,13 +15,14 @@ import Register from './Account/Register-container';
 import ThemeHandler from './ThemeHandler-container';
 import StoreInfo from '../StoreInfo/StoreInfo-container';
 import Navbar from './Navbar/Navbar-container';
+import Today from './Today/Today-container';
 
 export default class MainView extends Component {
   constructor(props) {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { activeItem: 'storeinfo', forceUserInfo: false };
+    this.state = { activeItem: 'today', forceUserInfo: false };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,6 +59,7 @@ export default class MainView extends Component {
       const eventsActive = _.get(features, 'events.active', false);
       const storeInfoActive = _.get(features, 'storeinfo.active', false);
 
+      const todayVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'today');
       const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'events');
       const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activeItem === 'userinfo' || !hasProfileData));
       const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'admintools');
@@ -70,9 +72,9 @@ export default class MainView extends Component {
       return (
         <div>
           <ThemeHandler />
-          <TitleBar />
+          <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
           <Navbar switchActiveTab={this.switchActiveTab} activeItem={activeItem} changeLanguage={this.changeLanguage} />
-
+          {todayVisible && <Today />}
           {eventsActive && eventContentVisible && <EventList />}
           {storeInfoActive && storeInfoVisible && <StoreInfo />}
           {userInfoVisible && <UserInfo />}

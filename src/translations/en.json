@@ -228,8 +228,24 @@
 
   "news": "News",
   "text": "Text",
+  "summary": "Summary",
   "noname": "No name",
   "noimage": "No image",
-  "newnewsitem": "New news item"
-  
+  "newsimage": "News image",
+  "newnewsitem": "New news item",
+  "linkname": "Name for the link, if no name is input, the URL will be shown",
+  "showfullnewsitem": "Show full text",
+  "showless": "Show less",
+  "continues": "Continues...",
+  "nonewscreatedyet": "No news created, yet..",
+
+  "today": "Today",
+  "todaysevents": "Today's Events",
+  "noeventstoday": "No events today",
+  "noeventsinnextsevendays": "No events in the next 7 days",
+  "toseeeventsfurtherinthefuturegotoeventspage": "To see events further into the future, go to the 'Events'-page.",
+  "filtereventsbychoosingcategories": "Filter events by choosing categories",
+  "shownext7days": "Show next 7 days",
+  "showeventstoday": "Show events for today"
+
 }

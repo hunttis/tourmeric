@@ -11,7 +11,7 @@ import { AdminToolsTab } from './AdminToolsTab';
 
 export default class AdminToolsEvents extends Component {
 
-  state = { activeItem: 'storeinfo' }
+  state = { activeItem: 'unpublished' }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });

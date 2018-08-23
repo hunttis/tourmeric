@@ -56,8 +56,8 @@
   "select": "- Valitse -",
   "date": "Päivämäärä",
   "time": "Aika",
-  "hour": "Hour",
-  "minute": "Minute",
+  "hour": "Tunti",
+  "minute": "Minuutti",
   "titlebarcolor": "Otsikkorivin väri",
   "titlebarcolor2": "Otsikkorivin toinen väri",
   "titletextcolor": "Otsikon tekstin väri",
@@ -227,8 +227,24 @@
 
   "news": "Uutiset",
   "text": "Teksti",
+  "summary": "Yhteenveto",
   "noname": "Ei nimeä",
   "noimage": "Ei kuvaa",
-  "newnewsitem": "Uusi uutinen"
+  "newsimage": "Uutisen kuva",
+  "newnewsitem": "Uusi uutinen",
+  "linkname": "Linkin nimi. Jos tätä ei syötetä, koko URL näytetään",
+  "showfullnewsitem": "Näytä koko uutinen",
+  "showless": "Näytä vähemmän",
+  "continues": "Jatkuu...",
+  "nonewscreatedyet": "Ei vielä luotuja uutisia..",
+
+  "today": "Tänään",
+  "todaysevents": "Tapahtumat tänään",
+  "noeventstoday": "Ei tapahtumia tänään",
+  "noeventsinnextsevendays": "Ei tapahtumia seuraavaan 7 päivään",
+  "toseeeventsfurtherinthefuturegotoeventspage": "Nähdäksesi tapahtumia kauemmas tulevaisuuteen, mene 'Tapahtumat'-sivulle.",
+  "filtereventsbychoosingcategories": "Suodata tapahtumia valitsemalla kategorioita",
+  "shownext7days": "Näytä seuraavat 7 päivää",
+  "showeventstoday": "Näytä tämän päivän tapahtumat"
 
 }

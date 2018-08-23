@@ -15,7 +15,8 @@ export default class NewsEditor extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { modalOpenClass: '' };
+    this.state = { openNewsModalId: '' };
+    this.changeImage.bind(this);
   }
 
   onFilesDrop = async (files) => {
@@ -27,7 +28,6 @@ export default class NewsEditor extends Component {
 
   setActiveStatus(newsId, newStatus) {
     firebase.update(`/news/${newsId}`, { active: newStatus });
-    this.setState({ newsActive: newStatus });
   }
 
   deleteFile = async (file, key) => {
@@ -40,17 +40,20 @@ export default class NewsEditor extends Component {
     firebase.push('/news', { createDate: moment().toISOString(), date: moment().format('YYYY-MM-DD') });
   }
 
-  openModal(newsId, newsItem) {
-    this.setState({ modalOpenClass: 'is-active', newsId, newsName: newsItem.name, newsImage: newsItem.image, newsDate: newsItem.date, newsActive: newsItem.active, newsText: newsItem.text });
+  openModal(newsId) {
+    this.setState({
+      openNewsModalId: newsId,
+    });
   }
 
   closeModal() {
-    this.setState({ modalOpenClass: '', newsId: '', newsName: '', newsDate: '', newsImage: '', newsActive: '', newsText: '' });
+    this.setState({
+      openNewsModalId: '',
+    });
   }
 
   changeImage(path, value) {
     firebase.update(`/${path}`, value);
-    this.setState({ newsImage: value.image });
   }
 
   listNews(news) {
@@ -60,18 +63,23 @@ export default class NewsEditor extends Component {
           const newsId = newsEntry[0];
           const newsItem = newsEntry[1];
           const newsImageExists = Boolean(newsItem.image);
+          const formattedContent = newsItem.text ? newsItem.text.split('\n') : [];
+
           return (
             <div key={newsId} className="columns is-tablet">
-              <div className="column is-3">{moment(newsItem.createDate).format('DD-MM-YYYY')}</div>
+              <div className="column is-2">{moment(newsItem.createDate).format('DD-MM-YYYY')}</div>
               {/* <div className="column is-3">{moment(newsItem.date).format('DD-MM-YYYY')}</div> */}
-              <div className="column is-3">{newsItem.name || <Translate id="noname" />}</div>
-              <div className="column is-3">
+              <div className="column is-2">{newsItem.name || <Translate id="noname" />}</div>
+              <div className="column is-2">
                 {newsImageExists && <img alt="" src={newsItem.image} /> }
                 {!newsImageExists && <Translate id="noimage" />}
               </div>
+              <div className="column">
+                {formattedContent.map((paragraph, index) => (<p key={index}>{paragraph}&nbsp;</p>))}
+              </div>
 
-              <div className="column is-3">
-                <button className="button" onClick={() => this.openModal(newsId, newsItem)}><Translate id="edit" /></button>
+              <div className="column is-2">
+                <button className="button" onClick={() => this.openModal(newsId)}><Translate id="edit" /></button>
               </div>
             </div>
           );
@@ -80,62 +88,97 @@ export default class NewsEditor extends Component {
     );
   }
 
-  newsModal() {
+  newsModal(news) {
     const { uploadedNewsImages } = this.props;
-    const { modalOpenClass, newsId, newsName, newsImage, newsDate, newsActive, newsText } = this.state;
+    const { openNewsModalId } = this.state;
     return (
-      <div className={`modal ${modalOpenClass}`}>
-        <div className="modal-background" onClick={() => this.closeModal()} />
-        <div className="modal-content">
-          <div className="box">
+      <Fragment>
+        {Object.entries(news).map((newsEntry, index) => {
+          const newsId = newsEntry[0];
+          const newsItem = newsEntry[1];
+          const modalOpenClass = newsId === openNewsModalId && 'is-active';
+          return (
+            <div key={`newsEditorModal-${index}`} className={`modal ${modalOpenClass}`}>
+              <div className="modal-background" onClick={() => this.closeModal()} />
+              <div className="modal-content">
+                <div className="box">
 
-            <EditableField
-              defaultValue={newsName}
-              labelContent="name"
-              placeHolder="name"
-              path={`/news/${newsId}`}
-              targetName="name"
-            />
-            <EditableField
-              defaultValue={newsDate}
-              labelContent="date"
-              placeHolder="date"
-              path={`/news/${newsId}`}
-              targetName="date"
-            />
-            <EditableTextarea
-              isOk={this.state.prizesOk}
-              updateFieldStatus={this.updateFieldStatus}
-              labelContent="text"
-              placeHolder="newstextplaceholder"
-              defaultValue={newsText}
-              path={`/news/${newsId}`}
-              targetName="text"
-            />
-            <FileSelector
-              files={uploadedNewsImages}
-              defaultValue={newsImage}
-              onChange={this.changeImage}
-              path={`/news/${newsId}`}
-              targetName="image"
-            />
-            {newsImage && <img alt="" src={newsImage} />}
+                  <EditableField
+                    defaultValue={newsItem.name}
+                    labelContent="name"
+                    placeHolder="name"
+                    path={`/news/${newsId}`}
+                    targetName="name"
+                  />
+                  <EditableField
+                    defaultValue={newsItem.date}
+                    labelContent="date"
+                    placeHolder="date"
+                    path={`/news/${newsId}`}
+                    targetName="date"
+                  />
+
+                  <EditableTextarea
+                    updateFieldStatus={this.updateFieldStatus}
+                    labelContent="text"
+                    placeHolder="newstextplaceholder"
+                    defaultValue={newsItem.text}
+                    path={`/news/${newsId}`}
+                    targetName="text"
+                  />
+
+                  <EditableField
+                    updateFieldStatus={this.updateFieldStatus}
+                    labelContent="linkname"
+                    placeHolder="linknameplaceholder"
+                    defaultValue={newsItem.linkName}
+                    path={`/news/${newsId}`}
+                    targetName="linkName"
+                  />
+
+                  <EditableField
+                    updateFieldStatus={this.updateFieldStatus}
+                    labelContent="link"
+                    placeHolder="linkplaceholder"
+                    defaultValue={newsItem.link}
+                    path={`/news/${newsId}`}
+                    targetName="link"
+                  />
+
+                  <div className="level">
+                    <div className="level-item">
+                      <FileSelector
+                        files={uploadedNewsImages}
+                        defaultValue={newsItem.image}
+                        onChange={this.changeImage}
+                        path={`/news/${newsId}`}
+                        targetName="image"
+                      />
+                    </div>
+                    <div className="level-item">
+                      {newsItem.image && <span><img alt="" src={newsItem.image} /></span>}
+                    </div>
+                  </div>
 
 
-            {newsActive &&
-              <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><Translate id="deactivate" /></button>
-            }
-            {!newsActive &&
-              <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}><Translate id="activate" /></button>
-            }
+                  {news.active &&
+                    <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><Translate id="deactivate" /></button>
+                  }
+                  {!news.active &&
+                    <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}><Translate id="activate" /></button>
+                  }
 
-            <div>ID: {newsId}</div>
-          </div>
+                  <div>ID: {newsId}</div>
+                </div>
 
-        </div>
-        <button className="modal-close is-large" aria-label="close" onClick={() => this.closeModal()} />
-      </div>
+              </div>
+              <button className="modal-close is-large" aria-label="close" onClick={() => this.closeModal()} />
+            </div>
+          );
+        })}
+      </Fragment>
     );
+
   }
 
   render() {
@@ -150,16 +193,16 @@ export default class NewsEditor extends Component {
               <button className="button" onClick={() => this.createNewsItem()}><Translate id="newnewsitem" /></button>
             </div>
             <div className="level-right">
-              <Dropzone onDrop={this.onFilesDrop}>
+              <Dropzone onDrop={this.onFilesDrop} className="box">
                 <div>
                   <Translate id="dropfileshere" />
                 </div>
               </Dropzone>
             </div>
           </div>
-          {this.newsModal()}
+          {this.newsModal(news)}
           {!isEmpty(news) && this.listNews(news)}
-          {isEmpty(news) && <div>No news created, yet...</div>}
+          {isEmpty(news) && <div><Translate id="nonewscreatedyet" /></div>}
         </Fragment>
       );
 

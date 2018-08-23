@@ -1,24 +1,24 @@
-import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withFirebase, firebaseConnect } from 'react-redux-firebase';
+import { connect } from 'react-redux';
+import { firebaseConnect } from 'react-redux-firebase';
 
-import UserInfo from './UserInfo';
+import Today from './Today';
 
 export default compose(
-  connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-
-  firebaseConnect(({ auth }) => [
+  firebaseConnect([
     { path: '/events', queryParams: ['orderByChild=date'] },
+    { path: '/categories' },
     { path: '/participations' },
-    { path: `/storecredit/${auth.uid}` },
+    { path: '/uploadedCategoryLogos' },
   ]),
-  withFirebase,
   connect(state => ({
     events: state.firebase.ordered.events,
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
     userid: state.firebase.auth.uid,
     settings: state.firebase.data.settings,
-    storecredit: state.firebase.data.storecredit,
+    languages: state.locale.languages,
+    uploadedCategoryLogos: state.firebase.data.uploadedCategoryLogos,
   })),
-)(UserInfo);
+  connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
+)(Today);

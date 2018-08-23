@@ -424,7 +424,7 @@ ShallowWrapper {
           </div>
         </div>,
       ],
-      "className": "column is-8 eventcard",
+      "className": "column eventcard",
     },
     "ref": null,
     "rendered": Array [
@@ -1606,7 +1606,7 @@ ShallowWrapper {
             </div>
           </div>,
         ],
-        "className": "column is-8 eventcard",
+        "className": "column eventcard",
       },
       "ref": null,
       "rendered": Array [

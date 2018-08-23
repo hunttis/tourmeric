@@ -36,7 +36,7 @@ export default class EventCard extends Component {
     const thisParticipation = _.get(participations, `${eventId}.${userid}`, []);
 
     return (
-      <div className="column is-8 eventcard">
+      <div className="column eventcard">
         <h2 className="subtitle date-item">
           <Moment format={dateFormat}>{eventContent.date}</Moment>
         </h2>
@@ -86,7 +86,7 @@ export default class EventCard extends Component {
 
         </div>
         <p>&nbsp;</p>
-        { moment(eventContent.date).isAfter(moment()) &&
+        { moment(eventContent.date).isSameOrAfter(moment(), 'day') &&
           <div className="level participation-level">
             { alreadyParticipated &&
               <div className="level-left">

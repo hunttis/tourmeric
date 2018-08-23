@@ -1,143 +1,174 @@
 {
   "rules": {
     "categories": {
-      ".validate": "newData.hasChildren()",
-      "name": {
-        ".validate": "(newData.isString() && newData.isString())"
-      },
-      "abbreviation": {
-        ".validate": "(newData.isString() && newData.isString())"
-      },
-      "type": {
-        ".validate": "(newData.isString() && newData.isString())"
-      },
-      "logo": {
-        ".validate": "(newData.isString() && newData.isString())"
-      },
-      "$other": {
-        ".validate": "false"
+      "$id": {
+        ".validate": "newData.hasChildren()",
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "abbreviation": {
+          ".validate": "newData.isString()"
+        },
+        "type": {
+          ".validate": "newData.isString()"
+        },
+        "logo": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin')"
       },
       ".read": "true",
-      ".write": "((auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin') && (auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin'))"
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
     "events": {
-      ".validate": "newData.hasChildren(['createDate'])",
-      "category": {
-        ".validate": "newData.isString()"
-      },
-      "createDate": {
-        ".validate": "newData.isString()"
-      },
-      "date": {
-        ".validate": "newData.isString()"
-      },
-      "entryFee": {
-        ".validate": "newData.isNumber()"
-      },
-      "format": {
-        ".validate": "newData.isString()"
-      },
-      "link": {
-        ".validate": "newData.isString()"
-      },
-      "name": {
-        ".validate": "newData.isString()"
-      },
-      "notes": {
-        ".validate": "newData.isString()"
-      },
-      "playerSlots": {
-        ".validate": "newData.isNumber()"
-      },
-      "prizes": {
-        ".validate": "newData.isString()"
-      },
-      "published": {
-        ".validate": "newData.isBoolean()"
-      },
-      "rulesLevel": {
-        ".validate": "newData.isString()"
-      },
-      "time": {
-        ".validate": "newData.isString()"
-      },
-      "$other": {
-        ".validate": "false"
+      "$id": {
+        ".validate": "newData.hasChildren()",
+        "category": {
+          ".validate": "newData.isString()"
+        },
+        "createDate": {
+          ".validate": "newData.isString()"
+        },
+        "date": {
+          ".validate": "newData.isString()"
+        },
+        "entryFee": {
+          ".validate": "newData.isNumber()"
+        },
+        "format": {
+          ".validate": "newData.isString()"
+        },
+        "link": {
+          ".validate": "newData.isString()"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "notes": {
+          ".validate": "newData.isString()"
+        },
+        "playerSlots": {
+          ".validate": "newData.isNumber()"
+        },
+        "prizes": {
+          ".validate": "newData.isString()"
+        },
+        "published": {
+          ".validate": "newData.isBoolean()"
+        },
+        "rulesLevel": {
+          ".validate": "newData.isString()"
+        },
+        "time": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin')"
       },
       ".read": "true",
       ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
     "highlights": {
-      ".validate": "newData.hasChildren(['createDate'])",
-      "active": {
-        ".validate": "newData.isBoolean()"
-      },
-      "createDate": {
-        ".validate": "newData.isString()"
-      },
-      "date": {
-        ".validate": "newData.isString()"
-      },
-      "image": {
-        ".validate": "newData.isString()"
-      },
-      "name": {
-        ".validate": "newData.isString()"
-      },
-      "$other": {
-        ".validate": "false"
+      "$id": {
+        ".validate": "newData.hasChildren()",
+        "active": {
+          ".validate": "newData.isBoolean()"
+        },
+        "createDate": {
+          ".validate": "newData.isString()"
+        },
+        "date": {
+          ".validate": "newData.isString()"
+        },
+        "image": {
+          ".validate": "newData.isString()"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin')"
       },
       ".read": "true",
       ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
     "news": {
-      ".validate": "newData.hasChildren(['createDate'])",
-      "active": {
-        ".validate": "newData.isBoolean()"
-      },
-      "createDate": {
-        ".validate": "newData.isString()"
-      },
-      "date": {
-        ".validate": "newData.isString()"
-      },
-      "image": {
-        ".validate": "newData.isString()"
-      },
-      "name": {
-        ".validate": "newData.isString()"
-      },
-      "text": {
-        ".validate": "newData.isString()"
-      },
-      "$other": {
-        ".validate": "false"
+      "$id": {
+        ".validate": "newData.hasChildren()",
+        "active": {
+          ".validate": "newData.isBoolean()"
+        },
+        "createDate": {
+          ".validate": "newData.isString()"
+        },
+        "date": {
+          ".validate": "newData.isString()"
+        },
+        "image": {
+          ".validate": "newData.isString()"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "text": {
+          ".validate": "newData.isString()"
+        },
+        "summary": {
+          ".validate": "newData.isString()"
+        },
+        "link": {
+          ".validate": "newData.isString()"
+        },
+        "linkName": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin')"
       },
       ".read": "true",
       ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
     "participations": {
-      ".validate": "newData.hasChildren()",
-      "comment": {
-        ".validate": "newData.isString()"
-      },
-      "date": {
-        ".validate": "newData.isString()"
-      },
-      "firstName": {
-        ".validate": "newData.isString()"
-      },
-      "lastName": {
-        ".validate": "newData.isString()"
-      },
-      "userId": {
-        ".validate": "newData.isString()"
-      },
-      "$other": {
-        ".validate": "false"
+      "$id": {
+        "$userid": {
+          ".validate": "newData.hasChildren()",
+          "comment": {
+            ".validate": "newData.isString()"
+          },
+          "date": {
+            ".validate": "newData.isString()"
+          },
+          "firstName": {
+            ".validate": "newData.isString()"
+          },
+          "lastName": {
+            ".validate": "newData.isString()"
+          },
+          "userId": {
+            ".validate": "newData.isString()"
+          },
+          "$other": {
+            ".validate": "false"
+          },
+          ".read": "true",
+          ".write": "((auth != null && auth.uid == $userid) || (auth != null && newData.parent().parent().parent().child('users').child(auth.uid).child('role').val() == 'admin'))"
+        }
       },
       ".read": "true",
-      ".write": "auth != null"
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
     "settings": {
       ".read": "true",
@@ -203,18 +234,22 @@
       ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
     "uploadedNewsImages": {
-      ".validate": "newData.hasChildren()",
-      "downloadURL": {
-        ".validate": "newData.isString()"
-      },
-      "name": {
-        ".validate": "newData.isString()"
-      },
-      "activeLogo": {
-        ".validate": "newData.isBoolean()"
-      },
-      "$other": {
-        ".validate": "false"
+      "$id": {
+        ".validate": "newData.hasChildren()",
+        "downloadURL": {
+          ".validate": "newData.isString()"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "activeLogo": {
+          ".validate": "newData.isBoolean()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin')"
       },
       ".read": "true",
       ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"

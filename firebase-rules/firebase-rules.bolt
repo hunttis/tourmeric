@@ -1,26 +1,51 @@
-path /categories is Category {
+path /categories/{id} is Category {
   read() { true }
   write() { isAdmin() }
 }
 
-path /events is Event {
+path /categories {
   read() { true }
   write() { isAdmin() }
 }
 
-path /highlights is Highlight {
+path /events/{id} is Event {
   read() { true }
   write() { isAdmin() }
 }
 
-path /news is News {
+path /events {
   read() { true }
   write() { isAdmin() }
 }
 
-path /participations is Participation {
+path /highlights/{id} is Highlight {
   read() { true }
-  write() { auth != null }
+  write() { isAdmin() }
+}
+
+path /highlights {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /news/{id} is News {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /news {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /participations/{id}/{userid} is Participation {
+  read() { true }
+  write() { isCurrentUser(userid) || isAdmin() }
+}
+
+path /participations {
+  read() { true }
+  write() { isAdmin() }
 }
 
 path /settings {
@@ -53,10 +78,16 @@ path /uploadedHighlightBanners is File {
   write() { isAdmin() }
 }
 
-path /uploadedNewsImages is File {
+path /uploadedNewsImages/{id} is File {
   read() { true }
   write() { isAdmin() }
 }
+
+path /uploadedNewsImages {
+  read() { true }
+  write() { isAdmin() }
+}
+
 
 path /uploadedStoreinfoFiles is File {
   read() { true }
@@ -73,11 +104,6 @@ path /users {
   write() { isAdmin() }
 }
 
-path /categories is Category {
-  read() { true }
-  write() { isAdmin() }
-}
-
 type Category {
   name: String | Null,
   abbreviation: String | Null,
@@ -87,7 +113,7 @@ type Category {
 
 type Event {
   category: String | Null,
-  createDate: String,
+  createDate: String | Null,
   date: String | Null,
   entryFee: Number | Null,
   format: String | Null,
@@ -103,7 +129,7 @@ type Event {
 
 type Highlight {
   active: Boolean | Null,
-  createDate: String,
+  createDate: String | Null,
   date: String | Null,
   image: String | Null,
   name: String | Null
@@ -111,11 +137,13 @@ type Highlight {
 
 type News {
   active: Boolean | Null,
-  createDate: String,
+  createDate: String | Null,
   date: String | Null,
   image: String | Null,
   name: String | Null,
-  text: String | Null
+  text: String | Null,
+  link: String | Null,
+  linkName: String | Null
 }
 
 type Participation {
@@ -144,4 +172,4 @@ type User {
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }
-isAdmin() { auth != null && root.users[auth.uid].role == 'admin' }
+isAdmin() { auth != null && root.users[auth.uid].role == "admin" }
