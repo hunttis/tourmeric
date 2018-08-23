@@ -19,8 +19,6 @@ export default class CategoryEditor extends Component {
   render() {
     const { categories, uploadedCategoryLogos, events } = this.props;
 
-    console.log(categories, uploadedCategoryLogos, events);
-
     if (isLoaded(categories) && !isEmpty(categories) && isLoaded(uploadedCategoryLogos)) {
       return (
         <div>

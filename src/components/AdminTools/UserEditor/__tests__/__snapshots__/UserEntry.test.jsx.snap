@@ -29,6 +29,7 @@ ShallowWrapper {
           <div
             className="card-header-title"
           >
+             
              - 
           </div>
         </div>
@@ -98,6 +99,7 @@ ShallowWrapper {
             <div
               className="card-header-title"
             >
+               
                - 
             </div>
           </div>,
@@ -165,6 +167,7 @@ ShallowWrapper {
               <div
                 className="card-header-title"
               >
+                 
                  - 
               </div>,
               undefined,
@@ -180,6 +183,8 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   undefined,
+                  " ",
+                  undefined,
                   " - ",
                   undefined,
                 ],
@@ -187,6 +192,8 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
+                undefined,
+                " ",
                 undefined,
                 " - ",
                 undefined,
@@ -232,6 +239,7 @@ ShallowWrapper {
               "children": Array [
                 undefined,
                 undefined,
+                undefined,
                 <li>
                   <Translate
                     id="email"
@@ -255,6 +263,7 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": Array [
+              undefined,
               undefined,
               undefined,
               Object {
@@ -479,6 +488,7 @@ ShallowWrapper {
             <div
               className="card-header-title"
             >
+               
                - 
             </div>
           </div>
@@ -548,6 +558,7 @@ ShallowWrapper {
               <div
                 className="card-header-title"
               >
+                 
                  - 
               </div>
             </div>,
@@ -615,6 +626,7 @@ ShallowWrapper {
                 <div
                   className="card-header-title"
                 >
+                   
                    - 
                 </div>,
                 undefined,
@@ -630,6 +642,8 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     undefined,
+                    " ",
+                    undefined,
                     " - ",
                     undefined,
                   ],
@@ -637,6 +651,8 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
+                  undefined,
+                  " ",
                   undefined,
                   " - ",
                   undefined,
@@ -682,6 +698,7 @@ ShallowWrapper {
                 "children": Array [
                   undefined,
                   undefined,
+                  undefined,
                   <li>
                     <Translate
                       id="email"
@@ -705,6 +722,7 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
+                undefined,
                 undefined,
                 undefined,
                 Object {

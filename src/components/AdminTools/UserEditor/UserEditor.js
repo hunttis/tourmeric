@@ -3,7 +3,6 @@ import { isLoaded } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
-import firebase from 'firebase/app';
 import UserEntry from './UserEntry-container';
 import { DisableModal } from './DisableModal';
 import { EditModal } from './EditModal';
