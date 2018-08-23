@@ -52,7 +52,7 @@ export default class HighlightEditor extends Component {
   listHighlights(highlights) {
     return (
       <Fragment>
-        {Object.entries(highlights).map((highlightEntry) => {
+        {highlights && Object.entries(highlights).map((highlightEntry) => {
           const highlightId = highlightEntry[0];
           const highlight = highlightEntry[1];
           const highlightImageExists = Boolean(highlight.image);
@@ -191,7 +191,7 @@ const FileSelector = ({ path, files, defaultValue, onChange }) => (
       <div className="select">
         <select defaultValue={defaultValue} onChange={event => onChange(path, { image: event.target.value })}>
           <option value=""><Translate id="select" /></option>
-          {Object.keys(files).map(fileKey => <option key={fileKey} value={files[fileKey].downloadURL}>{files[fileKey].name}</option>)}
+          {files && Object.keys(files).map(fileKey => <option key={fileKey} value={files[fileKey].downloadURL}>{files[fileKey].name}</option>)}
         </select>
       </div>
     </div>

@@ -24,7 +24,11 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "all-tests": "yarn test; yarn lint; yarn check-translations",
-    "check-translations": "json-diff --keys-only src/translations/en.json src/translations/fi.json"
+    "check-translations": "json-diff --keys-only src/translations/en.json src/translations/fi.json",
+    "firebase-serve": "firebase serve",
+    "firebase-login": "firebase login",
+    "firebase-init": "firebase init",
+    "firebase-deploy": "yarn build; firebase deploy"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
@@ -64,6 +68,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
     "firebase-bolt": "^0.8.3",
+    "firebase-tools": "^4.2.0",
     "jest": "^23.2.0",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.4",

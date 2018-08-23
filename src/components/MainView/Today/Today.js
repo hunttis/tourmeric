@@ -15,25 +15,31 @@ export default class Today extends Component {
   findNextEvents(events) {
     const now = moment();
     const after7Days = moment().add(7, 'days');
-    const nextEvents = events.filter((eventEntry) => {
-      const eventData = eventEntry.value;
-      const eventDate = moment(eventData.date, 'YYYY-MM-DD');
-      const isWithinAWeek = eventDate.isAfter(now, 'day') && eventDate.isBefore(after7Days, 'day');
-      return eventData.published && isWithinAWeek;
-    });
-
-    return nextEvents;
+    if (events) {
+      const nextEvents = events.filter((eventEntry) => {
+        const eventData = eventEntry.value;
+        const eventDate = moment(eventData.date, 'YYYY-MM-DD');
+        const isWithinAWeek = eventDate.isAfter(now, 'day') && eventDate.isBefore(after7Days, 'day');
+        return eventData.published && isWithinAWeek;
+      });
+      return nextEvents;
+    }
+    return [];
   }
 
   findTodaysEvents(events) {
-    const todaysEvents = events.filter((eventEntry) => {
-      const eventData = eventEntry.value;
-      if (eventData.published && moment(eventData.date, 'YYYY-MM-DD').isSame(moment(), 'day')) {
-        return true;
-      }
-      return false;
-    });
-    return todaysEvents;
+    if (events) {
+
+      const todaysEvents = events.filter((eventEntry) => {
+        const eventData = eventEntry.value;
+        if (eventData.published && moment(eventData.date, 'YYYY-MM-DD').isSame(moment(), 'day')) {
+          return true;
+        }
+        return false;
+      });
+      return todaysEvents;
+    }
+    return [];
   }
 
   closeModal(eventId) {

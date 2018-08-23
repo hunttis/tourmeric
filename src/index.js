@@ -18,14 +18,14 @@ import 'bulma/css/bulma.css';
 // import './star.css';
 import './mystyles.scss';
 
-import config from './config';
-
 import MainView from './components/MainView/MainView-container';
 
 import englishTranslations from './translations/en.json';
 import finnishTranslations from './translations/fi.json';
 
 import eventReducer from './reducers/eventReducer';
+
+const config = require('./config').get(process.env.NODE_ENV);
 
 const defaultLanguage = 'fi';
 

@@ -32,7 +32,7 @@ export default class CategoryEditor extends Component {
               const categoryId = categoryEntry[0];
               const category = categoryEntry[1];
               const boxClasses = 'message';
-              const categoryLogo = uploadedCategoryLogos[category.logo];
+              const categoryLogo = uploadedCategoryLogos ? uploadedCategoryLogos[category.logo] : '';
               const allowedToDelete = !_.find(events, { category: categoryId });
 
               return (
@@ -49,21 +49,21 @@ export default class CategoryEditor extends Component {
                     <div className="message-body">
                       <EditableVerticalField
                         labelContent="name"
-                        placeHolder="Name of the game"
+                        placeHolder="nameofthegame"
                         defaultValue={category.name}
                         path={`/categories/${categoryId}`}
                         targetName="name"
                       />
                       <EditableVerticalField
                         labelContent="abbreviation"
-                        placeHolder="Abbreviation of the name, preferably 10 characters or less"
+                        placeHolder="abbreviationofthename"
                         defaultValue={category.abbreviation}
                         path={`/categories/${categoryId}`}
                         targetName="abbreviation"
                       />
                       <EditableVerticalField
                         labelContent="type"
-                        placeHolder="Game type (card, board, miniature etc.)"
+                        placeHolder="gametype"
                         defaultValue={category.type}
                         path={`/categories/${categoryId}`}
                         targetName="type"
@@ -107,7 +107,7 @@ const FileSelector = ({ path, files, defaultValue, onChange }) => (
       <div className="select">
         <select defaultValue={defaultValue} onChange={event => onChange(path, { logo: event.target.value })}>
           <option value=""><Translate id="select" /></option>
-          {Object.keys(files).map(fileKey => <option key={fileKey} value={fileKey}>{files[fileKey].name}</option>)}
+          {files && Object.keys(files).map(fileKey => <option key={fileKey} value={fileKey}>{files[fileKey].name}</option>)}
         </select>
       </div>
     </div>

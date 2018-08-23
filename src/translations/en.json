@@ -78,8 +78,12 @@
   "addevent": "Add event",
   "editevent": "Edit event",
   "categories": "Categories",
+  "nocategoriesgocreatesome": "There are no categories yet, go create some first",
   "categorylogouploader": "Category logos",
   "cannotdeleteinuse": "Cannot delete, in use",
+  "nameofthegame": "Name of the game",
+  "abbreviationofthename": "Abbreviation of the name",
+  "gametype": "Game type, card, board games, videogames etc",
   "noevents": "No events",
   "published": "Published",
   "publish": "Publish",
@@ -186,7 +190,9 @@
   "credithistory": "Credit history",
   "nocredithistory": "No credit history",
   "creditamount": "Credit amount",
-
+  "creditmessage": "Message",
+  "save": "Tallenna",
+  
   "highlights": "Highlights",
   "newhighlight": "New highlight",
   "activate": "Activate",
@@ -196,6 +202,7 @@
   "features": "Features",
 
   "storeinfo": "Store Info",
+  "nostoreinfo": "Store info hasn't been input",
   "openinghoursfordayplaceholder": "For example '8am - 4pm' or '08:00 - 16:00', leave empty for 'closed'",
   "monday": "Monday",
   "tuesday": "Tuesday",

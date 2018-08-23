@@ -63,17 +63,32 @@ path /storecredit {
   write() { isAdmin() }
 }
 
-path /uploadedCategoryLogos is File {
+path /uploadedCategoryLogos/{id} is File {
   read() { true }
   write() { isAdmin() }
 }
 
-path /uploadedFiles is File {
+path /uploadedCategoryLogos {
   read() { true }
   write() { isAdmin() }
 }
 
-path /uploadedHighlightBanners is File {
+path /uploadedFiles/{id} is File {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /uploadedFiles {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /uploadedHighlightBanners/{id} is File {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /uploadedHighlightBanners {
   read() { true }
   write() { isAdmin() }
 }
@@ -88,8 +103,12 @@ path /uploadedNewsImages {
   write() { isAdmin() }
 }
 
+path /uploadedStoreinfoFiles/{id} is File {
+  read() { true }
+  write() { isAdmin() }
+}
 
-path /uploadedStoreinfoFiles is File {
+path /uploadedStoreinfoFiles {
   read() { true }
   write() { isAdmin() }
 }
@@ -168,7 +187,9 @@ type User {
   providerData: Object | Null,
   role: String | Null,
   uid: Number | Null,
-  username: String | Null
+  username: String | Null,
+  firstName: String | Null,
+  lastName: String | Null
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }

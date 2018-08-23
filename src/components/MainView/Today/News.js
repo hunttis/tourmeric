@@ -20,7 +20,7 @@ export default class News extends Component {
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
 
     if (isLoaded(news)) {
-      const publishedNews = news.filter(newsItem => newsItem.value.active);
+      const publishedNews = news ? news.filter(newsItem => newsItem.value.active) : [];
       return (
         <Fragment>
           <h1 className="title"><Translate id="news" /></h1>

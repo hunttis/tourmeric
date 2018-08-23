@@ -21,7 +21,7 @@ export default class HighLights extends Component {
   activateNext() {
     const { highlights } = this.props;
 
-    if (isLoaded(highlights)) {
+    if (isLoaded(highlights) && !isEmpty(highlights)) {
       const activeKeys = this.findActiveKeys(highlights);
       const { currentlyShowingIndex } = this.state;
       const nextIndex = (currentlyShowingIndex + 1) % activeKeys.length;
