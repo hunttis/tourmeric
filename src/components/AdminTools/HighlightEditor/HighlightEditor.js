@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
-import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
 import moment from 'moment';
 import { map } from 'lodash';
+import FileDropper from '../FileDropper';
 
 import EditableField from '../../Common/EditableField-container';
 
@@ -15,25 +15,8 @@ export default class HighlightEditor extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { modalOpenClass: '', uploadStatus: '', uploadedFiles: '' };
+    this.state = { modalOpenClass: '' };
     this.changeBanner = this.changeBanner.bind(this);
-  }
-
-  onFilesDrop = async (files) => {
-    const uploadedFiles = await files.map(async (file) => {
-      const result = await firebase.uploadFiles(filesPath, [file]);
-      const downloadURL = await result[0].uploadTaskSnapshot.ref.getDownloadURL();
-      await firebase.push(`/${filesPath}`, { name: file.name, downloadURL });
-      return downloadURL;
-    });
-
-    this.setState({ uploadStatus: 'uploading' });
-
-    Promise.all(uploadedFiles).then(() => {
-      this.setState({ uploadedFiles, uploadStatus: 'done' });
-    });
-
-    return uploadedFiles;
   }
 
   setActiveStatus(highlightId, newStatus) {
@@ -202,7 +185,6 @@ export default class HighlightEditor extends Component {
 
   render() {
     const { highlights, uploadedHighlightBanners } = this.props;
-    const { uploadedFiles, uploadStatus } = this.state;
 
     if (isLoaded(highlights) && isLoaded(uploadedHighlightBanners)) {
       return (
@@ -212,16 +194,8 @@ export default class HighlightEditor extends Component {
             <div className="level-left">
               <button className="button" onClick={() => this.createNewHighlight()}><Translate id="newhighlight" /></button>
             </div>
-            {uploadStatus === 'uploading' && <div className="level-item"><p className="has-text-warning"><Translate id="uploadingfiles" /></p></div>}
-            {uploadStatus === 'done' && <div className="level-item"><p className="has-text-success"><Translate id="filessent" />: {uploadedFiles.length}</p></div>}
             <div className="level-right">
-              <Dropzone onDrop={this.onFilesDrop} className="box">
-                <div>
-                  <Translate id="dropfileshere" />
-                </div>
-              </Dropzone>
-
-
+              <FileDropper path={filesPath} />
             </div>
           </div>
           {this.highlightModal()}

@@ -4,8 +4,8 @@ import { isLoaded } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 // import firebase from 'firebase/app';
 import _ from 'lodash';
-import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
+import FileDropper from '../FileDropper';
 import EditableField from '../../Common/EditableField';
 import EditableTextarea from '../../Common/EditableTextarea';
 import { OpeningHoursEditor } from './OpeningHoursEditor';
@@ -84,14 +84,8 @@ export default class StoreInfoEditor extends Component {
                 targetName="email"
               />
             </div>
-            <div className="column is-6">
-              <Dropzone onDrop={this.onFilesDrop}>
-                <div>
-                  <Translate id="dropfileshere" />
-                </div>
-              </Dropzone>
-            </div>
           </div>
+          <FileDropper path={filesPath} />
           <div>
             {
         uploadedStoreinfoFiles &&

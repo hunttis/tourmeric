@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
-import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
 import moment from 'moment';
 import { map } from 'lodash';
 
+import FileDropper from '../FileDropper';
 import EditableField from '../../Common/EditableField-container';
 import EditableTextarea from '../../Common/EditableTextarea-container';
 
@@ -228,17 +228,12 @@ export default class NewsEditor extends Component {
     if (isLoaded(news) && isLoaded(uploadedNewsImages)) {
       return (
         <Fragment>
-
           <div className="level is-mobile">
             <div className="level-left">
               <button className="button" onClick={() => this.createNewsItem()}><Translate id="newnewsitem" /></button>
             </div>
             <div className="level-right">
-              <Dropzone onDrop={this.onFilesDrop} className="box">
-                <div>
-                  <Translate id="dropfileshere" />
-                </div>
-              </Dropzone>
+              <FileDropper path={filesPath} />
             </div>
           </div>
           {this.newsModal(news)}

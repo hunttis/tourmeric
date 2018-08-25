@@ -55,6 +55,12 @@ a.adminactive {
   padding: 0px;
 }
 
+.fade-in {
+  perspective: 800px;
+  animation-name: fadein;
+  animation-duration: 500ms;
+}
+
 button.image-square {
   width: 96px;
   height: 96px;

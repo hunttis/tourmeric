@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Dropzone from 'react-dropzone';
 import { map } from 'lodash';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import { Translate } from 'react-localize-redux';
+import FileDropper from '../FileDropper';
 
 const filesPath = 'uploadedFiles';
 
@@ -38,6 +38,8 @@ export default class FileHandler extends Component {
     return (
       <section className="section">
         <br />
+
+        <FileDropper path={filesPath} />
 
         {
         uploadedFiles &&
@@ -85,11 +87,6 @@ export default class FileHandler extends Component {
             </table>
           </div>
         }
-        <Dropzone onDrop={this.onFilesDrop}>
-          <div>
-            <Translate id="dropfileshere" />
-          </div>
-        </Dropzone>
       </section>
     );
   }
