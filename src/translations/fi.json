@@ -84,6 +84,7 @@
   "gametype": "Pelin tyyppi, korttipeli, lautapeli, videopeli jne",
   "noevents": "Ei tapahtumia",
   "published": "Julkaistu",
+  "notpublished": "Ei julkaistu",
   "publish": "Julkaise",
   "unpublish": "Piilota",
   "delete": "Poista",

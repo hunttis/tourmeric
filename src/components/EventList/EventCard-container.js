@@ -10,7 +10,6 @@ export default compose(
     userid: state.firebase.auth.uid,
     settings: state.firebase.data.settings,
     languages: state.locale.languages,
-    uploadedCategoryLogos: state.firebase.data.uploadedCategoryLogos,
   })),
   connect(({ firebase: { profile } }) => ({ profile })),
 )(EventCard);

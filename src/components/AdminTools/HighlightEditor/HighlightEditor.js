@@ -8,7 +8,7 @@ import { map } from 'lodash';
 import FileDropper from '../FileDropper';
 
 import { HighlightEditorItem } from './HighlightEditorItem';
-import { HighlightEditorModal } from './HighlightEditorModal';
+import HighlightEditorModal from './HighlightEditorModal';
 
 const filesPath = 'uploadedHighlightBanners';
 
@@ -105,6 +105,7 @@ export default class HighlightEditor extends Component {
                   highlight={highlights[highlightId]}
                   setActiveStatus={this.setActiveStatus}
                   uploadedHighlightBanners={uploadedHighlightBanners}
+                  filesPath={filesPath}
                 />
               }
             </div>

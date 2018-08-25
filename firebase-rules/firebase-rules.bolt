@@ -127,7 +127,7 @@ type Category {
   name: String | Null,
   abbreviation: String | Null,
   type: String | Null,
-  logo: String | Null
+  image: String | Null
 }
 
 type Event {

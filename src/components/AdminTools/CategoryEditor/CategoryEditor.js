@@ -5,6 +5,7 @@ import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
+import ImagePicker from '../ImagePicker';
 
 export default class CategoryEditor extends Component {
 
@@ -68,12 +69,13 @@ export default class CategoryEditor extends Component {
                         path={`/categories/${categoryId}`}
                         targetName="type"
                       />
-                      <FileSelector
-                        files={uploadedCategoryLogos}
-                        defaultValue={category.logo}
-                        onChange={this.changeLogo}
+
+                      <br />
+                      <ImagePicker
+                        imageList={uploadedCategoryLogos}
+                        highlightedImage={category.image}
                         path={`/categories/${categoryId}`}
-                        targetName="logo"
+                        size="is-32x32"
                       />
 
                     </div>

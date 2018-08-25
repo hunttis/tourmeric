@@ -86,6 +86,7 @@
   "gametype": "Game type, card, board games, videogames etc",
   "noevents": "No events",
   "published": "Published",
+  "notpublished": "Not published",
   "publish": "Publish",
   "unpublish": "Unpublish",
   "delete": "Delete",

@@ -55,7 +55,6 @@ export default class MainView extends Component {
       const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
       const hasProfileData = isProfileLoaded && profile.firstName && profile.lastName && profile.email;
 
-      // const features = _.get(settings, 'features', {});
       const eventsActive = _.get(settings, 'features.events.active', false);
       const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
 

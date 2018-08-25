@@ -12,7 +12,7 @@
         "type": {
           ".validate": "newData.isString()"
         },
-        "logo": {
+        "image": {
           ".validate": "newData.isString()"
         },
         "$other": {

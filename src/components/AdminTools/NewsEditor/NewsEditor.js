@@ -9,6 +9,8 @@ import { map } from 'lodash';
 import FileDropper from '../FileDropper';
 import EditableField from '../../Common/EditableField-container';
 import EditableTextarea from '../../Common/EditableTextarea-container';
+import ImagePicker from '../ImagePicker';
+import NewsItem from '../../MainView/Today/NewsItem';
 
 const filesPath = 'uploadedNewsImages';
 
@@ -58,34 +60,44 @@ export default class NewsEditor extends Component {
   }
 
   listNews(news) {
+    const { dateFormat } = this.props.settings;
+
     return (
-      <Fragment>
+      <div className="columns is-multiline">
+
         {Object.entries(news).map((newsEntry) => {
           const newsId = newsEntry[0];
-          const newsItem = newsEntry[1];
-          const newsImageExists = Boolean(newsItem.image);
-          const formattedContent = newsItem.text ? newsItem.text.split('\n') : [];
+          const newsData = newsEntry[1];
+          const newsItem = { key: newsId, value: newsData };
 
           return (
-            <div key={newsId} className="columns is-tablet">
-              <div className="column is-2">{moment(newsItem.createDate).format('DD-MM-YYYY')}</div>
-              {/* <div className="column is-3">{moment(newsItem.date).format('DD-MM-YYYY')}</div> */}
-              <div className="column is-2">{newsItem.name || <Translate id="noname" />}</div>
-              <div className="column is-2">
-                {newsImageExists && <img alt="" src={newsItem.image} /> }
-                {!newsImageExists && <Translate id="noimage" />}
+            <Fragment key={newsId}>
+              <div className="column is-6">
+                <div className="level is-marginless">
+                  <div className="level-left">
+                    &nbsp;
+                  </div>
+                  <div className="level-right">
+                    <span className={`${newsData.active && 'has-text-success'} ${!newsData.active && 'has-text-warning'}`}>
+                      {newsData.active && <Translate id="published" />}
+                      {!newsData.active && <Translate id="notpublished" />}
+                    </span>
+                    &nbsp;&nbsp;&nbsp;
+                    <button className="button" onClick={() => this.openModal(newsId)}><Translate id="edit" /></button>
+                    {newsData.active && <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><Translate id="unpublish" /></button>}
+                    {!newsData.active && <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}><Translate id="publish" /></button>}
+                  </div>
+                </div>
+                <p className="is-marginless is-paddingless">
+                  <NewsItem newsItem={newsItem} dateFormat={dateFormat} />
+                </p>
               </div>
-              <div className="column">
-                {formattedContent.map((paragraph, index) => (<p key={index}>{paragraph}&nbsp;</p>))}
-              </div>
-
-              <div className="column is-2">
-                <button className="button" onClick={() => this.openModal(newsId)}><Translate id="edit" /></button>
-              </div>
-            </div>
+            </Fragment>
           );
-        })}
-      </Fragment>
+        })
+        }
+
+      </div>
     );
   }
 
@@ -146,21 +158,11 @@ export default class NewsEditor extends Component {
                     targetName="link"
                   />
 
-                  <div className="level">
-                    <div className="level-item">
-                      <FileSelector
-                        files={uploadedNewsImages}
-                        defaultValue={newsItem.image}
-                        onChange={this.changeImage}
-                        path={`/news/${newsId}`}
-                        targetName="image"
-                      />
-                    </div>
-                    <div className="level-item">
-                      {newsItem.image && <span><img alt="" src={newsItem.image} /></span>}
-                    </div>
-                  </div>
-
+                  <ImagePicker
+                    imageList={uploadedNewsImages}
+                    highlightedImage={newsItem.image}
+                    path={`/news/${newsId}`}
+                  />
 
                   {news.active &&
                     <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><Translate id="deactivate" /></button>
@@ -279,4 +281,5 @@ FileSelector.propTypes = {
 NewsEditor.propTypes = {
   news: PropTypes.object,
   uploadedNewsImages: PropTypes.object,
+  settings: PropTypes.object,
 };

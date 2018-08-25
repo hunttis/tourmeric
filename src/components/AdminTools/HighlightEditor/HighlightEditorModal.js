@@ -1,84 +1,58 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
+import ImagePicker from '../ImagePicker';
 
+export default class HighlightEditorModal extends Component {
 
-export const HighlightEditorModal = ({ highlightId, highlight, uploadedHighlightBanners }) => (
-  <Fragment>
-    <div className="box">
+  setActiveStatus(highlightId, newStatus) {
+    firebase.update(`/highlights/${highlightId}`, { active: newStatus });
+  }
 
-      <EditableField
-        defaultValue={highlight.name}
-        labelContent="name"
-        placeHolder="name"
-        path={`/highlights/${highlightId}`}
-        targetName="name"
-      />
-      <EditableField
-        defaultValue={highlight.date}
-        labelContent="date"
-        placeHolder="date"
-        path={`/highlights/${highlightId}`}
-        targetName="date"
-      />
+  render() {
+    const { highlight, highlightId, uploadedHighlightBanners } = this.props;
 
-      <FileSelector
-        files={uploadedHighlightBanners}
-        defaultValue={highlight.image}
-        onChange={changeBanner}
-        path={`/highlights/${highlightId}`}
-        targetName="image"
-      />
-      {highlight.image && <img alt="" src={highlight.image} />}
+    return (
+      <Fragment>
+        <div className="box">
 
+          <EditableField
+            defaultValue={highlight.name}
+            labelContent="name"
+            placeHolder="name"
+            path={`/highlights/${highlightId}`}
+            targetName="name"
+          />
+          <EditableField
+            defaultValue={highlight.date}
+            labelContent="date"
+            placeHolder="date"
+            path={`/highlights/${highlightId}`}
+            targetName="date"
+          />
 
-      {highlight.active &&
-      <button className="button is-danger" onClick={() => setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
+          <ImagePicker
+            imageList={uploadedHighlightBanners}
+            highlightedImage={highlight.image}
+            path={`/highlights/${highlightId}`}
+          />
+
+          {highlight.active &&
+          <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
         }
-      {!highlight.active &&
-      <button className="button is-success" onClick={() => setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
+          {!highlight.active &&
+          <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
         }
 
-      <div className="is-hidden">ID: {highlightId}</div>
-    </div>
+          <div className="is-hidden">ID: {highlightId}</div>
+        </div>
 
-  </Fragment>
-);
-
-const FileSelector = ({ path, files, defaultValue, onChange }) => (
-  <div>
-    <label className="label">
-      <Translate id="image" />
-    </label>
-    <div className="control">
-      <div className="select">
-        <select defaultValue={defaultValue} onChange={event => onChange(path, { image: event.target.value })}>
-          <option value=""><Translate id="select" /></option>
-          {files && Object.keys(files).map(fileKey => <option key={fileKey} value={files[fileKey].downloadURL}>{files[fileKey].name}</option>)}
-        </select>
-      </div>
-    </div>
-  </div>
-);
-
-const changeBanner = ({ path, value }) => {
-  firebase.update(`/${path}`, value);
-  this.setState({ highlightImage: value.image });
-};
-
-const setActiveStatus = (highlightId, newStatus) => {
-  firebase.update(`/highlights/${highlightId}`, { active: newStatus });
-};
-
-
-FileSelector.propTypes = {
-  path: PropTypes.string,
-  files: PropTypes.object,
-  defaultValue: PropTypes.string,
-  onChange: PropTypes.func,
-};
+      </Fragment>
+    );
+  }
+}
 
 HighlightEditorModal.propTypes = {
   highlightId: PropTypes.string.isRequired,

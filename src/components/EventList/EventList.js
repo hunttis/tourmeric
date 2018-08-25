@@ -129,7 +129,6 @@ export default class EventList extends Component {
                 const buttonClass = `button is-rounded image-square ${activeStatus} `;
 
                 const category = categories[categoryEntry[0]];
-                const logo = category.logo ? uploadedCategoryLogos[category.logo] : null;
 
                 return (
                   <div key={`categoryfilter-${categoryEntry[0]}`} className="column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered">
@@ -137,7 +136,7 @@ export default class EventList extends Component {
                       className={buttonClass}
                       onClick={() => this.toggleFilter(categoryEntry[0])}
                     >
-                      <img className="image is-48x48" src={logo.downloadURL} alt="" />
+                      <img className="image is-48x48" src={category.image} alt="" />
                     </button>
                   </div>
                 );

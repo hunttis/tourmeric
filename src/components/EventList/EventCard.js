@@ -12,13 +12,12 @@ import EditableField from '../Common/EditableField-container';
 export default class EventCard extends Component {
 
   eventHeader(eventContent) {
-    const { categories, uploadedCategoryLogos } = this.props;
+    const { categories } = this.props;
     const category = categories[eventContent.category];
-    const logo = category.logo ? uploadedCategoryLogos[category.logo] : null;
     return (
       <div className="card-header eventheader">
         <div className="card-header-icon eventheader-text tooltip" data-tooltip={category.name}>
-          <img className="image is-64x64" src={logo.downloadURL} alt="" />
+          <img className="image is-64x64" src={category.image} alt="" />
           {category.abbreviation}:
         </div>
         <div className="card-header-title eventheader-text">
@@ -123,5 +122,4 @@ EventCard.propTypes = {
   participations: PropTypes.object,
   categories: PropTypes.object,
   openModal: PropTypes.func,
-  uploadedCategoryLogos: PropTypes.object,
 };
