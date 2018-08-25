@@ -257,7 +257,6 @@ ShallowWrapper {
               <img
                 alt=""
                 className="image is-64x64"
-                src="http://foo.com/image.png"
               />
               WH40K
               :
@@ -495,7 +494,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-64x64"
-                  src="http://foo.com/image.png"
                 />
                 WH40K
                 :
@@ -615,7 +613,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-64x64"
-                    src="http://foo.com/image.png"
                   />
                   WH40K
                   :
@@ -641,7 +638,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-64x64"
-                      src="http://foo.com/image.png"
                     />,
                     "WH40K",
                     ":",
@@ -658,7 +654,7 @@ ShallowWrapper {
                     "props": Object {
                       "alt": "",
                       "className": "image is-64x64",
-                      "src": "http://foo.com/image.png",
+                      "src": undefined,
                     },
                     "ref": null,
                     "rendered": null,
@@ -1439,7 +1435,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-64x64"
-                  src="http://foo.com/image.png"
                 />
                 WH40K
                 :
@@ -1677,7 +1672,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-64x64"
-                    src="http://foo.com/image.png"
                   />
                   WH40K
                   :
@@ -1797,7 +1791,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-64x64"
-                      src="http://foo.com/image.png"
                     />
                     WH40K
                     :
@@ -1823,7 +1816,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-64x64"
-                        src="http://foo.com/image.png"
                       />,
                       "WH40K",
                       ":",
@@ -1840,7 +1832,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-64x64",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,

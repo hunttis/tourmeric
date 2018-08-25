@@ -296,7 +296,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -310,7 +309,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -324,7 +322,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -338,7 +335,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -352,7 +348,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -366,7 +361,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -499,7 +493,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -513,7 +506,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -527,7 +519,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -541,7 +532,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -555,7 +545,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -569,7 +558,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -719,7 +707,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -733,7 +720,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -747,7 +733,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -761,7 +746,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -775,7 +759,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -789,7 +772,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -893,7 +875,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -907,7 +888,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -921,7 +901,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -935,7 +914,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -949,7 +927,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -963,7 +940,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -984,7 +960,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -998,7 +973,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1011,7 +985,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1033,7 +1007,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1047,7 +1020,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1060,7 +1032,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1082,7 +1054,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1096,7 +1067,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1109,7 +1079,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1131,7 +1101,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1145,7 +1114,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1158,7 +1126,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1180,7 +1148,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1194,7 +1161,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1207,7 +1173,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1229,7 +1195,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1243,7 +1208,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1256,7 +1220,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1543,7 +1507,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1557,7 +1520,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1571,7 +1533,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1585,7 +1546,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1599,7 +1559,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1613,7 +1572,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1746,7 +1704,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1760,7 +1717,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1774,7 +1730,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1788,7 +1743,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1802,7 +1756,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1816,7 +1769,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1966,7 +1918,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -1980,7 +1931,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -1994,7 +1944,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -2008,7 +1957,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -2022,7 +1970,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -2036,7 +1983,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -2140,7 +2086,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2154,7 +2099,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2168,7 +2112,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2182,7 +2125,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2196,7 +2138,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2210,7 +2151,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2231,7 +2171,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2245,7 +2184,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2258,7 +2196,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2280,7 +2218,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2294,7 +2231,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2307,7 +2243,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2329,7 +2265,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2343,7 +2278,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2356,7 +2290,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2378,7 +2312,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2392,7 +2325,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2405,7 +2337,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2427,7 +2359,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2441,7 +2372,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2454,7 +2384,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2476,7 +2406,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2490,7 +2419,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2503,7 +2431,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,

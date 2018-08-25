@@ -120,6 +120,12 @@
   "abovedateinterpretedas": "Above date interpreted as",
   "dateformatplaceholder": "For example: DD.MM.YYYY",
 
+  "night": "At Night",
+  "morning": "In the Morning",
+  "daytime": "During Daytime", 
+  "afternoon": "In the Afternoon",
+  "evening": "In the Evening",
+  
   "dropfileshere": "Drop file(s) here, or click here",
   "uploadedfiles": "Uploaded files",
   "uploadingfiles": "Files are being uploaded",
@@ -225,6 +231,7 @@
   "regularopeninghours": "Regular opening hours",
   "upcomingexceptionstoopeninghours": "Upcoming exceptions to opening hours",
   "exceptionstoopeninghours": "Exceptions to opening hours",
+  "opentoday": "Open today",
   
   "locationinfo": "Location info",
   "directions": "Directions",

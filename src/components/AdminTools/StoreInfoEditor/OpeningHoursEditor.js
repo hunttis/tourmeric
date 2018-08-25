@@ -73,6 +73,9 @@ export const OpeningHoursEditor = ({ openingHours }) => (
           targetName="sunday"
         />
       </div>
+      <div className="column is-12 is-paddingless is-marginless">
+        <hr />
+      </div>
       <div className="column is-6">
         <EditableField
           defaultValue={_.get(openingHours, 'additionalinfo', '')}
@@ -82,13 +85,8 @@ export const OpeningHoursEditor = ({ openingHours }) => (
           targetName="additionalinfo"
         />
       </div>
-    </div>
-    <h2 className="subtitle">
-      <Translate id="exceptionstoopeninghours" />
-    </h2>
-    <div className="box columns">
-      <div className="column">
-        <div className="field is-grouped">
+      <div className="column is-6">
+        <div className="field is-grouped is-pulled-right">
           <p className="control">
             <button className="button is-primary"><Translate id="showcurrentexceptions" /></button>
           </p>

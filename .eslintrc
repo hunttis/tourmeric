@@ -48,6 +48,7 @@
     "react/jsx-wrap-multilines": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/button-has-type": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   }
 }

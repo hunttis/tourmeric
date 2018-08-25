@@ -31,7 +31,6 @@ export default class HighlightEditor extends Component {
   }
 
   openModal(highlightId) {
-    console.log('opening modal for', highlightId);
     this.setState({ modalOpenClass: 'is-active', highlightId });
   }
 

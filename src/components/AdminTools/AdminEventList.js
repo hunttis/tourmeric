@@ -17,7 +17,8 @@ export default class AdminEventList extends Component {
               onClick={() => {
                 firebase.push('/events', { createDate: moment().toISOString(), date: moment().format('YYYY-MM-DD') });
               }}
-            ><Translate id="addevent" />
+            >
+              <Translate id="addevent" />
             </button>
           </div>
         </div>

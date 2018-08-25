@@ -4,6 +4,7 @@ import { isLoaded } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 // import firebase from 'firebase/app';
 import _ from 'lodash';
+import moment from 'moment';
 import firebase from 'firebase/app';
 import FileDropper from '../FileDropper';
 import EditableField from '../../Common/EditableField';
@@ -31,11 +32,21 @@ export default class StoreInfoEditor extends Component {
     firebase.update('/settings/', { activeLocationImage: file.downloadURL });
   }
 
+  todaysOpeningHours() {
+    const { settings } = this.props;
+    const todayName = moment().format('dddd').toLowerCase();
+
+    const todaysHours = _.get(settings, `openingHours.${todayName}`, '');
+    return (
+      <div className="box"><Translate id="opentoday" /> : <span className="has-text-success">{todaysHours}</span></div>
+    );
+  }
+
   render() {
     const { settings, uploadedStoreinfoFiles } = this.props;
-    const { openingHours, location } = settings;
 
     if (isLoaded(settings)) {
+      const { openingHours, location } = settings;
       return (
         <Fragment>
           <h1 className="title">
@@ -43,6 +54,7 @@ export default class StoreInfoEditor extends Component {
           </h1>
 
           <OpeningHoursEditor openingHours={openingHours} />
+          {this.todaysOpeningHours()}
 
           <h2 className="subtitle">
             <Translate id="storelocation" />

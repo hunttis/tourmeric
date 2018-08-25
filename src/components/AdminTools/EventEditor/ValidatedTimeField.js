@@ -43,7 +43,8 @@ export default class ValidatedTimeField extends Component {
 
   updateMinute(minute) {
     this.setState({ minute });
-    if (minute >= 0 && minute < 60) {
+
+    if (parseInt(minute, 10) >= 0 && parseInt(minute, 10) < 60) {
       this.updateDateInDB(this.state.hour, minute);
     }
   }
@@ -51,59 +52,54 @@ export default class ValidatedTimeField extends Component {
   render() {
     const { saved, editing } = this.state;
 
-    const hourOk = !!this.state.hour && this.state.hour >= 0 && this.state.hour < 24;
-    const minuteOk = !!this.state.minute && this.state.minute >= 0 && this.state.minut < 60;
+    const hourOk = !!this.state.hour && parseInt(this.state.hour, 10) >= 0 && parseInt(this.state.hour, 10) < 24;
+    const minuteOk = !!this.state.minute && parseInt(this.state.minute, 10) >= 0 && parseInt(this.state.minute, 10) < 60;
 
     return (
-      <div className="level">
-        <div className="level-item">
-          <div className="field ">
+      <div className="is-inline-flex">
+        <div className="field ">
+          <label className="label">
+            <Translate id="hour" /> (24h)
+          </label>
+          <div className="field">
+            <p className="control is-expanded has-icons-right">
 
-            <label className="label">
-              <Translate id="hour" />
-            </label>
-            <div className="field">
-              <p className="control is-expanded has-icons-right">
-
-                <Translate>
-                  {translate => (<input
-                    type="number"
-                    className={`input ${!hourOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                    placeholder={translate('hour')}
-                    defaultValue={this.state.hour}
-                    onChange={event => this.updateHour(event.target.value)}
-                  />)
+              <Translate>
+                {translate => (<input
+                  type="number"
+                  className={`input ${!hourOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                  placeholder={translate('hour')}
+                  defaultValue={this.state.hour}
+                  onChange={event => this.updateHour(event.target.value)}
+                />)
                     }
-                </Translate>
-                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-              </p>
-            </div>
+              </Translate>
+              {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
+              {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+            </p>
           </div>
         </div>
 
-        <div className="level-item">
+        <div className="field">
+          <label className="label">
+            <Translate id="minute" />
+          </label>
           <div className="field">
-            <label className="label">
-              <Translate id="minute" />
-            </label>
-            <div className="field">
-              <p className="control is-expanded has-icons-right">
+            <p className="control is-expanded has-icons-right">
 
-                <Translate>
-                  {translate => (<input
-                    type="number"
-                    className={`input ${!minuteOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                    placeholder={translate('minute')}
-                    defaultValue={this.state.minute}
-                    onChange={event => this.updateMinute(event.target.value)}
-                  />)
+              <Translate>
+                {translate => (<input
+                  type="number"
+                  className={`input ${!minuteOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                  placeholder={translate('minute')}
+                  defaultValue={this.state.minute}
+                  onChange={event => this.updateMinute(event.target.value)}
+                />)
                     }
-                </Translate>
-                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-              </p>
-            </div>
+              </Translate>
+              {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
+              {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+            </p>
           </div>
         </div>
       </div>

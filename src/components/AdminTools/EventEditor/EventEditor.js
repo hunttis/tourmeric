@@ -54,6 +54,38 @@ export default class EditableEvent extends Component {
     this.setState({ [field]: fieldStatus });
   }
 
+  dayPhase(time) {
+
+    const hour = time.split(':')[0];
+    try {
+      const hourNumber = parseInt(hour, 10);
+
+      if (hourNumber >= 0 && hourNumber < 6) {
+        return <Translate id="night" />;
+      }
+
+      if (hourNumber >= 6 && hourNumber < 10) {
+        return <Translate id="morning" />;
+      }
+
+      if (hourNumber >= 10 && hourNumber < 14) {
+        return <Translate id="daytime" />;
+      }
+
+      if (hourNumber >= 14 && hourNumber < 18) {
+        return <Translate id="afternoon" />;
+      }
+
+      if (hourNumber >= 18 && hourNumber <= 23) {
+        return <Translate id="evening" />;
+      }
+
+    } catch (error) {
+      console.warn('Uh oh!', time, error);
+    }
+    return '???';
+  }
+
   render() {
     const { categories, eventId, eventContent, settings } = this.props;
     const allFieldsOk = _.every(this.state);
@@ -63,7 +95,7 @@ export default class EditableEvent extends Component {
     return (
       <div className="column is-12 columns is-multiline editableevent box">
         <div className="column is-6">
-          <div className="has-text-right is-small is-disabled"><Translate id="editing" /> <Translate id="eventid" />: {eventId}</div>
+          <div className="has-text-right is-small is-disabled is-hidden"><Translate id="editing" /> <Translate id="eventid" />: {eventId}</div>
         </div>
         <div className="column is-6">
 
@@ -87,7 +119,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-12">
+        <div className="column is-6">
           <ValidatedDropdown
             isOk={this.state.categoryOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -100,7 +132,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-12">
+        <div className="column is-6">
           <ValidatedEditableField
             isOk={this.state.formatOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -112,7 +144,11 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-12">
+        <div className="column is-12 is-hidden-mobile">
+          <hr />
+        </div>
+
+        <div className="column is-6">
           <ValidatedDateField
             isOk={this.state.dateOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -125,7 +161,7 @@ export default class EditableEvent extends Component {
         </div>
 
 
-        <div className="column is-12">
+        <div className="column is-6">
           <ValidatedTimeField
             isOk={this.state.timeOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -137,10 +173,14 @@ export default class EditableEvent extends Component {
         </div>
 
         <div className="column is-12">
-          <Translate id="abovedateinterpretedas" /> : <Moment format={dateFormat}>{eventContent.date}</Moment> {eventContent.time}
+          <Translate id="abovedateinterpretedas" /> : <span className="has-text-success"><Moment format={dateFormat}>{eventContent.date}</Moment></span> <span className="has-text-info">{eventContent.time}</span> <span className="has-text-warning">{this.dayPhase(eventContent.time)}</span>
         </div>
 
-        <div className="column is-6">
+        <div className="column is-12 is-hidden-mobile">
+          <hr />
+        </div>
+
+        <div className="column is-2">
           <ValidatedEditableField
             isOk={this.state.playerSlotsOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -153,7 +193,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
+        <div className="column is-2">
           <ValidatedEditableField
             isOk={this.state.entryFeeOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -166,7 +206,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
+        <div className="column is-2">
           <ValidatedEditableField
             isOk={this.state.rulesLevelOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -175,6 +215,18 @@ export default class EditableEvent extends Component {
             defaultValue={eventContent.rulesLevel}
             path={`/events/${eventId}`}
             targetName="rulesLevel"
+          />
+        </div>
+
+        <div className="column is-6">
+          <ValidatedEditableField
+            isOk={this.state.linkOk}
+            updateFieldStatus={this.updateFieldStatus}
+            labelContent="link"
+            placeHolder="linkplaceholder"
+            defaultValue={eventContent.link}
+            path={`/events/${eventId}`}
+            targetName="link"
           />
         </div>
 
@@ -202,22 +254,12 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
-          <ValidatedEditableField
-            isOk={this.state.linkOk}
-            updateFieldStatus={this.updateFieldStatus}
-            labelContent="link"
-            placeHolder="linkplaceholder"
-            defaultValue={eventContent.link}
-            path={`/events/${eventId}`}
-            targetName="link"
-          />
-        </div>
 
-        <div className="column is-6">
+        <div className="column is-12">
           <div className="level">
-            <div className="level-left" />
-            <div className="level-item has-text-right">{!allFieldsOk && <Translate id="fillmissingdatatopublish" />}</div>
+            <div className="level-left is-hidden-tablet" />
+            <div className="level-item is-hidden-tablet" />
+            <div className="level-item has-text-right">{!allFieldsOk && <span className="has-text-warning"><Translate id="fillmissingdatatopublish" /></span>}</div>
             <div className="level-right">
               {this.addPublishAndDeleteButtons(eventId, eventContent.published, allFieldsOk)}
             </div>
