@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
 import moment from 'moment';
+import { map } from 'lodash';
 
 import EditableField from '../../Common/EditableField-container';
 import EditableTextarea from '../../Common/EditableTextarea-container';
@@ -181,6 +182,46 @@ export default class NewsEditor extends Component {
 
   }
 
+  listNewsImages() {
+    const { uploadedNewsImages } = this.props;
+
+    return (
+      <table className="table">
+        <thead>
+          <tr>
+            <th><Translate id="image" /></th>
+            <th><Translate id="filename" /></th>
+            <th><Translate id="actions" /></th>
+          </tr>
+        </thead>
+        {
+          map(uploadedNewsImages, (file, key) => {
+
+            if (!file || !key) {
+              return <div>No file or key</div>;
+            }
+            return (
+              <tbody key={file.name + key}>
+                <tr className="">
+                  <td>
+                    <img className="thumbnail" src={file.downloadURL} alt="" />
+                  </td>
+                  <td>
+                    <span>{file.name}</span>
+                  </td>
+                  <td>
+                    <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                      <Translate id="deletefile" />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            );
+          })}
+      </table>
+    );
+  }
+
   render() {
     const { news, uploadedNewsImages } = this.props;
 
@@ -203,6 +244,7 @@ export default class NewsEditor extends Component {
           {this.newsModal(news)}
           {!isEmpty(news) && this.listNews(news)}
           {isEmpty(news) && <div><Translate id="nonewscreatedyet" /></div>}
+          {!isEmpty(uploadedNewsImages) && this.listNewsImages()}
         </Fragment>
       );
 

@@ -121,6 +121,8 @@
 
   "dropfileshere": "Drop file(s) here, or click here",
   "uploadedfiles": "Uploaded files",
+  "uploadingfiles": "Files are being uploaded",
+  "filessent": "Files sent",
   "image": "Image",
   "filename": "File Name",
   "actions": "Actions",

@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "yarn clean; parcel ./src/index.html",
     "build": "parcel build ./src/index.html -d deploy --public-url . --no-source-maps",
+    "build-mapped": "parcel build ./src/index.html -d deploy --public-url .",
     "clean": "rm -rf dist; rm -rf deploy; rm -rf .cache;",
     "clean-build": "yarn clean; yarn build",
     "bolt": "firebase-bolt < firebase-rules/firebase-rules.bolt > firebase-rules/rules.json",

@@ -29,12 +29,11 @@ export default class Navbar extends Component {
     const { profile, settings, changeLanguage, activeItem } = this.props;
     const isProfileLoaded = isLoaded(profile) && isLoaded(settings);
 
-    const features = _.get(settings, 'features', {});
-    const eventsActive = _.get(features, 'events.active', false);
-    const storeInfoActive = _.get(features, 'storeinfo.active', false);
+    const eventsActive = _.get(settings, 'features.events.active', false);
+    const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
 
     if (isProfileLoaded) {
-      const isLoggedIn = isProfileLoaded && !isEmpty(profile);
+      const isLoggedIn = !isEmpty(profile);
       const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
       const { burgerOpen } = this.state;
       const activeClass = 'active-navbar-item';
@@ -130,7 +129,7 @@ export default class Navbar extends Component {
         </div>
       );
     }
-    return <div><Translate id="loading" /></div>;
+    return <div />;
   }
 }
 

@@ -206,7 +206,7 @@ export default class Today extends Component {
         </div>);
     }
     return (
-      <div><Translate id="loading" /></div>
+      <div />
     );
 
   }

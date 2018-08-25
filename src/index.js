@@ -14,10 +14,13 @@ import { localeReducer as locale, initialize, addTranslationForLanguage } from '
 import moment from 'moment/min/moment-with-locales';
 import Moment from 'react-moment';
 
-import 'bulma/css/bulma.css';
-// import './star.css';
-import './mystyles.scss';
+// ******************
+// Set the theme here
+// ******************
+import 'bulmaswatch/darkly/bulmaswatch.min.css';
 
+import 'bulma/css/bulma.css';
+import './mystyles.scss';
 import MainView from './components/MainView/MainView-container';
 
 import englishTranslations from './translations/en.json';
@@ -28,6 +31,8 @@ import eventReducer from './reducers/eventReducer';
 const config = require('./config').get(process.env.NODE_ENV);
 
 const defaultLanguage = 'fi';
+
+document.title = config.titleText;
 
 Moment.globalMoment = moment;
 Moment.globalLocale = defaultLanguage;

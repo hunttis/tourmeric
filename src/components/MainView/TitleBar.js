@@ -16,8 +16,7 @@ export default class TitleBar extends Component {
   render() {
     const { settings, returnToFrontpage } = this.props;
 
-    const { features } = settings;
-    const highlightsActive = _.get(features, 'highlights.active', false);
+    const highlightsActive = _.get(settings, 'features.highlights.active', false);
 
     const pageTitle = _.get(settings, 'pageTitle', 'Pagetitle not set');
     const pageSubtitle = _.get(settings, 'pageSubtitle', '');
@@ -64,7 +63,7 @@ export default class TitleBar extends Component {
     return (
       <div className="title has-text-centered">
         <div className="level" />
-        <button disabled className="button is-loading is-purple"><Translate id="loading" />.</button>
+        <button disabled className="button is-loading is-black"><Translate id="loading" />.</button>
       </div>
     );
   }

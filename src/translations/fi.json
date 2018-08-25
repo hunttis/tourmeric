@@ -119,6 +119,8 @@
   
   "dropfileshere": "Pudota tiedosto(t) tähän, tai klikkaa tässä",
   "uploadedfiles": "Lähetetyt tiedostot",
+  "uploadingfiles": "Tiedostoja lähetetään",
+  "filessent": "Tiedostoja lähetetty",
   "image": "Kuva",
   "filename": "Tiedostonimi",
   "actions": "Toiminnot",

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
 import moment from 'moment';
+import { map } from 'lodash';
 
 import EditableField from '../../Common/EditableField-container';
 
@@ -14,15 +15,25 @@ export default class HighlightEditor extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { modalOpenClass: '' };
+    this.state = { modalOpenClass: '', uploadStatus: '', uploadedFiles: '' };
     this.changeBanner = this.changeBanner.bind(this);
   }
 
   onFilesDrop = async (files) => {
-    const result = await firebase.uploadFiles(filesPath, [files[0]]);
-    const downloadURL = await result[0].uploadTaskSnapshot.ref.getDownloadURL();
-    firebase.set(`/${filesPath}/${files[0].lastModified}${files[0].size}`, { name: files[0].name, downloadURL });
-    return result;
+    const uploadedFiles = await files.map(async (file) => {
+      const result = await firebase.uploadFiles(filesPath, [file]);
+      const downloadURL = await result[0].uploadTaskSnapshot.ref.getDownloadURL();
+      await firebase.push(`/${filesPath}`, { name: file.name, downloadURL });
+      return downloadURL;
+    });
+
+    this.setState({ uploadStatus: 'uploading' });
+
+    Promise.all(uploadedFiles).then(() => {
+      this.setState({ uploadedFiles, uploadStatus: 'done' });
+    });
+
+    return uploadedFiles;
   }
 
   setActiveStatus(highlightId, newStatus) {
@@ -59,9 +70,8 @@ export default class HighlightEditor extends Component {
           return (
             <div key={highlightId} className="columns is-tablet">
               <div className="column is-3">{moment(highlight.createDate).format('DD-MM-YYYY')}</div>
-              {/* <div className="column is-3">{moment(highlight.date).format('DD-MM-YYYY')}</div> */}
-              <div className="column is-3">{highlight.name || 'No name'}</div>
-              <div className="column is-3">
+              <div className="column is-4">{highlight.name || 'No name'}</div>
+              <div className="column is-2">
                 {highlightImageExists &&
                 <figure className="image is-3by1">
                   <img alt="" src={highlight.image} />
@@ -70,14 +80,18 @@ export default class HighlightEditor extends Component {
                 {!highlightImageExists && 'No image'}
               </div>
 
-              <div className="column is-3">
+              <div className="column is-1">
                 <button className="button" onClick={() => this.openModal(highlightId, highlight)}><Translate id="edit" /></button>
+              </div>
+              <div className="column is-1">
                 <button className="button is-danger" onClick={() => this.deleteHighlight(highlightId)}><Translate id="delete" /></button>
+              </div>
+              <div className="column is-1">
                 {highlight.active &&
-                  <button className="button is-warning" onClick={() => this.setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
+                <button className="button is-warning" onClick={() => this.setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
                 }
                 {!highlight.active &&
-                  <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
+                <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
                 }
               </div>
             </div>
@@ -98,7 +112,7 @@ export default class HighlightEditor extends Component {
   highlightModal() {
     const { uploadedHighlightBanners } = this.props;
     const { modalOpenClass, highlightId, highlightName, highlightImage, highlightDate, highlightActive } = this.state;
-
+    console.log('highlight image', highlightImage);
     return (
       <div className={`modal ${modalOpenClass}`}>
         <div className="modal-background" onClick={() => this.closeModal()} />
@@ -119,13 +133,7 @@ export default class HighlightEditor extends Component {
               path={`/highlights/${highlightId}`}
               targetName="date"
             />
-            {/* <EditableField
-              defaultValue={highlightImage}
-              labelContent="image"
-              placeHolder="image"
-              path={`/highlights/${highlightId}`}
-              targetName="image"
-            /> */}
+
             <FileSelector
               files={uploadedHighlightBanners}
               defaultValue={highlightImage}
@@ -143,7 +151,7 @@ export default class HighlightEditor extends Component {
               <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
             }
 
-            <div>ID: {highlightId}</div>
+            <div className="is-hidden">ID: {highlightId}</div>
           </div>
 
         </div>
@@ -152,8 +160,49 @@ export default class HighlightEditor extends Component {
     );
   }
 
+  listHighLightImages() {
+    const { uploadedHighlightBanners } = this.props;
+
+    return (
+      <table className="table">
+        <thead>
+          <tr>
+            <th><Translate id="image" /></th>
+            <th><Translate id="filename" /></th>
+            <th><Translate id="actions" /></th>
+          </tr>
+        </thead>
+        {
+          map(uploadedHighlightBanners, (file, key) => {
+
+            if (!file || !key) {
+              return <div>No file or key</div>;
+            }
+            return (
+              <tbody key={file.name + key}>
+                <tr className="">
+                  <td>
+                    <img className="thumbnail" src={file.downloadURL} alt="" />
+                  </td>
+                  <td>
+                    <span>{file.name}</span>
+                  </td>
+                  <td>
+                    <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                      <Translate id="deletefile" />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            );
+          })}
+      </table>
+    );
+  }
+
   render() {
     const { highlights, uploadedHighlightBanners } = this.props;
+    const { uploadedFiles, uploadStatus } = this.state;
 
     if (isLoaded(highlights) && isLoaded(uploadedHighlightBanners)) {
       return (
@@ -163,17 +212,22 @@ export default class HighlightEditor extends Component {
             <div className="level-left">
               <button className="button" onClick={() => this.createNewHighlight()}><Translate id="newhighlight" /></button>
             </div>
+            {uploadStatus === 'uploading' && <div className="level-item"><p className="has-text-warning"><Translate id="uploadingfiles" /></p></div>}
+            {uploadStatus === 'done' && <div className="level-item"><p className="has-text-success"><Translate id="filessent" />: {uploadedFiles.length}</p></div>}
             <div className="level-right">
-              <Dropzone onDrop={this.onFilesDrop}>
+              <Dropzone onDrop={this.onFilesDrop} className="box">
                 <div>
                   <Translate id="dropfileshere" />
                 </div>
               </Dropzone>
+
+
             </div>
           </div>
           {this.highlightModal()}
           {!isEmpty(highlights) && this.listHighlights(highlights)}
           {isEmpty(highlights) && <div><Translate id="nohighlightscreated" /></div>}
+          {!isEmpty(uploadedHighlightBanners) && this.listHighLightImages()}
         </Fragment>
       );
 
@@ -185,7 +239,7 @@ export default class HighlightEditor extends Component {
 const FileSelector = ({ path, files, defaultValue, onChange }) => (
   <div>
     <label className="label">
-      <Translate id="categorylogo" />
+      <Translate id="image" />
     </label>
     <div className="control">
       <div className="select">
