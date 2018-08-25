@@ -13,10 +13,16 @@ export default class EditableField extends Component {
   }, 300)
 
   delayedNormalize = _.debounce(() => {
-    this.setState({ saved: false, editing: false });
+    if (!this.unmounting) {
+      this.setState({ saved: false, editing: false });
+    }
   }, 2000);
 
   state = { saved: false, editing: false }
+
+  componentWillUnmount() {
+    this.unmounting = true;
+  }
 
   handleChange(path, targetName, value) {
     this.setState({ editing: true, saved: false });
