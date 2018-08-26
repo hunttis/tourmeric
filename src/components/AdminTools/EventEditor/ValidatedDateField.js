@@ -11,7 +11,7 @@ export default class ValidatedDateField extends Component {
     firebase.update(this.props.path, value);
     this.setState({ saved: true, editing: false });
     this.delayedNormalize();
-  }, 300)
+  }, 1000)
 
   delayedNormalize = _.debounce(() => {
     this.setState({ saved: false, editing: false });

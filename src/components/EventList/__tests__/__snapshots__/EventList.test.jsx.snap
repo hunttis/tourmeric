@@ -222,37 +222,9 @@ ShallowWrapper {
       "children": <div
         className="container"
       >
-        <EventModal
+        <FirebaseConnect(Connect(Connect(EventModal)))
           closeModal={[Function]}
-          eventContent={
-            Object {
-              "category": "category1",
-              "createDate": "2018-05-24T17:00:46.500Z",
-              "date": "2018-09-24",
-              "entryFee": "10",
-              "format": "Miniatures",
-              "link": "http://www.google.fi",
-              "name": "Warhammer thing",
-              "notes": "Bring your war face!",
-              "playerSlots": "10",
-              "prizes": "Glory!",
-              "published": true,
-              "rulesLevel": "Casual",
-              "time": "Kill everything",
-            }
-          }
           eventId="mockEventId1"
-          participations={
-            Array [
-              Object {
-                "comment": "Jee",
-                "date": "2018-06-23T09:40:26.992Z",
-                "firstName": "Test",
-                "lastName": "Person",
-                "userId": "mockUserId",
-              },
-            ]
-          }
         />
         <h1
           className="title"
@@ -418,37 +390,9 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           Array [
-            <EventModal
+            <FirebaseConnect(Connect(Connect(EventModal)))
               closeModal={[Function]}
-              eventContent={
-                Object {
-                  "category": "category1",
-                  "createDate": "2018-05-24T17:00:46.500Z",
-                  "date": "2018-09-24",
-                  "entryFee": "10",
-                  "format": "Miniatures",
-                  "link": "http://www.google.fi",
-                  "name": "Warhammer thing",
-                  "notes": "Bring your war face!",
-                  "playerSlots": "10",
-                  "prizes": "Glory!",
-                  "published": true,
-                  "rulesLevel": "Casual",
-                  "time": "Kill everything",
-                }
-              }
               eventId="mockEventId1"
-              participations={
-                Array [
-                  Object {
-                    "comment": "Jee",
-                    "date": "2018-06-23T09:40:26.992Z",
-                    "firstName": "Test",
-                    "lastName": "Person",
-                    "userId": "mockUserId",
-                  },
-                ]
-              }
             />,
           ],
           <h1
@@ -612,34 +556,10 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": "modalmockEventId1",
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
             "closeModal": [Function],
-            "eventContent": Object {
-              "category": "category1",
-              "createDate": "2018-05-24T17:00:46.500Z",
-              "date": "2018-09-24",
-              "entryFee": "10",
-              "format": "Miniatures",
-              "link": "http://www.google.fi",
-              "name": "Warhammer thing",
-              "notes": "Bring your war face!",
-              "playerSlots": "10",
-              "prizes": "Glory!",
-              "published": true,
-              "rulesLevel": "Casual",
-              "time": "Kill everything",
-            },
             "eventId": "mockEventId1",
-            "participations": Array [
-              Object {
-                "comment": "Jee",
-                "date": "2018-06-23T09:40:26.992Z",
-                "firstName": "Test",
-                "lastName": "Person",
-                "userId": "mockUserId",
-              },
-            ],
           },
           "ref": null,
           "rendered": null,
@@ -1433,37 +1353,9 @@ ShallowWrapper {
         "children": <div
           className="container"
         >
-          <EventModal
+          <FirebaseConnect(Connect(Connect(EventModal)))
             closeModal={[Function]}
-            eventContent={
-              Object {
-                "category": "category1",
-                "createDate": "2018-05-24T17:00:46.500Z",
-                "date": "2018-09-24",
-                "entryFee": "10",
-                "format": "Miniatures",
-                "link": "http://www.google.fi",
-                "name": "Warhammer thing",
-                "notes": "Bring your war face!",
-                "playerSlots": "10",
-                "prizes": "Glory!",
-                "published": true,
-                "rulesLevel": "Casual",
-                "time": "Kill everything",
-              }
-            }
             eventId="mockEventId1"
-            participations={
-              Array [
-                Object {
-                  "comment": "Jee",
-                  "date": "2018-06-23T09:40:26.992Z",
-                  "firstName": "Test",
-                  "lastName": "Person",
-                  "userId": "mockUserId",
-                },
-              ]
-            }
           />
           <h1
             className="title"
@@ -1629,37 +1521,9 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             Array [
-              <EventModal
+              <FirebaseConnect(Connect(Connect(EventModal)))
                 closeModal={[Function]}
-                eventContent={
-                  Object {
-                    "category": "category1",
-                    "createDate": "2018-05-24T17:00:46.500Z",
-                    "date": "2018-09-24",
-                    "entryFee": "10",
-                    "format": "Miniatures",
-                    "link": "http://www.google.fi",
-                    "name": "Warhammer thing",
-                    "notes": "Bring your war face!",
-                    "playerSlots": "10",
-                    "prizes": "Glory!",
-                    "published": true,
-                    "rulesLevel": "Casual",
-                    "time": "Kill everything",
-                  }
-                }
                 eventId="mockEventId1"
-                participations={
-                  Array [
-                    Object {
-                      "comment": "Jee",
-                      "date": "2018-06-23T09:40:26.992Z",
-                      "firstName": "Test",
-                      "lastName": "Person",
-                      "userId": "mockUserId",
-                    },
-                  ]
-                }
               />,
             ],
             <h1
@@ -1823,34 +1687,10 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": "modalmockEventId1",
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
               "closeModal": [Function],
-              "eventContent": Object {
-                "category": "category1",
-                "createDate": "2018-05-24T17:00:46.500Z",
-                "date": "2018-09-24",
-                "entryFee": "10",
-                "format": "Miniatures",
-                "link": "http://www.google.fi",
-                "name": "Warhammer thing",
-                "notes": "Bring your war face!",
-                "playerSlots": "10",
-                "prizes": "Glory!",
-                "published": true,
-                "rulesLevel": "Casual",
-                "time": "Kill everything",
-              },
               "eventId": "mockEventId1",
-              "participations": Array [
-                Object {
-                  "comment": "Jee",
-                  "date": "2018-06-23T09:40:26.992Z",
-                  "firstName": "Test",
-                  "lastName": "Person",
-                  "userId": "mockUserId",
-                },
-              ],
             },
             "ref": null,
             "rendered": null,

@@ -27,7 +27,6 @@ export default class EditableEvent extends Component {
       rulesLevelOk: !_.isEmpty(eventContent.rulesLevel),
       prizesOk: !_.isEmpty(eventContent.prizes),
       notesOk: !_.isEmpty(eventContent.notes),
-      linkOk: !_.isEmpty(eventContent.link),
     };
   }
 
@@ -56,8 +55,12 @@ export default class EditableEvent extends Component {
 
   dayPhase(time) {
 
-    const hour = time.split(':')[0];
+    if (!time) {
+      return '';
+    }
+
     try {
+      const hour = time.split(':')[0];
       const hourNumber = parseInt(hour, 10);
 
       if (hourNumber >= 0 && hourNumber < 6) {
@@ -81,9 +84,9 @@ export default class EditableEvent extends Component {
       }
 
     } catch (error) {
-      console.warn('Uh oh!', time, error);
+      console.warn('Something in the dayphase viewer', error);
     }
-    return '???';
+    return '';
   }
 
   render() {
@@ -220,7 +223,7 @@ export default class EditableEvent extends Component {
 
         <div className="column is-6">
           <ValidatedEditableField
-            isOk={this.state.linkOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="link"
             placeHolder="linkplaceholder"
@@ -244,7 +247,7 @@ export default class EditableEvent extends Component {
 
         <div className="column is-6">
           <EditableTextarea
-            isOk={this.state.notesOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="notes"
             placeHolder="notesplaceholder"

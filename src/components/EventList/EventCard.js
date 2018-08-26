@@ -29,7 +29,7 @@ export default class EventCard extends Component {
 
   render() {
     const { eventId, events, userid, profile, participations, openModal, settings } = this.props;
-    const { dateFormat } = settings;
+    const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
     const eventContent = _.find(events, ['key', eventId]).value;
     const alreadyParticipated = checkParticipation(userid, eventId, participations);
     const thisParticipation = _.get(participations, `${eventId}.${userid}`, []);

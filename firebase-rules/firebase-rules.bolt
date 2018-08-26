@@ -134,12 +134,12 @@ type Event {
   category: String | Null,
   createDate: String | Null,
   date: String | Null,
-  entryFee: Number | Null,
+  entryFee: String | Null,
   format: String | Null,
   link: String | Null,
   name: String | Null,
   notes: String | Null,
-  playerSlots: Number | Null,
+  playerSlots: String | Null,
   prizes: String | Null,
   published: Boolean | Null,
   rulesLevel: String | Null,
@@ -181,7 +181,7 @@ type File {
 
 type User {
   avatarUrl: String | Null,
-  dciNumber: Number | Null,
+  dciNumber: String | Null,
   displayName: String | Null,
   email: String | Null,
   providerData: Object | Null,

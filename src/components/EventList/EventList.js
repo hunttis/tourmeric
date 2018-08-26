@@ -5,7 +5,7 @@ import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import EventCard from './EventCard-container';
-import { EventModal } from './EventModal';
+import EventModal from './EventModal-container';
 
 export default class EventList extends Component {
 
@@ -97,10 +97,8 @@ export default class EventList extends Component {
 
           {isLoaded(events) && publishedEvents.map((eventEntry) => {
             const eventId = eventEntry.key;
-            const eventContent = eventEntry.value;
-            const participationsForEvent = Object.values(_.get(participations, eventId, []));
 
-            return <EventModal key={`modal${eventId}`} eventId={eventId} eventContent={eventContent} closeModal={() => this.closeModal(eventId)} participations={participationsForEvent} />;
+            return <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal(eventId)} />;
           })}
 
           <h1 className="title"><Translate id="nextevents" /></h1>

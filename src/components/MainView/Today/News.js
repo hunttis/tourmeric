@@ -21,7 +21,7 @@ export default class News extends Component {
         <Fragment>
           <h1 className="title"><Translate id="news" /></h1>
           <div>&nbsp;</div>
-          {publishedNews.map(newsItem => <NewsItem newsItem={newsItem} dateFormat={dateFormat} />)}
+          {publishedNews.map(newsItem => <NewsItem key={`newsItem-${newsItem.key}`} newsItem={newsItem} dateFormat={dateFormat} />)}
         </Fragment>
       );
     }
