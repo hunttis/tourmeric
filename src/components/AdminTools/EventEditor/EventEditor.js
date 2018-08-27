@@ -26,7 +26,6 @@ export default class EditableEvent extends Component {
       entryFeeOk: !_.isEmpty(eventContent.entryFee),
       rulesLevelOk: !_.isEmpty(eventContent.rulesLevel),
       prizesOk: !_.isEmpty(eventContent.prizes),
-      notesOk: !_.isEmpty(eventContent.notes),
     };
   }
 
@@ -50,7 +49,20 @@ export default class EditableEvent extends Component {
 
   updateFieldStatus(fieldName, fieldStatus) {
     const field = `${fieldName}Ok`;
-    this.setState({ [field]: fieldStatus });
+    const updatedField = { [field]: fieldStatus };
+
+    const { eventContent } = this.props;
+    const newState = Object.assign({ nameOk: !_.isEmpty(eventContent.name),
+      categoryOk: !_.isEmpty(eventContent.category),
+      formatOk: !_.isEmpty(eventContent.format),
+      dateOk: !_.isEmpty(eventContent.date),
+      timeOk: !_.isEmpty(eventContent.time),
+      playerSlotsOk: !_.isEmpty(eventContent.playerSlots),
+      entryFeeOk: !_.isEmpty(eventContent.entryFee),
+      rulesLevelOk: !_.isEmpty(eventContent.rulesLevel),
+      prizesOk: !_.isEmpty(eventContent.prizes) }, updatedField);
+
+    this.setState(newState);
   }
 
   dayPhase(time) {
@@ -105,7 +117,7 @@ export default class EditableEvent extends Component {
           <div className="level">
             <div className="level-left" />
             <div className="level-right">
-              <button className="button is-right" onClick={this.props.toggleEventVisibility}><Translate id="minimize" /></button>
+              <button className="button is-right" onClick={() => this.props.toggleEventVisibility()}><Translate id="minimize" /></button>
             </div>
           </div>
         </div>
