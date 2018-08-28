@@ -4,9 +4,15 @@ import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Moment from 'react-moment';
+import moment from 'moment';
+
+import 'react-dates/initialize';
+import { SingleDatePicker } from 'react-dates';
+
+import 'react-dates/lib/css/_datepicker.css';
+
 import ValidatedEditableField from './ValidatedEditableField-container';
 import EditableTextarea from './EditableTextarea-container';
-import ValidatedDateField from './ValidatedDateField-container';
 import ValidatedTimeField from './ValidatedTimeField';
 import ValidatedDropdown from './ValidatedDropdown-container';
 
@@ -17,15 +23,14 @@ export default class EditableEvent extends Component {
     this.updateFieldStatus = this.updateFieldStatus.bind(this);
     const { eventContent } = this.props;
     this.state = {
+      focused: false,
+      date: eventContent.date,
       nameOk: !_.isEmpty(eventContent.name),
       categoryOk: !_.isEmpty(eventContent.category),
       formatOk: !_.isEmpty(eventContent.format),
       dateOk: !_.isEmpty(eventContent.date),
       timeOk: !_.isEmpty(eventContent.time),
-      playerSlotsOk: !_.isEmpty(eventContent.playerSlots),
       entryFeeOk: !_.isEmpty(eventContent.entryFee),
-      rulesLevelOk: !_.isEmpty(eventContent.rulesLevel),
-      prizesOk: !_.isEmpty(eventContent.prizes),
     };
   }
 
@@ -52,15 +57,14 @@ export default class EditableEvent extends Component {
     const updatedField = { [field]: fieldStatus };
 
     const { eventContent } = this.props;
-    const newState = Object.assign({ nameOk: !_.isEmpty(eventContent.name),
+    const newState = Object.assign({
+      nameOk: !_.isEmpty(eventContent.name),
       categoryOk: !_.isEmpty(eventContent.category),
       formatOk: !_.isEmpty(eventContent.format),
       dateOk: !_.isEmpty(eventContent.date),
       timeOk: !_.isEmpty(eventContent.time),
-      playerSlotsOk: !_.isEmpty(eventContent.playerSlots),
       entryFeeOk: !_.isEmpty(eventContent.entryFee),
-      rulesLevelOk: !_.isEmpty(eventContent.rulesLevel),
-      prizesOk: !_.isEmpty(eventContent.prizes) }, updatedField);
+    }, updatedField);
 
     this.setState(newState);
   }
@@ -101,11 +105,17 @@ export default class EditableEvent extends Component {
     return '';
   }
 
+  async saveDate(newDate) {
+    const { eventId } = this.props;
+    await firebase.update(`/events/${eventId}`, { date: newDate });
+    this.setState({ date: newDate });
+  }
+
   render() {
     const { categories, eventId, eventContent, settings } = this.props;
-    const allFieldsOk = _.every(this.state);
-
+    const allFieldsOk = _.every(this.state.nameOk, this.state.categoryOk, this.state.formatOk, this.state.dateOk, this.state.timeOk, this.state.entryFeeOk);
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
+    moment.locale('fi');
 
     return (
       <div className="column is-12 columns is-multiline editableevent box">
@@ -163,20 +173,8 @@ export default class EditableEvent extends Component {
           <hr />
         </div>
 
-        <div className="column is-6">
-          <ValidatedDateField
-            isOk={this.state.dateOk}
-            updateFieldStatus={this.updateFieldStatus}
-            labelContent="date"
-            defaultValue={eventContent.date}
-            inputType="date"
-            path={`/events/${eventId}`}
-            targetName="date"
-          />
-        </div>
-
-
-        <div className="column is-6">
+        <div className="column is-12">
+          <h2 className="subtitle"><Translate id="time" /></h2>
           <ValidatedTimeField
             isOk={this.state.timeOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -188,6 +186,19 @@ export default class EditableEvent extends Component {
         </div>
 
         <div className="column is-12">
+          <h2 className="subtitle"><Translate id="date" /></h2>
+          <SingleDatePicker
+            date={moment(this.state.date, 'YYYY-MM-DD')}
+            onDateChange={date => this.saveDate(date.format('YYYY-MM-DD'))}
+            focused={this.state.focused}
+            onFocusChange={({ focused }) => this.setState({ focused })}
+            id={`${eventId}-datepicker`}
+            firstDayOfWeek={1}
+            displayFormat={dateFormat}
+          />
+        </div>
+
+        <div className="column is-12">
           <Translate id="abovedateinterpretedas" /> : <span className="has-text-success"><Moment format={dateFormat}>{eventContent.date}</Moment></span> <span className="has-text-info">{eventContent.time}</span> <span className="has-text-warning">{this.dayPhase(eventContent.time)}</span>
         </div>
 
@@ -195,9 +206,9 @@ export default class EditableEvent extends Component {
           <hr />
         </div>
 
-        <div className="column is-2">
+        <div className="column is-4">
           <ValidatedEditableField
-            isOk={this.state.playerSlotsOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="playerslots"
             placeHolder="playerslotsplaceholder"
@@ -208,7 +219,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-2">
+        <div className="column is-4">
           <ValidatedEditableField
             isOk={this.state.entryFeeOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -221,9 +232,9 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-2">
+        <div className="column is-4">
           <ValidatedEditableField
-            isOk={this.state.rulesLevelOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="ruleslevel"
             placeHolder="ruleslevelplaceholder"
@@ -233,7 +244,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
+        <div className="column is-12">
           <ValidatedEditableField
             isOk
             updateFieldStatus={this.updateFieldStatus}
@@ -247,7 +258,7 @@ export default class EditableEvent extends Component {
 
         <div className="column is-6">
           <EditableTextarea
-            isOk={this.state.prizesOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="prizes"
             placeHolder="prizesplaceholder"

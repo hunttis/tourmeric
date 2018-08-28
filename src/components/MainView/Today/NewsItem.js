@@ -17,7 +17,7 @@ export default class NewsItem extends Component {
     const newsData = newsItem.value;
     const newsDate = moment(newsData.date, 'YYYY-MM-DD').format(dateFormat);
     const currentActiveNewsItem = this.state.activeNewsItem;
-    const formattedContent = newsData.text.split('\n');
+    const formattedContent = newsData.text ? newsData.text.split('\n') : [];
     const longNewsItem = formattedContent.length > 3;
     const footerNeeded = newsData.link || longNewsItem;
 

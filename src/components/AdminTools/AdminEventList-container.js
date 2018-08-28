@@ -7,6 +7,7 @@ export default compose(
   connect(state => ({
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
+    events: state.firebase.data.events,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 )(AdminEventList);

@@ -94,6 +94,10 @@ export default class AdminEventList extends Component {
   }
 
   render() {
+    const { events, published } = this.props;
+    const sortedEvents = _.sortBy(Object.entries(events), ['date', 'time']);
+    const filteredEvents = sortedEvents.filter(event => !!event[1].published === !!published);
+
     return (
       <div>
         <div className="columns">
@@ -101,13 +105,14 @@ export default class AdminEventList extends Component {
           {this.addFilterField()}
         </div>
         <p>&nbsp;</p>
-        {this.listEditableEvents(this.props.events)}
+        {this.listEditableEvents(filteredEvents)}
       </div>);
   }
 }
 
 AdminEventList.propTypes = {
   showNewEventButton: PropTypes.bool,
-  events: PropTypes.array,
+  events: PropTypes.object,
   categories: PropTypes.object,
+  published: PropTypes.bool,
 };

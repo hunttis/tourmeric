@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
+import _ from 'lodash';
 
 export default class ImagePicker extends Component {
 
@@ -14,7 +15,7 @@ export default class ImagePicker extends Component {
     const { imageList, highlightedImage, size } = this.props;
     return (
       <div className="columns is-multiline">
-        {Object.entries(imageList).map((imageEntry) => {
+        {!_.isEmpty(imageList) && Object.entries(imageList).map((imageEntry) => {
           const imageId = imageEntry[0];
           const imageItem = imageEntry[1];
           const highlightedClass = (imageId === highlightedImage || imageItem.downloadURL === highlightedImage) && 'has-background-white';
