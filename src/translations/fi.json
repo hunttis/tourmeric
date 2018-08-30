@@ -85,6 +85,8 @@
   "categories": "Kategoriat",
   "nocategoriesgocreatesome": "Ei vielä yhtään kategoriaa, käy ensin luomassa muutama",
   "categorylogouploader": "Kategorialogot",
+  "formats": "Formaatit",
+  "formatsplaceholder": "Formaatit, pilkulla erotettuna",
   "cannotdeleteinuse": "Ei voi poistaa, käytössä",
   "nameofthegame": "Pelin nimi",
   "abbreviationofthename": "Nimen lyhennös",

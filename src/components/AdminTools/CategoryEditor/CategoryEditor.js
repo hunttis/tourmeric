@@ -69,6 +69,13 @@ export default class CategoryEditor extends Component {
                         path={`/categories/${categoryId}`}
                         targetName="type"
                       />
+                      <EditableVerticalField
+                        labelContent="formats"
+                        placeHolder="formatsplaceholder"
+                        defaultValue={category.formats}
+                        path={`/categories/${categoryId}`}
+                        targetName="formats"
+                      />
 
                       <br />
                       <ImagePicker

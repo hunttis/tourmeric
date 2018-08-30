@@ -15,6 +15,9 @@
         "image": {
           ".validate": "newData.isString()"
         },
+        "formats": {
+          ".validate": "newData.isString()"
+        },
         "$other": {
           ".validate": "false"
         },
