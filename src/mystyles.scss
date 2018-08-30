@@ -77,9 +77,14 @@ button.image-square {
   height: 96px;
 }
 
+.eventlistitem {
+  animation-name: scrollin;
+  animation-duration: 750ms;
+}
+
 @keyframes scrollin {
   0% {
-    transform: translate3d(0px, -300px, 0px)
+    transform: translate3d(1000px, 100px, 0px)
   }
 
   100% {

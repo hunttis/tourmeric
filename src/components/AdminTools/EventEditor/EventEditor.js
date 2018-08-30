@@ -14,7 +14,8 @@ import 'react-dates/lib/css/_datepicker.css';
 import ValidatedEditableField from './ValidatedEditableField-container';
 import EditableTextarea from './EditableTextarea-container';
 import ValidatedTimeField from './ValidatedTimeField';
-import ValidatedDropdown from './ValidatedDropdown-container';
+import ValidatedDropdown from './ValidatedDropdown';
+import ValidatedDropdownForArray from './ValidatedDropdownForArray';
 
 export default class EditableEvent extends Component {
 
@@ -27,11 +28,19 @@ export default class EditableEvent extends Component {
       date: eventContent.date,
       nameOk: !_.isEmpty(eventContent.name),
       categoryOk: !_.isEmpty(eventContent.category),
-      formatOk: !_.isEmpty(eventContent.format),
+      formatOk: this.checkIfFormatOk(eventContent.format),
       dateOk: !_.isEmpty(eventContent.date),
       timeOk: !_.isEmpty(eventContent.time),
       entryFeeOk: !_.isEmpty(eventContent.entryFee),
     };
+  }
+
+  checkIfFormatOk(format) {
+    const { eventContent, categories } = this.props;
+    const selectedCategory = eventContent.category ? categories[eventContent.category] : { formats: [] };
+    const formatOptions = _.isEmpty(selectedCategory.formats) ? [] : selectedCategory.formats.split(',');
+    const formatIsEmptyAndNoOptions = _.isEmpty(formatOptions) && _.isEmpty(format);
+    return formatIsEmptyAndNoOptions || !_.isEmpty(format);
   }
 
   addPublishAndDeleteButtons(eventId, published, allFieldsOk) {
@@ -60,7 +69,7 @@ export default class EditableEvent extends Component {
     const newState = Object.assign({
       nameOk: !_.isEmpty(eventContent.name),
       categoryOk: !_.isEmpty(eventContent.category),
-      formatOk: !_.isEmpty(eventContent.format),
+      formatOk: this.checkIfFormatOk(eventContent.format),
       dateOk: !_.isEmpty(eventContent.date),
       timeOk: !_.isEmpty(eventContent.time),
       entryFeeOk: !_.isEmpty(eventContent.entryFee),
@@ -117,6 +126,10 @@ export default class EditableEvent extends Component {
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
     moment.locale('fi');
 
+    const selectedCategory = eventContent.category ? categories[eventContent.category] : { formats: [] };
+    const formatOptions = _.isEmpty(selectedCategory.formats) ? [] : selectedCategory.formats.split(',');
+    const cleanedFormatOptions = formatOptions.map(option => _.trim(option));
+
     return (
       <div className="column is-12 columns is-multiline editableevent box">
         <div className="column is-6">
@@ -157,17 +170,20 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
-          <ValidatedEditableField
-            isOk={this.state.formatOk}
-            updateFieldStatus={this.updateFieldStatus}
-            labelContent="format"
-            placeHolder="formatplaceholder"
-            defaultValue={eventContent.format}
-            path={`/events/${eventId}`}
-            targetName="format"
-          />
-        </div>
+        {!_.isEmpty(formatOptions) &&
+          <div className="column is-6">
+            <ValidatedDropdownForArray
+              isOk={this.state.formatOk}
+              updateFieldStatus={this.updateFieldStatus}
+              labelContent="format"
+              placeHolder="formatplaceholder"
+              defaultValue={eventContent.format}
+              dropdownItems={cleanedFormatOptions}
+              path={`/events/${eventId}`}
+              targetName="format"
+            />
+          </div>
+        }
 
         <div className="column is-12 is-hidden-mobile">
           <hr />

@@ -16,7 +16,7 @@ export default class AdminEventList extends Component {
 
   addEventButton() {
     return (
-      <div className="column is-4">
+      <div className="column is-6">
         <div className="field">
           <button
             className="button"
@@ -46,13 +46,6 @@ export default class AdminEventList extends Component {
             </Translate>
           </div>
         </div>
-        <div className="column is-2">
-          {this.state.activeFilter &&
-          <p className="field-label has-text-info is-normal">
-            <Translate id="hits" />&nbsp;{this.filterList(this.props.events).length}
-          </p>
-        }
-        </div>
       </Fragment>
     );
   }
@@ -60,7 +53,7 @@ export default class AdminEventList extends Component {
   filterList(sortedList) {
     const { categories } = this.props;
 
-    const filteredList = _.isEmpty(this.state.activeFilter) ?
+    const filteredList = _.isEmpty(this.state.activeFilter) || _.isEmpty(sortedList) ?
       sortedList :
       sortedList.filter((item) => {
         const lowerCaseFilter = this.state.activeFilter.toLowerCase();
@@ -76,6 +69,7 @@ export default class AdminEventList extends Component {
 
         return categoryFilterHits || nameFilterHits;
       });
+
     return filteredList;
   }
 

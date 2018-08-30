@@ -87,6 +87,8 @@
   "categories": "Categories",
   "nocategoriesgocreatesome": "There are no categories yet, go create some first",
   "categorylogouploader": "Category logos",
+  "formats": "Formats",
+  "formatsplaceholder": "Formats, separated by comma",
   "cannotdeleteinuse": "Cannot delete, in use",
   "nameofthegame": "Name of the game",
   "abbreviationofthename": "Abbreviation of the name",

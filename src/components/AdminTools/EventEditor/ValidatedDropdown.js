@@ -10,7 +10,7 @@ export default class ValidatedDropdown extends Component {
     firebase.update(path, value);
     this.setState({ saved: true, editing: false });
     this.delayedNormalize();
-  }, 300)
+  }, 100)
 
   delayedNormalize = _.debounce(() => {
     this.setState({ saved: false, editing: false });
