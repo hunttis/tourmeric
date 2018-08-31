@@ -22,7 +22,7 @@ export default class AdminToolsEvents extends Component {
       return <div><img src={loadingImage} alt="Loading" /></div>;
     }
 
-    if (isLoaded(events) && !isEmpty(events)) {
+    if (isLoaded(events)) {
 
       const unpublishedEventsVisible = this.state.activeItem === 'unpublished';
       const publishedEventsVisible = this.state.activeItem === 'published';

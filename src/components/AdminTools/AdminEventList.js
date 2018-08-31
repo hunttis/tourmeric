@@ -74,9 +74,7 @@ export default class AdminEventList extends Component {
   }
 
   listEditableEvents(eventList) {
-    if (_.isEmpty(eventList)) {
-      return <div><Translate id="noevents" /></div>;
-    }
+
     const sortedList = _.sortBy(eventList, [e => e[1].date]).reverse();
     const filteredList = this.filterList(sortedList);
 
@@ -89,6 +87,18 @@ export default class AdminEventList extends Component {
 
   render() {
     const { events, published } = this.props;
+
+    if (_.isEmpty(events)) {
+      return (
+        <div className="section">
+          <div className="columns">
+            {this.props.showNewEventButton && this.addEventButton()}
+          </div>
+          <div><Translate id="noevents" /></div>
+        </div>
+      );
+    }
+
     const sortedEvents = _.sortBy(Object.entries(events), ['date', 'time']);
     const filteredEvents = sortedEvents.filter(event => !!event[1].published === !!published);
 
@@ -100,7 +110,8 @@ export default class AdminEventList extends Component {
         </div>
         <p>&nbsp;</p>
         {this.listEditableEvents(filteredEvents)}
-      </div>);
+      </div>
+    );
   }
 }
 

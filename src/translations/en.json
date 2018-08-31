@@ -167,6 +167,7 @@
 
   "participations": "Participations",
   "adduserparticipation": "Add user to this event",
+  "youmusthaveeventsbeforeparticipationscanhappen": "You must have events before participations can happen",
 
   "yourinfo": "Your info",
   "personalinfo": "Personal info",

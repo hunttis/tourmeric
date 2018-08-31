@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { isLoaded } from 'react-redux-firebase';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
@@ -24,10 +24,11 @@ export default class ParticipationEditor extends Component {
     const {
       users, categories, participations, events, admin, settings,
     } = this.props;
-    const publishedEvents = Object.values(events).filter(event => event.value.published);
-    const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
 
-    if (isLoaded(events) && isLoaded(categories) && isLoaded(participations) && isLoaded(users)) {
+
+    if (isLoaded(events) && !isEmpty(events) && isLoaded(categories) && isLoaded(participations) && isLoaded(users)) {
+      const publishedEvents = Object.values(events).filter(event => event.value.published);
+      const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
       return (
         <div>
           <div className="columns is-multiline">
@@ -100,8 +101,6 @@ export default class ParticipationEditor extends Component {
                         </div>
                       </div>
                     </div>
-
-
                   </div>
                 </div>
               );
@@ -110,6 +109,12 @@ export default class ParticipationEditor extends Component {
         </div>
       );
     }
+    if (isLoaded(events) && isLoaded(participations)) {
+      if (isEmpty(events)) {
+        return <div><Translate id="noevents" />. <Translate id="youmusthaveeventsbeforeparticipationscanhappen" />.</div>;
+      }
+    }
+
     return <div><Translate id="loading" /></div>;
   }
 }

@@ -204,7 +204,7 @@ export default class EditableEvent extends Component {
         <div className="column is-12">
           <h2 className="subtitle"><Translate id="date" /></h2>
           <SingleDatePicker
-            date={moment(this.state.date, 'YYYY-MM-DD')}
+            date={this.state.date ? moment(this.state.date, 'YYYY-MM-DD') : moment()}
             onDateChange={date => this.saveDate(date.format('YYYY-MM-DD'))}
             focused={this.state.focused}
             onFocusChange={({ focused }) => this.setState({ focused })}

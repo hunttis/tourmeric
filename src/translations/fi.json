@@ -165,6 +165,7 @@
 
   "participations": "Osallistujat",
   "adduserparticipation": "Lisää käyttäjä tähän tapahtumaan",
+  "youmusthaveeventsbeforeparticipationscanhappen": "Sinulla täytyy olla tapahtumia, jotta osallistumisia voi olla",
 
   "yourinfo": "Tietosi",
   "personalinfo": "Henkilökohtaiset tietosi",
