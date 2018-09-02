@@ -14,10 +14,6 @@ import { localeReducer as locale, initialize, addTranslationForLanguage } from '
 import moment from 'moment/min/moment-with-locales';
 import Moment from 'react-moment';
 
-// ******************
-// Set the theme here
-// ******************
-import 'bulmaswatch/darkly/bulmaswatch.min.css';
 
 import 'bulma/css/bulma.css';
 import './mystyles.scss';
@@ -28,7 +24,7 @@ import finnishTranslations from './translations/fi.json';
 
 import eventReducer from './reducers/eventReducer';
 
-const config = require('./config').get(process.env.NODE_ENV);
+const config = require('./config').get(process.env.NODE_ENV, process.env.DEPLOYMENT);
 
 const defaultLanguage = 'fi';
 

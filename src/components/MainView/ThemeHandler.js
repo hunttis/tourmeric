@@ -5,30 +5,30 @@ import _ from 'lodash';
 export default class ThemeHandler extends Component {
 
   componentWillMount() {
-    this.handleTheme(null, this.props.settings.theme);
-    this.handleTitleBarColorChange(null, this.props.settings.titleBarColor, null, this.props.settings.titleBarColor2, null, this.props.settings.titleBarPercentage, null, this.props.settings.titleBarAngle);
-    this.handleTitleTextColor(null, this.props.settings.titleTextColor);
-    this.handleSubtitleTextColor(null, this.props.settings.subtitleTextColor);
+    const settings = _.get(this.props, 'settings');
+    if (!settings) {
+      return;
+    }
+    this.handleTitleBarColorChange(null, settings.titleBarColor, null, settings.titleBarColor2, null, settings.titleBarPercentage, null, settings.titleBarAngle);
+    this.handleTitleTextColor(null, settings.titleTextColor);
+    this.handleSubtitleTextColor(null, settings.subtitleTextColor);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.handleTheme(this.props.settings.theme, nextProps.settings.theme);
-    this.handleTitleBarColorChange(this.props.settings.titleBarColor, nextProps.settings.titleBarColor, this.props.settings.titleBarColor2, nextProps.settings.titleBarColor2, this.props.settings.titleBarPercentage, nextProps.settings.titleBarPercentage, this.props.settings.titleBarAngle, nextProps.settings.titleBarAngle);
-    this.handleTitleTextColor(this.props.settings.titleTextColor, nextProps.settings.titleTextColor);
-    this.handleSubtitleTextColor(this.props.settings.subtitleTextColor, nextProps.settings.subtitleTextColor);
-  }
-
-  handleTheme(oldTheme, newTheme) {
-
-    if (oldTheme === newTheme) {
+    let currentsettings = _.get(this.props, 'settings');
+    if (!currentsettings) {
+      currentsettings = {};
+    }
+    let nextSettings = _.get(nextProps, 'settings');
+    if (!nextSettings) {
+      nextSettings = {};
+    }
+    if (!currentsettings || !nextSettings) {
       return;
     }
-
-    const link = document.getElementById('pagetheme') || document.createElement('link');
-    link.href = `https://unpkg.com/bulmaswatch/${newTheme}/bulmaswatch.min.css`;
-    link.rel = 'stylesheet';
-    link.id = 'pagetheme';
-    document.head.appendChild(link);
+    this.handleTitleBarColorChange(currentsettings.titleBarColor, nextSettings.titleBarColor, currentsettings.titleBarColor2, nextSettings.titleBarColor2, currentsettings.titleBarPercentage, nextSettings.titleBarPercentage, currentsettings.titleBarAngle, nextSettings.titleBarAngle);
+    this.handleTitleTextColor(currentsettings.titleTextColor, nextSettings.titleTextColor);
+    this.handleSubtitleTextColor(currentsettings.subtitleTextColor, nextSettings.subtitleTextColor);
   }
 
   handleTitleBarColorChange(oldValue1, newValue1, oldValue2, newValue2, oldPercentage, newPercentage, oldAngle, newAngle) {

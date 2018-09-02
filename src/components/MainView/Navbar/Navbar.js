@@ -36,10 +36,10 @@ export default class Navbar extends Component {
       const isLoggedIn = !isEmpty(profile);
       const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
       const { burgerOpen } = this.state;
-      const activeClass = 'active-navbar-item';
+      const activeClass = 'is-active';
 
       return (
-        <div className="navbar" role="navigation" aria-label="dropdown navigation">
+        <div className="navbar is-white" role="navigation" aria-label="dropdown navigation">
           <div className="navbar-brand">
             <div className="navbar-item is-hidden-desktop">
               <Translate id="menu" />
@@ -65,8 +65,8 @@ export default class Navbar extends Component {
               }
 
               {isAdmin &&
-                <div className="navbar-item has-dropdown is-hoverable">
-                  <a className={`navbar-link ${(['admintools', 'admintoolsevents', 'adminsitesettings'].includes(activeItem)) && 'adminactive'}`}>
+                <div className="navbar-item has-dropdown is-hoverable is-white">
+                  <a className={`navbar-link ${(['admintools', 'admintoolsevents', 'adminsitesettings'].includes(activeItem)) && 'is-active'}`}>
                     <span className="icon">
                       <i className="fas fa-star" />
                     </span>
@@ -80,6 +80,13 @@ export default class Navbar extends Component {
                   </div>
                 </div>
               }
+              {/* {isAdmin &&
+                <Fragment>
+                  <NavbarItem onClick={() => { this.switchTab('admintools'); }} translationKey="admingeneric" icon="fa-calendar" styleClass={activeItem === 'admintools' ? activeClass : ''} />
+                  <NavbarItem onClick={() => { this.switchTab('admintoolsevents'); }} translationKey="adminevents" icon="fa-calendar-plus" styleClass={activeItem === 'admintoolsevents' ? activeClass : ''} />
+                  <NavbarItem onClick={() => { this.switchTab('adminsitesettings'); }} translationKey="adminsitesettings" icon="fa-cogs" styleClass={activeItem === 'adminsitesettings' ? activeClass : ''} />
+                </Fragment>
+              } */}
 
             </div>
 

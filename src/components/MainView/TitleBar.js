@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Translate, setActiveLanguage } from 'react-localize-redux';
-import { isLoaded } from 'react-redux-firebase';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import Moment from 'react-moment';
 import Highlights from '../HighLights/HighLights-container';
 
@@ -20,7 +20,7 @@ export default class TitleBar extends Component {
 
     const pageTitle = _.get(settings, 'pageTitle', 'Pagetitle not set');
     const pageSubtitle = _.get(settings, 'pageSubtitle', '');
-    const settingsLoaded = isLoaded(settings);
+    const settingsLoaded = isLoaded(settings) && !isEmpty(settings);
 
     if (settingsLoaded) {
       return (

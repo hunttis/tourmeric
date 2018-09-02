@@ -5,6 +5,10 @@
 
   "menu": "Valikko",
 
+  "setupnotdoneyet": "Asennus ei ole vielä ihan valmis",
+  "almostthere": "Melkein valmista..",
+  "youneedtocreateanadminaccount": "Sinun täytyy luoda pääkäyttäjä",
+
   "browsertitle": "Selaimen otsikko",
   "pagetitle": "Sivun otsikko",
   "pagesubtitle": "Sivun alaotsikko",
@@ -71,6 +75,7 @@
   "pagetitles": "Sivun otsikointi",
   "localization": "Lokalisointi",
   "themes": "Teemat",
+  "looks": "Ulkonäkö",
 
   "unpublishedevents": "Julkaisemattomat tapahtumat",
   "publishedevents": "Julkaistut tapahtumat",

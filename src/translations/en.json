@@ -5,6 +5,10 @@
 
   "menu": "Menu",
 
+  "setupnotdoneyet": "Setup is not done yet",
+  "almostthere": "Almost there now..",
+  "youneedtocreateanadminaccount": "You need to create an admin account",
+
   "browsertitle": "Browser title",
   "pagetitle": "Page title",
   "pagesubtitle": "Page subtitle",
@@ -72,6 +76,7 @@
   "pagetitles": "Page titles",
   "localization": "Localization",
   "themes": "Themes",
+  "looks": "Looks",
 
 
   "unpublishedevents": "Unpublished events",

@@ -16,13 +16,19 @@ import ThemeHandler from './ThemeHandler-container';
 import StoreInfo from '../StoreInfo/StoreInfo-container';
 import Navbar from './Navbar/Navbar-container';
 import Today from './Today/Today-container';
+import InitialSetup from './InitialSetup';
+
+// ******************
+// Set the theme here
+// ******************
+import 'bulmaswatch/darkly/bulmaswatch.min.css';
 
 export default class MainView extends Component {
   constructor(props) {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { activeItem: 'today', forceUserInfo: false };
+    this.state = { activeItem: 'admintoolsevents', forceUserInfo: false };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,6 +54,11 @@ export default class MainView extends Component {
   render() {
     const { activeItem, forceUserInfo } = this.state;
     const { profile, settings } = this.props;
+
+    if (isLoaded(settings) && isEmpty(settings)) {
+      return <InitialSetup profile={profile} />;
+    }
+
     const isProfileLoaded = isLoaded(profile);
 
     if (isProfileLoaded) {
