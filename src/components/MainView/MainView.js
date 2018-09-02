@@ -16,13 +16,19 @@ import ThemeHandler from './ThemeHandler-container';
 import StoreInfo from '../StoreInfo/StoreInfo-container';
 import Navbar from './Navbar/Navbar-container';
 import Today from './Today/Today-container';
+import InitialSetup from './InitialSetup';
+
+// ******************
+// Set the theme here
+// ******************
+import 'bulmaswatch/darkly/bulmaswatch.min.css';
 
 export default class MainView extends Component {
   constructor(props) {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { activeItem: 'today', forceUserInfo: false };
+    this.state = { activeItem: 'admintoolsevents', forceUserInfo: false };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,16 +54,20 @@ export default class MainView extends Component {
   render() {
     const { activeItem, forceUserInfo } = this.state;
     const { profile, settings } = this.props;
-    const isProfileLoaded = isLoaded(profile) && isLoaded(settings);
+
+    if (isLoaded(settings) && isEmpty(settings)) {
+      return <InitialSetup profile={profile} />;
+    }
+
+    const isProfileLoaded = isLoaded(profile);
 
     if (isProfileLoaded) {
       const isLoggedIn = isProfileLoaded && !isEmpty(profile);
       const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
       const hasProfileData = isProfileLoaded && profile.firstName && profile.lastName && profile.email;
 
-      const features = _.get(settings, 'features', {});
-      const eventsActive = _.get(features, 'events.active', false);
-      const storeInfoActive = _.get(features, 'storeinfo.active', false);
+      const eventsActive = _.get(settings, 'features.events.active', false);
+      const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
 
       const todayVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'today');
       const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'events');

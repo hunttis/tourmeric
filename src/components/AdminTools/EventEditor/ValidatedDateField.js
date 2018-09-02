@@ -11,7 +11,7 @@ export default class ValidatedDateField extends Component {
     firebase.update(this.props.path, value);
     this.setState({ saved: true, editing: false });
     this.delayedNormalize();
-  }, 300)
+  }, 1000)
 
   delayedNormalize = _.debounce(() => {
     this.setState({ saved: false, editing: false });
@@ -68,14 +68,15 @@ export default class ValidatedDateField extends Component {
     const months = moment.monthsShort();
 
     return (
-      <div className="columns">
-        <div className="column">
+      <div>
+
+        <div className="is-inline-flex">
           <div className="field">
             <label className="label">
               <Translate id="day" />
             </label>
             <div className="field">
-              <p className="control has-icons-right">
+              <p className="control has-icons-right is-vcentered">
 
                 <Translate>
                   {translate => (<input
@@ -85,21 +86,20 @@ export default class ValidatedDateField extends Component {
                     defaultValue={this.state.day}
                     onChange={event => this.updateDay(event.target.value)}
                   />)
-                    }
+                        }
                 </Translate>
                 {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
                 {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
               </p>
             </div>
           </div>
-        </div>
-        <div className="column">
+
           <div className="field">
             <label className="label">
               <Translate id="month" />
             </label>
             <div className="field">
-              <div className="control has-icons-right">
+              <div className="control has-icons-right is-vcentered">
                 <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
                   <select
                     defaultValue={this.state.month}
@@ -122,18 +122,16 @@ export default class ValidatedDateField extends Component {
                 <div className="icon is-small is-right">
                   <i className="fas fa-check-circle has-text-success" />
                 </div>
-                  }
+                      }
                 {editing &&
                 <div className="icon is-small is-right">
                   <i className="fas fa-pencil-alt has-text-warning" />
                 </div>
-                  }
+                      }
               </div>
             </div>
           </div>
 
-        </div>
-        <div className="column">
           <div className="field">
             <label className="label">
               <Translate id="year" />
@@ -149,7 +147,7 @@ export default class ValidatedDateField extends Component {
                     defaultValue={this.state.year}
                     onChange={event => this.updateYear(event.target.value)}
                   />)
-                    }
+                        }
                 </Translate>
                 {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
                 {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
@@ -157,6 +155,7 @@ export default class ValidatedDateField extends Component {
             </div>
           </div>
         </div>
+
       </div>
     );
   }

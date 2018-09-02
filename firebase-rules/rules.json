@@ -12,7 +12,10 @@
         "type": {
           ".validate": "newData.isString()"
         },
-        "logo": {
+        "image": {
+          ".validate": "newData.isString()"
+        },
+        "formats": {
           ".validate": "newData.isString()"
         },
         "$other": {
@@ -37,7 +40,7 @@
           ".validate": "newData.isString()"
         },
         "entryFee": {
-          ".validate": "newData.isNumber()"
+          ".validate": "newData.isString()"
         },
         "format": {
           ".validate": "newData.isString()"
@@ -52,7 +55,7 @@
           ".validate": "newData.isString()"
         },
         "playerSlots": {
-          ".validate": "newData.isNumber()"
+          ".validate": "newData.isString()"
         },
         "prizes": {
           ".validate": "newData.isString()"
@@ -291,7 +294,7 @@
           ".validate": "newData.isString()"
         },
         "dciNumber": {
-          ".validate": "newData.isNumber()"
+          ".validate": "newData.isString()"
         },
         "displayName": {
           ".validate": "newData.isString()"

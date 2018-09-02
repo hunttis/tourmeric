@@ -11,6 +11,7 @@ export default compose(
     { path: '/events', queryParams: ['orderByChild=date'] },
     { path: '/participations' },
     { path: `/storecredit/${auth.uid}` },
+    { path: '/categories' },
   ]),
   withFirebase,
   connect(state => ({

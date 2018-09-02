@@ -4,7 +4,7 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
-export default class ValidatedDropdown extends Component {
+export default class ValidatedDropdownForArray extends Component {
 
   delayedSave = _.debounce((path, value) => {
     firebase.update(path, value);
@@ -44,15 +44,11 @@ export default class ValidatedDropdown extends Component {
                 className={`input ${!isOk && 'is-danger'}`}
               >
                 <option value=""><Translate id="select" /></option>
-                {Object.entries(dropdownItems).map((categoryEntry) => {
-                  const categoryId = categoryEntry[0];
-                  const category = categoryEntry[1];
-                  return (
-                    <option key={categoryId} value={categoryId}>
-                      {category.name}
-                    </option>
-                  );
-                })}
+                {dropdownItems.map(category => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
               </select>
             </div>
             {saved &&
@@ -72,12 +68,12 @@ export default class ValidatedDropdown extends Component {
   }
 }
 
-ValidatedDropdown.propTypes = {
+ValidatedDropdownForArray.propTypes = {
   labelContent: PropTypes.string,
   defaultValue: PropTypes.string,
   path: PropTypes.string,
   targetName: PropTypes.string,
   isOk: PropTypes.bool,
   updateFieldStatus: PropTypes.func,
-  dropdownItems: PropTypes.object,
+  dropdownItems: PropTypes.array,
 };

@@ -6,7 +6,7 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import News from './News-container';
 import EventCard from '../../EventList/EventCard-container';
-import { EventModal } from '../../EventList/EventModal';
+import EventModal from '../../EventList/EventModal-container';
 
 export default class Today extends Component {
 
@@ -76,17 +76,13 @@ export default class Today extends Component {
     this.setState({ shownItems: newView });
   }
 
-  renderEventModal(eventEntry, participations) {
+  renderEventModal(eventEntry) {
     const eventId = eventEntry.key;
-    const eventContent = eventEntry.value;
-    const participationsForEvent = Object.values(_.get(participations, eventId, []));
 
     return <EventModal
       key={`modal${eventId}`}
       eventId={eventId}
-      eventContent={eventContent}
       closeModal={() => this.closeModal(eventId)}
-      participations={participationsForEvent}
     />;
   }
 
@@ -171,7 +167,7 @@ export default class Today extends Component {
   render() {
 
     const {
-      events, participations, categories, uploadedCategoryLogos,
+      events, categories, uploadedCategoryLogos,
     } = this.props;
 
     const { shownItems } = this.state;
@@ -184,9 +180,9 @@ export default class Today extends Component {
         <div className="section">
           <div className="columns is-multiline">
 
-            {isLoaded(events) && todaysEvents.map(eventEntry => this.renderEventModal(eventEntry, participations))}
+            {isLoaded(events) && todaysEvents.map(eventEntry => this.renderEventModal(eventEntry))}
 
-            {isLoaded(events) && nextEvents.map(eventEntry => this.renderEventModal(eventEntry, participations))}
+            {isLoaded(events) && nextEvents.map(eventEntry => this.renderEventModal(eventEntry))}
 
 
             {/* <pre>{JSON.stringify(todaysEvents)}</pre> */}
@@ -206,7 +202,7 @@ export default class Today extends Component {
         </div>);
     }
     return (
-      <div><Translate id="loading" /></div>
+      <div />
     );
 
   }
@@ -214,7 +210,6 @@ export default class Today extends Component {
 
 Today.propTypes = {
   events: PropTypes.array,
-  participations: PropTypes.object,
   categories: PropTypes.object,
   uploadedCategoryLogos: PropTypes.object,
 };

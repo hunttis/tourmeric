@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import loadingImage from '../../images/Ripple-1s-64px.svg';
 import AdminEventList from './AdminEventList-container';
@@ -23,10 +22,7 @@ export default class AdminToolsEvents extends Component {
       return <div><img src={loadingImage} alt="Loading" /></div>;
     }
 
-    if (isLoaded(events) && !isEmpty(events)) {
-      const sortedEvents = _.sortBy(Object.entries(events), ['date', 'time']);
-      const publishedEvents = sortedEvents.filter(event => event[1].published);
-      const unpublishedEvents = sortedEvents.filter(event => !event[1].published);
+    if (isLoaded(events)) {
 
       const unpublishedEventsVisible = this.state.activeItem === 'unpublished';
       const publishedEventsVisible = this.state.activeItem === 'published';
@@ -46,8 +42,8 @@ export default class AdminToolsEvents extends Component {
             </ul>
           </div>
           <section className="section">
-            {unpublishedEventsVisible && <AdminEventList events={unpublishedEvents} showNewEventButton />}
-            {publishedEventsVisible && <AdminEventList events={publishedEvents} showNewEventButton={false} />}
+            {unpublishedEventsVisible && <AdminEventList published={false} showNewEventButton />}
+            {publishedEventsVisible && <AdminEventList published showNewEventButton={false} />}
             {categoryVisible && <CategoryEditor />}
             {categoryLogoUploaderVisible && <CategoryLogoUploader />}
             {participationVisible && <ParticipationEditor />}

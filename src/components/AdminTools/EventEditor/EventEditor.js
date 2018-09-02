@@ -4,11 +4,18 @@ import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Moment from 'react-moment';
+import moment from 'moment';
+
+import 'react-dates/initialize';
+import { SingleDatePicker } from 'react-dates';
+
+import 'react-dates/lib/css/_datepicker.css';
+
 import ValidatedEditableField from './ValidatedEditableField-container';
 import EditableTextarea from './EditableTextarea-container';
-import ValidatedDateField from './ValidatedDateField-container';
 import ValidatedTimeField from './ValidatedTimeField';
-import ValidatedDropdown from './ValidatedDropdown-container';
+import ValidatedDropdown from './ValidatedDropdown';
+import ValidatedDropdownForArray from './ValidatedDropdownForArray';
 
 export default class EditableEvent extends Component {
 
@@ -17,18 +24,23 @@ export default class EditableEvent extends Component {
     this.updateFieldStatus = this.updateFieldStatus.bind(this);
     const { eventContent } = this.props;
     this.state = {
+      focused: false,
+      date: eventContent.date,
       nameOk: !_.isEmpty(eventContent.name),
       categoryOk: !_.isEmpty(eventContent.category),
-      formatOk: !_.isEmpty(eventContent.format),
+      formatOk: this.checkIfFormatOk(eventContent.format),
       dateOk: !_.isEmpty(eventContent.date),
       timeOk: !_.isEmpty(eventContent.time),
-      playerSlotsOk: !_.isEmpty(eventContent.playerSlots),
       entryFeeOk: !_.isEmpty(eventContent.entryFee),
-      rulesLevelOk: !_.isEmpty(eventContent.rulesLevel),
-      prizesOk: !_.isEmpty(eventContent.prizes),
-      notesOk: !_.isEmpty(eventContent.notes),
-      linkOk: !_.isEmpty(eventContent.link),
     };
+  }
+
+  checkIfFormatOk(format) {
+    const { eventContent, categories } = this.props;
+    const selectedCategory = eventContent.category ? categories[eventContent.category] : { formats: [] };
+    const formatOptions = _.isEmpty(selectedCategory.formats) ? [] : selectedCategory.formats.split(',');
+    const formatIsEmptyAndNoOptions = _.isEmpty(formatOptions) && _.isEmpty(format);
+    return formatIsEmptyAndNoOptions || !_.isEmpty(format);
   }
 
   addPublishAndDeleteButtons(eventId, published, allFieldsOk) {
@@ -51,26 +63,84 @@ export default class EditableEvent extends Component {
 
   updateFieldStatus(fieldName, fieldStatus) {
     const field = `${fieldName}Ok`;
-    this.setState({ [field]: fieldStatus });
+    const updatedField = { [field]: fieldStatus };
+
+    const { eventContent } = this.props;
+    const newState = Object.assign({
+      nameOk: !_.isEmpty(eventContent.name),
+      categoryOk: !_.isEmpty(eventContent.category),
+      formatOk: this.checkIfFormatOk(eventContent.format),
+      dateOk: !_.isEmpty(eventContent.date),
+      timeOk: !_.isEmpty(eventContent.time),
+      entryFeeOk: !_.isEmpty(eventContent.entryFee),
+    }, updatedField);
+
+    this.setState(newState);
+  }
+
+  dayPhase(time) {
+
+    if (!time) {
+      return '';
+    }
+
+    try {
+      const hour = time.split(':')[0];
+      const hourNumber = parseInt(hour, 10);
+
+      if (hourNumber >= 0 && hourNumber < 6) {
+        return <Translate id="night" />;
+      }
+
+      if (hourNumber >= 6 && hourNumber < 10) {
+        return <Translate id="morning" />;
+      }
+
+      if (hourNumber >= 10 && hourNumber < 14) {
+        return <Translate id="daytime" />;
+      }
+
+      if (hourNumber >= 14 && hourNumber < 18) {
+        return <Translate id="afternoon" />;
+      }
+
+      if (hourNumber >= 18 && hourNumber <= 23) {
+        return <Translate id="evening" />;
+      }
+
+    } catch (error) {
+      console.warn('Something in the dayphase viewer', error);
+    }
+    return '';
+  }
+
+  async saveDate(newDate) {
+    const { eventId } = this.props;
+    await firebase.update(`/events/${eventId}`, { date: newDate });
+    this.setState({ date: newDate });
   }
 
   render() {
     const { categories, eventId, eventContent, settings } = this.props;
-    const allFieldsOk = _.every(this.state);
-
+    const allFieldsOk = _.every(this.state.nameOk, this.state.categoryOk, this.state.formatOk, this.state.dateOk, this.state.timeOk, this.state.entryFeeOk);
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
+    moment.locale('fi');
+
+    const selectedCategory = eventContent.category ? categories[eventContent.category] : { formats: [] };
+    const formatOptions = _.isEmpty(selectedCategory.formats) ? [] : selectedCategory.formats.split(',');
+    const cleanedFormatOptions = formatOptions.map(option => _.trim(option));
 
     return (
       <div className="column is-12 columns is-multiline editableevent box">
         <div className="column is-6">
-          <div className="has-text-right is-small is-disabled"><Translate id="editing" /> <Translate id="eventid" />: {eventId}</div>
+          <div className="has-text-right is-small is-disabled is-hidden"><Translate id="editing" /> <Translate id="eventid" />: {eventId}</div>
         </div>
         <div className="column is-6">
 
           <div className="level">
             <div className="level-left" />
             <div className="level-right">
-              <button className="button is-right" onClick={this.props.toggleEventVisibility}><Translate id="minimize" /></button>
+              <button className="button is-right" onClick={() => this.props.toggleEventVisibility()}><Translate id="minimize" /></button>
             </div>
           </div>
         </div>
@@ -87,7 +157,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-12">
+        <div className="column is-6">
           <ValidatedDropdown
             isOk={this.state.categoryOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -100,32 +170,27 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-12">
-          <ValidatedEditableField
-            isOk={this.state.formatOk}
-            updateFieldStatus={this.updateFieldStatus}
-            labelContent="format"
-            placeHolder="formatplaceholder"
-            defaultValue={eventContent.format}
-            path={`/events/${eventId}`}
-            targetName="format"
-          />
+        {!_.isEmpty(formatOptions) &&
+          <div className="column is-6">
+            <ValidatedDropdownForArray
+              isOk={this.state.formatOk}
+              updateFieldStatus={this.updateFieldStatus}
+              labelContent="format"
+              placeHolder="formatplaceholder"
+              defaultValue={eventContent.format}
+              dropdownItems={cleanedFormatOptions}
+              path={`/events/${eventId}`}
+              targetName="format"
+            />
+          </div>
+        }
+
+        <div className="column is-12 is-hidden-mobile">
+          <hr />
         </div>
 
         <div className="column is-12">
-          <ValidatedDateField
-            isOk={this.state.dateOk}
-            updateFieldStatus={this.updateFieldStatus}
-            labelContent="date"
-            defaultValue={eventContent.date}
-            inputType="date"
-            path={`/events/${eventId}`}
-            targetName="date"
-          />
-        </div>
-
-
-        <div className="column is-12">
+          <h2 className="subtitle"><Translate id="time" /></h2>
           <ValidatedTimeField
             isOk={this.state.timeOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -137,12 +202,29 @@ export default class EditableEvent extends Component {
         </div>
 
         <div className="column is-12">
-          <Translate id="abovedateinterpretedas" /> : <Moment format={dateFormat}>{eventContent.date}</Moment> {eventContent.time}
+          <h2 className="subtitle"><Translate id="date" /></h2>
+          <SingleDatePicker
+            date={this.state.date ? moment(this.state.date, 'YYYY-MM-DD') : moment()}
+            onDateChange={date => this.saveDate(date.format('YYYY-MM-DD'))}
+            focused={this.state.focused}
+            onFocusChange={({ focused }) => this.setState({ focused })}
+            id={`${eventId}-datepicker`}
+            firstDayOfWeek={1}
+            displayFormat={dateFormat}
+          />
         </div>
 
-        <div className="column is-6">
+        <div className="column is-12">
+          <Translate id="abovedateinterpretedas" /> : <span className="has-text-success"><Moment format={dateFormat}>{eventContent.date}</Moment></span> <span className="has-text-info">{eventContent.time}</span> <span className="has-text-warning">{this.dayPhase(eventContent.time)}</span>
+        </div>
+
+        <div className="column is-12 is-hidden-mobile">
+          <hr />
+        </div>
+
+        <div className="column is-4">
           <ValidatedEditableField
-            isOk={this.state.playerSlotsOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="playerslots"
             placeHolder="playerslotsplaceholder"
@@ -153,7 +235,7 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
+        <div className="column is-4">
           <ValidatedEditableField
             isOk={this.state.entryFeeOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -166,9 +248,9 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
+        <div className="column is-4">
           <ValidatedEditableField
-            isOk={this.state.rulesLevelOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="ruleslevel"
             placeHolder="ruleslevelplaceholder"
@@ -178,9 +260,21 @@ export default class EditableEvent extends Component {
           />
         </div>
 
+        <div className="column is-12">
+          <ValidatedEditableField
+            isOk
+            updateFieldStatus={this.updateFieldStatus}
+            labelContent="link"
+            placeHolder="linkplaceholder"
+            defaultValue={eventContent.link}
+            path={`/events/${eventId}`}
+            targetName="link"
+          />
+        </div>
+
         <div className="column is-6">
           <EditableTextarea
-            isOk={this.state.prizesOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="prizes"
             placeHolder="prizesplaceholder"
@@ -192,7 +286,7 @@ export default class EditableEvent extends Component {
 
         <div className="column is-6">
           <EditableTextarea
-            isOk={this.state.notesOk}
+            isOk
             updateFieldStatus={this.updateFieldStatus}
             labelContent="notes"
             placeHolder="notesplaceholder"
@@ -202,22 +296,12 @@ export default class EditableEvent extends Component {
           />
         </div>
 
-        <div className="column is-6">
-          <ValidatedEditableField
-            isOk={this.state.linkOk}
-            updateFieldStatus={this.updateFieldStatus}
-            labelContent="link"
-            placeHolder="linkplaceholder"
-            defaultValue={eventContent.link}
-            path={`/events/${eventId}`}
-            targetName="link"
-          />
-        </div>
 
-        <div className="column is-6">
+        <div className="column is-12">
           <div className="level">
-            <div className="level-left" />
-            <div className="level-item has-text-right">{!allFieldsOk && <Translate id="fillmissingdatatopublish" />}</div>
+            <div className="level-left is-hidden-tablet" />
+            <div className="level-item is-hidden-tablet" />
+            <div className="level-item has-text-right">{!allFieldsOk && <span className="has-text-warning"><Translate id="fillmissingdatatopublish" /></span>}</div>
             <div className="level-right">
               {this.addPublishAndDeleteButtons(eventId, eventContent.published, allFieldsOk)}
             </div>

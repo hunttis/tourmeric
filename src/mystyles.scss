@@ -3,17 +3,19 @@ div {
   animation-duration: 250ms;
 }
 
+div.navbar {
+  border-radius: 0px;
+}
+
 .navbar-item a {
   color: #bbbbbb;
 }
 
 .active-navbar-item a {
-  color: white;
   font-weight: bolder;
 }
 
 a.adminactive {
-  color: white;
   font-weight: bolder;
 }
 
@@ -23,6 +25,13 @@ a.adminactive {
 
 #logo {
   margin: 0em 1em;
+}
+
+
+.speech-bubble {
+  border-radius: 10px 10px 10px 0px;
+  padding: 0.5em 1em;
+  margin: -10px 0px;
 }
 
 .margin-leftright {
@@ -55,14 +64,25 @@ a.adminactive {
   padding: 0px;
 }
 
+.fade-in {
+  perspective: 800px;
+  animation-name: fadein;
+  animation-duration: 500ms;
+}
+
 button.image-square {
   width: 96px;
   height: 96px;
 }
 
+.eventlistitem {
+  animation-name: scrollin;
+  animation-duration: 750ms;
+}
+
 @keyframes scrollin {
   0% {
-    transform: translate3d(0px, -300px, 0px)
+    transform: translate3d(1000px, 100px, 0px)
   }
 
   100% {

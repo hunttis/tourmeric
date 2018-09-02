@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Translate, setActiveLanguage } from 'react-localize-redux';
-import { isLoaded } from 'react-redux-firebase';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import Moment from 'react-moment';
 import Highlights from '../HighLights/HighLights-container';
 
@@ -16,12 +16,11 @@ export default class TitleBar extends Component {
   render() {
     const { settings, returnToFrontpage } = this.props;
 
-    const { features } = settings;
-    const highlightsActive = _.get(features, 'highlights.active', false);
+    const highlightsActive = _.get(settings, 'features.highlights.active', false);
 
     const pageTitle = _.get(settings, 'pageTitle', 'Pagetitle not set');
     const pageSubtitle = _.get(settings, 'pageSubtitle', '');
-    const settingsLoaded = isLoaded(settings);
+    const settingsLoaded = isLoaded(settings) && !isEmpty(settings);
 
     if (settingsLoaded) {
       return (
@@ -64,7 +63,7 @@ export default class TitleBar extends Component {
     return (
       <div className="title has-text-centered">
         <div className="level" />
-        <button disabled className="button is-loading is-purple"><Translate id="loading" />.</button>
+        <button disabled className="button is-loading is-black"><Translate id="loading" />.</button>
       </div>
     );
   }

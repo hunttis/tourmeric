@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 
 export const NavbarItem = ({ onClick, translationKey, icon, styleClass }) => (
-  <div className={`navbar-item ${styleClass}`}>
-    <a onClick={onClick}>
-      <span className="icon">
-        <i className={`fas ${icon}`} />
-      </span>
+  <a onClick={onClick} className={`navbar-item ${styleClass}`}>
+    <span className="icon">
+      <i className={`fas ${icon}`} />
+    </span>
       &nbsp;&nbsp;
-      <Translate id={translationKey} />
-    </a>
-  </div>
+    <Translate id={translationKey} />
+  </a>
 );
 
 NavbarItem.propTypes = {

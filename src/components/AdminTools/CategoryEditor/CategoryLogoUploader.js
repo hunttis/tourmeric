@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Dropzone from 'react-dropzone';
 import { map } from 'lodash';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import 'firebase/storage';
+import FileDropper from '../FileDropper';
 
 const filesPath = 'uploadedCategoryLogos';
 
@@ -76,11 +76,7 @@ export default class CategoryLogoUploader extends Component {
 
 
           <div className="column is-4">
-            <Dropzone onDrop={this.onFilesDrop}>
-              <div>
-                <Translate id="dropfileshere" />
-              </div>
-            </Dropzone>
+            <FileDropper path={filesPath} />
           </div>
 
         </div>

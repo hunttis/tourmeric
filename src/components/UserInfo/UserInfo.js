@@ -6,8 +6,9 @@ import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import loadingImage from '../../images/Ripple-1s-64px.svg';
 import EditableVerticalField from '../Common/EditableVerticalField-container';
-import { checkParticipation } from '../../api/eventApi';
 import StoreCreditTableUser from './StoreCreditTableUser';
+import { checkParticipation } from '../../api/eventApi';
+import { DateBasedEvents } from './DateBasedEvents';
 
 export default class UserInfo extends Component {
 
@@ -43,10 +44,9 @@ export default class UserInfo extends Component {
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
 
       const publishedEvents = events ? Object.values(events).filter(event => event.value.published) : [];
-      const futureEvents = publishedEvents ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
-      const pastEvents = pastEvents ? publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
-      const features = _.get(settings, 'features', {});
-      const eventsActive = _.get(features, 'events.active', false);
+      const futureEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
+      const pastEvents = pastEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
+      const eventsActive = _.get(settings, 'features.events.active', false);
 
       return (
         <div>
@@ -127,18 +127,12 @@ export default class UserInfo extends Component {
                   <DateBasedEvents
                     title="nextparticipations"
                     events={futureEvents}
-                    userid={userid}
-                    participations={participations}
-                    settings={settings}
                   />}
                   <p>&nbsp;</p>
                   {!_.isEmpty(pastEvents) &&
                   <DateBasedEvents
                     title="pastparticipations"
                     events={pastEvents}
-                    userid={userid}
-                    participations={participations}
-                    settings={settings}
                   />}
                 </Fragment>
               }
@@ -186,9 +180,6 @@ export default class UserInfo extends Component {
 
     return (
       <section className="section">
-        {/* <h2 className="title">
-          <Translate id="yourinfo" />
-        </h2> */}
         <div className="level is-hidden-mobile" />
         {allInfoNotEntered &&
           <h2 className="subtitle has-text-warning has-icon-left">
@@ -208,33 +199,6 @@ export default class UserInfo extends Component {
   }
 }
 
-const DateBasedEvents = ({ title, events, settings }) => (
-  <div>
-    <h1 className="title"><Translate id={title} /></h1>
-    {Object.entries(events).map((eventEntry) => {
-      const eventId = eventEntry[1].key;
-      const event = eventEntry[1].value;
-      return <EventParticipation key={`usereventlist${eventId}`} event={event} settings={settings} />;
-    })}
-  </div>
-);
-
-const EventParticipation = ({ event, settings }) => (
-  <div className="box">
-    <div className="level">
-      <div className="level-left">
-        <div>
-          <strong>{event.name}</strong><br />
-          <span className="icon is-small"><i className="fas fa-calendar" /></span> {moment(event.date).format(settings.dateFormat)}
-          <span className="icon is-small"><i className="fas fa-clock" /></span> {event.time}
-        </div>
-      </div>
-      <div className="level-right">
-        <button className="button is-primary">More info</button>
-      </div>
-    </div>
-  </div>
-);
 
 UserInfo.propTypes = {
   events: PropTypes.array,
@@ -244,15 +208,4 @@ UserInfo.propTypes = {
   auth: PropTypes.object,
   settings: PropTypes.object,
   storecredit: PropTypes.object,
-};
-
-EventParticipation.propTypes = {
-  event: PropTypes.object,
-  settings: PropTypes.object,
-};
-
-DateBasedEvents.propTypes = {
-  title: PropTypes.string,
-  events: PropTypes.array,
-  settings: PropTypes.object,
 };

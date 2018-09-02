@@ -5,6 +5,10 @@
 
   "menu": "Valikko",
 
+  "setupnotdoneyet": "Asennus ei ole vielä ihan valmis",
+  "almostthere": "Melkein valmista..",
+  "youneedtocreateanadminaccount": "Sinun täytyy luoda pääkäyttäjä",
+
   "browsertitle": "Selaimen otsikko",
   "pagetitle": "Sivun otsikko",
   "pagesubtitle": "Sivun alaotsikko",
@@ -52,6 +56,7 @@
   "comment": "Osallistumiskommentti",
   "pastparticipations": "Edelliset tapahtumat joihin osallistuit",
   "nextparticipations": "Seuraavat tapahtumat joihin osallistut",
+  "moreinfo": "Lisää tietoa",
 
   "select": "- Valitse -",
   "date": "Päivämäärä",
@@ -70,20 +75,30 @@
   "pagetitles": "Sivun otsikointi",
   "localization": "Lokalisointi",
   "themes": "Teemat",
+  "looks": "Ulkonäkö",
 
   "unpublishedevents": "Julkaisemattomat tapahtumat",
   "publishedevents": "Julkaistut tapahtumat",
   "addevent": "Lisää tapahtuma",
   "editevent": "Muokkaa tapahtumaa",
+  "sameday": "Samalle päivälle",
+  "nextday": "Seuraavalle päivälle",
+  "nextweek": "Seuraavalle viikolle",
+  "filter": "Suodata",
+  "filtereventsbynameorcategory": "Suodata tapahtumia nimellä tai kategorialla",
+  "hits": "Osumia",
   "categories": "Kategoriat",
   "nocategoriesgocreatesome": "Ei vielä yhtään kategoriaa, käy ensin luomassa muutama",
   "categorylogouploader": "Kategorialogot",
+  "formats": "Formaatit",
+  "formatsplaceholder": "Formaatit, pilkulla erotettuna",
   "cannotdeleteinuse": "Ei voi poistaa, käytössä",
   "nameofthegame": "Pelin nimi",
   "abbreviationofthename": "Nimen lyhennös",
   "gametype": "Pelin tyyppi, korttipeli, lautapeli, videopeli jne",
   "noevents": "Ei tapahtumia",
   "published": "Julkaistu",
+  "notpublished": "Ei julkaistu",
   "publish": "Julkaise",
   "unpublish": "Piilota",
   "delete": "Poista",
@@ -116,9 +131,17 @@
   "linkplaceholder": "Mistä löytyy lisätietoa",
   "abovedateinterpretedas": "Ylläoleva päivämäärä tulkittuna",
   "dateformatplaceholder": "Esimerkiksi: DD.MM.YYYY",
+
+  "night": "Yöllä",
+  "morning": "Aamulla",
+  "daytime": "Päivällä", 
+  "afternoon": "Iltapäivällä",
+  "evening": "Illalla",
   
   "dropfileshere": "Pudota tiedosto(t) tähän, tai klikkaa tässä",
   "uploadedfiles": "Lähetetyt tiedostot",
+  "uploadingfiles": "Tiedostoja lähetetään",
+  "filessent": "Tiedostoja lähetetty",
   "image": "Kuva",
   "filename": "Tiedostonimi",
   "actions": "Toiminnot",
@@ -147,6 +170,7 @@
 
   "participations": "Osallistujat",
   "adduserparticipation": "Lisää käyttäjä tähän tapahtumaan",
+  "youmusthaveeventsbeforeparticipationscanhappen": "Sinulla täytyy olla tapahtumia, jotta osallistumisia voi olla",
 
   "yourinfo": "Tietosi",
   "personalinfo": "Henkilökohtaiset tietosi",
@@ -221,6 +245,7 @@
   "regularopeninghours": "Aukioloajat",
   "upcomingexceptionstoopeninghours": "Tulevia poikkeuksia aukioloaikoihin",
   "exceptionstoopeninghours": "Poikkeukset aukioloaikoihin",
+  "opentoday": "Avoinna tänään",
 
   "locationinfo": "Sijainti",
   "directions": "Ohjeet paikalle",

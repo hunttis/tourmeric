@@ -5,44 +5,25 @@ import _ from 'lodash';
 export default class ThemeHandler extends Component {
 
   componentWillMount() {
-    this.handleTitleChange(null, this.props.settings.browserTitle);
-    this.handleTheme(null, this.props.settings.theme);
-    this.handleTitleBarColorChange(null, this.props.settings.titleBarColor, null, this.props.settings.titleBarColor2, null, this.props.settings.titleBarPercentage, null, this.props.settings.titleBarAngle);
-    this.handleTitleTextColor(null, this.props.settings.titleTextColor);
-    this.handleSubtitleTextColor(null, this.props.settings.subtitleTextColor);
+    const { settings } = this.props;
+    this.handleTitleBarColorChange(null, settings.titleBarColor, null, settings.titleBarColor2, null, settings.titleBarPercentage, null, settings.titleBarAngle);
+    this.handleTitleTextColor(null, settings.titleTextColor);
+    this.handleSubtitleTextColor(null, settings.subtitleTextColor);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.handleTitleChange(this.props.settings.browserTitle, nextProps.settings.browserTitle);
-    this.handleTheme(this.props.settings.theme, nextProps.settings.theme);
-    this.handleTitleBarColorChange(this.props.settings.titleBarColor, nextProps.settings.titleBarColor, this.props.settings.titleBarColor2, nextProps.settings.titleBarColor2, this.props.settings.titleBarPercentage, nextProps.settings.titleBarPercentage, this.props.settings.titleBarAngle, nextProps.settings.titleBarAngle);
-    this.handleTitleTextColor(this.props.settings.titleTextColor, nextProps.settings.titleTextColor);
-    this.handleSubtitleTextColor(this.props.settings.subtitleTextColor, nextProps.settings.subtitleTextColor);
-  }
+    const { settings } = this.props;
 
-  handleTitleChange(oldTitle, newTitle) {
-    if (oldTitle === newTitle) {
+    let nextSettings = _.get(nextProps, 'settings');
+    if (!nextSettings) {
+      nextSettings = {};
+    }
+    if (!settings || !nextSettings) {
       return;
     }
-
-    if (_.isEmpty(newTitle)) {
-      document.title = 'Tourmeric';
-    } else {
-      document.title = newTitle;
-    }
-  }
-
-  handleTheme(oldTheme, newTheme) {
-
-    if (oldTheme === newTheme) {
-      return;
-    }
-
-    const link = document.getElementById('pagetheme') || document.createElement('link');
-    link.href = `https://unpkg.com/bulmaswatch/${newTheme}/bulmaswatch.min.css`;
-    link.rel = 'stylesheet';
-    link.id = 'pagetheme';
-    document.head.appendChild(link);
+    this.handleTitleBarColorChange(settings.titleBarColor, nextSettings.titleBarColor, settings.titleBarColor2, nextSettings.titleBarColor2, settings.titleBarPercentage, nextSettings.titleBarPercentage, settings.titleBarAngle, nextSettings.titleBarAngle);
+    this.handleTitleTextColor(settings.titleTextColor, nextSettings.titleTextColor);
+    this.handleSubtitleTextColor(settings.subtitleTextColor, nextSettings.subtitleTextColor);
   }
 
   handleTitleBarColorChange(oldValue1, newValue1, oldValue2, newValue2, oldPercentage, newPercentage, oldAngle, newAngle) {
@@ -90,12 +71,7 @@ export default class ThemeHandler extends Component {
   render() {
     return null;
   }
-
 }
-
-ThemeHandler.defaultProps = {
-  settings: { theme: 'default' },
-};
 
 ThemeHandler.propTypes = {
   settings: PropTypes.object,

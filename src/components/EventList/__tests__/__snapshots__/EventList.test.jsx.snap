@@ -222,37 +222,9 @@ ShallowWrapper {
       "children": <div
         className="container"
       >
-        <EventModal
+        <FirebaseConnect(Connect(Connect(EventModal)))
           closeModal={[Function]}
-          eventContent={
-            Object {
-              "category": "category1",
-              "createDate": "2018-05-24T17:00:46.500Z",
-              "date": "2018-09-24",
-              "entryFee": "10",
-              "format": "Miniatures",
-              "link": "http://www.google.fi",
-              "name": "Warhammer thing",
-              "notes": "Bring your war face!",
-              "playerSlots": "10",
-              "prizes": "Glory!",
-              "published": true,
-              "rulesLevel": "Casual",
-              "time": "Kill everything",
-            }
-          }
           eventId="mockEventId1"
-          participations={
-            Array [
-              Object {
-                "comment": "Jee",
-                "date": "2018-06-23T09:40:26.992Z",
-                "firstName": "Test",
-                "lastName": "Person",
-                "userId": "mockUserId",
-              },
-            ]
-          }
         />
         <h1
           className="title"
@@ -296,7 +268,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -310,7 +281,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -324,7 +294,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -338,7 +307,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -352,7 +320,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -366,7 +333,6 @@ ShallowWrapper {
                 <img
                   alt=""
                   className="image is-48x48"
-                  src="http://foo.com/image.png"
                 />
               </button>
             </div>
@@ -424,37 +390,9 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           Array [
-            <EventModal
+            <FirebaseConnect(Connect(Connect(EventModal)))
               closeModal={[Function]}
-              eventContent={
-                Object {
-                  "category": "category1",
-                  "createDate": "2018-05-24T17:00:46.500Z",
-                  "date": "2018-09-24",
-                  "entryFee": "10",
-                  "format": "Miniatures",
-                  "link": "http://www.google.fi",
-                  "name": "Warhammer thing",
-                  "notes": "Bring your war face!",
-                  "playerSlots": "10",
-                  "prizes": "Glory!",
-                  "published": true,
-                  "rulesLevel": "Casual",
-                  "time": "Kill everything",
-                }
-              }
               eventId="mockEventId1"
-              participations={
-                Array [
-                  Object {
-                    "comment": "Jee",
-                    "date": "2018-06-23T09:40:26.992Z",
-                    "firstName": "Test",
-                    "lastName": "Person",
-                    "userId": "mockUserId",
-                  },
-                ]
-              }
             />,
           ],
           <h1
@@ -499,7 +437,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -513,7 +450,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -527,7 +463,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -541,7 +476,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -555,7 +489,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -569,7 +502,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -624,34 +556,10 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": "modalmockEventId1",
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
             "closeModal": [Function],
-            "eventContent": Object {
-              "category": "category1",
-              "createDate": "2018-05-24T17:00:46.500Z",
-              "date": "2018-09-24",
-              "entryFee": "10",
-              "format": "Miniatures",
-              "link": "http://www.google.fi",
-              "name": "Warhammer thing",
-              "notes": "Bring your war face!",
-              "playerSlots": "10",
-              "prizes": "Glory!",
-              "published": true,
-              "rulesLevel": "Casual",
-              "time": "Kill everything",
-            },
             "eventId": "mockEventId1",
-            "participations": Array [
-              Object {
-                "comment": "Jee",
-                "date": "2018-06-23T09:40:26.992Z",
-                "firstName": "Test",
-                "lastName": "Person",
-                "userId": "mockUserId",
-              },
-            ],
           },
           "ref": null,
           "rendered": null,
@@ -719,7 +627,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -733,7 +640,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -747,7 +653,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -761,7 +666,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -775,7 +679,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -789,7 +692,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -893,7 +795,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -907,7 +808,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -921,7 +821,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -935,7 +834,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -949,7 +847,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -963,7 +860,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>,
@@ -984,7 +880,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -998,7 +893,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1011,7 +905,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1033,7 +927,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1047,7 +940,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1060,7 +952,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1082,7 +974,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1096,7 +987,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1109,7 +999,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1131,7 +1021,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1145,7 +1034,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1158,7 +1046,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1180,7 +1068,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1194,7 +1081,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1207,7 +1093,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1229,7 +1115,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>,
                     "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -1243,7 +1128,6 @@ ShallowWrapper {
                       "children": <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />,
                       "className": "button is-rounded image-square  ",
                       "onClick": [Function],
@@ -1256,7 +1140,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "",
                         "className": "image is-48x48",
-                        "src": "http://foo.com/image.png",
+                        "src": undefined,
                       },
                       "ref": null,
                       "rendered": null,
@@ -1469,37 +1353,9 @@ ShallowWrapper {
         "children": <div
           className="container"
         >
-          <EventModal
+          <FirebaseConnect(Connect(Connect(EventModal)))
             closeModal={[Function]}
-            eventContent={
-              Object {
-                "category": "category1",
-                "createDate": "2018-05-24T17:00:46.500Z",
-                "date": "2018-09-24",
-                "entryFee": "10",
-                "format": "Miniatures",
-                "link": "http://www.google.fi",
-                "name": "Warhammer thing",
-                "notes": "Bring your war face!",
-                "playerSlots": "10",
-                "prizes": "Glory!",
-                "published": true,
-                "rulesLevel": "Casual",
-                "time": "Kill everything",
-              }
-            }
             eventId="mockEventId1"
-            participations={
-              Array [
-                Object {
-                  "comment": "Jee",
-                  "date": "2018-06-23T09:40:26.992Z",
-                  "firstName": "Test",
-                  "lastName": "Person",
-                  "userId": "mockUserId",
-                },
-              ]
-            }
           />
           <h1
             className="title"
@@ -1543,7 +1399,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1557,7 +1412,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1571,7 +1425,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1585,7 +1438,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1599,7 +1451,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1613,7 +1464,6 @@ ShallowWrapper {
                   <img
                     alt=""
                     className="image is-48x48"
-                    src="http://foo.com/image.png"
                   />
                 </button>
               </div>
@@ -1671,37 +1521,9 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             Array [
-              <EventModal
+              <FirebaseConnect(Connect(Connect(EventModal)))
                 closeModal={[Function]}
-                eventContent={
-                  Object {
-                    "category": "category1",
-                    "createDate": "2018-05-24T17:00:46.500Z",
-                    "date": "2018-09-24",
-                    "entryFee": "10",
-                    "format": "Miniatures",
-                    "link": "http://www.google.fi",
-                    "name": "Warhammer thing",
-                    "notes": "Bring your war face!",
-                    "playerSlots": "10",
-                    "prizes": "Glory!",
-                    "published": true,
-                    "rulesLevel": "Casual",
-                    "time": "Kill everything",
-                  }
-                }
                 eventId="mockEventId1"
-                participations={
-                  Array [
-                    Object {
-                      "comment": "Jee",
-                      "date": "2018-06-23T09:40:26.992Z",
-                      "firstName": "Test",
-                      "lastName": "Person",
-                      "userId": "mockUserId",
-                    },
-                  ]
-                }
               />,
             ],
             <h1
@@ -1746,7 +1568,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1760,7 +1581,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1774,7 +1594,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1788,7 +1607,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1802,7 +1620,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1816,7 +1633,6 @@ ShallowWrapper {
                     <img
                       alt=""
                       className="image is-48x48"
-                      src="http://foo.com/image.png"
                     />
                   </button>
                 </div>
@@ -1871,34 +1687,10 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": "modalmockEventId1",
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
               "closeModal": [Function],
-              "eventContent": Object {
-                "category": "category1",
-                "createDate": "2018-05-24T17:00:46.500Z",
-                "date": "2018-09-24",
-                "entryFee": "10",
-                "format": "Miniatures",
-                "link": "http://www.google.fi",
-                "name": "Warhammer thing",
-                "notes": "Bring your war face!",
-                "playerSlots": "10",
-                "prizes": "Glory!",
-                "published": true,
-                "rulesLevel": "Casual",
-                "time": "Kill everything",
-              },
               "eventId": "mockEventId1",
-              "participations": Array [
-                Object {
-                  "comment": "Jee",
-                  "date": "2018-06-23T09:40:26.992Z",
-                  "firstName": "Test",
-                  "lastName": "Person",
-                  "userId": "mockUserId",
-                },
-              ],
             },
             "ref": null,
             "rendered": null,
@@ -1966,7 +1758,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -1980,7 +1771,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -1994,7 +1784,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -2008,7 +1797,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -2022,7 +1810,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -2036,7 +1823,6 @@ ShallowWrapper {
                       <img
                         alt=""
                         className="image is-48x48"
-                        src="http://foo.com/image.png"
                       />
                     </button>
                   </div>
@@ -2140,7 +1926,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2154,7 +1939,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2168,7 +1952,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2182,7 +1965,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2196,7 +1978,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2210,7 +1991,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>
                     </div>,
@@ -2231,7 +2011,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2245,7 +2024,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2258,7 +2036,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2280,7 +2058,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2294,7 +2071,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2307,7 +2083,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2329,7 +2105,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2343,7 +2118,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2356,7 +2130,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2378,7 +2152,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2392,7 +2165,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2405,7 +2177,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2427,7 +2199,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2441,7 +2212,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2454,7 +2224,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2476,7 +2246,6 @@ ShallowWrapper {
                         <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />
                       </button>,
                       "className": "column is-3 is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered",
@@ -2490,7 +2259,6 @@ ShallowWrapper {
                         "children": <img
                           alt=""
                           className="image is-48x48"
-                          src="http://foo.com/image.png"
                         />,
                         "className": "button is-rounded image-square  ",
                         "onClick": [Function],
@@ -2503,7 +2271,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "",
                           "className": "image is-48x48",
-                          "src": "http://foo.com/image.png",
+                          "src": undefined,
                         },
                         "ref": null,
                         "rendered": null,

@@ -3,24 +3,12 @@ import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 
-export const Themes = ({ settings, themes, changeTheme }) => (
+export const Themes = ({ settings }) => (
   <div className="columns is-multiline">
     <div className="column is-12">
       <h1 className="title">
-        <Translate id="theme" />
+        <Translate id="looks" />
       </h1>
-    </div>
-
-    <div className="column is-6">
-      <label className="label"><Translate id="theme" /></label>
-      <div className="control">
-        <div className="select">
-          <select defaultValue={settings.theme} onChange={event => changeTheme(event.target.value)}>
-            <option>- <Translate id="selecttheme" /> -</option>
-            {themes.map(theme => <option key={`option${theme}`} value={theme.toLowerCase()}>{theme}</option>)}
-          </select>
-        </div>
-      </div>
     </div>
 
     <div className="column is-12">
@@ -96,6 +84,4 @@ export const Themes = ({ settings, themes, changeTheme }) => (
 
 Themes.propTypes = {
   settings: PropTypes.object,
-  themes: PropTypes.array,
-  changeTheme: PropTypes.func,
 };

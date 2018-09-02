@@ -5,6 +5,10 @@
 
   "menu": "Menu",
 
+  "setupnotdoneyet": "Setup is not done yet",
+  "almostthere": "Almost there now..",
+  "youneedtocreateanadminaccount": "You need to create an admin account",
+
   "browsertitle": "Browser title",
   "pagetitle": "Page title",
   "pagesubtitle": "Page subtitle",
@@ -52,6 +56,7 @@
   "comment": "Participation comment",
   "pastparticipations": "Past events you participated in",
   "nextparticipations": "Next events you are participating in",
+  "moreinfo": "More info",
 
   "select": "- Select -",
   "date": "Date",
@@ -71,21 +76,31 @@
   "pagetitles": "Page titles",
   "localization": "Localization",
   "themes": "Themes",
+  "looks": "Looks",
 
 
   "unpublishedevents": "Unpublished events",
   "publishedevents": "Published events",
   "addevent": "Add event",
   "editevent": "Edit event",
+  "sameday": "Same day",
+  "nextday": "Next day",
+  "nextweek": "Next week",
+  "filter": "Filter",
+  "filtereventsbynameorcategory": "Filter events by name or category",
+  "hits": "Hits",
   "categories": "Categories",
   "nocategoriesgocreatesome": "There are no categories yet, go create some first",
   "categorylogouploader": "Category logos",
+  "formats": "Formats",
+  "formatsplaceholder": "Formats, separated by comma",
   "cannotdeleteinuse": "Cannot delete, in use",
   "nameofthegame": "Name of the game",
   "abbreviationofthename": "Abbreviation of the name",
   "gametype": "Game type, card, board games, videogames etc",
   "noevents": "No events",
   "published": "Published",
+  "notpublished": "Not published",
   "publish": "Publish",
   "unpublish": "Unpublish",
   "delete": "Delete",
@@ -119,8 +134,16 @@
   "abovedateinterpretedas": "Above date interpreted as",
   "dateformatplaceholder": "For example: DD.MM.YYYY",
 
+  "night": "At Night",
+  "morning": "In the Morning",
+  "daytime": "During Daytime", 
+  "afternoon": "In the Afternoon",
+  "evening": "In the Evening",
+  
   "dropfileshere": "Drop file(s) here, or click here",
   "uploadedfiles": "Uploaded files",
+  "uploadingfiles": "Files are being uploaded",
+  "filessent": "Files sent",
   "image": "Image",
   "filename": "File Name",
   "actions": "Actions",
@@ -149,6 +172,7 @@
 
   "participations": "Participations",
   "adduserparticipation": "Add user to this event",
+  "youmusthaveeventsbeforeparticipationscanhappen": "You must have events before participations can happen",
 
   "yourinfo": "Your info",
   "personalinfo": "Personal info",
@@ -222,6 +246,7 @@
   "regularopeninghours": "Regular opening hours",
   "upcomingexceptionstoopeninghours": "Upcoming exceptions to opening hours",
   "exceptionstoopeninghours": "Exceptions to opening hours",
+  "opentoday": "Open today",
   
   "locationinfo": "Location info",
   "directions": "Directions",

@@ -12,6 +12,7 @@ export default compose(
   connect(state => ({
     news: state.firebase.data.news,
     uploadedNewsImages: state.firebase.data.uploadedNewsImages,
+    settings: state.firebase.data.settings,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 )(NewsEditor);
