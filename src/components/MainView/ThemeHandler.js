@@ -5,30 +5,25 @@ import _ from 'lodash';
 export default class ThemeHandler extends Component {
 
   componentWillMount() {
-    const settings = _.get(this.props, 'settings');
-    if (!settings) {
-      return;
-    }
+    const { settings } = this.props;
     this.handleTitleBarColorChange(null, settings.titleBarColor, null, settings.titleBarColor2, null, settings.titleBarPercentage, null, settings.titleBarAngle);
     this.handleTitleTextColor(null, settings.titleTextColor);
     this.handleSubtitleTextColor(null, settings.subtitleTextColor);
   }
 
   componentWillReceiveProps(nextProps) {
-    let currentsettings = _.get(this.props, 'settings');
-    if (!currentsettings) {
-      currentsettings = {};
-    }
+    const { settings } = this.props;
+
     let nextSettings = _.get(nextProps, 'settings');
     if (!nextSettings) {
       nextSettings = {};
     }
-    if (!currentsettings || !nextSettings) {
+    if (!settings || !nextSettings) {
       return;
     }
-    this.handleTitleBarColorChange(currentsettings.titleBarColor, nextSettings.titleBarColor, currentsettings.titleBarColor2, nextSettings.titleBarColor2, currentsettings.titleBarPercentage, nextSettings.titleBarPercentage, currentsettings.titleBarAngle, nextSettings.titleBarAngle);
-    this.handleTitleTextColor(currentsettings.titleTextColor, nextSettings.titleTextColor);
-    this.handleSubtitleTextColor(currentsettings.subtitleTextColor, nextSettings.subtitleTextColor);
+    this.handleTitleBarColorChange(settings.titleBarColor, nextSettings.titleBarColor, settings.titleBarColor2, nextSettings.titleBarColor2, settings.titleBarPercentage, nextSettings.titleBarPercentage, settings.titleBarAngle, nextSettings.titleBarAngle);
+    this.handleTitleTextColor(settings.titleTextColor, nextSettings.titleTextColor);
+    this.handleSubtitleTextColor(settings.subtitleTextColor, nextSettings.subtitleTextColor);
   }
 
   handleTitleBarColorChange(oldValue1, newValue1, oldValue2, newValue2, oldPercentage, newPercentage, oldAngle, newAngle) {
@@ -76,12 +71,7 @@ export default class ThemeHandler extends Component {
   render() {
     return null;
   }
-
 }
-
-ThemeHandler.defaultProps = {
-  settings: { theme: 'default' },
-};
 
 ThemeHandler.propTypes = {
   settings: PropTypes.object,

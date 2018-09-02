@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
-
+import PropTypes from 'prop-types';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
+
 import { registerEmail } from '../../api/loginApi';
 
 export default class InitialSetup extends Component {
@@ -32,8 +31,6 @@ export default class InitialSetup extends Component {
 
   render() {
     const { profile } = this.props;
-    console.log(profile);
-
     const showSetupEnd = isLoaded(profile) && !isEmpty(profile);
 
     return (
@@ -135,3 +132,7 @@ export default class InitialSetup extends Component {
     );
   }
 }
+
+InitialSetup.propTypes = {
+  profile: PropTypes.object,
+};

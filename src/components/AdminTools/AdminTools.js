@@ -60,8 +60,3 @@ AdminToolsTab.propTypes = {
   icon: PropTypes.string,
   translationKey: PropTypes.string,
 };
-
-
-AdminTools.propTypes = {
-  events: PropTypes.object,
-};
