@@ -190,7 +190,8 @@ type User {
   uid: Number | Null,
   username: String | Null,
   firstName: String | Null,
-  lastName: String | Null
+  lastName: String | Null,
+  acceptedPrivacyPolicy: String | Null
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }

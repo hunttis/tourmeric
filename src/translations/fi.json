@@ -277,6 +277,12 @@
   "toseeeventsfurtherinthefuturegotoeventspage": "Nähdäksesi tapahtumia kauemmas tulevaisuuteen, mene 'Tapahtumat'-sivulle.",
   "filtereventsbychoosingcategories": "Suodata tapahtumia valitsemalla kategorioita",
   "shownext7days": "Näytä seuraavat 7 päivää",
-  "showeventstoday": "Näytä tämän päivän tapahtumat"
+  "showeventstoday": "Näytä tämän päivän tapahtumat",
+
+  "privacypolicy": "Tietosuojaseloste",
+  "accept": "Hyväksy",
+  "decline": "Kieltäydy",
+  "privacypolicyplaceholder": "Syötä/kopioi tähän sivustosi tietosuojaseloste",
+  "setasupdated": "Aseta päivitetyksi"
 
 }

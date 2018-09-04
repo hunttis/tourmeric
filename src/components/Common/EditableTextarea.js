@@ -25,7 +25,7 @@ export default class EditableField extends Component {
 
   render() {
     const {
-      labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', inputClasses, leftIcon,
+      labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', inputClasses, leftIcon, rows,
     } = this.props;
     const { saved, editing } = this.state;
 
@@ -45,6 +45,7 @@ export default class EditableField extends Component {
               <Translate>
                 {translate => (<textarea
                   type={inputType}
+                  rows={rows}
                   className={`textarea ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${inputClasses}`}
                   placeholder={translate(placeHolder)}
                   defaultValue={defaultValue}
@@ -72,4 +73,5 @@ EditableField.propTypes = {
   inputType: PropTypes.string,
   inputClasses: PropTypes.string,
   leftIcon: PropTypes.string,
+  rows: PropTypes.number,
 };

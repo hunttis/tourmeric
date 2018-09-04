@@ -320,6 +320,9 @@
         "lastName": {
           ".validate": "newData.isString()"
         },
+        "acceptedPrivacyPolicy": {
+          ".validate": "newData.isString()"
+        },
         "$other": {
           ".validate": "false"
         },

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
+import firebase from 'firebase/app';
 import loadingImage from '../../images/Ripple-1s-64px.svg';
 import EditableVerticalField from '../Common/EditableVerticalField-container';
 import StoreCreditTableUser from './StoreCreditTableUser';
@@ -14,7 +15,7 @@ export default class UserInfo extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { modalOpen: false };
+    this.state = { modalOpen: false, privacyPolicyModalOpen: false };
   }
 
   calculateTotal(creditData) {
@@ -33,6 +34,18 @@ export default class UserInfo extends Component {
     this.setState({ modalOpen: false });
   }
 
+  openPrivacyPolicyModal() {
+    this.setState({ privacyPolicyModalOpen: true });
+  }
+
+  closePrivacyPolicyModal() {
+    this.setState({ privacyPolicyModalOpen: false });
+  }
+
+  async acceptPrivacyPolicy() {
+    await firebase.update(`/users/${this.props.auth.uid}`, { acceptedPrivacyPolicy: moment().format('YYYY-MM-DD') });
+    this.closePrivacyPolicyModal();
+  }
 
   userInfoBox() {
     const {
@@ -42,18 +55,47 @@ export default class UserInfo extends Component {
     if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && isLoaded(storecredit)) {
       const userCredit = storecredit[userid];
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
+      const hasAcceptedPrivacyPolicy = _.get(profile, 'acceptedPrivacyPolicy', false);
 
       const publishedEvents = events ? Object.values(events).filter(event => event.value.published) : [];
       const futureEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
       const pastEvents = pastEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
       const eventsActive = _.get(settings, 'features.events.active', false);
+      const privacyPolicyContent = _.get(settings, 'privacyPolicy', '');
 
       return (
         <div>
           {this.creditModal()}
           <div className="columns is-multiline">
 
+            {!hasAcceptedPrivacyPolicy &&
+            <div className="column is-12">
+              <div className="button is-danger" onClick={() => this.openPrivacyPolicyModal()}>
+                Please click here to read and Accept our privacy policy to proceed
+              </div>
+            </div>
+            }
+
+            <div key="privacyPolicyModal" className={`modal ${this.state.privacyPolicyModalOpen ? 'is-active' : ''}`}>
+              <div className="modal-background" onClick={() => this.closePrivacyPolicyModal()} />
+              <div className="modal-content">
+                <div className="box">
+                  <div className="content">
+                    {!_.isEmpty(privacyPolicyContent) && privacyPolicyContent.split('\n').map((paragraph, index) => <p key={`privacyPolicy-userinfo-${index}`}>{paragraph}</p>)}
+                  </div>
+                  <div className="button" onClick={() => this.acceptPrivacyPolicy()}>
+                    <Translate id="accept" />
+                  </div>
+                  <div className="button" onClick={() => this.closePrivacyPolicyModal()}>
+                    <Translate id="decline" />
+                  </div>
+                </div>
+              </div>
+              <button className="modal-close is-large" aria-label="close" onClick={() => this.closePrivacyPolicyModal()} />
+            </div>
+
             <div className="column is-6">
+
               <h1 className="title"><Translate id="personalinfo" /></h1>
               <div className="columns is-multiline">
 
@@ -170,13 +212,13 @@ export default class UserInfo extends Component {
 
       );
     }
-    return <div>No data</div>;
+    return <div />;
   }
 
   render() {
     const { profile } = this.props;
     const allInfoNotEntered = isLoaded(profile) && (!profile.lastName || !profile.firstName || !profile.email);
-    const profileAllGood = isLoaded(profile) && profile.lastName && profile.firstName && profile.email;
+    const profileAllGood = isLoaded(profile) && profile.lastName && profile.firstName && profile.email && profile.acceptedPrivacyPolicy;
 
     return (
       <section className="section">

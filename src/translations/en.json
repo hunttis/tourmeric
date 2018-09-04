@@ -278,6 +278,13 @@
   "toseeeventsfurtherinthefuturegotoeventspage": "To see events further into the future, go to the 'Events'-page.",
   "filtereventsbychoosingcategories": "Filter events by choosing categories",
   "shownext7days": "Show next 7 days",
-  "showeventstoday": "Show events for today"
+  "showeventstoday": "Show events for today",
+
+  "privacypolicy": "Privacy Policy",
+  "accept": "Accept",
+  "decline": "Decline",
+  "privacypolicyplaceholder": "Enter/paste here your privacy policy",
+  "setasupdated": "Set as updated"
+
 
 }
