@@ -283,6 +283,7 @@
   "accept": "Hyväksy",
   "decline": "Kieltäydy",
   "privacypolicyplaceholder": "Syötä/kopioi tähän sivustosi tietosuojaseloste",
-  "setasupdated": "Aseta päivitetyksi"
+  "setasupdated": "Aseta päivitetyksi",
+  "pleaseclickheretoreadourandacceptprivacypolicytoproceed": "Klikkaa tästä lukeaksesi ja hyväksyäksesi tietosuojaselosteemme, jotta voit jatkaa palvelun käyttöä"
 
 }

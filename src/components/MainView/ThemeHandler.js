@@ -6,6 +6,9 @@ export default class ThemeHandler extends Component {
 
   componentWillMount() {
     const { settings } = this.props;
+    if (_.isEmpty(settings)) {
+      return;
+    }
     this.handleTitleBarColorChange(null, settings.titleBarColor, null, settings.titleBarColor2, null, settings.titleBarPercentage, null, settings.titleBarAngle);
     this.handleTitleTextColor(null, settings.titleTextColor);
     this.handleSubtitleTextColor(null, settings.subtitleTextColor);
@@ -27,7 +30,7 @@ export default class ThemeHandler extends Component {
   }
 
   handleTitleBarColorChange(oldValue1, newValue1, oldValue2, newValue2, oldPercentage, newPercentage, oldAngle, newAngle) {
-    if (oldValue1 === newValue1 && oldValue2 === newValue2 && oldPercentage === newPercentage && oldAngle === newAngle) {
+    if (((!oldValue1 && !newValue1) || (!oldValue2 && !newValue2)) && oldValue1 === newValue1 && oldValue2 === newValue2 && oldPercentage === newPercentage && oldAngle === newAngle) {
       return;
     }
 

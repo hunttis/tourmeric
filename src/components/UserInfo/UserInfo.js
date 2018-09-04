@@ -71,7 +71,7 @@ export default class UserInfo extends Component {
             {!hasAcceptedPrivacyPolicy &&
             <div className="column is-12">
               <div className="button is-danger" onClick={() => this.openPrivacyPolicyModal()}>
-                Please click here to read and Accept our privacy policy to proceed
+                <Translate id="pleaseclickheretoreadourandacceptprivacypolicytoproceed" />
               </div>
             </div>
             }
