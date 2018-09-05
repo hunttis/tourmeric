@@ -14,11 +14,10 @@
   },
   "homepage": "https://gitlab.com/hunttis/tourmeric#README",
   "scripts": {
-    "dev": "yarn clean; parcel ./src/index.html",
+    "dev": "parcel ./src/index.html",
+    "dev-testing": "DEPLOYMENT=TESTING parcel ./src/index.html",
     "build": "parcel build ./src/index.html -d deploy --public-url . --no-source-maps",
     "build-mapped": "parcel build ./src/index.html -d deploy --public-url .",
-    "clean": "rm -rf dist; rm -rf deploy; rm -rf .cache;",
-    "clean-build": "yarn clean; yarn build",
     "bolt": "firebase-bolt < firebase-rules/firebase-rules.bolt > firebase-rules/rules.json",
     "lint": "eslint .",
     "lint-watch": "nodemon --exec yarn lint",
@@ -29,8 +28,11 @@
     "firebase-serve": "firebase serve",
     "firebase-login": "firebase login",
     "firebase-init": "firebase init",
-    "firebase-deploy": "yarn clean; yarn build; firebase deploy",
-    "firebase-quick-deploy": "yarn build; firebase deploy"
+    "firebase-deploy": "yarn build; firebase use default; firebase deploy",
+    "firebase-quick-deploy": "yarn build; firebase deploy",
+    "firebase-deploy-testing": "DEPLOYMENT=TESTING yarn build; firebase use testing; firebase deploy",
+    "firebase-deploy-rules": "firebase use default; firebase deploy --only database",
+    "firebase-deploy-rules-testing": "firebase use testing; firebase deploy --only database"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",

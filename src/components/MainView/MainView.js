@@ -17,6 +17,7 @@ import StoreInfo from '../StoreInfo/StoreInfo-container';
 import Navbar from './Navbar/Navbar-container';
 import Today from './Today/Today-container';
 import InitialSetup from './InitialSetup';
+import FooterBar from './FooterBar';
 
 // ******************
 // Set the theme here
@@ -34,7 +35,9 @@ export default class MainView extends Component {
   componentWillReceiveProps(nextProps) {
     const isProfileLoaded = isLoaded(nextProps.profile);
     const isLoggedIn = isProfileLoaded && !isEmpty(nextProps.profile);
-    if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !nextProps.profile.email)) {
+    const acceptedPrivacyPolicy = _.get(nextProps.profile, 'acceptedPrivacyPolicy', false);
+
+    if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !nextProps.profile.email || !acceptedPrivacyPolicy)) {
       this.setState({ forceUserInfo: true, activeItem: 'userinfo' });
     } else if (isLoaded(nextProps.profile)) {
       this.setState({ forceUserInfo: false });
@@ -93,6 +96,7 @@ export default class MainView extends Component {
           {adminSiteSettingsVisible && <AdminSiteSettings />}
           {loginVisible && <Login />}
           {registerVisible && <Register />}
+          <FooterBar />
         </div>
 
       );

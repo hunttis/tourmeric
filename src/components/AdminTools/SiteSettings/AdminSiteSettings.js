@@ -7,6 +7,7 @@ import { PageTitles } from './PageTitles';
 import { Localization } from './Localization';
 import { Themes } from './Themes';
 import FeatureEditor from '../FeatureEditor/FeatureEditor-container';
+import PrivacyPolicyEditor from './PrivacyPolicyEditor-container';
 
 export default class AdminSiteSettings extends Component {
 
@@ -38,6 +39,7 @@ export default class AdminSiteSettings extends Component {
     const localizationVisible = this.state.activeItem === 'localization';
     const themesVisible = this.state.activeItem === 'themes';
     const featuresVisible = this.state.activeItem === 'features';
+    const privacyPolicyVisible = this.state.activeItem === 'privacypolicy';
 
     if (isLoaded(settings)) {
       return (
@@ -49,6 +51,7 @@ export default class AdminSiteSettings extends Component {
               <SiteSettingsTab tabid="localizationtab" isActive={localizationVisible} switchAction={() => this.switchActiveSiteSettingsTab('localization')} icon="fa-globe" translationKey="localization" />
               <SiteSettingsTab tabid="themestab" isActive={themesVisible} switchAction={() => this.switchActiveSiteSettingsTab('themes')} icon="fa-star" translationKey="looks" />
               <SiteSettingsTab tabid="featurestab" isActive={featuresVisible} switchAction={() => this.switchActiveSiteSettingsTab('features')} icon="fa-star" translationKey="features" />
+              <SiteSettingsTab tabid="privacypolicytab" isActive={privacyPolicyVisible} switchAction={() => this.switchActiveSiteSettingsTab('privacypolicy')} icon="fa-book" translationKey="privacypolicy" />
             </ul>
           </div>
           <div className="section">
@@ -56,6 +59,7 @@ export default class AdminSiteSettings extends Component {
             {localizationVisible && <Localization settings={settings} showDefaultButton={showDefaultButton} defaultDateFormat={this.defaultDateFormat} />}
             {themesVisible && <Themes settings={settings} themes={themes} changeTheme={this.changeTheme} />}
             {featuresVisible && <FeatureEditor settings={settings} themes={themes} changeTheme={this.changeTheme} />}
+            {privacyPolicyVisible && <PrivacyPolicyEditor />}
           </div>
         </div>
       );
