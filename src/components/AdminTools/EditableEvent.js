@@ -9,7 +9,7 @@ import EventEditor from './EventEditor/EventEditor-container';
 
 export default class EditableEvent extends Component {
 
-  state = { modalOpenClass: '' }
+  state = { isModalOpen: false }
 
   participantCount(tournamentid, participations) {
     if (participations) {
@@ -25,11 +25,11 @@ export default class EditableEvent extends Component {
   }
 
   openModal() {
-    this.setState({ modalOpenClass: 'is-active' });
+    this.setState({ isModalOpen: true });
   }
 
   closeModal() {
-    this.setState({ modalOpenClass: '' });
+    this.setState({ isModalOpen: false });
   }
 
   copyEventForDate(targetDate) {
@@ -69,20 +69,22 @@ export default class EditableEvent extends Component {
 
   renderEventListItem(categories, eventId, eventContent) {
     const { settings, index } = this.props;
-    const { modalOpenClass } = this.state;
+    const { isModalOpen } = this.state;
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
     const dateFormatted = moment(eventContent.date).format(dateFormat);
 
     return (
       <div className={`column is-12 box columns eventlistitem ${index % 2 === 0 && 'has-background-grey-darker'}`}>
-        <div className={`modal ${modalOpenClass}`}>
-          <div className="modal-background" onClick={() => this.closeModal()} />
-          <div className="modal-content box">
-            <EventEditor categories={categories} eventId={eventId} eventContent={eventContent} toggleEventVisibility={() => this.closeModal()} />
+        {isModalOpen &&
+          <div className="modal is-active">
+            <div className="modal-background" onClick={() => this.closeModal()} />
+            <div className="modal-content box">
+              <EventEditor categories={categories} eventId={eventId} eventContent={eventContent} toggleEventVisibility={() => this.closeModal()} />
+            </div>
+            <button className="modal-close is-large" aria-label="close" onClick={() => this.closeModal()} />
           </div>
-          <button className="modal-close is-large" aria-label="close" onClick={() => this.closeModal()} />
-        </div>
+        }
         <div className="column is-3">
           <i className="fas fa-calendar" />&nbsp;&nbsp;{dateFormatted}
           &nbsp;&nbsp;&nbsp;

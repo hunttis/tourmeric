@@ -9,6 +9,14 @@ export default class Login extends Component {
     this.state = { loginEmail: '', loginPass: '' };
   }
 
+  onChangeEmail = (event) => {
+    this.setState({ loginEmail: event.target.value });
+  }
+
+  onChangePass = (event) => {
+    this.setState({ loginPass: event.target.value });
+  }
+
   onLoginSubmit = async () => {
     this.setState({ errorState: null });
     try {

@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "parcel ./src/index.html",
     "dev-testing": "DEPLOYMENT=TESTING parcel ./src/index.html",
+    "dev-production": "NODE_ENV=production parcel ./src/index.html",
     "build": "parcel build ./src/index.html -d deploy --public-url . --no-source-maps",
     "build-mapped": "parcel build ./src/index.html -d deploy --public-url .",
     "bolt": "firebase-bolt < firebase-rules/firebase-rules.bolt > firebase-rules/rules.json",
