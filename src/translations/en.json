@@ -285,6 +285,8 @@
   "decline": "Decline",
   "privacypolicyplaceholder": "Enter/paste here your privacy policy",
   "setasupdated": "Set as updated",
-  "pleaseclickheretoreadourandacceptprivacypolicytoproceed": "Please click here to read our and accept our privacy policy to proceed"
+  "pleaseclickheretoreadourandacceptprivacypolicytoproceed": "Please click here to read our and accept our privacy policy to proceed",
+
+  "companyinfo": "Company Info"
 
 }

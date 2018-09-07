@@ -27,10 +27,10 @@ export default class TitleBar extends Component {
         <section className="hero titlebar animated">
           <div className="hero-body">
             <div className="columns is-marginless">
-              <div className="column is-4 has-text-centered-mobile is-vcentered">
+              <div className="column is-2 has-text-centered-mobile is-vcentered is-paddingless">
                 {settings.activeLogo &&
                   <a onClick={() => returnToFrontpage()}>
-                    <div id="logo">
+                    <div id="logo" className="is-paddingless is-marginless">
                       <img src={settings.activeLogo} alt="" className="is-hidden-tablet" />
 
                       <figure className="image is-hidden-mobile">
@@ -45,7 +45,7 @@ export default class TitleBar extends Component {
                   </div>
                 }
               </div>
-              <div className="column is-8 button-container">
+              <div className="column button-container">
                 {highlightsActive && <Highlights />}
               </div>
 
