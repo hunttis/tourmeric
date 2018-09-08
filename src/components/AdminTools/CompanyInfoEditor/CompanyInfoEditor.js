@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
-import firebase from 'firebase/app';
-import moment from 'moment';
 import EditableTextarea from '../../Common/EditableTextarea-container';
 
 export default class CompanyInfoEditor extends Component {

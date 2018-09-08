@@ -113,7 +113,8 @@ export default class HighlightEditor extends Component {
           {
             highlights &&
             !isEmpty(highlights) &&
-            Object.entries(highlights).map(highlightEntry => <HighlightEditorItem
+            Object.entries(highlights).map((highlightEntry, index) => <HighlightEditorItem
+              key={`highlightEntry-${index}`}
               highlightEntry={highlightEntry}
               openModal={() => this.openModal(highlightEntry[0])}
             />)
