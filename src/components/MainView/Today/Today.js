@@ -10,7 +10,7 @@ import EventModal from '../../EventList/EventModal-container';
 
 export default class Today extends Component {
 
-  state = { shownItems: 'today' }
+  state = { shownItems: 'today', modalOpenEventId: null }
 
   findNextEvents(events) {
     const now = moment();
@@ -42,14 +42,12 @@ export default class Today extends Component {
     return [];
   }
 
-  closeModal(eventId) {
-    const modal = document.getElementById(`modal${eventId}`);
-    modal.classList.remove('is-active');
+  closeModal() {
+    this.setState({ modalOpenEventId: null });
   }
 
   openModal(eventId) {
-    const modal = document.getElementById(`modal${eventId}`);
-    modal.classList.add('is-active');
+    this.setState({ modalOpenEventId: eventId });
   }
 
   togglePastEventFilter() {
@@ -78,12 +76,14 @@ export default class Today extends Component {
 
   renderEventModal(eventEntry) {
     const eventId = eventEntry.key;
-
-    return <EventModal
-      key={`modal${eventId}`}
-      eventId={eventId}
-      closeModal={() => this.closeModal(eventId)}
-    />;
+    if (eventEntry.key === this.state.modalOpenEventId) {
+      return <EventModal
+        key={`modal${eventId}`}
+        eventId={eventId}
+        closeModal={() => this.closeModal()}
+      />;
+    }
+    return '';
   }
 
   renderTodaysEventItems(todaysEvents) {

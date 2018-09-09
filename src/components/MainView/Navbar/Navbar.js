@@ -63,6 +63,7 @@ export default class Navbar extends Component {
               {isLoggedIn &&
                 <NavbarItem onClick={() => { this.switchTab('userinfo'); }} translationKey="userinfo" icon="fa-user" styleClass={activeItem === 'userinfo' ? activeClass : ''} />
               }
+              <NavbarItem onClick={() => { this.switchTab('companyinfo'); }} translationKey="companyinfo" icon="fa-warehouse" styleClass={activeItem === 'companyinfo' ? activeClass : ''} />
 
               {isAdmin &&
                 <div className="navbar-item has-dropdown is-hoverable is-white">

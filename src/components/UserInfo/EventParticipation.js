@@ -6,14 +6,14 @@ import EventModal from '../EventList/EventModal-container';
 
 export default class EventParticipation extends Component {
 
-  closeModal(eventId) {
-    const modal = document.getElementById(`modal${eventId}`);
-    modal.classList.remove('is-active');
+  state = { modalOpen: false };
+
+  closeModal() {
+    this.setState({ modalOpen: false });
   }
 
-  openModal(eventId) {
-    const modal = document.getElementById(`modal${eventId}`);
-    modal.classList.add('is-active');
+  openModal() {
+    this.setState({ modalOpen: true });
   }
 
   render() {
@@ -26,7 +26,9 @@ export default class EventParticipation extends Component {
 
       return (
         <Fragment>
-          <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal(eventId)} />
+          {this.state.modalOpen &&
+            <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal()} />
+          }
           <div className="box">
             <div className="level">
               <div className="level-left">

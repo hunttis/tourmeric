@@ -11,6 +11,10 @@ div.navbar {
   color: #bbbbbb;
 }
 
+div .navbar-item img {
+  max-height: 2.75em;
+}
+
 .active-navbar-item a {
   font-weight: bolder;
 }
@@ -25,8 +29,13 @@ a.adminactive {
 
 #logo {
   margin: 0em 1em;
+  padding: 1em;
 }
 
+.event-card-footer {
+  animation-name: heightgrow;
+  animation-duration: 500ms;
+}
 
 .speech-bubble {
   border-radius: 10px 10px 10px 0px;
@@ -51,6 +60,10 @@ a.adminactive {
   perspective: 800px;
   animation-name: fadein;
   animation-duration: 500ms;
+}
+
+.eventheader {
+  height: 5em;
 }
 
 .languageflag {
@@ -78,6 +91,16 @@ button.image-square {
 .eventlistitem {
   animation-name: scrollin;
   animation-duration: 750ms;
+}
+
+@keyframes heightgrow {
+  0% {
+    max-height: 0%;
+  }
+
+  100% {
+    max-height: 100%;
+  }
 }
 
 @keyframes scrollin {

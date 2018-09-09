@@ -22,7 +22,7 @@ export default class EventModal extends Component {
       const participationsForEvent = Object.values(_.get(participations, eventId, []));
 
       return (
-        <div className="modal" id={`modal${eventId}`} key={`modal${eventId}`}>
+        <div className="modal is-active" id={`modal${eventId}`} key={`modal${eventId}`}>
           <div className="modal-background" onClick={closeModal} />
           <div className="modal-content">
             <div className="box is-rounded">

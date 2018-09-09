@@ -27,7 +27,7 @@ export default class StoreCreditTable extends Component {
   render() {
     const { userId, creditData, profile, settings } = this.props;
     const user = this.getUser(userId).value;
-    const username = user.displayName;
+    const username = `${user.firstName} ${user.lastName}`;
     const calculatedTotal = this.calculateTotal(creditData);
 
 
@@ -56,7 +56,8 @@ export default class StoreCreditTable extends Component {
             {Object.entries(creditData).map((dataItem) => {
               const dataId = dataItem[0];
               const data = dataItem[1];
-              const entryMadeBy = this.getUser(data.creditAddedBy).value.displayName;
+              const dataEntryUser = this.getUser(data.creditAddedBy).value;
+              const entryMadeBy = `${dataEntryUser.firstName} ${dataEntryUser.lastName}`;
               return <StoreCreditRow key={`${userId}-${dataId}`} userId={userId} dataId={dataId} data={data} entryMadeBy={entryMadeBy} isAdmin={isAdmin} />;
             })}
           </tbody>

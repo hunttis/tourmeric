@@ -42,6 +42,9 @@
   "or": "OR",
   "asocialmediaaccount": "A social media account",
   "fillinyouremailaddressandinputpassword": "Fill in your email address and input a password",
+  "forgotpassword": "Forgot password",
+  "resetpassword": "Reset password",
+  "resetemailsent": "We sent you some email that will help you in resetting your password. If you don't see it soon, check your junk email.",
 
   "auth/email-already-in-use": "Email address already in use",
   "auth/user-not-found": "Email or password wrong",
@@ -57,6 +60,8 @@
   "pastparticipations": "Past events you participated in",
   "nextparticipations": "Next events you are participating in",
   "moreinfo": "More info",
+  "addplaceholderuser": "Add placeholder user",
+  "add": "Add",
 
   "select": "- Select -",
   "date": "Date",
@@ -285,6 +290,8 @@
   "decline": "Decline",
   "privacypolicyplaceholder": "Enter/paste here your privacy policy",
   "setasupdated": "Set as updated",
-  "pleaseclickheretoreadourandacceptprivacypolicytoproceed": "Please click here to read our and accept our privacy policy to proceed"
+  "pleaseclickheretoreadourandacceptprivacypolicytoproceed": "Please click here to read our and accept our privacy policy to proceed",
+
+  "companyinfo": "Company Info"
 
 }

@@ -28,3 +28,7 @@ export async function logout() {
   await firebase.logout();
   window.location.reload();
 }
+
+export async function resetPassword(email) {
+  await firebase.auth().sendPasswordResetEmail(email);
+}

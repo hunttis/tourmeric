@@ -16,6 +16,7 @@ import ThemeHandler from './ThemeHandler-container';
 import StoreInfo from '../StoreInfo/StoreInfo-container';
 import Navbar from './Navbar/Navbar-container';
 import Today from './Today/Today-container';
+import CompanyInfo from './CompanyInfo/CompanyInfo-container';
 import InitialSetup from './InitialSetup';
 import FooterBar from './FooterBar';
 
@@ -29,7 +30,7 @@ export default class MainView extends Component {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { activeItem: 'admintoolsevents', forceUserInfo: false };
+    this.state = { activeItem: 'today', forceUserInfo: false };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -81,6 +82,7 @@ export default class MainView extends Component {
       const loginVisible = Boolean(!isLoggedIn && activeItem === 'login');
       const registerVisible = Boolean(!isLoggedIn && activeItem === 'register');
       const storeInfoVisible = Boolean(activeItem === 'storeinfo');
+      const companyInfoVisible = Boolean(activeItem === 'companyinfo');
 
       return (
         <div>
@@ -96,6 +98,7 @@ export default class MainView extends Component {
           {adminSiteSettingsVisible && <AdminSiteSettings />}
           {loginVisible && <Login />}
           {registerVisible && <Register />}
+          {companyInfoVisible && <CompanyInfo />}
           <FooterBar />
         </div>
 

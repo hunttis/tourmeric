@@ -5,6 +5,7 @@ import UserEditor from './UserEditor/UserEditor-container';
 import HighlightEditor from './HighlightEditor/HighlightEditor-container';
 import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
 import NewsEditor from './NewsEditor/NewsEditor-container';
+import CompanyInfoEditor from './CompanyInfoEditor/CompanyInfoEditor-container';
 
 export default class AdminTools extends Component {
 
@@ -20,6 +21,7 @@ export default class AdminTools extends Component {
     const highlightVisible = this.state.activeItem === 'highlight';
     const storeInfoVisible = this.state.activeItem === 'storeinfo';
     const newsVisible = this.state.activeItem === 'news';
+    const companyInfoVisible = this.state.activeItem === 'companyinfo';
 
     return (
       <div>
@@ -28,7 +30,8 @@ export default class AdminTools extends Component {
             <AdminToolsTab isActive={userVisible} switchAction={() => this.switchActiveTab('user')} icon="fa-users" translationKey="users" />
             <AdminToolsTab isActive={highlightVisible} switchAction={() => this.switchActiveTab('highlight')} icon="fa-lightbulb" translationKey="highlights" />
             <AdminToolsTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
-            <AdminToolsTab isActive={newsVisible} switchAction={() => this.switchActiveTab('news')} icon="fa-store" translationKey="news" />
+            <AdminToolsTab isActive={newsVisible} switchAction={() => this.switchActiveTab('news')} icon="fa-newspaper" translationKey="news" />
+            <AdminToolsTab isActive={companyInfoVisible} switchAction={() => this.switchActiveTab('companyinfo')} icon="fa-warehouse" translationKey="companyinfo" />
           </ul>
         </div>
         <section className="section">
@@ -36,6 +39,7 @@ export default class AdminTools extends Component {
           {highlightVisible && <HighlightEditor />}
           {storeInfoVisible && <StoreInfoEditor />}
           {newsVisible && <NewsEditor />}
+          {companyInfoVisible && <CompanyInfoEditor />}
         </section>
       </div>
     );

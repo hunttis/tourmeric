@@ -21,7 +21,7 @@ export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail,
       <div className="column is-11">
         <div className="field is-grouped">
           <p className="control">
-            <button className="button has-icons tooltip" data-tooltip="This only works if you're a developer on facebook" onClick={() => loginFacebook()}>
+            <button className="button has-icons" onClick={() => loginFacebook()}>
               <span className="icon"><i className="fas fa-sign-in-alt" /></span>
               <span className="icon has-text-info"><i className="fab fa-facebook" /></span>
             </button>

@@ -5,7 +5,6 @@ import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import EventCard from './EventCard-container';
-import EventModal from './EventModal-container';
 
 export default class EventList extends Component {
 
@@ -13,9 +12,6 @@ export default class EventList extends Component {
     super(props);
 
     this.state = { categoryFilter: [], showPastEventsFilter: false };
-
-    this.closeModal = this.closeModal.bind(this);
-    this.openModal = this.openModal.bind(this);
   }
 
   toggleFilter(categoryId) {
@@ -45,16 +41,6 @@ export default class EventList extends Component {
 
     const publishedAndFilteredEvents = publishedEvents.filter(event => _.includes(this.state.categoryFilter, event.value.category));
     return publishedAndFilteredEvents;
-  }
-
-  closeModal(eventId) {
-    const modal = document.getElementById(`modal${eventId}`);
-    modal.classList.remove('is-active');
-  }
-
-  openModal(eventId) {
-    const modal = document.getElementById(`modal${eventId}`);
-    modal.classList.add('is-active');
   }
 
   togglePastEventFilter() {
@@ -95,11 +81,13 @@ export default class EventList extends Component {
       <section className="section">
         <div className="container">
 
-          {isLoaded(events) && publishedEvents.map((eventEntry) => {
+          {/* {isLoaded(events) && this.state.modalOpenEventId && publishedEvents.map((eventEntry) => {
             const eventId = eventEntry.key;
-
-            return <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal(eventId)} />;
-          })}
+            if (eventEntry.key === this.state.openModalEventId) {
+              return <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal()} />;
+            }
+            return '';
+          })} */}
 
           <h1 className="title"><Translate id="nextevents" /></h1>
 
@@ -160,13 +148,10 @@ export default class EventList extends Component {
               const eventId = eventEntry.key;
 
               return (
-                <div key={eventId} className="column is-12 columns">
-                  <div className="column is-2" />
+                <div key={eventId} className="column is-6 columns">
                   <EventCard
                     eventId={eventId}
-                    openModal={() => this.openModal(eventId)}
                   />
-                  <div className="column is-2" />
                 </div>
               );
 

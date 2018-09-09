@@ -222,10 +222,6 @@ ShallowWrapper {
       "children": <div
         className="container"
       >
-        <FirebaseConnect(Connect(Connect(EventModal)))
-          closeModal={[Function]}
-          eventId="mockEventId1"
-        />
         <h1
           className="title"
         >
@@ -365,17 +361,10 @@ ShallowWrapper {
           className="columns is-multiline"
         >
           <div
-            className="column is-12 columns"
+            className="column is-6 columns"
           >
-            <div
-              className="column is-2"
-            />
             <Connect(Connect(EventCard))
               eventId="mockEventId1"
-              openModal={[Function]}
-            />
-            <div
-              className="column is-2"
             />
           </div>
         </div>
@@ -389,12 +378,6 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          Array [
-            <FirebaseConnect(Connect(Connect(EventModal)))
-              closeModal={[Function]}
-              eventId="mockEventId1"
-            />,
-          ],
           <h1
             className="title"
           >
@@ -534,17 +517,10 @@ ShallowWrapper {
             className="columns is-multiline"
           >
             <div
-              className="column is-12 columns"
+              className="column is-6 columns"
             >
-              <div
-                className="column is-2"
-              />
               <Connect(Connect(EventCard))
                 eventId="mockEventId1"
-                openModal={[Function]}
-              />
-              <div
-                className="column is-2"
               />
             </div>
           </div>,
@@ -553,18 +529,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": "modalmockEventId1",
-          "nodeType": "class",
-          "props": Object {
-            "closeModal": [Function],
-            "eventId": "mockEventId1",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -1260,17 +1224,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <div
-                className="column is-12 columns"
+                className="column is-6 columns"
               >
-                <div
-                  className="column is-2"
-                />
                 <Connect(Connect(EventCard))
                   eventId="mockEventId1"
-                  openModal={[Function]}
-                />
-                <div
-                  className="column is-2"
                 />
               </div>,
             ],
@@ -1283,57 +1240,23 @@ ShallowWrapper {
               "key": "mockEventId1",
               "nodeType": "host",
               "props": Object {
-                "children": Array [
-                  <div
-                    className="column is-2"
-                  />,
-                  <Connect(Connect(EventCard))
-                    eventId="mockEventId1"
-                    openModal={[Function]}
-                  />,
-                  <div
-                    className="column is-2"
-                  />,
-                ],
-                "className": "column is-12 columns",
+                "children": <Connect(Connect(EventCard))
+                  eventId="mockEventId1"
+                />,
+                "className": "column is-6 columns",
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "className": "column is-2",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "div",
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "eventId": "mockEventId1",
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "eventId": "mockEventId1",
-                    "openModal": [Function],
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "className": "column is-2",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "div",
-                },
-              ],
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": "div",
             },
           ],
@@ -1353,10 +1276,6 @@ ShallowWrapper {
         "children": <div
           className="container"
         >
-          <FirebaseConnect(Connect(Connect(EventModal)))
-            closeModal={[Function]}
-            eventId="mockEventId1"
-          />
           <h1
             className="title"
           >
@@ -1496,17 +1415,10 @@ ShallowWrapper {
             className="columns is-multiline"
           >
             <div
-              className="column is-12 columns"
+              className="column is-6 columns"
             >
-              <div
-                className="column is-2"
-              />
               <Connect(Connect(EventCard))
                 eventId="mockEventId1"
-                openModal={[Function]}
-              />
-              <div
-                className="column is-2"
               />
             </div>
           </div>
@@ -1520,12 +1432,6 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            Array [
-              <FirebaseConnect(Connect(Connect(EventModal)))
-                closeModal={[Function]}
-                eventId="mockEventId1"
-              />,
-            ],
             <h1
               className="title"
             >
@@ -1665,17 +1571,10 @@ ShallowWrapper {
               className="columns is-multiline"
             >
               <div
-                className="column is-12 columns"
+                className="column is-6 columns"
               >
-                <div
-                  className="column is-2"
-                />
                 <Connect(Connect(EventCard))
                   eventId="mockEventId1"
-                  openModal={[Function]}
-                />
-                <div
-                  className="column is-2"
                 />
               </div>
             </div>,
@@ -1684,18 +1583,6 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": Array [
-          Object {
-            "instance": null,
-            "key": "modalmockEventId1",
-            "nodeType": "class",
-            "props": Object {
-              "closeModal": [Function],
-              "eventId": "mockEventId1",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
           Object {
             "instance": null,
             "key": undefined,
@@ -2391,17 +2278,10 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <div
-                  className="column is-12 columns"
+                  className="column is-6 columns"
                 >
-                  <div
-                    className="column is-2"
-                  />
                   <Connect(Connect(EventCard))
                     eventId="mockEventId1"
-                    openModal={[Function]}
-                  />
-                  <div
-                    className="column is-2"
                   />
                 </div>,
               ],
@@ -2414,57 +2294,23 @@ ShallowWrapper {
                 "key": "mockEventId1",
                 "nodeType": "host",
                 "props": Object {
-                  "children": Array [
-                    <div
-                      className="column is-2"
-                    />,
-                    <Connect(Connect(EventCard))
-                      eventId="mockEventId1"
-                      openModal={[Function]}
-                    />,
-                    <div
-                      className="column is-2"
-                    />,
-                  ],
-                  "className": "column is-12 columns",
+                  "children": <Connect(Connect(EventCard))
+                    eventId="mockEventId1"
+                  />,
+                  "className": "column is-6 columns",
                 },
                 "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "className": "column is-2",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": "div",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "eventId": "mockEventId1",
                   },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "eventId": "mockEventId1",
-                      "openModal": [Function],
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "className": "column is-2",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": "div",
-                  },
-                ],
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
                 "type": "div",
               },
             ],
