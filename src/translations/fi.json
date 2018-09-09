@@ -42,6 +42,8 @@
   "or": "TAI",
   "asocialmediaaccount": "Sosiaalisen median tiliä",
   "fillinyouremailaddressandinputpassword": "Syötä sähköpostiosoite ja salasana",
+  "forgotpassword": "Unohdin salasanani",
+  "resetpassword": "Palauta salasana",
 
   "auth/email-already-in-use": "Sähköpostitili on jo käytössä",
   "auth/user-not-found": "Sähköposti tai salasana väärin",

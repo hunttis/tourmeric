@@ -42,6 +42,8 @@
   "or": "OR",
   "asocialmediaaccount": "A social media account",
   "fillinyouremailaddressandinputpassword": "Fill in your email address and input a password",
+  "forgotpassword": "Forgot password",
+  "resetpassword": "Reset password",
 
   "auth/email-already-in-use": "Email address already in use",
   "auth/user-not-found": "Email or password wrong",

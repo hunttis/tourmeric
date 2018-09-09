@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { loginEmail } from '../../../api/loginApi';
+import React, { Component, Fragment } from 'react';
+import { Translate } from 'react-localize-redux';
 import { GenericSignupComponent } from './GenericSignupComponent';
+import { loginEmail, resetPassword } from '../../../api/loginApi';
 
 export default class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { loginEmail: '', loginPass: '' };
+    this.state = { loginEmail: '', loginPass: '', resetEmail: '', passwordResetEmailSent: false, errorState: null };
   }
 
   onChangeEmail = (event) => {
@@ -26,17 +27,67 @@ export default class Login extends Component {
     }
   }
 
+  onChangeResetEmail = (event) => {
+    this.setState({ resetEmail: event.target.value });
+  }
+
+  onResetEmailClick = async () => {
+    await resetPassword(this.state.resetEmail);
+    this.setState({ passwordResetEmailSent: true });
+  }
+
 
   render() {
+    const { errorState, passwordResetEmailSent } = this.state;
+
     return (
-      <GenericSignupComponent
-        firstTitle="loginwith"
-        buttonTitle="login"
-        onChangeEmail={this.onChangeEmail}
-        onChangePass={this.onChangePass}
-        onSubmit={this.onLoginSubmit}
-        errorState={this.state.errorState}
-      />
+      <Fragment>
+        <GenericSignupComponent
+          firstTitle="loginwith"
+          buttonTitle="login"
+          onChangeEmail={this.onChangeEmail}
+          onChangePass={this.onChangePass}
+          onSubmit={this.onLoginSubmit}
+          errorState={errorState}
+        />
+        <section className="section">
+          <div className="columns is-multiline">
+
+            {!passwordResetEmailSent &&
+            <Fragment>
+              <div className="column is-12">
+                <h1 className="title"><Translate id="forgotpassword" /></h1>
+              </div>
+              <div className="column is-1" />
+
+              <div className="column is-11">
+                <div className="field is-grouped">
+                  <p className="control is-expanded has-icons-left">
+                    <span className="icon is-small is-left"><i className="fas fa-envelope" /></span>
+                    <Translate>
+                      {translate => (
+                        <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={event => this.onChangeResetEmail(event)} />
+                      )}
+                    </Translate>
+                  </p>
+                  <button className="button" onClick={() => this.onResetEmailClick()}><Translate id="resetpassword" /></button>
+                </div>
+
+              </div>
+            </Fragment>
+            }
+            {passwordResetEmailSent &&
+              <Fragment>
+                <div className="column is-1" />
+
+                <div className="column is-11">
+                  <Translate id="resetemailsent" />
+                </div>
+              </Fragment>
+            }
+          </div>
+        </section>
+      </Fragment>
     );
   }
 }
