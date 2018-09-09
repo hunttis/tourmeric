@@ -13,14 +13,17 @@ export default class Today extends Component {
   state = { shownItems: 'today', modalOpenEventId: null }
 
   findNextEvents(events) {
+    const { profile } = this.props;
     const now = moment();
     const after7Days = moment().add(7, 'days');
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories);
     if (events) {
       const nextEvents = events.filter((eventEntry) => {
         const eventData = eventEntry.value;
         const eventDate = moment(eventData.date, 'YYYY-MM-DD');
         const isWithinAWeek = eventDate.isAfter(now, 'day') && eventDate.isBefore(after7Days, 'day');
-        return eventData.published && isWithinAWeek;
+        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;
+        return eventData.published && isWithinAWeek && isFavorite;
       });
       return nextEvents;
     }
@@ -212,4 +215,5 @@ Today.propTypes = {
   events: PropTypes.array,
   categories: PropTypes.object,
   uploadedCategoryLogos: PropTypes.object,
+  profile: PropTypes.object,
 };

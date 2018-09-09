@@ -49,10 +49,10 @@ export default class UserInfo extends Component {
 
   userInfoBox() {
     const {
-      profile, events, participations, userid, settings, storecredit,
+      profile, events, participations, userid, settings, storecredit, categories,
     } = this.props;
 
-    if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && isLoaded(storecredit)) {
+    if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && isLoaded(storecredit) && isLoaded(categories)) {
       const userCredit = storecredit[userid];
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
       const hasAcceptedPrivacyPolicy = _.get(profile, 'acceptedPrivacyPolicy', false);
@@ -146,6 +146,7 @@ export default class UserInfo extends Component {
                   />
                 </div>
               </div>
+              {this.myFavoriteGames()}
             </div>
             <div className="column is-6">
 
@@ -189,6 +190,50 @@ export default class UserInfo extends Component {
         <img src={loadingImage} alt="Loading" />
       </div>
     );
+  }
+
+  myFavoriteGames() {
+    const { categories, profile } = this.props;
+    const chosenCategories = profile.favoriteCategories || '';
+
+    return (
+      <Fragment>
+        <h2 className="subtitle">
+          Choose the games you want to see in your today view
+        </h2>
+        {Object.entries(categories).map((categoryEntry) => {
+          const category = categoryEntry[1];
+          const categoryChosen = chosenCategories.indexOf(category.name) !== -1;
+
+          return (
+            <button key={`categorytoggle-${category.name}`} onClick={() => this.toggleCategory(category.name)} className={`button ${categoryChosen ? 'is-success' : 'is-info'}`}>
+              {category.name}
+            </button>
+
+          );
+        })}
+
+      </Fragment>
+    );
+  }
+
+  async toggleCategory(categoryName) {
+    console.log('toggling', categoryName);
+    const { profile } = this.props;
+    const chosenCategories = profile.favoriteCategories || '';
+    let modifiedCategories;
+    if (chosenCategories.indexOf(categoryName) === -1) {
+      console.log('adding');
+      modifiedCategories = `${chosenCategories} ${categoryName}`;
+    } else {
+      console.log('removing');
+      modifiedCategories = _.replace(chosenCategories, categoryName, '');
+    }
+
+    modifiedCategories = _.replace(modifiedCategories, '  ', ' ');
+
+    await firebase.update(`/users/${this.props.auth.uid}`, { favoriteCategories: modifiedCategories });
+
   }
 
   creditModal() {
@@ -250,4 +295,5 @@ UserInfo.propTypes = {
   auth: PropTypes.object,
   settings: PropTypes.object,
   storecredit: PropTypes.object,
+  categories: PropTypes.object,
 };
