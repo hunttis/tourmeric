@@ -11,6 +11,10 @@ div.navbar {
   color: #bbbbbb;
 }
 
+div .navbar-item img {
+  max-height: 2.75em;
+}
+
 .active-navbar-item a {
   font-weight: bolder;
 }
@@ -28,6 +32,10 @@ a.adminactive {
   padding: 1em;
 }
 
+.event-card-footer {
+  animation-name: heightgrow;
+  animation-duration: 500ms;
+}
 
 .speech-bubble {
   border-radius: 10px 10px 10px 0px;
@@ -83,6 +91,16 @@ button.image-square {
 .eventlistitem {
   animation-name: scrollin;
   animation-duration: 750ms;
+}
+
+@keyframes heightgrow {
+  0% {
+    max-height: 0%;
+  }
+
+  100% {
+    max-height: 100%;
+  }
 }
 
 @keyframes scrollin {
