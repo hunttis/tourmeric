@@ -49,10 +49,10 @@ export default class UserInfo extends Component {
 
   userInfoBox() {
     const {
-      profile, events, participations, userid, settings, storecredit,
+      profile, events, participations, userid, settings, storecredit, categories,
     } = this.props;
 
-    if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && isLoaded(storecredit)) {
+    if (isLoaded(profile) && !isEmpty(profile) && isLoaded(events) && isLoaded(storecredit) && isLoaded(categories)) {
       const userCredit = storecredit[userid];
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
       const hasAcceptedPrivacyPolicy = _.get(profile, 'acceptedPrivacyPolicy', false);
@@ -146,6 +146,7 @@ export default class UserInfo extends Component {
                   />
                 </div>
               </div>
+              {this.myFavoriteGames()}
             </div>
             <div className="column is-6">
 
@@ -189,6 +190,59 @@ export default class UserInfo extends Component {
         <img src={loadingImage} alt="Loading" />
       </div>
     );
+  }
+
+  myFavoriteGames() {
+    const { categories, profile } = this.props;
+    const chosenCategories = profile.favoriteCategories || '';
+
+    return (
+      <Fragment>
+        <h2 className="subtitle">
+          <Translate id="chooseyourfavorites" />
+        </h2>
+        <div className="content">
+
+          <p>
+            <Translate id="thesewillbeinyourtodayviewanddefaultfilterforevents" />
+          </p>
+          <p>
+            <Translate id="choosingnonewillfilternothing" />
+          </p>
+        </div>
+        {Object.entries(categories).map((categoryEntry) => {
+          const categoryId = categoryEntry[0];
+          const category = categoryEntry[1];
+          const categoryChosen = chosenCategories.indexOf(categoryId) !== -1;
+
+          return (
+            <div key={`categorytoggle-${category.name}`} className="field">
+              <button onClick={() => this.toggleCategory(categoryId)} className={`button ${categoryChosen ? 'is-success' : 'is-outlined'}`}>
+                {category.name}
+              </button>
+            </div>
+
+          );
+        })}
+
+      </Fragment>
+    );
+  }
+
+  async toggleCategory(categoryId) {
+    const { profile } = this.props;
+    const chosenCategories = profile.favoriteCategories || '';
+    let modifiedCategories;
+    if (chosenCategories.indexOf(categoryId) === -1) {
+      modifiedCategories = `${chosenCategories} ${categoryId}`;
+    } else {
+      modifiedCategories = _.replace(chosenCategories, categoryId, '');
+    }
+
+    modifiedCategories = _.replace(modifiedCategories, '  ', ' ');
+
+    await firebase.update(`/users/${this.props.auth.uid}`, { favoriteCategories: modifiedCategories });
+
   }
 
   creditModal() {
@@ -250,4 +304,5 @@ UserInfo.propTypes = {
   auth: PropTypes.object,
   settings: PropTypes.object,
   storecredit: PropTypes.object,
+  categories: PropTypes.object,
 };

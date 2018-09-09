@@ -191,6 +191,9 @@
   "dcinumberplaceholder": "Wizardsilta saamasi DCI-numero",
   "someinformationismissing": "Jotain tietoja puuttuu vielä. Syötä etunimesi, sukunimesi ja sähköpostiosoite",
   "yourprofilelooksgoodtogo": "Profiilisi näyttää hyvältä!",
+  "chooseyourfavorites": "Valitse suosikkisi",
+  "thesewillbeinyourtodayviewanddefaultfilterforevents": "Nämä näytetään 'Tänään'-näkymässä ja suosikkisi ovat oletussuodattimena tapahtumanäkymässä.",
+  "choosingnonewillfilternothing": "Jos yhtään ei ole valittuna, näytetään aina kaikkien kategorioiden tapahtumat.",
 
   "green": "Vihreä",
   "cyan": "Sinivihreä",
