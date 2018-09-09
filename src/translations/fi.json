@@ -44,6 +44,7 @@
   "fillinyouremailaddressandinputpassword": "Syötä sähköpostiosoite ja salasana",
   "forgotpassword": "Unohdin salasanani",
   "resetpassword": "Palauta salasana",
+  "resetemailsent": "Lähetimme sinulle sähköpostia, jolla voit palauttaa salasanasi. Mikäli sitä ei pian näy, tarkista roskapostilaatikkosi",
 
   "auth/email-already-in-use": "Sähköpostitili on jo käytössä",
   "auth/user-not-found": "Sähköposti tai salasana väärin",
