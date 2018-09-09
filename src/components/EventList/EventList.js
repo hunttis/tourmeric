@@ -11,7 +11,9 @@ export default class EventList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { categoryFilter: [], showPastEventsFilter: false };
+    const favoriteCategories = _.get(props, 'profile.favoriteCategories', '');
+    const defaultFilter = favoriteCategories.split(' ');
+    this.state = { categoryFilter: _.compact(defaultFilter), showPastEventsFilter: false };
   }
 
   toggleFilter(categoryId) {
@@ -67,7 +69,7 @@ export default class EventList extends Component {
       events, participations, profile, categories, settings, uploadedCategoryLogos,
     } = this.props;
 
-    if (!isLoaded(participations) || !isLoaded(profile) || !isLoaded(events) || !isLoaded(settings) || !isLoaded(uploadedCategoryLogos)) {
+    if (!isLoaded(participations) || !isLoaded(profile) || !isLoaded(events) || !isLoaded(settings) || !isLoaded(uploadedCategoryLogos) || !isLoaded(categories)) {
       return <div><Translate id="loading" /></div>;
     } if (isLoaded(events) && isEmpty(events)) {
       return <div><Translate id="noevents" /></div>;

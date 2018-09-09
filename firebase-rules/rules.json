@@ -323,6 +323,12 @@
         "acceptedPrivacyPolicy": {
           ".validate": "newData.isString()"
         },
+        "favoritePage": {
+          ".validate": "newData.isString()"
+        },
+        "favoriteCategories": {
+          ".validate": "newData.isString()"
+        },
         "$other": {
           ".validate": "false"
         },

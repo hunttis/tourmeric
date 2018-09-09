@@ -16,7 +16,7 @@ export default class Today extends Component {
     const { profile } = this.props;
     const now = moment();
     const after7Days = moment().add(7, 'days');
-    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories);
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
     if (events) {
       const nextEvents = events.filter((eventEntry) => {
         const eventData = eventEntry.value;
@@ -31,11 +31,15 @@ export default class Today extends Component {
   }
 
   findTodaysEvents(events) {
+    const { profile } = this.props;
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
     if (events) {
 
       const todaysEvents = events.filter((eventEntry) => {
         const eventData = eventEntry.value;
-        if (eventData.published && moment(eventData.date, 'YYYY-MM-DD').isSame(moment(), 'day')) {
+        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;
+
+        if (eventData.published && moment(eventData.date, 'YYYY-MM-DD').isSame(moment(), 'day') && isFavorite) {
           return true;
         }
         return false;

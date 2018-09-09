@@ -199,16 +199,28 @@ export default class UserInfo extends Component {
     return (
       <Fragment>
         <h2 className="subtitle">
-          Choose the games you want to see in your today view
+          <Translate id="chooseyourfavorites" />
         </h2>
+        <div className="content">
+
+          <p>
+            <Translate id="thesewillbeinyourtodayviewanddefaultfilterforevents" />
+          </p>
+          <p>
+            <Translate id="choosingnonewillfilternothing" />
+          </p>
+        </div>
         {Object.entries(categories).map((categoryEntry) => {
+          const categoryId = categoryEntry[0];
           const category = categoryEntry[1];
-          const categoryChosen = chosenCategories.indexOf(category.name) !== -1;
+          const categoryChosen = chosenCategories.indexOf(categoryId) !== -1;
 
           return (
-            <button key={`categorytoggle-${category.name}`} onClick={() => this.toggleCategory(category.name)} className={`button ${categoryChosen ? 'is-success' : 'is-info'}`}>
-              {category.name}
-            </button>
+            <div key={`categorytoggle-${category.name}`} className="field">
+              <button onClick={() => this.toggleCategory(categoryId)} className={`button ${categoryChosen ? 'is-success' : 'is-outlined'}`}>
+                {category.name}
+              </button>
+            </div>
 
           );
         })}
@@ -217,17 +229,14 @@ export default class UserInfo extends Component {
     );
   }
 
-  async toggleCategory(categoryName) {
-    console.log('toggling', categoryName);
+  async toggleCategory(categoryId) {
     const { profile } = this.props;
     const chosenCategories = profile.favoriteCategories || '';
     let modifiedCategories;
-    if (chosenCategories.indexOf(categoryName) === -1) {
-      console.log('adding');
-      modifiedCategories = `${chosenCategories} ${categoryName}`;
+    if (chosenCategories.indexOf(categoryId) === -1) {
+      modifiedCategories = `${chosenCategories} ${categoryId}`;
     } else {
-      console.log('removing');
-      modifiedCategories = _.replace(chosenCategories, categoryName, '');
+      modifiedCategories = _.replace(chosenCategories, categoryId, '');
     }
 
     modifiedCategories = _.replace(modifiedCategories, '  ', ' ');

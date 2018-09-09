@@ -193,6 +193,9 @@
   "dcinumberplaceholder": "Wizards DCI Number",
   "someinformationismissing": "Some of your profile information is still missing, please enter your first and last name as well as your email address",
   "yourprofilelooksgoodtogo": "Your profile looks good to go!",
+  "chooseyourfavorites": "Choose your favorites",
+  "thesewillbeinyourtodayviewanddefaultfilterforevents": "These will be shown in the 'Today'-view and used as a default filter in the 'Events'-view.",
+  "choosingnonewillfilternothing": "If none are chosen, then you will always see events for all categories.",
 
   "green": "Green",
   "cyan": "Cyan",
