@@ -149,11 +149,9 @@ export default class EventList extends Component {
 
               return (
                 <div key={eventId} className="column is-6 columns">
-                  {/* <div className="column is-2" /> */}
                   <EventCard
                     eventId={eventId}
                   />
-                  {/* <div className="column is-2" /> */}
                 </div>
               );
 

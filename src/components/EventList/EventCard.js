@@ -26,6 +26,7 @@ export default class EventCard extends Component {
     const { eventId, events, userid, profile, participations, settings, categories } = this.props;
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
+    const dateFormatWithDayName = `${dateFormat} (dd)`;
     const eventContent = _.find(events, ['key', eventId]).value;
     const category = categories[eventContent.category];
     const alreadyParticipated = checkParticipation(userid, eventId, participations);
@@ -36,9 +37,9 @@ export default class EventCard extends Component {
         {this.state.modalOpen &&
           <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal()} />
         }
-        <div className="column eventcard">
+        <div className="column is-12 eventcard">
           <h2 className="subtitle date-item">
-            <Moment format={dateFormat}>{eventContent.date}</Moment>
+            <Moment format={dateFormatWithDayName}>{eventContent.date}</Moment>
           </h2>
           <div className="card card-shadow">
 
@@ -92,12 +93,10 @@ export default class EventCard extends Component {
 
             </div>
 
-          </div>
-          <p>&nbsp;</p>
-          { moment(eventContent.date).isSameOrAfter(moment(), 'day') &&
-          <div className="level participation-level">
-            { alreadyParticipated &&
-              <div className="level-left">
+            {/* CARD FOOTER ON TABLET AND ABOVE */}
+            <div className="card-footer is-hidden-mobile">
+              { alreadyParticipated &&
+              <div className="card-footer-item event-card-footer">
                 <EditableField
                   inputClasses="is-rounded"
                   leftIcon="comment"
@@ -108,13 +107,47 @@ export default class EventCard extends Component {
                   targetName="comment"
                 />
               </div>
+              }
+              <div className="card-footer-item event-card-footer">
+                <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} />
+              </div>
+            </div>
+            {/* END CARD FOOTER */}
+
+            {/* CARD FOOTER ON MOBILE */}
+            { alreadyParticipated &&
+            <Fragment>
+              <div className="card-footer is-hidden-tablet">
+                <div className="card-footer-item event-card-footer">
+                  <EditableField
+                    inputClasses="is-rounded"
+                    leftIcon="comment"
+                    labelContent=""
+                    placeHolder="comment"
+                    defaultValue={thisParticipation.comment}
+                    path={`/participations/${eventId}/${userid}`}
+                    targetName="comment"
+                  />
+                </div>
+              </div>
+            </Fragment>
             }
+            <div className="card-footer is-hidden-tablet">
+              <div className="card-footer-item event-card-footer">
+                <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} />
+              </div>
+            </div>
+            {/* END CARD FOOTER */}
+
+          </div>
+          <p>&nbsp;</p>
+          { moment(eventContent.date).isSameOrAfter(moment(), 'day') &&
+          <div className="level participation-level">
+
             { !alreadyParticipated &&
               <div className="level-left is-hidden-mobile" />
             }
-            <div className="level-right is-pulled-right">
-              <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} />
-            </div>
+
           </div>
         }
         </div>
