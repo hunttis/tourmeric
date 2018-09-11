@@ -60,7 +60,7 @@ export default class CreditModal extends Component {
                 </div>
               </div>
               <div>
-                <button className="button is-primary" onClick={() => this.saveCredit(userId, this.state.creditFormNote, this.state.creditFormAmount)}><Translate id="save" /></button>
+                <button className="button is-primary" disabled={this.state.creditFormAmount === 0} onClick={() => this.saveCredit(userId, this.state.creditFormNote, this.state.creditFormAmount)}><Translate id="save" /></button>
               </div>
             </div>
           </div>
