@@ -41,13 +41,13 @@ export default class EventParticipants extends Component {
           </div>
         }
         <div className="column is-12">
-          {hasParticipants && participants.map((participantEntry) => {
+          {hasParticipants && participants.map((participantEntry, index) => {
             const userId = participantEntry[0];
             const userIsPlaceholder = _.isEmpty(users[userId]);
             const participationInfo = participantEntry[1];
             return (
-              <Fragment>
-                <div key={userId} className={`${userIsPlaceholder && 'has-text-warning'} has-background-black is-rounded`}>
+              <Fragment key={`evenparticipation-${eventId}-${index}`}>
+                <div className={`${userIsPlaceholder && 'has-text-warning'} has-background-black is-rounded`}>
                   {moment(participationInfo.date).format('DD-MM-YYYY  |  HH:mm:ss')} - {participationInfo.firstName} {participationInfo.lastName}
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <button className="button is-danger is-rounded is-small" onClick={() => this.removeParticipation(eventId, userId)}><i className="fas fa-user-minus" /></button>
