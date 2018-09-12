@@ -30,7 +30,7 @@ export default class MainView extends Component {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { activeItem: 'today', forceUserInfo: false };
+    this.state = { forceUserInfo: false };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -73,22 +73,24 @@ export default class MainView extends Component {
       const eventsActive = _.get(settings, 'features.events.active', false);
       const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
 
-      const todayVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'today');
-      const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activeItem === 'events');
-      const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activeItem === 'userinfo' || !hasProfileData));
-      const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'admintools');
-      const adminToolsEventsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'admintoolsevents');
-      const adminSiteSettingsVisible = Boolean(isAdmin && !forceUserInfo && activeItem === 'adminsitesettings');
-      const loginVisible = Boolean(!isLoggedIn && activeItem === 'login');
-      const registerVisible = Boolean(!isLoggedIn && activeItem === 'register');
-      const storeInfoVisible = Boolean(activeItem === 'storeinfo');
-      const companyInfoVisible = Boolean(activeItem === 'companyinfo');
+      const activePage = activeItem || _.get(profile, 'landingPage', 'today');
+
+      const todayVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'today');
+      const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'events');
+      const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activePage === 'userinfo' || !hasProfileData));
+      const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintools');
+      const adminToolsEventsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintoolsevents');
+      const adminSiteSettingsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'adminsitesettings');
+      const loginVisible = Boolean(!isLoggedIn && activePage === 'login');
+      const registerVisible = Boolean(!isLoggedIn && activePage === 'register');
+      const storeInfoVisible = Boolean(activePage === 'storeinfo');
+      const companyInfoVisible = Boolean(activePage === 'companyinfo');
 
       return (
         <div>
           <ThemeHandler />
           <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
-          <Navbar switchActiveTab={this.switchActiveTab} activeItem={activeItem} changeLanguage={this.changeLanguage} />
+          <Navbar switchActiveTab={this.switchActiveTab} activeItem={activePage} changeLanguage={this.changeLanguage} />
           {todayVisible && <Today />}
           {eventsActive && eventContentVisible && <EventList />}
           {storeInfoActive && storeInfoVisible && <StoreInfo />}
@@ -99,7 +101,9 @@ export default class MainView extends Component {
           {loginVisible && <Login />}
           {registerVisible && <Register />}
           {companyInfoVisible && <CompanyInfo />}
-          <FooterBar />
+          {isLoaded(settings) &&
+            <FooterBar />
+          }
         </div>
 
       );

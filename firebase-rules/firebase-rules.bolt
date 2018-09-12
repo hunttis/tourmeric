@@ -192,7 +192,8 @@ type User {
   firstName: String | Null,
   lastName: String | Null,
   acceptedPrivacyPolicy: String | Null
-  favoritePage: String | Null,
+  landingPage: String | Null,
+  landingSubpage: String | Null,
   favoriteCategories: String | Null
 }
 

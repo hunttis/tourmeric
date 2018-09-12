@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import UserEditor from './UserEditor/UserEditor-container';
 import HighlightEditor from './HighlightEditor/HighlightEditor-container';
 import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
@@ -9,26 +10,29 @@ import CompanyInfoEditor from './CompanyInfoEditor/CompanyInfoEditor-container';
 
 export default class AdminTools extends Component {
 
-  state = { activeItem: 'user' }
+  state = { activeItem: null }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });
   }
 
   render() {
+    const { profile } = this.props;
 
-    const userVisible = this.state.activeItem === 'user';
-    const highlightVisible = this.state.activeItem === 'highlight';
-    const storeInfoVisible = this.state.activeItem === 'storeinfo';
-    const newsVisible = this.state.activeItem === 'news';
-    const companyInfoVisible = this.state.activeItem === 'companyinfo';
+    const activePage = this.state.activeItem || _.get(profile, 'landingSubpage', 'users');
+
+    const userVisible = activePage === 'users';
+    const highlightVisible = activePage === 'highlights';
+    const storeInfoVisible = activePage === 'storeinfo';
+    const newsVisible = activePage === 'news';
+    const companyInfoVisible = activePage === 'companyinfo';
 
     return (
       <div>
         <div className="tabs is-boxed is-marginless is-multiline">
           <ul>
-            <AdminToolsTab isActive={userVisible} switchAction={() => this.switchActiveTab('user')} icon="fa-users" translationKey="users" />
-            <AdminToolsTab isActive={highlightVisible} switchAction={() => this.switchActiveTab('highlight')} icon="fa-lightbulb" translationKey="highlights" />
+            <AdminToolsTab isActive={userVisible} switchAction={() => this.switchActiveTab('users')} icon="fa-users" translationKey="users" />
+            <AdminToolsTab isActive={highlightVisible} switchAction={() => this.switchActiveTab('highlights')} icon="fa-lightbulb" translationKey="highlights" />
             <AdminToolsTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
             <AdminToolsTab isActive={newsVisible} switchAction={() => this.switchActiveTab('news')} icon="fa-newspaper" translationKey="news" />
             <AdminToolsTab isActive={companyInfoVisible} switchAction={() => this.switchActiveTab('companyinfo')} icon="fa-warehouse" translationKey="companyinfo" />
@@ -44,8 +48,6 @@ export default class AdminTools extends Component {
       </div>
     );
   }
-
-
 }
 
 const AdminToolsTab = ({ tabid, isActive, switchAction, icon, translationKey }) => (
@@ -56,6 +58,10 @@ const AdminToolsTab = ({ tabid, isActive, switchAction, icon, translationKey }) 
     </a>
   </li>
 );
+
+AdminTools.propTypes = {
+  profile: PropTypes.object,
+};
 
 AdminToolsTab.propTypes = {
   tabid: PropTypes.string,

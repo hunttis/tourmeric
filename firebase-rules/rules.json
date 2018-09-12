@@ -323,7 +323,10 @@
         "acceptedPrivacyPolicy": {
           ".validate": "newData.isString()"
         },
-        "favoritePage": {
+        "landingPage": {
+          ".validate": "newData.isString()"
+        },
+        "landingSubpage": {
           ".validate": "newData.isString()"
         },
         "favoriteCategories": {

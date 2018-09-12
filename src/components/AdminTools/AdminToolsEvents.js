@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import loadingImage from '../../images/Ripple-1s-64px.svg';
 import AdminEventList from './AdminEventList-container';
 import CategoryEditor from './CategoryEditor/CategoryEditor-container';
@@ -10,25 +11,27 @@ import { AdminToolsTab } from './AdminToolsTab';
 
 export default class AdminToolsEvents extends Component {
 
-  state = { activeItem: 'unpublished' }
+  state = { activeItem: null }
 
   switchActiveTab(type) {
     this.setState({ activeItem: type });
   }
 
   render() {
-    const { events } = this.props;
+    const { events, profile } = this.props;
     if (!isLoaded(events)) {
       return <div><img src={loadingImage} alt="Loading" /></div>;
     }
 
     if (isLoaded(events)) {
 
-      const unpublishedEventsVisible = this.state.activeItem === 'unpublished';
-      const publishedEventsVisible = this.state.activeItem === 'published';
-      const categoryVisible = this.state.activeItem === 'category';
-      const categoryLogoUploaderVisible = this.state.activeItem === 'categorylogouploader';
-      const participationVisible = this.state.activeItem === 'participation';
+      const activePage = this.state.activeItem || _.get(profile, 'landingSubpage', 'unpublished');
+
+      const unpublishedEventsVisible = activePage === 'unpublished';
+      const publishedEventsVisible = activePage === 'published';
+      const categoryVisible = activePage === 'category';
+      const categoryLogoUploaderVisible = activePage === 'categorylogouploader';
+      const participationVisible = activePage === 'participations';
 
       return (
         <div>
@@ -38,7 +41,7 @@ export default class AdminToolsEvents extends Component {
               <AdminToolsTab isActive={publishedEventsVisible} switchAction={() => this.switchActiveTab('published')} icon="fa-book" translationKey="publishedevents" />
               <AdminToolsTab isActive={categoryVisible} switchAction={() => this.switchActiveTab('category')} icon="fa-bars" translationKey="categories" />
               <AdminToolsTab isActive={categoryLogoUploaderVisible} switchAction={() => this.switchActiveTab('categorylogouploader')} icon="fa-bars" translationKey="categorylogouploader" />
-              <AdminToolsTab isActive={participationVisible} switchAction={() => this.switchActiveTab('participation')} icon="fa-clipboard-list" translationKey="participations" />
+              <AdminToolsTab isActive={participationVisible} switchAction={() => this.switchActiveTab('participations')} icon="fa-clipboard-list" translationKey="participations" />
             </ul>
           </div>
           <section className="section">
@@ -64,4 +67,5 @@ export default class AdminToolsEvents extends Component {
 
 AdminToolsEvents.propTypes = {
   events: PropTypes.object,
+  profile: PropTypes.object,
 };
