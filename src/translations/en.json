@@ -105,6 +105,7 @@
   "gametype": "Game type, card, board games, videogames etc",
   "noevents": "No events",
   "published": "Published",
+  "unpublished": "Unpublished",
   "notpublished": "Not published",
   "publish": "Publish",
   "unpublish": "Unpublish",
@@ -295,6 +296,13 @@
   "setasupdated": "Set as updated",
   "pleaseclickheretoreadourandacceptprivacypolicytoproceed": "Please click here to read our and accept our privacy policy to proceed",
 
-  "companyinfo": "Company Info"
+  "companyinfo": "Company Info",
+  "chooseyourlandingpage": "Choose your landing page",
+  "admintools": "Admin - Generic",
+  "admintoolsevents": "Admin - Events",
+  "page": "Page",
+  "subpage": "Subpage",
+  "nosubpage": "No sub page",
+  "savelandingpage": "Save landing page"
 
 }

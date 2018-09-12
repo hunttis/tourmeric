@@ -3,6 +3,7 @@ import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
+import _ from 'lodash';
 import { PageTitles } from './PageTitles';
 import { Localization } from './Localization';
 import { Themes } from './Themes';
@@ -11,7 +12,7 @@ import PrivacyPolicyEditor from './PrivacyPolicyEditor-container';
 
 export default class AdminSiteSettings extends Component {
 
-  state = { activeItem: 'pagetitles' }
+  state = { activeItem: null }
 
   switchActiveSiteSettingsTab(type) {
     this.setState({ activeItem: type });
@@ -26,7 +27,7 @@ export default class AdminSiteSettings extends Component {
   }
 
   render() {
-    const { settings } = this.props;
+    const { settings, profile } = this.props;
 
     const showDefaultButton = (settings && settings.dateFormat !== 'DD.MM.YYYY');
 
@@ -35,11 +36,14 @@ export default class AdminSiteSettings extends Component {
       'Minty', 'Nuclear', 'Pulse', 'Sandstone', 'Simplex', 'Slate', 'Solar',
       'Spacelab', 'Superhero', 'United', 'Yeti'];
 
-    const pageTitlesVisible = this.state.activeItem === 'pagetitles';
-    const localizationVisible = this.state.activeItem === 'localization';
-    const themesVisible = this.state.activeItem === 'themes';
-    const featuresVisible = this.state.activeItem === 'features';
-    const privacyPolicyVisible = this.state.activeItem === 'privacypolicy';
+    const activePage = this.state.activeItem || _.get(profile, 'landingSubpage', 'pagetitles');
+
+
+    const pageTitlesVisible = activePage === 'pagetitles';
+    const localizationVisible = activePage === 'localization';
+    const themesVisible = activePage === 'themes';
+    const featuresVisible = activePage === 'features';
+    const privacyPolicyVisible = activePage === 'privacypolicy';
 
     if (isLoaded(settings)) {
       return (
@@ -88,4 +92,5 @@ SiteSettingsTab.propTypes = {
 
 AdminSiteSettings.propTypes = {
   settings: PropTypes.object,
+  profile: PropTypes.object,
 };

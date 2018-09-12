@@ -11,6 +11,7 @@ import { checkParticipation } from '../../api/eventApi';
 import { DateBasedEvents } from './DateBasedEvents';
 import ChooseFavoriteCategories from './ChooseFavoriteCategories-container';
 import PersonalInfoEditor from './PersonalInfoEditor-container';
+import ChooseLandingPage from './ChooseLandingPage-container';
 
 export default class UserInfo extends Component {
 
@@ -57,6 +58,7 @@ export default class UserInfo extends Component {
       const userCredit = storecredit[userid];
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
       const hasAcceptedPrivacyPolicy = _.get(profile, 'acceptedPrivacyPolicy', false);
+      const isAdmin = _.get(profile, 'role', 'user') === 'admin';
 
       const publishedEvents = events ? Object.values(events).filter(event => event.value.published) : [];
       const futureEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
@@ -98,6 +100,7 @@ export default class UserInfo extends Component {
             <div className="column is-6">
               <PersonalInfoEditor />
               <ChooseFavoriteCategories />
+              {isAdmin && <ChooseLandingPage />}
             </div>
             <div className="column is-6">
 
