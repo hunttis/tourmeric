@@ -21,7 +21,7 @@ export default class SingleEventParticipation extends Component {
   render() {
 
     const {
-      users, categories, participations, admin, settings, eventId, event,
+      users, categories, participations, admin, settings, eventId, event, chooseParticipant,
     } = this.props;
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
@@ -62,7 +62,7 @@ export default class SingleEventParticipation extends Component {
                     className="input"
                     id="adminparticipation"
                     onChange={(e) => {
-                      this.props.chooseParticipant(eventId, e.target.value);
+                      chooseParticipant(eventId, e.target.value);
                     }}
                   >
                     <option value=""><Translate id="select" /></option>
@@ -70,7 +70,8 @@ export default class SingleEventParticipation extends Component {
                       const userId = userEntry.key;
                       const user = userEntry.value;
                       const alreadyParticipated = Boolean(_.get(participations, `${eventId}.${userId}`));
-                      if (alreadyParticipated) {
+                      const hasFullInfo = user.firstName && user.lastName;
+                      if (alreadyParticipated || !hasFullInfo) {
                         return '';
                       }
                       return (
