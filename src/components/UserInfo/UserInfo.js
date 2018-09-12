@@ -6,10 +6,11 @@ import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import loadingImage from '../../images/Ripple-1s-64px.svg';
-import EditableVerticalField from '../Common/EditableVerticalField-container';
 import StoreCreditTableUser from './StoreCreditTableUser';
 import { checkParticipation } from '../../api/eventApi';
 import { DateBasedEvents } from './DateBasedEvents';
+import ChooseFavoriteCategories from './ChooseFavoriteCategories-container';
+import PersonalInfoEditor from './PersonalInfoEditor-container';
 
 export default class UserInfo extends Component {
 
@@ -95,58 +96,8 @@ export default class UserInfo extends Component {
             </div>
 
             <div className="column is-6">
-
-              <h1 className="title"><Translate id="personalinfo" /></h1>
-              <div className="columns is-multiline">
-
-                <div className="column is-12">
-                  <EditableVerticalField
-                    labelContent="firstname"
-                    placeHolder="firstnameplaceholder"
-                    defaultValue={profile.firstName}
-                    path={`/users/${this.props.auth.uid}`}
-                    targetName="firstName"
-                    idleIcon="fa-address-book"
-                    emptyClass="is-danger"
-                  />
-                </div>
-
-                <div className="column is-12">
-                  <EditableVerticalField
-                    labelContent="lastname"
-                    placeHolder="lastnameplaceholder"
-                    defaultValue={profile.lastName}
-                    path={`/users/${this.props.auth.uid}`}
-                    targetName="lastName"
-                    idleIcon="fa-address-book"
-                    emptyClass="is-danger"
-                  />
-                </div>
-
-                <div className="column is-12">
-                  <EditableVerticalField
-                    labelContent="email"
-                    placeHolder="emailplaceholder"
-                    defaultValue={profile.email}
-                    path={`/users/${this.props.auth.uid}`}
-                    targetName="email"
-                    idleIcon="fa-envelope"
-                    emptyClass="is-danger"
-                  />
-                </div>
-
-                <div className="column is-12">
-                  <EditableVerticalField
-                    labelContent="dcinumber"
-                    placeHolder="dcinumberplaceholder"
-                    defaultValue={profile.dciNumber}
-                    path={`/users/${this.props.auth.uid}`}
-                    targetName="dciNumber"
-                    idleIcon="fa-magic"
-                  />
-                </div>
-              </div>
-              {this.myFavoriteGames()}
+              <PersonalInfoEditor />
+              <ChooseFavoriteCategories />
             </div>
             <div className="column is-6">
 
@@ -158,7 +109,9 @@ export default class UserInfo extends Component {
                   </div>
                   <div className="column is-6 has-text-right">
                     {userCredit &&
-                      <button className="button is-primary" onClick={() => this.openCreditModal()}><Translate id="credithistory" /></button>
+                      <button className="button is-primary" onClick={() => this.openCreditModal()}>
+                        <Translate id="credithistory" />
+                      </button>
                     }
                   </div>
                 </div>
@@ -190,59 +143,6 @@ export default class UserInfo extends Component {
         <img src={loadingImage} alt="Loading" />
       </div>
     );
-  }
-
-  myFavoriteGames() {
-    const { categories, profile } = this.props;
-    const chosenCategories = profile.favoriteCategories || '';
-
-    return (
-      <Fragment>
-        <h2 className="subtitle">
-          <Translate id="chooseyourfavorites" />
-        </h2>
-        <div className="content">
-
-          <p>
-            <Translate id="thesewillbeinyourtodayviewanddefaultfilterforevents" />
-          </p>
-          <p>
-            <Translate id="choosingnonewillfilternothing" />
-          </p>
-        </div>
-        {Object.entries(categories).map((categoryEntry) => {
-          const categoryId = categoryEntry[0];
-          const category = categoryEntry[1];
-          const categoryChosen = chosenCategories.indexOf(categoryId) !== -1;
-
-          return (
-            <div key={`categorytoggle-${category.name}`} className="field">
-              <button onClick={() => this.toggleCategory(categoryId)} className={`button ${categoryChosen ? 'is-success' : 'is-outlined'}`}>
-                {category.name}
-              </button>
-            </div>
-
-          );
-        })}
-
-      </Fragment>
-    );
-  }
-
-  async toggleCategory(categoryId) {
-    const { profile } = this.props;
-    const chosenCategories = profile.favoriteCategories || '';
-    let modifiedCategories;
-    if (chosenCategories.indexOf(categoryId) === -1) {
-      modifiedCategories = `${chosenCategories} ${categoryId}`;
-    } else {
-      modifiedCategories = _.replace(chosenCategories, categoryId, '');
-    }
-
-    modifiedCategories = _.replace(modifiedCategories, '  ', ' ');
-
-    await firebase.update(`/users/${this.props.auth.uid}`, { favoriteCategories: modifiedCategories });
-
   }
 
   creditModal() {

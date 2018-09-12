@@ -188,19 +188,10 @@ export default class Today extends Component {
           <div className="columns is-multiline">
 
             {isLoaded(events) && todaysEvents.map(eventEntry => this.renderEventModal(eventEntry))}
-
             {isLoaded(events) && nextEvents.map(eventEntry => this.renderEventModal(eventEntry))}
 
-
-            {/* <pre>{JSON.stringify(todaysEvents)}</pre> */}
-
-            {shownItems === 'today' &&
-              this.renderTodaysEventItems(todaysEvents)
-            }
-
-            {shownItems === 'future' &&
-              this.renderFutureEventItems(nextEvents)
-            }
+            {shownItems === 'today' && this.renderTodaysEventItems(todaysEvents)}
+            {shownItems === 'future' && this.renderFutureEventItems(nextEvents)}
 
             <div className="column is-6">
               <News />

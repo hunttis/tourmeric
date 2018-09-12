@@ -99,7 +99,9 @@ export default class MainView extends Component {
           {loginVisible && <Login />}
           {registerVisible && <Register />}
           {companyInfoVisible && <CompanyInfo />}
-          <FooterBar />
+          {isLoaded(settings) &&
+            <FooterBar />
+          }
         </div>
 
       );
