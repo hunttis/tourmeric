@@ -303,6 +303,14 @@
   "page": "Page",
   "subpage": "Subpage",
   "nosubpage": "No sub page",
-  "savelandingpage": "Save landing page"
+  "savelandingpage": "Save landing page",
+
+  "showingallusers": "Showing all users",
+  "filterlastname": "Filter by the first letter in the last name",
+  "textsearch": "Text Search",
+  "searchinglastnamesstartingwith": "Searching last names starting with",
+  "searchingfirstnamelastnameemailbyphrase": "Searching users that have the following phrase in their first or last name or email",
+  "usersintotal": "users in total",
+  "hitswithsearch": "hits with search"
 
 }

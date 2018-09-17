@@ -7,7 +7,7 @@ import UserEditor from './UserEditor';
 export default compose(
   firebaseConnect([
     { path: '/storecredit' },
-    { path: '/users', queryParams: ['orderByChild=displayName'] },
+    { path: '/users', queryParams: ['orderByChild=lastName'] },
   ]),
   connect(state => ({
     storecredit: state.firebase.data.storecredit,

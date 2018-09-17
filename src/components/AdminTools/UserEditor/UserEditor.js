@@ -14,21 +14,20 @@ export default class UserEditor extends Component {
     super(props);
     this.searchUsers.bind(this.searchUsers);
     this.escFunction = this.escFunction.bind(this);
-  }
 
-  state = {
-    filteredUsers: [],
-    modalOpenClass: '',
-    modalUser: '',
-    modalMode: '',
+    this.state = {
+      searchingWith: '',
+      searchLetter: '',
+      searchPhrase: '',
+      modalOpenClass: '',
+      modalUser: '',
+      modalMode: '',
+      parseReady: false,
+    };
   }
 
   componentDidMount() {
     document.addEventListener('keydown', this.escFunction, false);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.escFunction, false);
   }
 
   getUser(userid) {
@@ -46,22 +45,67 @@ export default class UserEditor extends Component {
     }
   }
 
+  parseAlphabetFromUsers() {
+    const alphabet = isLoaded(this.props.users) && _.compact(_.uniq(Object.values(this.props.users).map((user) => {
+      if (user.value.lastName && !_.isEmpty(user.value.lastName)) {
+        return user.value.lastName.substring(0, 1).toUpperCase();
+      }
+      return null;
+    })));
+    return alphabet;
+  }
+
+  searchByAlphabet(searchLetter) {
+
+    if (_.isEmpty(searchLetter)) {
+      this.resetSearches();
+    }
+
+    if (!_.isEmpty(searchLetter)) {
+      this.setState({ searchingWith: 'letter', searchPhrase: '', searchLetter });
+    }
+  }
+
   searchUsers(event) {
+    const searchPhrase = event.target.value;
+
+    if (_.isEmpty(searchPhrase)) {
+      this.resetSearches();
+    }
+
+    if (!_.isEmpty(searchPhrase)) {
+      this.setState({ searchingWith: 'phrase', searchPhrase, searchLetter: '' });
+    }
+  }
+
+  resetSearches() {
+    const alphabet = this.parseAlphabetFromUsers();
+    this.setState({ searchingWith: 'letter', searchPhrase: '', searchLetter: alphabet[0] });
+  }
+
+  filterUsers() {
     const { users } = this.props;
-    const searchString = event.target.value;
-    if (_.isEmpty(searchString)) {
-      this.setState({ filteredUsers: [] });
-    } else {
+    const { searchPhrase, searchLetter, searchingWith } = this.state;
+
+    if (searchingWith === 'phrase') {
       const filtered = Object.values(users).filter((userEntry) => {
         const user = userEntry.value;
-        return (user.email && user.email.toLowerCase().indexOf(searchString) !== -1) ||
-          (user.displayName && user.displayName.toLowerCase().indexOf(searchString) !== -1) ||
-          (user.username && user.username.toLowerCase().indexOf(searchString) !== -1) ||
-          (user.firstName && user.firstName.toLowerCase().indexOf(searchString) !== -1) ||
-          (user.lastName && user.lastName.toLowerCase().indexOf(searchString) !== -1);
+        return (user.email && user.email.toLowerCase().indexOf(searchPhrase) !== -1) ||
+          (user.displayName && user.displayName.toLowerCase().indexOf(searchPhrase) !== -1) ||
+          (user.username && user.username.toLowerCase().indexOf(searchPhrase) !== -1) ||
+          (user.firstName && user.firstName.toLowerCase().indexOf(searchPhrase) !== -1) ||
+          (user.lastName && user.lastName.toLowerCase().indexOf(searchPhrase) !== -1);
       });
-      this.setState({ filteredUsers: filtered });
+      return filtered;
     }
+    if (searchingWith === 'letter') {
+      const filtered = Object.values(users).filter((userEntry) => {
+        const user = userEntry.value;
+        return user.lastName && user.lastName.toLowerCase().startsWith(searchLetter.toLowerCase());
+      });
+      return filtered;
+    }
+    return Object.values(users);
   }
 
   openEditModal(userid) {
@@ -89,16 +133,45 @@ export default class UserEditor extends Component {
     return total;
   }
 
+  filterInfoString() {
+    const { searchPhrase, searchLetter, searchingWith } = this.state;
+
+    if (searchingWith === 'letter') {
+      return (
+        <Fragment>
+          <Translate id="searchinglastnamesstartingwith" />&nbsp;<span className="has-text-success">{searchLetter}</span>
+        </Fragment>
+      );
+    }
+    if (searchingWith === 'phrase') {
+      return (
+        <Fragment>
+          <Translate id="searchingfirstnamelastnameemailbyphrase" />&nbsp;<span className="has-text-success">{searchPhrase}</span>
+        </Fragment>
+      );
+    }
+    return <Translate id="showingallusers" />;
+  }
 
   render() {
     const { users, storecredit } = this.props;
-    const { filteredUsers, modalOpenClass, modalUser, modalMode } = this.state;
+    const { modalOpenClass, modalUser, modalMode } = this.state;
 
+    if (!isLoaded(users)) {
+      return <Fragment><Translate id="loading" /></Fragment>;
+    }
+    if (isLoaded(users) && !this.state.parseReady) {
+      const currentAlphabet = this.parseAlphabetFromUsers();
+      this.setState({ parseReady: true, searchingWith: 'letter', searchLetter: currentAlphabet[0] });
+      return <Fragment><Translate id="loading" /></Fragment>;
+    }
     if (isLoaded(users) && isLoaded(storecredit)) {
       const currentUser = this.getUser(modalUser);
       const userId = currentUser ? currentUser.key : '';
       const userData = currentUser ? currentUser.value : {};
-      const usedList = _.isEmpty(filteredUsers) ? Object.values(users) : filteredUsers;
+      const usedList = this.filterUsers();
+      const alphabet = this.parseAlphabetFromUsers();
+
       return (
         <Fragment>
           <div className={`modal ${modalOpenClass}`}>
@@ -111,20 +184,44 @@ export default class UserEditor extends Component {
             <button className="modal-close is-large" aria-label="close" onClick={() => this.closeModal()} />
           </div>
           <div className="level">
+
             <div className="level-left">
-              <div className="level-item">
-                <input className="input" type="text" placeholder="Search users" onChange={event => this.searchUsers(event)} />
+              <div className="field">
+                <div className="field-label is-normal">
+                  <label className="label"><Translate id="filterlastname" /></label>
+                </div>
+                <div className="field-body">
+                  {alphabet.map((letter, index) => (
+
+                    <button
+                      onClick={() => this.searchByAlphabet(letter)}
+                      className={`button is-grouped is-small ${this.state.searchLetter === letter && 'is-success'}`}
+                      key={`letterSearch-${index}`}
+                    >{letter}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="level-item">
-                {!_.isEmpty(filteredUsers) && `${filteredUsers.length} hits with search`}
-                {_.isEmpty(filteredUsers) && `${users.length} users in total`}
+            </div>
+            <div className="level-item">
+              <div className="field">
+                <div className="field-label has-text-left">
+                  <label className="label"><Translate id="textsearch" /></label>
+                </div>
+                <div className="field-body">
+                  <input className="input" type="text" onChange={event => this.searchUsers(event)} />
+                </div>
               </div>
             </div>
             <div className="level-right">
-              {/* <div className="button" onClick={this.minimizeOpenedUsers} ><Translate id="minimizeall" />
-              </div> */}
+              <Fragment>{users.length} <Translate id="usersintotal" /></Fragment>
+              <br />
+              {(usedList.length !== users.length) && <Fragment>{usedList.length} <Translate id="hitswithsearch" /></Fragment>}
             </div>
           </div>
+          <h2 className="subtitle">
+            {this.filterInfoString()}
+          </h2>
           <div className="columns is-multiline">
             {usedList.map((userEntry) => {
               const userCredit = storecredit ? storecredit[userEntry.key] : 0;

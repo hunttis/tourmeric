@@ -302,6 +302,14 @@
   "page": "Sivu",
   "subpage": "Alasivu",
   "nosubpage": "Ei alasivuja",
-  "savelandingpage": "Tallenna aloitussivu"
+  "savelandingpage": "Tallenna aloitussivu",
+
+  "showingallusers": "Näytetään kaikki käyttäjät",
+  "filterlastname": "Suodata sukunimen alkukirjaimella",
+  "textsearch": "Tekstihaku",
+  "searchinglastnamesstartingwith": "Haetaan sukunimiä jotka alkavat kirjaimella",
+  "searchingfirstnamelastnameemailbyphrase": "Haetaan käyttäjiä, joiden etunimessä, sukunimessä tai sähköpostissa on",
+  "usersintotal": "käyttäjää kaikkiaan",
+  "hitswithsearch": "osumaa haulla"
 
 }
