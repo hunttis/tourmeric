@@ -317,9 +317,12 @@ ShallowWrapper {
                   />
                     
                   1
-                   / 
-                  10
                    
+                  <span>
+                    / 
+                    10
+                     
+                  </span>
                 </span>
               </div>
               <div
@@ -597,9 +600,12 @@ ShallowWrapper {
                     />
                       
                     1
-                     / 
-                    10
                      
+                    <span>
+                      / 
+                      10
+                       
+                    </span>
                   </span>
                 </div>
                 <div
@@ -903,9 +909,12 @@ ShallowWrapper {
                       />
                         
                       1
-                       / 
-                      10
                        
+                      <span>
+                        / 
+                        10
+                         
+                      </span>
                     </span>
                   </div>
                   <div
@@ -1218,9 +1227,12 @@ ShallowWrapper {
                         />
                           
                         1
-                         / 
-                        10
                          
+                        <span>
+                          / 
+                          10
+                           
+                        </span>
                       </span>
                     </div>,
                     <div
@@ -1390,9 +1402,12 @@ ShallowWrapper {
                         />
                           
                         1
-                         / 
-                        10
                          
+                        <span>
+                          / 
+                          10
+                           
+                        </span>
                       </span>,
                       "className": "has-icons-left card-item",
                     },
@@ -1408,9 +1423,12 @@ ShallowWrapper {
                           />,
                           "  ",
                           1,
-                          " / ",
-                          "10",
                           " ",
+                          <span>
+                            / 
+                            10
+                             
+                          </span>,
                         ],
                         "className": "tooltip",
                         "data-tooltip": "People already enrolled",
@@ -1430,9 +1448,26 @@ ShallowWrapper {
                         },
                         "  ",
                         1,
-                        " / ",
-                        "10",
                         " ",
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              "/ ",
+                              "10",
+                              " ",
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            "/ ",
+                            "10",
+                            " ",
+                          ],
+                          "type": "span",
+                        },
                       ],
                       "type": "span",
                     },
@@ -2217,9 +2252,12 @@ ShallowWrapper {
                     />
                       
                     1
-                     / 
-                    10
                      
+                    <span>
+                      / 
+                      10
+                       
+                    </span>
                   </span>
                 </div>
                 <div
@@ -2497,9 +2535,12 @@ ShallowWrapper {
                       />
                         
                       1
-                       / 
-                      10
                        
+                      <span>
+                        / 
+                        10
+                         
+                      </span>
                     </span>
                   </div>
                   <div
@@ -2803,9 +2844,12 @@ ShallowWrapper {
                         />
                           
                         1
-                         / 
-                        10
                          
+                        <span>
+                          / 
+                          10
+                           
+                        </span>
                       </span>
                     </div>
                     <div
@@ -3118,9 +3162,12 @@ ShallowWrapper {
                           />
                             
                           1
-                           / 
-                          10
                            
+                          <span>
+                            / 
+                            10
+                             
+                          </span>
                         </span>
                       </div>,
                       <div
@@ -3290,9 +3337,12 @@ ShallowWrapper {
                           />
                             
                           1
-                           / 
-                          10
                            
+                          <span>
+                            / 
+                            10
+                             
+                          </span>
                         </span>,
                         "className": "has-icons-left card-item",
                       },
@@ -3308,9 +3358,12 @@ ShallowWrapper {
                             />,
                             "  ",
                             1,
-                            " / ",
-                            "10",
                             " ",
+                            <span>
+                              / 
+                              10
+                               
+                            </span>,
                           ],
                           "className": "tooltip",
                           "data-tooltip": "People already enrolled",
@@ -3330,9 +3383,26 @@ ShallowWrapper {
                           },
                           "  ",
                           1,
-                          " / ",
-                          "10",
                           " ",
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": Array [
+                                "/ ",
+                                "10",
+                                " ",
+                              ],
+                            },
+                            "ref": null,
+                            "rendered": Array [
+                              "/ ",
+                              "10",
+                              " ",
+                            ],
+                            "type": "span",
+                          },
                         ],
                         "type": "span",
                       },

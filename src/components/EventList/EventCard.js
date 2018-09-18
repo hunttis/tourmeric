@@ -62,7 +62,7 @@ export default class EventCard extends Component {
               </div>
 
               <div className="has-icons-left card-item">
-                <span className="tooltip" data-tooltip="People already enrolled"><i className="fas fa-users" />&nbsp;&nbsp;{participantCount(eventId, participations)}&nbsp;/&nbsp;{eventContent.playerSlots}&nbsp;
+                <span className="tooltip" data-tooltip="People already enrolled"><i className="fas fa-users" />&nbsp;&nbsp;{participantCount(eventId, participations)}&nbsp;{eventContent.playerSlots && <span>/&nbsp;{eventContent.playerSlots}&nbsp;</span>}
                 </span>
               </div>
 
