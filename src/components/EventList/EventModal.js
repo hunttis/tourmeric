@@ -19,7 +19,8 @@ export default class EventModal extends Component {
       const eventContent = _.get(events, eventId, {});
       const category = _.get(categories, eventContent.category);
       const dateFormat = _.get(settings, 'dateFormat');
-      const participationsForEvent = Object.values(_.get(participations, eventId, []));
+      let participationsForEvent = Object.values(_.get(participations, eventId, []));
+      participationsForEvent = _.sortBy(participationsForEvent, ['date']);
 
       return (
         <div className="modal is-active" id={`modal${eventId}`} key={`modal${eventId}`}>
@@ -131,7 +132,7 @@ const ParticipantList = ({ participations }) => (
       const coloration = index % 2 === 0 ? 'has-background-black has-text-white' : 'has-background-white has-text-black';
       return (
         <div className="columns" key={`participantModal-${participation.userId}`}>
-          <div className="column is-3 is-mobile has-text-right is-fixed-bottom commenter">{participation.firstName} {participation.lastName}</div>
+          <div className="column is-3 is-mobile has-text-right is-fixed-bottom commenter">{index + 1}. {participation.firstName} {participation.lastName}</div>
           {participation.comment &&
           <Fragment>
             <div className="column is-9 is-mobile is-paddingless">
