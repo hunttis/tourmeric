@@ -194,7 +194,8 @@ type User {
   acceptedPrivacyPolicy: String | Null
   landingPage: String | Null,
   landingSubpage: String | Null,
-  favoriteCategories: String | Null
+  favoriteCategories: String | Null,
+  acceptsNewsletter: Boolean | Null,
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }

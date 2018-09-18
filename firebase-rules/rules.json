@@ -332,6 +332,9 @@
         "favoriteCategories": {
           ".validate": "newData.isString()"
         },
+        "acceptsNewsletter": {
+          ".validate": "newData.isBoolean()"
+        },
         "$other": {
           ".validate": "false"
         },
