@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
+import firebase from 'firebase/app';
 import EditableVerticalField from '../Common/EditableVerticalField-container';
 
 export const PersonalInfoEditor = ({ profile, auth }) => (
@@ -53,6 +54,20 @@ export const PersonalInfoEditor = ({ profile, auth }) => (
           targetName="dciNumber"
           idleIcon="fa-magic"
         />
+      </div>
+
+
+      <div className="column is-12">
+        <div className="level">
+          <div className="level-left">
+            <Translate id="youcansendmeanewsletter" />:
+          </div>
+
+          <div className="level-right">
+            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { acceptsNewsletter: true }); }} className={`button ${profile.acceptsNewsletter && 'is-success'}`}><Translate id="yes" /></button>
+            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { acceptsNewsletter: false }); }} className={`button ${!profile.acceptsNewsletter && 'is-danger'}`}><Translate id="no" /></button>
+          </div>
+        </div>
       </div>
     </div>
   </Fragment>
