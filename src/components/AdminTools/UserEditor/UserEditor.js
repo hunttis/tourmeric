@@ -23,6 +23,7 @@ export default class UserEditor extends Component {
       modalUser: '',
       modalMode: '',
       parseReady: false,
+      showOnlyEnabledUsers: true,
     };
   }
 
@@ -85,10 +86,10 @@ export default class UserEditor extends Component {
 
   filterUsers() {
     const { users } = this.props;
-    const { searchPhrase, searchLetter, searchingWith } = this.state;
-
+    const { searchPhrase, searchLetter, searchingWith, showOnlyEnabledUsers } = this.state;
+    let filtered = Object.values(users);
     if (searchingWith === 'phrase') {
-      const filtered = Object.values(users).filter((userEntry) => {
+      filtered = Object.values(users).filter((userEntry) => {
         const user = userEntry.value;
         return (user.email && user.email.toLowerCase().indexOf(searchPhrase) !== -1) ||
           (user.displayName && user.displayName.toLowerCase().indexOf(searchPhrase) !== -1) ||
@@ -96,16 +97,20 @@ export default class UserEditor extends Component {
           (user.firstName && user.firstName.toLowerCase().indexOf(searchPhrase) !== -1) ||
           (user.lastName && user.lastName.toLowerCase().indexOf(searchPhrase) !== -1);
       });
-      return filtered;
     }
+
     if (searchingWith === 'letter') {
-      const filtered = Object.values(users).filter((userEntry) => {
+      filtered = Object.values(users).filter((userEntry) => {
         const user = userEntry.value;
         return user.lastName && user.lastName.toLowerCase().startsWith(searchLetter.toLowerCase());
       });
-      return filtered;
     }
-    return Object.values(users);
+
+    if (showOnlyEnabledUsers) {
+      filtered = filtered.filter(user => user.value.active !== false);
+    }
+
+    return filtered;
   }
 
   openEditModal(userid) {
