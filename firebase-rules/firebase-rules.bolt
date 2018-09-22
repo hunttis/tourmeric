@@ -196,6 +196,7 @@ type User {
   landingSubpage: String | Null,
   favoriteCategories: String | Null,
   acceptsNewsletter: Boolean | Null,
+  active: Boolean | Null
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }

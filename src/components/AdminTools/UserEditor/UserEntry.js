@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 
-export const UserEntry = ({ openEditModal, openCreditModal, openDeleteModal, userData, creditAmount }) => (
+export const UserEntry = ({ openEditModal, openCreditModal, openDisableModal, userData, creditAmount }) => (
   <div className="userentry column is-half is-one-third-desktop is-one-third-widescreen is-one-quarter-fullhd">
     <div className="card">
 
@@ -49,7 +49,7 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDeleteModal, use
         <div className="card-footer-item button is-info" onClick={openCreditModal}>
           <Translate id="storecredit" />
         </div>
-        <div className="card-footer-item button is-danger" onClick={openDeleteModal}>
+        <div className="card-footer-item button is-danger" onClick={openDisableModal}>
           <Translate id="delete" />
         </div>
       </div>
@@ -59,7 +59,7 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDeleteModal, use
 
 UserEntry.propTypes = {
   openEditModal: PropTypes.func,
-  openDeleteModal: PropTypes.func,
+  openDisableModal: PropTypes.func,
   openCreditModal: PropTypes.func,
   userData: PropTypes.object,
   creditAmount: PropTypes.number,

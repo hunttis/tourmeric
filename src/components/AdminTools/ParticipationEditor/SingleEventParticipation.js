@@ -71,7 +71,8 @@ export default class SingleEventParticipation extends Component {
                       const user = userEntry.value;
                       const alreadyParticipated = Boolean(_.get(participations, `${eventId}.${userId}`));
                       const hasFullInfo = user.firstName && user.lastName;
-                      if (alreadyParticipated || !hasFullInfo) {
+                      const isActiveAccount = user.active !== false;
+                      if (alreadyParticipated || !hasFullInfo || !isActiveAccount) {
                         return '';
                       }
                       return (

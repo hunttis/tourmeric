@@ -173,6 +173,7 @@
   "roleuser": "Käyttäjä",
   "roleadmin": "Ylläpitäjä",
   "minimizeall": "Pienennä kaikki",
+  "disablethisuser": "Poista käyttäjän tili käytöstä",
 
   "participations": "Osallistujat",
   "adduserparticipation": "Lisää käyttäjä tähän tapahtumaan",

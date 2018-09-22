@@ -175,6 +175,7 @@
   "roleuser": "User",
   "roleadmin": "Admin",
   "minimizeall": "Minimize all",
+  "disablethisuser": "Disable this user account",
 
   "participations": "Participations",
   "adduserparticipation": "Add user to this event",

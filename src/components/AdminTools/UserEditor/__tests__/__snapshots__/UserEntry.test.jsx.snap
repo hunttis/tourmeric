@@ -76,7 +76,6 @@ ShallowWrapper {
           </div>
           <div
             className="card-footer-item button is-danger"
-            onClick={[Function]}
           >
             <Translate
               id="delete"
@@ -146,7 +145,6 @@ ShallowWrapper {
             </div>
             <div
               className="card-footer-item button is-danger"
-              onClick={[Function]}
             >
               <Translate
                 id="delete"
@@ -379,7 +377,6 @@ ShallowWrapper {
               </div>,
               <div
                 className="card-footer-item button is-danger"
-                onClick={[Function]}
               >
                 <Translate
                   id="delete"
@@ -449,7 +446,7 @@ ShallowWrapper {
                   id="delete"
                 />,
                 "className": "card-footer-item button is-danger",
-                "onClick": [Function],
+                "onClick": undefined,
               },
               "ref": null,
               "rendered": Object {
@@ -535,7 +532,6 @@ ShallowWrapper {
             </div>
             <div
               className="card-footer-item button is-danger"
-              onClick={[Function]}
             >
               <Translate
                 id="delete"
@@ -605,7 +601,6 @@ ShallowWrapper {
               </div>
               <div
                 className="card-footer-item button is-danger"
-                onClick={[Function]}
               >
                 <Translate
                   id="delete"
@@ -838,7 +833,6 @@ ShallowWrapper {
                 </div>,
                 <div
                   className="card-footer-item button is-danger"
-                  onClick={[Function]}
                 >
                   <Translate
                     id="delete"
@@ -908,7 +902,7 @@ ShallowWrapper {
                     id="delete"
                   />,
                   "className": "card-footer-item button is-danger",
-                  "onClick": [Function],
+                  "onClick": undefined,
                 },
                 "ref": null,
                 "rendered": Object {
