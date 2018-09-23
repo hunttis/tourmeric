@@ -116,9 +116,9 @@ export default class EventCalendar extends Component {
               {_.isEmpty(this.state.day.eventsForDay) && <Translate id="noeventsforthisday" />}
               {!_.isEmpty(this.state.day.eventsForDay) &&
               <div>
-                {this.state.day.eventsForDay.map((eventEntry) => {
+                {this.state.day.eventsForDay.map((eventEntry, index) => {
                   const eventId = eventEntry.key;
-                  return <EventCard eventId={eventId} />;
+                  return <EventCard key={`events-for-day-${index}`} eventId={eventId} />;
                 })}
               </div>
             }
