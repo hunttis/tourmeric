@@ -31,6 +31,9 @@ export default class EventCard extends Component {
     const category = categories[eventContent.category];
     const alreadyParticipated = checkParticipation(userid, eventId, participations);
     const thisParticipation = _.get(participations, `${eventId}.${userid}`, []);
+    const maxParticipants = _.get(eventContent, 'playerSlots', 0);
+    const currentParticipants = participantCount(eventId, participations);
+    const eventFull = maxParticipants <= currentParticipants;
 
     return (
       <Fragment>
@@ -55,38 +58,49 @@ export default class EventCard extends Component {
 
             <div className="card-content">
               <div className="has-icons-left card-item">
-                <span className="tooltip" data-tooltip="Starting time"><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}</span>
+                <span className="tooltip" data-tooltip="Starting time">
+                  <i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}
+                </span>
               </div>
               <div className="has-icons-left card-item">
-                <span className="tooltip" data-tooltip="Entry fee"><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€</span>
+                <span className="tooltip" data-tooltip="Entry fee">
+                  <i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€
+                </span>
               </div>
 
-              <div className="has-icons-left card-item">
-                <span className="tooltip" data-tooltip="People already enrolled"><i className="fas fa-users" />&nbsp;&nbsp;{participantCount(eventId, participations)}&nbsp;{eventContent.playerSlots && <span>/&nbsp;{eventContent.playerSlots}&nbsp;</span>}
+              <div className={`has-icons-left card-item ${eventFull && 'has-text-warning'}`}>
+                <span className="tooltip" data-tooltip="People already enrolled">
+                  <i className="fas fa-users" />&nbsp;&nbsp;{currentParticipants}&nbsp;
+                  {eventContent.playerSlots &&
+                  <span>/&nbsp;{eventContent.playerSlots}&nbsp;
+                    {eventFull && <span>(<Translate id="eventfull" />)</span>}
+                  </span>}
                 </span>
               </div>
 
               <div className="has-icons-left card-item">
                 <div className="level">
                   {eventContent.format &&
-                  <div className="level-left card-footer-items">
-                    <span className="tooltip card-margin-right" data-tooltip="Format"><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}&nbsp;</span>
-                  </div>
-                }
+                    <div className="level-left card-footer-items">
+                      <span className="tooltip card-margin-right" data-tooltip="Format">
+                        <i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}&nbsp;
+                      </span>
+                    </div>
+                  }
 
                   {eventContent.rules &&
-                  <div className="level-item card-footer-items">
-                    <span className="tooltip card-margin-right" data-tooltip="Rules Level"><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}</span>
-                  </div>
-                }
+                    <div className="level-item card-footer-items">
+                      <span className="tooltip card-margin-right" data-tooltip="Rules Level">
+                        <i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}
+                      </span>
+                    </div>
+                  }
 
-                  {(eventContent.notes || eventContent.prizes || eventContent.link) &&
                   <div className="level-right card-footer-items ">
                     <a onClick={() => this.openModal()} className="card-footer-link">
                       <i className="fas fa-trophy" />&nbsp;&nbsp;<Translate id="allinfo" />
                     </a>
                   </div>
-                }
 
                 </div>
               </div>
@@ -109,7 +123,7 @@ export default class EventCard extends Component {
               </div>
               }
               <div className="card-footer-item event-card-footer">
-                <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} />
+                <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} waitList={eventFull} />
               </div>
             </div>
             {/* END CARD FOOTER */}
@@ -134,7 +148,7 @@ export default class EventCard extends Component {
             }
             <div className="card-footer is-hidden-tablet">
               <div className="card-footer-item event-card-footer">
-                <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} />
+                <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} waitList={eventFull} />
               </div>
             </div>
             {/* END CARD FOOTER */}

@@ -203,11 +203,11 @@ export default class EventCalendar extends Component {
                         <div className="card-content is-paddingless">
                           <div className="is-inline-flex">
                             <div className="calendar-card-spacer calendar-image" />
-                            {day.eventsForDay.map((eventEntry) => {
+                            {day.eventsForDay.map((eventEntry, index) => {
                               const event = eventEntry.value;
                               const eventLogo = categories[event.category].image;
                               return (
-                                <img className="image is-24x24 calendar-image" src={eventLogo} alt="" />
+                                <img key={`event-img-${index}`} className="image is-24x24 calendar-image" src={eventLogo} alt="" />
                               );
                             })}
                           </div>
