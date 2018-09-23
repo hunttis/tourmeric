@@ -187,7 +187,7 @@ export default class EventCalendar extends Component {
                   }
                   return (
                     <div key={`calendar-day-${dayIndex}`} className={`column is-paddingless is-marginless ${_.isEmpty(day.eventsForDay) && 'is-hidden-mobile'}`}>
-                      <div className="card" onClick={() => { this.openModalForDay(day); }}>
+                      <div className="card calendar-day" onClick={() => { this.openModalForDay(day); }}>
                         <div className="card-header">
                           <div className="card-header-title calendar-title">
                             <div className="level calendar-cardtitle">
