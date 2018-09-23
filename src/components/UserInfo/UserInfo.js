@@ -63,6 +63,7 @@ export default class UserInfo extends Component {
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
       const hasAcceptedPrivacyPolicy = _.get(profile, 'acceptedPrivacyPolicy', false);
       const isAdmin = _.get(profile, 'role', 'user') === 'admin';
+      const betaparticipation = _.get(profile, 'betaparticipation', {});
 
       const publishedEvents = events ? Object.values(events).filter(event => event.value.published) : [];
       const futureEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
@@ -115,8 +116,8 @@ export default class UserInfo extends Component {
                     <Translate id="iwanttovieweventsas" />
                   </label>
                   <div className="control">
-                    <button className="button" onClick={() => { this.updateBetaParticipation('eventsPreference', 'list'); }}><Translate id="list" /> (<Translate id="default" />)</button>
-                    <button className="button" onClick={() => { this.updateBetaParticipation('eventsPreference', 'calendar'); }}><Translate id="calendar" /> (Beta)</button>
+                    <button className={`button ${betaparticipation.eventsPreference === 'list' && 'is-success'}`} onClick={() => { this.updateBetaParticipation('eventsPreference', 'list'); }}><Translate id="list" /> (<Translate id="default" />)</button>
+                    <button className={`button ${betaparticipation.eventsPreference === 'calendar' && 'is-success'}`} onClick={() => { this.updateBetaParticipation('eventsPreference', 'calendar'); }}><Translate id="calendar" /> (Beta)</button>
                   </div>
                 </div>
               </div>

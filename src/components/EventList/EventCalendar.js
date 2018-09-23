@@ -179,14 +179,14 @@ export default class EventCalendar extends Component {
 
             {chunkedCalendar.map(week => (
               <div className="column is-12 columns is-marginless">
-                {week.map((day) => {
+                {week.map((day, dayIndex) => {
                   if (day.empty) {
                     return (
-                      <div className="column is-paddingless is-marginless is-hidden-mobile" />
+                      <div key={`calendar-day-${dayIndex}`} className="column is-paddingless is-marginless is-hidden-mobile" />
                     );
                   }
                   return (
-                    <div className={`column is-paddingless is-marginless ${_.isEmpty(day.eventsForDay) && 'is-hidden-mobile'}`}>
+                    <div key={`calendar-day-${dayIndex}`} className={`column is-paddingless is-marginless ${_.isEmpty(day.eventsForDay) && 'is-hidden-mobile'}`}>
                       <div className="card" onClick={() => { this.openModalForDay(day); }}>
                         <div className="card-header">
                           <div className="card-header-title calendar-title">
