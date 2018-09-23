@@ -289,6 +289,11 @@
     },
     "users": {
       "$userid": {
+        "betaparticipation": {
+          ".validate": "newData.hasChildren()",
+          ".read": "((auth != null && auth.uid == $userid) || (auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin'))",
+          ".write": "((auth != null && auth.uid == $userid) || (auth != null && newData.parent().parent().parent().child('users').child(auth.uid).child('role').val() == 'admin'))"
+        },
         ".validate": "newData.hasChildren()",
         "avatarUrl": {
           ".validate": "newData.isString()"

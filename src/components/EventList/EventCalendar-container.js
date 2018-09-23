@@ -1,16 +1,9 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { firebaseConnect } from 'react-redux-firebase';
 import { getActiveLanguage } from 'react-localize-redux';
-import EventList from './EventList';
+import EventCalendar from './EventCalendar';
 
 export default compose(
-  firebaseConnect([
-    { path: '/events', queryParams: ['orderByChild=date'] },
-    { path: '/categories' },
-    { path: '/participations' },
-    { path: '/uploadedCategoryLogos' },
-  ]),
   connect(state => ({
     events: state.firebase.ordered.events,
     participations: state.firebase.data.participations,
@@ -22,4 +15,4 @@ export default compose(
     activeLanguage: getActiveLanguage(state.locale).code,
   })),
   connect(({ firebase: { profile } }) => ({ profile })),
-)(EventList);
+)(EventCalendar);

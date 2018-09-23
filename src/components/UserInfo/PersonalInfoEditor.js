@@ -9,6 +9,10 @@ export const PersonalInfoEditor = ({ profile, auth }) => (
     <h1 className="title"><Translate id="personalinfo" /></h1>
     <div className="columns is-multiline">
 
+      <div className="column is-12 has-text-info">
+        <p><Translate id="alltheinformationenteredhereissavedautomatically" /></p>
+      </div>
+
       <div className="column is-12">
         <EditableVerticalField
           labelContent="firstname"
@@ -72,7 +76,6 @@ export const PersonalInfoEditor = ({ profile, auth }) => (
     </div>
   </Fragment>
 );
-
 
 PersonalInfoEditor.propTypes = {
   profile: PropTypes.object,

@@ -32,6 +32,24 @@ a.adminactive {
   padding: 1em;
 }
 
+.calendar-cardtitle {
+  width: 100%;
+}
+
+.calendar-title {
+  padding: .33rem !important;
+}
+
+.calendar-card-spacer {
+  height: 24px;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+.calendar-image {
+  margin: 3px;
+}
+
 .event-card-footer {
   animation-name: heightgrow;
   animation-duration: 500ms;

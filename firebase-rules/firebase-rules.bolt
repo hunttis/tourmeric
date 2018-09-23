@@ -113,6 +113,11 @@ path /uploadedStoreinfoFiles {
   write() { isAdmin() }
 }
 
+path /users/{userid}/betaparticipation {
+  read() { isCurrentUser(userid) || isAdmin() }
+  write() { isCurrentUser(userid) || isAdmin() }
+}
+
 path /users/{userid} is User {
   read() { isCurrentUser(userid) || isAdmin() }
   write() { isCurrentUser(userid) || isAdmin() }
@@ -196,7 +201,8 @@ type User {
   landingSubpage: String | Null,
   favoriteCategories: String | Null,
   acceptsNewsletter: Boolean | Null,
-  active: Boolean | Null
+  active: Boolean | Null,
+  betaparticipation: Object | Null
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }

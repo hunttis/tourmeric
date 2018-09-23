@@ -49,6 +49,10 @@ export default class UserInfo extends Component {
     this.closePrivacyPolicyModal();
   }
 
+  async updateBetaParticipation(beta, value) {
+    await firebase.update(`/users/${this.props.auth.uid}/betaparticipation`, { [beta]: value });
+  }
+
   userInfoBox() {
     const {
       profile, events, participations, userid, settings, storecredit, categories,
@@ -101,6 +105,22 @@ export default class UserInfo extends Component {
               <PersonalInfoEditor />
               <ChooseFavoriteCategories />
               {isAdmin && <ChooseLandingPage />}
+              <p>&nbsp;</p>
+              <div className="box">
+                <h1 className="title">Beta</h1>
+                <p><Translate id="participateinbetafeaturetesting" /></p>
+                <p>&nbsp;</p>
+                <div className="field">
+                  <label className="label">
+                    <Translate id="iwanttovieweventsas" />
+                  </label>
+                  <div className="control">
+                    <button className="button" onClick={() => { this.updateBetaParticipation('eventsPreference', 'list'); }}><Translate id="list" /> (<Translate id="default" />)</button>
+                    <button className="button" onClick={() => { this.updateBetaParticipation('eventsPreference', 'calendar'); }}><Translate id="calendar" /> (Beta)</button>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div className="column is-6">
 

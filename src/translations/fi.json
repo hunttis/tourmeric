@@ -137,6 +137,8 @@
   "linkplaceholder": "Mistä löytyy lisätietoa",
   "abovedateinterpretedas": "Ylläoleva päivämäärä tulkittuna",
   "dateformatplaceholder": "Esimerkiksi: DD.MM.YYYY",
+  "previousmonth": "Edellinen kuukausi",
+  "nextmonth": "Seuraava kuukausi",
 
   "night": "Yöllä",
   "morning": "Aamulla",
@@ -179,6 +181,7 @@
   "adduserparticipation": "Lisää käyttäjä tähän tapahtumaan",
   "youmusthaveeventsbeforeparticipationscanhappen": "Sinulla täytyy olla tapahtumia, jotta osallistumisia voi olla",
 
+  "alltheinformationenteredhereissavedautomatically": "Kaikki syöttämäsi tiedot tallennetaan automaattisesti",
   "yourinfo": "Tietosi",
   "personalinfo": "Henkilökohtaiset tietosi",
   "shownname": "Näytetty nimi",
@@ -289,6 +292,7 @@
   "filtereventsbychoosingcategories": "Suodata tapahtumia valitsemalla kategorioita",
   "shownext7days": "Näytä seuraavat 7 päivää",
   "showeventstoday": "Näytä tämän päivän tapahtumat",
+  "noeventsforthisday": "Ei tapahtumia tällä päivällä",
 
   "privacypolicy": "Tietosuojaseloste",
   "accept": "Hyväksy",
@@ -312,6 +316,12 @@
   "searchinglastnamesstartingwith": "Haetaan sukunimiä jotka alkavat kirjaimella",
   "searchingfirstnamelastnameemailbyphrase": "Haetaan käyttäjiä, joiden etunimessä, sukunimessä tai sähköpostissa on",
   "usersintotal": "käyttäjää kaikkiaan",
-  "hitswithsearch": "osumaa haulla"
+  "hitswithsearch": "osumaa haulla",
+
+  "participateinbetafeaturetesting": "Osallistu betavaiheessa olevien ominaisuuksien kokeiluun",
+  "iwanttovieweventsas": "Haluan nähdä tapahtumat muodossa",
+  "default": "Oletus",
+  "list": "Lista",
+  "calendar": "Kalenteri"
 
 }
