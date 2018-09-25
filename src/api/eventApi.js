@@ -31,7 +31,7 @@ export function participantCount(tournamentid, participations) {
         participantNumber = Object.entries(participationentry[1]).length;
       }
     });
-    return participantNumber;
+    return parseInt(participantNumber, 10);
   }
   return 0;
 }

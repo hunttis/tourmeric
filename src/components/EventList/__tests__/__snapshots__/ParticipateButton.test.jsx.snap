@@ -329,6 +329,7 @@ ShallowWrapper {
             id="participate"
           />
         </p>,
+        undefined,
         <span
           className="icon"
         >
@@ -365,6 +366,7 @@ ShallowWrapper {
         },
         "type": "p",
       },
+      undefined,
       Object {
         "instance": null,
         "key": undefined,
@@ -404,6 +406,7 @@ ShallowWrapper {
               id="participate"
             />
           </p>,
+          undefined,
           <span
             className="icon"
           >
@@ -440,6 +443,7 @@ ShallowWrapper {
           },
           "type": "p",
         },
+        undefined,
         Object {
           "instance": null,
           "key": undefined,
@@ -815,6 +819,7 @@ ShallowWrapper {
             id="participate"
           />
         </p>,
+        undefined,
         <span
           className="icon"
         >
@@ -851,6 +856,7 @@ ShallowWrapper {
         },
         "type": "p",
       },
+      undefined,
       Object {
         "instance": null,
         "key": undefined,
@@ -890,6 +896,7 @@ ShallowWrapper {
               id="participate"
             />
           </p>,
+          undefined,
           <span
             className="icon"
           >
@@ -926,6 +933,7 @@ ShallowWrapper {
           },
           "type": "p",
         },
+        undefined,
         Object {
           "instance": null,
           "key": undefined,

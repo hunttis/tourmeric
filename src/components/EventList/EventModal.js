@@ -34,68 +34,69 @@ export default class EventModal extends Component {
                 </div>
 
                 {category &&
-                <div className="column is-3 has-text-right">
-                  <figure className="image is-64x64 is-pulled-right">
-                    <img alt="" src={category.image} />
-                  </figure>
-                </div>
-            }
+                  <div className="column is-3 has-text-right">
+                    <figure className="image is-64x64 is-pulled-right">
+                      <img alt="" src={category.image} />
+                    </figure>
+                  </div>
+                }
 
                 <div className="column is-12">
                   {eventContent.date &&
-                  <Fragment>
-                    <i className="fas fa-calendar" />&nbsp;&nbsp;
-                    <Moment format={dateFormat}>{eventContent.date}</Moment>
-                    <br />
-                  </Fragment>
-              }
+                    <Fragment>
+                      <i className="fas fa-calendar" />&nbsp;&nbsp;
+                      <Moment format={dateFormat}>{eventContent.date}</Moment>
+                      <br />
+                    </Fragment>
+                  }
 
                   {eventContent.time &&
-                  <Fragment><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}<br /></Fragment>
-              }
+                    <Fragment><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}<br /></Fragment>
+                  }
 
                   {eventContent.format &&
-                  <Fragment><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}<br /></Fragment>
-              }
+                    <Fragment><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}<br /></Fragment>
+                  }
 
                   {eventContent.rulesLevel &&
-                  <Fragment><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}<br /></Fragment>
-              }
+                    <Fragment><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}<br /></Fragment>
+                  }
 
                   {eventContent.entryFee &&
-                  <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€<br /></Fragment>
-              }
+                    <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€<br /></Fragment>
+                  }
                 </div>
 
                 <ModalItem translationKey="notes" content={eventContent.notes} />
                 <ModalItem translationKey="prizes" content={eventContent.prizes} />
 
                 {eventContent.link &&
-                <Fragment>
-                  <div className="column is-12">
-                    <div className="subtitle has-text-info"><Translate id="link" /></div>
-                  </div>
+                  <Fragment>
+                    <div className="column is-12">
+                      <div className="subtitle has-text-info"><Translate id="link" /></div>
+                    </div>
 
-                  <div className="column is-1" />
-                  <div className="column is-11">
-                    <p>
-                      <a href={eventContent.link}>{eventContent.link}</a>
-                    </p>
-                  </div>
-                </Fragment>
-            }
+                    <div className="column is-1" />
+                    <div className="column is-11">
+                      <p>
+                        <a href={eventContent.link}>{eventContent.link}</a>
+                      </p>
+                    </div>
+                  </Fragment>
+                }
+
                 {!_.isEmpty(participations) &&
-                <Fragment>
+                  <Fragment>
 
-                  <div className="column is-12">
-                    <div className="subtitle has-text-info"><Translate id="participants" /> ({participationsForEvent.length} / {eventContent.playerSlots})</div>
-                  </div>
-                  <div className="column is-1" />
-                  <div className="column is-11">
-                    <ParticipantList participations={participationsForEvent} />
-                  </div>
-                </Fragment>
-            }
+                    <div className="column is-12">
+                      <div className="subtitle has-text-info"><Translate id="participants" /> ({participationsForEvent.length} / {eventContent.playerSlots})</div>
+                    </div>
+                    <div className="column is-1" />
+                    <div className="column is-11">
+                      <ParticipantList participations={participationsForEvent} maxParticipants={_.get(eventContent, 'playerSlots', 0)} />
+                    </div>
+                  </Fragment>
+                }
               </div>
             </div>
           </div>
@@ -126,23 +127,25 @@ const ModalItem = ({ translationKey, content }) => (
   </Fragment>
 );
 
-const ParticipantList = ({ participations }) => (
+const ParticipantList = ({ participations, maxParticipants }) => (
   <div>
     {participations && participations.map((participation, index) => {
-      const coloration = index % 2 === 0 ? 'has-background-black has-text-white' : 'has-background-white has-text-black';
+      const coloration = index % 2 === 0 ? 'speech-bubble-even' : 'speech-bubble-odd';
       return (
-        <div className="columns" key={`participantModal-${participation.userId}`}>
-          <div className="column is-3 is-mobile has-text-right is-fixed-bottom commenter">{index + 1}. {participation.firstName} {participation.lastName}</div>
+        <div className="columns is-mobile" key={`participantModal-${participation.userId}`}>
+          <div className={`column is-mobile has-text-left is-fixed-bottom commenter ${maxParticipants < (index + 1) && 'has-text-warning'}`}>{index + 1}. {participation.firstName} {participation.lastName} {maxParticipants < (index + 1) && <span>&nbsp;(<Translate id="waitlist" />)</span>}</div>
           {participation.comment &&
-          <Fragment>
-            <div className="column is-9 is-mobile is-paddingless">
-              <div className={`speech-bubble ${coloration}`}>
-                {participation.comment}
+            <Fragment>
+              <div className="column">
+                <div className={`speech-bubble ${coloration} has-text-justified`}>
+                  {participation.comment}
+                </div>
               </div>
-            </div>
-          </Fragment>
-        }
+            </Fragment>
+          }
+          <hr />
         </div>
+
       );
     })}
   </div>
@@ -159,6 +162,7 @@ EventModal.propTypes = {
 
 ParticipantList.propTypes = {
   participations: PropTypes.array,
+  maxParticipants: PropTypes.number,
 };
 
 ModalItem.propTypes = {

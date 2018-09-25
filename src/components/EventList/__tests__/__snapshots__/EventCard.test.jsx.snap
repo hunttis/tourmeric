@@ -306,7 +306,7 @@ ShallowWrapper {
                 </span>
               </div>
               <div
-                className="has-icons-left card-item"
+                className="has-icons-left card-item false"
               >
                 <span
                   className="tooltip"
@@ -422,6 +422,7 @@ ShallowWrapper {
                     }
                   }
                   userId="mockUserId"
+                  waitList={false}
                 />
               </div>
             </div>
@@ -488,6 +489,7 @@ ShallowWrapper {
                     }
                   }
                   userId="mockUserId"
+                  waitList={false}
                 />
               </div>
             </div>
@@ -589,7 +591,7 @@ ShallowWrapper {
                   </span>
                 </div>
                 <div
-                  className="has-icons-left card-item"
+                  className="has-icons-left card-item false"
                 >
                   <span
                     className="tooltip"
@@ -705,6 +707,7 @@ ShallowWrapper {
                       }
                     }
                     userId="mockUserId"
+                    waitList={false}
                   />
                 </div>
               </div>
@@ -771,6 +774,7 @@ ShallowWrapper {
                       }
                     }
                     userId="mockUserId"
+                    waitList={false}
                   />
                 </div>
               </div>
@@ -898,7 +902,7 @@ ShallowWrapper {
                     </span>
                   </div>
                   <div
-                    className="has-icons-left card-item"
+                    className="has-icons-left card-item false"
                   >
                     <span
                       className="tooltip"
@@ -1014,6 +1018,7 @@ ShallowWrapper {
                         }
                       }
                       userId="mockUserId"
+                      waitList={false}
                     />
                   </div>
                 </div>,
@@ -1080,6 +1085,7 @@ ShallowWrapper {
                         }
                       }
                       userId="mockUserId"
+                      waitList={false}
                     />
                   </div>
                 </div>,
@@ -1216,7 +1222,7 @@ ShallowWrapper {
                       </span>
                     </div>,
                     <div
-                      className="has-icons-left card-item"
+                      className="has-icons-left card-item false"
                     >
                       <span
                         className="tooltip"
@@ -1409,7 +1415,7 @@ ShallowWrapper {
                            
                         </span>
                       </span>,
-                      "className": "has-icons-left card-item",
+                      "className": "has-icons-left card-item false",
                     },
                     "ref": null,
                     "rendered": Object {
@@ -1458,6 +1464,7 @@ ShallowWrapper {
                               "/ ",
                               "10",
                               " ",
+                              false,
                             ],
                           },
                           "ref": null,
@@ -1465,6 +1472,7 @@ ShallowWrapper {
                             "/ ",
                             "10",
                             " ",
+                            false,
                           ],
                           "type": "span",
                         },
@@ -1751,6 +1759,7 @@ ShallowWrapper {
                           }
                         }
                         userId="mockUserId"
+                        waitList={false}
                       />
                     </div>,
                   ],
@@ -1837,6 +1846,7 @@ ShallowWrapper {
                           }
                         }
                         userId="mockUserId"
+                        waitList={false}
                       />,
                       "className": "card-footer-item event-card-footer",
                     },
@@ -1879,6 +1889,7 @@ ShallowWrapper {
                           "role": "admin",
                         },
                         "userId": "mockUserId",
+                        "waitList": false,
                       },
                       "ref": null,
                       "rendered": null,
@@ -2020,6 +2031,7 @@ ShallowWrapper {
                         }
                       }
                       userId="mockUserId"
+                      waitList={false}
                     />
                   </div>,
                   "className": "card-footer is-hidden-tablet",
@@ -2068,6 +2080,7 @@ ShallowWrapper {
                         }
                       }
                       userId="mockUserId"
+                      waitList={false}
                     />,
                     "className": "card-footer-item event-card-footer",
                   },
@@ -2110,6 +2123,7 @@ ShallowWrapper {
                         "role": "admin",
                       },
                       "userId": "mockUserId",
+                      "waitList": false,
                     },
                     "ref": null,
                     "rendered": null,
@@ -2241,7 +2255,7 @@ ShallowWrapper {
                   </span>
                 </div>
                 <div
-                  className="has-icons-left card-item"
+                  className="has-icons-left card-item false"
                 >
                   <span
                     className="tooltip"
@@ -2357,6 +2371,7 @@ ShallowWrapper {
                       }
                     }
                     userId="mockUserId"
+                    waitList={false}
                   />
                 </div>
               </div>
@@ -2423,6 +2438,7 @@ ShallowWrapper {
                       }
                     }
                     userId="mockUserId"
+                    waitList={false}
                   />
                 </div>
               </div>
@@ -2524,7 +2540,7 @@ ShallowWrapper {
                     </span>
                   </div>
                   <div
-                    className="has-icons-left card-item"
+                    className="has-icons-left card-item false"
                   >
                     <span
                       className="tooltip"
@@ -2640,6 +2656,7 @@ ShallowWrapper {
                         }
                       }
                       userId="mockUserId"
+                      waitList={false}
                     />
                   </div>
                 </div>
@@ -2706,6 +2723,7 @@ ShallowWrapper {
                         }
                       }
                       userId="mockUserId"
+                      waitList={false}
                     />
                   </div>
                 </div>
@@ -2833,7 +2851,7 @@ ShallowWrapper {
                       </span>
                     </div>
                     <div
-                      className="has-icons-left card-item"
+                      className="has-icons-left card-item false"
                     >
                       <span
                         className="tooltip"
@@ -2949,6 +2967,7 @@ ShallowWrapper {
                           }
                         }
                         userId="mockUserId"
+                        waitList={false}
                       />
                     </div>
                   </div>,
@@ -3015,6 +3034,7 @@ ShallowWrapper {
                           }
                         }
                         userId="mockUserId"
+                        waitList={false}
                       />
                     </div>
                   </div>,
@@ -3151,7 +3171,7 @@ ShallowWrapper {
                         </span>
                       </div>,
                       <div
-                        className="has-icons-left card-item"
+                        className="has-icons-left card-item false"
                       >
                         <span
                           className="tooltip"
@@ -3344,7 +3364,7 @@ ShallowWrapper {
                              
                           </span>
                         </span>,
-                        "className": "has-icons-left card-item",
+                        "className": "has-icons-left card-item false",
                       },
                       "ref": null,
                       "rendered": Object {
@@ -3393,6 +3413,7 @@ ShallowWrapper {
                                 "/ ",
                                 "10",
                                 " ",
+                                false,
                               ],
                             },
                             "ref": null,
@@ -3400,6 +3421,7 @@ ShallowWrapper {
                               "/ ",
                               "10",
                               " ",
+                              false,
                             ],
                             "type": "span",
                           },
@@ -3686,6 +3708,7 @@ ShallowWrapper {
                             }
                           }
                           userId="mockUserId"
+                          waitList={false}
                         />
                       </div>,
                     ],
@@ -3772,6 +3795,7 @@ ShallowWrapper {
                             }
                           }
                           userId="mockUserId"
+                          waitList={false}
                         />,
                         "className": "card-footer-item event-card-footer",
                       },
@@ -3814,6 +3838,7 @@ ShallowWrapper {
                             "role": "admin",
                           },
                           "userId": "mockUserId",
+                          "waitList": false,
                         },
                         "ref": null,
                         "rendered": null,
@@ -3955,6 +3980,7 @@ ShallowWrapper {
                           }
                         }
                         userId="mockUserId"
+                        waitList={false}
                       />
                     </div>,
                     "className": "card-footer is-hidden-tablet",
@@ -4003,6 +4029,7 @@ ShallowWrapper {
                           }
                         }
                         userId="mockUserId"
+                        waitList={false}
                       />,
                       "className": "card-footer-item event-card-footer",
                     },
@@ -4045,6 +4072,7 @@ ShallowWrapper {
                           "role": "admin",
                         },
                         "userId": "mockUserId",
+                        "waitList": false,
                       },
                       "ref": null,
                       "rendered": null,

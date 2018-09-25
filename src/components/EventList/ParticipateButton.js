@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { participate, checkParticipation, cancelParticipation } from '../../api/eventApi';
 
 export const ParticipateButton = ({
-  userId, profile, eventId, participations,
+  userId, profile, eventId, participations, waitList,
 }) => {
   const alreadyParticipated = checkParticipation(userId, eventId, participations);
   if (alreadyParticipated) {
@@ -22,7 +22,13 @@ export const ParticipateButton = ({
   if (profile.isLoaded && !profile.isEmpty) {
     return (
       <button className="participatebutton button is-rounded is-primary" onClick={() => participate(eventId, userId, profile.firstName, profile.lastName)}>
-        <p><Translate id="participate" /></p>
+        {!waitList &&
+          <p><Translate id="participate" /></p>
+        }
+        {waitList &&
+          <p><Translate id="participateforwaitlist" /></p>
+        }
+
         <span className="icon">
           <i className="fas fa-sign-in-alt" />
         </span>
@@ -36,4 +42,5 @@ ParticipateButton.propTypes = {
   profile: PropTypes.object,
   eventId: PropTypes.string,
   participations: PropTypes.object,
+  waitList: PropTypes.bool,
 };
