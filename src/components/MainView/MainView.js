@@ -18,7 +18,7 @@ import Navbar from './Navbar/Navbar-container';
 import Today from './Today/Today-container';
 import CompanyInfo from './CompanyInfo/CompanyInfo-container';
 import InitialSetup from './InitialSetup';
-import FooterBar from './FooterBar';
+import FooterBar from './FooterBar-container';
 
 // ******************
 // Set the theme here

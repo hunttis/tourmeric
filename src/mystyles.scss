@@ -19,6 +19,16 @@ div .navbar-item img {
   font-weight: bolder;
 }
 
+.footerImage {
+  max-height: 4em;
+  max-width: 100%;
+  width: inherit !important;
+}
+
+.footer.less-bottompadding {
+  padding-bottom: 3em;
+}
+
 a.adminactive {
   font-weight: bolder;
 }

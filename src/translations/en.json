@@ -327,7 +327,16 @@
   "iwanttovieweventsas": "I want to see events in the form of",
   "default": "Default",
   "list": "A list",
-  "calendar": "A Calendar"
+  "calendar": "A Calendar",
+
+  "sponsoredby": "Sponsored by",
+  "showsponsors": "Show sponsors",
+  "chosensponsors": "Chosen sponsor images",
+  "footer": "Footer",
+  "first": "First",
+  "second": "Second",
+  "third": "Third",
+  "clear": "Clear"
 
 
 }

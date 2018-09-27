@@ -1,8 +1,11 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import EditableField from './EditableField';
+import FooterBar from './FooterBar';
 
 export default compose(
+  connect(state => ({
+    settings: state.firebase.data.settings,
+  })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-)(EditableField);
+)(FooterBar);

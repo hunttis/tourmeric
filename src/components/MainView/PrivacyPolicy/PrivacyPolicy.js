@@ -31,7 +31,7 @@ export default class PrivacyPolicy extends Component {
         <div key="privacyPolicyModal" className={`modal ${shouldModalBeOpen}`}>
           <div className="modal-background" onClick={() => this.closeModal()} />
           <div className="modal-content">
-            <div className="box">
+            <div className="box has-text-justified">
               {!_.isEmpty(privacyPolicyContent) && privacyPolicyContent.split('\n').map((paragraph, index) => <p key={`privacyPolicy-${index}`}>{paragraph}</p>)}
             </div>
             {showAcceptance &&
@@ -44,13 +44,9 @@ export default class PrivacyPolicy extends Component {
         </div>
 
 
-        <div className="level">
-          <div className="level-item">
-            <div onClick={() => this.openModal()}>
-              <Translate id="privacypolicy" />
-            </div>
-          </div>
-        </div>
+        <button className="button" onClick={() => this.openModal()}>
+          <Translate id="privacypolicy" />
+        </button>
       </Fragment>
     );
   }

@@ -325,6 +325,16 @@
   "iwanttovieweventsas": "Haluan nähdä tapahtumat muodossa",
   "default": "Oletus",
   "list": "Lista",
-  "calendar": "Kalenteri"
+  "calendar": "Kalenteri",
+
+  "sponsoredby": "Yhteistyössä",
+  "showsponsors": "Näytä yhteistyökumppanit",
+  "chosensponsors": "Valitut yhteistyökumppanikuvat",
+  "footer": "Alapalkki",
+  "first": "Ensimmäinen",
+  "second": "Toinen",
+  "third": "Kolmas",
+  "clear": "Poista käytöstä"
+
 
 }

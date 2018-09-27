@@ -371,7 +371,7 @@ ShallowWrapper {
               <div
                 className="card-footer-item event-card-footer"
               >
-                <Connect(Connect(EditableField))
+                <Connect(EditableField)
                   defaultValue="Jee"
                   inputClasses="is-rounded"
                   labelContent=""
@@ -433,7 +433,7 @@ ShallowWrapper {
                 <div
                   className="card-footer-item event-card-footer"
                 >
-                  <Connect(Connect(EditableField))
+                  <Connect(EditableField)
                     defaultValue="Jee"
                     inputClasses="is-rounded"
                     labelContent=""
@@ -497,9 +497,6 @@ ShallowWrapper {
           <p>
              
           </p>
-          <div
-            className="level participation-level"
-          />
         </div>,
       ],
     },
@@ -656,7 +653,7 @@ ShallowWrapper {
                 <div
                   className="card-footer-item event-card-footer"
                 >
-                  <Connect(Connect(EditableField))
+                  <Connect(EditableField)
                     defaultValue="Jee"
                     inputClasses="is-rounded"
                     labelContent=""
@@ -718,7 +715,7 @@ ShallowWrapper {
                   <div
                     className="card-footer-item event-card-footer"
                   >
-                    <Connect(Connect(EditableField))
+                    <Connect(EditableField)
                       defaultValue="Jee"
                       inputClasses="is-rounded"
                       labelContent=""
@@ -782,9 +779,7 @@ ShallowWrapper {
             <p>
                
             </p>,
-            <div
-              className="level participation-level"
-            />,
+            false,
           ],
           "className": "column is-12 eventcard",
         },
@@ -967,7 +962,7 @@ ShallowWrapper {
                   <div
                     className="card-footer-item event-card-footer"
                   >
-                    <Connect(Connect(EditableField))
+                    <Connect(EditableField)
                       defaultValue="Jee"
                       inputClasses="is-rounded"
                       labelContent=""
@@ -1029,7 +1024,7 @@ ShallowWrapper {
                     <div
                       className="card-footer-item event-card-footer"
                     >
-                      <Connect(Connect(EditableField))
+                      <Connect(EditableField)
                         defaultValue="Jee"
                         inputClasses="is-rounded"
                         labelContent=""
@@ -1708,7 +1703,7 @@ ShallowWrapper {
                     <div
                       className="card-footer-item event-card-footer"
                     >
-                      <Connect(Connect(EditableField))
+                      <Connect(EditableField)
                         defaultValue="Jee"
                         inputClasses="is-rounded"
                         labelContent=""
@@ -1772,7 +1767,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": <Connect(Connect(EditableField))
+                      "children": <Connect(EditableField)
                         defaultValue="Jee"
                         inputClasses="is-rounded"
                         labelContent=""
@@ -1911,7 +1906,7 @@ ShallowWrapper {
                     <div
                       className="card-footer-item event-card-footer"
                     >
-                      <Connect(Connect(EditableField))
+                      <Connect(EditableField)
                         defaultValue="Jee"
                         inputClasses="is-rounded"
                         labelContent=""
@@ -1932,7 +1927,7 @@ ShallowWrapper {
                     "children": <div
                       className="card-footer-item event-card-footer"
                     >
-                      <Connect(Connect(EditableField))
+                      <Connect(EditableField)
                         defaultValue="Jee"
                         inputClasses="is-rounded"
                         labelContent=""
@@ -1950,7 +1945,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": <Connect(Connect(EditableField))
+                      "children": <Connect(EditableField)
                         defaultValue="Jee"
                         inputClasses="is-rounded"
                         labelContent=""
@@ -2147,18 +2142,7 @@ ShallowWrapper {
             "rendered": " ",
             "type": "p",
           },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": false,
-              "className": "level participation-level",
-            },
-            "ref": null,
-            "rendered": false,
-            "type": "div",
-          },
+          false,
         ],
         "type": "div",
       },
@@ -2320,7 +2304,7 @@ ShallowWrapper {
                 <div
                   className="card-footer-item event-card-footer"
                 >
-                  <Connect(Connect(EditableField))
+                  <Connect(EditableField)
                     defaultValue="Jee"
                     inputClasses="is-rounded"
                     labelContent=""
@@ -2382,7 +2366,7 @@ ShallowWrapper {
                   <div
                     className="card-footer-item event-card-footer"
                   >
-                    <Connect(Connect(EditableField))
+                    <Connect(EditableField)
                       defaultValue="Jee"
                       inputClasses="is-rounded"
                       labelContent=""
@@ -2446,9 +2430,6 @@ ShallowWrapper {
             <p>
                
             </p>
-            <div
-              className="level participation-level"
-            />
           </div>,
         ],
       },
@@ -2605,7 +2586,7 @@ ShallowWrapper {
                   <div
                     className="card-footer-item event-card-footer"
                   >
-                    <Connect(Connect(EditableField))
+                    <Connect(EditableField)
                       defaultValue="Jee"
                       inputClasses="is-rounded"
                       labelContent=""
@@ -2667,7 +2648,7 @@ ShallowWrapper {
                     <div
                       className="card-footer-item event-card-footer"
                     >
-                      <Connect(Connect(EditableField))
+                      <Connect(EditableField)
                         defaultValue="Jee"
                         inputClasses="is-rounded"
                         labelContent=""
@@ -2731,9 +2712,7 @@ ShallowWrapper {
               <p>
                  
               </p>,
-              <div
-                className="level participation-level"
-              />,
+              false,
             ],
             "className": "column is-12 eventcard",
           },
@@ -2916,7 +2895,7 @@ ShallowWrapper {
                     <div
                       className="card-footer-item event-card-footer"
                     >
-                      <Connect(Connect(EditableField))
+                      <Connect(EditableField)
                         defaultValue="Jee"
                         inputClasses="is-rounded"
                         labelContent=""
@@ -2978,7 +2957,7 @@ ShallowWrapper {
                       <div
                         className="card-footer-item event-card-footer"
                       >
-                        <Connect(Connect(EditableField))
+                        <Connect(EditableField)
                           defaultValue="Jee"
                           inputClasses="is-rounded"
                           labelContent=""
@@ -3657,7 +3636,7 @@ ShallowWrapper {
                       <div
                         className="card-footer-item event-card-footer"
                       >
-                        <Connect(Connect(EditableField))
+                        <Connect(EditableField)
                           defaultValue="Jee"
                           inputClasses="is-rounded"
                           labelContent=""
@@ -3721,7 +3700,7 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": <Connect(Connect(EditableField))
+                        "children": <Connect(EditableField)
                           defaultValue="Jee"
                           inputClasses="is-rounded"
                           labelContent=""
@@ -3860,7 +3839,7 @@ ShallowWrapper {
                       <div
                         className="card-footer-item event-card-footer"
                       >
-                        <Connect(Connect(EditableField))
+                        <Connect(EditableField)
                           defaultValue="Jee"
                           inputClasses="is-rounded"
                           labelContent=""
@@ -3881,7 +3860,7 @@ ShallowWrapper {
                       "children": <div
                         className="card-footer-item event-card-footer"
                       >
-                        <Connect(Connect(EditableField))
+                        <Connect(EditableField)
                           defaultValue="Jee"
                           inputClasses="is-rounded"
                           labelContent=""
@@ -3899,7 +3878,7 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": <Connect(Connect(EditableField))
+                        "children": <Connect(EditableField)
                           defaultValue="Jee"
                           inputClasses="is-rounded"
                           labelContent=""
@@ -4096,18 +4075,7 @@ ShallowWrapper {
               "rendered": " ",
               "type": "p",
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": false,
-                "className": "level participation-level",
-              },
-              "ref": null,
-              "rendered": false,
-              "type": "div",
-            },
+            false,
           ],
           "type": "div",
         },
