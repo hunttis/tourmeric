@@ -14,7 +14,7 @@ export default class ChooseLandingPage extends Component {
     companyinfo: [],
     admintools: ['users', 'highlights', 'storeinfo', 'news', 'companyinfo'],
     admintoolsevents: ['unpublished', 'published', 'category', 'categorylogouploader', 'participations'],
-    adminsitesettings: ['pagetitles', 'localization', 'themes', 'features', 'privacypolicy'],
+    adminsitesettings: ['pagetitles', 'localization', 'themes', 'features', 'privacypolicy', 'footer'],
   };
 
 

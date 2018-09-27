@@ -9,6 +9,7 @@ import { Localization } from './Localization';
 import { Themes } from './Themes';
 import FeatureEditor from '../FeatureEditor/FeatureEditor-container';
 import PrivacyPolicyEditor from './PrivacyPolicyEditor-container';
+import FooterEditor from './FooterEditor-container';
 
 export default class AdminSiteSettings extends Component {
 
@@ -44,6 +45,7 @@ export default class AdminSiteSettings extends Component {
     const themesVisible = activePage === 'themes';
     const featuresVisible = activePage === 'features';
     const privacyPolicyVisible = activePage === 'privacypolicy';
+    const footerVisible = activePage === 'footer';
 
     if (isLoaded(settings)) {
       return (
@@ -56,6 +58,7 @@ export default class AdminSiteSettings extends Component {
               <SiteSettingsTab tabid="themestab" isActive={themesVisible} switchAction={() => this.switchActiveSiteSettingsTab('themes')} icon="fa-star" translationKey="looks" />
               <SiteSettingsTab tabid="featurestab" isActive={featuresVisible} switchAction={() => this.switchActiveSiteSettingsTab('features')} icon="fa-star" translationKey="features" />
               <SiteSettingsTab tabid="privacypolicytab" isActive={privacyPolicyVisible} switchAction={() => this.switchActiveSiteSettingsTab('privacypolicy')} icon="fa-book" translationKey="privacypolicy" />
+              <SiteSettingsTab tabid="footertab" isActive={privacyPolicyVisible} switchAction={() => this.switchActiveSiteSettingsTab('footer')} icon="fa-arrow-down" translationKey="footer" />
             </ul>
           </div>
           <div className="section">
@@ -64,6 +67,7 @@ export default class AdminSiteSettings extends Component {
             {themesVisible && <Themes settings={settings} themes={themes} changeTheme={this.changeTheme} />}
             {featuresVisible && <FeatureEditor settings={settings} themes={themes} changeTheme={this.changeTheme} />}
             {privacyPolicyVisible && <PrivacyPolicyEditor />}
+            {footerVisible && <FooterEditor />}
           </div>
         </div>
       );
