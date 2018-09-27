@@ -67,8 +67,8 @@ export default class EventModal extends Component {
                   }
                 </div>
 
-                <ModalItem translationKey="notes" content={eventContent.notes} />
-                <ModalItem translationKey="prizes" content={eventContent.prizes} />
+                {eventContent.notes && <ModalItem translationKey="notes" content={eventContent.notes} />}
+                {eventContent.prizes && <ModalItem translationKey="prizes" content={eventContent.prizes} />}
 
                 {eventContent.link &&
                   <Fragment>
@@ -79,7 +79,7 @@ export default class EventModal extends Component {
                     <div className="column is-1" />
                     <div className="column is-11">
                       <p>
-                        <a href={eventContent.link}>{eventContent.link}</a>
+                        <a href={eventContent.link} target="_blank" rel="noopener noreferrer">{eventContent.link}</a>
                       </p>
                     </div>
                   </Fragment>
@@ -93,7 +93,7 @@ export default class EventModal extends Component {
                     </div>
                     <div className="column is-1" />
                     <div className="column is-11">
-                      <ParticipantList participations={participationsForEvent} maxParticipants={_.get(eventContent, 'playerSlots', 0)} />
+                      <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', 0), 10)} />
                     </div>
                   </Fragment>
                 }
@@ -123,7 +123,8 @@ const ModalItem = ({ translationKey, content }) => (
         </p>
       </div>
     </Fragment>
-  }
+    }
+    {!content && <span />}
   </Fragment>
 );
 
