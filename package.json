@@ -15,7 +15,7 @@
   "homepage": "https://gitlab.com/hunttis/tourmeric#README",
   "scripts": {
     "dev": "parcel ./src/index.html",
-    "dev-testing": "DEPLOYMENT=TESTING NODE_ENV=development parcel ./src/index.html",
+    "dev-testing": "DEPLOYMENT=TESTING NODE_ENV=development parcel ./src/index.html -d testing",
     "dev-production": "NODE_ENV=production parcel ./src/index.html",
     "build": "parcel build ./src/index.html -d deploy --public-url . --no-source-maps",
     "build-mapped": "parcel build ./src/index.html -d deploy --public-url .",
