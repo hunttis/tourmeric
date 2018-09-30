@@ -19,6 +19,7 @@ import Today from './Today/Today-container';
 import CompanyInfo from './CompanyInfo/CompanyInfo-container';
 import InitialSetup from './InitialSetup';
 import FooterBar from './FooterBar-container';
+import EventLoader from './Loaders/EventLoader-container';
 
 // ******************
 // Set the theme here
@@ -89,6 +90,7 @@ export default class MainView extends Component {
       return (
         <div>
           <ThemeHandler />
+          <EventLoader />
           <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
           <Navbar switchActiveTab={this.switchActiveTab} activeItem={activePage} changeLanguage={this.changeLanguage} />
           {todayVisible && <Today />}

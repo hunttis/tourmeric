@@ -6,7 +6,6 @@ import AdminTools from './AdminTools';
 
 export default compose(
   firebaseConnect([
-    { path: '/events', queryParams: ['orderByChild=date'] },
     { path: '/categories' },
     { path: '/participations' },
     { path: '/storecredit' },
