@@ -33,7 +33,7 @@ export default class EventCard extends Component {
     const thisParticipation = _.get(participations, `${eventId}.${userid}`, []);
     const maxParticipants = _.get(eventContent, 'playerSlots', 0);
     const currentParticipants = participantCount(eventId, participations);
-    const eventFull = maxParticipants <= currentParticipants;
+    const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
 
     return (
       <Fragment>
