@@ -3,6 +3,7 @@ import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
 import _ from 'lodash';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 export default class ChooseFavoriteCategories extends Component {
 
@@ -22,6 +23,10 @@ export default class ChooseFavoriteCategories extends Component {
   render() {
     const { categories, profile } = this.props;
     const chosenCategories = profile.favoriteCategories || '';
+
+    if (isLoaded(categories) && isEmpty(categories)) {
+      return <div />;
+    }
 
     return (
       <Fragment>
