@@ -99,6 +99,7 @@
   "hits": "Hits",
   "categories": "Categories",
   "nocategoriesgocreatesome": "There are no categories yet, go create some first",
+  "noimagesforcategories": "No category logos yet, upload some in the 'Category logos'-editor",
   "categorylogouploader": "Category logos",
   "formats": "Formats",
   "formatsplaceholder": "Formats, separated by comma",

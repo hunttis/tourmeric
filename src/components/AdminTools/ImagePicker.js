@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
 import _ from 'lodash';
+import { Translate } from 'react-localize-redux';
 
 export default class ImagePicker extends Component {
 
@@ -13,6 +14,10 @@ export default class ImagePicker extends Component {
 
   render() {
     const { imageList, highlightedImage, size } = this.props;
+    if (_.isEmpty(imageList)) {
+      return <div><Translate id="noimagesforcategories" /></div>;
+    }
+
     return (
       <div className="columns is-multiline">
         {!_.isEmpty(imageList) && Object.entries(imageList).map((imageEntry) => {

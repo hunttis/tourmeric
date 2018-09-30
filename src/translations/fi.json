@@ -98,6 +98,7 @@
   "categories": "Kategoriat",
   "nocategoriesgocreatesome": "Ei vielä yhtään kategoriaa, käy ensin luomassa muutama",
   "categorylogouploader": "Kategorialogot",
+  "noimagesforcategories": "Ei vielä kategorialogoja, lähetä niitä 'Kategorialogot'-editorissa",
   "formats": "Formaatit",
   "formatsplaceholder": "Formaatit, pilkulla erotettuna",
   "cannotdeleteinuse": "Ei voi poistaa, käytössä",
