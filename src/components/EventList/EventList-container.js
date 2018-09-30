@@ -6,7 +6,6 @@ import EventList from './EventList';
 
 export default compose(
   firebaseConnect([
-    { path: '/events', queryParams: ['orderByChild=date'] },
     { path: '/categories' },
     { path: '/participations' },
     { path: '/uploadedCategoryLogos' },
