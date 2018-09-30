@@ -177,8 +177,8 @@ export default class EventCalendar extends Component {
               </div>
             </div>
 
-            {chunkedCalendar.map(week => (
-              <div className="column is-12 columns is-marginless">
+            {chunkedCalendar.map((week, weekIndex) => (
+              <div key={`calendar-week-${weekIndex}`} className="column is-12 columns is-marginless">
                 {week.map((day, dayIndex) => {
                   if (day.empty) {
                     return (
