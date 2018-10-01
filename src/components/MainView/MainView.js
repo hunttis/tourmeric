@@ -65,57 +65,48 @@ export default class MainView extends Component {
     }
 
     const isProfileLoaded = isLoaded(profile);
+    const isLoggedIn = isProfileLoaded && !isEmpty(profile);
+    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
+    const hasProfileData = isProfileLoaded && profile.firstName && profile.lastName && profile.email;
 
-    if (isProfileLoaded) {
-      const isLoggedIn = isProfileLoaded && !isEmpty(profile);
-      const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
-      const hasProfileData = isProfileLoaded && profile.firstName && profile.lastName && profile.email;
+    const eventsActive = _.get(settings, 'features.events.active', false);
+    const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
 
-      const eventsActive = _.get(settings, 'features.events.active', false);
-      const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
+    const activePage = activeItem || _.get(profile, 'landingPage', 'today');
 
-      const activePage = activeItem || _.get(profile, 'landingPage', 'today');
+    const todayVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'today');
+    const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'events');
+    const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activePage === 'userinfo' || !hasProfileData));
+    const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintools');
+    const adminToolsEventsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintoolsevents');
+    const adminSiteSettingsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'adminsitesettings');
+    const loginVisible = Boolean(!isLoggedIn && activePage === 'login');
+    const registerVisible = Boolean(!isLoggedIn && activePage === 'register');
+    const storeInfoVisible = Boolean(activePage === 'storeinfo');
+    const companyInfoVisible = Boolean(activePage === 'companyinfo');
 
-      const todayVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'today');
-      const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'events');
-      const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activePage === 'userinfo' || !hasProfileData));
-      const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintools');
-      const adminToolsEventsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintoolsevents');
-      const adminSiteSettingsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'adminsitesettings');
-      const loginVisible = Boolean(!isLoggedIn && activePage === 'login');
-      const registerVisible = Boolean(!isLoggedIn && activePage === 'register');
-      const storeInfoVisible = Boolean(activePage === 'storeinfo');
-      const companyInfoVisible = Boolean(activePage === 'companyinfo');
-
-      return (
-        <div>
-          <ThemeHandler />
-          <EventLoader />
-          <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
-          <Navbar switchActiveTab={this.switchActiveTab} activeItem={activePage} changeLanguage={this.changeLanguage} />
-          {todayVisible && <Today />}
-          {eventsActive && eventContentVisible && <EventList />}
-          {storeInfoActive && storeInfoVisible && <StoreInfo />}
-          {userInfoVisible && <UserInfo />}
-          {adminToolsVisible && <AdminTools />}
-          {adminToolsEventsVisible && <AdminToolsEvents />}
-          {adminSiteSettingsVisible && <AdminSiteSettings />}
-          {loginVisible && <Login />}
-          {registerVisible && <Register />}
-          {companyInfoVisible && <CompanyInfo />}
-          {isLoaded(settings) &&
-            <FooterBar />
-          }
-        </div>
-
-      );
-    }
     return (
-      <div className="title has-text-centered">
-        <div className="level" />
-        <button disabled className="button is-loading is-black">Loading..</button>
+      <div>
+        <ThemeHandler />
+        <EventLoader />
+        <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
+        <Navbar switchActiveTab={this.switchActiveTab} activeItem={activePage} changeLanguage={this.changeLanguage} />
+        {todayVisible && <Today />}
+        {eventsActive && eventContentVisible && <EventList />}
+        {storeInfoActive && storeInfoVisible && <StoreInfo />}
+        {userInfoVisible && <UserInfo />}
+        {adminToolsVisible && <AdminTools />}
+        {adminToolsEventsVisible && <AdminToolsEvents />}
+        {adminSiteSettingsVisible && <AdminSiteSettings />}
+        {loginVisible && <Login />}
+        {registerVisible && <Register />}
+        {companyInfoVisible && <CompanyInfo />}
+        {isLoaded(settings) &&
+          <FooterBar />
+        }
       </div>
     );
+
   }
 }
 
