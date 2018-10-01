@@ -5,7 +5,6 @@ import moment from 'moment';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
-import loadingImage from '../../images/Ripple-1s-64px.svg';
 import StoreCreditTableUser from './StoreCreditTableUser';
 import { checkParticipation } from '../../api/eventApi';
 import { DateBasedEvents } from './DateBasedEvents';
@@ -164,7 +163,7 @@ export default class UserInfo extends Component {
     }
     return (
       <div className="level-item">
-        <img src={loadingImage} alt="Loading" />
+        <button className="is-loading" />;
       </div>
     );
   }

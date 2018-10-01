@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import loadingImage from '../../images/Ripple-1s-64px.svg';
 import AdminEventList from './AdminEventList-container';
 import CategoryEditor from './CategoryEditor/CategoryEditor-container';
 import ParticipationEditor from './ParticipationEditor/ParticipationEditor-container';
@@ -20,7 +19,7 @@ export default class AdminToolsEvents extends Component {
   render() {
     const { events, profile } = this.props;
     if (!isLoaded(events)) {
-      return <div><img src={loadingImage} alt="Loading" /></div>;
+      return <button className="is-loading" />;
     }
 
     if (isLoaded(events)) {
@@ -61,7 +60,7 @@ export default class AdminToolsEvents extends Component {
       );
     }
 
-    return <div><img src={loadingImage} alt="Loading" /></div>;
+    return <button className="is-loading" />;
   }
 }
 
