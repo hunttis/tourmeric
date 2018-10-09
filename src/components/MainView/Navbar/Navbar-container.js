@@ -13,6 +13,7 @@ export default compose(
     languages: state.locale.languages,
     settings: state.firebase.data.settings,
     highlights: state.firebase.data.highlights,
+    location: state.router.location,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 )(Navbar);

@@ -162,9 +162,7 @@ export default class UserInfo extends Component {
       );
     }
     return (
-      <div className="level-item">
-        <button className="is-loading" />;
-      </div>
+      <div />
     );
   }
 

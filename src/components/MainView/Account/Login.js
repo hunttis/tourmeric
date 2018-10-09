@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
+import PropTypes from 'prop-types';
 import { GenericSignupComponent } from './GenericSignupComponent';
-import { loginEmail, resetPassword } from '../../../api/loginApi';
+import { loginEmail, resetPassword, loginGoogle, loginFacebook } from '../../../api/loginApi';
 
 export default class Login extends Component {
 
@@ -22,6 +23,25 @@ export default class Login extends Component {
     this.setState({ errorState: null });
     try {
       await loginEmail(this.state.loginEmail, this.state.loginPass);
+      this.props.history.push('/today');
+    } catch (err) {
+      this.setState({ errorState: err.code });
+    }
+  }
+
+  onLoginGoogle = async () => {
+    try {
+      await loginGoogle();
+      this.props.history.push('/today');
+    } catch (err) {
+      this.setState({ errorState: err.code });
+    }
+  }
+
+  onLoginFacebook = async () => {
+    try {
+      await loginFacebook();
+      this.props.history.push('/today');
     } catch (err) {
       this.setState({ errorState: err.code });
     }
@@ -49,6 +69,8 @@ export default class Login extends Component {
           onChangePass={this.onChangePass}
           onSubmit={this.onLoginSubmit}
           errorState={errorState}
+          loginGoogle={this.onLoginGoogle}
+          loginFacebook={this.onLoginFacebook}
         />
         <section className="section">
           <div className="columns is-multiline">
@@ -91,3 +113,7 @@ export default class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.object,
+};

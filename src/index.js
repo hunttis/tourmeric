@@ -10,10 +10,12 @@ import 'firebase/database';
 import 'firebase/auth';
 import 'firebase/storage';
 
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter, connectRouter, routerMiddleware } from 'connected-react-router';
+
 import { localeReducer as locale, initialize, addTranslationForLanguage } from 'react-localize-redux';
 import moment from 'moment/min/moment-with-locales';
 import Moment from 'react-moment';
-
 
 import 'bulma/css/bulma.css';
 import './mystyles.scss';
@@ -54,10 +56,17 @@ const rootReducer = combineReducers({
 
 const initialState = {};
 
+const history = createBrowserHistory();
+
 const store = createStoreWithFirebase(
-  rootReducer,
+  connectRouter(history)(rootReducer),
   initialState,
-  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(getFirebase))),
+  composeWithDevTools(
+    applyMiddleware(
+      routerMiddleware(history),
+      thunk.withExtraArgument(getFirebase),
+    ),
+  ),
 );
 
 const languages = ['en', 'fi'];
@@ -68,7 +77,9 @@ store.dispatch(addTranslationForLanguage(finnishTranslations, 'fi'));
 
 const Main = () => (
   <Provider store={store}>
-    <MainView />
+    <ConnectedRouter history={history}>
+      <MainView />
+    </ConnectedRouter>
   </Provider>
 );
 

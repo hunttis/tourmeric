@@ -75,7 +75,7 @@ export default class EventCalendar extends Component {
     const { viewedDate } = this.state;
 
     if (!isLoaded(participations) || !isLoaded(profile) || !isLoaded(events) || !isLoaded(settings) || !isLoaded(uploadedCategoryLogos) || !isLoaded(categories)) {
-      return <div><Translate id="loading" /></div>;
+      return <div className="is-loading"><Translate id="loading" /></div>;
     } if (isLoaded(events) && isEmpty(events)) {
       return <div><Translate id="noevents" /></div>;
     }

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-
+import { isLoaded } from 'react-redux-firebase';
 import PrivacyPolicy from './PrivacyPolicy/PrivacyPolicy-container';
 
 export default class FooterBar extends Component {
@@ -15,6 +15,10 @@ export default class FooterBar extends Component {
 
     const showingSponsors = _.get(settings, 'showSponsors', false);
     const hasAtLeastOneSponsor = showingSponsors && !_.isEmpty(_.get(settings, 'footer', {}));
+
+    if (!isLoaded(settings)) {
+      return <div />;
+    }
 
     return (
       <footer className="footer less-bottompadding">
