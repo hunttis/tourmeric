@@ -13,6 +13,7 @@ export default compose(
     languages: state.locale.languages,
     uploadedCategoryLogos: state.firebase.data.uploadedCategoryLogos,
     activeLanguage: getActiveLanguage(state.locale).code,
+    location: state.router.location,
   })),
   connect(({ firebase: { profile } }) => ({ profile })),
 )(EventCalendar);

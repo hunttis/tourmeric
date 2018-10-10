@@ -10,7 +10,6 @@ export default compose(
   firebaseConnect(({ auth }) => [
     { path: '/participations' },
     { path: `/storecredit/${auth.uid}` },
-    { path: '/categories' },
   ]),
   withFirebase,
   connect(state => ({

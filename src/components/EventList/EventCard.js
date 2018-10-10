@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
 import _ from 'lodash';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 import { ParticipateButton } from './ParticipateButton';
 import { participantCount, checkParticipation } from '../../api/eventApi';
@@ -27,8 +28,8 @@ export default class EventCard extends Component {
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
     const dateFormatWithDayName = `${dateFormat} (dd)`;
-    const eventContent = _.find(events, ['key', eventId]).value;
-    const category = categories[eventContent.category];
+    const eventContent = isLoaded(events) ? _.find(events, ['key', eventId]).value : {};
+    const category = isLoaded(categories) ? categories[eventContent.category] : {};
     const alreadyParticipated = checkParticipation(userid, eventId, participations);
     const thisParticipation = _.get(participations, `${eventId}.${userid}`, []);
     const maxParticipants = _.get(eventContent, 'playerSlots', 0);

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import { Translate, setActiveLanguage } from 'react-localize-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import AdminTools from '../AdminTools/AdminTools-container';
 import AdminToolsEvents from '../AdminTools/AdminToolsEvents-container';
 import AdminSiteSettings from '../AdminTools/SiteSettings/AdminSiteSettings-container';
@@ -20,7 +20,10 @@ import Today from './Today/Today-container';
 import CompanyInfo from './CompanyInfo/CompanyInfo-container';
 import InitialSetup from './InitialSetup';
 import FooterBar from './FooterBar-container';
+import SingleEvent from '../EventList/SingleEvent-container';
+
 import EventLoader from './Loaders/EventLoader-container';
+import CategoryLoader from './Loaders/CategoryLoader-container';
 
 // ******************
 // Set the theme here
@@ -31,8 +34,7 @@ export default class MainView extends Component {
   constructor(props) {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { forceUserInfo: false };
+    this.state = { redirected: false };
   }
 
   componentWillMount() {
@@ -44,19 +46,25 @@ export default class MainView extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+
+    const wasProfileLoaded = isLoaded(this.props.profile);
     const isProfileLoaded = isLoaded(nextProps.profile);
     const isLoggedIn = isProfileLoaded && !isEmpty(nextProps.profile);
     const acceptedPrivacyPolicy = _.get(nextProps.profile, 'acceptedPrivacyPolicy', false);
 
-    if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !nextProps.profile.email || !acceptedPrivacyPolicy)) {
-      this.setState({ forceUserInfo: true, activeItem: 'userinfo' });
-    } else if (isLoaded(nextProps.profile)) {
-      this.setState({ forceUserInfo: false });
+    if (!this.state.redirected) {
+      if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !nextProps.profile.email || !acceptedPrivacyPolicy)) {
+        this.props.history.push('/userinfo');
+        this.setState({ redirected: true });
+      } else if (wasProfileLoaded !== isProfileLoaded) {
+        const currentLocation = this.props.location.pathname.substring(1);
+        const landingPage = _.get(nextProps.profile, 'landingPage', 'today');
+        if (_.isEmpty(currentLocation) && !_.isEmpty(landingPage)) {
+          this.props.history.push(`/${landingPage}`);
+        }
+        this.setState({ redirected: true });
+      }
     }
-  }
-
-  switchActiveTab(type) {
-    this.setState({ activeItem: type });
   }
 
   changeLanguage(newLanguage) {
@@ -66,7 +74,6 @@ export default class MainView extends Component {
   }
 
   render() {
-    const { activeItem, forceUserInfo } = this.state; // TODO: Force user info if not all user info is input
     const { profile, settings } = this.props;
 
     if (isLoaded(settings) && isEmpty(settings)) {
@@ -75,42 +82,39 @@ export default class MainView extends Component {
 
     const isProfileLoaded = isLoaded(profile);
     const isLoggedIn = isProfileLoaded && !isEmpty(profile);
-    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin'; // TODO: Only show admin tabs to admins
-    const hasProfileData = isProfileLoaded && profile.firstName && profile.lastName && profile.email;
+    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
 
     const eventsActive = _.get(settings, 'features.events.active', false);
     const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
 
-    const activePage = activeItem || _.get(profile, 'landingPage', 'today'); // TODO: User selected starting page
-
-    // const todayVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'today');
-    // const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'events');
-    // const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activePage === 'userinfo' || !hasProfileData));
-    // const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintools');
-    // const adminToolsEventsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintoolsevents');
-    // const adminSiteSettingsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'adminsitesettings');
-    // const loginVisible = Boolean(!isLoggedIn && activePage === 'login');
-    // const registerVisible = Boolean(!isLoggedIn && activePage === 'register');
-    // const storeInfoVisible = Boolean(activePage === 'storeinfo');
-    // const companyInfoVisible = Boolean(activePage === 'companyinfo');
-
     return (
       <div>
         <ThemeHandler />
+
         <EventLoader />
+        <CategoryLoader />
 
         <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
         <Navbar changeLanguage={this.changeLanguage} />
         <Switch>
           <Route path="/today" component={Today} />
+          {eventsActive && <Route path="/event/:id" component={SingleEvent} />}
           {eventsActive && <Route path="/events" component={EventList} />}
           {storeInfoActive && <Route path="/storeinfo" component={StoreInfo} />}
           <Route path="/userinfo" component={UserInfo} />
-          <Route path="/admintools" component={AdminTools} />
-          <Route path="/admintoolsevents" component={AdminToolsEvents} />
-          <Route path="/adminsitesettings" component={AdminSiteSettings} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          {isAdmin &&
+          <Fragment>
+            <Route path="/admintools" component={AdminTools} />
+            <Route path="/admintoolsevents" component={AdminToolsEvents} />
+            <Route path="/adminsitesettings" component={AdminSiteSettings} />
+          </Fragment>
+          }
+          {!isLoggedIn &&
+          <Fragment>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </Fragment>
+          }
           <Route path="/companyinfo" component={CompanyInfo} />
         </Switch>
 
