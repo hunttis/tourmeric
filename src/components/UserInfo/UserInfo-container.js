@@ -8,7 +8,6 @@ export default compose(
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 
   firebaseConnect(({ auth }) => [
-    { path: '/participations' },
     { path: `/storecredit/${auth.uid}` },
   ]),
   withFirebase,

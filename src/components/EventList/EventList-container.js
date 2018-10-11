@@ -6,7 +6,6 @@ import EventList from './EventList';
 
 export default compose(
   firebaseConnect([
-    { path: '/participations' },
     { path: '/uploadedCategoryLogos' },
   ]),
   connect(state => ({

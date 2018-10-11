@@ -6,7 +6,6 @@ import Today from './Today';
 
 export default compose(
   firebaseConnect([
-    { path: '/participations' },
     { path: '/uploadedCategoryLogos' },
   ]),
   connect(state => ({

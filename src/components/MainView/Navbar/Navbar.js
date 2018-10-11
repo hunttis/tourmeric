@@ -53,17 +53,17 @@ export default class Navbar extends Component {
           </div>
           <div className={`navbar-menu ${burgerOpen && 'is-active'}`} id="navbarTarget">
             <div className="navbar-start">
-              <NavbarItem linkTarget="today" translationKey="today" icon="fa-calendar" styleClass={activeItem === 'today' ? activeClass : ''} />
+              <NavbarItem linkTarget="/today" translationKey="today" icon="fa-calendar" styleClass={activeItem === 'today' ? activeClass : ''} />
               {eventsActive &&
-                <NavbarItem linkTarget="events" translationKey="events" icon="fa-calendar-alt" styleClass={activeItem === 'events' ? activeClass : ''} />
+                <NavbarItem linkTarget="/events" translationKey="events" icon="fa-calendar-alt" styleClass={activeItem === 'events' ? activeClass : ''} />
               }
               {storeInfoActive &&
-                <NavbarItem linkTarget="storeinfo" translationKey="contactinfo" icon="fa-store" styleClass={activeItem === 'storeinfo' ? activeClass : ''} />
+                <NavbarItem linkTarget="/storeinfo" translationKey="contactinfo" icon="fa-store" styleClass={activeItem === 'storeinfo' ? activeClass : ''} />
               }
               {isLoggedIn &&
-                <NavbarItem linkTarget="userinfo" translationKey="userinfo" icon="fa-user" styleClass={activeItem === 'userinfo' ? activeClass : ''} />
+                <NavbarItem linkTarget="/userinfo" translationKey="userinfo" icon="fa-user" styleClass={activeItem === 'userinfo' ? activeClass : ''} />
               }
-              <NavbarItem linkTarget="companyinfo" translationKey="companyinfo" icon="fa-warehouse" styleClass={activeItem === 'companyinfo' ? activeClass : ''} />
+              <NavbarItem linkTarget="/companyinfo" translationKey="companyinfo" icon="fa-warehouse" styleClass={activeItem === 'companyinfo' ? activeClass : ''} />
 
               {isAdmin &&
                 <div className="navbar-item has-dropdown is-hoverable is-white">
@@ -75,9 +75,9 @@ export default class Navbar extends Component {
                     <Translate id="admin" />
                   </a>
                   <div className="navbar-dropdown">
-                    <NavbarItem linkTarget="admintools" translationKey="admingeneric" icon="fa-calendar" styleClass={activeItem === 'admintools' ? activeClass : ''} />
-                    <NavbarItem linkTarget="admintoolsevents" translationKey="adminevents" icon="fa-calendar-plus" styleClass={activeItem === 'admintoolsevents' ? activeClass : ''} />
-                    <NavbarItem linkTarget="adminsitesettings" translationKey="adminsitesettings" icon="fa-cogs" styleClass={activeItem === 'adminsitesettings' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/admintools" translationKey="admingeneric" icon="fa-calendar" styleClass={activeItem === 'admintools' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/admintoolsevents" translationKey="adminevents" icon="fa-calendar-plus" styleClass={activeItem === 'admintoolsevents' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/adminsitesettings" translationKey="adminsitesettings" icon="fa-cogs" styleClass={activeItem === 'adminsitesettings' ? activeClass : ''} />
                   </div>
                 </div>
               }
@@ -109,8 +109,8 @@ export default class Navbar extends Component {
 
               {!isLoggedIn &&
                 <Fragment>
-                  <NavbarItem linkTarget="login" translationKey="login" icon="fa-sign-in-alt" />
-                  <NavbarItem linkTarget="register" translationKey="register" icon="fa-pencil-alt" />
+                  <NavbarItem linkTarget="/login" translationKey="login" icon="fa-sign-in-alt" />
+                  <NavbarItem linkTarget="/register" translationKey="register" icon="fa-pencil-alt" />
                 </Fragment>
               }
 

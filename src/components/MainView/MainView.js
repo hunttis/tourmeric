@@ -24,6 +24,7 @@ import SingleEvent from '../EventList/SingleEvent-container';
 
 import EventLoader from './Loaders/EventLoader-container';
 import CategoryLoader from './Loaders/CategoryLoader-container';
+import ParticipationsLoader from './Loaders/ParticipationsLoader-container';
 
 // ******************
 // Set the theme here
@@ -93,6 +94,7 @@ export default class MainView extends Component {
 
         <EventLoader />
         <CategoryLoader />
+        <ParticipationsLoader />
 
         <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
         <Navbar changeLanguage={this.changeLanguage} />

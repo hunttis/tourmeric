@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Moment from 'react-moment';
 import { isLoaded } from 'react-redux-firebase';
+import { ModalItem } from './ModalItem';
+import { ParticipantList } from './ParticipantList';
 
 export default class EventModal extends Component {
 
@@ -108,49 +110,6 @@ export default class EventModal extends Component {
   }
 }
 
-const ModalItem = ({ translationKey, content }) => (
-  <Fragment>
-    {content &&
-    <Fragment>
-      <div className="column is-12">
-        <div className="subtitle has-text-info"><Translate id={translationKey} /></div>
-      </div>
-
-      <div className="column is-1" />
-      <div className="column is-11">
-        <p>
-          {content}
-        </p>
-      </div>
-    </Fragment>
-    }
-    {!content && <span />}
-  </Fragment>
-);
-
-const ParticipantList = ({ participations, maxParticipants }) => (
-  <div>
-    {participations && participations.map((participation, index) => {
-      const coloration = index % 2 === 0 ? 'speech-bubble-even' : 'speech-bubble-odd';
-      return (
-        <div className="columns is-mobile" key={`participantModal-${participation.userId}`}>
-          <div className={`column is-mobile has-text-left is-fixed-bottom commenter ${maxParticipants < (index + 1) && 'has-text-warning'}`}>{index + 1}. {participation.firstName} {participation.lastName} {maxParticipants < (index + 1) && <span>&nbsp;(<Translate id="waitlist" />)</span>}</div>
-          {participation.comment &&
-            <Fragment>
-              <div className="column">
-                <div className={`speech-bubble ${coloration} has-text-justified`}>
-                  {participation.comment}
-                </div>
-              </div>
-            </Fragment>
-          }
-          <hr />
-        </div>
-
-      );
-    })}
-  </div>
-);
 
 EventModal.propTypes = {
   eventId: PropTypes.string,
@@ -159,14 +118,4 @@ EventModal.propTypes = {
   participations: PropTypes.object,
   categories: PropTypes.object,
   settings: PropTypes.object,
-};
-
-ParticipantList.propTypes = {
-  participations: PropTypes.array,
-  maxParticipants: PropTypes.number,
-};
-
-ModalItem.propTypes = {
-  translationKey: PropTypes.string,
-  content: PropTypes.string,
 };

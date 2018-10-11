@@ -6,7 +6,6 @@ import AdminToolsEvents from './AdminToolsEvents';
 
 export default compose(
   firebaseConnect([
-    { path: '/participations' },
     { path: '/storecredit' },
   ]),
   connect(state => ({

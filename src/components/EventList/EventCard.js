@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
 import _ from 'lodash';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
+import { isLoaded } from 'react-redux-firebase';
 
 import { ParticipateButton } from './ParticipateButton';
 import { participantCount, checkParticipation } from '../../api/eventApi';
@@ -98,7 +98,7 @@ export default class EventCard extends Component {
                   }
 
                   <div className="level-right card-footer-items ">
-                    <a onClick={() => this.openModal()} className="card-footer-link">
+                    <a onClick={() => this.props.history.push(`/event/${eventId}`)} className="card-footer-link">
                       <i className="fas fa-trophy" />&nbsp;&nbsp;<Translate id="allinfo" />
                     </a>
                   </div>
@@ -179,4 +179,5 @@ EventCard.propTypes = {
   settings: PropTypes.object,
   participations: PropTypes.object,
   categories: PropTypes.object,
+  history: PropTypes.object,
 };

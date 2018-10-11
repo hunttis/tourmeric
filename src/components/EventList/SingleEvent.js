@@ -1,13 +1,201 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import EventCard from './EventCard-container';
+import _ from 'lodash';
+import { Translate } from 'react-localize-redux';
 
-export const SingleEvent = ({ match }) => (
-  <div>
-    <EventCard eventId={match.params.id} />
-  </div>
-);
+import Moment from 'react-moment';
+import { ModalItem } from './ModalItem';
+import { ParticipantList } from './ParticipantList';
+import { participantCount, checkParticipation } from '../../api/eventApi';
+import EditableField from '../Common/EditableField-container';
+import { ParticipateButton } from './ParticipateButton';
+
+export const SingleEvent = ({ match, events, categories, settings, participations, auth, profile }) => {
+
+  const eventId = match.params.id;
+  const eventContent = _.get(events, eventId, {});
+  const category = _.get(categories, eventContent.category);
+  const dateFormat = _.get(settings, 'dateFormat');
+  const userid = _.get(auth, 'uid');
+  let participationsForEvent = Object.values(_.get(participations, eventId, []));
+  participationsForEvent = _.sortBy(participationsForEvent, ['date']);
+  const alreadyParticipated = checkParticipation(userid, eventId, participations);
+  const thisParticipation = _.get(participations, `${eventId}.${userid}`, []);
+  const maxParticipants = _.get(eventContent, 'playerSlots', 0);
+  const currentParticipants = participantCount(eventId, participations);
+  const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
+
+  return (
+    <div>
+      <div className="section">
+        <div className="level is-hidden-tablet">
+          <div className="level-item" />
+          {category &&
+          <div className="level-item">
+            <div className="image is-128x128 is-hidden-tablet">
+              <img className="" alt="" src={category.image} />
+            </div>
+          </div>
+          }
+          <div className="level-item" />
+        </div>
+        <p className="is-hidden-tablet">&nbsp;</p>
+
+
+        <div className="card">
+
+          <div className="card-header is-vcentered">
+            {category &&
+            <figure className="image is-128x128 is-hidden-mobile">
+              <img className="" alt="" src={category.image} />
+            </figure>
+            }
+            <h1 className="card-header-title is-centered title has-text-success">
+              {eventContent.name}
+            </h1>
+            {category &&
+            <figure className="image is-128x128 is-hidden-mobile">
+              <img className="" alt="" src={category.image} />
+            </figure>
+            }
+          </div>
+          <div className="card-header is-vcentered">
+            <h2 className="card-header-title is-centered subtitle has-text-info">
+              <Moment format={dateFormat}>{eventContent.date}</Moment>{eventContent.time && <Fragment>&nbsp;&nbsp;-&nbsp;&nbsp;{eventContent.time}</Fragment>}
+            </h2>
+          </div>
+
+          <div className="card-content">
+            <div className="columns">
+
+              <div className="column is-6 columns is-multiline">
+                <div className="column is-12">
+                  <div className="subtitle has-text-info"><Translate id="eventdetails" /></div>
+                </div>
+                <div className="column is-1" />
+                <div className="column is-11">
+
+                  {eventContent.date &&
+                  <Fragment>
+                    <i className="fas fa-calendar" />&nbsp;&nbsp;
+                    <Moment format={dateFormat}>{eventContent.date}</Moment>
+                    <br />
+                  </Fragment>
+                  }
+
+                  {eventContent.time &&
+                  <Fragment><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}<br /></Fragment>
+                  }
+
+                  {eventContent.format &&
+                  <Fragment><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}<br /></Fragment>
+                  }
+
+                  {eventContent.rulesLevel &&
+                  <Fragment><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}<br /></Fragment>
+                  }
+
+                  {eventContent.entryFee &&
+                  <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€<br /></Fragment>
+                  }
+                </div>
+
+                {eventContent.notes && <ModalItem translationKey="notes" content={eventContent.notes} />}
+                {eventContent.prizes && <ModalItem translationKey="prizes" content={eventContent.prizes} />}
+
+                {eventContent.link &&
+                <Fragment>
+                  <div className="column is-12">
+                    <div className="subtitle has-text-info"><Translate id="link" /></div>
+                  </div>
+
+                  <div className="column is-1" />
+                  <div className="column is-11">
+                    <p>
+                      <a href={eventContent.link} target="_blank" rel="noopener noreferrer">{eventContent.link}</a>
+                    </p>
+                  </div>
+                </Fragment>
+                }
+              </div>
+              <div className="column is-6">
+                <div className="subtitle has-text-info"><Translate id="participants" />&nbsp;
+                  {!eventContent.playerSlots && <Fragment>({participationsForEvent.length})</Fragment>}
+                  {eventContent.playerSlots && <Fragment>({participationsForEvent.length} / {eventContent.playerSlots})</Fragment>}
+                </div>
+                {_.isEmpty(participations) &&
+                  <div><Translate id="noparticipants" /></div>
+                }
+                {!_.isEmpty(participations) &&
+                <Fragment>
+
+                  <div className="column is-1" />
+                  <div className="column is-11">
+                    <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', 0), 10)} />
+                  </div>
+                </Fragment>
+                }
+              </div>
+            </div>
+          </div>
+          {/* CARD FOOTER ON TABLET AND ABOVE */}
+          <div className="card-footer is-hidden-mobile">
+            { alreadyParticipated &&
+              <div className="card-footer-item event-card-footer">
+                <EditableField
+                  inputClasses="is-rounded"
+                  leftIcon="comment"
+                  labelContent=""
+                  placeHolder="comment"
+                  defaultValue={thisParticipation.comment}
+                  path={`/participations/${eventId}/${userid}`}
+                  targetName="comment"
+                />
+              </div>
+              }
+            <div className="card-footer-item event-card-footer">
+              <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} waitList={eventFull} />
+            </div>
+          </div>
+          {/* END CARD FOOTER */}
+
+          {/* CARD FOOTER ON MOBILE */}
+          { alreadyParticipated &&
+            <Fragment>
+              <div className="card-footer is-hidden-tablet">
+                <div className="card-footer-item event-card-footer">
+                  <EditableField
+                    inputClasses="is-rounded"
+                    leftIcon="comment"
+                    labelContent=""
+                    placeHolder="comment"
+                    defaultValue={thisParticipation.comment}
+                    path={`/participations/${eventId}/${userid}`}
+                    targetName="comment"
+                  />
+                </div>
+              </div>
+            </Fragment>
+            }
+          <div className="card-footer is-hidden-tablet">
+            <div className="card-footer-item event-card-footer">
+              <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} waitList={eventFull} />
+            </div>
+          </div>
+          {/* END CARD FOOTER */}
+        </div>
+
+      </div>
+    </div>
+  );
+};
 
 SingleEvent.propTypes = {
   match: PropTypes.object,
+  events: PropTypes.object,
+  categories: PropTypes.object,
+  settings: PropTypes.object,
+  participations: PropTypes.object,
+  auth: PropTypes.object,
+  profile: PropTypes.object,
 };

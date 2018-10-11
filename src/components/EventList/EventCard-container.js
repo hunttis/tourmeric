@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
 import EventCard from './EventCard';
+
 
 export default compose(
   connect(state => ({
@@ -12,4 +14,4 @@ export default compose(
     languages: state.locale.languages,
   })),
   connect(({ firebase: { profile } }) => ({ profile })),
-)(EventCard);
+)(withRouter(EventCard));
