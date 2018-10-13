@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
+import ClipboardJS from 'clipboard';
+import { isLoaded } from 'react-redux-firebase';
 
 import Moment from 'react-moment';
 import { ModalItem } from './ModalItem';
@@ -24,6 +26,8 @@ export const SingleEvent = ({ match, events, categories, settings, participation
   const maxParticipants = _.get(eventContent, 'playerSlots', 0);
   const currentParticipants = participantCount(eventId, participations);
   const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
+
+  new ClipboardJS('#sharebutton'); // eslint-disable-line
 
   return (
     <div>
@@ -117,18 +121,32 @@ export const SingleEvent = ({ match, events, categories, settings, participation
                   </div>
                 </Fragment>
                 }
+                <div className="column is-12">
+                  <button id="sharebutton" className="button is-primary" data-clipboard-text={`${window.location.href}`}>
+                    <i className="fas fa-copy" />&nbsp;&nbsp;
+                    <Translate id="copylinktoevent" />
+                  </button>
+                </div>
+
+
               </div>
               <div className="column is-6">
-                <div className="subtitle has-text-info"><Translate id="participants" />&nbsp;
-                  {!eventContent.playerSlots && <Fragment>({participationsForEvent.length})</Fragment>}
-                  {eventContent.playerSlots && <Fragment>({participationsForEvent.length} / {eventContent.playerSlots})</Fragment>}
-                </div>
-                {_.isEmpty(participations) &&
+                {isLoaded(events) &&
+                <Fragment>
+                  <div className="subtitle has-text-info"><Translate id="participants" />&nbsp;
+                    {!eventContent.playerSlots && <Fragment>({participationsForEvent.length})</Fragment>}
+                    {eventContent.playerSlots && <Fragment>({participationsForEvent.length} / {eventContent.playerSlots})</Fragment>}
+                  </div>
+                </Fragment>
+                  }
+                {!isLoaded(events) &&
+                  <div className="button is-loading">Loading</div>
+                }
+                {isLoaded(participations) && _.isEmpty(participations) &&
                   <div><Translate id="noparticipants" /></div>
                 }
                 {!_.isEmpty(participations) &&
                 <Fragment>
-
                   <div className="column is-1" />
                   <div className="column is-11">
                     <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', 0), 10)} />
@@ -138,6 +156,7 @@ export const SingleEvent = ({ match, events, categories, settings, participation
               </div>
             </div>
           </div>
+
           {/* CARD FOOTER ON TABLET AND ABOVE */}
           <div className="card-footer is-hidden-mobile">
             { alreadyParticipated &&
@@ -184,7 +203,6 @@ export const SingleEvent = ({ match, events, categories, settings, participation
           </div>
           {/* END CARD FOOTER */}
         </div>
-
       </div>
     </div>
   );

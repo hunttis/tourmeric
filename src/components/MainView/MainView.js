@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import { Translate, setActiveLanguage } from 'react-localize-redux';
@@ -81,12 +81,12 @@ export default class MainView extends Component {
       return <InitialSetup profile={profile} />;
     }
 
-    const isProfileLoaded = isLoaded(profile);
-    const isLoggedIn = isProfileLoaded && !isEmpty(profile);
-    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
+    // const isProfileLoaded = isLoaded(profile);
+    // const isLoggedIn = isProfileLoaded && !isEmpty(profile);
+    // const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
 
-    const eventsActive = _.get(settings, 'features.events.active', false);
-    const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
+    // const eventsActive = _.get(settings, 'features.events.active', false);
+    // const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
 
     return (
       <div>
@@ -100,23 +100,15 @@ export default class MainView extends Component {
         <Navbar changeLanguage={this.changeLanguage} />
         <Switch>
           <Route path="/today" component={Today} />
-          {eventsActive && <Route path="/event/:id" component={SingleEvent} />}
-          {eventsActive && <Route path="/events" component={EventList} />}
-          {storeInfoActive && <Route path="/storeinfo" component={StoreInfo} />}
+          <Route path="/event/:id" component={SingleEvent} />
+          <Route path="/events" component={EventList} />
+          <Route path="/storeinfo" component={StoreInfo} />
           <Route path="/userinfo" component={UserInfo} />
-          {isAdmin &&
-          <Fragment>
-            <Route path="/admintools" component={AdminTools} />
-            <Route path="/admintoolsevents" component={AdminToolsEvents} />
-            <Route path="/adminsitesettings" component={AdminSiteSettings} />
-          </Fragment>
-          }
-          {!isLoggedIn &&
-          <Fragment>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-          </Fragment>
-          }
+          <Route path="/admintools" component={AdminTools} />
+          <Route path="/admintoolsevents" component={AdminToolsEvents} />
+          <Route path="/adminsitesettings" component={AdminSiteSettings} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <Route path="/companyinfo" component={CompanyInfo} />
         </Switch>
 

@@ -14,7 +14,7 @@ export default class EventCalendar extends Component {
 
     const favoriteCategories = _.get(props, 'profile.favoriteCategories', '');
     const defaultFilter = favoriteCategories.split(' ');
-    this.state = { categoryFilter: _.compact(defaultFilter), viewedDate: moment(), dayModalOpen: false, day: null };
+    this.state = { categoryFilter: _.compact(defaultFilter), viewedDate: moment() };
   }
 
   toggleFilter(categoryId) {
@@ -64,8 +64,12 @@ export default class EventCalendar extends Component {
     this.setState(prevState => ({ viewedDate: prevState.viewedDate.subtract(1, 'month') }));
   }
 
-  openModalForDay(day) {
-    this.setState({ dayModalOpen: true, day });
+  clickDay(day) {
+    this.props.history.push(`/events/${day.dayLink}`);
+  }
+
+  backToCalendar() {
+    this.props.history.push('/events');
   }
 
   render() {
@@ -94,7 +98,7 @@ export default class EventCalendar extends Component {
       const day = moment(dayString, 'DD-MM-YYYY');
       const dayStringInEventFormat = moment(dayString, 'DD-MM-YYYY').format('YYYY-MM-DD');
       const eventsForDay = publishedEvents.filter(eventEntry => eventEntry.value.date === dayStringInEventFormat);
-      days.push({ day: day.format('DD'), dayOfWeek: day.format('d'), dayName: day.format('dddd'), dayString: day.format('DD-MMMM-YYYY'), eventsForDay });
+      days.push({ day: day.format('DD'), dayOfWeek: day.format('d'), dayName: day.format('dddd'), dayString: day.format('DD-MMMM-YYYY'), dayLink: day.format('DD/MM/YYYY'), eventsForDay });
     }
 
     const emptyDays = (days[0].dayOfWeek % 7) - 1;
@@ -108,16 +112,24 @@ export default class EventCalendar extends Component {
       chunkedCalendar[chunkedCalendar.length - 1].push({ empty: true });
     }
 
+    let dayModalOpen = false;
+    let eventsForDay = {};
+
+    if (location.pathname.split('/').length > 2) {
+      eventsForDay = _.get(_.find(calendar, { dayLink: location.pathname.substring('/events/'.length) }), 'eventsForDay', {});
+      dayModalOpen = true;
+    }
+
     return (
       <section className="section">
-        {this.state.dayModalOpen &&
+        {dayModalOpen &&
           <div className="modal is-active">
-            <div className="modal-background" onClick={() => this.setState({ dayModalOpen: false, day: null })} />
+            <div className="modal-background" onClick={() => this.backToCalendar()} />
             <div className="modal-content box">
-              {_.isEmpty(this.state.day.eventsForDay) && <Translate id="noeventsforthisday" />}
-              {!_.isEmpty(this.state.day.eventsForDay) &&
+              {_.isEmpty(eventsForDay) && <Translate id="noeventsforthisday" />}
+              {!_.isEmpty(eventsForDay) &&
               <div>
-                {this.state.day.eventsForDay.map((eventEntry, index) => {
+                {eventsForDay.map((eventEntry, index) => {
                   const eventId = eventEntry.key;
                   return <EventCard key={`events-for-day-${index}`} eventId={eventId} />;
                 })}
@@ -125,7 +137,7 @@ export default class EventCalendar extends Component {
             }
 
             </div>
-            <button className="modal-close is-large" aria-label="close" onClick={() => this.setState({ dayModalOpen: false, day: null })} />
+            <button className="modal-close is-large" aria-label="close" onClick={() => this.backToCalendar()} />
           </div>
         }
         <div className="container">
@@ -181,7 +193,7 @@ export default class EventCalendar extends Component {
             <CalendarMonth
               chunkedCalendar={chunkedCalendar}
               categories={categories}
-              openModalForDay={day => this.openModalForDay(day)}
+              clickDay={day => this.clickDay(day)}
             />
           </div>
         </div>
@@ -200,4 +212,5 @@ EventCalendar.propTypes = {
   uploadedCategoryLogos: PropTypes.object,
   activeLanguage: PropTypes.string,
   location: PropTypes.object,
+  history: PropTypes.object,
 };

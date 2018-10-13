@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment/min/moment-with-locales';
 import _ from 'lodash';
 
-export const CalendarMonth = ({ chunkedCalendar, categories, openModalForDay }) => chunkedCalendar.map((week, weekIndex) => (
+export const CalendarMonth = ({ chunkedCalendar, categories, clickDay }) => chunkedCalendar.map((week, weekIndex) => (
   <div key={`calendar-week-${weekIndex}`} className="column is-12 columns is-marginless">
     {week.map((day, dayIndex) => {
       if (day.empty) {
@@ -15,7 +15,7 @@ export const CalendarMonth = ({ chunkedCalendar, categories, openModalForDay }) 
           key={`calendar-day-${dayIndex}`}
           className={`column is-paddingless is-marginless ${_.isEmpty(day.eventsForDay) && 'is-hidden-mobile'}`}
         >
-          <div className="card calendar-day" onClick={() => { openModalForDay(day); }}>
+          <div className="card calendar-day" onClick={() => { clickDay(day); }}>
             <div className="card-header">
               <div className="card-header-title calendar-title">
                 <div className="level calendar-cardtitle">

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { getActiveLanguage } from 'react-localize-redux';
+import { withRouter } from 'react-router-dom';
 import EventCalendar from './EventCalendar';
 
 export default compose(
@@ -16,4 +17,4 @@ export default compose(
     location: state.router.location,
   })),
   connect(({ firebase: { profile } }) => ({ profile })),
-)(EventCalendar);
+)(withRouter(EventCalendar));
