@@ -1,15 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import EventCard from '../EventCard';
+import { createBrowserHistory } from 'history';
+import EventCard from '../EventCard/EventCard';
 import { mockEventId, mockUserId, mockProfile, mockEvents, mockSettings, mockUploadedLogos, mockParticipations, mockCategories } from '../__mocks__/mockData';
 
 describe('EventCard Tests', () => {
 
   it('Compares EventCard to snapshot', () => {
 
+    const history = createBrowserHistory();
+
     const card = shallow(<EventCard
       eventId={mockEventId}
-      userid={mockUserId}
+      userId={mockUserId}
       profile={mockProfile}
       events={mockEvents}
       settings={mockSettings}
@@ -17,6 +20,7 @@ describe('EventCard Tests', () => {
       categories={mockCategories}
       openModal={() => {}}
       uploadedCategoryLogos={mockUploadedLogos}
+      history={history}
     />);
 
     expect(card.exists()).toBe(true);

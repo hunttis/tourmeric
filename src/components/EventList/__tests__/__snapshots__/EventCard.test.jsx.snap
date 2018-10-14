@@ -135,6 +135,26 @@ ShallowWrapper {
         },
       ]
     }
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
     openModal={[Function]}
     participations={
       Object {
@@ -208,7 +228,7 @@ ShallowWrapper {
         },
       }
     }
-    userid="mockUserId"
+    userId="mockUserId"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -365,134 +385,34 @@ ShallowWrapper {
                 </div>
               </div>
             </div>
-            <div
-              className="card-footer is-hidden-mobile"
-            >
-              <div
-                className="card-footer-item event-card-footer"
-              >
-                <Connect(EditableField)
-                  defaultValue="Jee"
-                  inputClasses="is-rounded"
-                  labelContent=""
-                  leftIcon="comment"
-                  path="/participations/mockEventId1/mockUserId"
-                  placeHolder="comment"
-                  targetName="comment"
-                />
-              </div>
-              <div
-                className="card-footer-item event-card-footer"
-              >
-                <ParticipateButton
-                  eventId="mockEventId1"
-                  participations={
-                    Object {
-                      "mockEventId1": Object {
-                        "mockUserId": Object {
-                          "comment": "Jee",
-                          "date": "2018-06-23T09:40:26.992Z",
-                          "firstName": "Test",
-                          "lastName": "Person",
-                          "userId": "mockUserId",
-                        },
-                      },
-                    }
-                  }
-                  profile={
-                    Object {
-                      "avatarUrl": "https://foo.com/picture",
-                      "dciNumber": "123512351112",
-                      "displayName": "Test Person",
-                      "email": "fake@fake.com",
-                      "firstName": "Test",
-                      "isEmpty": false,
-                      "isLoaded": true,
-                      "lastName": "Person",
-                      "providerData": Array [
-                        Object {
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "photoURL": "https://foo.com/picture",
-                          "providerId": "facebook.com",
-                          "uid": "1234567890",
-                        },
-                      ],
-                      "role": "admin",
-                    }
-                  }
-                  userId="mockUserId"
-                  waitList={false}
-                />
-              </div>
-            </div>
-            <React.Fragment>
-              <div
-                className="card-footer is-hidden-tablet"
-              >
-                <div
-                  className="card-footer-item event-card-footer"
-                >
-                  <Connect(EditableField)
-                    defaultValue="Jee"
-                    inputClasses="is-rounded"
-                    labelContent=""
-                    leftIcon="comment"
-                    path="/participations/mockEventId1/mockUserId"
-                    placeHolder="comment"
-                    targetName="comment"
-                  />
-                </div>
-              </div>
-            </React.Fragment>
-            <div
-              className="card-footer is-hidden-tablet"
-            >
-              <div
-                className="card-footer-item event-card-footer"
-              >
-                <ParticipateButton
-                  eventId="mockEventId1"
-                  participations={
-                    Object {
-                      "mockEventId1": Object {
-                        "mockUserId": Object {
-                          "comment": "Jee",
-                          "date": "2018-06-23T09:40:26.992Z",
-                          "firstName": "Test",
-                          "lastName": "Person",
-                          "userId": "mockUserId",
-                        },
-                      },
-                    }
-                  }
-                  profile={
-                    Object {
-                      "avatarUrl": "https://foo.com/picture",
-                      "dciNumber": "123512351112",
-                      "displayName": "Test Person",
-                      "email": "fake@fake.com",
-                      "firstName": "Test",
-                      "isEmpty": false,
-                      "isLoaded": true,
-                      "lastName": "Person",
-                      "providerData": Array [
-                        Object {
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "photoURL": "https://foo.com/picture",
-                          "providerId": "facebook.com",
-                          "uid": "1234567890",
-                        },
-                      ],
-                      "role": "admin",
-                    }
-                  }
-                  userId="mockUserId"
-                  waitList={false}
-                />
-              </div>
-            </div>
+            <CardFooterDesktop
+              alreadyParticipated={true}
+              eventId="mockEventId1"
+              thisParticipation={
+                Object {
+                  "comment": "Jee",
+                  "date": "2018-06-23T09:40:26.992Z",
+                  "firstName": "Test",
+                  "lastName": "Person",
+                  "userId": "mockUserId",
+                }
+              }
+              userId="mockUserId"
+            />
+            <CardFooterMobile
+              alreadyParticipated={true}
+              eventId="mockEventId1"
+              thisParticipation={
+                Object {
+                  "comment": "Jee",
+                  "date": "2018-06-23T09:40:26.992Z",
+                  "firstName": "Test",
+                  "lastName": "Person",
+                  "userId": "mockUserId",
+                }
+              }
+              userId="mockUserId"
+            />
           </div>
           <p>
              
@@ -647,134 +567,34 @@ ShallowWrapper {
                   </div>
                 </div>
               </div>
-              <div
-                className="card-footer is-hidden-mobile"
-              >
-                <div
-                  className="card-footer-item event-card-footer"
-                >
-                  <Connect(EditableField)
-                    defaultValue="Jee"
-                    inputClasses="is-rounded"
-                    labelContent=""
-                    leftIcon="comment"
-                    path="/participations/mockEventId1/mockUserId"
-                    placeHolder="comment"
-                    targetName="comment"
-                  />
-                </div>
-                <div
-                  className="card-footer-item event-card-footer"
-                >
-                  <ParticipateButton
-                    eventId="mockEventId1"
-                    participations={
-                      Object {
-                        "mockEventId1": Object {
-                          "mockUserId": Object {
-                            "comment": "Jee",
-                            "date": "2018-06-23T09:40:26.992Z",
-                            "firstName": "Test",
-                            "lastName": "Person",
-                            "userId": "mockUserId",
-                          },
-                        },
-                      }
-                    }
-                    profile={
-                      Object {
-                        "avatarUrl": "https://foo.com/picture",
-                        "dciNumber": "123512351112",
-                        "displayName": "Test Person",
-                        "email": "fake@fake.com",
-                        "firstName": "Test",
-                        "isEmpty": false,
-                        "isLoaded": true,
-                        "lastName": "Person",
-                        "providerData": Array [
-                          Object {
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "photoURL": "https://foo.com/picture",
-                            "providerId": "facebook.com",
-                            "uid": "1234567890",
-                          },
-                        ],
-                        "role": "admin",
-                      }
-                    }
-                    userId="mockUserId"
-                    waitList={false}
-                  />
-                </div>
-              </div>
-              <React.Fragment>
-                <div
-                  className="card-footer is-hidden-tablet"
-                >
-                  <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <Connect(EditableField)
-                      defaultValue="Jee"
-                      inputClasses="is-rounded"
-                      labelContent=""
-                      leftIcon="comment"
-                      path="/participations/mockEventId1/mockUserId"
-                      placeHolder="comment"
-                      targetName="comment"
-                    />
-                  </div>
-                </div>
-              </React.Fragment>
-              <div
-                className="card-footer is-hidden-tablet"
-              >
-                <div
-                  className="card-footer-item event-card-footer"
-                >
-                  <ParticipateButton
-                    eventId="mockEventId1"
-                    participations={
-                      Object {
-                        "mockEventId1": Object {
-                          "mockUserId": Object {
-                            "comment": "Jee",
-                            "date": "2018-06-23T09:40:26.992Z",
-                            "firstName": "Test",
-                            "lastName": "Person",
-                            "userId": "mockUserId",
-                          },
-                        },
-                      }
-                    }
-                    profile={
-                      Object {
-                        "avatarUrl": "https://foo.com/picture",
-                        "dciNumber": "123512351112",
-                        "displayName": "Test Person",
-                        "email": "fake@fake.com",
-                        "firstName": "Test",
-                        "isEmpty": false,
-                        "isLoaded": true,
-                        "lastName": "Person",
-                        "providerData": Array [
-                          Object {
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "photoURL": "https://foo.com/picture",
-                            "providerId": "facebook.com",
-                            "uid": "1234567890",
-                          },
-                        ],
-                        "role": "admin",
-                      }
-                    }
-                    userId="mockUserId"
-                    waitList={false}
-                  />
-                </div>
-              </div>
+              <CardFooterDesktop
+                alreadyParticipated={true}
+                eventId="mockEventId1"
+                thisParticipation={
+                  Object {
+                    "comment": "Jee",
+                    "date": "2018-06-23T09:40:26.992Z",
+                    "firstName": "Test",
+                    "lastName": "Person",
+                    "userId": "mockUserId",
+                  }
+                }
+                userId="mockUserId"
+              />
+              <CardFooterMobile
+                alreadyParticipated={true}
+                eventId="mockEventId1"
+                thisParticipation={
+                  Object {
+                    "comment": "Jee",
+                    "date": "2018-06-23T09:40:26.992Z",
+                    "firstName": "Test",
+                    "lastName": "Person",
+                    "userId": "mockUserId",
+                  }
+                }
+                userId="mockUserId"
+              />
             </div>,
             <p>
                
@@ -956,134 +776,34 @@ ShallowWrapper {
                     </div>
                   </div>
                 </div>,
-                <div
-                  className="card-footer is-hidden-mobile"
-                >
-                  <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <Connect(EditableField)
-                      defaultValue="Jee"
-                      inputClasses="is-rounded"
-                      labelContent=""
-                      leftIcon="comment"
-                      path="/participations/mockEventId1/mockUserId"
-                      placeHolder="comment"
-                      targetName="comment"
-                    />
-                  </div>
-                  <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <ParticipateButton
-                      eventId="mockEventId1"
-                      participations={
-                        Object {
-                          "mockEventId1": Object {
-                            "mockUserId": Object {
-                              "comment": "Jee",
-                              "date": "2018-06-23T09:40:26.992Z",
-                              "firstName": "Test",
-                              "lastName": "Person",
-                              "userId": "mockUserId",
-                            },
-                          },
-                        }
-                      }
-                      profile={
-                        Object {
-                          "avatarUrl": "https://foo.com/picture",
-                          "dciNumber": "123512351112",
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "firstName": "Test",
-                          "isEmpty": false,
-                          "isLoaded": true,
-                          "lastName": "Person",
-                          "providerData": Array [
-                            Object {
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "photoURL": "https://foo.com/picture",
-                              "providerId": "facebook.com",
-                              "uid": "1234567890",
-                            },
-                          ],
-                          "role": "admin",
-                        }
-                      }
-                      userId="mockUserId"
-                      waitList={false}
-                    />
-                  </div>
-                </div>,
-                <React.Fragment>
-                  <div
-                    className="card-footer is-hidden-tablet"
-                  >
-                    <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <Connect(EditableField)
-                        defaultValue="Jee"
-                        inputClasses="is-rounded"
-                        labelContent=""
-                        leftIcon="comment"
-                        path="/participations/mockEventId1/mockUserId"
-                        placeHolder="comment"
-                        targetName="comment"
-                      />
-                    </div>
-                  </div>
-                </React.Fragment>,
-                <div
-                  className="card-footer is-hidden-tablet"
-                >
-                  <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <ParticipateButton
-                      eventId="mockEventId1"
-                      participations={
-                        Object {
-                          "mockEventId1": Object {
-                            "mockUserId": Object {
-                              "comment": "Jee",
-                              "date": "2018-06-23T09:40:26.992Z",
-                              "firstName": "Test",
-                              "lastName": "Person",
-                              "userId": "mockUserId",
-                            },
-                          },
-                        }
-                      }
-                      profile={
-                        Object {
-                          "avatarUrl": "https://foo.com/picture",
-                          "dciNumber": "123512351112",
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "firstName": "Test",
-                          "isEmpty": false,
-                          "isLoaded": true,
-                          "lastName": "Person",
-                          "providerData": Array [
-                            Object {
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "photoURL": "https://foo.com/picture",
-                              "providerId": "facebook.com",
-                              "uid": "1234567890",
-                            },
-                          ],
-                          "role": "admin",
-                        }
-                      }
-                      userId="mockUserId"
-                      waitList={false}
-                    />
-                  </div>
-                </div>,
+                <CardFooterDesktop
+                  alreadyParticipated={true}
+                  eventId="mockEventId1"
+                  thisParticipation={
+                    Object {
+                      "comment": "Jee",
+                      "date": "2018-06-23T09:40:26.992Z",
+                      "firstName": "Test",
+                      "lastName": "Person",
+                      "userId": "mockUserId",
+                    }
+                  }
+                  userId="mockUserId"
+                />,
+                <CardFooterMobile
+                  alreadyParticipated={true}
+                  eventId="mockEventId1"
+                  thisParticipation={
+                    Object {
+                      "comment": "Jee",
+                      "date": "2018-06-23T09:40:26.992Z",
+                      "firstName": "Test",
+                      "lastName": "Person",
+                      "userId": "mockUserId",
+                    }
+                  }
+                  userId="mockUserId"
+                />,
               ],
               "className": "card card-shadow",
             },
@@ -1697,436 +1417,42 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "function",
                 "props": Object {
-                  "children": Array [
-                    <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <Connect(EditableField)
-                        defaultValue="Jee"
-                        inputClasses="is-rounded"
-                        labelContent=""
-                        leftIcon="comment"
-                        path="/participations/mockEventId1/mockUserId"
-                        placeHolder="comment"
-                        targetName="comment"
-                      />
-                    </div>,
-                    <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <ParticipateButton
-                        eventId="mockEventId1"
-                        participations={
-                          Object {
-                            "mockEventId1": Object {
-                              "mockUserId": Object {
-                                "comment": "Jee",
-                                "date": "2018-06-23T09:40:26.992Z",
-                                "firstName": "Test",
-                                "lastName": "Person",
-                                "userId": "mockUserId",
-                              },
-                            },
-                          }
-                        }
-                        profile={
-                          Object {
-                            "avatarUrl": "https://foo.com/picture",
-                            "dciNumber": "123512351112",
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "firstName": "Test",
-                            "isEmpty": false,
-                            "isLoaded": true,
-                            "lastName": "Person",
-                            "providerData": Array [
-                              Object {
-                                "displayName": "Test Person",
-                                "email": "fake@fake.com",
-                                "photoURL": "https://foo.com/picture",
-                                "providerId": "facebook.com",
-                                "uid": "1234567890",
-                              },
-                            ],
-                            "role": "admin",
-                          }
-                        }
-                        userId="mockUserId"
-                        waitList={false}
-                      />
-                    </div>,
-                  ],
-                  "className": "card-footer is-hidden-mobile",
+                  "alreadyParticipated": true,
+                  "eventId": "mockEventId1",
+                  "thisParticipation": Object {
+                    "comment": "Jee",
+                    "date": "2018-06-23T09:40:26.992Z",
+                    "firstName": "Test",
+                    "lastName": "Person",
+                    "userId": "mockUserId",
+                  },
+                  "userId": "mockUserId",
                 },
                 "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": <Connect(EditableField)
-                        defaultValue="Jee"
-                        inputClasses="is-rounded"
-                        labelContent=""
-                        leftIcon="comment"
-                        path="/participations/mockEventId1/mockUserId"
-                        placeHolder="comment"
-                        targetName="comment"
-                      />,
-                      "className": "card-footer-item event-card-footer",
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "defaultValue": "Jee",
-                        "inputClasses": "is-rounded",
-                        "labelContent": "",
-                        "leftIcon": "comment",
-                        "path": "/participations/mockEventId1/mockUserId",
-                        "placeHolder": "comment",
-                        "targetName": "comment",
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    "type": "div",
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": <ParticipateButton
-                        eventId="mockEventId1"
-                        participations={
-                          Object {
-                            "mockEventId1": Object {
-                              "mockUserId": Object {
-                                "comment": "Jee",
-                                "date": "2018-06-23T09:40:26.992Z",
-                                "firstName": "Test",
-                                "lastName": "Person",
-                                "userId": "mockUserId",
-                              },
-                            },
-                          }
-                        }
-                        profile={
-                          Object {
-                            "avatarUrl": "https://foo.com/picture",
-                            "dciNumber": "123512351112",
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "firstName": "Test",
-                            "isEmpty": false,
-                            "isLoaded": true,
-                            "lastName": "Person",
-                            "providerData": Array [
-                              Object {
-                                "displayName": "Test Person",
-                                "email": "fake@fake.com",
-                                "photoURL": "https://foo.com/picture",
-                                "providerId": "facebook.com",
-                                "uid": "1234567890",
-                              },
-                            ],
-                            "role": "admin",
-                          }
-                        }
-                        userId="mockUserId"
-                        waitList={false}
-                      />,
-                      "className": "card-footer-item event-card-footer",
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "function",
-                      "props": Object {
-                        "eventId": "mockEventId1",
-                        "participations": Object {
-                          "mockEventId1": Object {
-                            "mockUserId": Object {
-                              "comment": "Jee",
-                              "date": "2018-06-23T09:40:26.992Z",
-                              "firstName": "Test",
-                              "lastName": "Person",
-                              "userId": "mockUserId",
-                            },
-                          },
-                        },
-                        "profile": Object {
-                          "avatarUrl": "https://foo.com/picture",
-                          "dciNumber": "123512351112",
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "firstName": "Test",
-                          "isEmpty": false,
-                          "isLoaded": true,
-                          "lastName": "Person",
-                          "providerData": Array [
-                            Object {
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "photoURL": "https://foo.com/picture",
-                              "providerId": "facebook.com",
-                              "uid": "1234567890",
-                            },
-                          ],
-                          "role": "admin",
-                        },
-                        "userId": "mockUserId",
-                        "waitList": false,
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    "type": "div",
-                  },
-                ],
-                "type": "div",
+                "rendered": null,
+                "type": [Function],
               },
               Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "children": <div
-                    className="card-footer is-hidden-tablet"
-                  >
-                    <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <Connect(EditableField)
-                        defaultValue="Jee"
-                        inputClasses="is-rounded"
-                        labelContent=""
-                        leftIcon="comment"
-                        path="/participations/mockEventId1/mockUserId"
-                        placeHolder="comment"
-                        targetName="comment"
-                      />
-                    </div>
-                  </div>,
+                  "alreadyParticipated": true,
+                  "eventId": "mockEventId1",
+                  "thisParticipation": Object {
+                    "comment": "Jee",
+                    "date": "2018-06-23T09:40:26.992Z",
+                    "firstName": "Test",
+                    "lastName": "Person",
+                    "userId": "mockUserId",
+                  },
+                  "userId": "mockUserId",
                 },
                 "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <Connect(EditableField)
-                        defaultValue="Jee"
-                        inputClasses="is-rounded"
-                        labelContent=""
-                        leftIcon="comment"
-                        path="/participations/mockEventId1/mockUserId"
-                        placeHolder="comment"
-                        targetName="comment"
-                      />
-                    </div>,
-                    "className": "card-footer is-hidden-tablet",
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": <Connect(EditableField)
-                        defaultValue="Jee"
-                        inputClasses="is-rounded"
-                        labelContent=""
-                        leftIcon="comment"
-                        path="/participations/mockEventId1/mockUserId"
-                        placeHolder="comment"
-                        targetName="comment"
-                      />,
-                      "className": "card-footer-item event-card-footer",
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "defaultValue": "Jee",
-                        "inputClasses": "is-rounded",
-                        "labelContent": "",
-                        "leftIcon": "comment",
-                        "path": "/participations/mockEventId1/mockUserId",
-                        "placeHolder": "comment",
-                        "targetName": "comment",
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    "type": "div",
-                  },
-                  "type": "div",
-                },
-                "type": Symbol(react.fragment),
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <ParticipateButton
-                      eventId="mockEventId1"
-                      participations={
-                        Object {
-                          "mockEventId1": Object {
-                            "mockUserId": Object {
-                              "comment": "Jee",
-                              "date": "2018-06-23T09:40:26.992Z",
-                              "firstName": "Test",
-                              "lastName": "Person",
-                              "userId": "mockUserId",
-                            },
-                          },
-                        }
-                      }
-                      profile={
-                        Object {
-                          "avatarUrl": "https://foo.com/picture",
-                          "dciNumber": "123512351112",
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "firstName": "Test",
-                          "isEmpty": false,
-                          "isLoaded": true,
-                          "lastName": "Person",
-                          "providerData": Array [
-                            Object {
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "photoURL": "https://foo.com/picture",
-                              "providerId": "facebook.com",
-                              "uid": "1234567890",
-                            },
-                          ],
-                          "role": "admin",
-                        }
-                      }
-                      userId="mockUserId"
-                      waitList={false}
-                    />
-                  </div>,
-                  "className": "card-footer is-hidden-tablet",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": <ParticipateButton
-                      eventId="mockEventId1"
-                      participations={
-                        Object {
-                          "mockEventId1": Object {
-                            "mockUserId": Object {
-                              "comment": "Jee",
-                              "date": "2018-06-23T09:40:26.992Z",
-                              "firstName": "Test",
-                              "lastName": "Person",
-                              "userId": "mockUserId",
-                            },
-                          },
-                        }
-                      }
-                      profile={
-                        Object {
-                          "avatarUrl": "https://foo.com/picture",
-                          "dciNumber": "123512351112",
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "firstName": "Test",
-                          "isEmpty": false,
-                          "isLoaded": true,
-                          "lastName": "Person",
-                          "providerData": Array [
-                            Object {
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "photoURL": "https://foo.com/picture",
-                              "providerId": "facebook.com",
-                              "uid": "1234567890",
-                            },
-                          ],
-                          "role": "admin",
-                        }
-                      }
-                      userId="mockUserId"
-                      waitList={false}
-                    />,
-                    "className": "card-footer-item event-card-footer",
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "eventId": "mockEventId1",
-                      "participations": Object {
-                        "mockEventId1": Object {
-                          "mockUserId": Object {
-                            "comment": "Jee",
-                            "date": "2018-06-23T09:40:26.992Z",
-                            "firstName": "Test",
-                            "lastName": "Person",
-                            "userId": "mockUserId",
-                          },
-                        },
-                      },
-                      "profile": Object {
-                        "avatarUrl": "https://foo.com/picture",
-                        "dciNumber": "123512351112",
-                        "displayName": "Test Person",
-                        "email": "fake@fake.com",
-                        "firstName": "Test",
-                        "isEmpty": false,
-                        "isLoaded": true,
-                        "lastName": "Person",
-                        "providerData": Array [
-                          Object {
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "photoURL": "https://foo.com/picture",
-                            "providerId": "facebook.com",
-                            "uid": "1234567890",
-                          },
-                        ],
-                        "role": "admin",
-                      },
-                      "userId": "mockUserId",
-                      "waitList": false,
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": "div",
-                },
-                "type": "div",
+                "rendered": null,
+                "type": [Function],
               },
             ],
             "type": "div",
@@ -2298,134 +1624,34 @@ ShallowWrapper {
                   </div>
                 </div>
               </div>
-              <div
-                className="card-footer is-hidden-mobile"
-              >
-                <div
-                  className="card-footer-item event-card-footer"
-                >
-                  <Connect(EditableField)
-                    defaultValue="Jee"
-                    inputClasses="is-rounded"
-                    labelContent=""
-                    leftIcon="comment"
-                    path="/participations/mockEventId1/mockUserId"
-                    placeHolder="comment"
-                    targetName="comment"
-                  />
-                </div>
-                <div
-                  className="card-footer-item event-card-footer"
-                >
-                  <ParticipateButton
-                    eventId="mockEventId1"
-                    participations={
-                      Object {
-                        "mockEventId1": Object {
-                          "mockUserId": Object {
-                            "comment": "Jee",
-                            "date": "2018-06-23T09:40:26.992Z",
-                            "firstName": "Test",
-                            "lastName": "Person",
-                            "userId": "mockUserId",
-                          },
-                        },
-                      }
-                    }
-                    profile={
-                      Object {
-                        "avatarUrl": "https://foo.com/picture",
-                        "dciNumber": "123512351112",
-                        "displayName": "Test Person",
-                        "email": "fake@fake.com",
-                        "firstName": "Test",
-                        "isEmpty": false,
-                        "isLoaded": true,
-                        "lastName": "Person",
-                        "providerData": Array [
-                          Object {
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "photoURL": "https://foo.com/picture",
-                            "providerId": "facebook.com",
-                            "uid": "1234567890",
-                          },
-                        ],
-                        "role": "admin",
-                      }
-                    }
-                    userId="mockUserId"
-                    waitList={false}
-                  />
-                </div>
-              </div>
-              <React.Fragment>
-                <div
-                  className="card-footer is-hidden-tablet"
-                >
-                  <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <Connect(EditableField)
-                      defaultValue="Jee"
-                      inputClasses="is-rounded"
-                      labelContent=""
-                      leftIcon="comment"
-                      path="/participations/mockEventId1/mockUserId"
-                      placeHolder="comment"
-                      targetName="comment"
-                    />
-                  </div>
-                </div>
-              </React.Fragment>
-              <div
-                className="card-footer is-hidden-tablet"
-              >
-                <div
-                  className="card-footer-item event-card-footer"
-                >
-                  <ParticipateButton
-                    eventId="mockEventId1"
-                    participations={
-                      Object {
-                        "mockEventId1": Object {
-                          "mockUserId": Object {
-                            "comment": "Jee",
-                            "date": "2018-06-23T09:40:26.992Z",
-                            "firstName": "Test",
-                            "lastName": "Person",
-                            "userId": "mockUserId",
-                          },
-                        },
-                      }
-                    }
-                    profile={
-                      Object {
-                        "avatarUrl": "https://foo.com/picture",
-                        "dciNumber": "123512351112",
-                        "displayName": "Test Person",
-                        "email": "fake@fake.com",
-                        "firstName": "Test",
-                        "isEmpty": false,
-                        "isLoaded": true,
-                        "lastName": "Person",
-                        "providerData": Array [
-                          Object {
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "photoURL": "https://foo.com/picture",
-                            "providerId": "facebook.com",
-                            "uid": "1234567890",
-                          },
-                        ],
-                        "role": "admin",
-                      }
-                    }
-                    userId="mockUserId"
-                    waitList={false}
-                  />
-                </div>
-              </div>
+              <CardFooterDesktop
+                alreadyParticipated={true}
+                eventId="mockEventId1"
+                thisParticipation={
+                  Object {
+                    "comment": "Jee",
+                    "date": "2018-06-23T09:40:26.992Z",
+                    "firstName": "Test",
+                    "lastName": "Person",
+                    "userId": "mockUserId",
+                  }
+                }
+                userId="mockUserId"
+              />
+              <CardFooterMobile
+                alreadyParticipated={true}
+                eventId="mockEventId1"
+                thisParticipation={
+                  Object {
+                    "comment": "Jee",
+                    "date": "2018-06-23T09:40:26.992Z",
+                    "firstName": "Test",
+                    "lastName": "Person",
+                    "userId": "mockUserId",
+                  }
+                }
+                userId="mockUserId"
+              />
             </div>
             <p>
                
@@ -2580,134 +1806,34 @@ ShallowWrapper {
                     </div>
                   </div>
                 </div>
-                <div
-                  className="card-footer is-hidden-mobile"
-                >
-                  <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <Connect(EditableField)
-                      defaultValue="Jee"
-                      inputClasses="is-rounded"
-                      labelContent=""
-                      leftIcon="comment"
-                      path="/participations/mockEventId1/mockUserId"
-                      placeHolder="comment"
-                      targetName="comment"
-                    />
-                  </div>
-                  <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <ParticipateButton
-                      eventId="mockEventId1"
-                      participations={
-                        Object {
-                          "mockEventId1": Object {
-                            "mockUserId": Object {
-                              "comment": "Jee",
-                              "date": "2018-06-23T09:40:26.992Z",
-                              "firstName": "Test",
-                              "lastName": "Person",
-                              "userId": "mockUserId",
-                            },
-                          },
-                        }
-                      }
-                      profile={
-                        Object {
-                          "avatarUrl": "https://foo.com/picture",
-                          "dciNumber": "123512351112",
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "firstName": "Test",
-                          "isEmpty": false,
-                          "isLoaded": true,
-                          "lastName": "Person",
-                          "providerData": Array [
-                            Object {
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "photoURL": "https://foo.com/picture",
-                              "providerId": "facebook.com",
-                              "uid": "1234567890",
-                            },
-                          ],
-                          "role": "admin",
-                        }
-                      }
-                      userId="mockUserId"
-                      waitList={false}
-                    />
-                  </div>
-                </div>
-                <React.Fragment>
-                  <div
-                    className="card-footer is-hidden-tablet"
-                  >
-                    <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <Connect(EditableField)
-                        defaultValue="Jee"
-                        inputClasses="is-rounded"
-                        labelContent=""
-                        leftIcon="comment"
-                        path="/participations/mockEventId1/mockUserId"
-                        placeHolder="comment"
-                        targetName="comment"
-                      />
-                    </div>
-                  </div>
-                </React.Fragment>
-                <div
-                  className="card-footer is-hidden-tablet"
-                >
-                  <div
-                    className="card-footer-item event-card-footer"
-                  >
-                    <ParticipateButton
-                      eventId="mockEventId1"
-                      participations={
-                        Object {
-                          "mockEventId1": Object {
-                            "mockUserId": Object {
-                              "comment": "Jee",
-                              "date": "2018-06-23T09:40:26.992Z",
-                              "firstName": "Test",
-                              "lastName": "Person",
-                              "userId": "mockUserId",
-                            },
-                          },
-                        }
-                      }
-                      profile={
-                        Object {
-                          "avatarUrl": "https://foo.com/picture",
-                          "dciNumber": "123512351112",
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "firstName": "Test",
-                          "isEmpty": false,
-                          "isLoaded": true,
-                          "lastName": "Person",
-                          "providerData": Array [
-                            Object {
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "photoURL": "https://foo.com/picture",
-                              "providerId": "facebook.com",
-                              "uid": "1234567890",
-                            },
-                          ],
-                          "role": "admin",
-                        }
-                      }
-                      userId="mockUserId"
-                      waitList={false}
-                    />
-                  </div>
-                </div>
+                <CardFooterDesktop
+                  alreadyParticipated={true}
+                  eventId="mockEventId1"
+                  thisParticipation={
+                    Object {
+                      "comment": "Jee",
+                      "date": "2018-06-23T09:40:26.992Z",
+                      "firstName": "Test",
+                      "lastName": "Person",
+                      "userId": "mockUserId",
+                    }
+                  }
+                  userId="mockUserId"
+                />
+                <CardFooterMobile
+                  alreadyParticipated={true}
+                  eventId="mockEventId1"
+                  thisParticipation={
+                    Object {
+                      "comment": "Jee",
+                      "date": "2018-06-23T09:40:26.992Z",
+                      "firstName": "Test",
+                      "lastName": "Person",
+                      "userId": "mockUserId",
+                    }
+                  }
+                  userId="mockUserId"
+                />
               </div>,
               <p>
                  
@@ -2889,134 +2015,34 @@ ShallowWrapper {
                       </div>
                     </div>
                   </div>,
-                  <div
-                    className="card-footer is-hidden-mobile"
-                  >
-                    <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <Connect(EditableField)
-                        defaultValue="Jee"
-                        inputClasses="is-rounded"
-                        labelContent=""
-                        leftIcon="comment"
-                        path="/participations/mockEventId1/mockUserId"
-                        placeHolder="comment"
-                        targetName="comment"
-                      />
-                    </div>
-                    <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <ParticipateButton
-                        eventId="mockEventId1"
-                        participations={
-                          Object {
-                            "mockEventId1": Object {
-                              "mockUserId": Object {
-                                "comment": "Jee",
-                                "date": "2018-06-23T09:40:26.992Z",
-                                "firstName": "Test",
-                                "lastName": "Person",
-                                "userId": "mockUserId",
-                              },
-                            },
-                          }
-                        }
-                        profile={
-                          Object {
-                            "avatarUrl": "https://foo.com/picture",
-                            "dciNumber": "123512351112",
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "firstName": "Test",
-                            "isEmpty": false,
-                            "isLoaded": true,
-                            "lastName": "Person",
-                            "providerData": Array [
-                              Object {
-                                "displayName": "Test Person",
-                                "email": "fake@fake.com",
-                                "photoURL": "https://foo.com/picture",
-                                "providerId": "facebook.com",
-                                "uid": "1234567890",
-                              },
-                            ],
-                            "role": "admin",
-                          }
-                        }
-                        userId="mockUserId"
-                        waitList={false}
-                      />
-                    </div>
-                  </div>,
-                  <React.Fragment>
-                    <div
-                      className="card-footer is-hidden-tablet"
-                    >
-                      <div
-                        className="card-footer-item event-card-footer"
-                      >
-                        <Connect(EditableField)
-                          defaultValue="Jee"
-                          inputClasses="is-rounded"
-                          labelContent=""
-                          leftIcon="comment"
-                          path="/participations/mockEventId1/mockUserId"
-                          placeHolder="comment"
-                          targetName="comment"
-                        />
-                      </div>
-                    </div>
-                  </React.Fragment>,
-                  <div
-                    className="card-footer is-hidden-tablet"
-                  >
-                    <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <ParticipateButton
-                        eventId="mockEventId1"
-                        participations={
-                          Object {
-                            "mockEventId1": Object {
-                              "mockUserId": Object {
-                                "comment": "Jee",
-                                "date": "2018-06-23T09:40:26.992Z",
-                                "firstName": "Test",
-                                "lastName": "Person",
-                                "userId": "mockUserId",
-                              },
-                            },
-                          }
-                        }
-                        profile={
-                          Object {
-                            "avatarUrl": "https://foo.com/picture",
-                            "dciNumber": "123512351112",
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "firstName": "Test",
-                            "isEmpty": false,
-                            "isLoaded": true,
-                            "lastName": "Person",
-                            "providerData": Array [
-                              Object {
-                                "displayName": "Test Person",
-                                "email": "fake@fake.com",
-                                "photoURL": "https://foo.com/picture",
-                                "providerId": "facebook.com",
-                                "uid": "1234567890",
-                              },
-                            ],
-                            "role": "admin",
-                          }
-                        }
-                        userId="mockUserId"
-                        waitList={false}
-                      />
-                    </div>
-                  </div>,
+                  <CardFooterDesktop
+                    alreadyParticipated={true}
+                    eventId="mockEventId1"
+                    thisParticipation={
+                      Object {
+                        "comment": "Jee",
+                        "date": "2018-06-23T09:40:26.992Z",
+                        "firstName": "Test",
+                        "lastName": "Person",
+                        "userId": "mockUserId",
+                      }
+                    }
+                    userId="mockUserId"
+                  />,
+                  <CardFooterMobile
+                    alreadyParticipated={true}
+                    eventId="mockEventId1"
+                    thisParticipation={
+                      Object {
+                        "comment": "Jee",
+                        "date": "2018-06-23T09:40:26.992Z",
+                        "firstName": "Test",
+                        "lastName": "Person",
+                        "userId": "mockUserId",
+                      }
+                    }
+                    userId="mockUserId"
+                  />,
                 ],
                 "className": "card card-shadow",
               },
@@ -3630,436 +2656,42 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "host",
+                  "nodeType": "function",
                   "props": Object {
-                    "children": Array [
-                      <div
-                        className="card-footer-item event-card-footer"
-                      >
-                        <Connect(EditableField)
-                          defaultValue="Jee"
-                          inputClasses="is-rounded"
-                          labelContent=""
-                          leftIcon="comment"
-                          path="/participations/mockEventId1/mockUserId"
-                          placeHolder="comment"
-                          targetName="comment"
-                        />
-                      </div>,
-                      <div
-                        className="card-footer-item event-card-footer"
-                      >
-                        <ParticipateButton
-                          eventId="mockEventId1"
-                          participations={
-                            Object {
-                              "mockEventId1": Object {
-                                "mockUserId": Object {
-                                  "comment": "Jee",
-                                  "date": "2018-06-23T09:40:26.992Z",
-                                  "firstName": "Test",
-                                  "lastName": "Person",
-                                  "userId": "mockUserId",
-                                },
-                              },
-                            }
-                          }
-                          profile={
-                            Object {
-                              "avatarUrl": "https://foo.com/picture",
-                              "dciNumber": "123512351112",
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "firstName": "Test",
-                              "isEmpty": false,
-                              "isLoaded": true,
-                              "lastName": "Person",
-                              "providerData": Array [
-                                Object {
-                                  "displayName": "Test Person",
-                                  "email": "fake@fake.com",
-                                  "photoURL": "https://foo.com/picture",
-                                  "providerId": "facebook.com",
-                                  "uid": "1234567890",
-                                },
-                              ],
-                              "role": "admin",
-                            }
-                          }
-                          userId="mockUserId"
-                          waitList={false}
-                        />
-                      </div>,
-                    ],
-                    "className": "card-footer is-hidden-mobile",
+                    "alreadyParticipated": true,
+                    "eventId": "mockEventId1",
+                    "thisParticipation": Object {
+                      "comment": "Jee",
+                      "date": "2018-06-23T09:40:26.992Z",
+                      "firstName": "Test",
+                      "lastName": "Person",
+                      "userId": "mockUserId",
+                    },
+                    "userId": "mockUserId",
                   },
                   "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": <Connect(EditableField)
-                          defaultValue="Jee"
-                          inputClasses="is-rounded"
-                          labelContent=""
-                          leftIcon="comment"
-                          path="/participations/mockEventId1/mockUserId"
-                          placeHolder="comment"
-                          targetName="comment"
-                        />,
-                        "className": "card-footer-item event-card-footer",
-                      },
-                      "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "defaultValue": "Jee",
-                          "inputClasses": "is-rounded",
-                          "labelContent": "",
-                          "leftIcon": "comment",
-                          "path": "/participations/mockEventId1/mockUserId",
-                          "placeHolder": "comment",
-                          "targetName": "comment",
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
-                      },
-                      "type": "div",
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": <ParticipateButton
-                          eventId="mockEventId1"
-                          participations={
-                            Object {
-                              "mockEventId1": Object {
-                                "mockUserId": Object {
-                                  "comment": "Jee",
-                                  "date": "2018-06-23T09:40:26.992Z",
-                                  "firstName": "Test",
-                                  "lastName": "Person",
-                                  "userId": "mockUserId",
-                                },
-                              },
-                            }
-                          }
-                          profile={
-                            Object {
-                              "avatarUrl": "https://foo.com/picture",
-                              "dciNumber": "123512351112",
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "firstName": "Test",
-                              "isEmpty": false,
-                              "isLoaded": true,
-                              "lastName": "Person",
-                              "providerData": Array [
-                                Object {
-                                  "displayName": "Test Person",
-                                  "email": "fake@fake.com",
-                                  "photoURL": "https://foo.com/picture",
-                                  "providerId": "facebook.com",
-                                  "uid": "1234567890",
-                                },
-                              ],
-                              "role": "admin",
-                            }
-                          }
-                          userId="mockUserId"
-                          waitList={false}
-                        />,
-                        "className": "card-footer-item event-card-footer",
-                      },
-                      "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "function",
-                        "props": Object {
-                          "eventId": "mockEventId1",
-                          "participations": Object {
-                            "mockEventId1": Object {
-                              "mockUserId": Object {
-                                "comment": "Jee",
-                                "date": "2018-06-23T09:40:26.992Z",
-                                "firstName": "Test",
-                                "lastName": "Person",
-                                "userId": "mockUserId",
-                              },
-                            },
-                          },
-                          "profile": Object {
-                            "avatarUrl": "https://foo.com/picture",
-                            "dciNumber": "123512351112",
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "firstName": "Test",
-                            "isEmpty": false,
-                            "isLoaded": true,
-                            "lastName": "Person",
-                            "providerData": Array [
-                              Object {
-                                "displayName": "Test Person",
-                                "email": "fake@fake.com",
-                                "photoURL": "https://foo.com/picture",
-                                "providerId": "facebook.com",
-                                "uid": "1234567890",
-                              },
-                            ],
-                            "role": "admin",
-                          },
-                          "userId": "mockUserId",
-                          "waitList": false,
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
-                      },
-                      "type": "div",
-                    },
-                  ],
-                  "type": "div",
+                  "rendered": null,
+                  "type": [Function],
                 },
                 Object {
                   "instance": null,
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": <div
-                      className="card-footer is-hidden-tablet"
-                    >
-                      <div
-                        className="card-footer-item event-card-footer"
-                      >
-                        <Connect(EditableField)
-                          defaultValue="Jee"
-                          inputClasses="is-rounded"
-                          labelContent=""
-                          leftIcon="comment"
-                          path="/participations/mockEventId1/mockUserId"
-                          placeHolder="comment"
-                          targetName="comment"
-                        />
-                      </div>
-                    </div>,
+                    "alreadyParticipated": true,
+                    "eventId": "mockEventId1",
+                    "thisParticipation": Object {
+                      "comment": "Jee",
+                      "date": "2018-06-23T09:40:26.992Z",
+                      "firstName": "Test",
+                      "lastName": "Person",
+                      "userId": "mockUserId",
+                    },
+                    "userId": "mockUserId",
                   },
                   "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": <div
-                        className="card-footer-item event-card-footer"
-                      >
-                        <Connect(EditableField)
-                          defaultValue="Jee"
-                          inputClasses="is-rounded"
-                          labelContent=""
-                          leftIcon="comment"
-                          path="/participations/mockEventId1/mockUserId"
-                          placeHolder="comment"
-                          targetName="comment"
-                        />
-                      </div>,
-                      "className": "card-footer is-hidden-tablet",
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": <Connect(EditableField)
-                          defaultValue="Jee"
-                          inputClasses="is-rounded"
-                          labelContent=""
-                          leftIcon="comment"
-                          path="/participations/mockEventId1/mockUserId"
-                          placeHolder="comment"
-                          targetName="comment"
-                        />,
-                        "className": "card-footer-item event-card-footer",
-                      },
-                      "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "defaultValue": "Jee",
-                          "inputClasses": "is-rounded",
-                          "labelContent": "",
-                          "leftIcon": "comment",
-                          "path": "/participations/mockEventId1/mockUserId",
-                          "placeHolder": "comment",
-                          "targetName": "comment",
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
-                      },
-                      "type": "div",
-                    },
-                    "type": "div",
-                  },
-                  "type": Symbol(react.fragment),
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": <div
-                      className="card-footer-item event-card-footer"
-                    >
-                      <ParticipateButton
-                        eventId="mockEventId1"
-                        participations={
-                          Object {
-                            "mockEventId1": Object {
-                              "mockUserId": Object {
-                                "comment": "Jee",
-                                "date": "2018-06-23T09:40:26.992Z",
-                                "firstName": "Test",
-                                "lastName": "Person",
-                                "userId": "mockUserId",
-                              },
-                            },
-                          }
-                        }
-                        profile={
-                          Object {
-                            "avatarUrl": "https://foo.com/picture",
-                            "dciNumber": "123512351112",
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "firstName": "Test",
-                            "isEmpty": false,
-                            "isLoaded": true,
-                            "lastName": "Person",
-                            "providerData": Array [
-                              Object {
-                                "displayName": "Test Person",
-                                "email": "fake@fake.com",
-                                "photoURL": "https://foo.com/picture",
-                                "providerId": "facebook.com",
-                                "uid": "1234567890",
-                              },
-                            ],
-                            "role": "admin",
-                          }
-                        }
-                        userId="mockUserId"
-                        waitList={false}
-                      />
-                    </div>,
-                    "className": "card-footer is-hidden-tablet",
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": <ParticipateButton
-                        eventId="mockEventId1"
-                        participations={
-                          Object {
-                            "mockEventId1": Object {
-                              "mockUserId": Object {
-                                "comment": "Jee",
-                                "date": "2018-06-23T09:40:26.992Z",
-                                "firstName": "Test",
-                                "lastName": "Person",
-                                "userId": "mockUserId",
-                              },
-                            },
-                          }
-                        }
-                        profile={
-                          Object {
-                            "avatarUrl": "https://foo.com/picture",
-                            "dciNumber": "123512351112",
-                            "displayName": "Test Person",
-                            "email": "fake@fake.com",
-                            "firstName": "Test",
-                            "isEmpty": false,
-                            "isLoaded": true,
-                            "lastName": "Person",
-                            "providerData": Array [
-                              Object {
-                                "displayName": "Test Person",
-                                "email": "fake@fake.com",
-                                "photoURL": "https://foo.com/picture",
-                                "providerId": "facebook.com",
-                                "uid": "1234567890",
-                              },
-                            ],
-                            "role": "admin",
-                          }
-                        }
-                        userId="mockUserId"
-                        waitList={false}
-                      />,
-                      "className": "card-footer-item event-card-footer",
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "function",
-                      "props": Object {
-                        "eventId": "mockEventId1",
-                        "participations": Object {
-                          "mockEventId1": Object {
-                            "mockUserId": Object {
-                              "comment": "Jee",
-                              "date": "2018-06-23T09:40:26.992Z",
-                              "firstName": "Test",
-                              "lastName": "Person",
-                              "userId": "mockUserId",
-                            },
-                          },
-                        },
-                        "profile": Object {
-                          "avatarUrl": "https://foo.com/picture",
-                          "dciNumber": "123512351112",
-                          "displayName": "Test Person",
-                          "email": "fake@fake.com",
-                          "firstName": "Test",
-                          "isEmpty": false,
-                          "isLoaded": true,
-                          "lastName": "Person",
-                          "providerData": Array [
-                            Object {
-                              "displayName": "Test Person",
-                              "email": "fake@fake.com",
-                              "photoURL": "https://foo.com/picture",
-                              "providerId": "facebook.com",
-                              "uid": "1234567890",
-                            },
-                          ],
-                          "role": "admin",
-                        },
-                        "userId": "mockUserId",
-                        "waitList": false,
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    "type": "div",
-                  },
-                  "type": "div",
+                  "rendered": null,
+                  "type": [Function],
                 },
               ],
               "type": "div",

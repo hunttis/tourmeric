@@ -5,10 +5,9 @@ import _ from 'lodash';
 import { participantCount, participate, checkParticipation, cancelParticipation } from '../../api/eventApi';
 
 export const ParticipateButton = ({
-  auth, profile, events, eventId, participations,
+  profile, events, eventId, participations, userId,
 }) => {
 
-  const userId = auth.uid;
   const alreadyParticipated = checkParticipation(userId, eventId, participations);
   const eventContent = _.get(events, eventId, {});
   const maxParticipants = _.get(eventContent, 'playerSlots', 0);
@@ -48,7 +47,7 @@ export const ParticipateButton = ({
 
 ParticipateButton.propTypes = {
   events: PropTypes.object,
-  auth: PropTypes.object,
+  userId: PropTypes.string,
   profile: PropTypes.object,
   eventId: PropTypes.string,
   participations: PropTypes.object,

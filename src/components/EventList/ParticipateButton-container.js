@@ -8,6 +8,7 @@ export default compose(
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
     settings: state.firebase.data.settings,
+    userId: state.firebase.auth.uid,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 )(ParticipateButton);
