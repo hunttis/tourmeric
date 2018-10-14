@@ -5,7 +5,7 @@ import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import News from './News-container';
-import EventCard from '../../EventList/EventCard-container';
+import EventCard from '../../EventList/EventCard/EventCard-container';
 import EventModal from '../../EventList/EventModal-container';
 
 export default class Today extends Component {

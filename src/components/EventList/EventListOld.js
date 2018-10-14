@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import EventCard from './EventCard-container';
+import EventCard from './EventCard/EventCard-container';
 
 export default class EventListOld extends Component {
 

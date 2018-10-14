@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment/min/moment-with-locales';
-import EventCard from './EventCard-container';
+import EventCard from '../EventCard/EventCard-container';
 import { CalendarMonth } from './CalendarMonth';
 
 export default class EventCalendar extends Component {

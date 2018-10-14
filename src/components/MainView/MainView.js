@@ -20,7 +20,7 @@ import Today from './Today/Today-container';
 import CompanyInfo from './CompanyInfo/CompanyInfo-container';
 import InitialSetup from './InitialSetup';
 import FooterBar from './FooterBar-container';
-import SingleEvent from '../EventList/SingleEvent-container';
+import SingleEvent from '../EventList/EventCard/SingleEvent-container';
 
 import EventLoader from './Loaders/EventLoader-container';
 import CategoryLoader from './Loaders/CategoryLoader-container';

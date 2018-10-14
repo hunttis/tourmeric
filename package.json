@@ -39,6 +39,7 @@
     "bulma": "^0.7.1",
     "bulma-extensions": "^1.0.30",
     "bulmaswatch": "^0.7.1",
+    "clipboard": "^2.0.1",
     "connected-react-router": "^4.5.0",
     "firebase": "4.6.0",
     "history": "^4.7.2",

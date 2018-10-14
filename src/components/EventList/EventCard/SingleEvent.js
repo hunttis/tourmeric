@@ -6,26 +6,23 @@ import ClipboardJS from 'clipboard';
 import { isLoaded } from 'react-redux-firebase';
 
 import Moment from 'react-moment';
-import { ModalItem } from './ModalItem';
-import { ParticipantList } from './ParticipantList';
-import { participantCount, checkParticipation } from '../../api/eventApi';
-import EditableField from '../Common/EditableField-container';
-import { ParticipateButton } from './ParticipateButton';
+import { ModalItem } from '../ModalItem';
+import { ParticipantList } from '../ParticipantList';
+import { checkParticipation } from '../../../api/eventApi';
+import { CardFooterMobile } from './CardFooterMobile';
+import { CardFooterDesktop } from './CardFooterDesktop';
 
-export const SingleEvent = ({ match, events, categories, settings, participations, auth, profile }) => {
+export const SingleEvent = ({ match, events, categories, settings, participations, auth }) => {
 
   const eventId = match.params.id;
   const eventContent = _.get(events, eventId, {});
   const category = _.get(categories, eventContent.category);
   const dateFormat = _.get(settings, 'dateFormat');
-  const userid = _.get(auth, 'uid');
+  const userId = _.get(auth, 'uid');
   let participationsForEvent = Object.values(_.get(participations, eventId, []));
   participationsForEvent = _.sortBy(participationsForEvent, ['date']);
-  const alreadyParticipated = checkParticipation(userid, eventId, participations);
-  const thisParticipation = _.get(participations, `${eventId}.${userid}`, []);
-  const maxParticipants = _.get(eventContent, 'playerSlots', 0);
-  const currentParticipants = participantCount(eventId, participations);
-  const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
+  const alreadyParticipated = checkParticipation(userId, eventId, participations);
+  const thisParticipation = _.get(participations, `${eventId}.${userId}`, {});
 
   new ClipboardJS('#sharebutton'); // eslint-disable-line
 
@@ -80,27 +77,27 @@ export const SingleEvent = ({ match, events, categories, settings, participation
                 <div className="column is-11">
 
                   {eventContent.date &&
-                  <Fragment>
-                    <i className="fas fa-calendar" />&nbsp;&nbsp;
-                    <Moment format={dateFormat}>{eventContent.date}</Moment>
-                    <br />
-                  </Fragment>
+                    <Fragment>
+                      <i className="fas fa-calendar" />&nbsp;&nbsp;
+                      <Moment format={dateFormat}>{eventContent.date}</Moment>
+                      <br />
+                    </Fragment>
                   }
 
                   {eventContent.time &&
-                  <Fragment><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}<br /></Fragment>
+                    <Fragment><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}<br /></Fragment>
                   }
 
                   {eventContent.format &&
-                  <Fragment><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}<br /></Fragment>
+                    <Fragment><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}<br /></Fragment>
                   }
 
                   {eventContent.rulesLevel &&
-                  <Fragment><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}<br /></Fragment>
+                    <Fragment><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}<br /></Fragment>
                   }
 
                   {eventContent.entryFee &&
-                  <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€<br /></Fragment>
+                    <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€<br /></Fragment>
                   }
                 </div>
 
@@ -157,51 +154,20 @@ export const SingleEvent = ({ match, events, categories, settings, participation
             </div>
           </div>
 
-          {/* CARD FOOTER ON TABLET AND ABOVE */}
-          <div className="card-footer is-hidden-mobile">
-            { alreadyParticipated &&
-              <div className="card-footer-item event-card-footer">
-                <EditableField
-                  inputClasses="is-rounded"
-                  leftIcon="comment"
-                  labelContent=""
-                  placeHolder="comment"
-                  defaultValue={thisParticipation.comment}
-                  path={`/participations/${eventId}/${userid}`}
-                  targetName="comment"
-                />
-              </div>
-              }
-            <div className="card-footer-item event-card-footer">
-              <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} waitList={eventFull} />
-            </div>
-          </div>
-          {/* END CARD FOOTER */}
+          <CardFooterDesktop
+            alreadyParticipated={alreadyParticipated}
+            thisParticipation={thisParticipation}
+            eventId={eventId}
+            userId={userId}
+          />
 
-          {/* CARD FOOTER ON MOBILE */}
-          { alreadyParticipated &&
-            <Fragment>
-              <div className="card-footer is-hidden-tablet">
-                <div className="card-footer-item event-card-footer">
-                  <EditableField
-                    inputClasses="is-rounded"
-                    leftIcon="comment"
-                    labelContent=""
-                    placeHolder="comment"
-                    defaultValue={thisParticipation.comment}
-                    path={`/participations/${eventId}/${userid}`}
-                    targetName="comment"
-                  />
-                </div>
-              </div>
-            </Fragment>
-            }
-          <div className="card-footer is-hidden-tablet">
-            <div className="card-footer-item event-card-footer">
-              <ParticipateButton userId={userid} profile={profile} eventId={eventId} participations={participations} waitList={eventFull} />
-            </div>
-          </div>
-          {/* END CARD FOOTER */}
+          <CardFooterMobile
+            alreadyParticipated={alreadyParticipated}
+            thisParticipation={thisParticipation}
+            eventId={eventId}
+            userId={userId}
+          />
+
         </div>
       </div>
     </div>
@@ -215,5 +181,4 @@ SingleEvent.propTypes = {
   settings: PropTypes.object,
   participations: PropTypes.object,
   auth: PropTypes.object,
-  profile: PropTypes.object,
 };

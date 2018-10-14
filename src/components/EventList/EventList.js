@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import EventCalendar from './EventCalendar-container';
+import EventCalendar from './EventCalendar/EventCalendar-container';
 import EventListOld from './EventListOld-container';
 
 export default class EventList extends Component {
