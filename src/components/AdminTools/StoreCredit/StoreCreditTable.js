@@ -3,6 +3,8 @@ import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
+import firebase from 'firebase/app';
+
 import { StoreCreditRow } from './StoreCreditRow';
 
 export default class StoreCreditTable extends Component {
@@ -22,6 +24,10 @@ export default class StoreCreditTable extends Component {
       total += dataItem.value;
     }
     return total;
+  }
+
+  updateCategory(entryId, category) {
+    firebase.update(`/storecredit/${this.props.userId}/${entryId}`, { category });
   }
 
   render() {
@@ -50,6 +56,7 @@ export default class StoreCreditTable extends Component {
               <th><Translate id="entrymadeby" /></th>
               <th><Translate id="note" /></th>
               <th><Translate id="value" /></th>
+              <th><Translate id="setcategory" /></th>
             </tr>
           </thead>
           <tbody>
@@ -58,7 +65,7 @@ export default class StoreCreditTable extends Component {
               const data = dataItem[1];
               const dataEntryUser = this.getUser(data.creditAddedBy).value;
               const entryMadeBy = `${dataEntryUser.firstName} ${dataEntryUser.lastName}`;
-              return <StoreCreditRow key={`${userId}-${dataId}`} userId={userId} dataId={dataId} data={data} entryMadeBy={entryMadeBy} isAdmin={isAdmin} />;
+              return <StoreCreditRow key={`${userId}-${dataId}`} userId={userId} dataId={dataId} data={data} entryMadeBy={entryMadeBy} isAdmin={isAdmin} updateCategory={(entryId, category) => this.updateCategory(entryId, category)} />;
             })}
           </tbody>
           <tfoot>

@@ -233,6 +233,10 @@
   "creditamount": "Krediittien määrä",
   "creditmessage": "Viesti",
   "save": "Tallenna",
+  "itemcategory": "Tapahtuman kategoria",
+  "none": "Ei mikään",
+  "setcategory": "Aseta kategoria",
+  "newcreditrow": "Uusi krediittitapahtuma",
 
   "highlights": "Valokeilassa",
   "newhighlight": "Uusi valokeila",
