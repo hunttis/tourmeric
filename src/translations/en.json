@@ -234,7 +234,11 @@
   "creditamount": "Credit amount",
   "creditmessage": "Message",
   "save": "Tallenna",
-  
+  "itemcategory": "Item category",
+  "none": "None",
+  "setcategory": "Set category",
+  "newcreditrow": "New credit row",
+
   "highlights": "Highlights",
   "newhighlight": "New highlight",
   "activate": "Activate",
