@@ -7,6 +7,13 @@ import moment from 'moment/min/moment-with-locales';
 import EventCard from '../EventCard/EventCard-container';
 import { CalendarMonth } from './CalendarMonth';
 
+const YEAR_INDEX = 2;
+const MONTH_INDEX = 3;
+const DAY_INDEX = 4;
+
+const MODE_MONTH = 'month';
+const MODE_DAY = 'day';
+
 export default class EventCalendar extends Component {
 
   constructor(props) {
@@ -14,7 +21,43 @@ export default class EventCalendar extends Component {
 
     const favoriteCategories = _.get(props, 'profile.favoriteCategories', '');
     const defaultFilter = favoriteCategories.split(' ');
-    this.state = { categoryFilter: _.compact(defaultFilter), viewedDate: moment() };
+
+    const targetData = this.parseTargetMonthYearAndMode(props);
+
+    this.state = { categoryFilter: _.compact(defaultFilter),
+      ...targetData };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(this.props.location, nextProps.location)) {
+      const targetData = this.parseTargetMonthYearAndMode(nextProps);
+      this.setState({ ...targetData });
+    }
+  }
+
+  parseTargetMonthYearAndMode(props) {
+    let targetYear = moment().format('YYYY');
+    let targetMonth = moment().format('MM');
+    let targetDay = moment().format('DD');
+    let mode = MODE_MONTH;
+
+    const splitPath = props.location.pathname.split('/');
+    const pathLength = splitPath.length;
+
+    if (pathLength === 2) {
+      mode = MODE_MONTH;
+    } else if (pathLength < 5) {
+      targetYear = _.get(splitPath, YEAR_INDEX, targetYear);
+      targetMonth = _.get(splitPath, MONTH_INDEX, targetMonth);
+      mode = MODE_MONTH;
+    } else if (pathLength === 5) {
+      targetYear = _.get(splitPath, YEAR_INDEX, targetYear);
+      targetMonth = _.get(splitPath, MONTH_INDEX, targetMonth);
+      targetDay = _.get(splitPath, DAY_INDEX, targetDay);
+      mode = MODE_DAY;
+    }
+
+    return { targetYear, targetMonth, targetDay, mode };
   }
 
   toggleFilter(categoryId) {
@@ -57,11 +100,13 @@ export default class EventCalendar extends Component {
   }
 
   forwardMonth() {
-    this.setState(prevState => ({ viewedDate: prevState.viewedDate.add(1, 'month') }));
+    const newMonth = moment(`${this.state.targetMonth}-${this.state.targetYear}`, 'MM-YYYY').add(1, 'month');
+    this.props.history.push(`/events/${newMonth.format('YYYY/MM')}`);
   }
 
   backMonth() {
-    this.setState(prevState => ({ viewedDate: prevState.viewedDate.subtract(1, 'month') }));
+    const newMonth = moment(`${this.state.targetMonth}-${this.state.targetYear}`, 'MM-YYYY').subtract(1, 'month');
+    this.props.history.push(`/events/${newMonth.format('YYYY/MM')}`);
   }
 
   clickDay(day) {
@@ -69,36 +114,30 @@ export default class EventCalendar extends Component {
   }
 
   backToCalendar() {
-    this.props.history.push('/events');
+    this.props.history.push(`/events/${this.state.targetYear}/${this.state.targetMonth}`);
   }
 
-  render() {
-    const {
-      events, participations, profile, categories, settings, uploadedCategoryLogos, activeLanguage, location,
-    } = this.props;
+  parseInformationForMonthYear(month, year) {
 
-    const { viewedDate } = this.state;
+    const { events } = this.props;
 
-    if (!isLoaded(participations) || !isLoaded(profile) || !isLoaded(events) || !isLoaded(settings) || !isLoaded(uploadedCategoryLogos) || !isLoaded(categories)) {
-      return <div className="is-loading"><Translate id="loading" /></div>;
-    } if (isLoaded(events) && isEmpty(events)) {
-      return <div><Translate id="noevents" /></div>;
-    }
+    const targetMonth = moment(`${month}-${year}`, 'MM-YYYY');
+    const dayCount = targetMonth.daysInMonth();
+    const days = [];
     const publishedEvents = this.runEventFilters(events);
 
-    const categoryNames = this.state.categoryFilter.map(category => categories[category].name).join(', ');
-
-    const dayCount = viewedDate.daysInMonth();
-    const days = [];
-
-    moment.locale(activeLanguage);
-
     for (let i = 1; i <= dayCount; i += 1) {
-      const dayString = `${_.padStart(i, 2, '0')}-${viewedDate.format('MM-YYYY')}`;
+      const dayString = `${_.padStart(i, 2, '0')}-${targetMonth.format('MM-YYYY')}`;
       const day = moment(dayString, 'DD-MM-YYYY');
       const dayStringInEventFormat = moment(dayString, 'DD-MM-YYYY').format('YYYY-MM-DD');
       const eventsForDay = publishedEvents.filter(eventEntry => eventEntry.value.date === dayStringInEventFormat);
-      days.push({ day: day.format('DD'), dayOfWeek: day.format('d'), dayName: day.format('dddd'), dayString: day.format('DD-MMMM-YYYY'), dayLink: day.format('DD/MM/YYYY'), eventsForDay });
+
+      days.push({ day: day.format('DD'),
+        dayOfWeek: day.format('d'),
+        dayName: day.format('dddd'),
+        dayString: day.format('DD-MMMM-YYYY'),
+        dayLink: day.format('YYYY/MM/DD'),
+        eventsForDay });
     }
 
     const emptyDays = (days[0].dayOfWeek % 7) - 1;
@@ -107,22 +146,48 @@ export default class EventCalendar extends Component {
       calendar.push({ empty: true });
     }
     _.forEach(days, day => calendar.push(day));
+    return calendar;
+  }
+
+  chunkedCalendar(calendar) {
     const chunkedCalendar = _.chunk(calendar, 7);
     while (chunkedCalendar[chunkedCalendar.length - 1].length < 7) {
       chunkedCalendar[chunkedCalendar.length - 1].push({ empty: true });
     }
+    return chunkedCalendar;
+  }
 
-    let dayModalOpen = false;
-    let eventsForDay = {};
+  render() {
+    const {
+      events, participations, profile, categories, settings, uploadedCategoryLogos, activeLanguage, location,
+    } = this.props;
 
-    if (location.pathname.split('/').length > 2) {
-      eventsForDay = _.get(_.find(calendar, { dayLink: location.pathname.substring('/events/'.length) }), 'eventsForDay', {});
-      dayModalOpen = true;
+    const { targetMonth, targetYear, mode } = this.state;
+
+    if (
+      !isLoaded(participations) ||
+      !isLoaded(profile) ||
+      !isLoaded(events) ||
+      !isLoaded(settings) ||
+      !isLoaded(uploadedCategoryLogos) ||
+      !isLoaded(categories)) {
+      return <div className="is-loading"><Translate id="loading" /></div>;
+    } if (isLoaded(events) && isEmpty(events)) {
+      return <div><Translate id="noevents" /></div>;
     }
+
+    moment.locale(activeLanguage);
+
+    const calendar = this.parseInformationForMonthYear(targetMonth, targetYear);
+    const chunkedCalendar = this.chunkedCalendar(calendar);
+
+    const categoryNames = this.state.categoryFilter.map(category => categories[category].name).join(', ');
+
+    const eventsForDay = mode === MODE_DAY && _.get(_.find(calendar, { dayLink: location.pathname.substring('/events/'.length) }), 'eventsForDay', {});
 
     return (
       <section className="section">
-        {dayModalOpen &&
+        {mode === MODE_DAY &&
           <div className="modal is-active">
             <div className="modal-background" onClick={() => this.backToCalendar()} />
             <div className="modal-content box">
@@ -181,7 +246,7 @@ export default class EventCalendar extends Component {
             </div>
 
             <div className="column is-6">
-              <h1 className="title">{_.capitalize(viewedDate.format('MMMM'))}</h1>
+              <h1 className="title">{_.capitalize(moment(`${targetMonth}-${targetYear}`, 'MM-YYYY').format('MMMM'))}</h1>
             </div>
             <div className="column is-6">
               <div className="buttons has-addons is-pulled-right">
