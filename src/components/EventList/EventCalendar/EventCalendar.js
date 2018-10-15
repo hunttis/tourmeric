@@ -22,7 +22,7 @@ export default class EventCalendar extends Component {
     const favoriteCategories = _.get(props, 'profile.favoriteCategories', '');
     const defaultFilter = favoriteCategories.split(' ');
 
-    const targetData = this.parseTargetMonthYearAndMode(props);
+    const targetData = this.parseTargetMonthYearAndMode(props.location);
 
     this.state = { categoryFilter: _.compact(defaultFilter),
       ...targetData };
@@ -30,18 +30,18 @@ export default class EventCalendar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (!_.isEqual(this.props.location, nextProps.location)) {
-      const targetData = this.parseTargetMonthYearAndMode(nextProps);
+      const targetData = this.parseTargetMonthYearAndMode(nextProps.location);
       this.setState({ ...targetData });
     }
   }
 
-  parseTargetMonthYearAndMode(props) {
+  parseTargetMonthYearAndMode(location) {
     let targetYear = moment().format('YYYY');
     let targetMonth = moment().format('MM');
     let targetDay = moment().format('DD');
     let mode = MODE_MONTH;
 
-    const splitPath = props.location.pathname.split('/');
+    const splitPath = location.pathname.split('/');
     const pathLength = splitPath.length;
 
     if (pathLength === 2) {
@@ -159,18 +159,12 @@ export default class EventCalendar extends Component {
 
   render() {
     const {
-      events, participations, profile, categories, settings, uploadedCategoryLogos, activeLanguage, location,
+      events, categories, activeLanguage, location,
     } = this.props;
 
     const { targetMonth, targetYear, mode } = this.state;
 
-    if (
-      !isLoaded(participations) ||
-      !isLoaded(profile) ||
-      !isLoaded(events) ||
-      !isLoaded(settings) ||
-      !isLoaded(uploadedCategoryLogos) ||
-      !isLoaded(categories)) {
+    if (!isLoaded(events) || !isLoaded(categories)) {
       return <div className="is-loading"><Translate id="loading" /></div>;
     } if (isLoaded(events) && isEmpty(events)) {
       return <div><Translate id="noevents" /></div>;
@@ -267,14 +261,9 @@ export default class EventCalendar extends Component {
   }
 }
 
-
 EventCalendar.propTypes = {
   events: PropTypes.array,
-  participations: PropTypes.object,
-  profile: PropTypes.object,
   categories: PropTypes.object,
-  settings: PropTypes.object,
-  uploadedCategoryLogos: PropTypes.object,
   activeLanguage: PropTypes.string,
   location: PropTypes.object,
   history: PropTypes.object,

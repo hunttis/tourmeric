@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import EventModal from './EventModal';
+import { EventModal } from './EventModal';
 
 export default compose(
   connect(state => ({

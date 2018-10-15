@@ -35,6 +35,37 @@ export const mockSingleEvent = {
   time: 'Kill everything',
 };
 
+export const mockUnorderedEvents = {
+  mockEvent2: {
+    category: 'category2',
+    createDate: '2018-05-20T16:46:32.009Z',
+    date: '2018-05-20',
+    entryFee: '6',
+    format: 'Standard',
+    name: 'Tapahtuma',
+    notes: 'FIJoijgasdsdgasdggagads',
+    playerSlots: '14',
+    prizes: 'Foooooooooooooooo',
+    rulesLevel: 'Competitive',
+    time: '10:00',
+  },
+  mockEvent3: {
+    category: 'category2',
+    createDate: '2018-05-20T16:04:29.595Z',
+    date: '2018-05-21',
+    entryFee: '5',
+    format: 'Modern',
+    link: 'https://magic.wizards.com/en/game-info/gameplay/formats/modern',
+    name: 'Monday Modern',
+    notes: 'Bring a friend!',
+    playerSlots: '31',
+    prizes: 'Three (3) OMG credits per player into the prizepool.',
+    published: true,
+    rulesLevel: 'Regular',
+    time: '19:00',
+  },
+};
+
 export const mockEvents = [
   { key: 'mockEvent2',
     value: {

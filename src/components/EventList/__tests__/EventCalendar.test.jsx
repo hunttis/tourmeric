@@ -1,19 +1,24 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import EventList from '../EventList';
+import { createBrowserHistory } from 'history';
+import EventCalendar from '../EventCalendar/EventCalendar';
 import { mockEvents, mockParticipations, mockProfile, mockCategories, mockSettings, mockUploadedLogos } from '../__mocks__/mockData';
 
 describe('EventList tests', () => {
 
   it('Compares EventList to snapshot', () => {
 
-    const eventList = shallow(<EventList
+    const history = createBrowserHistory();
+
+    const eventList = shallow(<EventCalendar
       events={mockEvents}
       participations={mockParticipations}
       profile={mockProfile}
       categories={mockCategories}
       settings={mockSettings}
       uploadedCategoryLogos={mockUploadedLogos}
+      history={history}
+      location={{ pathname: 'foo' }}
     />);
 
     expect(eventList).toMatchSnapshot();

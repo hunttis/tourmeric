@@ -18,6 +18,15 @@ export default class AdminToolsEvents extends Component {
 
   render() {
     const { events, profile } = this.props;
+
+    const isProfileLoaded = isLoaded(profile);
+    const isLoggedIn = isProfileLoaded && !isEmpty(profile);
+    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
+
+    if (!isAdmin) {
+      return <div />;
+    }
+
     if (!isLoaded(events)) {
       return <button className="is-loading" />;
     }

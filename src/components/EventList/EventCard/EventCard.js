@@ -145,7 +145,7 @@ EventCard.propTypes = {
   userId: PropTypes.string.isRequired,
   events: PropTypes.array.isRequired,
   settings: PropTypes.object.isRequired,
-  participations: PropTypes.object.isRequired,
+  participations: PropTypes.object,
   categories: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };

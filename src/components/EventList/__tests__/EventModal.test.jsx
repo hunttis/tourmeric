@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import EventModal from '../EventModal';
-import { mockEventId, mockParticipations, mockSingleEvent } from '../__mocks__/mockData';
+import { EventModal } from '../EventModal';
+import { mockEventId, mockParticipations, mockUnorderedEvents, mockCategories, mockSettings } from '../__mocks__/mockData';
 
 describe('EventModal tests', () => {
 
@@ -11,7 +11,11 @@ describe('EventModal tests', () => {
 
     const modal = shallow(<EventModal
       eventId={mockEventId}
+      events={mockUnorderedEvents}
+      settings={mockSettings}
       closeModal={closeModalFunction}
+      participations={mockParticipations}
+      categories={mockCategories}
     />);
 
     expect(modal).toMatchSnapshot();

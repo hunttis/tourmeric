@@ -9,7 +9,7 @@ import AdminTools from '../AdminTools/AdminTools-container';
 import AdminToolsEvents from '../AdminTools/AdminToolsEvents-container';
 import AdminSiteSettings from '../AdminTools/SiteSettings/AdminSiteSettings-container';
 import UserInfo from '../UserInfo/UserInfo-container';
-import EventList from '../EventList/EventList-container';
+import EventCalendar from '../EventList/EventCalendar/EventCalendar-container';
 import TitleBar from './TitleBar-container';
 import Login from './Account/Login-container';
 import Register from './Account/Register-container';
@@ -25,6 +25,7 @@ import SingleEvent from '../EventList/EventCard/SingleEvent-container';
 import EventLoader from './Loaders/EventLoader-container';
 import CategoryLoader from './Loaders/CategoryLoader-container';
 import ParticipationsLoader from './Loaders/ParticipationsLoader-container';
+import UploadedCategoryLogosLoader from './Loaders/UploadedCategoryLogosLoader-container';
 
 // ******************
 // Set the theme here
@@ -81,13 +82,6 @@ export default class MainView extends Component {
       return <InitialSetup profile={profile} />;
     }
 
-    // const isProfileLoaded = isLoaded(profile);
-    // const isLoggedIn = isProfileLoaded && !isEmpty(profile);
-    // const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
-
-    // const eventsActive = _.get(settings, 'features.events.active', false);
-    // const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
-
     return (
       <div>
         <ThemeHandler />
@@ -95,13 +89,14 @@ export default class MainView extends Component {
         <EventLoader />
         <CategoryLoader />
         <ParticipationsLoader />
+        <UploadedCategoryLogosLoader />
 
-        <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
+        <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
         <Navbar changeLanguage={this.changeLanguage} />
         <Switch>
           <Route path="/today" component={Today} />
           <Route path="/event/:id" component={SingleEvent} />
-          <Route path="/events" component={EventList} />
+          <Route path="/events" component={EventCalendar} />
           <Route path="/storeinfo" component={StoreInfo} />
           <Route path="/userinfo" component={UserInfo} />
           <Route path="/admintools" component={AdminTools} />

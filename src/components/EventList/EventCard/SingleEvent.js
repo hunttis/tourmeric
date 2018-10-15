@@ -4,8 +4,8 @@ import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import ClipboardJS from 'clipboard';
 import { isLoaded } from 'react-redux-firebase';
-
 import Moment from 'react-moment';
+
 import { ModalItem } from '../ModalItem';
 import { ParticipantList } from '../ParticipantList';
 import { checkParticipation } from '../../../api/eventApi';
@@ -105,18 +105,18 @@ export const SingleEvent = ({ match, events, categories, settings, participation
                 {eventContent.prizes && <ModalItem translationKey="prizes" content={eventContent.prizes} />}
 
                 {eventContent.link &&
-                <Fragment>
-                  <div className="column is-12">
-                    <div className="subtitle has-text-info"><Translate id="link" /></div>
-                  </div>
+                  <Fragment>
+                    <div className="column is-12">
+                      <div className="subtitle has-text-info"><Translate id="link" /></div>
+                    </div>
 
-                  <div className="column is-1" />
-                  <div className="column is-11">
-                    <p>
-                      <a href={eventContent.link} target="_blank" rel="noopener noreferrer">{eventContent.link}</a>
-                    </p>
-                  </div>
-                </Fragment>
+                    <div className="column is-1" />
+                    <div className="column is-11">
+                      <p>
+                        <a href={eventContent.link} target="_blank" rel="noopener noreferrer">{eventContent.link}</a>
+                      </p>
+                    </div>
+                  </Fragment>
                 }
                 <div className="column is-12">
                   <button id="sharebutton" className="button is-primary" data-clipboard-text={`${window.location.href}`}>
@@ -129,13 +129,13 @@ export const SingleEvent = ({ match, events, categories, settings, participation
               </div>
               <div className="column is-6">
                 {isLoaded(events) &&
-                <Fragment>
-                  <div className="subtitle has-text-info"><Translate id="participants" />&nbsp;
-                    {!eventContent.playerSlots && <Fragment>({participationsForEvent.length})</Fragment>}
-                    {eventContent.playerSlots && <Fragment>({participationsForEvent.length} / {eventContent.playerSlots})</Fragment>}
-                  </div>
-                </Fragment>
-                  }
+                  <Fragment>
+                    <div className="subtitle has-text-info"><Translate id="participants" />&nbsp;
+                      {!eventContent.playerSlots && <Fragment>({participationsForEvent.length})</Fragment>}
+                      {eventContent.playerSlots && <Fragment>({participationsForEvent.length} / {eventContent.playerSlots})</Fragment>}
+                    </div>
+                  </Fragment>
+                }
                 {!isLoaded(events) &&
                   <div className="button is-loading">Loading</div>
                 }
@@ -143,12 +143,12 @@ export const SingleEvent = ({ match, events, categories, settings, participation
                   <div><Translate id="noparticipants" /></div>
                 }
                 {!_.isEmpty(participations) &&
-                <Fragment>
-                  <div className="column is-1" />
-                  <div className="column is-11">
-                    <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', 0), 10)} />
-                  </div>
-                </Fragment>
+                  <Fragment>
+                    <div className="column is-1" />
+                    <div className="column is-11">
+                      <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', 0), 10)} />
+                    </div>
+                  </Fragment>
                 }
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { isLoaded } from 'react-redux-firebase';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
@@ -29,6 +29,14 @@ export default class AdminSiteSettings extends Component {
 
   render() {
     const { settings, profile } = this.props;
+
+    const isProfileLoaded = isLoaded(profile);
+    const isLoggedIn = isProfileLoaded && !isEmpty(profile);
+    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
+
+    if (!isAdmin) {
+      return <div />;
+    }
 
     const showDefaultButton = (settings && settings.dateFormat !== 'DD.MM.YYYY');
 

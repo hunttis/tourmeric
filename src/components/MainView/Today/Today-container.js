@@ -1,13 +1,9 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { firebaseConnect } from 'react-redux-firebase';
 
 import Today from './Today';
 
 export default compose(
-  firebaseConnect([
-    { path: '/uploadedCategoryLogos' },
-  ]),
   connect(state => ({
     events: state.firebase.ordered.events,
     participations: state.firebase.data.participations,
