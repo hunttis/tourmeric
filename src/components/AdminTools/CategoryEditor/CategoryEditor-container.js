@@ -7,7 +7,6 @@ import CategoryEditor from './CategoryEditor';
 export default compose(
   firebaseConnect([
     { path: '/settings' },
-    { path: '/uploadedCategoryLogos' },
   ]),
   connect(state => ({
     events: state.firebase.data.events,

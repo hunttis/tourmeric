@@ -7,7 +7,6 @@ import CategoryLogoUploader from './CategoryLogoUploader';
 export default compose(
   firebaseConnect([
     { path: '/settings' },
-    { path: '/uploadedCategoryLogos' },
   ]),
   connect(state => ({
     settings: state.firebase.data.settings,

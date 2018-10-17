@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
+
 import UserEditor from './UserEditor/UserEditor-container';
 import HighlightEditor from './HighlightEditor/HighlightEditor-container';
 import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
@@ -18,6 +20,14 @@ export default class AdminTools extends Component {
 
   render() {
     const { profile } = this.props;
+
+    const isProfileLoaded = isLoaded(profile);
+    const isLoggedIn = isProfileLoaded && !isEmpty(profile);
+    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
+
+    if (!isAdmin) {
+      return <div />;
+    }
 
     const activePage = this.state.activeItem || _.get(profile, 'landingSubpage', 'users');
 

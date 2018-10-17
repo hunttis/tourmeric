@@ -62,7 +62,7 @@ export default class UserInfo extends Component {
       const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
       const hasAcceptedPrivacyPolicy = _.get(profile, 'acceptedPrivacyPolicy', false);
       const isAdmin = _.get(profile, 'role', 'user') === 'admin';
-      const betaparticipation = _.get(profile, 'betaparticipation', {});
+      // const betaparticipation = _.get(profile, 'betaparticipation', {});
 
       const publishedEvents = events ? Object.values(events).filter(event => event.value.published) : [];
       const futureEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
@@ -106,7 +106,7 @@ export default class UserInfo extends Component {
               <ChooseFavoriteCategories />
               {isAdmin && <ChooseLandingPage />}
               <p>&nbsp;</p>
-              <div className="box">
+              {/* <div className="box">
                 <h1 className="title">Beta</h1>
                 <p><Translate id="participateinbetafeaturetesting" /></p>
                 <p>&nbsp;</p>
@@ -119,7 +119,7 @@ export default class UserInfo extends Component {
                     <button className={`button ${betaparticipation.eventsPreference === 'calendar' && 'is-success'}`} onClick={() => { this.updateBetaParticipation('eventsPreference', 'calendar'); }}><Translate id="calendar" /> (Beta)</button>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
             </div>
             <div className="column is-6">
@@ -162,9 +162,7 @@ export default class UserInfo extends Component {
       );
     }
     return (
-      <div className="level-item">
-        <button className="is-loading" />;
-      </div>
+      <div />
     );
   }
 

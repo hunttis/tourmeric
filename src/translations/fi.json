@@ -143,6 +143,8 @@
   "dateformatplaceholder": "Esimerkiksi: DD.MM.YYYY",
   "previousmonth": "Edellinen kuukausi",
   "nextmonth": "Seuraava kuukausi",
+  "eventdetails": "Tapahtuman tiedot",
+  "copylinktoevent": "Kopioi linkki tapahtumaan",
 
   "night": "Yöllä",
   "morning": "Aamulla",

@@ -1,12 +1,19 @@
 import React from 'react';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
-import { participate, checkParticipation, cancelParticipation } from '../../api/eventApi';
+import _ from 'lodash';
+import { participantCount, participate, checkParticipation, cancelParticipation } from '../../api/eventApi';
 
 export const ParticipateButton = ({
-  userId, profile, eventId, participations, waitList,
+  profile, events, eventId, participations, userId,
 }) => {
+
   const alreadyParticipated = checkParticipation(userId, eventId, participations);
+  const eventContent = _.get(events, eventId, {});
+  const maxParticipants = _.get(eventContent, 'playerSlots', 0);
+  const currentParticipants = participantCount(eventId, participations);
+  const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
+
   if (alreadyParticipated) {
     return (
       <div>
@@ -16,16 +23,17 @@ export const ParticipateButton = ({
             <i className="fas fa-sign-out-alt" />
           </span>
         </button>
-      </div>);
+      </div>
+    );
   }
 
   if (profile.isLoaded && !profile.isEmpty) {
     return (
       <button className="participatebutton button is-rounded is-primary" onClick={() => participate(eventId, userId, profile.firstName, profile.lastName)}>
-        {!waitList &&
+        {!eventFull &&
           <p><Translate id="participate" /></p>
         }
-        {waitList &&
+        {eventFull &&
           <p><Translate id="participateforwaitlist" /></p>
         }
 
@@ -38,9 +46,9 @@ export const ParticipateButton = ({
 };
 
 ParticipateButton.propTypes = {
+  events: PropTypes.object,
   userId: PropTypes.string,
   profile: PropTypes.object,
   eventId: PropTypes.string,
   participations: PropTypes.object,
-  waitList: PropTypes.bool,
 };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { registerEmail } from '../../../api/loginApi';
+import PropTypes from 'prop-types';
+import { registerEmail, loginGoogle, loginFacebook } from '../../../api/loginApi';
 import { GenericSignupComponent } from './GenericSignupComponent';
 
 export default class Register extends Component {
@@ -21,6 +22,25 @@ export default class Register extends Component {
     this.setState({ errorState: null });
     try {
       await registerEmail(this.state.loginEmail, this.state.loginPass);
+      this.props.history.push('/today');
+    } catch (err) {
+      this.setState({ errorState: err.code });
+    }
+  }
+
+  onLoginGoogle = async () => {
+    try {
+      await loginGoogle();
+      this.props.history.push('/today');
+    } catch (err) {
+      this.setState({ errorState: err.code });
+    }
+  }
+
+  onLoginFacebook = async () => {
+    try {
+      await loginFacebook();
+      this.props.history.push('/today');
     } catch (err) {
       this.setState({ errorState: err.code });
     }
@@ -35,7 +55,13 @@ export default class Register extends Component {
         onChangePass={this.onChangePass}
         onSubmit={this.onRegisterSubmit}
         errorState={this.state.errorState}
+        loginGoogle={this.onLoginGoogle}
+        loginFacebook={this.onLoginFacebook}
       />
     );
   }
 }
+
+Register.propTypes = {
+  history: PropTypes.object,
+};

@@ -2,18 +2,14 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 
-import Navbar from './Navbar';
+import { UploadedCategoryLogosLoader } from './UploadedCategoryLogosLoader';
 
 export default compose(
   firebaseConnect([
-    { path: '/settings' },
-    { path: '/highlights' },
+    { path: '/uploadedCategoryLogos' },
   ]),
   connect(state => ({
-    languages: state.locale.languages,
-    settings: state.firebase.data.settings,
-    highlights: state.firebase.data.highlights,
-    location: state.router.location,
+    uploadedCategoryLogos: state.firebase.data.uploadedCategoryLogos,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-)(Navbar);
+)(UploadedCategoryLogosLoader);

@@ -145,6 +145,8 @@
   "dateformatplaceholder": "For example: DD.MM.YYYY",
   "previousmonth": "Previous Month",
   "nextmonth": "Next Month",
+  "eventdetails": "Event details",
+  "copylinktoevent": "Copy link to event",
 
   "night": "At Night",
   "morning": "In the Morning",

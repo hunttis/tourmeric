@@ -1,17 +1,15 @@
-import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 
-import AdminTools from './AdminTools';
+import { CategoryLoader } from './CategoryLoader';
 
 export default compose(
   firebaseConnect([
-    { path: '/storecredit' },
+    { path: '/categories' },
   ]),
   connect(state => ({
-    events: state.firebase.data.events,
-    participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-)(AdminTools);
+)(CategoryLoader);

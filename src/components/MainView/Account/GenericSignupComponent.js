@@ -1,9 +1,8 @@
 import React from 'react';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
-import { loginGoogle, loginFacebook } from '../../../api/loginApi';
 
-export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail, onChangePass, onSubmit, errorState }) => (
+export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail, onChangePass, onSubmit, errorState, loginFacebook, loginGoogle }) => (
   <section className="section">
 
     <div className="columns is-multiline">
@@ -21,13 +20,13 @@ export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail,
       <div className="column is-11">
         <div className="field is-grouped">
           <p className="control">
-            <button className="button has-icons" onClick={() => loginFacebook()}>
+            <button className="button has-icons" onClick={loginFacebook}>
               <span className="icon"><i className="fas fa-sign-in-alt" /></span>
               <span className="icon has-text-info"><i className="fab fa-facebook" /></span>
             </button>
           </p>
           <p className="control is-left">
-            <button className="button has-icons" onClick={() => loginGoogle()}>
+            <button className="button has-icons" onClick={loginGoogle}>
               <span className="icon"><i className="fas fa-sign-in-alt" /></span>
               <span className="icon has-text-success"><i className="fab fa-google" /></span>
             </button>
@@ -83,4 +82,6 @@ GenericSignupComponent.propTypes = {
   onChangePass: PropTypes.func,
   onSubmit: PropTypes.func,
   errorState: PropTypes.string,
+  loginGoogle: PropTypes.func.isRequired,
+  loginFacebook: PropTypes.func.isRequired,
 };

@@ -1,17 +1,15 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { firebaseConnect } from 'react-redux-firebase';
-
-import AdminTools from './AdminTools';
+import { SingleEvent } from './SingleEvent';
 
 export default compose(
-  firebaseConnect([
-    { path: '/storecredit' },
-  ]),
   connect(state => ({
     events: state.firebase.data.events,
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
+    userid: state.firebase.auth.uid,
+    settings: state.firebase.data.settings,
+    languages: state.locale.languages,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-)(AdminTools);
+)(SingleEvent);

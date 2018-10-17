@@ -4,11 +4,12 @@ import _ from 'lodash';
 import { Translate, setActiveLanguage } from 'react-localize-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
 import AdminTools from '../AdminTools/AdminTools-container';
 import AdminToolsEvents from '../AdminTools/AdminToolsEvents-container';
 import AdminSiteSettings from '../AdminTools/SiteSettings/AdminSiteSettings-container';
 import UserInfo from '../UserInfo/UserInfo-container';
-import EventList from '../EventList/EventList-container';
+import EventCalendar from '../EventList/EventCalendar/EventCalendar-container';
 import TitleBar from './TitleBar-container';
 import Login from './Account/Login-container';
 import Register from './Account/Register-container';
@@ -19,7 +20,12 @@ import Today from './Today/Today-container';
 import CompanyInfo from './CompanyInfo/CompanyInfo-container';
 import InitialSetup from './InitialSetup';
 import FooterBar from './FooterBar-container';
+import SingleEvent from '../EventList/EventCard/SingleEvent-container';
+
 import EventLoader from './Loaders/EventLoader-container';
+import CategoryLoader from './Loaders/CategoryLoader-container';
+import ParticipationsLoader from './Loaders/ParticipationsLoader-container';
+import UploadedCategoryLogosLoader from './Loaders/UploadedCategoryLogosLoader-container';
 
 // ******************
 // Set the theme here
@@ -30,24 +36,37 @@ export default class MainView extends Component {
   constructor(props) {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.switchActiveTab = this.switchActiveTab.bind(this);
-    this.state = { forceUserInfo: false };
+    this.state = { redirected: false };
+  }
+
+  componentWillMount() {
+    const isLoggedIn = isLoaded(this.props.profile) && !isEmpty(this.props.profile);
+
+    if (['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
+      this.props.history.push('/today');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
+
+    const wasProfileLoaded = isLoaded(this.props.profile);
     const isProfileLoaded = isLoaded(nextProps.profile);
     const isLoggedIn = isProfileLoaded && !isEmpty(nextProps.profile);
     const acceptedPrivacyPolicy = _.get(nextProps.profile, 'acceptedPrivacyPolicy', false);
 
-    if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !nextProps.profile.email || !acceptedPrivacyPolicy)) {
-      this.setState({ forceUserInfo: true, activeItem: 'userinfo' });
-    } else if (isLoaded(nextProps.profile)) {
-      this.setState({ forceUserInfo: false });
+    if (!this.state.redirected) {
+      if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !nextProps.profile.email || !acceptedPrivacyPolicy)) {
+        this.props.history.push('/userinfo');
+        this.setState({ redirected: true });
+      } else if (wasProfileLoaded !== isProfileLoaded) {
+        const currentLocation = this.props.location.pathname.substring(1);
+        const landingPage = _.get(nextProps.profile, 'landingPage', 'today');
+        if (_.isEmpty(currentLocation) && !_.isEmpty(landingPage)) {
+          this.props.history.push(`/${landingPage}`);
+        }
+        this.setState({ redirected: true });
+      }
     }
-  }
-
-  switchActiveTab(type) {
-    this.setState({ activeItem: type });
   }
 
   changeLanguage(newLanguage) {
@@ -57,50 +76,37 @@ export default class MainView extends Component {
   }
 
   render() {
-    const { activeItem, forceUserInfo } = this.state;
     const { profile, settings } = this.props;
 
     if (isLoaded(settings) && isEmpty(settings)) {
       return <InitialSetup profile={profile} />;
     }
 
-    const isProfileLoaded = isLoaded(profile);
-    const isLoggedIn = isProfileLoaded && !isEmpty(profile);
-    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
-    const hasProfileData = isProfileLoaded && profile.firstName && profile.lastName && profile.email;
-
-    const eventsActive = _.get(settings, 'features.events.active', false);
-    const storeInfoActive = _.get(settings, 'features.storeinfo.active', false);
-
-    const activePage = activeItem || _.get(profile, 'landingPage', 'today');
-
-    const todayVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'today');
-    const eventContentVisible = Boolean(!forceUserInfo && (!isLoggedIn || hasProfileData) && activePage === 'events');
-    const userInfoVisible = Boolean(isLoggedIn && (forceUserInfo || activePage === 'userinfo' || !hasProfileData));
-    const adminToolsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintools');
-    const adminToolsEventsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'admintoolsevents');
-    const adminSiteSettingsVisible = Boolean(isAdmin && !forceUserInfo && activePage === 'adminsitesettings');
-    const loginVisible = Boolean(!isLoggedIn && activePage === 'login');
-    const registerVisible = Boolean(!isLoggedIn && activePage === 'register');
-    const storeInfoVisible = Boolean(activePage === 'storeinfo');
-    const companyInfoVisible = Boolean(activePage === 'companyinfo');
-
     return (
       <div>
         <ThemeHandler />
+
         <EventLoader />
-        <TitleBar returnToFrontpage={() => this.switchActiveTab('today')} />
-        <Navbar switchActiveTab={this.switchActiveTab} activeItem={activePage} changeLanguage={this.changeLanguage} />
-        {todayVisible && <Today />}
-        {eventsActive && eventContentVisible && <EventList />}
-        {storeInfoActive && storeInfoVisible && <StoreInfo />}
-        {userInfoVisible && <UserInfo />}
-        {adminToolsVisible && <AdminTools />}
-        {adminToolsEventsVisible && <AdminToolsEvents />}
-        {adminSiteSettingsVisible && <AdminSiteSettings />}
-        {loginVisible && <Login />}
-        {registerVisible && <Register />}
-        {companyInfoVisible && <CompanyInfo />}
+        <CategoryLoader />
+        <ParticipationsLoader />
+        <UploadedCategoryLogosLoader />
+
+        <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
+        <Navbar changeLanguage={this.changeLanguage} />
+        <Switch>
+          <Route path="/today" component={Today} />
+          <Route path="/event/:id" component={SingleEvent} />
+          <Route path="/events" component={EventCalendar} />
+          <Route path="/storeinfo" component={StoreInfo} />
+          <Route path="/userinfo" component={UserInfo} />
+          <Route path="/admintools" component={AdminTools} />
+          <Route path="/admintoolsevents" component={AdminToolsEvents} />
+          <Route path="/adminsitesettings" component={AdminSiteSettings} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/companyinfo" component={CompanyInfo} />
+        </Switch>
+
         {isLoaded(settings) &&
           <FooterBar />
         }
@@ -135,4 +141,6 @@ MainView.propTypes = {
   dispatch: PropTypes.func,
   profile: PropTypes.object,
   settings: PropTypes.object,
+  location: PropTypes.object,
+  history: PropTypes.object,
 };

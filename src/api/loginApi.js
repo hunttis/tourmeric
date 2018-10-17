@@ -15,7 +15,7 @@ export async function loginFacebook() {
   });
 }
 
-export async function loginEmail(email, password) {
+export function loginEmail(email, password) {
   return firebase.login({ email, password });
 }
 

@@ -4,8 +4,106 @@ exports[`EventModal tests Compares EventModal to snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <EventModal
+    categories={
+      Object {
+        "-LAlvCmIWNzYKpa7-7HI": Object {
+          "abbreviation": "Lautapelit",
+          "logo": "152719272536668394",
+          "name": "Lautapelit / Board games",
+        },
+        "-LCmESny8m9JVEFQ_qOt": Object {
+          "abbreviation": "PKM",
+          "logo": "152722747904159438",
+          "name": "Pokémon",
+          "type": "TCG",
+        },
+        "-LDImTAGxkzrorL0tQdi": Object {
+          "abbreviation": "VG",
+          "logo": "152719372155055672",
+          "name": "Videogames",
+        },
+        "-LDIw-1LFgiM0EJZGfus": Object {
+          "abbreviation": "Necromunda",
+          "logo": "15271953483568546",
+          "name": "Necromunda",
+          "type": "Miniatures",
+        },
+        "category1": Object {
+          "abbreviation": "WH40K",
+          "logo": "1527227370219137123",
+          "name": "Warhammer 40,000",
+          "type": "Miniatures",
+        },
+        "category2": Object {
+          "abbreviation": "MtG",
+          "logo": "152722965771313789",
+          "name": "Magic: The Gathering",
+          "type": "TCG",
+        },
+      }
+    }
     closeModal={[Function]}
     eventId="mockEventId1"
+    events={
+      Object {
+        "mockEvent2": Object {
+          "category": "category2",
+          "createDate": "2018-05-20T16:46:32.009Z",
+          "date": "2018-05-20",
+          "entryFee": "6",
+          "format": "Standard",
+          "name": "Tapahtuma",
+          "notes": "FIJoijgasdsdgasdggagads",
+          "playerSlots": "14",
+          "prizes": "Foooooooooooooooo",
+          "rulesLevel": "Competitive",
+          "time": "10:00",
+        },
+        "mockEvent3": Object {
+          "category": "category2",
+          "createDate": "2018-05-20T16:04:29.595Z",
+          "date": "2018-05-21",
+          "entryFee": "5",
+          "format": "Modern",
+          "link": "https://magic.wizards.com/en/game-info/gameplay/formats/modern",
+          "name": "Monday Modern",
+          "notes": "Bring a friend!",
+          "playerSlots": "31",
+          "prizes": "Three (3) OMG credits per player into the prizepool.",
+          "published": true,
+          "rulesLevel": "Regular",
+          "time": "19:00",
+        },
+      }
+    }
+    participations={
+      Object {
+        "mockEventId1": Object {
+          "mockUserId": Object {
+            "comment": "Jee",
+            "date": "2018-06-23T09:40:26.992Z",
+            "firstName": "Test",
+            "lastName": "Person",
+            "userId": "mockUserId",
+          },
+        },
+      }
+    }
+    settings={
+      Object {
+        "activeLogo": "http://foo.com/image.png",
+        "dateFormat": "DD.MM.YYYY",
+        "pageSubtitle": "",
+        "pageTitle": "",
+        "subtitleTextColor": "#000",
+        "theme": "darkly",
+        "titleBarAngle": "150",
+        "titleBarColor": "#000",
+        "titleBarColor2": "#ec1c22",
+        "titleBarPercentage": "50",
+        "titleTextColor": "",
+      }
+    }
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -16,21 +114,1041 @@ ShallowWrapper {
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
-    "key": undefined,
+    "key": "modalmockEventId1",
     "nodeType": "host",
-    "props": Object {},
+    "props": Object {
+      "children": Array [
+        <div
+          className="modal-background"
+          onClick={[Function]}
+        />,
+        <div
+          className="modal-content"
+        >
+          <div
+            className="box is-rounded"
+          >
+            <div
+              className="columns is-multiline"
+            >
+              <div
+                className="column is-9"
+              >
+                <h1
+                  className="title has-text-success"
+                />
+              </div>
+              <div
+                className="column is-12"
+              />
+              <React.Fragment>
+                <div
+                  className="column is-12"
+                >
+                  <div
+                    className="subtitle has-text-info"
+                  >
+                    <Translate
+                      id="participants"
+                    />
+                     (
+                    1
+                     / 
+                    )
+                  </div>
+                </div>
+                <div
+                  className="column is-1"
+                />
+                <div
+                  className="column is-11"
+                >
+                  <ParticipantList
+                    maxParticipants={0}
+                    participations={
+                      Array [
+                        Object {
+                          "comment": "Jee",
+                          "date": "2018-06-23T09:40:26.992Z",
+                          "firstName": "Test",
+                          "lastName": "Person",
+                          "userId": "mockUserId",
+                        },
+                      ]
+                    }
+                  />
+                </div>
+              </React.Fragment>
+            </div>
+          </div>
+        </div>,
+        <button
+          aria-label="close"
+          className="modal-close is-large"
+          onClick={[Function]}
+        />,
+      ],
+      "className": "modal is-active",
+      "id": "modalmockEventId1",
+    },
     "ref": null,
-    "rendered": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "className": "modal-background",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="box is-rounded"
+          >
+            <div
+              className="columns is-multiline"
+            >
+              <div
+                className="column is-9"
+              >
+                <h1
+                  className="title has-text-success"
+                />
+              </div>
+              <div
+                className="column is-12"
+              />
+              <React.Fragment>
+                <div
+                  className="column is-12"
+                >
+                  <div
+                    className="subtitle has-text-info"
+                  >
+                    <Translate
+                      id="participants"
+                    />
+                     (
+                    1
+                     / 
+                    )
+                  </div>
+                </div>
+                <div
+                  className="column is-1"
+                />
+                <div
+                  className="column is-11"
+                >
+                  <ParticipantList
+                    maxParticipants={0}
+                    participations={
+                      Array [
+                        Object {
+                          "comment": "Jee",
+                          "date": "2018-06-23T09:40:26.992Z",
+                          "firstName": "Test",
+                          "lastName": "Person",
+                          "userId": "mockUserId",
+                        },
+                      ]
+                    }
+                  />
+                </div>
+              </React.Fragment>
+            </div>
+          </div>,
+          "className": "modal-content",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="columns is-multiline"
+            >
+              <div
+                className="column is-9"
+              >
+                <h1
+                  className="title has-text-success"
+                />
+              </div>
+              <div
+                className="column is-12"
+              />
+              <React.Fragment>
+                <div
+                  className="column is-12"
+                >
+                  <div
+                    className="subtitle has-text-info"
+                  >
+                    <Translate
+                      id="participants"
+                    />
+                     (
+                    1
+                     / 
+                    )
+                  </div>
+                </div>
+                <div
+                  className="column is-1"
+                />
+                <div
+                  className="column is-11"
+                >
+                  <ParticipantList
+                    maxParticipants={0}
+                    participations={
+                      Array [
+                        Object {
+                          "comment": "Jee",
+                          "date": "2018-06-23T09:40:26.992Z",
+                          "firstName": "Test",
+                          "lastName": "Person",
+                          "userId": "mockUserId",
+                        },
+                      ]
+                    }
+                  />
+                </div>
+              </React.Fragment>
+            </div>,
+            "className": "box is-rounded",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="column is-9"
+                >
+                  <h1
+                    className="title has-text-success"
+                  />
+                </div>,
+                undefined,
+                <div
+                  className="column is-12"
+                />,
+                undefined,
+                undefined,
+                undefined,
+                <React.Fragment>
+                  <div
+                    className="column is-12"
+                  >
+                    <div
+                      className="subtitle has-text-info"
+                    >
+                      <Translate
+                        id="participants"
+                      />
+                       (
+                      1
+                       / 
+                      )
+                    </div>
+                  </div>
+                  <div
+                    className="column is-1"
+                  />
+                  <div
+                    className="column is-11"
+                  >
+                    <ParticipantList
+                      maxParticipants={0}
+                      participations={
+                        Array [
+                          Object {
+                            "comment": "Jee",
+                            "date": "2018-06-23T09:40:26.992Z",
+                            "firstName": "Test",
+                            "lastName": "Person",
+                            "userId": "mockUserId",
+                          },
+                        ]
+                      }
+                    />
+                  </div>
+                </React.Fragment>,
+              ],
+              "className": "columns is-multiline",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <h1
+                    className="title has-text-success"
+                  />,
+                  "className": "column is-9",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                    "className": "title has-text-success",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "h1",
+                },
+                "type": "div",
+              },
+              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                  ],
+                  "className": "column is-12",
+                },
+                "ref": null,
+                "rendered": Array [
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                ],
+                "type": "div",
+              },
+              undefined,
+              undefined,
+              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="column is-12"
+                    >
+                      <div
+                        className="subtitle has-text-info"
+                      >
+                        <Translate
+                          id="participants"
+                        />
+                         (
+                        1
+                         / 
+                        )
+                      </div>
+                    </div>,
+                    <div
+                      className="column is-1"
+                    />,
+                    <div
+                      className="column is-11"
+                    >
+                      <ParticipantList
+                        maxParticipants={0}
+                        participations={
+                          Array [
+                            Object {
+                              "comment": "Jee",
+                              "date": "2018-06-23T09:40:26.992Z",
+                              "firstName": "Test",
+                              "lastName": "Person",
+                              "userId": "mockUserId",
+                            },
+                          ]
+                        }
+                      />
+                    </div>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <div
+                        className="subtitle has-text-info"
+                      >
+                        <Translate
+                          id="participants"
+                        />
+                         (
+                        1
+                         / 
+                        )
+                      </div>,
+                      "className": "column is-12",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <Translate
+                            id="participants"
+                          />,
+                          " (",
+                          1,
+                          " / ",
+                          undefined,
+                          ")",
+                        ],
+                        "className": "subtitle has-text-info",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "id": "participants",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                        " (",
+                        1,
+                        " / ",
+                        undefined,
+                        ")",
+                      ],
+                      "type": "div",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "column is-1",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <ParticipantList
+                        maxParticipants={0}
+                        participations={
+                          Array [
+                            Object {
+                              "comment": "Jee",
+                              "date": "2018-06-23T09:40:26.992Z",
+                              "firstName": "Test",
+                              "lastName": "Person",
+                              "userId": "mockUserId",
+                            },
+                          ]
+                        }
+                      />,
+                      "className": "column is-11",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "maxParticipants": 0,
+                        "participations": Array [
+                          Object {
+                            "comment": "Jee",
+                            "date": "2018-06-23T09:40:26.992Z",
+                            "firstName": "Test",
+                            "lastName": "Person",
+                            "userId": "mockUserId",
+                          },
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": "div",
+                  },
+                ],
+                "type": Symbol(react.fragment),
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "aria-label": "close",
+          "className": "modal-close is-large",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "button",
+      },
+    ],
     "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
-      "key": undefined,
+      "key": "modalmockEventId1",
       "nodeType": "host",
-      "props": Object {},
+      "props": Object {
+        "children": Array [
+          <div
+            className="modal-background"
+            onClick={[Function]}
+          />,
+          <div
+            className="modal-content"
+          >
+            <div
+              className="box is-rounded"
+            >
+              <div
+                className="columns is-multiline"
+              >
+                <div
+                  className="column is-9"
+                >
+                  <h1
+                    className="title has-text-success"
+                  />
+                </div>
+                <div
+                  className="column is-12"
+                />
+                <React.Fragment>
+                  <div
+                    className="column is-12"
+                  >
+                    <div
+                      className="subtitle has-text-info"
+                    >
+                      <Translate
+                        id="participants"
+                      />
+                       (
+                      1
+                       / 
+                      )
+                    </div>
+                  </div>
+                  <div
+                    className="column is-1"
+                  />
+                  <div
+                    className="column is-11"
+                  >
+                    <ParticipantList
+                      maxParticipants={0}
+                      participations={
+                        Array [
+                          Object {
+                            "comment": "Jee",
+                            "date": "2018-06-23T09:40:26.992Z",
+                            "firstName": "Test",
+                            "lastName": "Person",
+                            "userId": "mockUserId",
+                          },
+                        ]
+                      }
+                    />
+                  </div>
+                </React.Fragment>
+              </div>
+            </div>
+          </div>,
+          <button
+            aria-label="close"
+            className="modal-close is-large"
+            onClick={[Function]}
+          />,
+        ],
+        "className": "modal is-active",
+        "id": "modalmockEventId1",
+      },
       "ref": null,
-      "rendered": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "modal-background",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="box is-rounded"
+            >
+              <div
+                className="columns is-multiline"
+              >
+                <div
+                  className="column is-9"
+                >
+                  <h1
+                    className="title has-text-success"
+                  />
+                </div>
+                <div
+                  className="column is-12"
+                />
+                <React.Fragment>
+                  <div
+                    className="column is-12"
+                  >
+                    <div
+                      className="subtitle has-text-info"
+                    >
+                      <Translate
+                        id="participants"
+                      />
+                       (
+                      1
+                       / 
+                      )
+                    </div>
+                  </div>
+                  <div
+                    className="column is-1"
+                  />
+                  <div
+                    className="column is-11"
+                  >
+                    <ParticipantList
+                      maxParticipants={0}
+                      participations={
+                        Array [
+                          Object {
+                            "comment": "Jee",
+                            "date": "2018-06-23T09:40:26.992Z",
+                            "firstName": "Test",
+                            "lastName": "Person",
+                            "userId": "mockUserId",
+                          },
+                        ]
+                      }
+                    />
+                  </div>
+                </React.Fragment>
+              </div>
+            </div>,
+            "className": "modal-content",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="columns is-multiline"
+              >
+                <div
+                  className="column is-9"
+                >
+                  <h1
+                    className="title has-text-success"
+                  />
+                </div>
+                <div
+                  className="column is-12"
+                />
+                <React.Fragment>
+                  <div
+                    className="column is-12"
+                  >
+                    <div
+                      className="subtitle has-text-info"
+                    >
+                      <Translate
+                        id="participants"
+                      />
+                       (
+                      1
+                       / 
+                      )
+                    </div>
+                  </div>
+                  <div
+                    className="column is-1"
+                  />
+                  <div
+                    className="column is-11"
+                  >
+                    <ParticipantList
+                      maxParticipants={0}
+                      participations={
+                        Array [
+                          Object {
+                            "comment": "Jee",
+                            "date": "2018-06-23T09:40:26.992Z",
+                            "firstName": "Test",
+                            "lastName": "Person",
+                            "userId": "mockUserId",
+                          },
+                        ]
+                      }
+                    />
+                  </div>
+                </React.Fragment>
+              </div>,
+              "className": "box is-rounded",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="column is-9"
+                  >
+                    <h1
+                      className="title has-text-success"
+                    />
+                  </div>,
+                  undefined,
+                  <div
+                    className="column is-12"
+                  />,
+                  undefined,
+                  undefined,
+                  undefined,
+                  <React.Fragment>
+                    <div
+                      className="column is-12"
+                    >
+                      <div
+                        className="subtitle has-text-info"
+                      >
+                        <Translate
+                          id="participants"
+                        />
+                         (
+                        1
+                         / 
+                        )
+                      </div>
+                    </div>
+                    <div
+                      className="column is-1"
+                    />
+                    <div
+                      className="column is-11"
+                    >
+                      <ParticipantList
+                        maxParticipants={0}
+                        participations={
+                          Array [
+                            Object {
+                              "comment": "Jee",
+                              "date": "2018-06-23T09:40:26.992Z",
+                              "firstName": "Test",
+                              "lastName": "Person",
+                              "userId": "mockUserId",
+                            },
+                          ]
+                        }
+                      />
+                    </div>
+                  </React.Fragment>,
+                ],
+                "className": "columns is-multiline",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <h1
+                      className="title has-text-success"
+                    />,
+                    "className": "column is-9",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": undefined,
+                      "className": "title has-text-success",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "h1",
+                  },
+                  "type": "div",
+                },
+                undefined,
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      undefined,
+                      undefined,
+                      undefined,
+                      undefined,
+                      undefined,
+                    ],
+                    "className": "column is-12",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                  ],
+                  "type": "div",
+                },
+                undefined,
+                undefined,
+                undefined,
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": Array [
+                      <div
+                        className="column is-12"
+                      >
+                        <div
+                          className="subtitle has-text-info"
+                        >
+                          <Translate
+                            id="participants"
+                          />
+                           (
+                          1
+                           / 
+                          )
+                        </div>
+                      </div>,
+                      <div
+                        className="column is-1"
+                      />,
+                      <div
+                        className="column is-11"
+                      >
+                        <ParticipantList
+                          maxParticipants={0}
+                          participations={
+                            Array [
+                              Object {
+                                "comment": "Jee",
+                                "date": "2018-06-23T09:40:26.992Z",
+                                "firstName": "Test",
+                                "lastName": "Person",
+                                "userId": "mockUserId",
+                              },
+                            ]
+                          }
+                        />
+                      </div>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <div
+                          className="subtitle has-text-info"
+                        >
+                          <Translate
+                            id="participants"
+                          />
+                           (
+                          1
+                           / 
+                          )
+                        </div>,
+                        "className": "column is-12",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <Translate
+                              id="participants"
+                            />,
+                            " (",
+                            1,
+                            " / ",
+                            undefined,
+                            ")",
+                          ],
+                          "className": "subtitle has-text-info",
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "id": "participants",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                          " (",
+                          1,
+                          " / ",
+                          undefined,
+                          ")",
+                        ],
+                        "type": "div",
+                      },
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "column is-1",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <ParticipantList
+                          maxParticipants={0}
+                          participations={
+                            Array [
+                              Object {
+                                "comment": "Jee",
+                                "date": "2018-06-23T09:40:26.992Z",
+                                "firstName": "Test",
+                                "lastName": "Person",
+                                "userId": "mockUserId",
+                              },
+                            ]
+                          }
+                        />,
+                        "className": "column is-11",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "maxParticipants": 0,
+                          "participations": Array [
+                            Object {
+                              "comment": "Jee",
+                              "date": "2018-06-23T09:40:26.992Z",
+                              "firstName": "Test",
+                              "lastName": "Person",
+                              "userId": "mockUserId",
+                            },
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": "div",
+                    },
+                  ],
+                  "type": Symbol(react.fragment),
+                },
+              ],
+              "type": "div",
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "aria-label": "close",
+            "className": "modal-close is-large",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "button",
+        },
+      ],
       "type": "div",
     },
   ],
