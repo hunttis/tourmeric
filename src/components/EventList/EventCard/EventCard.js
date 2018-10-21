@@ -142,7 +142,7 @@ export default class EventCard extends Component {
 
 EventCard.propTypes = {
   eventId: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
   events: PropTypes.array.isRequired,
   settings: PropTypes.object.isRequired,
   participations: PropTypes.object,

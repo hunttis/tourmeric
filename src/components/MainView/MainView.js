@@ -39,23 +39,19 @@ export default class MainView extends Component {
     this.state = { redirected: false };
   }
 
-  componentWillMount() {
-    const isLoggedIn = isLoaded(this.props.profile) && !isEmpty(this.props.profile);
-
-    if (['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
-      this.props.history.push('/today');
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
 
     const wasProfileLoaded = isLoaded(this.props.profile);
     const isProfileLoaded = isLoaded(nextProps.profile);
     const isLoggedIn = isProfileLoaded && !isEmpty(nextProps.profile);
     const acceptedPrivacyPolicy = _.get(nextProps.profile, 'acceptedPrivacyPolicy', false);
+    const providerEmail = _.get(nextProps.profile, 'providerData[0].email', null);
+    const emailOk = (!nextProps.profile.useOtherEmail && (providerEmail || nextProps.profile.email)) || (nextProps.profile.useOtherEmail && nextProps.profile.otherEmail);
 
     if (!this.state.redirected) {
-      if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !nextProps.profile.email || !acceptedPrivacyPolicy)) {
+      if (isLoaded(nextProps.profile) && isEmpty(nextProps.profile) && ['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
+        this.props.history.push('/today');
+      } else if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !emailOk || !acceptedPrivacyPolicy)) {
         this.props.history.push('/userinfo');
         this.setState({ redirected: true });
       } else if (wasProfileLoaded !== isProfileLoaded) {

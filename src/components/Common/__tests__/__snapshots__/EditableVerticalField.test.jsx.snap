@@ -27,7 +27,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <label
-          className="label"
+          className="label false"
         >
           <Translate
             id="label"
@@ -57,7 +57,7 @@ ShallowWrapper {
           "children": <Translate
             id="label"
           />,
-          "className": "label",
+          "className": "label false",
         },
         "ref": null,
         "rendered": Object {
@@ -135,7 +135,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <label
-            className="label"
+            className="label false"
           >
             <Translate
               id="label"
@@ -165,7 +165,7 @@ ShallowWrapper {
             "children": <Translate
               id="label"
             />,
-            "className": "label",
+            "className": "label false",
           },
           "ref": null,
           "rendered": Object {

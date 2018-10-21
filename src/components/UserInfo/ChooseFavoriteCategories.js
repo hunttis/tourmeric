@@ -45,7 +45,10 @@ export default class ChooseFavoriteCategories extends Component {
           return (
             <div key={`categorytoggle-${category.name}`} className="field">
               <button onClick={() => this.toggleCategory(categoryId)} className={`button ${categoryChosen ? 'is-success' : 'is-outlined'}`}>
-                {category.name}
+                <figure className="image is-16x16">
+                  <img alt="" src={category.image} />
+                </figure>
+                &nbsp;&nbsp;{category.name}
               </button>
             </div>
 

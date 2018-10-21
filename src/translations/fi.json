@@ -206,6 +206,11 @@
   "thesewillbeinyourtodayviewanddefaultfilterforevents": "Nämä näytetään 'Tänään'-näkymässä ja suosikkisi ovat oletussuodattimena tapahtumanäkymässä.",
   "choosingnonewillfilternothing": "Jos yhtään ei ole valittuna, näytetään aina kaikkien kategorioiden tapahtumat.",
   "youcansendmeanewsletter": "Minulle saa lähettää uutiskirjeen sähköpostiin",
+  "emailfromsocialmedia": "Sähköpostiosoite sosiaalisen median tililtäsi",
+  "useotheremail": "Käytä eri sähköpostiosoitetta, kuin yllä",
+  "otheremail": "Toinen sähköpostiosoite",
+  "emailinfo": "Sähköpostitietosi",
+  "otherinfo": "Muut tiedot",
 
   "green": "Vihreä",
   "cyan": "Sinivihreä",

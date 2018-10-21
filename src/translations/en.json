@@ -208,6 +208,11 @@
   "thesewillbeinyourtodayviewanddefaultfilterforevents": "These will be shown in the 'Today'-view and used as a default filter in the 'Events'-view.",
   "choosingnonewillfilternothing": "If none are chosen, then you will always see events for all categories.",
   "youcansendmeanewsletter": "You can send me a newsletter by email",
+  "emailfromsocialmedia": "Email address form your social media account",
+  "useotheremail": "Use a different email address",
+  "otheremail": "Other email address",
+  "emailinfo": "Your Email Info",
+  "otherinfo": "Other Info",
 
   "green": "Green",
   "cyan": "Cyan",

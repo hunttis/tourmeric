@@ -14,7 +14,7 @@ export default class ImagePicker extends Component {
 
   render() {
     const { imageList, highlightedImage, size } = this.props;
-    if (_.isEmpty(imageList)) {
+    if (!imageList || _.isEmpty(imageList)) {
       return <div><Translate id="noimagesforcategories" /></div>;
     }
 
@@ -39,7 +39,7 @@ export default class ImagePicker extends Component {
 }
 
 ImagePicker.propTypes = {
-  imageList: PropTypes.object.isRequired,
+  imageList: PropTypes.object,
   highlightedImage: PropTypes.string,
   path: PropTypes.string.isRequired,
   size: PropTypes.string,
