@@ -192,8 +192,11 @@ export default class UserInfo extends Component {
 
   render() {
     const { profile } = this.props;
-    const allInfoNotEntered = isLoaded(profile) && (!profile.lastName || !profile.firstName || !profile.email);
-    const profileAllGood = isLoaded(profile) && profile.lastName && profile.firstName && profile.email && profile.acceptedPrivacyPolicy;
+    const providerEmail = _.get(profile, 'providerData[0].email', null);
+    const emailOk = (!profile.useOtherEmail && (providerEmail || profile.email)) || (profile.useOtherEmail && profile.otherEmail);
+
+    const allInfoNotEntered = isLoaded(profile) && (!profile.lastName || !profile.firstName || !emailOk);
+    const profileAllGood = isLoaded(profile) && profile.lastName && profile.firstName && emailOk && profile.acceptedPrivacyPolicy;
 
     return (
       <section className="section">

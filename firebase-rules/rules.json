@@ -364,6 +364,12 @@
         "active": {
           ".validate": "newData.isBoolean()"
         },
+        "useOtherEmail": {
+          ".validate": "newData.isBoolean()"
+        },
+        "otherEmail": {
+          ".validate": "newData.isString()"
+        },
         "$other": {
           ".validate": "false"
         },

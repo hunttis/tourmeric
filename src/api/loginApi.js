@@ -12,6 +12,7 @@ export async function loginFacebook() {
   await firebase.login({
     provider: 'facebook',
     type: 'popup',
+    scopes: ['email'],
   });
 }
 

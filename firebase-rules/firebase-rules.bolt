@@ -213,7 +213,9 @@ type User {
   favoriteCategories: String | Null,
   acceptsNewsletter: Boolean | Null,
   active: Boolean | Null,
-  betaparticipation: Object | Null
+  betaparticipation: Object | Null,
+  useOtherEmail: Boolean | Null,
+  otherEmail: String | Null
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }

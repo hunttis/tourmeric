@@ -41,13 +41,13 @@ export default class EditableVerticalField extends Component {
 
   render() {
     const {
-      labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', idleIcon, emptyClass,
+      labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', idleIcon, emptyClass, disabled = false,
     } = this.props;
     const { saved, editing, fieldValue } = this.state;
 
     return (
       <div className="field">
-        <label className="label">
+        <label className={`label ${disabled && 'has-text-info'}`}>
           <Translate id={labelContent} />
         </label>
         <div className="field">
@@ -56,14 +56,15 @@ export default class EditableVerticalField extends Component {
             <Translate>
               {translate => (<input
                 type={inputType}
-                className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${emptyClass && !fieldValue ? 'is-danger' : ''}`}
+                className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${emptyClass && !fieldValue ? 'is-danger' : ''} ${disabled && 'has-text-info'}`}
                 placeholder={translate(placeHolder)}
                 defaultValue={defaultValue}
                 onChange={event => this.handleChange(path, targetName, event.target.value)}
+                disabled={disabled}
               />)
               }
             </Translate>
-            {(idleIcon && !saved && !editing) && <span className="icon is-small is-left"><i className={`fas ${idleIcon}`} /></span>}
+            {(idleIcon && !saved && !editing) && <span className="icon is-small is-left"><i className={`fas ${idleIcon} ${disabled && 'has-text-black'}`} /></span>}
             {saved &&
               <span className={`icon is-small ${idleIcon ? 'is-left' : 'is-right'} ${emptyClass && !fieldValue ? 'has-text-danger' : 'has-text-success'}`}>
                 <i className={`fas ${(emptyClass && !fieldValue) ? 'fa-thumbs-down' : 'fa-thumbs-up'}`} />
@@ -85,4 +86,5 @@ EditableVerticalField.propTypes = {
   inputType: PropTypes.string,
   idleIcon: PropTypes.string,
   emptyClass: PropTypes.string,
+  disabled: PropTypes.bool,
 };
