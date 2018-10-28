@@ -10,6 +10,18 @@ export default class Navbar extends Component {
 
   state = { burgerOpen: false };
 
+  componentDidMount() {
+    this.historyListener = this.props.history.listen(() => this.closeBurger());
+  }
+
+  componentWillUnmount() {
+    this.historyListener();
+  }
+
+  closeBurger() {
+    this.setState({ burgerOpen: false });
+  }
+
   toggleBurger() {
     const { burgerOpen } = this.state;
     this.setState({ burgerOpen: !burgerOpen });
@@ -139,4 +151,5 @@ Navbar.propTypes = {
   settings: PropTypes.object,
   changeLanguage: PropTypes.func,
   location: PropTypes.object,
+  history: PropTypes.object,
 };

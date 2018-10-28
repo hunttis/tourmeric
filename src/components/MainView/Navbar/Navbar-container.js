@@ -1,6 +1,7 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
+import { withRouter } from 'react-router-dom';
 
 import Navbar from './Navbar';
 
@@ -16,4 +17,4 @@ export default compose(
     location: state.router.location,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-)(Navbar);
+)(withRouter(Navbar));
