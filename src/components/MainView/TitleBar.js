@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Translate, setActiveLanguage } from 'react-localize-redux';
@@ -24,39 +24,68 @@ export default class TitleBar extends Component {
 
     if (settingsLoaded) {
       return (
-        <section className="hero titlebar animated">
-          <div className="hero-body">
-            <div className="columns is-marginless">
-              <div className="column is-2 has-text-centered-mobile is-vcentered is-paddingless">
+        <Fragment>
+          {/* Mobile hero bar */}
+          <section className="hero titlebar is-small is-hidden-tablet">
+            <div className="hero-body ">
+              <div className="container has-text-centered is-flex is-horizontal-center">
                 {settings.activeLogo &&
+                <a onClick={() => returnToFrontpage()}>
+                  <figure className="image is-128x128 is-flex is-vertical-center">
+                    <img src={settings.activeLogo} alt="" />
+                  </figure>
+                </a>
+              }
+                {settings.pageTitle &&
+                <div id="titletext" className="title is-2">
+                  {pageTitle}
+                </div>
+              }
+                {pageSubtitle &&
+                <div id="subtitletext" className="subtitle has-text-grey-light is-6 is-paddingless is-marginless">
+                  {pageSubtitle}
+                </div>
+              }
+              </div>
+              <div className="container button-container">
+                {highlightsActive && <Highlights />}
+              </div>
+            </div>
+          </section>
+
+          {/* Non-Mobile hero bar */}
+          <section className="hero titlebar is-hidden-mobile">
+            <div className="hero-body is-hidden-mobile">
+              <div className="columns is-marginless">
+                <div className="column is-2 is-vcentered">
+                  {settings.activeLogo &&
                   <a onClick={() => returnToFrontpage()}>
                     <div id="logo" className="is-paddingless is-marginless">
-                      <img src={settings.activeLogo} alt="" className="is-hidden-tablet" />
-
-                      <figure className="image is-hidden-mobile">
+                      <figure className="image">
                         <img src={settings.activeLogo} alt="" />
                       </figure>
                     </div>
                   </a>
                 }
-                {settings.pageTitle &&
+                  {settings.pageTitle &&
                   <div id="titletext" className="title is-2">
                     {pageTitle}
                   </div>
                 }
-              </div>
-              <div className="column button-container">
-                {highlightsActive && <Highlights />}
-              </div>
+                </div>
+                <div className="column button-container">
+                  {highlightsActive && <Highlights />}
+                </div>
 
-            </div>
-            {pageSubtitle &&
+              </div>
+              {pageSubtitle &&
               <div id="subtitletext" className="subtitle has-text-grey-light is-6 is-paddingless is-marginless">
                 {pageSubtitle}
               </div>
             }
-          </div>
-        </section>
+            </div>
+          </section>
+        </Fragment>
       );
     }
 
@@ -68,6 +97,7 @@ export default class TitleBar extends Component {
     );
   }
 }
+
 
 TitleBar.propTypes = {
   settings: PropTypes.object,
