@@ -161,6 +161,16 @@ button.image-square {
   animation-duration: 750ms;
 }
 
+.card.today-card {
+  border: 2px solid #797f7f;
+  background-color: #383f3f;
+}
+
+.card.past-card {
+  border: 2px solid #020a1b;
+  background-color: #161d1d;
+}
+
 @keyframes heightgrow {
   0% {
     max-height: 0%;
