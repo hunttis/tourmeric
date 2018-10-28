@@ -364,7 +364,7 @@ ShallowWrapper {
               className="column is-6"
             >
               <div
-                className="buttons has-addons is-pulled-right"
+                className="buttons has-addons is-right"
               >
                 <button
                   className="button"
@@ -828,7 +828,7 @@ ShallowWrapper {
                 className="column is-6"
               >
                 <div
-                  className="buttons has-addons is-pulled-right"
+                  className="buttons has-addons is-right"
                 >
                   <button
                     className="button"
@@ -1304,7 +1304,7 @@ ShallowWrapper {
                   className="column is-6"
                 >
                   <div
-                    className="buttons has-addons is-pulled-right"
+                    className="buttons has-addons is-right"
                   >
                     <button
                       className="button"
@@ -2093,7 +2093,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": <div
-                    className="buttons has-addons is-pulled-right"
+                    className="buttons has-addons is-right"
                   >
                     <button
                       className="button"
@@ -2138,7 +2138,7 @@ ShallowWrapper {
                         />
                       </button>,
                     ],
-                    "className": "buttons has-addons is-pulled-right",
+                    "className": "buttons has-addons is-right",
                   },
                   "ref": null,
                   "rendered": Array [
@@ -2651,7 +2651,7 @@ ShallowWrapper {
                 className="column is-6"
               >
                 <div
-                  className="buttons has-addons is-pulled-right"
+                  className="buttons has-addons is-right"
                 >
                   <button
                     className="button"
@@ -3115,7 +3115,7 @@ ShallowWrapper {
                   className="column is-6"
                 >
                   <div
-                    className="buttons has-addons is-pulled-right"
+                    className="buttons has-addons is-right"
                   >
                     <button
                       className="button"
@@ -3591,7 +3591,7 @@ ShallowWrapper {
                     className="column is-6"
                   >
                     <div
-                      className="buttons has-addons is-pulled-right"
+                      className="buttons has-addons is-right"
                     >
                       <button
                         className="button"
@@ -4380,7 +4380,7 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": <div
-                      className="buttons has-addons is-pulled-right"
+                      className="buttons has-addons is-right"
                     >
                       <button
                         className="button"
@@ -4425,7 +4425,7 @@ ShallowWrapper {
                           />
                         </button>,
                       ],
-                      "className": "buttons has-addons is-pulled-right",
+                      "className": "buttons has-addons is-right",
                     },
                     "ref": null,
                     "rendered": Array [

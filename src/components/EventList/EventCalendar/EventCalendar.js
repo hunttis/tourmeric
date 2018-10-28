@@ -243,7 +243,7 @@ export default class EventCalendar extends Component {
               <h1 className="title">{_.capitalize(moment(`${targetMonth}-${targetYear}`, 'MM-YYYY').format('MMMM'))}</h1>
             </div>
             <div className="column is-6">
-              <div className="buttons has-addons is-pulled-right">
+              <div className="buttons has-addons is-right">
                 <button className="button" onClick={() => { this.backMonth(); }}><Translate id="previousmonth" /></button>
                 <button className="button" onClick={() => { this.forwardMonth(); }}><Translate id="nextmonth" /></button>
               </div>
