@@ -26,6 +26,7 @@ import finnishTranslations from './translations/fi.json';
 
 import eventReducer from './reducers/eventReducer';
 
+/* eslint-disable-next-line import/no-unresolved */
 const config = require('./config').get(process.env.NODE_ENV, process.env.DEPLOYMENT);
 
 const defaultLanguage = 'fi';

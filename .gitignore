@@ -1,11 +1,21 @@
 node_modules
-.DS_Store
-.cache
-dist
-src/config.js
-build
 yarn-error.log
-deploy
+**/.DS_Store
+.cache
+
+# These are the firebase configs that will be generated, remove them from ignore when you have generated them for yourself
 .firebaserc
 .firebase
+
+# Build directories
+dist
+build
+deploy
 testing
+
+# Remove these when you have your own, these are ignored for tourmeric development purposes.
+# You probably shouldn't have them in the repo though if your repo is open-source
+src/config.js
+src/index-prod.html
+src/images/favicon.ico
+src/config-prod.js
