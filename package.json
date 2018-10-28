@@ -30,7 +30,7 @@
     "firebase-init": "firebase init",
     "firebase-deploy": "yarn build; firebase use default; firebase deploy",
     "firebase-quick-deploy": "yarn build; firebase deploy",
-    "firebase-deploy-testing": "DEPLOYMENT=TESTING parcel build ./src/index.html -d deploy --public-url . --no-source-maps; firebase use testing; firebase deploy",
+    "firebase-deploy-testing": "DEPLOYMENT=TESTING parcel build ./src/index.html -d testing --public-url . --no-source-maps; firebase use testing; firebase deploy",
     "firebase-deploy-rules": "firebase use default; firebase deploy --only database",
     "firebase-deploy-rules-testing": "firebase use testing; firebase deploy --only database"
   },
