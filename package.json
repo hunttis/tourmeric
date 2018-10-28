@@ -15,6 +15,7 @@
   "homepage": "https://gitlab.com/hunttis/tourmeric#README",
   "scripts": {
     "dev": "parcel ./src/index.html",
+    "clean": "rm -rf .cache; rm -rf deploy; rm -rf testing",
     "dev-testing": "DEPLOYMENT=TESTING NODE_ENV=development parcel ./src/index.html -d testing",
     "dev-production": "NODE_ENV=production parcel ./src/index-prod.html -o index.html ",
     "build": "parcel build ./src/index-prod.html -o index.html  -d deploy --public-url . --no-source-maps",
@@ -28,9 +29,9 @@
     "firebase-serve": "firebase serve",
     "firebase-login": "firebase login",
     "firebase-init": "firebase init",
-    "firebase-deploy": "yarn build; firebase use default; firebase deploy",
+    "firebase-deploy": "yarn clean; yarn build; firebase use default; firebase deploy",
     "firebase-quick-deploy": "yarn build; firebase deploy",
-    "firebase-deploy-testing": "DEPLOYMENT=TESTING parcel build ./src/index.html -d testing --public-url . --no-source-maps; firebase use testing; firebase deploy",
+    "firebase-deploy-testing": "yarn clean; DEPLOYMENT=TESTING parcel build ./src/index.html -d deploy --public-url . --no-source-maps; firebase use testing; firebase deploy",
     "firebase-deploy-rules": "firebase use default; firebase deploy --only database",
     "firebase-deploy-rules-testing": "firebase use testing; firebase deploy --only database"
   },
