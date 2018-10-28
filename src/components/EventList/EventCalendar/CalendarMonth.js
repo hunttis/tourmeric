@@ -5,6 +5,19 @@ import _ from 'lodash';
 export const CalendarMonth = ({ chunkedCalendar, categories, clickDay }) => chunkedCalendar.map((week, weekIndex) => (
   <div key={`calendar-week-${weekIndex}`} className="column is-12 columns is-marginless">
     {week.map((day, dayIndex) => {
+
+      let dayClass = '';
+      const today = moment();
+      const dayMoment = moment(day.dayLink, 'YYYY/MM/DD');
+
+      if (dayMoment.isSame(today, 'day')) {
+        dayClass = 'today-card';
+      } else if (dayMoment.isBefore(today, 'day')) {
+        dayClass = 'past-card';
+      } else if (dayMoment.isAfter(today, 'day')) {
+        dayClass = 'future-card';
+      }
+
       if (day.empty) {
         return (
           <div key={`calendar-day-${dayIndex}`} className="column is-paddingless is-marginless is-hidden-mobile" />
@@ -15,7 +28,7 @@ export const CalendarMonth = ({ chunkedCalendar, categories, clickDay }) => chun
           key={`calendar-day-${dayIndex}`}
           className={`column is-paddingless is-marginless ${_.isEmpty(day.eventsForDay) && 'is-hidden-mobile'}`}
         >
-          <div className="card calendar-day" onClick={() => { clickDay(day); }}>
+          <div className={`card calendar-day ${dayClass}`} onClick={() => { clickDay(day); }}>
             <div className="card-header">
               <div className="card-header-title calendar-title">
                 <div className="level calendar-cardtitle">
