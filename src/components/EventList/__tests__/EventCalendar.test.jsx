@@ -18,7 +18,7 @@ describe('EventList tests', () => {
       settings={mockSettings}
       uploadedCategoryLogos={mockUploadedLogos}
       history={history}
-      location={{ pathname: 'foo' }}
+      location={{ pathname: '/events/2018/10' }}
     />);
 
     expect(eventList).toMatchSnapshot();
