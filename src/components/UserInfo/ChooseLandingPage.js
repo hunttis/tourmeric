@@ -52,10 +52,14 @@ export default class ChooseLandingPage extends Component {
             <Translate id="page" />
           </label>
           <div className="field-body">
-            <select className="input" defaultValue={landingPage} onChange={event => this.changeLandingPage(event.target.value)}>
-              <option><Translate id="select" /></option>
-              {Object.keys(this.pageOptions).map((pageOption, index) => <option key={`pageoption-${index}`} value={pageOption}><Translate id={pageOption} /></option>)}
-            </select>
+            <Translate>
+              {translate => (
+                <select className="input" defaultValue={landingPage} onChange={event => this.changeLandingPage(event.target.value)}>
+                  <option>{translate('select')}</option>
+                  {Object.keys(this.pageOptions).map((pageOption, index) => <option key={`pageoption-${index}`} value={pageOption}>{translate(pageOption)}</option>)}
+                </select>
+              )}
+            </Translate>
           </div>
         </div>
         <p>&nbsp;</p>
@@ -66,12 +70,14 @@ export default class ChooseLandingPage extends Component {
                 <Translate id="page" />
               </label>
               <div className="field-body">
-                <select className="input" defaultValue={landingSubpage} onChange={event => this.changeLandingSubpage(event.target.value)}>
-                  <option><Translate id="select" /></option>
-                  {this.pageOptions[landingPage].map((subpageOption, index) => (
-                    <option key={`subpageoption-${index}`} value={subpageOption}><Translate id={subpageOption} /></option>
-                  ))}
-                </select>
+                <Translate>
+                  {translate => (
+                    <select className="input" defaultValue={landingSubpage} onChange={event => this.changeLandingSubpage(event.target.value)}>
+                      <option>{translate('select')}</option>
+                      {this.pageOptions[landingPage].map((subpageOption, index) => <option key={`subpageoption-${index}`} value={subpageOption}>{translate(subpageOption)}</option>)}
+                    </select>
+                  )}
+                </Translate>
               </div>
             </div>
           </Fragment>
@@ -83,9 +89,13 @@ export default class ChooseLandingPage extends Component {
                 <Translate id="subpage" />
               </label>
               <div className="field-body">
-                <select disabled className="input" defaultValue={landingSubpage} onChange={event => this.changeLandingSubpage(event.target.value)}>
-                  <option><Translate id="nosubpage" /></option>
-                </select>
+                <Translate>
+                  {translate => (
+                    <select disabled className="input" defaultValue={landingSubpage} onChange={event => this.changeLandingSubpage(event.target.value)}>
+                      <option>{translate('nosubpage')}</option>
+                    </select>
+                  )}
+                </Translate>
               </div>
             </div>
           </Fragment>
