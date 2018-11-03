@@ -54,7 +54,12 @@ export default class Navbar extends Component {
         <div className="navbar is-white" role="navigation" aria-label="dropdown navigation">
           <div className="navbar-brand">
             <div className="navbar-item is-hidden-desktop">
-              <img src={settings.activeLogo} alt="" />
+              {settings.activeLogo &&
+                <img src={settings.activeLogo} alt="" />
+              }
+              {!settings.activeLogo &&
+                <div>{settings.pageTitle}</div>
+              }
             </div>
 
             <div role="button" className={`navbar-burger ${this.state.burgerOpen && 'is-active'}`} tabIndex={0} onClick={() => { this.toggleBurger(); }}>
