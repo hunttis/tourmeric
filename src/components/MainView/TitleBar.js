@@ -25,35 +25,8 @@ export default class TitleBar extends Component {
     if (settingsLoaded) {
       return (
         <Fragment>
-          {/* Mobile hero bar */}
-          <section className="hero titlebar is-small is-hidden-tablet">
-            <div className="hero-body ">
-              <div className="container has-text-centered is-flex is-horizontal-center">
-                {settings.activeLogo &&
-                <a onClick={() => returnToFrontpage()}>
-                  <figure className="image is-128x128 is-flex is-vertical-center">
-                    <img src={settings.activeLogo} alt="" />
-                  </figure>
-                </a>
-              }
-                {settings.pageTitle &&
-                <div id="titletext" className="title is-2">
-                  {pageTitle}
-                </div>
-              }
-                {pageSubtitle &&
-                <div id="subtitletext" className="subtitle has-text-grey-light is-6 is-paddingless is-marginless">
-                  {pageSubtitle}
-                </div>
-              }
-              </div>
-              <div className="container button-container">
-                {highlightsActive && <Highlights />}
-              </div>
-            </div>
-          </section>
 
-          {/* Non-Mobile hero bar */}
+          {/* Hero bar only visible in desktop */}
           <section className="hero titlebar is-hidden-mobile">
             <div className="hero-body is-hidden-mobile">
               <div className="columns is-marginless">
