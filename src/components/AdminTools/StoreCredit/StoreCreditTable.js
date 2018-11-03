@@ -23,7 +23,7 @@ export default class StoreCreditTable extends Component {
     for (const dataItem of Object.values(creditData)) {
       total += dataItem.value;
     }
-    return total;
+    return total.toFixed(2);
   }
 
   updateCategory(entryId, category) {
