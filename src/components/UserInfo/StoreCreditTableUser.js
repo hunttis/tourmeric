@@ -10,7 +10,7 @@ export default class StoreCreditTableUser extends Component {
     for (const dataItem of Object.values(creditData)) {
       total += dataItem.value;
     }
-    return total;
+    return total.toFixed(2);
   }
 
   render() {
