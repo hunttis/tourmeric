@@ -44,17 +44,42 @@ export default class StoreInfoEditor extends Component {
 
   render() {
     const { settings, uploadedStoreinfoFiles } = this.props;
+    const introTextActive = _.get(settings, 'features.storeinfo.introtext', false);
 
     if (isLoaded(settings)) {
-      const { openingHours, location } = settings;
+      const { openingHours, location, introText } = settings;
       return (
         <Fragment>
           <h1 className="title">
             <Translate id="storeinfo" />
           </h1>
 
+
+          <h2 className="subtitle">
+            <Translate id="introtext" />
+          </h2>
+          <div className="box">
+            <EditableTextarea
+              defaultValue={introText}
+              labelContent=""
+              placeHolder="introtextplaceholder"
+              path="/settings"
+              targetName="introText"
+            />
+            <div className="level">
+              <div className="level-left">
+                <Translate id="featureactive" />:
+              </div>
+              <div className="level-right">
+                <button onClick={() => { firebase.update('/settings/features/storeinfo/', { introtext: true }); }} className={`button ${introTextActive && 'is-success'}`}><Translate id="on" /></button>
+                <button onClick={() => { firebase.update('/settings/features/storeinfo/', { introtext: false }); }} className={`button ${!introTextActive && 'is-danger'}`}><Translate id="off" /></button>
+              </div>
+            </div>
+          </div>
+
           <OpeningHoursEditor openingHours={openingHours} />
           {this.todaysOpeningHours()}
+
 
           <h2 className="subtitle">
             <Translate id="storelocation" />
@@ -97,6 +122,7 @@ export default class StoreInfoEditor extends Component {
               />
             </div>
           </div>
+
           <FileDropper path={filesPath} />
           <div>
             {

@@ -10683,10 +10683,10 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-translate@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/translate/-/translate-1.0.2.tgz#31834b828d3e06e936cb24e7d2ddbb2dcf73a400"
-  integrity sha512-bLqx5/o6cs4WiRa8RPRTT61oDIn8mFSzYJolZ/Dq74eeyozffh2HFZ+9rGPS/69DzHTzOfFgi+wxrsEPFn0U5Q==
+translate@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/translate/-/translate-1.0.3.tgz#8b8140dcd4034746efe4266cab34ec18bbbbd479"
+  integrity sha512-7yFfZTkguXtuD4ysBamFn8fbFRx1fqN3khgfy3D+8RQ+RInmly/kanPrGaux3JFLtZPNIv2uTZhi7+XCrcRYEA==
   dependencies:
     node-fetch "^1.7.3"
 

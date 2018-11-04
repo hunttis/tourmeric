@@ -263,6 +263,11 @@
   "friday": "Perjantai",
   "saturday": "Lauantai",
   "sunday": "Sunnuntai",
+  "introtext": "Lyhyt esittely",
+  "introtextplaceholder": "Lyhyt esittely yrityksestä, näytetään yläpalkissa",
+  "featureactive": "Ominaisuus päällä",
+  "on": "Päällä",
+  "off": "Pois päältä",
 
   "addexception": "Lisää poikkeus",
   "showcurrentexceptions": "Näytä nykyiset poikkeukset",

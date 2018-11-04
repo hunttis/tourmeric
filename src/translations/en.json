@@ -264,6 +264,11 @@
   "friday": "Friday",
   "saturday": "Saturday",
   "sunday": "Sunday",
+  "introtext": "Short intro",
+  "introtextplaceholder": "Short introduction about the company, will be shown in the title bar",
+  "featureactive": "Feature active",
+  "on": "On",
+  "off": "Off",
 
   "addexception": "Add exception",
   "showcurrentexceptions": "Show current exceptions",
