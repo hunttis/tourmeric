@@ -221,17 +221,17 @@ export default class EventCalendar extends Component {
             <div className="column is-12 is-mobile has-text-centered">
               {isLoaded(categories) && Object.entries(categories).map((categoryEntry) => {
                 const activeStatus = _.includes(this.state.categoryFilter, categoryEntry[0]) ? 'is-primary' : '';
-                const buttonClass = `button is-grouped image-square ${activeStatus} `;
+                const buttonClass = `button is-grouped ${activeStatus}`;
 
                 const category = categories[categoryEntry[0]];
 
                 return (
                   <div key={`categoryfilter-${categoryEntry[0]}`} className="is-one-quarter-desktop is-one-quarter-tablet is-one-third-mobile has-text-centered is-inline-flex">
-                    <button
-                      className={buttonClass}
-                      onClick={() => this.toggleFilter(categoryEntry[0])}
-                    >
+                    <button className={`${buttonClass} is-hidden-mobile image-square`} onClick={() => this.toggleFilter(categoryEntry[0])}>
                       <img className="image is-48x48" src={category.image} alt="" />
+                    </button>
+                    <button className={`${buttonClass} is-hidden-tablet`} onClick={() => this.toggleFilter(categoryEntry[0])}>
+                      <img className="image is-24x24" src={category.image} alt="" />
                     </button>
                   </div>
                 );
