@@ -17,6 +17,9 @@ export default class TitleBar extends Component {
     const { settings, returnToFrontpage } = this.props;
 
     const highlightsActive = _.get(settings, 'features.highlights.active', false);
+    const introTextActive = _.get(settings, 'features.storeinfo.introtext', false);
+    const introText = _.get(settings, 'introText', '');
+    const introTextParagraphs = introText.split('\n');
 
     const pageTitle = _.get(settings, 'pageTitle', 'Pagetitle not set');
     const pageSubtitle = _.get(settings, 'pageSubtitle', '');
@@ -49,7 +52,13 @@ export default class TitleBar extends Component {
                 <div className="column button-container">
                   {highlightsActive && <Highlights />}
                 </div>
-
+                {introTextActive &&
+                  <div className="column introtext-container">
+                    <div className="introtext-box">
+                      {introTextParagraphs.map(paragraph => <p>{paragraph}&nbsp;</p>) }
+                    </div>
+                  </div>
+                }
               </div>
               {pageSubtitle &&
               <div id="subtitletext" className="subtitle has-text-grey-light is-6 is-paddingless is-marginless">
