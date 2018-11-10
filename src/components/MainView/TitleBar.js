@@ -55,7 +55,7 @@ export default class TitleBar extends Component {
                 {introTextActive &&
                   <div className="column introtext-container">
                     <div className="introtext-box">
-                      {introTextParagraphs.map(paragraph => <p>{paragraph}&nbsp;</p>) }
+                      {introTextParagraphs.map((paragraph, index) => <p key={`introtextparagraph-${index}`}>{paragraph}&nbsp;</p>) }
                     </div>
                   </div>
                 }

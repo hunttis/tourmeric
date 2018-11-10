@@ -182,6 +182,10 @@
       ".read": "(auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin')",
       ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
     },
+    "storecreditcategories": {
+      ".read": "(auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin')",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
     "uploadedFooterItems": {
       "$id": {
         ".validate": "newData.hasChildren()",

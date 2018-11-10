@@ -31,7 +31,7 @@ export default class StoreCreditTable extends Component {
   }
 
   render() {
-    const { userId, creditData, profile, settings } = this.props;
+    const { userId, creditData, profile, settings, storecreditcategories } = this.props;
     const user = this.getUser(userId).value;
     const username = `${user.firstName} ${user.lastName}`;
     const calculatedTotal = this.calculateTotal(creditData);
@@ -65,7 +65,7 @@ export default class StoreCreditTable extends Component {
               const data = dataItem[1];
               const dataEntryUser = this.getUser(data.creditAddedBy).value;
               const entryMadeBy = `${dataEntryUser.firstName} ${dataEntryUser.lastName}`;
-              return <StoreCreditRow key={`${userId}-${dataId}`} userId={userId} dataId={dataId} data={data} entryMadeBy={entryMadeBy} isAdmin={isAdmin} updateCategory={(entryId, category) => this.updateCategory(entryId, category)} />;
+              return <StoreCreditRow key={`${userId}-${dataId}`} userId={userId} dataId={dataId} data={data} entryMadeBy={entryMadeBy} isAdmin={isAdmin} updateCategory={(entryId, category) => this.updateCategory(entryId, category)} storecreditcategories={storecreditcategories} />;
             })}
           </tbody>
           <tfoot>
@@ -74,7 +74,7 @@ export default class StoreCreditTable extends Component {
                 <Translate id="total" />
               </th>
               <th>
-                {calculatedTotal} €
+                {calculatedTotal}&nbsp;€
               </th>
             </tr>
           </tfoot>
@@ -91,4 +91,5 @@ StoreCreditTable.propTypes = {
   creditData: PropTypes.object,
   profile: PropTypes.object,
   settings: PropTypes.object,
+  storecreditcategories: PropTypes.object,
 };
