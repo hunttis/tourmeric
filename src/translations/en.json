@@ -246,6 +246,15 @@
   "setcategory": "Set category",
   "newcreditrow": "New credit row",
 
+  "storecreditcategories": "Store credit categories",
+  "mapping": "Name the categories",
+  "ifyouwanttouseacategorygiveitaname": "If you want to use a category, give it a name",
+  "namelesscategoriesarehidden": "Nameless categories are hidden",
+  "greencategoryname": "Green category name",
+  "redcategoryname": "Red category name",
+  "yellowcategoryname": "Yellow category name",
+  "bluecategoryname": "Blue category name",
+
   "highlights": "Highlights",
   "newhighlight": "New highlight",
   "activate": "Activate",

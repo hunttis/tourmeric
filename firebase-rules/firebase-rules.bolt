@@ -63,6 +63,11 @@ path /storecredit {
   write() { isAdmin() }
 }
 
+path /storecreditcategories {
+  read() { isAdmin() }
+  write() { isAdmin() }
+}
+
 path /uploadedFooterItems/{id} is File {
   read() { true }
   write() { isAdmin() }

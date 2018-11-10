@@ -27,11 +27,27 @@ export default class CreditModal extends Component {
     this.setState({ creditFormNote: '', creditFormAmount: 0.0 });
   }
 
-  render() {
-    const { userId, storecredit } = this.props;
+  parseMappedColor(categoryName) {
+    switch (categoryName) {
+      case 'green':
+        return 'success';
+      case 'red':
+        return 'danger';
+      case 'yellow':
+        return 'warning';
+      case 'blue':
+        return 'info';
+      default:
+        return 'white';
+    }
+  }
 
-    if (isLoaded(storecredit)) {
+  render() {
+    const { userId, storecredit, storecreditcategories } = this.props;
+
+    if (isLoaded(storecredit) && isLoaded(storecreditcategories)) {
       const userCreditData = storecredit ? storecredit[userId] : {};
+
       return (
         <Fragment>
           <div className="box">
@@ -60,10 +76,11 @@ export default class CreditModal extends Component {
             <div className="field">
               <label className="label"><Translate id="itemcategory" /></label>
               <button className={`button is-white ${this.state.creditCategory !== '' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: '' }); }}><Translate id="none" /></button>
-              <button className={`button is-success ${this.state.creditCategory !== 'green' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: 'green' }); }}><Translate id="green" /></button>
-              <button className={`button is-warning ${this.state.creditCategory !== 'yellow' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: 'yellow' }); }}><Translate id="yellow" /></button>
-              <button className={`button is-danger ${this.state.creditCategory !== 'red' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: 'red' }); }}><Translate id="red" /></button>
-              <button className={`button is-info ${this.state.creditCategory !== 'blue' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: 'blue' }); }}><Translate id="blue" /></button>
+              {storecreditcategories && Object.entries(storecreditcategories).map((categoryEntry, index) => {
+                const mappedColor = this.parseMappedColor(categoryEntry[0]);
+                const categoryName = categoryEntry[1];
+                return <button key={`categorybutton-${index}`} className={`button is-${mappedColor} ${this.state.creditCategory !== mappedColor && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: mappedColor }); }}>{categoryName}</button>;
+              })}
             </div>
             <div>
               <button className="button is-primary" disabled={this.state.creditFormAmount === 0 || this.state.creditFormNote.length === 0} onClick={() => this.saveCredit(userId, this.state.creditFormNote, this.state.creditFormAmount, this.state.creditCategory)}><Translate id="save" /></button>
@@ -81,4 +98,5 @@ export default class CreditModal extends Component {
 CreditModal.propTypes = {
   userId: PropTypes.string,
   storecredit: PropTypes.object,
+  storecreditcategories: PropTypes.object,
 };

@@ -9,6 +9,8 @@ import HighlightEditor from './HighlightEditor/HighlightEditor-container';
 import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
 import NewsEditor from './NewsEditor/NewsEditor-container';
 import CompanyInfoEditor from './CompanyInfoEditor/CompanyInfoEditor-container';
+import StoreCreditCategoryEditor from './StoreCredit/StoreCreditCategoryEditor-container';
+import StoreCreditCategoryLoader from './AdminLoaders/StoreCreditCategoryLoader-container';
 
 export default class AdminTools extends Component {
 
@@ -36,6 +38,7 @@ export default class AdminTools extends Component {
     const storeInfoVisible = activePage === 'storeinfo';
     const newsVisible = activePage === 'news';
     const companyInfoVisible = activePage === 'companyinfo';
+    const storeCreditCategoriesVisible = activePage === 'storecreditcategories';
 
     return (
       <div>
@@ -46,14 +49,17 @@ export default class AdminTools extends Component {
             <AdminToolsTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
             <AdminToolsTab isActive={newsVisible} switchAction={() => this.switchActiveTab('news')} icon="fa-newspaper" translationKey="news" />
             <AdminToolsTab isActive={companyInfoVisible} switchAction={() => this.switchActiveTab('companyinfo')} icon="fa-warehouse" translationKey="companyinfo" />
+            <AdminToolsTab isActive={storeCreditCategoriesVisible} switchAction={() => this.switchActiveTab('storecreditcategories')} icon="fa-money" translationKey="storecreditcategories" />
           </ul>
         </div>
         <section className="section">
+          <StoreCreditCategoryLoader />
           {userVisible && <UserEditor />}
           {highlightVisible && <HighlightEditor />}
           {storeInfoVisible && <StoreInfoEditor />}
           {newsVisible && <NewsEditor />}
           {companyInfoVisible && <CompanyInfoEditor />}
+          {storeCreditCategoriesVisible && <StoreCreditCategoryEditor />}
         </section>
       </div>
     );
