@@ -77,9 +77,10 @@ export default class CreditModal extends Component {
               <label className="label"><Translate id="itemcategory" /></label>
               <button className={`button is-white ${this.state.creditCategory !== '' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: '' }); }}><Translate id="none" /></button>
               {storecreditcategories && Object.entries(storecreditcategories).map((categoryEntry, index) => {
+                const categoryColor = categoryEntry[0];
                 const mappedColor = this.parseMappedColor(categoryEntry[0]);
                 const categoryName = categoryEntry[1];
-                return <button key={`categorybutton-${index}`} className={`button is-${mappedColor} ${this.state.creditCategory !== mappedColor && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: mappedColor }); }}>{categoryName}</button>;
+                return <button key={`categorybutton-${index}`} className={`button is-${mappedColor} ${this.state.creditCategory !== mappedColor && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: categoryColor }); }}>{categoryName}</button>;
               })}
             </div>
             <div>

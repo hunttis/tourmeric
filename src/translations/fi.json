@@ -254,6 +254,21 @@
   "yellowcategoryname": "Keltaisen kategorian nimi",
   "bluecategoryname": "Sinisen kategorian nimi",
   
+  "storecreditreport": "Krediittitapahtumaraportti",
+  "creditsbycategory": "Krediittitapahtumat kategorioittain",
+  "nocategory": "Ei kategoriaa",
+  "alltime": "Kaikkiaan",
+  "bymonth": "Kuukausittain",
+  "creditaddedbyname": "Syöttäjä",
+  "amount": "Määrä",
+  "daymonthyearshort": "pv/kk/v",
+  "clockshort": "klo",
+  "nocreditevents": "Ei tapahtumia",
+  "customer": "Asiakas",
+  "showdetails": "Näytä tiedot",
+  "showingdetails": "Näytetään tarkemmat tiedot kuukaudelle",
+  "close": "Sulje",
+
   "highlights": "Valokeilassa",
   "newhighlight": "Uusi valokeila",
   "activate": "Aktivoi",
@@ -361,6 +376,4 @@
   "second": "Toinen",
   "third": "Kolmas",
   "clear": "Poista käytöstä"
-
-
 }

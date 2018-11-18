@@ -202,6 +202,54 @@ button.image-square {
   background-color: #161d1d;
 }
 
+thead tr.is-vcentered-title th {
+  font-weight: bolder;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-transform: capitalize;
+}
+
+thead tr.is-vcentered-title th button.button {
+  margin-left: 1em;
+}
+
+
+table thead  th.storecreditreport-categorycolor {
+  width: 1%;
+  max-width: 1%;
+}
+
+table thead th.storecreditreport-category {
+  width: 10%;
+  max-width: 10%;
+}
+
+table thead th.storecreditreport-name {
+  width: 15%;
+  max-width: 15%;
+}
+
+table thead th.storecreditreport-note {
+}
+
+table thead th.storecreditreport-day {
+  width: 1%;
+}
+
+table thead th.storecreditreport-month {
+  width: 1%;
+}
+
+table thead th.storecreditreport-year {
+  width: 1%;
+}
+
+table thead th.storecreditreport-amount {
+  width: 10%;
+  max-width: 10%;
+}
+
+
 @keyframes heightgrow {
   0% {
     max-height: 0%;
