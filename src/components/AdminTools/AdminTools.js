@@ -11,6 +11,8 @@ import NewsEditor from './NewsEditor/NewsEditor-container';
 import CompanyInfoEditor from './CompanyInfoEditor/CompanyInfoEditor-container';
 import StoreCreditCategoryEditor from './StoreCredit/StoreCreditCategoryEditor-container';
 import StoreCreditCategoryLoader from './AdminLoaders/StoreCreditCategoryLoader-container';
+import UsersLoader from './AdminLoaders/UsersLoader-container';
+import StoreCreditReport from './StoreCredit/StoreCreditReport-container';
 
 export default class AdminTools extends Component {
 
@@ -39,6 +41,7 @@ export default class AdminTools extends Component {
     const newsVisible = activePage === 'news';
     const companyInfoVisible = activePage === 'companyinfo';
     const storeCreditCategoriesVisible = activePage === 'storecreditcategories';
+    const storeCreditReportVisible = activePage === 'storecreditreport';
 
     return (
       <div>
@@ -49,17 +52,20 @@ export default class AdminTools extends Component {
             <AdminToolsTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
             <AdminToolsTab isActive={newsVisible} switchAction={() => this.switchActiveTab('news')} icon="fa-newspaper" translationKey="news" />
             <AdminToolsTab isActive={companyInfoVisible} switchAction={() => this.switchActiveTab('companyinfo')} icon="fa-warehouse" translationKey="companyinfo" />
-            <AdminToolsTab isActive={storeCreditCategoriesVisible} switchAction={() => this.switchActiveTab('storecreditcategories')} icon="fa-money" translationKey="storecreditcategories" />
+            <AdminToolsTab isActive={storeCreditCategoriesVisible} switchAction={() => this.switchActiveTab('storecreditcategories')} icon="fa-money-bill" translationKey="storecreditcategories" />
+            <AdminToolsTab isActive={storeCreditReportVisible} switchAction={() => this.switchActiveTab('storecreditreport')} icon="fa-chart-area" translationKey="storecreditreport" />
           </ul>
         </div>
         <section className="section">
           <StoreCreditCategoryLoader />
+          <UsersLoader />
           {userVisible && <UserEditor />}
           {highlightVisible && <HighlightEditor />}
           {storeInfoVisible && <StoreInfoEditor />}
           {newsVisible && <NewsEditor />}
           {companyInfoVisible && <CompanyInfoEditor />}
           {storeCreditCategoriesVisible && <StoreCreditCategoryEditor />}
+          {storeCreditReportVisible && <StoreCreditReport />}
         </section>
       </div>
     );

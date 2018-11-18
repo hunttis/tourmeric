@@ -1,16 +1,15 @@
-import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 
-import UserEditor from './UserEditor';
+import { UsersLoader } from './UsersLoader';
 
 export default compose(
   firebaseConnect([
-    { path: '/storecredit' },
+    { path: '/users', queryParams: ['orderByChild=lastName'] },
   ]),
   connect(state => ({
-    storecredit: state.firebase.data.storecredit,
-    users: state.firebase.ordered.users,
+    users: state.firebase.data.users,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-)(UserEditor);
+)(UsersLoader);

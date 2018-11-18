@@ -12,7 +12,7 @@ export default class ChooseLandingPage extends Component {
     storeinfo: [],
     userinfo: [],
     companyinfo: [],
-    admintools: ['users', 'highlights', 'storeinfo', 'news', 'companyinfo', 'storecreditcategories'],
+    admintools: ['users', 'highlights', 'storeinfo', 'news', 'companyinfo', 'storecreditcategories', 'storecreditreport'],
     admintoolsevents: ['unpublished', 'published', 'category', 'categorylogouploader', 'participations'],
     adminsitesettings: ['pagetitles', 'localization', 'themes', 'features', 'privacypolicy', 'footer'],
   };
