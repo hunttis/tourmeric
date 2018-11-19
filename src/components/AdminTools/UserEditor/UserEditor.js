@@ -129,15 +129,6 @@ export default class UserEditor extends Component {
     this.setState({ modalUser: '', modalMode: '', modalOpenClass: '' });
   }
 
-
-  calculateTotal(creditData) {
-    let total = 0.0;
-    for (const dataItem of Object.values(creditData)) {
-      total += dataItem.value;
-    }
-    return total;
-  }
-
   filterInfoString() {
     const { searchPhrase, searchLetter, searchingWith } = this.state;
 
@@ -228,19 +219,14 @@ export default class UserEditor extends Component {
             {this.filterInfoString()}
           </h2>
           <div className="columns is-multiline">
-            {usedList.map((userEntry) => {
-              const userCredit = storecredit ? storecredit[userEntry.key] : 0;
-              const total = _.isEmpty(userCredit) ? 0 : this.calculateTotal(userCredit);
-
-              return (<UserEntry
-                key={userEntry.key}
-                openEditModal={() => this.openEditModal(userEntry.key)}
-                openCreditModal={() => this.openCreditModal(userEntry.key)}
-                openDisableModal={() => this.openDisableModal(userEntry.key)}
-                userData={userEntry.value}
-                creditAmount={Number.parseFloat(total)}
-              />);
-            }) }
+            {usedList.map(userEntry => (<UserEntry
+              key={userEntry.key}
+              userId={userEntry.key}
+              openEditModal={() => this.openEditModal(userEntry.key)}
+              openCreditModal={() => this.openCreditModal(userEntry.key)}
+              openDisableModal={() => this.openDisableModal(userEntry.key)}
+              userData={userEntry.value}
+            />)) }
           </div>
         </Fragment>
       );

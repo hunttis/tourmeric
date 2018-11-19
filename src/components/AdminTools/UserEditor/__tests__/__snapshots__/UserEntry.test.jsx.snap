@@ -44,16 +44,16 @@ ShallowWrapper {
               : 
             </li>
             <li>
-              <Translate
-                id="storecredit"
-              />
-              : 
-              <span
-                className="has-text-success"
-              >
-                 €
-              </span>
+               
             </li>
+            <li>
+              <strong>
+                <Translate
+                  id="storecredit"
+                />
+              </strong>
+            </li>
+            <Connect(Connect(CreditAmounts)) />
           </ul>
         </div>
         <div
@@ -113,16 +113,16 @@ ShallowWrapper {
                 : 
               </li>
               <li>
-                <Translate
-                  id="storecredit"
-                />
-                : 
-                <span
-                  className="has-text-success"
-                >
-                   €
-                </span>
+                 
               </li>
+              <li>
+                <strong>
+                  <Translate
+                    id="storecredit"
+                  />
+                </strong>
+              </li>
+              <Connect(Connect(CreditAmounts)) />
             </ul>
           </div>,
           <div
@@ -215,16 +215,16 @@ ShallowWrapper {
                 : 
               </li>
               <li>
-                <Translate
-                  id="storecredit"
-                />
-                : 
-                <span
-                  className="has-text-success"
-                >
-                   €
-                </span>
+                 
               </li>
+              <li>
+                <strong>
+                  <Translate
+                    id="storecredit"
+                  />
+                </strong>
+              </li>
+              <Connect(Connect(CreditAmounts)) />
             </ul>,
             "className": "card-content",
           },
@@ -247,16 +247,16 @@ ShallowWrapper {
                 undefined,
                 undefined,
                 <li>
-                  <Translate
-                    id="storecredit"
-                  />
-                  : 
-                  <span
-                    className="has-text-success"
-                  >
-                     €
-                  </span>
+                   
                 </li>,
+                <li>
+                  <strong>
+                    <Translate
+                      id="storecredit"
+                    />
+                  </strong>
+                </li>,
+                <Connect(Connect(CreditAmounts)) />,
               ],
             },
             "ref": null,
@@ -302,21 +302,35 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": Array [
-                    <Translate
-                      id="storecredit"
-                    />,
-                    ": ",
-                    <span
-                      className="has-text-success"
-                    >
-                       €
-                    </span>,
-                  ],
+                  "children": " ",
                 },
                 "ref": null,
-                "rendered": Array [
-                  Object {
+                "rendered": " ",
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <strong>
+                    <Translate
+                      id="storecredit"
+                    />
+                  </strong>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Translate
+                      id="storecredit"
+                    />,
+                  },
+                  "ref": null,
+                  "rendered": Object {
                     "instance": null,
                     "key": undefined,
                     "nodeType": "class",
@@ -327,27 +341,20 @@ ShallowWrapper {
                     "rendered": null,
                     "type": [Function],
                   },
-                  ": ",
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": Array [
-                        undefined,
-                        " €",
-                      ],
-                      "className": "has-text-success",
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      undefined,
-                      " €",
-                    ],
-                    "type": "span",
-                  },
-                ],
+                  "type": "strong",
+                },
                 "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "userId": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
               },
             ],
             "type": "ul",
@@ -500,16 +507,16 @@ ShallowWrapper {
                 : 
               </li>
               <li>
-                <Translate
-                  id="storecredit"
-                />
-                : 
-                <span
-                  className="has-text-success"
-                >
-                   €
-                </span>
+                 
               </li>
+              <li>
+                <strong>
+                  <Translate
+                    id="storecredit"
+                  />
+                </strong>
+              </li>
+              <Connect(Connect(CreditAmounts)) />
             </ul>
           </div>
           <div
@@ -569,16 +576,16 @@ ShallowWrapper {
                   : 
                 </li>
                 <li>
-                  <Translate
-                    id="storecredit"
-                  />
-                  : 
-                  <span
-                    className="has-text-success"
-                  >
-                     €
-                  </span>
+                   
                 </li>
+                <li>
+                  <strong>
+                    <Translate
+                      id="storecredit"
+                    />
+                  </strong>
+                </li>
+                <Connect(Connect(CreditAmounts)) />
               </ul>
             </div>,
             <div
@@ -671,16 +678,16 @@ ShallowWrapper {
                   : 
                 </li>
                 <li>
-                  <Translate
-                    id="storecredit"
-                  />
-                  : 
-                  <span
-                    className="has-text-success"
-                  >
-                     €
-                  </span>
+                   
                 </li>
+                <li>
+                  <strong>
+                    <Translate
+                      id="storecredit"
+                    />
+                  </strong>
+                </li>
+                <Connect(Connect(CreditAmounts)) />
               </ul>,
               "className": "card-content",
             },
@@ -703,16 +710,16 @@ ShallowWrapper {
                   undefined,
                   undefined,
                   <li>
-                    <Translate
-                      id="storecredit"
-                    />
-                    : 
-                    <span
-                      className="has-text-success"
-                    >
-                       €
-                    </span>
+                     
                   </li>,
+                  <li>
+                    <strong>
+                      <Translate
+                        id="storecredit"
+                      />
+                    </strong>
+                  </li>,
+                  <Connect(Connect(CreditAmounts)) />,
                 ],
               },
               "ref": null,
@@ -758,21 +765,35 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": Array [
-                      <Translate
-                        id="storecredit"
-                      />,
-                      ": ",
-                      <span
-                        className="has-text-success"
-                      >
-                         €
-                      </span>,
-                    ],
+                    "children": " ",
                   },
                   "ref": null,
-                  "rendered": Array [
-                    Object {
+                  "rendered": " ",
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <strong>
+                      <Translate
+                        id="storecredit"
+                      />
+                    </strong>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <Translate
+                        id="storecredit"
+                      />,
+                    },
+                    "ref": null,
+                    "rendered": Object {
                       "instance": null,
                       "key": undefined,
                       "nodeType": "class",
@@ -783,27 +804,20 @@ ShallowWrapper {
                       "rendered": null,
                       "type": [Function],
                     },
-                    ": ",
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": Array [
-                          undefined,
-                          " €",
-                        ],
-                        "className": "has-text-success",
-                      },
-                      "ref": null,
-                      "rendered": Array [
-                        undefined,
-                        " €",
-                      ],
-                      "type": "span",
-                    },
-                  ],
+                    "type": "strong",
+                  },
                   "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "userId": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
               ],
               "type": "ul",

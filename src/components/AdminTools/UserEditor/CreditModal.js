@@ -10,7 +10,7 @@ export default class CreditModal extends Component {
   state = {
     creditFormAmount: 0.0,
     creditFormNote: '',
-    creditCategory: '',
+    creditCategory: 'white',
   };
 
   changeCreditNote = (event) => {
@@ -75,7 +75,7 @@ export default class CreditModal extends Component {
             </div>
             <div className="field">
               <label className="label"><Translate id="itemcategory" /></label>
-              <button className={`button is-white ${this.state.creditCategory !== '' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: '' }); }}><Translate id="none" /></button>
+              <button className={`button is-white ${this.state.creditCategory !== '' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: 'white' }); }}><Translate id="none" /></button>
               {storecreditcategories && Object.entries(storecreditcategories).map((categoryEntry, index) => {
                 const categoryColor = categoryEntry[0];
                 const mappedColor = this.parseMappedColor(categoryEntry[0]);
