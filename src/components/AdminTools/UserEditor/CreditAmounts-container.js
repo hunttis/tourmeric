@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import UserEditor from './UserEditor';
+import { CreditAmounts } from './CreditAmounts';
 
 export default compose(
   connect(state => ({
     storecredit: state.firebase.data.storecredit,
-    users: state.firebase.ordered.users,
+    storecreditcategories: state.firebase.data.storecreditcategories,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
-)(UserEditor);
+)(CreditAmounts);

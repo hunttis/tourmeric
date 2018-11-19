@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 
-export const UserEntry = ({ openEditModal, openCreditModal, openDisableModal, userData, creditAmount }) => (
+import CreditAmounts from './CreditAmounts-container';
+
+export const UserEntry = ({ openEditModal, openCreditModal, openDisableModal, userData, userId }) => (
   <div className="userentry column is-half is-one-third-desktop is-one-third-widescreen is-one-quarter-fullhd">
     <div className="card">
 
@@ -39,7 +41,9 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDisableModal, us
           {userData.dciNumber &&
             <li><Translate id="dcinumber" />: {userData.dciNumber}</li>
           }
-          <li><Translate id="storecredit" />: <span className="has-text-success">{creditAmount} €</span></li>
+          <li>&nbsp;</li>
+          <li><strong><Translate id="storecredit" /></strong></li>
+          <CreditAmounts userId={userId} />
         </ul>
       </div>
       <div className="card-footer">
@@ -61,6 +65,6 @@ UserEntry.propTypes = {
   openEditModal: PropTypes.func,
   openDisableModal: PropTypes.func,
   openCreditModal: PropTypes.func,
+  userId: PropTypes.string,
   userData: PropTypes.object,
-  creditAmount: PropTypes.number,
 };

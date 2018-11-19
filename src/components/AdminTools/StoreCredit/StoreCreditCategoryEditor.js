@@ -16,6 +16,16 @@ export const StoreCreditCategoryEditor = ({ storecreditcategories }) => (
       <div className="columns is-multiline">
         <div className="column is-6">
           <EditableVerticalField
+            labelContent="whitecategoryname"
+            placeHolder="white"
+            defaultValue={_.get(storecreditcategories, 'white')}
+            path="/storecreditcategories"
+            targetName="white"
+            emptyClass="is-danger"
+          />
+        </div>
+        <div className="column is-6">
+          <EditableVerticalField
             labelContent="greencategoryname"
             placeHolder="green"
             defaultValue={_.get(storecreditcategories, 'green')}
