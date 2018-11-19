@@ -53,7 +53,7 @@ export const StoreCreditReportForMonth = ({ users, data, storecreditcategories }
                   {moment(event.date).format('HH:mm')}
                 </td>
                 <td className="has-text-right">
-                  {event.value}
+                  {event.value.toFixed(2)}
                 </td>
               </tr>
             );

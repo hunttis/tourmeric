@@ -134,7 +134,7 @@ export default class StoreCreditReport extends Component {
                             {storecreditcategories[total.category] || <Translate id="nocategory" />}
                           </td>
                           <td className="has-text-right">
-                            {total.total}
+                            {total.total.toFixed(2)}
                           </td>
                         </tr>
                       ))}
