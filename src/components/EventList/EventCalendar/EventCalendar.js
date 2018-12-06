@@ -179,9 +179,16 @@ export default class EventCalendar extends Component {
     const categoryNames = this.state.categoryFilter.map(category => categories[category].name).join(', ');
 
     const dayInPath = location.pathname.substring('/events/'.length);
-    const eventsForDay = mode === MODE_DAY && _.get(_.find(calendar, { dayLink: dayInPath }), 'eventsForDay', {});
+    const eventsForDay = mode === MODE_DAY ? _.get(_.find(calendar, { dayLink: dayInPath }), 'eventsForDay', []) : [];
 
     const momentForDay = mode === MODE_DAY && moment(dayInPath, 'YYYY/MM/DD');
+
+    const parsedEvents = eventsForDay.map((event) => {
+      const sortId = moment(`${event.value.date}-${event.value.time}`, 'YYYY-MM-DD-HH:mm').format('YYYYMMDDHHmm');
+      return { id: sortId, ...event };
+    });
+
+    const sortedEvents = _.sortBy(parsedEvents, event => event.id);
 
     return (
       <section className="section">
@@ -196,7 +203,7 @@ export default class EventCalendar extends Component {
               {_.isEmpty(eventsForDay) && <p><Translate id="noeventsforthisday" /></p>}
               {!_.isEmpty(eventsForDay) &&
               <div>
-                {eventsForDay.map((eventEntry, index) => {
+                {sortedEvents.map((eventEntry, index) => {
                   const eventId = eventEntry.key;
                   return <EventCard key={`events-for-day-${index}`} eventId={eventId} />;
                 })}
