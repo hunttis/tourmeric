@@ -5,6 +5,7 @@ import { Translate, setActiveLanguage } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import Moment from 'react-moment';
 import Highlights from '../HighLights/HighLights-container';
+import OpeningHours from '../StoreInfo/OpeningHours-container';
 
 export default class TitleBar extends Component {
 
@@ -64,7 +65,10 @@ export default class TitleBar extends Component {
               <div id="subtitletext" className="subtitle has-text-grey-light is-6 is-paddingless is-marginless">
                 {pageSubtitle}
               </div>
-            }
+              }
+              <div className="is-hidden-mobile">
+                <OpeningHours />
+              </div>
             </div>
           </section>
         </Fragment>

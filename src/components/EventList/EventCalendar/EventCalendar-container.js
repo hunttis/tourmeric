@@ -6,10 +6,12 @@ import EventCalendar from './EventCalendar';
 
 export default compose(
   connect(state => ({
+    settings: state.firebase.data.settings,
     events: state.firebase.ordered.events,
     categories: state.firebase.data.categories,
     activeLanguage: getActiveLanguage(state.locale).code,
     location: state.router.location,
+    openinghoursexceptions: state.firebase.data.openinghoursexceptions,
   })),
   connect(({ firebase: { profile } }) => ({ profile })),
 )(withRouter(EventCalendar));

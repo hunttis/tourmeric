@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
 import moment from 'moment';
 import _ from 'lodash';
 import { isLoaded } from 'react-redux-firebase';
@@ -24,10 +23,8 @@ export default class EventCard extends Component {
   }
 
   render() {
-    const { eventId, events, userId, participations, settings, categories } = this.props;
+    const { eventId, events, userId, participations, categories } = this.props;
 
-    const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
-    const dateFormatWithDayName = `${dateFormat} (dd)`;
     const eventContent = isLoaded(events) ? _.find(events, ['key', eventId]).value : {};
     const category = isLoaded(categories) ? categories[eventContent.category] : {};
     const alreadyParticipated = checkParticipation(userId, eventId, participations);
@@ -42,9 +39,6 @@ export default class EventCard extends Component {
           <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal()} />
         }
         <div className="column is-12 eventcard">
-          <h2 className="subtitle date-item">
-            <Moment format={dateFormatWithDayName}>{eventContent.date}</Moment>
-          </h2>
           <div className="card card-shadow">
 
             <div className="card-header eventheader">
@@ -144,7 +138,6 @@ EventCard.propTypes = {
   eventId: PropTypes.string.isRequired,
   userId: PropTypes.string,
   events: PropTypes.array.isRequired,
-  settings: PropTypes.object.isRequired,
   participations: PropTypes.object,
   categories: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,

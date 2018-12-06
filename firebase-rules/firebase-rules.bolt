@@ -53,6 +53,11 @@ path /settings {
   write() { isAdmin() }
 }
 
+path /openinghoursexceptions {
+  read() { true }
+  write() { isAdmin() }
+}
+
 path /storecredit/{userid} {
   read() { isCurrentUser(userid) || isAdmin() }
   write() { isAdmin() }

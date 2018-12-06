@@ -21,11 +21,13 @@ import CompanyInfo from './CompanyInfo/CompanyInfo-container';
 import InitialSetup from './InitialSetup';
 import FooterBar from './FooterBar-container';
 import SingleEvent from '../EventList/EventCard/SingleEvent-container';
+import OpeningHours from '../StoreInfo/OpeningHours-container';
 
 import EventLoader from './Loaders/EventLoader-container';
 import CategoryLoader from './Loaders/CategoryLoader-container';
 import ParticipationsLoader from './Loaders/ParticipationsLoader-container';
 import UploadedCategoryLogosLoader from './Loaders/UploadedCategoryLogosLoader-container';
+import OpeningHoursExceptionLoader from './Loaders/OpeningHoursExceptionLoader-container';
 
 // ******************
 // Set the theme here
@@ -86,9 +88,13 @@ export default class MainView extends Component {
         <CategoryLoader />
         <ParticipationsLoader />
         <UploadedCategoryLogosLoader />
+        <OpeningHoursExceptionLoader />
 
         <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
         <Navbar changeLanguage={this.changeLanguage} />
+        <div className="is-hidden-tablet is-centered is-fullwidth level box">
+          <div className="level-item openinghours-mobile"><OpeningHours /></div>
+        </div>
         <Switch>
           <Route path="/today" component={Today} />
           <Route path="/event/:id" component={SingleEvent} />
