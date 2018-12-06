@@ -752,6 +752,21 @@ ShallowWrapper {
                 ]
               }
               clickDay={[Function]}
+              settings={
+                Object {
+                  "activeLogo": "http://foo.com/image.png",
+                  "dateFormat": "DD.MM.YYYY",
+                  "pageSubtitle": "",
+                  "pageTitle": "",
+                  "subtitleTextColor": "#000",
+                  "theme": "darkly",
+                  "titleBarAngle": "150",
+                  "titleBarColor": "#000",
+                  "titleBarColor2": "#ec1c22",
+                  "titleBarPercentage": "50",
+                  "titleTextColor": "",
+                }
+              }
             />
           </div>
         </div>,
@@ -1270,6 +1285,21 @@ ShallowWrapper {
                   ]
                 }
                 clickDay={[Function]}
+                settings={
+                  Object {
+                    "activeLogo": "http://foo.com/image.png",
+                    "dateFormat": "DD.MM.YYYY",
+                    "pageSubtitle": "",
+                    "pageTitle": "",
+                    "subtitleTextColor": "#000",
+                    "theme": "darkly",
+                    "titleBarAngle": "150",
+                    "titleBarColor": "#000",
+                    "titleBarColor2": "#ec1c22",
+                    "titleBarPercentage": "50",
+                    "titleTextColor": "",
+                  }
+                }
               />
             </div>,
           ],
@@ -1800,6 +1830,21 @@ ShallowWrapper {
                     ]
                   }
                   clickDay={[Function]}
+                  settings={
+                    Object {
+                      "activeLogo": "http://foo.com/image.png",
+                      "dateFormat": "DD.MM.YYYY",
+                      "pageSubtitle": "",
+                      "pageTitle": "",
+                      "subtitleTextColor": "#000",
+                      "theme": "darkly",
+                      "titleBarAngle": "150",
+                      "titleBarColor": "#000",
+                      "titleBarColor2": "#ec1c22",
+                      "titleBarPercentage": "50",
+                      "titleTextColor": "",
+                    }
+                  }
                 />,
               ],
               "className": "columns is-multiline",
@@ -2973,6 +3018,20 @@ ShallowWrapper {
                     ],
                   ],
                   "clickDay": [Function],
+                  "openinghoursexceptions": undefined,
+                  "settings": Object {
+                    "activeLogo": "http://foo.com/image.png",
+                    "dateFormat": "DD.MM.YYYY",
+                    "pageSubtitle": "",
+                    "pageTitle": "",
+                    "subtitleTextColor": "#000",
+                    "theme": "darkly",
+                    "titleBarAngle": "150",
+                    "titleBarColor": "#000",
+                    "titleBarColor2": "#ec1c22",
+                    "titleBarPercentage": "50",
+                    "titleTextColor": "",
+                  },
                 },
                 "ref": null,
                 "rendered": null,
@@ -3501,6 +3560,21 @@ ShallowWrapper {
                   ]
                 }
                 clickDay={[Function]}
+                settings={
+                  Object {
+                    "activeLogo": "http://foo.com/image.png",
+                    "dateFormat": "DD.MM.YYYY",
+                    "pageSubtitle": "",
+                    "pageTitle": "",
+                    "subtitleTextColor": "#000",
+                    "theme": "darkly",
+                    "titleBarAngle": "150",
+                    "titleBarColor": "#000",
+                    "titleBarColor2": "#ec1c22",
+                    "titleBarPercentage": "50",
+                    "titleTextColor": "",
+                  }
+                }
               />
             </div>
           </div>,
@@ -4019,6 +4093,21 @@ ShallowWrapper {
                     ]
                   }
                   clickDay={[Function]}
+                  settings={
+                    Object {
+                      "activeLogo": "http://foo.com/image.png",
+                      "dateFormat": "DD.MM.YYYY",
+                      "pageSubtitle": "",
+                      "pageTitle": "",
+                      "subtitleTextColor": "#000",
+                      "theme": "darkly",
+                      "titleBarAngle": "150",
+                      "titleBarColor": "#000",
+                      "titleBarColor2": "#ec1c22",
+                      "titleBarPercentage": "50",
+                      "titleTextColor": "",
+                    }
+                  }
                 />
               </div>,
             ],
@@ -4549,6 +4638,21 @@ ShallowWrapper {
                       ]
                     }
                     clickDay={[Function]}
+                    settings={
+                      Object {
+                        "activeLogo": "http://foo.com/image.png",
+                        "dateFormat": "DD.MM.YYYY",
+                        "pageSubtitle": "",
+                        "pageTitle": "",
+                        "subtitleTextColor": "#000",
+                        "theme": "darkly",
+                        "titleBarAngle": "150",
+                        "titleBarColor": "#000",
+                        "titleBarColor2": "#ec1c22",
+                        "titleBarPercentage": "50",
+                        "titleTextColor": "",
+                      }
+                    }
                   />,
                 ],
                 "className": "columns is-multiline",
@@ -5722,6 +5826,20 @@ ShallowWrapper {
                       ],
                     ],
                     "clickDay": [Function],
+                    "openinghoursexceptions": undefined,
+                    "settings": Object {
+                      "activeLogo": "http://foo.com/image.png",
+                      "dateFormat": "DD.MM.YYYY",
+                      "pageSubtitle": "",
+                      "pageTitle": "",
+                      "subtitleTextColor": "#000",
+                      "theme": "darkly",
+                      "titleBarAngle": "150",
+                      "titleBarColor": "#000",
+                      "titleBarColor2": "#ec1c22",
+                      "titleBarPercentage": "50",
+                      "titleTextColor": "",
+                    },
                   },
                   "ref": null,
                   "rendered": null,

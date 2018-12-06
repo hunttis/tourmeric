@@ -12,6 +12,7 @@ export default compose(
     settings: state.firebase.data.settings,
     languages: state.locale.languages,
     uploadedCategoryLogos: state.firebase.data.uploadedCategoryLogos,
+    openinghoursexceptions: state.firebase.data.openinghoursexceptions,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 )(Today);

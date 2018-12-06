@@ -8,7 +8,6 @@ import { mapCategoryToColor } from '../../Common/Utils';
 
 export const CreditAmounts = ({ userId, storecredit, storecreditcategories }) => (
   <Fragment>
-    {/* <div>FFuuuu {userId}</div> */}
     {isLoaded(storecreditcategories) &&
       <Fragment>
         {Object.entries(storecreditcategories).map((categoryEntry) => {

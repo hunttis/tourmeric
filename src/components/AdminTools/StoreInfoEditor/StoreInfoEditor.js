@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
-// import firebase from 'firebase/app';
 import _ from 'lodash';
 import moment from 'moment';
 import firebase from 'firebase/app';
@@ -10,10 +9,14 @@ import FileDropper from '../FileDropper';
 import EditableField from '../../Common/EditableField';
 import EditableTextarea from '../../Common/EditableTextarea';
 import { OpeningHoursEditor } from './OpeningHoursEditor';
+import OpeningHoursExceptionEditor from './OpeningHoursExceptionEditor-container';
+import OpeningHours from '../../StoreInfo/OpeningHours-container';
 
 const filesPath = 'uploadedStoreinfoFiles';
 
 export default class StoreInfoEditor extends Component {
+
+  state = { openingHoursExceptionEditorOpen: false }
 
   onFilesDrop = async (files) => {
     const result = await firebase.uploadFiles(filesPath, [files[0]]);
@@ -33,17 +36,40 @@ export default class StoreInfoEditor extends Component {
   }
 
   todaysOpeningHours() {
-    const { settings } = this.props;
+    const { settings, openinghoursexceptions } = this.props;
     const todayName = moment().format('dddd').toLowerCase();
+    const todayDateString = moment().format('YYYY-MM-DD');
 
     const todaysHours = _.get(settings, `openingHours.${todayName}`, '');
+    const exception = _.get(openinghoursexceptions, todayDateString);
+
+    if (exception) {
+      if (!exception.open) {
+        return (
+          <div className="box">
+            <span className="has-text-danger"><Translate id="exceptionallynotopentoday" /></span>
+            : {exception.name}
+          </div>
+        );
+      }
+      return (
+        <div className="box">
+          <span className="has-text-success"><Translate id="exceptionallyopentoday" /></span>
+          : {exception.openingHours}
+        </div>
+      );
+    }
     return (
       <div className="box"><Translate id="opentoday" /> : <span className="has-text-success">{todaysHours}</span></div>
     );
   }
 
+  toggleOpeningHourExceptions() {
+    this.setState(prevState => ({ openingHoursExceptionEditorOpen: !prevState.openingHoursExceptionEditorOpen }));
+  }
+
   render() {
-    const { settings, uploadedStoreinfoFiles } = this.props;
+    const { settings, uploadedStoreinfoFiles, openinghoursexceptions } = this.props;
     const introTextActive = _.get(settings, 'features.storeinfo.introtext', false);
 
     if (isLoaded(settings)) {
@@ -53,7 +79,6 @@ export default class StoreInfoEditor extends Component {
           <h1 className="title">
             <Translate id="storeinfo" />
           </h1>
-
 
           <h2 className="subtitle">
             <Translate id="introtext" />
@@ -77,9 +102,12 @@ export default class StoreInfoEditor extends Component {
             </div>
           </div>
 
-          <OpeningHoursEditor openingHours={openingHours} />
-          {this.todaysOpeningHours()}
+          <OpeningHoursEditor openingHours={openingHours} toggleOpeningHourExceptions={() => this.toggleOpeningHourExceptions()} />
+          <div className="box">
+            <OpeningHours />
+          </div>
 
+          {this.state.openingHoursExceptionEditorOpen && <OpeningHoursExceptionEditor openinghoursexceptions={openinghoursexceptions} />}
 
           <h2 className="subtitle">
             <Translate id="storelocation" />
@@ -183,4 +211,5 @@ export default class StoreInfoEditor extends Component {
 StoreInfoEditor.propTypes = {
   settings: PropTypes.object,
   uploadedStoreinfoFiles: PropTypes.object,
+  openinghoursexceptions: PropTypes.object,
 };

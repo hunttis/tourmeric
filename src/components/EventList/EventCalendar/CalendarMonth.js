@@ -1,15 +1,15 @@
 import React from 'react';
 import moment from 'moment/min/moment-with-locales';
+import momentEn from 'moment';
 import _ from 'lodash';
 
-export const CalendarMonth = ({ chunkedCalendar, categories, clickDay }) => chunkedCalendar.map((week, weekIndex) => (
+export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openinghoursexceptions, settings }) => chunkedCalendar.map((week, weekIndex) => (
   <div key={`calendar-week-${weekIndex}`} className="column is-12 columns is-marginless">
     {week.map((day, dayIndex) => {
 
       let dayClass = '';
       const today = moment();
       const dayMoment = moment(day.dayLink, 'YYYY/MM/DD');
-
       if (dayMoment.isSame(today, 'day')) {
         dayClass = 'today-card';
       } else if (dayMoment.isBefore(today, 'day')) {
@@ -23,12 +23,20 @@ export const CalendarMonth = ({ chunkedCalendar, categories, clickDay }) => chun
           <div key={`calendar-day-${dayIndex}`} className="column is-paddingless is-marginless is-hidden-mobile" />
         );
       }
+
+      const exception = _.get(openinghoursexceptions, dayMoment.format('YYYY-MM-DD'));
+
+      const englishDayName = momentEn(dayMoment.format('DD-MM-YYYY'), 'DD-MM-YYYY').format('dddd').toLowerCase();
+      const hasNoOpeningHoursNormally = _.isEmpty(_.get(settings, `openingHours.${englishDayName}`));
+      const closedThisDay = (exception && !exception.open) || (hasNoOpeningHoursNormally && (!exception || !exception.open));
+
       return (
         <div
           key={`calendar-day-${dayIndex}`}
           className={`column is-paddingless is-marginless ${_.isEmpty(day.eventsForDay) && 'is-hidden-mobile'}`}
         >
-          <div className={`card calendar-day ${dayClass}`} onClick={() => { clickDay(day); }}>
+
+          <div className={`card calendar-day ${dayClass} ${closedThisDay && 'strikeover'}`} onClick={() => { clickDay(day); }}>
             <div className="card-header">
               <div className="card-header-title calendar-title">
                 <div className="level calendar-cardtitle">

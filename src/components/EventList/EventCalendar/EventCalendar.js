@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment/min/moment-with-locales';
 import EventCard from '../EventCard/EventCard-container';
 import { CalendarMonth } from './CalendarMonth';
+import OpeningHours from '../../StoreInfo/OpeningHours-container';
 
 const YEAR_INDEX = 2;
 const MONTH_INDEX = 3;
@@ -159,7 +160,7 @@ export default class EventCalendar extends Component {
 
   render() {
     const {
-      events, categories, activeLanguage, location,
+      events, categories, activeLanguage, location, openinghoursexceptions, settings,
     } = this.props;
 
     const { targetMonth, targetYear, mode } = this.state;
@@ -177,7 +178,10 @@ export default class EventCalendar extends Component {
 
     const categoryNames = this.state.categoryFilter.map(category => categories[category].name).join(', ');
 
-    const eventsForDay = mode === MODE_DAY && _.get(_.find(calendar, { dayLink: location.pathname.substring('/events/'.length) }), 'eventsForDay', {});
+    const dayInPath = location.pathname.substring('/events/'.length);
+    const eventsForDay = mode === MODE_DAY && _.get(_.find(calendar, { dayLink: dayInPath }), 'eventsForDay', {});
+
+    const momentForDay = mode === MODE_DAY && moment(dayInPath, 'YYYY/MM/DD');
 
     return (
       <section className="section">
@@ -185,7 +189,11 @@ export default class EventCalendar extends Component {
           <div className="modal is-active">
             <div className="modal-background" onClick={() => this.backToCalendar()} />
             <div className="modal-content box">
-              {_.isEmpty(eventsForDay) && <Translate id="noeventsforthisday" />}
+
+              <h2 className="subtitle is-capitalized is-marginless">{momentForDay.format('dddd, MMMM YYYY')}</h2>
+              <OpeningHours day={momentForDay.format('YYYY-MM-DD')} />
+              <p>&nbsp;</p>
+              {_.isEmpty(eventsForDay) && <p><Translate id="noeventsforthisday" /></p>}
               {!_.isEmpty(eventsForDay) &&
               <div>
                 {eventsForDay.map((eventEntry, index) => {
@@ -253,6 +261,8 @@ export default class EventCalendar extends Component {
               chunkedCalendar={chunkedCalendar}
               categories={categories}
               clickDay={day => this.clickDay(day)}
+              openinghoursexceptions={openinghoursexceptions}
+              settings={settings}
             />
           </div>
         </div>
@@ -262,9 +272,11 @@ export default class EventCalendar extends Component {
 }
 
 EventCalendar.propTypes = {
+  settings: PropTypes.object,
   events: PropTypes.array,
   categories: PropTypes.object,
   activeLanguage: PropTypes.string,
   location: PropTypes.object,
   history: PropTypes.object,
+  openinghoursexceptions: PropTypes.object,
 };

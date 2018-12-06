@@ -247,29 +247,6 @@ ShallowWrapper {
         <div
           className="column is-12 eventcard"
         >
-          <h2
-            className="subtitle date-item"
-          >
-            <t
-              ago={false}
-              calendar={false}
-              decimal={false}
-              element="time"
-              filter={[Function]}
-              format="DD.MM.YYYY (dd)"
-              fromNow={false}
-              interval={60000}
-              onChange={[Function]}
-              titleFormat=""
-              toNow={false}
-              unit={null}
-              unix={false}
-              utc={false}
-              withTitle={false}
-            >
-              2018-09-24
-            </t>
-          </h2>
           <div
             className="card card-shadow"
           >
@@ -431,29 +408,6 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <h2
-              className="subtitle date-item"
-            >
-              <t
-                ago={false}
-                calendar={false}
-                decimal={false}
-                element="time"
-                filter={[Function]}
-                format="DD.MM.YYYY (dd)"
-                fromNow={false}
-                interval={60000}
-                onChange={[Function]}
-                titleFormat=""
-                toNow={false}
-                unit={null}
-                unix={false}
-                utc={false}
-                withTitle={false}
-              >
-                2018-09-24
-              </t>
-            </h2>,
             <div
               className="card card-shadow"
             >
@@ -609,61 +563,6 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": <t
-                ago={false}
-                calendar={false}
-                decimal={false}
-                element="time"
-                filter={[Function]}
-                format="DD.MM.YYYY (dd)"
-                fromNow={false}
-                interval={60000}
-                onChange={[Function]}
-                titleFormat=""
-                toNow={false}
-                unit={null}
-                unix={false}
-                utc={false}
-                withTitle={false}
-              >
-                2018-09-24
-              </t>,
-              "className": "subtitle date-item",
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "ago": false,
-                "calendar": false,
-                "children": "2018-09-24",
-                "decimal": false,
-                "element": "time",
-                "filter": [Function],
-                "format": "DD.MM.YYYY (dd)",
-                "fromNow": false,
-                "interval": 60000,
-                "onChange": [Function],
-                "titleFormat": "",
-                "toNow": false,
-                "unit": null,
-                "unix": false,
-                "utc": false,
-                "withTitle": false,
-              },
-              "ref": null,
-              "rendered": "2018-09-24",
-              "type": [Function],
-            },
-            "type": "h2",
-          },
           Object {
             "instance": null,
             "key": undefined,
@@ -1494,29 +1393,6 @@ ShallowWrapper {
           <div
             className="column is-12 eventcard"
           >
-            <h2
-              className="subtitle date-item"
-            >
-              <t
-                ago={false}
-                calendar={false}
-                decimal={false}
-                element="time"
-                filter={[Function]}
-                format="DD.MM.YYYY (dd)"
-                fromNow={false}
-                interval={60000}
-                onChange={[Function]}
-                titleFormat=""
-                toNow={false}
-                unit={null}
-                unix={false}
-                utc={false}
-                withTitle={false}
-              >
-                2018-09-24
-              </t>
-            </h2>
             <div
               className="card card-shadow"
             >
@@ -1678,29 +1554,6 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <h2
-                className="subtitle date-item"
-              >
-                <t
-                  ago={false}
-                  calendar={false}
-                  decimal={false}
-                  element="time"
-                  filter={[Function]}
-                  format="DD.MM.YYYY (dd)"
-                  fromNow={false}
-                  interval={60000}
-                  onChange={[Function]}
-                  titleFormat=""
-                  toNow={false}
-                  unit={null}
-                  unix={false}
-                  utc={false}
-                  withTitle={false}
-                >
-                  2018-09-24
-                </t>
-              </h2>,
               <div
                 className="card card-shadow"
               >
@@ -1856,61 +1709,6 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": <t
-                  ago={false}
-                  calendar={false}
-                  decimal={false}
-                  element="time"
-                  filter={[Function]}
-                  format="DD.MM.YYYY (dd)"
-                  fromNow={false}
-                  interval={60000}
-                  onChange={[Function]}
-                  titleFormat=""
-                  toNow={false}
-                  unit={null}
-                  unix={false}
-                  utc={false}
-                  withTitle={false}
-                >
-                  2018-09-24
-                </t>,
-                "className": "subtitle date-item",
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "ago": false,
-                  "calendar": false,
-                  "children": "2018-09-24",
-                  "decimal": false,
-                  "element": "time",
-                  "filter": [Function],
-                  "format": "DD.MM.YYYY (dd)",
-                  "fromNow": false,
-                  "interval": 60000,
-                  "onChange": [Function],
-                  "titleFormat": "",
-                  "toNow": false,
-                  "unit": null,
-                  "unix": false,
-                  "utc": false,
-                  "withTitle": false,
-                },
-                "ref": null,
-                "rendered": "2018-09-24",
-                "type": [Function],
-              },
-              "type": "h2",
-            },
             Object {
               "instance": null,
               "key": undefined,

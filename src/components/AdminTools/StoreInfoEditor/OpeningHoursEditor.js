@@ -4,7 +4,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import EditableField from '../../Common/EditableField';
 
-export const OpeningHoursEditor = ({ openingHours }) => (
+export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }) => (
   <Fragment>
     <h2 className="subtitle">
       <Translate id="regularopeninghours" />
@@ -88,10 +88,7 @@ export const OpeningHoursEditor = ({ openingHours }) => (
       <div className="column is-6">
         <div className="field is-grouped is-pulled-right">
           <p className="control">
-            <button className="button is-primary"><Translate id="showcurrentexceptions" /></button>
-          </p>
-          <p className="control">
-            <button className="button is-primary"><Translate id="addexception" /></button>
+            <button className="button is-primary" onClick={() => toggleOpeningHourExceptions()}><Translate id="showcurrentexceptions" /></button>
           </p>
         </div>
       </div>
@@ -100,5 +97,6 @@ export const OpeningHoursEditor = ({ openingHours }) => (
 );
 
 OpeningHoursEditor.propTypes = {
-  openingHours: PropTypes.object,
+  openingHours: PropTypes.object.isRequired,
+  toggleOpeningHourExceptions: PropTypes.func.isRequired,
 };
