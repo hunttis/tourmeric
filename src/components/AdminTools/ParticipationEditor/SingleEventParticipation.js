@@ -25,6 +25,7 @@ export default class SingleEventParticipation extends Component {
     } = this.props;
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
+    const categoryName = _.get(categories[event.category], 'name', 'NO CATEGORY SET FOR EVENT');
 
     return (
       <div key={`parteditor-${eventId}`} className="box column is-12">
@@ -42,7 +43,7 @@ export default class SingleEventParticipation extends Component {
               {event.time}
             </div>
           </div>
-          <div className="column">{categories[event.category].name}</div>
+          <div className="column">{categoryName}</div>
         </div>
         <div className="columns">
           <div className="column is-12">
