@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 
+/* eslint-disable-next-line no-unused-vars */
+const themes = ['Default', 'Cerulean', 'Cosmo', 'Cyborg',
+  'Darkly', 'Flatly', 'Journal', 'Litera', 'Lumen', 'Lux', 'Materia',
+  'Minty', 'Nuclear', 'Pulse', 'Sandstone', 'Simplex', 'Slate', 'Solar',
+  'Spacelab', 'Superhero', 'United', 'Yeti']; // These are not used, since themes are 'hardcoded' now
+
 export const Themes = ({ settings }) => (
   <div className="columns is-multiline">
     <div className="column is-12">

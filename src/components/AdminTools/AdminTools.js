@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
+import { Route, Switch } from 'react-router-dom';
 
 import UserEditor from './UserEditor/UserEditor-container';
 import HighlightEditor from './HighlightEditor/HighlightEditor-container';
@@ -13,17 +13,16 @@ import StoreCreditCategoryEditor from './StoreCredit/StoreCreditCategoryEditor-c
 import StoreCreditCategoryLoader from './AdminLoaders/StoreCreditCategoryLoader-container';
 import UsersLoader from './AdminLoaders/UsersLoader-container';
 import StoreCreditReport from './StoreCredit/StoreCreditReport-container';
+import { AdminToolsTab } from './AdminToolsTab';
 
 export default class AdminTools extends Component {
 
-  state = { activeItem: null }
-
-  switchActiveTab(type) {
-    this.setState({ activeItem: type });
+  switchActiveTab(page) {
+    this.props.history.push(`/admin/tools/${page}`);
   }
 
   render() {
-    const { profile } = this.props;
+    const { profile, location } = this.props;
 
     const isProfileLoaded = isLoaded(profile);
     const isLoggedIn = isProfileLoaded && !isEmpty(profile);
@@ -33,62 +32,43 @@ export default class AdminTools extends Component {
       return <div />;
     }
 
-    const activePage = this.state.activeItem || _.get(profile, 'landingSubpage', 'users');
-
-    const userVisible = activePage === 'users';
-    const highlightVisible = activePage === 'highlights';
-    const storeInfoVisible = activePage === 'storeinfo';
-    const newsVisible = activePage === 'news';
-    const companyInfoVisible = activePage === 'companyinfo';
-    const storeCreditCategoriesVisible = activePage === 'storecreditcategories';
-    const storeCreditReportVisible = activePage === 'storecreditreport';
+    let activeItem = location.pathname;
+    if (activeItem === '/admin/tools') {
+      activeItem = '/admin/tools/user';
+    }
 
     return (
       <div>
+        <StoreCreditCategoryLoader />
+        <UsersLoader />
         <div className="tabs is-boxed is-marginless is-multiline">
           <ul>
-            <AdminToolsTab isActive={userVisible} switchAction={() => this.switchActiveTab('users')} icon="fa-users" translationKey="users" />
-            <AdminToolsTab isActive={highlightVisible} switchAction={() => this.switchActiveTab('highlights')} icon="fa-lightbulb" translationKey="highlights" />
-            <AdminToolsTab isActive={storeInfoVisible} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
-            <AdminToolsTab isActive={newsVisible} switchAction={() => this.switchActiveTab('news')} icon="fa-newspaper" translationKey="news" />
-            <AdminToolsTab isActive={companyInfoVisible} switchAction={() => this.switchActiveTab('companyinfo')} icon="fa-warehouse" translationKey="companyinfo" />
-            <AdminToolsTab isActive={storeCreditCategoriesVisible} switchAction={() => this.switchActiveTab('storecreditcategories')} icon="fa-money-bill" translationKey="storecreditcategories" />
-            <AdminToolsTab isActive={storeCreditReportVisible} switchAction={() => this.switchActiveTab('storecreditreport')} icon="fa-chart-area" translationKey="storecreditreport" />
+            <AdminToolsTab isActive={activeItem === '/admin/tools/user'} switchAction={() => this.switchActiveTab('user')} icon="fa-users" translationKey="users" />
+            <AdminToolsTab isActive={activeItem === '/admin/tools/highlights'} switchAction={() => this.switchActiveTab('highlights')} icon="fa-lightbulb" translationKey="highlights" />
+            <AdminToolsTab isActive={activeItem === '/admin/tools/storeinfo'} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
+            <AdminToolsTab isActive={activeItem === '/admin/tools/news'} switchAction={() => this.switchActiveTab('news')} icon="fa-newspaper" translationKey="news" />
+            <AdminToolsTab isActive={activeItem === '/admin/tools/companyinfo'} switchAction={() => this.switchActiveTab('companyinfo')} icon="fa-warehouse" translationKey="companyinfo" />
+            <AdminToolsTab isActive={activeItem === '/admin/tools/storecreditcategory'} switchAction={() => this.switchActiveTab('storecreditcategory')} icon="fa-money-bill" translationKey="storecreditcategories" />
+            <AdminToolsTab isActive={activeItem === '/admin/tools/storecreditreport'} switchAction={() => this.switchActiveTab('storecreditreport')} icon="fa-chart-area" translationKey="storecreditreport" />
           </ul>
         </div>
-        <section className="section">
-          <StoreCreditCategoryLoader />
-          <UsersLoader />
-          {userVisible && <UserEditor />}
-          {highlightVisible && <HighlightEditor />}
-          {storeInfoVisible && <StoreInfoEditor />}
-          {newsVisible && <NewsEditor />}
-          {companyInfoVisible && <CompanyInfoEditor />}
-          {storeCreditCategoriesVisible && <StoreCreditCategoryEditor />}
-          {storeCreditReportVisible && <StoreCreditReport />}
-        </section>
+        <Switch>
+          <Route exact path="/admin/tools" component={UserEditor} />
+          <Route path="/admin/tools/user" component={UserEditor} />
+          <Route path="/admin/tools/highlights" component={HighlightEditor} />
+          <Route path="/admin/tools/storeinfo" component={StoreInfoEditor} />
+          <Route path="/admin/tools/news" component={NewsEditor} />
+          <Route path="/admin/tools/companyinfo" component={CompanyInfoEditor} />
+          <Route path="/admin/tools/storecreditcategory" component={StoreCreditCategoryEditor} />
+          <Route path="/admin/tools/storecreditreport" component={StoreCreditReport} />
+        </Switch>
       </div>
     );
   }
 }
 
-const AdminToolsTab = ({ tabid, isActive, switchAction, icon, translationKey }) => (
-  <li id={tabid} className={`has-icon ${isActive && 'is-active'}`}>
-    <a onClick={switchAction}>
-      <span className="icon is-small"><i className={`fas ${icon}`} aria-hidden="true" /></span>
-      <span><Translate id={translationKey} /></span>
-    </a>
-  </li>
-);
-
 AdminTools.propTypes = {
   profile: PropTypes.object,
-};
-
-AdminToolsTab.propTypes = {
-  tabid: PropTypes.string,
-  isActive: PropTypes.bool,
-  switchAction: PropTypes.func,
-  icon: PropTypes.string,
-  translationKey: PropTypes.string,
+  location: PropTypes.object,
+  history: PropTypes.object,
 };

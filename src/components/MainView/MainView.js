@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
-import { Translate, setActiveLanguage } from 'react-localize-redux';
+import { setActiveLanguage } from 'react-localize-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
@@ -101,9 +101,9 @@ export default class MainView extends Component {
           <Route path="/events" component={EventCalendar} />
           <Route path="/storeinfo" component={StoreInfo} />
           <Route path="/userinfo" component={UserInfo} />
-          <Route path="/admintools" component={AdminTools} />
-          <Route path="/admintoolsevents" component={AdminToolsEvents} />
-          <Route path="/adminsitesettings" component={AdminSiteSettings} />
+          <Route path="/admin/tools" component={AdminTools} />
+          <Route path="/admin/events" component={AdminToolsEvents} />
+          <Route path="/admin/sitesettings" component={AdminSiteSettings} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/companyinfo" component={CompanyInfo} />
@@ -117,27 +117,6 @@ export default class MainView extends Component {
 
   }
 }
-
-const MainViewTab = ({ isActive, switchAction, icon, translationKey, notification, isDisabled }) => (
-  <li className={`has-icon ${isActive && 'is-active'} ${isDisabled && 'has-text-gray'}`}>
-    <a onClick={switchAction}>
-      <span className="icon is-small"><i className={`fas ${icon}`} aria-hidden="true" /></span>
-      <span><Translate id={translationKey} /></span>
-      {notification &&
-        <span className="icon is-small has-text-danger"><i className={`fas ${notification}`} aria-hidden="true" /></span>
-      }
-    </a>
-  </li>
-);
-
-MainViewTab.propTypes = {
-  isActive: PropTypes.bool,
-  switchAction: PropTypes.func,
-  icon: PropTypes.string,
-  translationKey: PropTypes.string,
-  notification: PropTypes.string,
-  isDisabled: PropTypes.bool,
-};
 
 MainView.propTypes = {
   dispatch: PropTypes.func,
