@@ -84,7 +84,7 @@ export default class Navbar extends Component {
 
               {isAdmin &&
                 <div className="navbar-item has-dropdown is-hoverable is-white">
-                  <a className={`navbar-link ${(['admintools', 'admintoolsevents', 'adminsitesettings'].includes(activeItem)) && 'is-active'}`}>
+                  <a className={`navbar-link ${activeItem.startsWith('admin') && 'is-active'}`}>
                     <span className="icon">
                       <i className="fas fa-star" />
                     </span>
@@ -92,9 +92,9 @@ export default class Navbar extends Component {
                     <Translate id="admin" />
                   </a>
                   <div className="navbar-dropdown">
-                    <NavbarItem linkTarget="/admin/tools" translationKey="admingeneric" icon="fa-calendar" styleClass={activeItem === 'admintools' ? activeClass : ''} />
-                    <NavbarItem linkTarget="/admin/events" translationKey="adminevents" icon="fa-calendar-plus" styleClass={activeItem === 'admintoolsevents' ? activeClass : ''} />
-                    <NavbarItem linkTarget="/admin/sitesettings" translationKey="adminsitesettings" icon="fa-cogs" styleClass={activeItem === 'adminsitesettings' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/admin/tools" translationKey="admingeneric" icon="fa-calendar" styleClass={activeItem === 'admin/tools' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/admin/events" translationKey="adminevents" icon="fa-calendar-plus" styleClass={activeItem === 'admin/events' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/admin/sitesettings" translationKey="adminsitesettings" icon="fa-cogs" styleClass={activeItem === 'admin/sitesettings' ? activeClass : ''} />
                   </div>
                 </div>
               }
