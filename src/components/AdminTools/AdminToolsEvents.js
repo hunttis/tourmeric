@@ -34,7 +34,7 @@ export default class AdminToolsEvents extends Component {
 
     if (isLoaded(events) && !isEmpty(events)) {
 
-      let activeItem = location.pathname.substring(1);
+      let activeItem = location.pathname;
       if (activeItem === '/admin/events') {
         activeItem = '/admin/events/unpublished';
       }
