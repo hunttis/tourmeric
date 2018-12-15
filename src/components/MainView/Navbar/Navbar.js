@@ -92,9 +92,9 @@ export default class Navbar extends Component {
                     <Translate id="admin" />
                   </a>
                   <div className="navbar-dropdown">
-                    <NavbarItem linkTarget="/admintools" translationKey="admingeneric" icon="fa-calendar" styleClass={activeItem === 'admintools' ? activeClass : ''} />
-                    <NavbarItem linkTarget="/admintoolsevents" translationKey="adminevents" icon="fa-calendar-plus" styleClass={activeItem === 'admintoolsevents' ? activeClass : ''} />
-                    <NavbarItem linkTarget="/adminsitesettings" translationKey="adminsitesettings" icon="fa-cogs" styleClass={activeItem === 'adminsitesettings' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/admin/tools" translationKey="admingeneric" icon="fa-calendar" styleClass={activeItem === 'admintools' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/admin/events" translationKey="adminevents" icon="fa-calendar-plus" styleClass={activeItem === 'admintoolsevents' ? activeClass : ''} />
+                    <NavbarItem linkTarget="/admin/sitesettings" translationKey="adminsitesettings" icon="fa-cogs" styleClass={activeItem === 'adminsitesettings' ? activeClass : ''} />
                   </div>
                 </div>
               }
