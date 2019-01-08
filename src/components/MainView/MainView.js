@@ -38,7 +38,7 @@ export default class MainView extends Component {
   constructor(props) {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.state = { redirected: false };
+    this.state = { redirected: false, userInfoOk: false };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,6 +49,9 @@ export default class MainView extends Component {
     const acceptedPrivacyPolicy = _.get(nextProps.profile, 'acceptedPrivacyPolicy', false);
     const providerEmail = _.get(nextProps.profile, 'providerData[0].email', null);
     const emailOk = (!nextProps.profile.useOtherEmail && (providerEmail || nextProps.profile.email)) || (nextProps.profile.useOtherEmail && nextProps.profile.otherEmail);
+    const namesOk = !!_.get(nextProps, 'profile.firstName', false) && !!_.get(nextProps, 'profile.lastName', false);
+
+    this.setState({ userInfoOk: !isLoggedIn || (emailOk && namesOk && acceptedPrivacyPolicy) });
 
     if (!this.state.redirected) {
       if (isLoaded(nextProps.profile) && isEmpty(nextProps.profile) && ['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
@@ -75,6 +78,7 @@ export default class MainView extends Component {
 
   render() {
     const { profile, settings } = this.props;
+    const { userInfoOk } = this.state;
 
     if (isLoaded(settings) && isEmpty(settings)) {
       return <InitialSetup profile={profile} />;
@@ -95,6 +99,8 @@ export default class MainView extends Component {
         <div className="is-hidden-tablet is-centered is-fullwidth level box">
           <div className="level-item openinghours-mobile"><OpeningHours /></div>
         </div>
+
+        {userInfoOk &&
         <Switch>
           <Route path="/today" component={Today} />
           <Route path="/event/:id" component={SingleEvent} />
@@ -108,6 +114,11 @@ export default class MainView extends Component {
           <Route path="/register" component={Register} />
           <Route path="/companyinfo" component={CompanyInfo} />
         </Switch>
+        }
+
+        {!userInfoOk &&
+          <UserInfo />
+        }
 
         {isLoaded(settings) &&
           <FooterBar />
