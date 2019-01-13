@@ -251,24 +251,37 @@ ShallowWrapper {
             className="card card-shadow"
           >
             <div
-              className="card-header eventheader"
+              className="card-content card-title-border"
             >
               <div
-                className="card-header-icon eventheader-text tooltip"
-                data-tooltip="Warhammer 40,000"
+                className="media"
               >
-                <img
-                  alt=""
-                  className="image is-64x64"
-                />
-                WH40K
-                :
-              </div>
-              <div
-                className="card-header-title eventheader-text"
-              >
-                <div>
-                  Warhammer thing
+                <div
+                  className="media-left"
+                >
+                  <figure
+                    className="image is-64x64 event-icon"
+                  >
+                    <img
+                      alt=""
+                    />
+                  </figure>
+                </div>
+                <div
+                  className="media-content"
+                >
+                  <p
+                    className="title eventheader"
+                  >
+                    WH40K
+                    : 
+                    Warhammer thing
+                  </p>
+                  <p
+                    className="subtitle"
+                  >
+                    24.09.2018 (Monday)
+                  </p>
                 </div>
               </div>
             </div>
@@ -412,24 +425,37 @@ ShallowWrapper {
               className="card card-shadow"
             >
               <div
-                className="card-header eventheader"
+                className="card-content card-title-border"
               >
                 <div
-                  className="card-header-icon eventheader-text tooltip"
-                  data-tooltip="Warhammer 40,000"
+                  className="media"
                 >
-                  <img
-                    alt=""
-                    className="image is-64x64"
-                  />
-                  WH40K
-                  :
-                </div>
-                <div
-                  className="card-header-title eventheader-text"
-                >
-                  <div>
-                    Warhammer thing
+                  <div
+                    className="media-left"
+                  >
+                    <figure
+                      className="image is-64x64 event-icon"
+                    >
+                      <img
+                        alt=""
+                      />
+                    </figure>
+                  </div>
+                  <div
+                    className="media-content"
+                  >
+                    <p
+                      className="title eventheader"
+                    >
+                      WH40K
+                      : 
+                      Warhammer thing
+                    </p>
+                    <p
+                      className="subtitle"
+                    >
+                      24.09.2018 (Monday)
+                    </p>
                   </div>
                 </div>
               </div>
@@ -570,24 +596,37 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <div
-                  className="card-header eventheader"
+                  className="card-content card-title-border"
                 >
                   <div
-                    className="card-header-icon eventheader-text tooltip"
-                    data-tooltip="Warhammer 40,000"
+                    className="media"
                   >
-                    <img
-                      alt=""
-                      className="image is-64x64"
-                    />
-                    WH40K
-                    :
-                  </div>
-                  <div
-                    className="card-header-title eventheader-text"
-                  >
-                    <div>
-                      Warhammer thing
+                    <div
+                      className="media-left"
+                    >
+                      <figure
+                        className="image is-64x64 event-icon"
+                      >
+                        <img
+                          alt=""
+                        />
+                      </figure>
+                    </div>
+                    <div
+                      className="media-content"
+                    >
+                      <p
+                        className="title eventheader"
+                      >
+                        WH40K
+                        : 
+                        Warhammer thing
+                      </p>
+                      <p
+                        className="subtitle"
+                      >
+                        24.09.2018 (Monday)
+                      </p>
                     </div>
                   </div>
                 </div>,
@@ -721,91 +760,181 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": Array [
+                  "children": <div
+                    className="media"
+                  >
                     <div
-                      className="card-header-icon eventheader-text tooltip"
-                      data-tooltip="Warhammer 40,000"
+                      className="media-left"
                     >
-                      <img
-                        alt=""
-                        className="image is-64x64"
-                      />
-                      WH40K
-                      :
-                    </div>,
-                    <div
-                      className="card-header-title eventheader-text"
-                    >
-                      <div>
-                        Warhammer thing
-                      </div>
-                    </div>,
-                  ],
-                  "className": "card-header eventheader",
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": Array [
+                      <figure
+                        className="image is-64x64 event-icon"
+                      >
                         <img
                           alt=""
-                          className="image is-64x64"
-                        />,
-                        "WH40K",
-                        ":",
-                      ],
-                      "className": "card-header-icon eventheader-text tooltip",
-                      "data-tooltip": "Warhammer 40,000",
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "alt": "",
-                          "className": "image is-64x64",
-                          "src": undefined,
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": "img",
-                      },
-                      "WH40K",
-                      ":",
-                    ],
-                    "type": "div",
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": <div>
+                        />
+                      </figure>
+                    </div>
+                    <div
+                      className="media-content"
+                    >
+                      <p
+                        className="title eventheader"
+                      >
+                        WH40K
+                        : 
                         Warhammer thing
+                      </p>
+                      <p
+                        className="subtitle"
+                      >
+                        24.09.2018 (Monday)
+                      </p>
+                    </div>
+                  </div>,
+                  "className": "card-content card-title-border",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <div
+                        className="media-left"
+                      >
+                        <figure
+                          className="image is-64x64 event-icon"
+                        >
+                          <img
+                            alt=""
+                          />
+                        </figure>
                       </div>,
-                      "className": "card-header-title eventheader-text",
-                    },
-                    "ref": null,
-                    "rendered": Object {
+                      <div
+                        className="media-content"
+                      >
+                        <p
+                          className="title eventheader"
+                        >
+                          WH40K
+                          : 
+                          Warhammer thing
+                        </p>
+                        <p
+                          className="subtitle"
+                        >
+                          24.09.2018 (Monday)
+                        </p>
+                      </div>,
+                    ],
+                    "className": "media",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
                       "instance": null,
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Warhammer thing",
+                        "children": <figure
+                          className="image is-64x64 event-icon"
+                        >
+                          <img
+                            alt=""
+                          />
+                        </figure>,
+                        "className": "media-left",
                       },
                       "ref": null,
-                      "rendered": "Warhammer thing",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <img
+                            alt=""
+                          />,
+                          "className": "image is-64x64 event-icon",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "alt": "",
+                            "src": undefined,
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "img",
+                        },
+                        "type": "figure",
+                      },
                       "type": "div",
                     },
-                    "type": "div",
-                  },
-                ],
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <p
+                            className="title eventheader"
+                          >
+                            WH40K
+                            : 
+                            Warhammer thing
+                          </p>,
+                          <p
+                            className="subtitle"
+                          >
+                            24.09.2018 (Monday)
+                          </p>,
+                        ],
+                        "className": "media-content",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              "WH40K",
+                              ": ",
+                              "Warhammer thing",
+                            ],
+                            "className": "title eventheader",
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            "WH40K",
+                            ": ",
+                            "Warhammer thing",
+                          ],
+                          "type": "p",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "24.09.2018 (Monday)",
+                            "className": "subtitle",
+                          },
+                          "ref": null,
+                          "rendered": "24.09.2018 (Monday)",
+                          "type": "p",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                  ],
+                  "type": "div",
+                },
                 "type": "div",
               },
               Object {
@@ -1397,24 +1526,37 @@ ShallowWrapper {
               className="card card-shadow"
             >
               <div
-                className="card-header eventheader"
+                className="card-content card-title-border"
               >
                 <div
-                  className="card-header-icon eventheader-text tooltip"
-                  data-tooltip="Warhammer 40,000"
+                  className="media"
                 >
-                  <img
-                    alt=""
-                    className="image is-64x64"
-                  />
-                  WH40K
-                  :
-                </div>
-                <div
-                  className="card-header-title eventheader-text"
-                >
-                  <div>
-                    Warhammer thing
+                  <div
+                    className="media-left"
+                  >
+                    <figure
+                      className="image is-64x64 event-icon"
+                    >
+                      <img
+                        alt=""
+                      />
+                    </figure>
+                  </div>
+                  <div
+                    className="media-content"
+                  >
+                    <p
+                      className="title eventheader"
+                    >
+                      WH40K
+                      : 
+                      Warhammer thing
+                    </p>
+                    <p
+                      className="subtitle"
+                    >
+                      24.09.2018 (Monday)
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1558,24 +1700,37 @@ ShallowWrapper {
                 className="card card-shadow"
               >
                 <div
-                  className="card-header eventheader"
+                  className="card-content card-title-border"
                 >
                   <div
-                    className="card-header-icon eventheader-text tooltip"
-                    data-tooltip="Warhammer 40,000"
+                    className="media"
                   >
-                    <img
-                      alt=""
-                      className="image is-64x64"
-                    />
-                    WH40K
-                    :
-                  </div>
-                  <div
-                    className="card-header-title eventheader-text"
-                  >
-                    <div>
-                      Warhammer thing
+                    <div
+                      className="media-left"
+                    >
+                      <figure
+                        className="image is-64x64 event-icon"
+                      >
+                        <img
+                          alt=""
+                        />
+                      </figure>
+                    </div>
+                    <div
+                      className="media-content"
+                    >
+                      <p
+                        className="title eventheader"
+                      >
+                        WH40K
+                        : 
+                        Warhammer thing
+                      </p>
+                      <p
+                        className="subtitle"
+                      >
+                        24.09.2018 (Monday)
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1716,24 +1871,37 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <div
-                    className="card-header eventheader"
+                    className="card-content card-title-border"
                   >
                     <div
-                      className="card-header-icon eventheader-text tooltip"
-                      data-tooltip="Warhammer 40,000"
+                      className="media"
                     >
-                      <img
-                        alt=""
-                        className="image is-64x64"
-                      />
-                      WH40K
-                      :
-                    </div>
-                    <div
-                      className="card-header-title eventheader-text"
-                    >
-                      <div>
-                        Warhammer thing
+                      <div
+                        className="media-left"
+                      >
+                        <figure
+                          className="image is-64x64 event-icon"
+                        >
+                          <img
+                            alt=""
+                          />
+                        </figure>
+                      </div>
+                      <div
+                        className="media-content"
+                      >
+                        <p
+                          className="title eventheader"
+                        >
+                          WH40K
+                          : 
+                          Warhammer thing
+                        </p>
+                        <p
+                          className="subtitle"
+                        >
+                          24.09.2018 (Monday)
+                        </p>
                       </div>
                     </div>
                   </div>,
@@ -1867,91 +2035,181 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": Array [
+                    "children": <div
+                      className="media"
+                    >
                       <div
-                        className="card-header-icon eventheader-text tooltip"
-                        data-tooltip="Warhammer 40,000"
+                        className="media-left"
                       >
-                        <img
-                          alt=""
-                          className="image is-64x64"
-                        />
-                        WH40K
-                        :
-                      </div>,
-                      <div
-                        className="card-header-title eventheader-text"
-                      >
-                        <div>
-                          Warhammer thing
-                        </div>
-                      </div>,
-                    ],
-                    "className": "card-header eventheader",
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": Array [
+                        <figure
+                          className="image is-64x64 event-icon"
+                        >
                           <img
                             alt=""
-                            className="image is-64x64"
-                          />,
-                          "WH40K",
-                          ":",
-                        ],
-                        "className": "card-header-icon eventheader-text tooltip",
-                        "data-tooltip": "Warhammer 40,000",
-                      },
-                      "ref": null,
-                      "rendered": Array [
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "host",
-                          "props": Object {
-                            "alt": "",
-                            "className": "image is-64x64",
-                            "src": undefined,
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": "img",
-                        },
-                        "WH40K",
-                        ":",
-                      ],
-                      "type": "div",
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": <div>
+                          />
+                        </figure>
+                      </div>
+                      <div
+                        className="media-content"
+                      >
+                        <p
+                          className="title eventheader"
+                        >
+                          WH40K
+                          : 
                           Warhammer thing
+                        </p>
+                        <p
+                          className="subtitle"
+                        >
+                          24.09.2018 (Monday)
+                        </p>
+                      </div>
+                    </div>,
+                    "className": "card-content card-title-border",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <div
+                          className="media-left"
+                        >
+                          <figure
+                            className="image is-64x64 event-icon"
+                          >
+                            <img
+                              alt=""
+                            />
+                          </figure>
                         </div>,
-                        "className": "card-header-title eventheader-text",
-                      },
-                      "ref": null,
-                      "rendered": Object {
+                        <div
+                          className="media-content"
+                        >
+                          <p
+                            className="title eventheader"
+                          >
+                            WH40K
+                            : 
+                            Warhammer thing
+                          </p>
+                          <p
+                            className="subtitle"
+                          >
+                            24.09.2018 (Monday)
+                          </p>
+                        </div>,
+                      ],
+                      "className": "media",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
                         "instance": null,
                         "key": undefined,
                         "nodeType": "host",
                         "props": Object {
-                          "children": "Warhammer thing",
+                          "children": <figure
+                            className="image is-64x64 event-icon"
+                          >
+                            <img
+                              alt=""
+                            />
+                          </figure>,
+                          "className": "media-left",
                         },
                         "ref": null,
-                        "rendered": "Warhammer thing",
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <img
+                              alt=""
+                            />,
+                            "className": "image is-64x64 event-icon",
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "alt": "",
+                              "src": undefined,
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": "img",
+                          },
+                          "type": "figure",
+                        },
                         "type": "div",
                       },
-                      "type": "div",
-                    },
-                  ],
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <p
+                              className="title eventheader"
+                            >
+                              WH40K
+                              : 
+                              Warhammer thing
+                            </p>,
+                            <p
+                              className="subtitle"
+                            >
+                              24.09.2018 (Monday)
+                            </p>,
+                          ],
+                          "className": "media-content",
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": Array [
+                                "WH40K",
+                                ": ",
+                                "Warhammer thing",
+                              ],
+                              "className": "title eventheader",
+                            },
+                            "ref": null,
+                            "rendered": Array [
+                              "WH40K",
+                              ": ",
+                              "Warhammer thing",
+                            ],
+                            "type": "p",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "24.09.2018 (Monday)",
+                              "className": "subtitle",
+                            },
+                            "ref": null,
+                            "rendered": "24.09.2018 (Monday)",
+                            "type": "p",
+                          },
+                        ],
+                        "type": "div",
+                      },
+                    ],
+                    "type": "div",
+                  },
                   "type": "div",
                 },
                 Object {

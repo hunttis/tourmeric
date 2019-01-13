@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import ClipboardJS from 'clipboard';
 import { isLoaded } from 'react-redux-firebase';
-import Moment from 'react-moment';
+import moment from 'moment/min/moment-with-locales';
 
 import { ModalItem } from '../ModalItem';
 import { ParticipantList } from '../ParticipantList';
@@ -12,12 +12,16 @@ import { checkParticipation } from '../../../api/eventApi';
 import { CardFooterMobile } from './CardFooterMobile';
 import { CardFooterDesktop } from './CardFooterDesktop';
 
-export const SingleEvent = ({ match, events, categories, settings, participations, auth }) => {
+export const SingleEvent = ({ match, events, categories, settings, participations, auth, activeLanguage }) => {
+
+  moment.locale(activeLanguage);
 
   const eventId = match.params.id;
   const eventContent = _.get(events, eventId, {});
-  const category = _.get(categories, eventContent.category);
-  const dateFormat = _.get(settings, 'dateFormat');
+  const category = _.get(categories, eventContent.category, '');
+  const dateFormat = _.get(settings, 'dateFormat', 'DD.MM.YYYY');
+  const formattedDateWithDayName = moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`);
+
   const userId = _.get(auth, 'uid');
   let participationsForEvent = Object.values(_.get(participations, eventId, []));
   participationsForEvent = _.sortBy(participationsForEvent, ['date']);
@@ -25,6 +29,14 @@ export const SingleEvent = ({ match, events, categories, settings, participation
   const thisParticipation = _.get(participations, `${eventId}.${userId}`, {});
 
   new ClipboardJS('#sharebutton'); // eslint-disable-line
+
+  if (!isLoaded(events)) {
+    return (
+      <div className="section has-text-centered">
+        <div className="button is-loading">Loading</div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -62,7 +74,14 @@ export const SingleEvent = ({ match, events, categories, settings, participation
           </div>
           <div className="card-header is-vcentered">
             <h2 className="card-header-title is-centered subtitle has-text-info">
-              <Moment format={dateFormat}>{eventContent.date}</Moment>{eventContent.time && <Fragment>&nbsp;&nbsp;-&nbsp;&nbsp;{eventContent.time}</Fragment>}
+              <p>{formattedDateWithDayName}</p>
+            </h2>
+          </div>
+          <div className="card-header is-vcentered">
+            <h2 className="card-header-title is-centered subtitle has-text-info">
+              <p>
+                {eventContent.time && <Fragment>{eventContent.time}</Fragment>}
+              </p>
             </h2>
           </div>
 
@@ -79,7 +98,7 @@ export const SingleEvent = ({ match, events, categories, settings, participation
                   {eventContent.date &&
                     <Fragment>
                       <i className="fas fa-calendar" />&nbsp;&nbsp;
-                      <Moment format={dateFormat}>{eventContent.date}</Moment>
+                      {formattedDateWithDayName}
                       <br />
                     </Fragment>
                   }
@@ -181,4 +200,5 @@ SingleEvent.propTypes = {
   settings: PropTypes.object,
   participations: PropTypes.object,
   auth: PropTypes.object,
+  activeLanguage: PropTypes.string,
 };

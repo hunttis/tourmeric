@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
@@ -104,7 +104,7 @@ export default class Today extends Component {
               const eventId = eventEntry.key;
 
               return (
-                <div key={eventId} className="columns">
+                <div key={eventId} className="columns today-view-cards-space">
                   <EventCard
                     eventId={eventId}
                     openModal={() => this.openModal(eventId)}
@@ -140,7 +140,7 @@ export default class Today extends Component {
             {nextEvents.map((eventEntry) => {
               const eventId = eventEntry.key;
               return (
-                <div key={eventId} className="columns">
+                <div key={eventId} className="columns today-view-cards-space">
                   <EventCard
                     eventId={eventId}
                     openModal={() => this.openModal(eventId)}
@@ -174,10 +174,11 @@ export default class Today extends Component {
   render() {
 
     const {
-      events, categories, uploadedCategoryLogos,
+      events, categories, uploadedCategoryLogos, activeLanguage,
     } = this.props;
 
     const { shownItems } = this.state;
+    moment.locale(activeLanguage);
 
     if (isLoaded(events) && isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
       const nextEvents = this.findNextEvents(events);
@@ -211,4 +212,5 @@ Today.propTypes = {
   categories: PropTypes.object,
   uploadedCategoryLogos: PropTypes.object,
   profile: PropTypes.object,
+  activeLanguage: PropTypes.string,
 };

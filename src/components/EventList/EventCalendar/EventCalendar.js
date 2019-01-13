@@ -197,7 +197,7 @@ export default class EventCalendar extends Component {
             <div className="modal-background" onClick={() => this.backToCalendar()} />
             <div className="modal-content box">
 
-              <h2 className="subtitle is-capitalized is-marginless">{momentForDay.format('dddd, MMMM YYYY')}</h2>
+              <h2 className="title is-capitalized is-marginless">{momentForDay.format('ddd, DD. MMMM YYYY')}</h2>
               <OpeningHours day={momentForDay.format('YYYY-MM-DD')} />
               <p>&nbsp;</p>
               {_.isEmpty(eventsForDay) && <p><Translate id="noeventsforthisday" /></p>}

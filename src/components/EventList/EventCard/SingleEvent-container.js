@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { getActiveLanguage } from 'react-localize-redux';
 import { SingleEvent } from './SingleEvent';
 
 export default compose(
@@ -10,6 +11,7 @@ export default compose(
     userid: state.firebase.auth.uid,
     settings: state.firebase.data.settings,
     languages: state.locale.languages,
+    activeLanguage: getActiveLanguage(state.locale).code,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 )(SingleEvent);

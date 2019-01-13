@@ -26,7 +26,7 @@ describe('EventCard Tests', () => {
     expect(card.exists()).toBe(true);
 
     const eventHeader = card.find('.eventheader');
-    expect(eventHeader.text()).toBe('WH40K:Warhammer thing');
+    expect(eventHeader.text()).toBe('WH40K: Warhammer thing');
     expect(card).toMatchSnapshot();
   });
 
