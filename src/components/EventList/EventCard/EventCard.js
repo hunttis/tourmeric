@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 import _ from 'lodash';
 import { isLoaded } from 'react-redux-firebase';
 
@@ -23,7 +23,7 @@ export default class EventCard extends Component {
   }
 
   render() {
-    const { eventId, events, userId, participations, categories } = this.props;
+    const { eventId, events, userId, participations, categories, settings } = this.props;
 
     const eventContent = isLoaded(events) ? _.find(events, ['key', eventId]).value : {};
     const category = isLoaded(categories) ? categories[eventContent.category] : {};
@@ -32,6 +32,8 @@ export default class EventCard extends Component {
     const maxParticipants = _.get(eventContent, 'playerSlots', 0);
     const currentParticipants = participantCount(eventId, participations);
     const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
+    const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
+    const formattedDateWithDayName = moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`);
 
     return (
       <Fragment>
@@ -41,13 +43,17 @@ export default class EventCard extends Component {
         <div className="column is-12 eventcard">
           <div className="card card-shadow">
 
-            <div className="card-header eventheader">
-              <div className="card-header-icon eventheader-text tooltip" data-tooltip={category.name}>
-                <img className="image is-64x64" src={category.image} alt="" />
-                {category.abbreviation}:
-              </div>
-              <div className="card-header-title eventheader-text">
-                <div>{eventContent.name}</div>
+            <div className="card-content card-title-border">
+              <div className="media">
+                <div className="media-left">
+                  <figure className="image is-64x64 event-icon">
+                    <img src={category.image} alt="" />
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <p className="title eventheader">{category.abbreviation}: {eventContent.name}</p>
+                  <p className="subtitle">{formattedDateWithDayName}</p>
+                </div>
               </div>
             </div>
 
@@ -141,4 +147,5 @@ EventCard.propTypes = {
   participations: PropTypes.object,
   categories: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  settings: PropTypes.object,
 };

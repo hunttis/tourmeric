@@ -41,9 +41,14 @@ export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openingho
               <div className="card-header-title calendar-title">
                 <div className="level calendar-cardtitle">
                   <div className="level-left">
-                    {day.day}
+                    <span className="is-hidden-mobile">
+                      {day.day}
+                    </span>
+                    <span className="is-hidden-tablet">
+                      {moment(day.dayLink, 'YYYY/MM/DD').format('dddd DD.MM.YYYY')}
+                    </span>
                   </div>
-                  <div className="level-right has-text-right has-text-info">
+                  <div className="level-right has-text-right has-text-info is-hidden-mobile">
                     {moment.weekdaysShort()[day.dayOfWeek]}
                   </div>
                 </div>
