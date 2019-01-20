@@ -20,14 +20,14 @@ export const CreditAmounts = ({ userId, storecredit, storecreditcategories }) =>
             }
             return data.category === categoryKey;
           });
-          const categorySum = _.reduce(dataForCategory, (totalForCategory, data) => totalForCategory + parseFloat(data.value), 0);
+          const categorySum = _.reduce(dataForCategory, (totalForCategory, data) => totalForCategory + parseFloat(data.value), 0.0).toFixed(2);
           return (
-            <li key={`${userId}-${categoryKey}`}><span className={`has-text-${mapCategoryToColor(categoryKey)}`}>{categoryValue}</span> : {categorySum.toFixed(2)} €</li>
+            <li key={`${userId}-${categoryKey}`}><span className={`has-text-${mapCategoryToColor(categoryKey)}`}>{categoryValue}</span> : {categorySum} €</li>
           );
         })}
         <li>&nbsp;</li>
         <li className="is-all-caps">
-          <strong><Translate id="total" />: {_.reduce(storecredit[userId], (totalForUser, data) => totalForUser + parseFloat(data.value), 0)} €</strong>
+          <strong><Translate id="total" />: {_.reduce(storecredit[userId], (totalForUser, data) => parseFloat(totalForUser) + parseFloat(data.value), 0).toFixed(2)} €</strong>
         </li>
       </Fragment>
     }

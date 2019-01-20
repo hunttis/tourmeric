@@ -1,0 +1,796 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreditAmounts Tests Compares CreditAmounts to snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CreditAmounts
+    storecredit={
+      Object {
+        "mockuserid": Object {
+          "testEvent1": Object {
+            "category": "red",
+            "creditAddedBy": "1N7UUK1EBrZBtPYRfblnKaadtGN2",
+            "creditAddedByName": "Sales person",
+            "date": "Thu, 13 Sep 2018 20:05:13 GMT",
+            "note": "Credited cards",
+            "value": 139,
+          },
+          "testEvent2": Object {
+            "category": "red",
+            "creditAddedBy": "37WQdFDt7MPw7SIY8nIPj3mZLUf1",
+            "creditAddedByName": "C E O",
+            "date": "Sun, 30 Sep 2018 09:53:23 GMT",
+            "note": "Participation",
+            "value": -50,
+          },
+          "testEvent3": Object {
+            "category": "red",
+            "creditAddedBy": "1N7UUK1EBrZBtPYRfblnKaadtGN2",
+            "creditAddedByName": "Sales person",
+            "date": "Tue, 02 Oct 2018 16:05:39 GMT",
+            "note": "Bought singles",
+            "value": -48,
+          },
+          "testEvent4": Object {
+            "category": "red",
+            "creditAddedBy": "1N7UUK1EBrZBtPYRfblnKaadtGN2",
+            "creditAddedByName": "Sales person",
+            "date": "Thu, 04 Oct 2018 14:22:22 GMT",
+            "note": "Bought singles",
+            "value": -17.9,
+          },
+          "testEvent5": Object {
+            "category": "red",
+            "creditAddedBy": "1N7UUK1EBrZBtPYRfblnKaadtGN2",
+            "creditAddedByName": "Sales person",
+            "date": "Fri, 05 Oct 2018 15:44:19 GMT",
+            "note": "Bought singles",
+            "value": -0.4,
+          },
+          "testEvent6": Object {
+            "category": "red",
+            "creditAddedBy": "1N7UUK1EBrZBtPYRfblnKaadtGN2",
+            "creditAddedByName": "Sales person",
+            "date": "Fri, 09 Nov 2018 14:58:55 GMT",
+            "note": "Tournament participation",
+            "value": -5,
+          },
+          "testEvent7": Object {
+            "category": "red",
+            "creditAddedBy": "1N7UUK1EBrZBtPYRfblnKaadtGN2",
+            "creditAddedByName": "Sales person",
+            "date": "Fri, 09 Nov 2018 18:04:52 GMT",
+            "note": "Bought accessories",
+            "value": -5,
+          },
+          "testevent8": Object {
+            "category": "white",
+            "creditAddedBy": "1N7UUK1EBrZBtPYRfblnKaadtGN2",
+            "creditAddedByName": "Sales person",
+            "date": "Sat, 01 Dec 2018 10:53:41 GMT",
+            "note": "Bought cards",
+            "value": -12.7,
+          },
+        },
+      }
+    }
+    storecreditcategories={
+      Object {
+        "green": "Purchase",
+        "red": "Sales",
+        "white": "Generic",
+        "yellow": "Reward",
+      }
+    }
+    userId="mockuserid"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <React.Fragment>
+        <li>
+          <span
+            className="has-text-success"
+          >
+            Purchase
+          </span>
+           : 
+          0.00
+           €
+        </li>
+        <li>
+          <span
+            className="has-text-danger"
+          >
+            Sales
+          </span>
+           : 
+          12.70
+           €
+        </li>
+        <li>
+          <span
+            className="has-text-white"
+          >
+            Generic
+          </span>
+           : 
+          -12.70
+           €
+        </li>
+        <li>
+          <span
+            className="has-text-warning"
+          >
+            Reward
+          </span>
+           : 
+          0.00
+           €
+        </li>
+        <li>
+           
+        </li>
+        <li
+          className="is-all-caps"
+        >
+          <strong>
+            <Translate
+              id="total"
+            />
+            : 
+            0.00
+             €
+          </strong>
+        </li>
+      </React.Fragment>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          Array [
+            <li>
+              <span
+                className="has-text-success"
+              >
+                Purchase
+              </span>
+               : 
+              0.00
+               €
+            </li>,
+            <li>
+              <span
+                className="has-text-danger"
+              >
+                Sales
+              </span>
+               : 
+              12.70
+               €
+            </li>,
+            <li>
+              <span
+                className="has-text-white"
+              >
+                Generic
+              </span>
+               : 
+              -12.70
+               €
+            </li>,
+            <li>
+              <span
+                className="has-text-warning"
+              >
+                Reward
+              </span>
+               : 
+              0.00
+               €
+            </li>,
+          ],
+          <li>
+             
+          </li>,
+          <li
+            className="is-all-caps"
+          >
+            <strong>
+              <Translate
+                id="total"
+              />
+              : 
+              0.00
+               €
+            </strong>
+          </li>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "mockuserid-green",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <span
+                className="has-text-success"
+              >
+                Purchase
+              </span>,
+              " : ",
+              "0.00",
+              " €",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Purchase",
+                "className": "has-text-success",
+              },
+              "ref": null,
+              "rendered": "Purchase",
+              "type": "span",
+            },
+            " : ",
+            "0.00",
+            " €",
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": "mockuserid-red",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <span
+                className="has-text-danger"
+              >
+                Sales
+              </span>,
+              " : ",
+              "12.70",
+              " €",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Sales",
+                "className": "has-text-danger",
+              },
+              "ref": null,
+              "rendered": "Sales",
+              "type": "span",
+            },
+            " : ",
+            "12.70",
+            " €",
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": "mockuserid-white",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <span
+                className="has-text-white"
+              >
+                Generic
+              </span>,
+              " : ",
+              "-12.70",
+              " €",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Generic",
+                "className": "has-text-white",
+              },
+              "ref": null,
+              "rendered": "Generic",
+              "type": "span",
+            },
+            " : ",
+            "-12.70",
+            " €",
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": "mockuserid-yellow",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <span
+                className="has-text-warning"
+              >
+                Reward
+              </span>,
+              " : ",
+              "0.00",
+              " €",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Reward",
+                "className": "has-text-warning",
+              },
+              "ref": null,
+              "rendered": "Reward",
+              "type": "span",
+            },
+            " : ",
+            "0.00",
+            " €",
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": " ",
+          },
+          "ref": null,
+          "rendered": " ",
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <strong>
+              <Translate
+                id="total"
+              />
+              : 
+              0.00
+               €
+            </strong>,
+            "className": "is-all-caps",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Translate
+                  id="total"
+                />,
+                ": ",
+                "0.00",
+                " €",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "id": "total",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              ": ",
+              "0.00",
+              " €",
+            ],
+            "type": "strong",
+          },
+          "type": "li",
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <React.Fragment>
+          <li>
+            <span
+              className="has-text-success"
+            >
+              Purchase
+            </span>
+             : 
+            0.00
+             €
+          </li>
+          <li>
+            <span
+              className="has-text-danger"
+            >
+              Sales
+            </span>
+             : 
+            12.70
+             €
+          </li>
+          <li>
+            <span
+              className="has-text-white"
+            >
+              Generic
+            </span>
+             : 
+            -12.70
+             €
+          </li>
+          <li>
+            <span
+              className="has-text-warning"
+            >
+              Reward
+            </span>
+             : 
+            0.00
+             €
+          </li>
+          <li>
+             
+          </li>
+          <li
+            className="is-all-caps"
+          >
+            <strong>
+              <Translate
+                id="total"
+              />
+              : 
+              0.00
+               €
+            </strong>
+          </li>
+        </React.Fragment>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            Array [
+              <li>
+                <span
+                  className="has-text-success"
+                >
+                  Purchase
+                </span>
+                 : 
+                0.00
+                 €
+              </li>,
+              <li>
+                <span
+                  className="has-text-danger"
+                >
+                  Sales
+                </span>
+                 : 
+                12.70
+                 €
+              </li>,
+              <li>
+                <span
+                  className="has-text-white"
+                >
+                  Generic
+                </span>
+                 : 
+                -12.70
+                 €
+              </li>,
+              <li>
+                <span
+                  className="has-text-warning"
+                >
+                  Reward
+                </span>
+                 : 
+                0.00
+                 €
+              </li>,
+            ],
+            <li>
+               
+            </li>,
+            <li
+              className="is-all-caps"
+            >
+              <strong>
+                <Translate
+                  id="total"
+                />
+                : 
+                0.00
+                 €
+              </strong>
+            </li>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "mockuserid-green",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <span
+                  className="has-text-success"
+                >
+                  Purchase
+                </span>,
+                " : ",
+                "0.00",
+                " €",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Purchase",
+                  "className": "has-text-success",
+                },
+                "ref": null,
+                "rendered": "Purchase",
+                "type": "span",
+              },
+              " : ",
+              "0.00",
+              " €",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": "mockuserid-red",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <span
+                  className="has-text-danger"
+                >
+                  Sales
+                </span>,
+                " : ",
+                "12.70",
+                " €",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Sales",
+                  "className": "has-text-danger",
+                },
+                "ref": null,
+                "rendered": "Sales",
+                "type": "span",
+              },
+              " : ",
+              "12.70",
+              " €",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": "mockuserid-white",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <span
+                  className="has-text-white"
+                >
+                  Generic
+                </span>,
+                " : ",
+                "-12.70",
+                " €",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Generic",
+                  "className": "has-text-white",
+                },
+                "ref": null,
+                "rendered": "Generic",
+                "type": "span",
+              },
+              " : ",
+              "-12.70",
+              " €",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": "mockuserid-yellow",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <span
+                  className="has-text-warning"
+                >
+                  Reward
+                </span>,
+                " : ",
+                "0.00",
+                " €",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Reward",
+                  "className": "has-text-warning",
+                },
+                "ref": null,
+                "rendered": "Reward",
+                "type": "span",
+              },
+              " : ",
+              "0.00",
+              " €",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": " ",
+            },
+            "ref": null,
+            "rendered": " ",
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <strong>
+                <Translate
+                  id="total"
+                />
+                : 
+                0.00
+                 €
+              </strong>,
+              "className": "is-all-caps",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <Translate
+                    id="total"
+                  />,
+                  ": ",
+                  "0.00",
+                  " €",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "id": "total",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                ": ",
+                "0.00",
+                " €",
+              ],
+              "type": "strong",
+            },
+            "type": "li",
+          },
+        ],
+        "type": Symbol(react.fragment),
+      },
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
