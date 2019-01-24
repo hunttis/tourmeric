@@ -30,6 +30,7 @@ export const SingleEvent = ({ match, events, categories, settings, participation
 
   new ClipboardJS('#sharebutton'); // eslint-disable-line
 
+
   if (!isLoaded(events)) {
     return (
       <div className="section has-text-centered">
@@ -37,6 +38,9 @@ export const SingleEvent = ({ match, events, categories, settings, participation
       </div>
     );
   }
+
+  const splitNotes = eventContent.notes ? eventContent.notes.split('\n').filter(paragraph => !_.isEmpty(paragraph)) : [];
+  const splitPrizes = eventContent.prizes ? eventContent.prizes.split('\n').filter(paragraph => !_.isEmpty(paragraph)) : [];
 
   return (
     <div>
@@ -120,8 +124,8 @@ export const SingleEvent = ({ match, events, categories, settings, participation
                   }
                 </div>
 
-                {eventContent.notes && <ModalItem translationKey="notes" content={eventContent.notes} />}
-                {eventContent.prizes && <ModalItem translationKey="prizes" content={eventContent.prizes} />}
+                {eventContent.notes && <ModalItem translationKey="notes" contentArray={splitNotes} />}
+                {eventContent.prizes && <ModalItem translationKey="prizes" contentArray={splitPrizes} />}
 
                 {eventContent.link &&
                   <Fragment>
