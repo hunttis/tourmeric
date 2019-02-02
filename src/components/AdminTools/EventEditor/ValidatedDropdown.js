@@ -14,57 +14,70 @@ export default class ValidatedDropdown extends Component {
 
   delayedNormalize = _.debounce(() => {
     this.setState({ saved: false, editing: false });
-  }, 2000);
+  }, 100);
+
+  constructor(props) {
+    super(props);
+    this.setState.bind(this);
+  }
 
   state = { saved: false, editing: false, selectedValue: this.props.defaultValue }
 
   handleChange(path, targetName, value) {
     this.setState({ editing: true, saved: false, selectedValue: value });
-    this.props.updateFieldStatus(this.props.targetName, !_.isEmpty(value));
+    this.props.updateFieldStatus(this.props.targetName, !_.isEmpty(value), value);
     this.delayedSave(path, { [targetName]: value });
   }
 
   render() {
     const {
-      labelContent, path, targetName, isOk, dropdownItems,
+      labelContent, path, targetName, isOk, dropdownItems, isHorizontal,
     } = this.props;
     const { saved, editing, selectedValue } = this.state;
 
     return (
-      <div className="field is-fullwidth">
-        <label className="label">
-          <Translate id={labelContent} />
-        </label>
-        <div className="field">
-          <div className="control is-expanded has-icons-right">
-            <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
-              <select
-                defaultValue={selectedValue}
-                onChange={event => this.handleChange(path, targetName, event.target.value)}
-                className={`input ${!isOk && 'is-danger'}`}
-              >
-                <option value=""><Translate id="select" /></option>
-                {Object.entries(dropdownItems).map((categoryEntry) => {
-                  const categoryId = categoryEntry[0];
-                  const category = categoryEntry[1];
-                  return (
-                    <option key={categoryId} value={categoryId}>
-                      {category.name}
-                    </option>
-                  );
-                })}
-              </select>
+      <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+        <div className={`${!isHorizontal && 'label'} ${isHorizontal && 'field-label is-normal'}`}>
+          <label className="label">
+            <Translate id={labelContent} />
+          </label>
+        </div>
+        <div className="field-body">
+          <div className="field">
+            <div className="control is-expanded has-icons-right">
+              <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
+                <Translate>
+                  {translate => (
+                    <select
+                      defaultValue={selectedValue}
+                      onChange={event => this.handleChange(path, targetName, event.target.value)}
+                      className={`select ${!isOk && 'is-danger'}`}
+                    >
+                      <option value="">{translate('select')}</option>
+                      {Object.entries(dropdownItems).map((categoryEntry) => {
+                        const categoryId = categoryEntry[0];
+                        const category = categoryEntry[1];
+                        return (
+                          <option key={categoryId} value={categoryId}>
+                            {category.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
+                </Translate>
+              </div>
+              {saved &&
+              <div className="icon is-small is-right">
+                <i className="fas fa-check-circle has-text-success" />
+              </div>
+                }
+              {editing &&
+              <div className="icon is-small is-right">
+                <i className="fas fa-pencil-alt has-text-warning" />
+              </div>
+                }
             </div>
-            {saved &&
-            <div className="icon is-small is-right">
-              <i className="fas fa-check-circle has-text-success" />
-            </div>
-              }
-            {editing &&
-            <div className="icon is-small is-right">
-              <i className="fas fa-pencil-alt has-text-warning" />
-            </div>
-              }
           </div>
         </div>
       </div>
@@ -80,4 +93,5 @@ ValidatedDropdown.propTypes = {
   isOk: PropTypes.bool,
   updateFieldStatus: PropTypes.func,
   dropdownItems: PropTypes.object,
+  isHorizontal: PropTypes.bool,
 };

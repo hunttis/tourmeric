@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
@@ -19,94 +19,73 @@ export default class ValidatedTimeField extends Component {
   constructor(props) {
     super(props);
 
-    const defaultTime = _.get(props, 'defaultValue', '10:00');
-    const hour = defaultTime.split(':')[0];
-    const minute = defaultTime.split(':')[1];
-
     this.state = {
-      saved: false, editing: false, hour, minute,
+      saved: false, editing: false, time: props.defaultValue,
     };
   }
 
-  updateDateInDB(hour, minute) {
-    const newTime = `${hour}:${_.padStart(minute, 2, '0')}`;
-    this.setState({ editing: true, saved: false });
-    this.delayedSave({ time: newTime });
-  }
 
-  updateHour(hour) {
-    this.setState({ hour });
-    if (hour >= 0 && hour < 24) {
-      this.updateDateInDB(hour, this.state.minute);
+  updateDateInDB(time) {
+    const stringOfExpectedFormat = this.checkTimeStringFormat(time);
+
+    if (stringOfExpectedFormat) {
+      this.setState({ editing: true, saved: false });
+      this.delayedSave({ time });
     }
   }
 
-  updateMinute(minute) {
-    this.setState({ minute });
+  updateTime(time) {
+    this.setState({ time });
+    this.updateDateInDB(time);
+  }
 
-    if (parseInt(minute, 10) >= 0 && parseInt(minute, 10) < 60) {
-      this.updateDateInDB(this.state.hour, minute);
-    }
+  checkTimeStringFormat(timeString) {
+    return timeString.match(/[0-9]{1,2}:[0-9]{2}/) !== null;
   }
 
   render() {
     const { saved, editing } = this.state;
+    const { labelContent } = this.props;
 
-    const hourOk = !!this.state.hour && parseInt(this.state.hour, 10) >= 0 && parseInt(this.state.hour, 10) < 24;
-    const minuteOk = !!this.state.minute && parseInt(this.state.minute, 10) >= 0 && parseInt(this.state.minute, 10) < 60;
+    const isHorizontal = true;
+
+    const timeOk = this.state.time && this.checkTimeStringFormat(this.state.time);
 
     return (
-      <div className="is-inline-flex">
-        <div className="field ">
-          <label className="label">
-            <Translate id="hour" /> (24h)
-          </label>
-          <div className="field">
-            <p className="control is-expanded has-icons-right">
+      <Fragment>
+        <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+          <div className="field-label is-normal">
+            <label className={`label ${!timeOk && 'has-text-danger'}`}>
+              <Translate id={labelContent} /> {'(24h -> 18:30)'}
+            </label>
+          </div>
 
-              <Translate>
-                {translate => (<input
-                  type="number"
-                  className={`input ${!hourOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                  placeholder={translate('hour')}
-                  defaultValue={this.state.hour}
-                  onChange={event => this.updateHour(event.target.value)}
-                />)
-                    }
-              </Translate>
-              {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-              {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-            </p>
+          <div className="field-body">
+            <div className="field">
+              <p className="control is-expanded has-icons-right">
+                <Translate>
+                  {translate => (<input
+                    type="text"
+                    className={`input ${!timeOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                    placeholder={translate('hour')}
+                    defaultValue={this.state.time}
+                    onChange={event => this.updateTime(event.target.value)}
+                  />)
+                  }
+                </Translate>
+                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
+                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+              </p>
+            </div>
           </div>
         </div>
-
-        <div className="field">
-          <label className="label">
-            <Translate id="minute" />
-          </label>
-          <div className="field">
-            <p className="control is-expanded has-icons-right">
-
-              <Translate>
-                {translate => (<input
-                  type="number"
-                  className={`input ${!minuteOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                  placeholder={translate('minute')}
-                  defaultValue={this.state.minute}
-                  onChange={event => this.updateMinute(event.target.value)}
-                />)
-                    }
-              </Translate>
-              {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-              {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-            </p>
-          </div>
-        </div>
-      </div>
+      </Fragment>
     );
   }
 }
 
 ValidatedTimeField.propTypes = {
+  defaultValue: PropTypes.string,
   path: PropTypes.string,
+  labelContent: PropTypes.string,
 };

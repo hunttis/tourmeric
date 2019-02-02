@@ -84,6 +84,7 @@
   "localization": "Lokalisointi",
   "themes": "Teemat",
   "looks": "Ulkonäkö",
+  "weekday": "Viikonpäivä",
 
   "unpublishedevents": "Julkaisemattomat tapahtumat",
   "publishedevents": "Julkaistut tapahtumat",
@@ -145,6 +146,12 @@
   "nextmonth": "Seuraava kuukausi",
   "eventdetails": "Tapahtuman tiedot",
   "copylinktoevent": "Kopioi linkki tapahtumaan",
+
+  "newevent": "Uusi tapahtuma",
+  "eventtime": "Tapahtuman kellonaika",
+  "eventdate": "Tapahtuman päivämäärä",
+  "eventinfo": "Tapahtuman tiedot",
+  "youstillneedtoadd": "Sinun täytyy vielä syöttää",
 
   "night": "Yöllä",
   "morning": "Aamulla",
@@ -244,6 +251,7 @@
   "none": "Ei mikään",
   "setcategory": "Aseta kategoria",
   "newcreditrow": "Uusi krediittitapahtuma",
+  "hide": "Piilota",
 
   "storecreditcategories": "Krediittitapahtumien kategoriat",
   "mapping": "Kategorioiden nimeäminen",

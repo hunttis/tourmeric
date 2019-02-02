@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
@@ -15,7 +15,7 @@ export default class ValidatedDateField extends Component {
 
   delayedNormalize = _.debounce(() => {
     this.setState({ saved: false, editing: false });
-  }, 2000);
+  }, 1000);
 
   constructor(props) {
     super(props);
@@ -45,7 +45,7 @@ export default class ValidatedDateField extends Component {
 
   updateMonth(month) {
     this.setState({ month });
-    if (month > 0 && month < 13) {
+    if (month >= 0 && month < 12) {
       this.updateDateInDB(this.state.year, month, this.state.day);
     }
   }
@@ -58,105 +58,169 @@ export default class ValidatedDateField extends Component {
   }
 
   render() {
-    const { saved, editing } = this.state;
+    const { saved, editing, year, month, day } = this.state;
+    const { isHorizontal, disabled, settings } = this.props;
+
+    const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
 
     const dayOk = !!this.state.day && this.state.day > 0 && this.state.day < 32;
-    const monthOk = !!this.state.month && this.state.month > 0 && this.state.month < 13;
+    const monthOk = !_.isNil(this.state.month) && this.state.month >= 0 && this.state.month < 12;
     const yearOk = !!this.state.year && this.state.year > 0 && this.state.year < 10000;
+    const dateOk = dayOk && monthOk && yearOk;
 
     moment.locale(this.props.activeLanguage);
     const months = moment.monthsShort();
+    const eventDate = moment().year(year).month(month).date(day);
 
-    return (
-      <div>
-
-        <div className="is-inline-flex">
-          <div className="field">
-            <label className="label">
-              <Translate id="day" />
-            </label>
-            <div className="field">
-              <p className="control has-icons-right is-vcentered">
-
-                <Translate>
-                  {translate => (<input
-                    type="number"
-                    className={`input ${!dayOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                    placeholder={translate('day')}
-                    defaultValue={this.state.day}
-                    onChange={event => this.updateDay(event.target.value)}
-                  />)
-                        }
-                </Translate>
-                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
-              </p>
-            </div>
+    if (disabled) {
+      return (
+        <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+          <div className="field-label is-normal">
+            <Translate id="date" />
           </div>
-
-          <div className="field">
-            <label className="label">
-              <Translate id="month" />
-            </label>
+          <div className="field-body">
             <div className="field">
-              <div className="control has-icons-right is-vcentered">
-                <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
-                  <select
-                    defaultValue={this.state.month}
-                    onChange={event => this.updateMonth(event.target.value)}
-                    className={`input ${!monthOk && 'is-danger'}`}
-                  >
-                    <option value=""><Translate id="select" /></option>
-                    {Object.entries(months).map((month) => {
-                      const monthNumber = month[0];
-                      const monthName = moment().month(monthNumber).format('MMMM');
-                      return (
-                        <option key={`monthselector${this.props.targetName}${monthNumber}`} value={monthNumber}>
-                          {monthName}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
-                {saved &&
-                <div className="icon is-small is-right">
-                  <i className="fas fa-check-circle has-text-success" />
-                </div>
-                      }
-                {editing &&
-                <div className="icon is-small is-right">
-                  <i className="fas fa-pencil-alt has-text-warning" />
-                </div>
-                      }
-              </div>
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">
-              <Translate id="year" />
-            </label>
-            <div className="field">
-              <p className="control has-icons-right">
-
-                <Translate>
-                  {translate => (<input
-                    type="number"
-                    className={`input ${!yearOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                    placeholder={translate('year')}
-                    defaultValue={this.state.year}
-                    onChange={event => this.updateYear(event.target.value)}
-                  />)
-                        }
-                </Translate>
-                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+              <p className="control has-icons-left">
+                <span className="icon is-small is-left"><i className="fas fa-lock" /></span>
+                <input
+                  className="input"
+                  disabled
+                  value={eventDate.format(`dddd - ${dateFormat}`)}
+                />
               </p>
             </div>
           </div>
         </div>
+      );
+    }
 
-      </div>
+    return (
+      <Fragment>
+        <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+          <div className="field-label is-normal">
+            <label className={`label ${!(dayOk && monthOk && yearOk) && 'has-text-danger'}`}>
+              {saved &&
+              <div className="icon is-small is-right">
+                <i className="fas fa-check-circle has-text-success" />
+                &nbsp;&nbsp;
+              </div>
+              }
+              {editing &&
+              <div className="icon is-small is-right">
+                <i className="fas fa-pencil-alt has-text-warning" />
+                &nbsp;&nbsp;
+              </div>
+              }
+              <Translate id="date" />
+            </label>
+          </div>
+
+          <div className="field-body columns is-multiline">
+            <div className="column is-4-desktop is-6-tablet">
+              <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+                <div className="field-label is-normal">
+                  <label className={`label ${!dayOk && 'has-text-danger'}`}>
+                    <Translate id="day" />
+                  </label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <p className="control is-vcentered">
+
+                      <Translate>
+                        {translate => (<input
+                          type="number"
+                          className={`input ${!dayOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                          placeholder={translate('day')}
+                          defaultValue={this.state.day}
+                          onChange={event => this.updateDay(event.target.value)}
+                        />)
+                          }
+                      </Translate>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-4-desktop is-6-tablet">
+              <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+                <div className="field-label is-normal">
+                  <label className="label">
+                    <Translate id="month" />
+                  </label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control is-vcentered">
+                      <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
+                        <select
+                          defaultValue={this.state.month}
+                          onChange={event => this.updateMonth(event.target.value)}
+                          className={`input ${!monthOk && 'is-danger'}`}
+                        >
+                          <Translate>
+                            {translate => <option value="">{translate('select')}</option>}
+                          </Translate>
+                          {Object.entries(months).map((monthEntry) => {
+                            const monthNumber = monthEntry[0];
+                            const monthName = moment().month(monthNumber).format('MMMM');
+                            return (
+                              <option key={`monthselector${this.props.targetName}${monthNumber}`} value={monthNumber}>
+                                {monthName}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-4-desktop is-6-tablet">
+              <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+                <div className="field-label is-normal">
+                  <label className="label">
+                    <Translate id="year" />
+                  </label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <p className="control">
+                      <Translate>
+                        {translate => (<input
+                          type="number"
+                          className={`input ${!yearOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
+                          placeholder={translate('year')}
+                          defaultValue={this.state.year}
+                          onChange={event => this.updateYear(event.target.value)}
+                        />)
+                                }
+                      </Translate>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+          <div className="field-label is-normal">
+            <label className="label">
+              <Translate id="weekday" />
+            </label>
+          </div>
+          <div className="field-body">
+            <div className="field">
+              <input className="input" disabled value={dateOk ? eventDate.format('dddd') : '-'} />
+            </div>
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }
@@ -165,5 +229,8 @@ ValidatedDateField.propTypes = {
   activeLanguage: PropTypes.string,
   defaultValue: PropTypes.string,
   path: PropTypes.string,
+  settings: PropTypes.object,
   targetName: PropTypes.string,
+  isHorizontal: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
