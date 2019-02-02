@@ -7,6 +7,7 @@ import ValidatedDateField from './ValidatedDateField';
 export default compose(
   connect(state => ({
     activeLanguage: getActiveLanguage(state.locale).code,
+    settings: state.firebase.data.settings,
   })),
   connect(({ firebase: { auth, profile } }) => ({ auth, profile })),
 )(ValidatedDateField);

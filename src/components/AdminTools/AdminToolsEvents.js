@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import { Route, Switch } from 'react-router-dom';
+import { AdminToolsTab } from './AdminToolsTab';
 import { UnpublishedAdminEventList } from './UnpublishedAdminEventList';
 import { PublishedAdminEventList } from './PublishedAdminEventList';
 import CategoryEditor from './CategoryEditor/CategoryEditor-container';
 import ParticipationEditor from './ParticipationEditor/ParticipationEditor-container';
 import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-container';
-import { AdminToolsTab } from './AdminToolsTab';
+import NewEventEditor from './EventEditor/NewEventEditor-container';
 
 export default class AdminToolsEvents extends Component {
 
@@ -48,6 +49,7 @@ export default class AdminToolsEvents extends Component {
               <AdminToolsTab isActive={activeItem === '/admin/events/category'} switchAction={() => this.switchActiveTab('category')} icon="fa-bars" translationKey="categories" />
               <AdminToolsTab isActive={activeItem === '/admin/events/categorylogouploader'} switchAction={() => this.switchActiveTab('categorylogouploader')} icon="fa-bars" translationKey="categorylogouploader" />
               <AdminToolsTab isActive={activeItem === '/admin/events/participations'} switchAction={() => this.switchActiveTab('participations')} icon="fa-clipboard-list" translationKey="participations" />
+              <AdminToolsTab isActive={activeItem === '/admin/events/newevent'} switchAction={() => this.switchActiveTab('newevent')} icon="fa-pencil-alt" translationKey="newevent" />
             </ul>
           </div>
           <Switch>
@@ -57,6 +59,7 @@ export default class AdminToolsEvents extends Component {
             <Route path="/admin/events/category" component={CategoryEditor} />
             <Route path="/admin/events/categorylogouploader" component={CategoryLogoUploader} />
             <Route path="/admin/events/participations" component={ParticipationEditor} />
+            <Route path="/admin/events/newevent" component={NewEventEditor} />
           </Switch>
         </div>
       );

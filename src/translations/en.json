@@ -85,7 +85,7 @@
   "localization": "Localization",
   "themes": "Themes",
   "looks": "Looks",
-
+  "weekday": "Weekday",
 
   "unpublishedevents": "Unpublished events",
   "publishedevents": "Published events",
@@ -147,6 +147,12 @@
   "nextmonth": "Next Month",
   "eventdetails": "Event details",
   "copylinktoevent": "Copy link to event",
+
+  "newevent": "New Event",
+  "eventtime": "Event time information",
+  "eventdate": "Event date information",
+  "eventinfo": "Event information",
+  "youstillneedtoadd": "You still need to add",
 
   "night": "At Night",
   "morning": "In the Morning",
@@ -245,6 +251,7 @@
   "none": "None",
   "setcategory": "Set category",
   "newcreditrow": "New credit row",
+  "hide": "Piilota",
 
   "storecreditcategories": "Store credit categories",
   "mapping": "Name the categories",

@@ -158,9 +158,13 @@ export default class EventCalendar extends Component {
     return chunkedCalendar;
   }
 
+  goToEventEditor(momentForDay) {
+    this.props.history.push(`/admin/events/newevent/${momentForDay.format('YYYY-MM-DD')}`);
+  }
+
   render() {
     const {
-      events, categories, activeLanguage, location, openinghoursexceptions, settings,
+      events, categories, activeLanguage, location, openinghoursexceptions, settings, isAdmin,
     } = this.props;
 
     const { targetMonth, targetYear, mode } = this.state;
@@ -197,8 +201,24 @@ export default class EventCalendar extends Component {
             <div className="modal-background" onClick={() => this.backToCalendar()} />
             <div className="modal-content box">
 
-              <h2 className="title is-capitalized is-marginless">{momentForDay.format('ddd, DD. MMMM YYYY')}</h2>
-              <OpeningHours day={momentForDay.format('YYYY-MM-DD')} />
+              <div className="columns is-multiline">
+                <div className="column is-6">
+                  <h2 className="subtitle is-capitalized">{momentForDay.format('dddd, MMMM YYYY')}</h2>
+                </div>
+                <div className="column is-6 has-text-right">
+                  {isAdmin &&
+                  <button className="button has-icons-left" onClick={() => { this.goToEventEditor(momentForDay); }}><i className="fas fa-calendar" />&nbsp;<Translate id="addevent" /></button>
+                  }
+                </div>
+                <div className="column is-6">
+                  <OpeningHours day={momentForDay.format('YYYY-MM-DD')} />
+                </div>
+                <div className="column is-6 has-text-right">
+                  {isAdmin &&
+                  <button className="button has-icons-left" onClick={() => {}}><i className="fas fa-toolbox" />&nbsp;<Translate id="addexception" /></button>
+                  }
+                </div>
+              </div>
               <p>&nbsp;</p>
               {_.isEmpty(eventsForDay) && <p><Translate id="noeventsforthisday" /></p>}
               {!_.isEmpty(eventsForDay) &&
@@ -286,4 +306,5 @@ EventCalendar.propTypes = {
   location: PropTypes.object,
   history: PropTypes.object,
   openinghoursexceptions: PropTypes.object,
+  isAdmin: PropTypes.bool,
 };
