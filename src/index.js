@@ -25,6 +25,7 @@ import englishTranslations from './translations/en.json';
 import finnishTranslations from './translations/fi.json';
 
 import eventReducer from './reducers/eventReducer';
+import eventEditorReducer from './reducers/eventEditorReducer';
 
 /* eslint-disable-next-line import/no-unresolved */
 const config = require('./config').get(process.env.NODE_ENV, process.env.DEPLOYMENT);
@@ -53,6 +54,7 @@ const rootReducer = combineReducers({
   firebase: firebaseReducer,
   locale,
   admin: eventReducer,
+  editor: eventEditorReducer,
 });
 
 const initialState = {};

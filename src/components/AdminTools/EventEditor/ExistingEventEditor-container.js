@@ -7,8 +7,7 @@ import ExistingEventEditor from './ExistingEventEditor';
 
 export default compose(
   connect((state) => {
-    const idFromUrl = _.last(state.router.location.pathname.split('/'));
-    const eventId = _.startsWith(idFromUrl, 'NEW') ? idFromUrl : `DRAFT-${idFromUrl}`;
+    const eventId = _.last(state.router.location.pathname.split('/'));
     return ({
       participations: state.firebase.data.participations,
       categories: state.firebase.data.categories,

@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+import { checkTimeStringFormat } from '../../Common/Utils';
 
 export default class ValidatedTimeField extends Component {
 
@@ -20,27 +21,22 @@ export default class ValidatedTimeField extends Component {
     super(props);
 
     this.state = {
-      saved: false, editing: false, time: props.defaultValue,
+      saved: false,
+      editing: false,
+      time: props.defaultValue,
     };
   }
 
 
   updateDateInDB(time) {
-    const stringOfExpectedFormat = this.checkTimeStringFormat(time);
-
-    if (stringOfExpectedFormat) {
-      this.setState({ editing: true, saved: false });
-      this.delayedSave({ time });
-    }
+    this.setState({ editing: true, saved: false });
+    this.delayedSave({ time });
   }
 
   updateTime(time) {
     this.setState({ time });
     this.updateDateInDB(time);
-  }
-
-  checkTimeStringFormat(timeString) {
-    return timeString.match(/[0-9]{1,2}:[0-9]{2}/) !== null;
+    this.props.updateFieldStatus(this.props.targetName, !_.isEmpty(time), time);
   }
 
   render() {
@@ -49,7 +45,7 @@ export default class ValidatedTimeField extends Component {
 
     const isHorizontal = true;
 
-    const timeOk = this.state.time && this.checkTimeStringFormat(this.state.time);
+    const timeOk = this.state.time && checkTimeStringFormat(this.state.time);
 
     return (
       <Fragment>
@@ -88,4 +84,6 @@ ValidatedTimeField.propTypes = {
   defaultValue: PropTypes.string,
   path: PropTypes.string,
   labelContent: PropTypes.string,
+  updateFieldStatus: PropTypes.func,
+  targetName: PropTypes.string,
 };

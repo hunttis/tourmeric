@@ -33,6 +33,7 @@
   "currentlyshowing": "Currently showing: ",
   "all": "All",
   "only": "Only",
+  "showing": "Showing",
   "past": "past",
   "future": "future",
   "error": "Error",
@@ -114,6 +115,7 @@
   "publish": "Publish",
   "unpublish": "Unpublish",
   "delete": "Delete",
+  "reallydelete": "Really delete?",
   "format": "Format",
   "playerslots": "Player Slots",
   "entryfee": "Entry fee",
@@ -252,6 +254,7 @@
   "setcategory": "Set category",
   "newcreditrow": "New credit row",
   "hide": "Piilota",
+  "goback": "Go back",
 
   "storecreditcategories": "Store credit categories",
   "mapping": "Name the categories",

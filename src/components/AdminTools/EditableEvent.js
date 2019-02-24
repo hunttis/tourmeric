@@ -11,25 +11,25 @@ export default class EditableEvent extends Component {
 
   state = { isModalOpen: false }
 
-  participantCount(tournamentid, participations) {
+  participantCount() {
+    const { tournamentEntry, participations } = this.props;
+    const eventId = tournamentEntry[0];
+
     if (participations) {
       let participantNumber = 0;
       Object.entries(participations).forEach((participationentry) => {
-        if (participationentry[0] === tournamentid) {
+        if (participationentry[0] === eventId) {
           participantNumber = Object.entries(participationentry[1]).length;
         }
       });
-      return <span className="tournamentparticipantcount">{participantNumber}</span>;
+      return participantNumber;
     }
     return 0;
   }
 
-  openModal() {
-    this.setState({ isModalOpen: true });
-  }
-
-  closeModal() {
-    this.setState({ isModalOpen: false });
+  async editEvent(eventId) {
+    await this.props.setReturnLocation(this.props.history.location.pathname);
+    this.props.history.push(`/admin/events/editevent/${eventId}`);
   }
 
   copyEventForDate(targetDate) {
@@ -67,12 +67,16 @@ export default class EditableEvent extends Component {
     firebase.update(`/events/${eventId}`, { published: false });
   }
 
+  deleteEvent(eventId) {
+    firebase.set(`/events/${eventId}`, {});
+  }
+
   renderEventListItem(categories, eventId, eventContent) {
     const { settings, index } = this.props;
     const { isModalOpen } = this.state;
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
-    const dateFormatted = moment(eventContent.date).format(dateFormat);
+    const dateFormatted = eventContent.date ? moment(eventContent.date).format(dateFormat) : 'No date on event';
 
     return (
       <div className={`column is-12 box columns eventlistitem ${index % 2 === 0 && 'has-background-grey-darker'}`}>
@@ -94,9 +98,12 @@ export default class EditableEvent extends Component {
           {eventContent.category && categories[eventContent.category].abbreviation} - {eventContent.name}
         </div>
         <div className="column is-2">
-          <button className="button is-small is-info" onClick={() => this.openModal()}><i className="fas fa-edit" />&nbsp;&nbsp;<Translate id="edit" /></button>
+          <button className="button is-small is-info" onClick={() => this.editEvent(eventId)}><i className="fas fa-edit" />&nbsp;&nbsp;<Translate id="edit" /></button>
           {!eventContent.published &&
             <button className="button is-small is-primary" onClick={() => this.publishEvent(eventId)}><i className="fas fa-door-open" />&nbsp;&nbsp;<Translate id="publish" /></button>
+          }
+          {(!eventContent.published && this.participantCount() === 0) &&
+            <button className="button is-small is-danger" onClick={() => this.deleteEvent(eventId)}><i className="fas fa-trash" /></button>
           }
           {eventContent.published &&
             <button className="button is-small is-warning" onClick={() => this.unpublishEvent(eventId)}><i className="fas fa-door-closed" />&nbsp;&nbsp;<Translate id="unpublish" /></button>
@@ -133,4 +140,7 @@ EditableEvent.propTypes = {
   tournamentEntry: PropTypes.array,
   settings: PropTypes.object,
   index: PropTypes.number,
+  history: PropTypes.object,
+  participations: PropTypes.object,
+  setReturnLocation: PropTypes.func.isRequired,
 };

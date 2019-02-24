@@ -233,7 +233,7 @@ button.image-square {
 
 .eventlistitem {
   animation-name: scrollin;
-  animation-duration: 750ms;
+  animation-duration: 250ms;
 }
 
 .card.today-card {
@@ -306,10 +306,12 @@ table thead th.storecreditreport-amount {
 
 @keyframes scrollin {
   0% {
-    transform: translate3d(1000px, 100px, 0px)
+    opacity: 0;
+    transform: translate3d(10px, 0px, 0px)
   }
 
   100% {
+    opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
