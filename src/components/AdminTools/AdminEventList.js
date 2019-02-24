@@ -13,9 +13,12 @@ export default class AdminEventList extends Component {
     this.setState({ activeFilter: value });
   }
 
-  addEvent() {
+  async addEvent() {
+    const { history, setReturnLocation } = this.props;
+    await setReturnLocation(history.location.pathname);
+
     const randomDraft = `NEW-${Math.round(Math.random() * 10000)}`;
-    this.props.history.push(`/admin/events/newevent/${randomDraft}`);
+    history.push(`/admin/events/newevent/${randomDraft}`);
   }
 
   addFilterField() {
@@ -144,4 +147,5 @@ AdminEventList.propTypes = {
   categories: PropTypes.object,
   published: PropTypes.bool,
   history: PropTypes.object,
+  setReturnLocation: PropTypes.func.isRequired,
 };

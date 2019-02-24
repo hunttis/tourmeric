@@ -158,8 +158,10 @@ export default class EventCalendar extends Component {
     return chunkedCalendar;
   }
 
-  goToEventEditor(momentForDay) {
-    this.props.history.push(`/admin/events/newevent/${momentForDay.format('YYYY-MM-DD')}`);
+  async goToEventEditor(momentForDay) {
+    const { history, setReturnLocation } = this.props;
+    await setReturnLocation(history.location.pathname);
+    history.push(`/admin/events/newevent/${momentForDay.format('YYYY-MM-DD')}`);
   }
 
   render() {
@@ -307,4 +309,5 @@ EventCalendar.propTypes = {
   history: PropTypes.object,
   openinghoursexceptions: PropTypes.object,
   isAdmin: PropTypes.bool,
+  setReturnLocation: PropTypes.func.isRequired,
 };
