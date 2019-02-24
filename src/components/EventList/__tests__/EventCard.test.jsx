@@ -21,6 +21,7 @@ describe('EventCard Tests', () => {
       openModal={() => {}}
       uploadedCategoryLogos={mockUploadedLogos}
       history={history}
+      setReturnLocation={() => {}}
     />);
 
     expect(card.exists()).toBe(true);

@@ -191,6 +191,7 @@ ShallowWrapper {
         "role": "admin",
       }
     }
+    setReturnLocation={[Function]}
     settings={
       Object {
         "activeLogo": "http://foo.com/image.png",
@@ -254,7 +255,7 @@ ShallowWrapper {
               className="card-content card-title-border"
             >
               <div
-                className="media"
+                className="media has-icons-right"
               >
                 <div
                   className="media-left"
@@ -428,7 +429,7 @@ ShallowWrapper {
                 className="card-content card-title-border"
               >
                 <div
-                  className="media"
+                  className="media has-icons-right"
                 >
                   <div
                     className="media-left"
@@ -599,7 +600,7 @@ ShallowWrapper {
                   className="card-content card-title-border"
                 >
                   <div
-                    className="media"
+                    className="media has-icons-right"
                   >
                     <div
                       className="media-left"
@@ -761,7 +762,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": <div
-                    className="media"
+                    className="media has-icons-right"
                   >
                     <div
                       className="media-left"
@@ -827,8 +828,9 @@ ShallowWrapper {
                           24.09.2018 (Monday)
                         </p>
                       </div>,
+                      undefined,
                     ],
-                    "className": "media",
+                    "className": "media has-icons-right",
                   },
                   "ref": null,
                   "rendered": Array [
@@ -932,6 +934,7 @@ ShallowWrapper {
                       ],
                       "type": "div",
                     },
+                    undefined,
                   ],
                   "type": "div",
                 },
@@ -1529,7 +1532,7 @@ ShallowWrapper {
                 className="card-content card-title-border"
               >
                 <div
-                  className="media"
+                  className="media has-icons-right"
                 >
                   <div
                     className="media-left"
@@ -1703,7 +1706,7 @@ ShallowWrapper {
                   className="card-content card-title-border"
                 >
                   <div
-                    className="media"
+                    className="media has-icons-right"
                   >
                     <div
                       className="media-left"
@@ -1874,7 +1877,7 @@ ShallowWrapper {
                     className="card-content card-title-border"
                   >
                     <div
-                      className="media"
+                      className="media has-icons-right"
                     >
                       <div
                         className="media-left"
@@ -2036,7 +2039,7 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": <div
-                      className="media"
+                      className="media has-icons-right"
                     >
                       <div
                         className="media-left"
@@ -2102,8 +2105,9 @@ ShallowWrapper {
                             24.09.2018 (Monday)
                           </p>
                         </div>,
+                        undefined,
                       ],
-                      "className": "media",
+                      "className": "media has-icons-right",
                     },
                     "ref": null,
                     "rendered": Array [
@@ -2207,6 +2211,7 @@ ShallowWrapper {
                         ],
                         "type": "div",
                       },
+                      undefined,
                     ],
                     "type": "div",
                   },

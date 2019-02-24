@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import firebase from 'firebase/app';
 
 import PropTypes from 'prop-types';
@@ -6,12 +6,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 
-import ValidatedEditableField from './ValidatedEditableField-container';
-import ValidatedTimeField from './ValidatedTimeField';
-import ValidatedDateField from './ValidatedDateField-container';
-import SelectElement from './SelectElement';
-
-import EditableTextarea from './EditableTextarea-container';
+import EditorForm from './EditorForm-container';
 
 export default class NewEventEditor extends Component {
 
@@ -30,7 +25,7 @@ export default class NewEventEditor extends Component {
       processing: false,
     };
 
-    this.updateFieldStatus.bind(this);
+    window.scrollTo(0, 0);
   }
 
   updateFieldStatus(key, empty, data) {
@@ -41,6 +36,7 @@ export default class NewEventEditor extends Component {
     });
   }
 
+
   checkMissingFields() {
     const { draftContent } = this.state;
 
@@ -48,8 +44,8 @@ export default class NewEventEditor extends Component {
     const cleanFormatOptionsLength = Object.keys(cleanFormatOptions).length;
 
     const nameOk = !!draftContent.name;
-    const categoryOk = !!draftContent.category &&
-      (cleanFormatOptionsLength === 0 || (cleanFormatOptionsLength > 0 && !!draftContent.format));
+    const categoryOk = !!draftContent.category;
+    const formatOk = !!draftContent.category && (cleanFormatOptionsLength === 0 || (cleanFormatOptionsLength > 0 && !!draftContent.format));
     const timeOk = !!draftContent.time;
     const entryFeeOk = !_.isEmpty(draftContent.entryFee);
 
@@ -59,6 +55,9 @@ export default class NewEventEditor extends Component {
     }
     if (!categoryOk) {
       missingFields.push('category');
+    }
+    if (!formatOk) {
+      missingFields.push('format');
     }
     if (!timeOk) {
       missingFields.push('time');
@@ -89,9 +88,8 @@ export default class NewEventEditor extends Component {
 
   async saveEvent() {
     const { draftContent, eventId } = this.state;
-    const { history, categories } = this.props;
+    const { categories } = this.props;
 
-    const fromLocation = _.replace(eventId.substr(6), /-/g, '/');
     const dataToSave = _.cloneDeep(draftContent);
     dataToSave.published = true;
 
@@ -102,26 +100,37 @@ export default class NewEventEditor extends Component {
     await this.setState({ processing: true });
     await firebase.push('/events', dataToSave);
     await firebase.set(`/events/${eventId}`, {});
-    await history.push(`/events/${fromLocation}`);
+    this.goBack();
+  }
+
+  async goBack() {
+    const { history, returnLocation } = this.props;
+    await history.push(returnLocation);
   }
 
   async deleteEvent() {
-    const { eventId } = this.state;
-    const { history } = this.props;
-    const fromLocation = _.replace(eventId.substr(6), /-/g, '/');
+    const { deleteConfirmation } = this.state;
+
+    if (!deleteConfirmation) {
+      this.setState({ deleteConfirmation: true });
+      return;
+    }
+
+    const { eventId } = this.props;
 
     await this.setState({ processing: true });
     await firebase.set(`/events/${eventId}`, {});
-    await history.push(`/events/${fromLocation}`);
+    this.goBack();
   }
 
   render() {
     const { eventId, draftContent, processing } = this.state;
-    const { categories } = this.props;
 
     moment.locale('fi');
 
     const cleanedFormatOptions = this.cleanFormatOptions();
+    const missingFields = this.checkMissingFields();
+    const newEvent = eventId.startsWith('DRAFT');
 
     if (processing) {
       return (
@@ -130,209 +139,23 @@ export default class NewEventEditor extends Component {
     }
     return (
       <div className="section">
-        <div className="columns is-multiline">
-          <div className="column is-12">
-            <h1 className="title"><Translate id="newevent" /></h1>
-          </div>
-          <div className="column is-hidden-mobile">&nbsp;</div>
-          <div className="column is-8 ">
-            <div className="columns is-multiline">
-
-              <div className="column is-12">
-                <ValidatedEditableField
-                  isOk={!!draftContent.name}
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="name"
-                  placeHolder="eventnameplaceholder"
-                  defaultValue={draftContent.name}
-                  path={`/events/${eventId}`}
-                  targetName="name"
-                  isHorizontal
-                />
-              </div>
-
-              <div className="column is-hidden-mobile">
-                <hr />
-              </div>
-
-              <div className="column is-12">
-                <SelectElement
-                  isOk={!!draftContent.category}
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="category"
-                  placeHolder="categoryplaceholder"
-                  defaultValue={draftContent.category}
-                  dropdownItems={categories}
-                  path={`/events/${eventId}`}
-                  targetName="category"
-                  nameProp="abbreviation"
-                  isHorizontal
-                />
-              </div>
-
-              <div className="column is-12 is-hidden-mobile">
-                <hr />
-              </div>
-
-              {!_.isEmpty(cleanedFormatOptions) &&
-                <Fragment>
-
-                  <div className="column is-12">
-                    <SelectElement
-                      isOk={!!draftContent.format}
-                      updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                      labelContent="format"
-                      placeHolder="formatplaceholder"
-                      defaultValue={draftContent.format}
-                      dropdownItems={cleanedFormatOptions}
-                      path={`/events/${eventId}`}
-                      targetName="format"
-                      isHorizontal
-                    />
-                  </div>
-                  <div className="column is-12 is-hidden-mobile">
-                    <hr />
-                  </div>
-
-                </Fragment>
-              }
-
-              <div className="column is-12">
-                <ValidatedDateField
-                  defaultValue={draftContent.date}
-                  path={`/events/${eventId}`}
-                  targetName="date"
-                  isHorizontal
-                  disabled
-                />
-              </div>
-
-              <div className="column is-12">
-                <ValidatedTimeField
-                  isOk={!!draftContent.time}
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="eventtime"
-                  placeHolder="timeformat"
-                  defaultValue={draftContent.time}
-                  path={`/events/${eventId}`}
-                />
-              </div>
-
-              <div className="column is-12">
-                <h2 className="subtitle"><Translate id="eventinfo" /></h2>
-              </div>
-
-              <div className="column is-12">
-                <ValidatedEditableField
-                  isOk
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="playerslots"
-                  placeHolder="playerslotsplaceholder"
-                  defaultValue={draftContent.playerSlots}
-                  inputType="number"
-                  path={`/events/${eventId}`}
-                  targetName="playerSlots"
-                  isHorizontal
-                />
-              </div>
-
-              <div className="column is-12">
-                <ValidatedEditableField
-                  isOk={!!draftContent.entryFee}
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="entryfee"
-                  placeHolder="entryfeeplaceholder"
-                  defaultValue={draftContent.entryFee}
-                  inputType="number"
-                  path={`/events/${eventId}`}
-                  targetName="entryFee"
-                  isHorizontal
-                />
-              </div>
-
-              <div className="column is-12">
-                <ValidatedEditableField
-                  isOk
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="ruleslevel"
-                  placeHolder="ruleslevelplaceholder"
-                  defaultValue={draftContent.rulesLevel}
-                  path={`/events/${eventId}`}
-                  targetName="rulesLevel"
-                  isHorizontal
-                />
-              </div>
-
-              <div className="column is-12">
-                <ValidatedEditableField
-                  isOk
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="link"
-                  placeHolder="linkplaceholder"
-                  defaultValue={draftContent.link}
-                  path={`/events/${eventId}`}
-                  targetName="link"
-                  isHorizontal
-                />
-              </div>
-
-              <div className="column is-12">
-                <EditableTextarea
-                  isOk
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="prizes"
-                  placeHolder="prizesplaceholder"
-                  defaultValue={draftContent.prizes}
-                  path={`/events/${eventId}`}
-                  targetName="prizes"
-                  isHorizontal
-                />
-              </div>
-
-              <div className="column is-12">
-                <EditableTextarea
-                  isOk
-                  updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
-                  labelContent="notes"
-                  placeHolder="notesplaceholder"
-                  defaultValue={draftContent.notes}
-                  path={`/events/${eventId}`}
-                  targetName="notes"
-                  isHorizontal
-                />
-              </div>
-              <div className="column is-12">
-                {this.checkMissingFields().length !== 0 &&
-                  <Translate>
-                    {translate => (
-                      <div className="field is-horizontal">
-
-                        <div className="field-label is-normal">
-                          <label className="label">{translate('youstillneedtoadd')}</label>
-                        </div>
-
-                        <div className="field-body">
-                          <div className="field">
-                            <div className="control">
-                              <span className="tags are-medium">
-                                {this.checkMissingFields().map(field => <span className="tag is-warning has-text-black" key={`missingData-${field}`}>{translate(field)}</span>)}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </Translate>
-                }
-              </div>
-              <div className="column has-text-right">
-                <button className="button is-danger" onClick={() => this.deleteEvent()}><Translate id="delete" /></button>
-                <button className="button is-success is-outlined" disabled={this.checkMissingFields().length !== 0} onClick={() => this.saveEvent()}><Translate id="publish" /></button>
-              </div>
-            </div>
-          </div>
-          <div className="column is-hidden-mobile">&nbsp;</div>
-        </div>
+        <h1 className="title">
+          {newEvent && <Translate id="newevent" />}
+          {!newEvent && <Translate id="editevent" />}
+        </h1>
+        <EditorForm
+          eventId={eventId}
+          event={draftContent}
+          cleanedFormatOptions={cleanedFormatOptions}
+          newEvent={newEvent}
+          missingFields={missingFields}
+          updateFieldStatus={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
+          updateCategory={(key, empty, data) => this.updateFieldStatus(key, empty, data)}
+          allowDateEdit={false}
+          saveEvent={() => this.saveEvent()}
+          deleteEvent={() => this.deleteEvent()}
+          goBack={() => this.goBack()}
+        />
       </div>
     );
 
@@ -345,4 +168,5 @@ NewEventEditor.propTypes = {
   draftID: PropTypes.string,
   draftDate: PropTypes.object,
   history: PropTypes.object,
+  returnLocation: PropTypes.string.isRequired,
 };

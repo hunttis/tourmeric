@@ -1,61 +1,51 @@
-import React, { Component, Fragment } from 'react';
-import firebase from 'firebase/app';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
-import moment from 'moment';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import EditableEvent from './EditableEvent-container';
 
 export default class AdminEventList extends Component {
 
-  state = { activeFilter: '' };
+  state = { activeFilter: '', showPastEvents: false };
 
   changeFilter(value) {
     this.setState({ activeFilter: value });
   }
 
-  addEventButton() {
-    return (
-      <div className="column is-6">
-        <div className="field">
-          <button
-            className="button"
-            onClick={() => {
-              firebase.push('/events', { createDate: moment().toISOString(), date: moment().format('YYYY-MM-DD') });
-            }}
-          >
-            <Translate id="addevent" />
-          </button>
-        </div>
-      </div>
-    );
+  addEvent() {
+    const randomDraft = `NEW-${Math.round(Math.random() * 10000)}`;
+    this.props.history.push(`/admin/events/newevent/${randomDraft}`);
   }
 
   addFilterField() {
     return (
-      <Fragment>
-        <div className="column is-6">
-          <div className="field is-horizontal">
-            <label className="field-label is-normal">
-              <Translate id="filter" />
-            </label>
-            <Translate>
-              {translate => (
-                <input className="input" type="text" value={this.state.creditFormNote} placeholder={translate('filtereventsbynameorcategory')} onChange={event => this.changeFilter(event.target.value)} />
-              )}
-            </Translate>
-          </div>
-        </div>
-      </Fragment>
+      <div className="field is-horizontal">
+        <label className="field-label is-normal">
+          <Translate id="filter" />
+        </label>
+        <Translate>
+          {translate => (
+            <input className="input" type="text" value={this.state.creditFormNote} placeholder={translate('filtereventsbynameorcategory')} onChange={event => this.changeFilter(event.target.value)} />
+          )}
+        </Translate>
+      </div>
     );
   }
 
   filterList(sortedList) {
     const { categories } = this.props;
 
+    const pastOrFutureList = sortedList.filter((item) => {
+      if (this.state.showPastEvents) {
+        return !item[1].date || moment(item[1].date, 'YYYY-MM-DD').isBefore(moment());
+      }
+      return !item[1].date || moment(item[1].date, 'YYYY-MM-DD').isSameOrAfter(moment());
+    });
+
     const filteredList = _.isEmpty(this.state.activeFilter) || _.isEmpty(sortedList) ?
-      sortedList :
-      sortedList.filter((item) => {
+      pastOrFutureList :
+      pastOrFutureList.filter((item) => {
         const lowerCaseFilter = this.state.activeFilter.toLowerCase();
         const hasName = !!item[1].name;
         const nameFilterHits = hasName && item[1].name.toLowerCase().indexOf(lowerCaseFilter) !== -1;
@@ -92,7 +82,11 @@ export default class AdminEventList extends Component {
       return (
         <div className="section">
           <div className="columns">
-            {this.props.showNewEventButton && this.addEventButton()}
+            {this.props.showNewEventButton &&
+              <button className="button is-small" onClick={() => this.addEvent()}>
+                <Translate id="addevent" />
+              </button>
+            }
           </div>
           <div><Translate id="noevents" /></div>
         </div>
@@ -105,8 +99,37 @@ export default class AdminEventList extends Component {
     return (
       <div>
         <div className="columns">
-          {this.props.showNewEventButton && this.addEventButton()}
-          {this.addFilterField()}
+          <div className="column">
+            {this.props.showNewEventButton &&
+              <button className="button is-small" onClick={() => this.addEvent()}>
+                <Translate id="addevent" />
+              </button>
+            }
+          </div>
+          <div className="column">
+            <div className="field is-horizontal">
+
+              <div className="field-label is-normal">
+                <label><Translate id="showing" /></label>
+              </div>
+              <div className="field-body">
+                <button
+                  className={`button is-small ${!this.state.showPastEvents && 'is-success'}`}
+                  onClick={() => this.setState({ showPastEvents: false })}
+                ><Translate id="future" />
+                </button>
+                <button
+                  className={`button is-small ${this.state.showPastEvents && 'is-success'}`}
+                  onClick={() => this.setState({ showPastEvents: true })}
+                ><Translate id="past" />
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <div className="column is-6">
+            {this.addFilterField()}
+          </div>
         </div>
         <p>&nbsp;</p>
         {this.listEditableEvents(filteredEvents)}
@@ -120,4 +143,5 @@ AdminEventList.propTypes = {
   events: PropTypes.object,
   categories: PropTypes.object,
   published: PropTypes.bool,
+  history: PropTypes.object,
 };

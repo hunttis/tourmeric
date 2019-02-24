@@ -214,9 +214,9 @@ export default class EventCalendar extends Component {
                   <OpeningHours day={momentForDay.format('YYYY-MM-DD')} />
                 </div>
                 <div className="column is-6 has-text-right">
-                  {isAdmin &&
+                  {/* {isAdmin &&
                   <button className="button has-icons-left" onClick={() => {}}><i className="fas fa-toolbox" />&nbsp;<Translate id="addexception" /></button>
-                  }
+                  } */}
                 </div>
               </div>
               <p>&nbsp;</p>

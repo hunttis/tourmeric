@@ -22,8 +22,14 @@ export default class EventCard extends Component {
     this.setState({ modalOpen: false });
   }
 
+  async editEvent() {
+    const { eventId, history } = this.props;
+    await this.props.setReturnLocation(history.location.pathname);
+    this.props.history.push(`/admin/events/editevent/${eventId}`);
+  }
+
   render() {
-    const { eventId, events, userId, participations, categories, settings } = this.props;
+    const { eventId, events, userId, participations, categories, settings, isAdmin } = this.props;
 
     const eventContent = isLoaded(events) ? _.find(events, ['key', eventId]).value : {};
     const category = isLoaded(categories) ? categories[eventContent.category] : {};
@@ -44,7 +50,7 @@ export default class EventCard extends Component {
           <div className="card card-shadow">
 
             <div className="card-content card-title-border">
-              <div className="media">
+              <div className="media has-icons-right">
                 <div className="media-left">
                   <figure className="image is-64x64 event-icon">
                     <img src={category.image} alt="" />
@@ -54,7 +60,11 @@ export default class EventCard extends Component {
                   <p className="title eventheader">{category.abbreviation}: {eventContent.name}</p>
                   <p className="subtitle">{formattedDateWithDayName}</p>
                 </div>
+                {isAdmin &&
+                  <button className="button is-small" onClick={() => this.editEvent()}><i className="fas fa-pencil-alt" /></button>
+                }
               </div>
+
             </div>
 
             <div className="card-content">
@@ -148,4 +158,6 @@ EventCard.propTypes = {
   categories: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   settings: PropTypes.object,
+  isAdmin: PropTypes.bool,
+  setReturnLocation: PropTypes.func.isRequired,
 };

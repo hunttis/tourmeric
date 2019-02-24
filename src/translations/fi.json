@@ -33,6 +33,7 @@
   "currentlyshowing": "Näytetään: ",
   "all": "Kaikki",
   "only": "Vain",
+  "showing": "Näytetään",
   "past": "menneet",
   "future": "tulevat",
   "error": "Virhe",
@@ -113,6 +114,7 @@
   "publish": "Julkaise",
   "unpublish": "Piilota",
   "delete": "Poista",
+  "reallydelete": "Poista oikeasti?",
   "format": "Formaatti",
   "playerslots": "Pelaajapaikkoja",
   "entryfee": "Pääsymaksu",
@@ -252,6 +254,7 @@
   "setcategory": "Aseta kategoria",
   "newcreditrow": "Uusi krediittitapahtuma",
   "hide": "Piilota",
+  "goback": "Palaa takaisin",
 
   "storecreditcategories": "Krediittitapahtumien kategoriat",
   "mapping": "Kategorioiden nimeäminen",
