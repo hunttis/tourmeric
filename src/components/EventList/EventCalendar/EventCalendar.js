@@ -131,7 +131,12 @@ export default class EventCalendar extends Component {
       const dayString = `${_.padStart(i, 2, '0')}-${targetMonth.format('MM-YYYY')}`;
       const day = moment(dayString, 'DD-MM-YYYY');
       const dayStringInEventFormat = moment(dayString, 'DD-MM-YYYY').format('YYYY-MM-DD');
-      const eventsForDay = publishedEvents.filter(eventEntry => eventEntry.value.date === dayStringInEventFormat);
+      const eventsForDay = publishedEvents.filter((eventEntry) => {
+        if (eventEntry.value.endDate) {
+          return day.isBetween(moment(eventEntry.value.date), moment(eventEntry.value.endDate), 'day', '[]');
+        }
+        return eventEntry.value.date === dayStringInEventFormat;
+      });
 
       days.push({ day: day.format('DD'),
         dayOfWeek: day.format('d'),
@@ -185,6 +190,7 @@ export default class EventCalendar extends Component {
     const categoryNames = this.state.categoryFilter.map(category => categories[category].name).join(', ');
 
     const dayInPath = location.pathname.substring('/events/'.length);
+
     const eventsForDay = mode === MODE_DAY ? _.get(_.find(calendar, { dayLink: dayInPath }), 'eventsForDay', []) : [];
 
     const momentForDay = mode === MODE_DAY && moment(dayInPath, 'YYYY/MM/DD');

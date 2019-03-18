@@ -40,6 +40,7 @@ export default class EventCard extends Component {
     const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
     const formattedDateWithDayName = moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`);
+    const formattedEndDateWithDayName = eventContent.endDate ? moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`) : null;
 
     return (
       <Fragment>
@@ -58,7 +59,7 @@ export default class EventCard extends Component {
                 </div>
                 <div className="media-content">
                   <p className="title eventheader">{category.abbreviation}: {eventContent.name}</p>
-                  <p className="subtitle">{formattedDateWithDayName}</p>
+                  <p className="subtitle">{formattedDateWithDayName}{formattedEndDateWithDayName ? ` - ${formattedEndDateWithDayName}` : ''}</p>
                 </div>
                 {isAdmin &&
                   <button className="button is-small" onClick={() => this.editEvent()}><i className="fas fa-pencil-alt" /></button>

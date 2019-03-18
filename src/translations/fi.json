@@ -154,6 +154,11 @@
   "eventdate": "Tapahtuman päivämäärä",
   "eventinfo": "Tapahtuman tiedot",
   "youstillneedtoadd": "Sinun täytyy vielä syöttää",
+  "eventtype": "Tapahtuman tyyppi",
+  "singledayevent": "Yksipäiväinen",
+  "ongoingevent": "Jatkuva tapahtuma",
+  "startdate": "Alkupvm",
+  "enddate": "Loppupvm",
 
   "night": "Yöllä",
   "morning": "Aamulla",

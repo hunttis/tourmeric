@@ -161,6 +161,7 @@ type Event {
   category: String | Null,
   createDate: String | Null,
   date: String | Null,
+  endDate: String | Null,
   entryFee: String | Null,
   format: String | Null,
   link: String | Null,
@@ -170,7 +171,8 @@ type Event {
   prizes: String | Null,
   published: Boolean | Null,
   rulesLevel: String | Null,
-  time: String | Null
+  time: String | Null,
+  eventType: String | Null
 }
 
 type Highlight {

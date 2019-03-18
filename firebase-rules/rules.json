@@ -39,6 +39,9 @@
         "date": {
           ".validate": "newData.isString()"
         },
+        "endDate": {
+          ".validate": "newData.isString()"
+        },
         "entryFee": {
           ".validate": "newData.isString()"
         },
@@ -67,6 +70,9 @@
           ".validate": "newData.isString()"
         },
         "time": {
+          ".validate": "newData.isString()"
+        },
+        "eventType": {
           ".validate": "newData.isString()"
         },
         "$other": {

@@ -28,6 +28,7 @@ export default class ValidatedDateField extends Component {
       saved: false,
       editing: false,
       viewTime,
+      choosingStart: true,
     };
   }
 
@@ -35,6 +36,11 @@ export default class ValidatedDateField extends Component {
     const { targetName } = this.props;
     this.setState({ editing: true, saved: false });
     this.delayedSave({ [targetName]: newDate });
+  }
+
+  updateEndDateInDB(newDate) {
+    this.setState({ editing: true, saved: false });
+    this.delayedSave({ endDate: newDate });
   }
 
   parseInformationForMonthYear(month, year) {
@@ -72,7 +78,11 @@ export default class ValidatedDateField extends Component {
 
   clickDay(dayLink) {
     const clickMoment = moment(dayLink, 'YYYY/MM/DD');
-    this.updateDateInDB(clickMoment.format('YYYY-MM-DD'));
+    if (this.state.choosingStart) {
+      this.updateDateInDB(clickMoment.format('YYYY-MM-DD'));
+    } else {
+      this.updateEndDateInDB(clickMoment.format('YYYY-MM-DD'));
+    }
   }
 
   changeMonth(amount) {
@@ -85,16 +95,18 @@ export default class ValidatedDateField extends Component {
 
   render() {
     const { saved, editing, viewTime } = this.state;
-    const { isHorizontal, disabled, settings, openinghoursexceptions, defaultValue } = this.props;
+    const { isHorizontal, disabled, settings, openinghoursexceptions, defaultValue, isMulti, defaultEndValue } = this.props;
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
 
     moment.locale(this.props.activeLanguage);
 
     const eventDate = defaultValue ? moment(defaultValue, 'YYYY-MM-DD') : null;
+    const eventEndDate = defaultEndValue ? moment(defaultEndValue, 'YYYY-MM-DD') : null;
+
     const isOk = !!defaultValue;
 
-    if (disabled) {
+    if (!isMulti || disabled) {
       return (
         <div className={`field ${isHorizontal && 'is-horizontal'}`}>
           <div className="field-label is-normal">
@@ -137,6 +149,10 @@ export default class ValidatedDateField extends Component {
               <div className="level-left">
                 <h2 className="subtitle">{viewDate.format('MMMM - YYYY')}</h2>
               </div>
+              <div className="level-item">
+                <button className={`button is-small ${this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setState({ choosingStart: true })}><Translate id="startdate" /></button>
+                <button className={`button is-small ${!this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setState({ choosingStart: false })}><Translate id="enddate" /></button>
+              </div>
               <div className="level-right">
                 <button className="button is-small" onClick={() => this.changeMonth(-1)}><i className="fas fa-arrow-left" /></button>
                 <button className="button is-small" onClick={() => this.changeMonth(1)}><i className="fas fa-arrow-right" /></button>
@@ -148,6 +164,8 @@ export default class ValidatedDateField extends Component {
               openinghoursexceptions={openinghoursexceptions}
               settings={settings}
               selectedDay={eventDate ? eventDate.format('YYYY-MM-DD') : null}
+              selectedEndDay={eventEndDate ? eventEndDate.format('YYYY-MM-DD') : null}
+              isMulti={isMulti}
             />
           </div>
         </div>
@@ -159,10 +177,12 @@ export default class ValidatedDateField extends Component {
 ValidatedDateField.propTypes = {
   activeLanguage: PropTypes.string,
   defaultValue: PropTypes.string,
+  defaultEndValue: PropTypes.string,
   path: PropTypes.string,
   settings: PropTypes.object,
   targetName: PropTypes.string,
   isHorizontal: PropTypes.bool,
   disabled: PropTypes.bool,
   openinghoursexceptions: PropTypes.object,
+  isMulti: PropTypes.bool,
 };

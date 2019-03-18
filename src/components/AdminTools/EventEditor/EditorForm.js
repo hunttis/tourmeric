@@ -66,7 +66,6 @@ export const EditorForm = ({
                 isOk={!_.isEmpty(event.format)}
                 updateFieldStatus={updateFieldStatus}
                 labelContent="format"
-                placeHolder="formatplaceholder"
                 defaultValue={event.format}
                 dropdownItems={cleanedFormatOptions}
                 path={`/events/${eventId}`}
@@ -81,13 +80,32 @@ export const EditorForm = ({
         }
 
         <div className="column is-12">
+          <Translate>
+            {translate => (
+              <SelectElement
+                isOk={!_.isEmpty(event.eventType)}
+                updateFieldStatus={updateFieldStatus}
+                labelContent="eventtype"
+                defaultValue={event.eventType}
+                dropdownItems={{ singledayevent: translate('singledayevent'), ongoingevent: translate('ongoingevent') }}
+                path={`/events/${eventId}`}
+                targetName="eventType"
+                isHorizontal
+              />
+            )}
+          </Translate>
+        </div>
+
+        <div className="column is-12">
           <ValidatedDateField
             isOk={!_.isEmpty(event.date)}
             defaultValue={event.date}
+            defaultEndValue={event.endDate}
             path={`/events/${eventId}`}
             targetName="date"
             isHorizontal
             disabled={!allowDateEdit}
+            isMulti={event.eventType === 'ongoingevent'}
           />
         </div>
 
