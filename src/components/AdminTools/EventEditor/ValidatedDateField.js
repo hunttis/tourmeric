@@ -106,7 +106,7 @@ export default class ValidatedDateField extends Component {
 
     const isOk = !!defaultValue;
 
-    if (!isMulti || disabled) {
+    if (!isMulti && disabled) {
       return (
         <div className={`field ${isHorizontal && 'is-horizontal'}`}>
           <div className="field-label is-normal">

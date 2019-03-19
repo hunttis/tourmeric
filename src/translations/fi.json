@@ -159,6 +159,8 @@
   "ongoingevent": "Jatkuva tapahtuma",
   "startdate": "Alkupvm",
   "enddate": "Loppupvm",
+  "eventsfortoday": "Tapahtumat tänään",
+  "ongoingevents": "Käynnissä olevat tapahtumat",
 
   "night": "Yöllä",
   "morning": "Aamulla",

@@ -95,6 +95,21 @@ a.adminactive {
   margin: 3px;
 }
 
+.ongoing-event-image {
+ border: 1px groove lightblue;
+ border-color: white;
+ border-radius: 10px;
+}
+
+.ongoing-event-card-title {
+  background-color: #020a0b !important;
+}
+
+.card.card-shadow.ongoing-event-card {
+  border: 2px groove gray;
+  border-radius: 10px;
+}
+
 .openinghours-mobile {
   @media (max-width: 400px) {
     padding: 0px;

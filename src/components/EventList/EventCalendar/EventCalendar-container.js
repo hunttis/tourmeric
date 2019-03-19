@@ -11,6 +11,7 @@ export default compose(
   connect(state => ({
     settings: state.firebase.data.settings,
     events: state.firebase.ordered.events,
+    eventsongoing: state.firebase.ordered.eventsongoing,
     categories: state.firebase.data.categories,
     activeLanguage: getActiveLanguage(state.locale).code,
     location: state.router.location,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
@@ -120,22 +120,24 @@ export default class EventCalendar extends Component {
 
   parseInformationForMonthYear(month, year) {
 
-    const { events } = this.props;
+    const { events, eventsongoing } = this.props;
 
     const targetMonth = moment(`${month}-${year}`, 'MM-YYYY');
     const dayCount = targetMonth.daysInMonth();
     const days = [];
     const publishedEvents = this.runEventFilters(events);
+    const publishedOngoingEvents = this.runEventFilters(eventsongoing);
 
     for (let i = 1; i <= dayCount; i += 1) {
       const dayString = `${_.padStart(i, 2, '0')}-${targetMonth.format('MM-YYYY')}`;
       const day = moment(dayString, 'DD-MM-YYYY');
       const dayStringInEventFormat = moment(dayString, 'DD-MM-YYYY').format('YYYY-MM-DD');
-      const eventsForDay = publishedEvents.filter((eventEntry) => {
+      const eventsForDay = publishedEvents.filter(eventEntry => eventEntry.value.date === dayStringInEventFormat);
+      const eventsOnGoing = publishedOngoingEvents.filter((eventEntry) => {
         if (eventEntry.value.endDate) {
-          return day.isBetween(moment(eventEntry.value.date), moment(eventEntry.value.endDate), 'day', '[]');
+          return day.isBetween(moment(eventEntry.value.date, 'YYYY-MM-DD'), moment(eventEntry.value.endDate, 'YYYY-MM-DD'), 'day', '[]');
         }
-        return eventEntry.value.date === dayStringInEventFormat;
+        return false;
       });
 
       days.push({ day: day.format('DD'),
@@ -143,7 +145,8 @@ export default class EventCalendar extends Component {
         dayName: day.format('dddd'),
         dayString: day.format('DD-MMMM-YYYY'),
         dayLink: day.format('YYYY/MM/DD'),
-        eventsForDay });
+        eventsForDay,
+        ongoingEventsForDay: eventsOnGoing });
     }
 
     const emptyDays = (days[0].dayOfWeek % 7) - 1;
@@ -192,6 +195,7 @@ export default class EventCalendar extends Component {
     const dayInPath = location.pathname.substring('/events/'.length);
 
     const eventsForDay = mode === MODE_DAY ? _.get(_.find(calendar, { dayLink: dayInPath }), 'eventsForDay', []) : [];
+    const ongoingEventsForDay = mode === MODE_DAY ? _.get(_.find(calendar, { dayLink: dayInPath }), 'ongoingEventsForDay', []) : [];
 
     const momentForDay = mode === MODE_DAY && moment(dayInPath, 'YYYY/MM/DD');
 
@@ -228,15 +232,30 @@ export default class EventCalendar extends Component {
                 </div>
               </div>
               <p>&nbsp;</p>
-              {_.isEmpty(eventsForDay) && <p><Translate id="noeventsforthisday" /></p>}
+              {(_.isEmpty(eventsForDay) && _.isEmpty(ongoingEventsForDay)) && <p><Translate id="noeventsforthisday" /></p>}
               {!_.isEmpty(eventsForDay) &&
-              <div>
-                {sortedEvents.map((eventEntry, index) => {
-                  const eventId = eventEntry.key;
-                  return <EventCard key={`events-for-day-${index}`} eventId={eventId} />;
-                })}
-              </div>
-            }
+              <Fragment>
+                <h2 className="subtitle"><Translate id="eventsfortoday" /></h2>
+                <div>
+                  {sortedEvents.map((eventEntry, index) => {
+                    const eventId = eventEntry.key;
+                    return <EventCard key={`events-for-day-${index}`} eventId={eventId} />;
+                  })}
+                </div>
+              </Fragment>
+              }
+              {!_.isEmpty(ongoingEventsForDay) &&
+              <Fragment>
+                <h2 className="subtitle"><Translate id="ongoingevents" /></h2>
+                <div>
+                  {ongoingEventsForDay.map((eventEntry, index) => {
+                    const eventId = eventEntry.key;
+                    return <EventCard key={`events-for-day-${index}`} eventId={eventId} />;
+                  })}
+                </div>
+              </Fragment>
+              }
+
 
             </div>
             <button className="modal-close is-large" aria-label="close" onClick={() => this.backToCalendar()} />
@@ -309,6 +328,7 @@ export default class EventCalendar extends Component {
 EventCalendar.propTypes = {
   settings: PropTypes.object,
   events: PropTypes.array,
+  eventsongoing: PropTypes.array,
   categories: PropTypes.object,
   activeLanguage: PropTypes.string,
   location: PropTypes.object,

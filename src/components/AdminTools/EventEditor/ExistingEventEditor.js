@@ -54,7 +54,14 @@ export default class ExistingEventEditor extends Component {
     }
 
     await this.setState({ processing: true });
-    await firebase.push('/events', dataToSave);
+
+    if (event.eventType === 'ongoingevent') {
+      await firebase.push('/eventsongoing', dataToSave);
+    } else {
+      await firebase.push('/events', dataToSave);
+    }
+
+
     await firebase.set(`/events/${eventId}`, {});
     this.goBack();
   }

@@ -57,6 +57,13 @@ export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openingho
             <div className="card-content is-paddingless">
               <div className="is-inline-flex">
                 <div className="calendar-card-spacer calendar-image" />
+                {!closedThisDay && day.ongoingEventsForDay.map((eventEntry, index) => {
+                  const event = eventEntry.value;
+                  const eventLogo = categories[event.category].image;
+                  return (
+                    <img key={`event-img-${index}`} className="image is-24x24 is-rounded calendar-image ongoing-event-image" src={eventLogo} alt="" />
+                  );
+                })}
                 {day.eventsForDay.map((eventEntry, index) => {
                   const event = eventEntry.value;
                   const eventLogo = categories[event.category].image;

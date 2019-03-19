@@ -18,6 +18,16 @@ path /events {
   write() { isAdmin() }
 }
 
+path /eventsongoing/{id} is Event {
+  read() { true }
+  write() { isAdmin() }
+}
+
+path /eventsongoing {
+  read() { true }
+  write() { isAdmin() }
+}
+
 path /highlights/{id} is Highlight {
   read() { true }
   write() { isAdmin() }

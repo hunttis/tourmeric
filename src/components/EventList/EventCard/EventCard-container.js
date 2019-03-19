@@ -8,7 +8,8 @@ import EventCard from './EventCard';
 
 export default compose(
   connect(state => ({
-    events: state.firebase.ordered.events,
+    events: state.firebase.data.events,
+    eventsongoing: state.firebase.data.eventsongoing,
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
     userId: state.firebase.auth.uid,

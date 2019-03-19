@@ -29,9 +29,18 @@ export default class EventCard extends Component {
   }
 
   render() {
-    const { eventId, events, userId, participations, categories, settings, isAdmin } = this.props;
+    const { eventId, events, eventsongoing, userId, participations, categories, settings, isAdmin } = this.props;
 
-    const eventContent = isLoaded(events) ? _.find(events, ['key', eventId]).value : {};
+    if (!isLoaded(events) && !isLoaded(eventsongoing)) {
+      return <div />;
+    }
+
+    const eventContent = events[eventId] ? events[eventId] : eventsongoing[eventId];
+
+    if (!eventContent) {
+      return <div><Translate id="eventidnotfound" /></div>;
+    }
+
     const category = isLoaded(categories) ? categories[eventContent.category] : {};
     const alreadyParticipated = checkParticipation(userId, eventId, participations);
     const thisParticipation = _.get(participations, `${eventId}.${userId}`, {});
@@ -48,13 +57,13 @@ export default class EventCard extends Component {
           <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal()} />
         }
         <div className="column is-12 eventcard">
-          <div className="card card-shadow">
+          <div className={`card card-shadow ${formattedEndDateWithDayName && 'ongoing-event-card'}`}>
 
-            <div className="card-content card-title-border">
+            <div className={`card-content card-title-border ${formattedEndDateWithDayName && 'ongoing-event-card-title'}`}>
               <div className="media has-icons-right">
                 <div className="media-left">
                   <figure className="image is-64x64 event-icon">
-                    <img src={category.image} alt="" />
+                    <img className={`${formattedEndDateWithDayName && 'ongoing-event-image'}`} src={category.image} alt="" />
                   </figure>
                 </div>
                 <div className="media-content">
@@ -154,7 +163,8 @@ export default class EventCard extends Component {
 EventCard.propTypes = {
   eventId: PropTypes.string.isRequired,
   userId: PropTypes.string,
-  events: PropTypes.array.isRequired,
+  events: PropTypes.object.isRequired,
+  eventsongoing: PropTypes.object.isRequired,
   participations: PropTypes.object,
   categories: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
