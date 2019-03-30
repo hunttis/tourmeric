@@ -14,7 +14,7 @@ export default compose(
       settings: state.firebase.data.settings,
       location: state.router.location,
       event: state.firebase.data.events[eventId],
-      returnLocation: state.editor.returnLocation,
+      returnLocation: state.editor.returnLocation || '/events',
       eventId,
     });
   }),

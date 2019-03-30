@@ -80,6 +80,7 @@ export default class ExistingEventEditor extends Component {
     const categoryOk = !!event.category;
     const formatOk = !!event.category && (cleanFormatOptionsLength === 0 || (cleanFormatOptionsLength > 0 && !!event.format));
     const timeOk = !!event.time && checkTimeStringFormat(event.time);
+    const dateOk = event.eventType === 'ongoingevent' ? !!event.endDate : true;
 
     const entryFeeOk = !_.isEmpty(event.entryFee);
 
@@ -98,6 +99,9 @@ export default class ExistingEventEditor extends Component {
     }
     if (!entryFeeOk) {
       missingFields.push('entryfee');
+    }
+    if (!dateOk) {
+      missingFields.push('enddate');
     }
 
     return missingFields;

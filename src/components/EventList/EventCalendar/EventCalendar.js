@@ -126,7 +126,8 @@ export default class EventCalendar extends Component {
     const dayCount = targetMonth.daysInMonth();
     const days = [];
     const publishedEvents = this.runEventFilters(events);
-    const publishedOngoingEvents = this.runEventFilters(eventsongoing);
+    console.log('eventsOnGoing', eventsongoing);
+    const publishedOngoingEvents = eventsongoing ? this.runEventFilters(eventsongoing) : [];
 
     for (let i = 1; i <= dayCount; i += 1) {
       const dayString = `${_.padStart(i, 2, '0')}-${targetMonth.format('MM-YYYY')}`;
