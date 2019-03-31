@@ -16,7 +16,7 @@ import { checkTimeStringFormat } from '../../Common/Utils';
 export const EditorForm = ({
   event, eventId, categories, cleanedFormatOptions, newEvent, missingFields,
   updateCategory, updateFieldStatus, allowDateEdit, saveEvent, deleteEvent,
-  deleteConfirmation, goBack,
+  deleteConfirmation, goBack, storageUrlPath,
 }) => (
   <div className="columns is-multiline">
     <div className="column is-hidden-mobile">&nbsp;</div>
@@ -30,7 +30,7 @@ export const EditorForm = ({
             labelContent="name"
             placeHolder="eventnameplaceholder"
             defaultValue={event.name}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="name"
             isHorizontal
           />
@@ -48,7 +48,7 @@ export const EditorForm = ({
             placeHolder="categoryplaceholder"
             defaultValue={event.category}
             dropdownItems={categories}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="category"
             nameProp="abbreviation"
             isHorizontal
@@ -68,7 +68,7 @@ export const EditorForm = ({
                 labelContent="format"
                 defaultValue={event.format}
                 dropdownItems={cleanedFormatOptions}
-                path={`/events/${eventId}`}
+                path={`${storageUrlPath}/${eventId}`}
                 targetName="format"
                 isHorizontal
               />
@@ -88,7 +88,7 @@ export const EditorForm = ({
                 labelContent="eventtype"
                 defaultValue={event.eventType}
                 dropdownItems={{ singledayevent: translate('singledayevent'), ongoingevent: translate('ongoingevent') }}
-                path={`/events/${eventId}`}
+                path={`${storageUrlPath}/${eventId}`}
                 targetName="eventType"
                 isHorizontal
               />
@@ -101,7 +101,7 @@ export const EditorForm = ({
             isOk={!_.isEmpty(event.date)}
             defaultValue={event.date}
             defaultEndValue={event.endDate}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="date"
             isHorizontal
             disabled={!allowDateEdit}
@@ -117,7 +117,7 @@ export const EditorForm = ({
             targetName="time"
             placeHolder="timeformat"
             defaultValue={event.time}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
           />
         </div>
 
@@ -137,7 +137,7 @@ export const EditorForm = ({
             placeHolder="playerslotsplaceholder"
             defaultValue={event.playerSlots}
             inputType="number"
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="playerSlots"
             isHorizontal
           />
@@ -151,7 +151,7 @@ export const EditorForm = ({
             placeHolder="entryfeeplaceholder"
             defaultValue={event.entryFee}
             inputType="number"
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="entryFee"
             isHorizontal
           />
@@ -164,7 +164,7 @@ export const EditorForm = ({
             labelContent="ruleslevel"
             placeHolder="ruleslevelplaceholder"
             defaultValue={event.rulesLevel}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="rulesLevel"
             isHorizontal
           />
@@ -177,7 +177,7 @@ export const EditorForm = ({
             labelContent="link"
             placeHolder="linkplaceholder"
             defaultValue={event.link}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="link"
             isHorizontal
           />
@@ -190,7 +190,7 @@ export const EditorForm = ({
             labelContent="prizes"
             placeHolder="prizesplaceholder"
             defaultValue={event.prizes}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="prizes"
             isHorizontal
           />
@@ -203,7 +203,7 @@ export const EditorForm = ({
             labelContent="notes"
             placeHolder="notesplaceholder"
             defaultValue={event.notes}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="notes"
             isHorizontal
           />
@@ -243,10 +243,10 @@ export const EditorForm = ({
             <Translate id="goback" />
           </button>
           {!newEvent && event.published &&
-            <button className="button is-warning is-outlined" onClick={() => firebase.update(`/events/${eventId}`, { published: false })}><Translate id="hide" /></button>
+            <button className="button is-warning is-outlined" onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: false })}><Translate id="hide" /></button>
           }
           {!newEvent && !event.published &&
-            <button className="button is-success is-outlined" disabled={missingFields.length !== 0} onClick={() => firebase.update(`/events/${eventId}`, { published: true })}><Translate id="publish" /></button>
+            <button className="button is-success is-outlined" disabled={missingFields.length !== 0} onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: true })}><Translate id="publish" /></button>
           }
 
           {newEvent &&
@@ -275,4 +275,5 @@ EditorForm.propTypes = {
   deleteEvent: PropTypes.func,
   deleteConfirmation: PropTypes.bool,
   goBack: PropTypes.func,
+  storageUrlPath: PropTypes.string.isRequired,
 };

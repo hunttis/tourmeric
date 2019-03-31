@@ -161,6 +161,7 @@
   "enddate": "Loppupvm",
   "eventsfortoday": "Tapahtumat tänään",
   "ongoingevents": "Käynnissä olevat tapahtumat",
+  "ongoingnext7days": "Käynnissä seuraavan 7 päivän aikana",
 
   "night": "Yöllä",
   "morning": "Aamulla",

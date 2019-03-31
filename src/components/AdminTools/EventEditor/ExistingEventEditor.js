@@ -15,15 +15,18 @@ export default class ExistingEventEditor extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { processing: false, deleteConfirmation: false };
+    const storageUrlPath = props.isOngoingEvent ? '/eventsongoing' : '/events';
+    this.state = { processing: false, deleteConfirmation: false, storageUrlPath };
 
     window.scrollTo(0, 0);
 
     if (props.eventId.startsWith('DRAFT') && !props.event) {
       const date = props.eventId.substr(6);
-      firebase.update(`/events/${props.eventId}`, { createDate: moment().toISOString(), date });
-    } else if (!props.event) {
-      firebase.update(`/events/${props.eventId}`, { createDate: moment().toISOString() });
+      firebase.update(`${storageUrlPath}/${props.eventId}`, { createDate: moment().toISOString(), date });
+    } else if (!props.event && !props.isOngoingEvent) {
+      firebase.update(`${storageUrlPath}/${props.eventId}`, { editDate: moment().toISOString() });
+    } else {
+      firebase.update(`${storageUrlPath}/${props.eventId}`, { editDate: moment().toISOString() });
     }
   }
 
@@ -39,7 +42,7 @@ export default class ExistingEventEditor extends Component {
 
     const selectedCategory = data ? categories[data] : { formats: [] };
     if (event.format && _.isEmpty(selectedCategory.formats)) {
-      firebase.update(`/events/${eventId}`, { format: null });
+      firebase.update(`${this.state.storageUrlPath}/${eventId}`, { format: null });
     }
   }
 
@@ -60,7 +63,6 @@ export default class ExistingEventEditor extends Component {
     } else {
       await firebase.push('/events', dataToSave);
     }
-
 
     await firebase.set(`/events/${eventId}`, {});
     this.goBack();
@@ -138,18 +140,18 @@ export default class ExistingEventEditor extends Component {
     const { eventId } = this.props;
 
     await this.setState({ processing: true });
-    await firebase.set(`/events/${eventId}`, {});
+    await firebase.set(`${this.state.storageUrlPath}/${eventId}`, {});
     this.goBack();
   }
 
   async hideEvent() {
     const { eventId } = this.props;
-    await firebase.update(`/events/${eventId}`, { published: false });
+    await firebase.update(`${this.state.storageUrlPath}/${eventId}`, { published: false });
   }
 
   async publishEvent() {
     const { eventId } = this.props;
-    await firebase.update(`/events/${eventId}`, { published: true });
+    await firebase.update(`${this.state.storageUrlPath}/${eventId}`, { published: true });
   }
 
   async goBack() {
@@ -158,7 +160,7 @@ export default class ExistingEventEditor extends Component {
   }
 
   render() {
-    const { processing, deleteConfirmation } = this.state;
+    const { processing, deleteConfirmation, storageUrlPath } = this.state;
     const { eventId, categories, event } = this.props;
 
     moment.locale('fi');
@@ -171,6 +173,10 @@ export default class ExistingEventEditor extends Component {
       return (
         <div>Processing..</div>
       );
+    }
+
+    if (!storageUrlPath) {
+      return <div>ERROR IN STORAGE URL PATH</div>;
     }
 
     const cleanedFormatOptions = this.cleanFormatOptions();
@@ -197,6 +203,7 @@ export default class ExistingEventEditor extends Component {
           deleteEvent={() => this.deleteEvent()}
           deleteConfirmation={deleteConfirmation}
           goBack={() => this.goBack()}
+          storageUrlPath={storageUrlPath}
         />
       </div>
     );
@@ -210,4 +217,5 @@ ExistingEventEditor.propTypes = {
   history: PropTypes.object,
   event: PropTypes.object,
   returnLocation: PropTypes.string.isRequired,
+  isOngoingEvent: PropTypes.bool,
 };

@@ -36,6 +36,9 @@
         "createDate": {
           ".validate": "newData.isString()"
         },
+        "editDate": {
+          ".validate": "newData.isString()"
+        },
         "date": {
           ".validate": "newData.isString()"
         },
@@ -91,6 +94,9 @@
           ".validate": "newData.isString()"
         },
         "createDate": {
+          ".validate": "newData.isString()"
+        },
+        "editDate": {
           ".validate": "newData.isString()"
         },
         "date": {

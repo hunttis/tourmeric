@@ -170,6 +170,7 @@ type Category {
 type Event {
   category: String | Null,
   createDate: String | Null,
+  editDate: String | Null,
   date: String | Null,
   endDate: String | Null,
   entryFee: String | Null,

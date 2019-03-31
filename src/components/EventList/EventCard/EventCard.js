@@ -12,7 +12,7 @@ import { CardFooterDesktop } from './CardFooterDesktop';
 
 export default class EventCard extends Component {
 
-  state = { modalOpen: false };
+  state = { modalOpen: false, isOngoingEvent: !this.props.events[this.props.eventId] };
 
   openModal() {
     this.setState({ modalOpen: true });
@@ -25,7 +25,11 @@ export default class EventCard extends Component {
   async editEvent() {
     const { eventId, history } = this.props;
     await this.props.setReturnLocation(history.location.pathname);
-    this.props.history.push(`/admin/events/editevent/${eventId}`);
+    if (this.state.isOngoingEvent) {
+      this.props.history.push(`/admin/events/editongoingevent/${eventId}`);
+    } else {
+      this.props.history.push(`/admin/events/editevent/${eventId}`);
+    }
   }
 
   render() {
@@ -37,7 +41,7 @@ export default class EventCard extends Component {
 
     const eventContent = events[eventId] ? events[eventId] : eventsongoing[eventId];
 
-    if (!eventContent) {
+    if (!eventContent || !eventContent.date) {
       return <div><Translate id="eventidnotfound" /></div>;
     }
 

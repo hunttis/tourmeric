@@ -7,6 +7,7 @@ import Today from './Today';
 export default compose(
   connect(state => ({
     events: state.firebase.ordered.events,
+    eventsongoing: state.firebase.ordered.eventsongoing,
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
     userid: state.firebase.auth.uid,

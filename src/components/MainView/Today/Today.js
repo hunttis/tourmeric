@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment/min/moment-with-locales';
+import Moment from 'moment/min/moment-with-locales';
+import { extendMoment } from 'moment-range';
 import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import News from './News-container';
 import EventCard from '../../EventList/EventCard/EventCard-container';
 import EventModal from '../../EventList/EventModal-container';
+
+const moment = extendMoment(Moment);
 
 export default class Today extends Component {
 
@@ -30,6 +33,24 @@ export default class Today extends Component {
     return [];
   }
 
+  findNextOngoingEvents(ongoingevents) {
+    const { profile } = this.props;
+    const range = moment.range(moment(), moment().add(7, 'days'));
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
+    if (ongoingevents) {
+      const nextEvents = ongoingevents.filter((eventEntry) => {
+        const eventData = eventEntry.value;
+        // const eventDate = moment(eventData.date, 'YYYY-MM-DD');
+        const eventDateRange = moment.range(moment(eventData.date, 'YYYY-MM-DD'), moment(eventData.endDate, 'YYYY-MM-DD'));
+        const isWithinAWeek = range.overlaps(eventDateRange);
+        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;
+        return eventData.published && isWithinAWeek && isFavorite;
+      });
+      return nextEvents;
+    }
+    return [];
+  }
+
   findTodaysEvents(events) {
     const { profile } = this.props;
     const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
@@ -45,6 +66,25 @@ export default class Today extends Component {
         return false;
       });
       return todaysEvents;
+    }
+    return [];
+  }
+
+  findTodaysOngoingEvents(eventsongoing) {
+    const { profile } = this.props;
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
+    if (eventsongoing) {
+      const todaysOngoingEvents = eventsongoing.filter((eventEntry) => {
+        const eventData = eventEntry.value;
+        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;
+
+        if (eventData.endDate) {
+          return isFavorite && moment().isBetween(moment(eventData.date, 'YYYY-MM-DD'), moment(eventData.endDate, 'YYYY-MM-DD'), 'day', '[]');
+        }
+        return false;
+
+      });
+      return todaysOngoingEvents;
     }
     return [];
   }
@@ -129,6 +169,41 @@ export default class Today extends Component {
     );
   }
 
+  renderTodaysOngoingEventItems(eventsongoing) {
+    if (!_.isEmpty(eventsongoing)) {
+      return (
+        <Fragment>
+          <div className="column is-6">
+            <h1 className="title"><Translate id="ongoingevents" /></h1>
+            {eventsongoing.map((eventEntry) => {
+              const eventId = eventEntry.key;
+
+              return (
+                <div key={eventId} className="columns today-view-cards-space">
+                  <EventCard
+                    eventId={eventId}
+                    openModal={() => this.openModal(eventId)}
+                  />
+                </div>
+              );
+
+            })}
+          </div>
+        </Fragment>
+      );
+    }
+    return (
+      <Fragment>
+        <div className="column is-6">
+          <h1 className="title"><Translate id="todaysevents" /></h1>
+          <div className="has-text-warning"><Translate id="noeventstoday" /></div>
+          <p>&nbsp;</p>
+          <button className="button" onClick={() => this.switchView('future')}><Translate id="shownext7days" /></button>
+        </div>
+      </Fragment>
+    );
+  }
+
   renderFutureEventItems(nextEvents) {
     if (!_.isEmpty(nextEvents)) {
 
@@ -171,18 +246,60 @@ export default class Today extends Component {
 
   }
 
+  renderFutureOngoingEventItems(nextOngoingEvents) {
+    if (!_.isEmpty(nextOngoingEvents)) {
+
+      return (
+        <Fragment>
+          <div className="column is-6">
+            <h1 className="title"><Translate id="ongoingnext7days" /></h1>
+            {nextOngoingEvents.map((eventEntry) => {
+              const eventId = eventEntry.key;
+              return (
+                <div key={eventId} className="columns today-view-cards-space">
+                  <EventCard
+                    eventId={eventId}
+                    openModal={() => this.openModal(eventId)}
+                  />
+                </div>
+              );
+
+            })}
+          </div>
+        </Fragment>
+      );
+    }
+    return (
+      <Fragment>
+        <div className="column is-6">
+          <h1 className="title"><Translate id="nextevents" /></h1>
+          <div className="has-text-warning"><Translate id="noeventsinnextsevendays" /></div>
+          <p>&nbsp;</p>
+          <div><Translate id="toseeeventsfurtherinthefuturegotoeventspage" /></div>
+          <p>&nbsp;</p>
+          <button className="button" onClick={() => this.switchView('today')}><Translate id="showeventstoday" /></button>
+
+        </div>
+      </Fragment>
+    );
+
+  }
+
   render() {
 
     const {
-      events, categories, uploadedCategoryLogos, activeLanguage,
+      events, eventsongoing, categories, uploadedCategoryLogos, activeLanguage,
     } = this.props;
 
     const { shownItems } = this.state;
     moment.locale(activeLanguage);
 
-    if (isLoaded(events) && isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
-      const nextEvents = this.findNextEvents(events);
-      const todaysEvents = this.findTodaysEvents(events);
+    if (isLoaded(events) && isLoaded(eventsongoing) && isLoaded(eventsongoing) && isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
+      const nextEvents = shownItems === 'future' ? this.findNextEvents(events) : [];
+      const nextOngoingEvents = shownItems === 'future' ? this.findNextOngoingEvents(eventsongoing) : [];
+
+      const todaysEvents = shownItems === 'today' ? this.findTodaysEvents(events) : [];
+      const todaysOngoingEvents = shownItems === 'today' ? this.findTodaysOngoingEvents(eventsongoing) : [];
 
       return (
         <div className="section">
@@ -192,7 +309,9 @@ export default class Today extends Component {
             {isLoaded(events) && nextEvents.map(eventEntry => this.renderEventModal(eventEntry))}
 
             {shownItems === 'today' && this.renderTodaysEventItems(todaysEvents)}
+            {shownItems === 'today' && this.renderTodaysOngoingEventItems(todaysOngoingEvents)}
             {shownItems === 'future' && this.renderFutureEventItems(nextEvents)}
+            {shownItems === 'future' && this.renderFutureOngoingEventItems(nextOngoingEvents)}
 
             <div className="column is-6">
               <News />
@@ -209,6 +328,7 @@ export default class Today extends Component {
 
 Today.propTypes = {
   events: PropTypes.array,
+  eventsongoing: PropTypes.array,
   categories: PropTypes.object,
   uploadedCategoryLogos: PropTypes.object,
   profile: PropTypes.object,
