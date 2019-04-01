@@ -27,6 +27,8 @@ export default class EventCalendar extends Component {
 
     this.state = { categoryFilter: _.compact(defaultFilter),
       ...targetData };
+
+    this.scrollElement = null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,6 +36,24 @@ export default class EventCalendar extends Component {
       const targetData = this.parseTargetMonthYearAndMode(nextProps.location);
       this.setState({ ...targetData });
     }
+  }
+
+  componentWillUnmount() {
+    this.scrollElement.removeEventListener('scroll', this.checkStateShouldShowArrow);
+    document.documentElement.classList.remove('is-clipped');
+  }
+
+  updateScrollRef = (element) => {
+    if (element) {
+      this.scrollElement = element;
+      this.checkStateShouldShowArrow();
+      element.addEventListener('scroll', this.checkStateShouldShowArrow);
+    }
+  }
+
+  checkStateShouldShowArrow = () => {
+    const element = this.scrollElement;
+    this.setState({ showArrow: element.scrollTop <= element.scrollHeight - window.innerHeight - 10 });
   }
 
   parseTargetMonthYearAndMode(location) {
@@ -45,6 +65,8 @@ export default class EventCalendar extends Component {
     const splitPath = location.pathname.split('/');
     const pathLength = splitPath.length;
 
+    document.documentElement.classList.remove('is-clipped');
+
     if (pathLength === 2) {
       mode = MODE_MONTH;
     } else if (pathLength < 5) {
@@ -52,10 +74,12 @@ export default class EventCalendar extends Component {
       targetMonth = _.get(splitPath, MONTH_INDEX, targetMonth);
       mode = MODE_MONTH;
     } else if (pathLength === 5) {
+      console.log('day mode!');
       targetYear = _.get(splitPath, YEAR_INDEX, targetYear);
       targetMonth = _.get(splitPath, MONTH_INDEX, targetMonth);
       targetDay = _.get(splitPath, DAY_INDEX, targetDay);
       mode = MODE_DAY;
+      document.documentElement.classList.add('is-clipped');
     }
 
     return { targetYear, targetMonth, targetDay, mode };
@@ -173,6 +197,7 @@ export default class EventCalendar extends Component {
     history.push(`/admin/events/newevent/${momentForDay.format('YYYY-MM-DD')}`);
   }
 
+
   render() {
     const {
       events, categories, activeLanguage, location, openinghoursexceptions, settings, isAdmin,
@@ -212,7 +237,10 @@ export default class EventCalendar extends Component {
         {mode === MODE_DAY &&
           <div className="modal is-active">
             <div className="modal-background" onClick={() => this.backToCalendar()} />
-            <div className="modal-content box">
+            <div className="modal-content box" ref={this.updateScrollRef}>
+              {this.state.showArrow &&
+                <div className="more-to-scroll"><i className="fas fa-angle-double-down" /></div>
+              }
 
               <div className="columns is-multiline">
                 <div className="column is-6">

@@ -41,6 +41,7 @@ export default class MainView extends Component {
     this.state = { redirected: false, userInfoOk: false };
   }
 
+
   componentWillReceiveProps(nextProps) {
 
     const wasProfileLoaded = isLoaded(this.props.profile);
@@ -56,7 +57,13 @@ export default class MainView extends Component {
     if (!this.state.redirected) {
       if (isLoaded(nextProps.profile) && isEmpty(nextProps.profile) && ['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
         this.props.history.push('/today');
-      } else if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !emailOk || !acceptedPrivacyPolicy)) {
+      } else if (
+        isLoggedIn && (
+          !nextProps.profile.firstName ||
+            !nextProps.profile.lastName ||
+            !emailOk ||
+            !acceptedPrivacyPolicy)
+      ) {
         this.props.history.push('/userinfo');
         this.setState({ redirected: true });
       } else if (wasProfileLoaded !== isProfileLoaded) {

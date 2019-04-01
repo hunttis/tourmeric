@@ -95,20 +95,14 @@ a.adminactive {
   margin: 3px;
 }
 
-.ongoing-event-image {
- border: 1px groove lightblue;
- border-color: white;
- border-radius: 10px;
-}
 
-.ongoing-event-card-title {
-  background-color: #020a0b !important;
-}
+// .ongoing-event-card-title {
+//   background-color: #324a3b !important;
+// }
 
-.card.card-shadow.ongoing-event-card {
-  border: 2px groove gray;
-  border-radius: 10px;
-}
+// .card.card-shadow.ongoing-event-card {
+//   border: 2px groove gray;
+// }
 
 .openinghours-mobile {
   @media (max-width: 400px) {
@@ -133,11 +127,12 @@ a.adminactive {
 }
 
 .card-content.card-title-border {
-  background-color: #15181888;
+  // background-color: #15181888;
+  padding: 5px 0px 5px 5px;
 }
 
 .card-title-border {
-  border: 1px solid #15181888;
+  // border: 1px solid #15181888;
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
 }
@@ -147,9 +142,57 @@ a.adminactive {
   animation-duration: 500ms;
 }
 
+div.card-footer.is-hidden-mobile {
+  border-width: 0px;
+  background-color: #282f2f;
+}
+
 figure.is-64x64.image.event-icon {
   height: 64px;
   width: 64px;
+}
+
+.event-icon-title{
+  height: 100px;
+}
+
+table.table.eventinfo-table {
+  background-color: #282f2f;
+  // width: 100%;
+}
+
+table.table.eventinfo-table tr td {
+  border-bottom-width: 0px;
+  border-bottom-color: #282f2f;
+  padding: 5px 1em;
+}
+
+table.table.eventinfo-table tr :first-child {
+  width: 0.3em;
+}
+
+table.table.eventinfo-table tr :nth-child(2) {
+  padding-right: 0px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.allinfolink {
+  padding-left: 16px;
+}
+
+div.card-content.card-title.card-logo-title {
+  padding: 10px 0px;
+}
+
+figure.event-icon-title.event-item {
+  display: flex;
+  justify-content: center;
+}
+
+.image.event-icon-title img{
+  height: 100px;
+  width: auto;
 }
 
 figure.event-icon img{
@@ -157,6 +200,28 @@ figure.event-icon img{
   width: auto;
   max-width: 100%;
   max-height: 100%;
+}
+
+div.media-content.event-card-title {
+  padding-left: 1em;
+}
+
+div.more-to-scroll {
+  position: fixed;
+  z-index: 1000;
+  bottom: 10px;
+  
+  @media (max-width: 400px) {
+    right: 10%;
+  }
+  right: 30%;
+  animation: scrollmarkerin;
+  animation-duration: 1s;
+  opacity: 0.7;
+}
+
+div.more-to-scroll i.fas.fa-angle-double-down {
+  font-size: 50px;
 }
 
 .is-all-caps {
@@ -327,6 +392,23 @@ table thead th.storecreditreport-amount {
 
   100% {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scrollmarkerin {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, 20px, -100px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0.7;
     transform: translate3d(0, 0, 0);
   }
 }

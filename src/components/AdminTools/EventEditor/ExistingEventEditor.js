@@ -38,10 +38,10 @@ export default class ExistingEventEditor extends Component {
   }
 
   updateCategory(key, empty, data) {
-    const { categories, event, eventId } = this.props;
+    const { categories, eventId } = this.props;
 
     const selectedCategory = data ? categories[data] : { formats: [] };
-    if (event.format && _.isEmpty(selectedCategory.formats)) {
+    if (_.isEmpty(selectedCategory.formats)) {
       firebase.update(`${this.state.storageUrlPath}/${eventId}`, { format: null });
     }
   }

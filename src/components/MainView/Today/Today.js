@@ -137,9 +137,9 @@ export default class Today extends Component {
     if (!_.isEmpty(todaysEvents)) {
       return (
         <Fragment>
-          <div className="column is-6">
+          <div className="column is-2" />
+          <div className="column is-4">
             <h1 className="title"><Translate id="todaysevents" /></h1>
-            <button className="button" onClick={() => this.switchView('future')}><Translate id="shownext7days" /></button>
             {todaysEvents.map((eventEntry) => {
               const eventId = eventEntry.key;
 
@@ -159,7 +159,7 @@ export default class Today extends Component {
     }
     return (
       <Fragment>
-        <div className="column is-6">
+        <div className="column is-4">
           <h1 className="title"><Translate id="todaysevents" /></h1>
           <div className="has-text-warning"><Translate id="noeventstoday" /></div>
           <p>&nbsp;</p>
@@ -173,7 +173,7 @@ export default class Today extends Component {
     if (!_.isEmpty(eventsongoing)) {
       return (
         <Fragment>
-          <div className="column is-6">
+          <div className="column is-4">
             <h1 className="title"><Translate id="ongoingevents" /></h1>
             {eventsongoing.map((eventEntry) => {
               const eventId = eventEntry.key;
@@ -189,12 +189,13 @@ export default class Today extends Component {
 
             })}
           </div>
+          <div className="column is-2" />
         </Fragment>
       );
     }
     return (
       <Fragment>
-        <div className="column is-6">
+        <div className="column is-4">
           <h1 className="title"><Translate id="todaysevents" /></h1>
           <div className="has-text-warning"><Translate id="noeventstoday" /></div>
           <p>&nbsp;</p>

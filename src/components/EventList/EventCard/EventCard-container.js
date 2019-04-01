@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 
 import { setReturnLocation } from '../../../actions/eventEditorActions';
-import EventCard from './EventCard';
+import EventItem from './EventItem';
 
 export default compose(
   connect(state => ({
@@ -20,4 +20,4 @@ export default compose(
     setReturnLocation: returnLocation => dispatch(setReturnLocation(returnLocation)),
   })),
   connect(({ firebase: { profile } }) => ({ profile })),
-)(withRouter(EventCard));
+)(withRouter(EventItem));
