@@ -32,10 +32,14 @@ export default class ValidatedDateField extends Component {
     };
   }
 
-  updateDateInDB(newDate) {
+  updateDateInDB(newDate, clearEndDate) {
     const { targetName } = this.props;
     this.setState({ editing: true, saved: false });
-    this.delayedSave({ [targetName]: newDate });
+    const update = { [targetName]: newDate };
+    if (clearEndDate) {
+      update.endDate = null;
+    }
+    this.delayedSave(update);
   }
 
   updateEndDateInDB(newDate) {
@@ -52,11 +56,13 @@ export default class ValidatedDateField extends Component {
       const dayString = `${_.padStart(i, 2, '0')}-${targetMonth.format('MM-YYYY')}`;
       const day = moment(dayString, 'DD-MM-YYYY');
 
-      days.push({ day: day.format('DD'),
+      days.push({
+        day: day.format('DD'),
         dayOfWeek: day.format('d'),
         dayName: day.format('dddd'),
         dayString: day.format('DD-MMMM-YYYY'),
-        dayLink: day.format('YYYY/MM/DD') });
+        dayLink: day.format('YYYY/MM/DD'),
+      });
     }
 
     const emptyDays = (days[0].dayOfWeek % 7) - 1;
@@ -78,11 +84,7 @@ export default class ValidatedDateField extends Component {
 
   clickDay(dayLink) {
     const clickMoment = moment(dayLink, 'YYYY/MM/DD');
-    if (this.state.choosingStart) {
-      this.updateDateInDB(clickMoment.format('YYYY-MM-DD'));
-    } else {
-      this.updateEndDateInDB(clickMoment.format('YYYY-MM-DD'));
-    }
+    this.updateDateInDB(clickMoment.format('YYYY-MM-DD'), !this.state.isMulti);
   }
 
   changeMonth(amount) {
@@ -149,10 +151,12 @@ export default class ValidatedDateField extends Component {
               <div className="level-left">
                 <h2 className="subtitle">{viewDate.format('MMMM - YYYY')}</h2>
               </div>
-              <div className="level-item">
-                <button className={`button is-small ${this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setState({ choosingStart: true })}><Translate id="startdate" /></button>
-                <button className={`button is-small ${!this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setState({ choosingStart: false })}><Translate id="enddate" /></button>
-              </div>
+              {isMulti &&
+                <div className="level-item">
+                  <button className={`button is-small ${this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setState({ choosingStart: true })}><Translate id="startdate" /></button>
+                  <button className={`button is-small ${!this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setState({ choosingStart: false })}><Translate id="enddate" /></button>
+                </div>
+              }
               <div className="level-right">
                 <button className="button is-small" onClick={() => this.changeMonth(-1)}><i className="fas fa-arrow-left" /></button>
                 <button className="button is-small" onClick={() => this.changeMonth(1)}><i className="fas fa-arrow-right" /></button>

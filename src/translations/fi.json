@@ -189,6 +189,8 @@
   "selecttheme": "Valitse teema",
   "abbreviation": "Lyhenne",
   "themecoloroverrides": "Korvaa teeman värejä",
+  "nosmallimage": "Ei pikkukuvaa",
+  "nologo": "Ei logoa",
 
   "users": "Käyttäjät",
   "adduser": "Lisää käyttäjä",

@@ -164,6 +164,7 @@ type Category {
   abbreviation: String | Null,
   type: String | Null,
   image: String | Null,
+  imageSmall: String | Null,
   formats: String | Null,
 }
 

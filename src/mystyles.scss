@@ -95,14 +95,17 @@ a.adminactive {
   margin: 3px;
 }
 
+div.card-content.card-title.card-logo-title.ongoing-event-card-title {
+  border-radius: 5px 5px 0px 0px;
+}
 
-// .ongoing-event-card-title {
-//   background-color: #324a3b !important;
-// }
+.ongoing-event-card div {
+  background-color: #191919;
+}
 
-// .card.card-shadow.ongoing-event-card {
-//   border: 2px groove gray;
-// }
+.ongoing-event-card div.card-content table {
+  background-color: #191919;
+}
 
 .openinghours-mobile {
   @media (max-width: 400px) {
@@ -126,13 +129,7 @@ a.adminactive {
   padding-top: 10px;
 }
 
-.card-content.card-title-border {
-  // background-color: #15181888;
-  padding: 5px 0px 5px 5px;
-}
-
 .card-title-border {
-  // border: 1px solid #15181888;
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
 }

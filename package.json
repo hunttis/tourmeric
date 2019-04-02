@@ -37,10 +37,14 @@
     "firebase-deploy-rules-localdev": "firebase use localdev; firebase deploy --only database"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.7",
+    "@typescript-eslint/eslint-plugin": "^1.5.0",
+    "@typescript-eslint/parser": "^1.5.0",
     "babel-runtime": "^6.26.0",
     "bulma": "^0.7.2",
     "bulma-extensions": "^1.0.30",
     "bulmaswatch": "^0.7.2",
+    "classnames": "^2.2.6",
     "clipboard": "^2.0.1",
     "connected-react-router": "^4.5.0",
     "firebase": "^5.5.5",
@@ -64,9 +68,13 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
-    "translate": "^1.0.3"
+    "translate": "^1.0.3",
+    "typescript": "3.4.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.123",
+    "@types/react": "^16.8.10",
+    "@types/react-dom": "^16.8.3",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",

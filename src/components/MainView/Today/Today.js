@@ -40,7 +40,6 @@ export default class Today extends Component {
     if (ongoingevents) {
       const nextEvents = ongoingevents.filter((eventEntry) => {
         const eventData = eventEntry.value;
-        // const eventDate = moment(eventData.date, 'YYYY-MM-DD');
         const eventDateRange = moment.range(moment(eventData.date, 'YYYY-MM-DD'), moment(eventData.endDate, 'YYYY-MM-DD'));
         const isWithinAWeek = range.overlaps(eventDateRange);
         const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;

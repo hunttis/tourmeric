@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
+import React, {Component, Fragment} from 'react';
+import {isLoaded, isEmpty} from 'react-redux-firebase';
 import _ from 'lodash';
-import { setActiveLanguage } from 'react-localize-redux';
+import {setActiveLanguage} from 'react-localize-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import AdminTools from '../AdminTools/AdminTools-container';
 import AdminToolsEvents from '../AdminTools/AdminToolsEvents-container';
 import AdminSiteSettings from '../AdminTools/SiteSettings/AdminSiteSettings-container';
@@ -38,12 +38,10 @@ export default class MainView extends Component {
   constructor(props) {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.state = { redirected: false, userInfoOk: false };
+    this.state = {redirected: false, userInfoOk: false};
   }
 
-
   componentWillReceiveProps(nextProps) {
-
     const wasProfileLoaded = isLoaded(this.props.profile);
     const isProfileLoaded = isLoaded(nextProps.profile);
     const isLoggedIn = isProfileLoaded && !isEmpty(nextProps.profile);
@@ -52,7 +50,7 @@ export default class MainView extends Component {
     const emailOk = (!nextProps.profile.useOtherEmail && (providerEmail || nextProps.profile.email)) || (nextProps.profile.useOtherEmail && nextProps.profile.otherEmail);
     const namesOk = !!_.get(nextProps, 'profile.firstName', false) && !!_.get(nextProps, 'profile.lastName', false);
 
-    this.setState({ userInfoOk: !isLoggedIn || (emailOk && namesOk && acceptedPrivacyPolicy) });
+    this.setState({userInfoOk: !isLoggedIn || (emailOk && namesOk && acceptedPrivacyPolicy)});
 
     if (!this.state.redirected) {
       if (isLoaded(nextProps.profile) && isEmpty(nextProps.profile) && ['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
@@ -60,32 +58,32 @@ export default class MainView extends Component {
       } else if (
         isLoggedIn && (
           !nextProps.profile.firstName ||
-            !nextProps.profile.lastName ||
-            !emailOk ||
-            !acceptedPrivacyPolicy)
+          !nextProps.profile.lastName ||
+          !emailOk ||
+          !acceptedPrivacyPolicy)
       ) {
         this.props.history.push('/userinfo');
-        this.setState({ redirected: true });
+        this.setState({redirected: true});
       } else if (wasProfileLoaded !== isProfileLoaded) {
         const currentLocation = this.props.location.pathname.substring(1);
         const landingPage = _.get(nextProps.profile, 'landingPage', 'today');
         if (_.isEmpty(currentLocation) && !_.isEmpty(landingPage)) {
           this.props.history.push(`/${landingPage}`);
         }
-        this.setState({ redirected: true });
+        this.setState({redirected: true});
       }
     }
   }
 
   changeLanguage(newLanguage) {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     dispatch(setActiveLanguage(newLanguage));
     Moment.globalLocale = newLanguage;
   }
 
   render() {
-    const { profile, settings } = this.props;
-    const { userInfoOk } = this.state;
+    const {profile, settings} = this.props;
+    const {userInfoOk} = this.state;
 
     if (isLoaded(settings) && isEmpty(settings)) {
       return <InitialSetup profile={profile} />;
@@ -95,11 +93,15 @@ export default class MainView extends Component {
       <div>
         <ThemeHandler />
 
+        {/* {isLoaded(settings) &&
+        <Fragment> */}
         <EventLoader />
         <CategoryLoader />
         <ParticipationsLoader />
         <UploadedCategoryLogosLoader />
         <OpeningHoursExceptionLoader />
+        {/* </Fragment>
+        } */}
 
         <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
         <Navbar changeLanguage={this.changeLanguage} />
@@ -108,19 +110,19 @@ export default class MainView extends Component {
         </div>
 
         {userInfoOk &&
-        <Switch>
-          <Route path="/today" component={Today} />
-          <Route path="/event/:id" component={SingleEvent} />
-          <Route path="/events" component={EventCalendar} />
-          <Route path="/storeinfo" component={StoreInfo} />
-          <Route path="/userinfo" component={UserInfo} />
-          <Route path="/admin/tools" component={AdminTools} />
-          <Route path="/admin/events" component={AdminToolsEvents} />
-          <Route path="/admin/sitesettings" component={AdminSiteSettings} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/companyinfo" component={CompanyInfo} />
-        </Switch>
+          <Switch>
+            <Route path="/today" component={Today} />
+            <Route path="/event/:id" component={SingleEvent} />
+            <Route path="/events" component={EventCalendar} />
+            <Route path="/storeinfo" component={StoreInfo} />
+            <Route path="/userinfo" component={UserInfo} />
+            <Route path="/admin/tools" component={AdminTools} />
+            <Route path="/admin/events" component={AdminToolsEvents} />
+            <Route path="/admin/sitesettings" component={AdminSiteSettings} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/companyinfo" component={CompanyInfo} />
+          </Switch>
         }
 
         {!userInfoOk &&
