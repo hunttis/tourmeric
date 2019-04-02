@@ -15,7 +15,7 @@
         "image": {
           ".validate": "newData.isString()"
         },
-        "thumbnail": {
+        "imageSmall": {
           ".validate": "newData.isString()"
         },
         "formats": {

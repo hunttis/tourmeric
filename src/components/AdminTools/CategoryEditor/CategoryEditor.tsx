@@ -8,76 +8,120 @@ import EditableVerticalField from '../../Common/EditableVerticalField-container'
 import ImagePicker from '../ImagePicker';
 
 interface State {
-  editingCategory: string | null;
+  editingCategory?: string | null;
+  pickingImage: boolean;
+  pickingSmallImage: boolean;
 }
 
 export default class CategoryEditor extends Component<CategoryEditorProps, State> {
 
-  state: State = { editingCategory: null }
+  state: State = { editingCategory: null, pickingImage: false, pickingSmallImage: false }
 
   changeLogo(path: string, value: string) {
     firebase.update(`/${path}`, value);
+  }
+
+  addCategory = async () => {
+    const result = firebase.push('/categories/', { name: 'NEW CATEGORY' });
+    this.setState({editingCategory: result.key});
   }
 
   deleteCategory(categoryId: string) {
     firebase.set(`/categories/${categoryId}`, {});
   }
 
+  changeEditedCategory = (categoryId: string | null) => {
+    this.setState({editingCategory: null, pickingImage: false, pickingSmallImage: false}, () => {
+      if (categoryId !== null) {
+        this.setState({editingCategory: categoryId});
+      }
+    });
+  }
+
   render() {
     const { categories, uploadedCategoryLogos, events } = this.props;
-
-    if (isLoaded(categories) && !isEmpty(categories) && isLoaded(uploadedCategoryLogos)) {
+    const { editingCategory, pickingImage, pickingSmallImage } = this.state;
+    
+    
+    if (isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
+      console.log('updating render!', editingCategory && categories[editingCategory]);
       return (
-        <div>
+        <div className="section">
+
           <div className="field">
-            <button className="button" onClick={() => firebase.push('/categories/', { name: 'New' })}>
+            <button className="button" onClick={this.addCategory}>
               <Translate id="addcategory" />
             </button>
           </div>
+
           <div className="columns is-multiline">
             <div className="column is-6">
 
-              {Object.entries(categories).map(([categoryId, categoryData]) => {
-                const boxClasses = 'message';
-                const categoryLogo = uploadedCategoryLogos && categoryData.logo ? uploadedCategoryLogos[categoryData.logo] : '';
-                const categoryImageSmall = uploadedCategoryLogos && categoryData.imageSmall ? uploadedCategoryLogos[categoryData.imageSmall] : '';
-                const allowedToDelete = !_.find(events, { category: categoryId });
+              <table className="table is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>
+                      <Translate id="image" />
+                      <br />
+                      <span className="has-text-info"></span>
+                    </th>
+                    <th>
+                      <Translate id="smallimage" />
+                      <br />
+                      <span className="has-text-info"></span>
+                    </th>
+                    <th><Translate id="name" /></th>
+                    <th><Translate id="actions" /></th>
+                  </tr>
+                </thead>
+                <tbody>
 
-                return (
-                  <div className={boxClasses} key={`categoryeditor-${categoryId}`}>
-                    <div className="message-header">
-                      <span className="icon">
-                        {categoryLogo && <img className="image is-32x32" src={categoryLogo.downloadURL} alt="" />}
-                        {!categoryLogo && <Translate id="nologo" />}
-                      </span>
-                      <span>
+                {!isEmpty(categories) && Object.entries(categories).map(([categoryId, categoryData]) => {
+                  const categoryImage = _.find(uploadedCategoryLogos, {downloadURL: categoryData.image});
+                  const categoryImageSmall = categoryData.imageSmall && _.find(uploadedCategoryLogos, {downloadURL: categoryData.imageSmall});
+                  const allowedToDelete = !_.find(events, { category: categoryId });
+
+                  return (
+                    <tr key={`categoryeditor-${categoryId}`}>
+                      <td className="media-left">
+                        {categoryImage && <img className="image category-image" src={categoryImage.downloadURL} alt="" />}
+                        {!categoryImage && <Translate id="nologo" />}
+                      </td>
+                      <td>
                         {categoryImageSmall && <img className="image is-32x32" src={categoryImageSmall.downloadURL} alt="" />}
                         {!categoryImageSmall && <Translate id="nosmallimage" />}
-                      </span>
-                      <span>
+                      </td>
+                      <td>
                         {categoryData.name}
-                      </span>
-                      {!allowedToDelete && <button disabled className="button is-small is-info"><Translate id="cannotdeleteinuse" /></button>}
-                      {allowedToDelete && <button className="button is-small is-danger" onClick={() => this.deleteCategory(categoryId)}><Translate id="delete" /></button>}
-                      {this.state.editingCategory === categoryId && <button className="button is-small is-success" onClick={() => this.setState({ editingCategory: null })}><Translate id="editing" /></button>}
-                      {this.state.editingCategory !== categoryId && <button className="button is-small is-info" onClick={() => this.setState({ editingCategory: categoryId })}><Translate id="edit" /></button>}
-                    </div>
-                  </div>
-                );
-              })
-            }
+                      </td>
+                      <td>
+                        {this.state.editingCategory === categoryId && <button className="button is-small is-success" onClick={() => this.changeEditedCategory(null) }><Translate id="editing" /></button>}
+                        {this.state.editingCategory !== categoryId && <button className="button is-small is-info" onClick={() => this.changeEditedCategory(categoryId) }><Translate id="edit" /></button>}
+                        {!allowedToDelete && <button disabled className="button is-small is-danger"><Translate id="cannotdelete" /></button>}
+                        {allowedToDelete && <button className="button is-small is-danger" onClick={() => this.deleteCategory(categoryId)}><Translate id="delete" /></button>}
+                      </td>
+                    </tr>
+                  );
+                })}
+                </tbody>
+              </table>
             </div>
             <div className="column is-6">
-              {this.state.editingCategory &&
-                <CategoryEditorPanel categoryId={this.state.editingCategory} categoryData={categories[this.state.editingCategory]} uploadedCategoryLogos={uploadedCategoryLogos} />
+              {editingCategory &&
+                <CategoryEditorPanel 
+                  categoryId={editingCategory}
+                  categoryData={categories[editingCategory]}
+                  uploadedCategoryLogos={uploadedCategoryLogos}
+                  pickingImage={pickingImage}
+                  pickingSmallImage={pickingSmallImage} 
+                  chooseImagePicker={(update: State) => this.setState(update)}
+                />
               }
             </div>
           </div>
         </div>
       );
-    }
-
-    if (!isLoaded(categories)) {
+    } else if (!isLoaded(categories)) {
       return <div><Translate id="loading" /></div>;
     }
 
@@ -90,14 +134,21 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
   }
 }
 
+const categoryEntry = ({}) => {
+  
+}
+
 interface CategoryEditorPanelProps {
   categoryId: string;
   categoryData: Category;
   uploadedCategoryLogos: {[key: string]: CategoryLogo};
+  pickingImage: boolean;
+  pickingSmallImage: boolean;
+  chooseImagePicker: (update: State) => void;
 }
 
-const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos }: CategoryEditorPanelProps) => (
-  <div className="message-body">
+const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, pickingImage, pickingSmallImage, chooseImagePicker }: CategoryEditorPanelProps) => (
+  <div className="box">
     <EditableVerticalField
       labelContent="name"
       placeHolder="nameofthegame"
@@ -127,13 +178,57 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos }
       targetName="formats"
     />
 
-    <br />
+    <div className="columns is-multiline">
+      <div className="column is-6">
+        <p>
+          <Translate id="usedineventcards" />
+        </p>
+        <div className="level">
+          <div className="level-left">
+            <button className={`button categoryeditor-button is-outlined ${pickingSmallImage && 'is-success'}`} onClick={() => chooseImagePicker({pickingImage: true, pickingSmallImage: false})}>
+              <Translate id="chooseimage" />
+            </button>
+          </div>
+          <div className="level-right">
+            {categoryData.image && <img className="image category-image" src={categoryData.image} alt="" />}
+          </div>
+        </div>
+      </div>
+      <div className="column is-6 box">
+        <p>
+          <Translate id="usedineventcalendar" />
+        </p>
+
+        <div className="level">
+          <div className="level-left">
+            <button className={`button categoryeditor-button is-outlined ${pickingSmallImage && 'is-success'}`} onClick={() => chooseImagePicker({pickingImage: false, pickingSmallImage: true})}>
+              <Translate id="choosesmallimage" />
+            </button>
+          </div>
+          <div className="level-right">
+            {categoryData.imageSmall && <img className="image category-image" src={categoryData.imageSmall} alt="" />}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {pickingImage &&
     <ImagePicker
       imageList={uploadedCategoryLogos}
       highlightedImage={categoryData.image}
       path={`/categories/${categoryId}`}
-      size="is-32x32"
+      fieldName="image"    
     />
+    }
+
+    {pickingSmallImage &&
+    <ImagePicker
+      imageList={uploadedCategoryLogos}
+      highlightedImage={categoryData.imageSmall}
+      path={`/categories/${categoryId}`}
+      fieldName="imageSmall"
+    />
+    }
 
   </div>
 );

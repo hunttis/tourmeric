@@ -37,6 +37,7 @@ export default class HighlightEditorModal extends Component {
             imageList={uploadedHighlightBanners}
             highlightedImage={highlight.image}
             path={`/highlights/${highlightId}`}
+            fieldName="image"
           />
 
           {highlight.active &&

@@ -104,7 +104,7 @@
   "categorylogouploader": "Category logos",
   "formats": "Formats",
   "formatsplaceholder": "Formats, separated by comma",
-  "cannotdeleteinuse": "Cannot delete, in use",
+  "cannotdelete": "Cannot delete",
   "nameofthegame": "Name of the game",
   "abbreviationofthename": "Abbreviation of the name",
   "gametype": "Game type, card, board games, videogames etc",

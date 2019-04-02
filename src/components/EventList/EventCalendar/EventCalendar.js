@@ -39,7 +39,7 @@ export default class EventCalendar extends Component {
   }
 
   componentWillUnmount() {
-    if (!this.scrollElement) {
+    if (this.scrollElement) {
       this.scrollElement.removeEventListener('scroll', this.checkStateShouldShowArrow);
     }
     document.documentElement.classList.remove('is-clipped');

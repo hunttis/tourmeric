@@ -162,6 +162,7 @@ export default class NewsEditor extends Component {
                     imageList={uploadedNewsImages}
                     highlightedImage={newsItem.image}
                     path={`/news/${newsId}`}
+                    fieldName="image"
                   />
 
                   {news.active &&
