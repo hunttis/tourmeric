@@ -17,13 +17,9 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
 
   state: State = { editingCategory: null, pickingImage: false, pickingSmallImage: false }
 
-  changeLogo(path: string, value: string) {
-    firebase.update(`/${path}`, value);
-  }
-
   addCategory = async () => {
-    const result = firebase.push('/categories/', { name: 'NEW CATEGORY' });
-    this.setState({editingCategory: result.key});
+    const result = await firebase.push('/categories/', { name: 'NEW CATEGORY' });
+    this.setState({ editingCategory: result.key });
   }
 
   deleteCategory(categoryId: string) {
@@ -31,18 +27,21 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
   }
 
   changeEditedCategory = (categoryId: string | null) => {
-    this.setState({editingCategory: null, pickingImage: false, pickingSmallImage: false}, () => {
+    this.setState({ editingCategory: null, pickingImage: false, pickingSmallImage: false }, () => {
       if (categoryId !== null) {
-        this.setState({editingCategory: categoryId});
+        this.setState({ editingCategory: categoryId });
       }
     });
+  }
+
+  changeLogo(path: string, value: string) {
+    firebase.update(`/${path}`, value);
   }
 
   render() {
     const { categories, uploadedCategoryLogos, events } = this.props;
     const { editingCategory, pickingImage, pickingSmallImage } = this.state;
 
-    
     if (isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
       console.log('updating render!', editingCategory && categories[editingCategory]);
       return (
@@ -64,12 +63,12 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                     <th>
                       <Translate id="image" />
                       <br />
-                      <span className="has-text-info"></span>
+                      <span className="has-text-info" />
                     </th>
                     <th>
                       <Translate id="smallimage" />
                       <br />
-                      <span className="has-text-info"></span>
+                      <span className="has-text-info" />
                     </th>
                     <th><Translate id="name" /></th>
                     <th colSpan={2}><Translate id="actions" /></th>
@@ -125,7 +124,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                   categoryData={categories[editingCategory]}
                   uploadedCategoryLogos={uploadedCategoryLogos}
                   pickingImage={pickingImage}
-                  pickingSmallImage={pickingSmallImage} 
+                  pickingSmallImage={pickingSmallImage}
                   chooseImagePicker={(update: State) => this.setState(update)}
                 />
             </div>
@@ -136,7 +135,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
           </div>
         </div>
       );
-    } else if (!isLoaded(categories)) {
+    } if (!isLoaded(categories)) {
       return <div><Translate id="loading" /></div>;
     }
 
@@ -150,8 +149,8 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
 }
 
 const categoryEntry = ({}) => {
-  
-}
+
+};
 
 interface CategoryEditorPanelProps {
   categoryId: string;
@@ -200,7 +199,7 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, 
         </p>
         <div className="level">
           <div className="level-left">
-            <button className={`button categoryeditor-button is-outlined ${pickingSmallImage && 'is-success'}`} onClick={() => chooseImagePicker({pickingImage: true, pickingSmallImage: false})}>
+            <button className={`button categoryeditor-button is-outlined ${pickingImage && 'is-success'}`} onClick={() => chooseImagePicker({ pickingImage: true, pickingSmallImage: false })}>
               <Translate id="chooseimage" />
             </button>
           </div>
@@ -216,7 +215,7 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, 
 
         <div className="level">
           <div className="level-left">
-            <button className={`button categoryeditor-button is-outlined ${pickingSmallImage && 'is-success'}`} onClick={() => chooseImagePicker({pickingImage: false, pickingSmallImage: true})}>
+            <button className={`button categoryeditor-button is-outlined ${pickingSmallImage && 'is-success'}`} onClick={() => chooseImagePicker({ pickingImage: false, pickingSmallImage: true })}>
               <Translate id="choosesmallimage" />
             </button>
           </div>
@@ -232,7 +231,7 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, 
       imageList={uploadedCategoryLogos}
       highlightedImage={categoryData.image}
       path={`/categories/${categoryId}`}
-      fieldName="image"    
+      fieldName="image"
     />
     }
 
