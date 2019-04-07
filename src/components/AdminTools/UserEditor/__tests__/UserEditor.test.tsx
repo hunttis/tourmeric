@@ -1,20 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import UserEditor from '../UserEditor';
-import '../../../../__mocks__/setupTests';
 
 describe('UserEditor Tests', () => {
 
   it('Compares UserEditor to snapshot', () => {
 
-    const mockUsers = [];
+    const mockUsers: any = [];
 
     const userEditor = shallow(<UserEditor
       users={mockUsers}
+      storecredit={{}}
     />);
 
     expect(userEditor.exists()).toBe(true);
-    expect(userEditor).toMatchSnapshot();
+    expect(toJson(userEditor)).toMatchSnapshot();
 
   });
 

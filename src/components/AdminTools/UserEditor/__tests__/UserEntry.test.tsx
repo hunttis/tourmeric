@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import { UserEntry } from '../UserEntry';
-import '../../../../__mocks__/setupTests';
 
 describe('UserEntry Tests', () => {
 
@@ -9,16 +9,17 @@ describe('UserEntry Tests', () => {
 
     const mockUserData = {}; // Todo mock user data
     const mockOpenModal = () => {};
-    const mockDeleteModal = () => {};
 
     const userEntry = shallow(<UserEntry
       userData={mockUserData}
       openEditModal={mockOpenModal}
-      openDeleteModal={mockDeleteModal}
+      openDisableModal={() => {}}
+      openCreditModal={() => {}}
+      userId="testid-123"
     />);
 
     expect(userEntry.exists()).toBe(true);
-    expect(userEntry).toMatchSnapshot();
+    expect(toJson(userEntry)).toMatchSnapshot();
 
   });
 

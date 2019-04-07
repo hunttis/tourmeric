@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import { createBrowserHistory } from 'history';
 import EventCard from '../EventCard/EventCard';
 import { mockEventId, mockUserId, mockProfile, mockEvents, mockSettings, mockUploadedLogos, mockParticipations, mockCategories } from '../__mocks__/mockData';
-import '../../../__mocks__/setupTests';
 
 describe('EventCard Tests', () => {
 
@@ -20,8 +19,8 @@ describe('EventCard Tests', () => {
       eventId={mockEventId}
       userId={mockUserId}
       profile={mockProfile}
-      events={mockEvents}
-      eventsongoing={mockEvents}
+      events={mockEventsAsObject}
+      eventsongoing={mockEventsAsObject}
       settings={mockSettings}
       participations={mockParticipations}
       categories={mockCategories}
