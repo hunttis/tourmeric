@@ -313,9 +313,11 @@ export default class Today extends Component {
             {shownItems === 'future' && this.renderFutureEventItems(nextEvents)}
             {shownItems === 'future' && this.renderFutureOngoingEventItems(nextOngoingEvents)}
 
-            <div className="column is-6">
+            <div className="column is-2" />
+            <div className="column is-8">
               <News />
             </div>
+            <div className="column is-2" />
           </div>
         </div>);
     }

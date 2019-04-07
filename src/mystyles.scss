@@ -424,12 +424,23 @@ table thead th.storecreditreport-amount {
 @keyframes scrollmarkerin {
   0% {
     opacity: 0;
-    transform: translate3d(0px, 20px, -100px);
+    transform: translate3d(0px, 0px, -100px);
   }
+
+  25% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+
 
   50% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0px, 0);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
   }
 
   100% {

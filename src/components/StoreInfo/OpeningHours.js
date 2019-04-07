@@ -17,7 +17,7 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }) => {
     const exception = _.get(openinghoursexceptions, dateString);
 
     if (exception) {
-      if (!exception.open) {
+      if (exception.status === 'closed') {
         return (
           <Fragment>
             <span className="has-text-danger">
@@ -27,7 +27,6 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }) => {
               {!isToday &&
                 <Translate id="exceptionallynotopen" />
               }
-
             </span>
               : {exception.name}
           </Fragment>
@@ -44,6 +43,7 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }) => {
             }
           </span>
             : {exception.openingHours}
+          <p>{exception.name}</p>
         </Fragment>
       );
     }

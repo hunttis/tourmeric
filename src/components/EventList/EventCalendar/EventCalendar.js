@@ -7,6 +7,7 @@ import moment from 'moment/min/moment-with-locales';
 import EventCard from '../EventCard/EventCard-container';
 import { CalendarMonth } from './CalendarMonth';
 import OpeningHours from '../../StoreInfo/OpeningHours-container';
+import { OpeningHoursExceptionEditor } from './OpeningHoursExceptionEditor';
 
 const YEAR_INDEX = 2;
 const MONTH_INDEX = 3;
@@ -26,7 +27,8 @@ export default class EventCalendar extends Component {
     const targetData = this.parseTargetMonthYearAndMode(props.location);
 
     this.state = { categoryFilter: _.compact(defaultFilter),
-      ...targetData };
+      ...targetData,
+      editingException: false };
 
     this.scrollElement = null;
   }
@@ -76,7 +78,6 @@ export default class EventCalendar extends Component {
       targetMonth = _.get(splitPath, MONTH_INDEX, targetMonth);
       mode = MODE_MONTH;
     } else if (pathLength === 5) {
-      console.log('day mode!');
       targetYear = _.get(splitPath, YEAR_INDEX, targetYear);
       targetMonth = _.get(splitPath, MONTH_INDEX, targetMonth);
       targetDay = _.get(splitPath, DAY_INDEX, targetDay);
@@ -199,13 +200,20 @@ export default class EventCalendar extends Component {
     history.push(`/admin/events/newevent/${momentForDay.format('YYYY-MM-DD')}`);
   }
 
+  closeExceptionEditor() {
+    this.setState({ editingException: false });
+  }
+
+  toggleExceptionEditor() {
+    this.setState(prevState => ({ editingException: !prevState.editingException }));
+  }
 
   render() {
     const {
       events, categories, activeLanguage, location, openinghoursexceptions, settings, isAdmin,
     } = this.props;
 
-    const { targetMonth, targetYear, mode } = this.state;
+    const { targetMonth, targetYear, mode, editingException } = this.state;
 
     if (!isLoaded(events) || !isLoaded(categories)) {
       return <div className="is-loading"><Translate id="loading" /></div>;
@@ -233,6 +241,7 @@ export default class EventCalendar extends Component {
     });
 
     const sortedEvents = _.sortBy(parsedEvents, event => event.id);
+    const exceptionForDayExists = mode === MODE_DAY && isLoaded(openinghoursexceptions) && openinghoursexceptions[momentForDay.format('YYYY-MM-DD')];
 
     return (
       <section className="section">
@@ -253,13 +262,39 @@ export default class EventCalendar extends Component {
                   <button className="button has-icons-left" onClick={() => { this.goToEventEditor(momentForDay); }}><i className="fas fa-calendar" />&nbsp;<Translate id="addevent" /></button>
                   }
                 </div>
-                <div className="column is-6">
+                {!editingException &&
+                <div className="column is-8">
                   <OpeningHours day={momentForDay.format('YYYY-MM-DD')} />
                 </div>
-                <div className="column is-6 has-text-right">
-                  {/* {isAdmin &&
-                  <button className="button has-icons-left" onClick={() => {}}><i className="fas fa-toolbox" />&nbsp;<Translate id="addexception" /></button>
-                  } */}
+                }
+                {editingException &&
+                <div className="column is-8">
+                  <OpeningHoursExceptionEditor
+                    day={momentForDay}
+                    existingExceptions={openinghoursexceptions}
+                    closeEditor={() => this.closeExceptionEditor()}
+                  />
+                </div>
+                }
+
+                <div className="column is-4 has-text-right">
+                  {isAdmin &&
+                  <button
+                    className="button has-icons-left"
+                    onClick={() => { this.toggleExceptionEditor(); }}
+                  >
+                    <span className="icon"><i className="fas fa-toolbox" /></span>
+                    {(!editingException && exceptionForDayExists) &&
+                      <span><Translate id="modifyexception" /></span>
+                    }
+                    {(!editingException && !exceptionForDayExists) &&
+                      <span><Translate id="addexception" /></span>
+                    }
+                    {editingException &&
+                      <span><Translate id="exception" /> <Translate id="done" /></span>
+                    }
+                  </button>
+                  }
                 </div>
               </div>
               <p>&nbsp;</p>
@@ -355,6 +390,7 @@ export default class EventCalendar extends Component {
     );
   }
 }
+
 
 EventCalendar.propTypes = {
   settings: PropTypes.object,

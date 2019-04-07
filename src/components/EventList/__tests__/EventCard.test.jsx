@@ -10,11 +10,17 @@ describe('EventCard Tests', () => {
 
     const history = createBrowserHistory();
 
+    const mockEventsAsObject = {
+      [mockEvents[0].key]: { ...mockEvents[0].value },
+      [mockEvents[1].key]: { ...mockEvents[1].value },
+    };
+
     const card = shallow(<EventCard
       eventId={mockEventId}
       userId={mockUserId}
       profile={mockProfile}
       events={mockEvents}
+      eventsongoing={mockEvents}
       settings={mockSettings}
       participations={mockParticipations}
       categories={mockCategories}

@@ -11,7 +11,7 @@ interface Props {
   path: string;
   targetName: string;
   isOk: boolean;
-  updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
+  updateFieldStatus?: (key: string, isEmpty: boolean, data: string) => void;
   isHorizontal: boolean;
   isLocked: boolean;
   nameProp?: SelectElementName;

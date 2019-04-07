@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
@@ -41,7 +41,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
   render() {
     const { categories, uploadedCategoryLogos, events } = this.props;
     const { editingCategory, pickingImage, pickingSmallImage } = this.state;
-    
+
     
     if (isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
       console.log('updating render!', editingCategory && categories[editingCategory]);
@@ -55,6 +55,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
           </div>
 
           <div className="columns is-multiline">
+            <div className="column is-3" />
             <div className="column is-6">
 
               <table className="table is-fullwidth">
@@ -71,12 +72,16 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                       <span className="has-text-info"></span>
                     </th>
                     <th><Translate id="name" /></th>
-                    <th><Translate id="actions" /></th>
+                    <th colSpan={2}><Translate id="actions" /></th>
                   </tr>
                 </thead>
                 <tbody>
 
                 {!isEmpty(categories) && Object.entries(categories).map(([categoryId, categoryData]) => {
+
+                  if (editingCategory && categoryId !== editingCategory) {
+                    return;
+                  }
                   const categoryImage = _.find(uploadedCategoryLogos, {downloadURL: categoryData.image});
                   const categoryImageSmall = categoryData.imageSmall && _.find(uploadedCategoryLogos, {downloadURL: categoryData.imageSmall});
                   const allowedToDelete = !_.find(events, { category: categoryId });
@@ -95,8 +100,10 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                         {categoryData.name}
                       </td>
                       <td>
-                        {this.state.editingCategory === categoryId && <button className="button is-small is-success" onClick={() => this.changeEditedCategory(null) }><Translate id="editing" /></button>}
+                        {this.state.editingCategory === categoryId && <button className="button is-small is-success has-text-black" onClick={() => this.changeEditedCategory(null) }><Translate id="done" /></button>}
                         {this.state.editingCategory !== categoryId && <button className="button is-small is-info" onClick={() => this.changeEditedCategory(categoryId) }><Translate id="edit" /></button>}
+                      </td>
+                      <td>
                         {!allowedToDelete && <button disabled className="button is-small is-danger"><Translate id="cannotdelete" /></button>}
                         {allowedToDelete && <button className="button is-small is-danger" onClick={() => this.deleteCategory(categoryId)}><Translate id="delete" /></button>}
                       </td>
@@ -106,8 +113,13 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                 </tbody>
               </table>
             </div>
+            <div className="column is-3" />
+
+
+            {editingCategory &&
+            <Fragment>
+            <div className="column is-3" />
             <div className="column is-6">
-              {editingCategory &&
                 <CategoryEditorPanel 
                   categoryId={editingCategory}
                   categoryData={categories[editingCategory]}
@@ -116,8 +128,11 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                   pickingSmallImage={pickingSmallImage} 
                   chooseImagePicker={(update: State) => this.setState(update)}
                 />
-              }
             </div>
+            <div className="column is-3" />
+            </Fragment>
+            }
+            
           </div>
         </div>
       );
@@ -233,7 +248,15 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, 
   </div>
 );
 
-const FileSelector = ({ path, files, defaultValue, onChange }) => (
+
+interface FileSelectorProps {
+  path: string;
+  files: {[key: string]: {name: string}};
+  defaultValue: string;
+  onChange: (path: string, value: string) => void;
+}
+
+const FileSelector = ({ path, files, defaultValue, onChange }: FileSelectorProps) => (
   <div>
     <label className="label">
       <Translate id="categorylogo" />

@@ -32,7 +32,7 @@ export const SmallCalendarDatePicker = ({ chunkedCalendar, clickDay, openinghour
 
       const englishDayName = momentEn(dayMoment.format('DD-MM-YYYY'), 'DD-MM-YYYY').format('dddd').toLowerCase();
       const hasNoOpeningHoursNormally = _.isEmpty(_.get(settings, `openingHours.${englishDayName}`));
-      const closedThisDay = (exception && !exception.open) || (hasNoOpeningHoursNormally && (!exception || !exception.open));
+      const closedThisDay = (exception && exception.status === 'closed') || (hasNoOpeningHoursNormally && (!exception || exception.status === 'closed'));
 
       return (
         <div key={`calendar-day-${dayIndex}`} className="column is-paddingless is-marginless">

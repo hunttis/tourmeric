@@ -196,6 +196,7 @@
   "choosesmallimage": "Valitse pikkukuva",
   "usedineventcards": "Isompaa kuvaa käytetään tapahtumakorttien otsikossa. Sen kannattaa olla vaakatasossa.",
   "usedineventcalendar": "Pikkukuvaa käytetään tapahtumakalenterissa. Sen kannattaa olla neliön muotoinen.",
+  "done": "Valmis",
 
   "users": "Käyttäjät",
   "adduser": "Lisää käyttäjä",
@@ -322,6 +323,8 @@
   "off": "Pois päältä",
 
   "addexception": "Lisää poikkeus",
+  "modifyexception": "Muokkaa poikkeusta",
+  "deleteexception": "Poista poikkeus",
   "showcurrentexceptions": "Näytä nykyiset poikkeukset",
 
   "additionalinfo": "Lisätietoja",
@@ -340,6 +343,10 @@
   "exceptionallyopen": "Poikkeuksellisesti avoinna",
   "closedtoday": "Suljettu tänään",
   "remove": "Poista",
+  "hours": "Tunnit",
+  "openinghoursexample": "Aukioloaika esim. 9-14",
+  "exception": "Poikkeus",
+  "description": "Kuvaus",
 
   "locationinfo": "Sijainti",
   "directions": "Ohjeet paikalle",
