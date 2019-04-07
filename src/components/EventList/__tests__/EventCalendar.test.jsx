@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { createBrowserHistory } from 'history';
 import EventCalendar from '../EventCalendar/EventCalendar';
 import { mockEvents, mockParticipations, mockProfile, mockCategories, mockSettings, mockUploadedLogos } from '../__mocks__/mockData';
+import '../../../__mocks__/setupTests';
 
 describe('EventList tests', () => {
 

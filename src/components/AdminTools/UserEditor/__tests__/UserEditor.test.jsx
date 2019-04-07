@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import UserEditor from '../UserEditor';
+import '../../../../__mocks__/setupTests';
 
 describe('UserEditor Tests', () => {
 

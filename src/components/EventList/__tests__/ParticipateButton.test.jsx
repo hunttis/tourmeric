@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { ParticipateButton } from '../ParticipateButton';
 import { mockEventId, mockParticipations, mockUserId, mockProfile } from '../__mocks__/mockData';
+import '../../../__mocks__/setupTests';
 
 const eventApi = require('../../../api/eventApi');
 
