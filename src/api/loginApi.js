@@ -20,7 +20,7 @@ export function loginEmail(email, password) {
   return firebase.login({ email, password });
 }
 
-export async function registerEmail(email, password) {
+export function registerEmail(email, password) {
   const username = email.split('@')[0];
   return firebase.createUser({ email, password }, { email, username });
 }

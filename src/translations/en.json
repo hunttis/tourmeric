@@ -396,7 +396,30 @@
   "first": "First",
   "second": "Second",
   "third": "Third",
-  "clear": "Clear"
+  "clear": "Clear",
 
+  "startingtime": "Starting time",
+  "eventtype": "Event type",
+  "singledayevent": "Single day event",
+  "ongoingevent": "Ongoing event",
+  "startdate": "Start date",
+  "enddate": "End date",
+  "eventsfortoday": "Events for today",
+  "ongoingevents": "Ongoing events",
+  "ongoingnext7days": "Ongoing the next 7 days",
+  "smallimage": "Small image",
+  "nosmallimage": "No small image",
+  "nologo": "No logo",
+  "chooseimage": "Choose image",
+  "choosesmallimage": "Choose small image",
+  "usedineventcards": "The bigger image is used in the eventcard titles. It should be in landscape format.",
+  "usedineventcalendar": "The smaller image is used in the event calendar. It should be a square.",
+  "done": "Done",
+  "modifyexception": "Modify exception",
+  "deleteexception": "Delete exception",
+  "hours": "Hours",
+  "openinghoursexample": "Opening hours eg. 9-14",
+  "exception": "Exception",
+  "description": "Description"
 
 }
