@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import EditableField from '../EditableField';
-import '../../../__mocks__/setupTests';
 
 describe('EditableField Tests', () => {
 

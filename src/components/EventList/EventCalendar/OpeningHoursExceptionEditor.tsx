@@ -41,7 +41,7 @@ export class OpeningHoursExceptionEditor extends Component<OpeningHoursException
     
     return (
       <Translate>
-        {translate => (
+        {(translate: any) => (
         <div>
           <SelectElement 
             labelContent="open"

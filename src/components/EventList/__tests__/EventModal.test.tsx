@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { EventModal } from '../EventModal';
 import { mockEventId, mockParticipations, mockUnorderedEvents, mockCategories, mockSettings } from '../__mocks__/mockData';
-import '../../../__mocks__/setupTests';
 
 describe('EventModal tests', () => {
 
