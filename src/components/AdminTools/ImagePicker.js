@@ -41,6 +41,5 @@ ImagePicker.propTypes = {
   imageList: PropTypes.object,
   highlightedImage: PropTypes.string,
   path: PropTypes.string.isRequired,
-  size: PropTypes.string,
   fieldName: PropTypes.string.isRequired,
 };
