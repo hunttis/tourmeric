@@ -1,14 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { createBrowserHistory } from 'history';
 import EventCard from '../EventCard/EventCard';
-import { mockEventId, mockUserId, mockProfile, mockEvents, mockSettings, mockUploadedLogos, mockParticipations, mockCategories } from '../__mocks__/mockData';
+import {  mockUserId, mockProfile, mockEvents, mockSettings, mockUploadedLogos, mockParticipations, mockCategories, mockUnorderedEvents } from '../__mocks__/mockData';
+import toJson from 'enzyme-to-json';
 
 describe('EventCard Tests', () => {
 
   it('Compares EventCard to snapshot', () => {
-
-    const history = createBrowserHistory();
 
     const mockEventsAsObject = {
       [mockEvents[0].key]: { ...mockEvents[0].value },
@@ -16,25 +14,25 @@ describe('EventCard Tests', () => {
     };
 
     const card = shallow(<EventCard
-      eventId={mockEventId}
+      eventId={'mockEvent2'}
       userId={mockUserId}
       profile={mockProfile}
-      events={mockEventsAsObject}
+      events={mockUnorderedEvents}
       eventsongoing={mockEventsAsObject}
       settings={mockSettings}
       participations={mockParticipations}
       categories={mockCategories}
       openModal={() => {}}
       uploadedCategoryLogos={mockUploadedLogos}
-      history={history}
+      history={jest.genMockFromModule('history')}
       setReturnLocation={() => {}}
     />);
 
     expect(card.exists()).toBe(true);
 
-    const eventHeader = card.find('.eventheader');
-    expect(eventHeader.text()).toBe('WH40K: Warhammer thing');
-    expect(card).toMatchSnapshot();
+    // const eventHeader = card.find('.eventheader');
+    const cardInJson = toJson(card);
+    expect(cardInJson).toMatchSnapshot();
   });
 
 });

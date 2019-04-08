@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import EditableField from '../EditableField';
 
 describe('EditableField Tests', () => {
@@ -17,8 +18,7 @@ describe('EditableField Tests', () => {
       leftIcon="lefticon"
     />);
 
-    expect(editableField.exists()).toBe(true);
-    expect(editableField).toMatchSnapshot();
+    expect(toJson(editableField)).toMatchSnapshot();
   });
 
   // TODO: Write a test for the save and normalize functions

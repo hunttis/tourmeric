@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import moment from 'moment';
 import _ from 'lodash';
-import SelectElement from '~/components/AdminTools/EventEditor/SelectElement';
+import SelectElement from '../../AdminTools/EventEditor/SelectElement';
 
 interface OpeningHoursExceptionEditorProps {
   day: moment.Moment;

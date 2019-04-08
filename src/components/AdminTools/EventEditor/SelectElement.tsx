@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import '~/types/react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import classnames from 'classnames';

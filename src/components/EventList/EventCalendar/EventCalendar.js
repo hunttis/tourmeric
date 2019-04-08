@@ -8,6 +8,7 @@ import EventCard from '../EventCard/EventCard-container';
 import { CalendarMonth } from './CalendarMonth';
 import OpeningHours from '../../StoreInfo/OpeningHours-container';
 import { OpeningHoursExceptionEditor } from './OpeningHoursExceptionEditor';
+import { removeClassFromHtml, addClassToHtml } from '../../Common/DocumentUtils';
 
 const YEAR_INDEX = 2;
 const MONTH_INDEX = 3;
@@ -44,7 +45,7 @@ export default class EventCalendar extends Component {
     if (this.scrollElement) {
       this.scrollElement.removeEventListener('scroll', this.checkStateShouldShowArrow);
     }
-    document.documentElement.classList.remove('is-clipped');
+    removeClassFromHtml('is-clipped');
   }
 
   updateScrollRef = (element) => {
@@ -69,7 +70,7 @@ export default class EventCalendar extends Component {
     const splitPath = location.pathname.split('/');
     const pathLength = splitPath.length;
 
-    document.documentElement.classList.remove('is-clipped');
+    removeClassFromHtml('is-clipped');
 
     if (pathLength === 2) {
       mode = MODE_MONTH;
@@ -82,7 +83,7 @@ export default class EventCalendar extends Component {
       targetMonth = _.get(splitPath, MONTH_INDEX, targetMonth);
       targetDay = _.get(splitPath, DAY_INDEX, targetDay);
       mode = MODE_DAY;
-      document.documentElement.classList.add('is-clipped');
+      addClassToHtml('is-clipped');
     }
 
     return { targetYear, targetMonth, targetDay, mode };

@@ -7,6 +7,7 @@ import UserEntry from './UserEntry-container';
 import { DisableModal } from './DisableModal';
 import { EditModal } from './EditModal';
 import CreditModal from './CreditModal-container';
+import { setListener } from '../../Common/DocumentUtils';
 
 export default class UserEditor extends Component {
 
@@ -27,8 +28,8 @@ export default class UserEditor extends Component {
     };
   }
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.escFunction, false);
+  componentDidMount = () => {
+    setListener('keydown', this.escFunction);
   }
 
   getUser(userid) {
