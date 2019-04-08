@@ -4,6 +4,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>test-setup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
-    '^.+\\.tsx|.ts?$': 'ts-jest',
+    '^.+\\.(t|j)sx?$': 'ts-jest',
   },
 };

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserEntry Tests Compares UserEntry to snapshot 1`] = `
+<div
+  className="userentry column is-half is-one-third-desktop is-one-third-widescreen is-one-quarter-fullhd"
+>
+  <div
+    className="card"
+  >
+    <div
+      className="card-header"
+    >
+      <div
+        className="card-header-title"
+      >
+         
+         - 
+      </div>
+    </div>
+    <div
+      className="card-content"
+    >
+      <ul>
+        <li>
+          <Translate
+            id="email"
+          />
+          : 
+        </li>
+        <li>
+           
+        </li>
+        <li>
+          <strong>
+            <Translate
+              id="storecredit"
+            />
+          </strong>
+        </li>
+        <Connect(Connect(Component))
+          userId="testid-123"
+        />
+      </ul>
+    </div>
+    <div
+      className="card-footer"
+    >
+      <div
+        className="card-footer-item button is-primary"
+        onClick={[Function]}
+      >
+        <Translate
+          id="edit"
+        />
+      </div>
+      <div
+        className="card-footer-item button is-info"
+        onClick={[Function]}
+      >
+        <Translate
+          id="storecredit"
+        />
+      </div>
+      <div
+        className="card-footer-item button is-danger"
+        onClick={[Function]}
+      >
+        <Translate
+          id="delete"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
