@@ -18,22 +18,24 @@ export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openingho
         dayClass = 'future-card';
       }
 
-      if (day.empty) {
-        return (
-          <div key={`calendar-day-${dayIndex}`} className="column is-paddingless is-marginless is-hidden-mobile" />
-        );
-      }
-
       const exception = _.get(openinghoursexceptions, dayMoment.format('YYYY-MM-DD'));
 
       const englishDayName = momentEn(dayMoment.format('DD-MM-YYYY'), 'DD-MM-YYYY').format('dddd').toLowerCase();
       const hasNoOpeningHoursNormally = _.isEmpty(_.get(settings, `openingHours.${englishDayName}`));
       const closedThisDay = (exception && exception.status === 'closed') || (hasNoOpeningHoursNormally && (!exception || exception.status === 'closed'));
 
+      if (day.empty) {
+        return (
+          <div key={`calendar-day-${dayIndex}`} className="column is-paddingless is-marginless is-hidden-mobile" />
+        );
+      }
+
+      const shouldCardBeHiddenOnMobile = dayClass === 'past-card' || (_.isEmpty(day.eventsForDay) && _.isEmpty(day.ongoingEventsForDay));
+
       return (
         <div
           key={`calendar-day-${dayIndex}`}
-          className={`column is-paddingless is-marginless ${_.isEmpty(day.eventsForDay) && 'is-hidden-mobile'}`}
+          className={`column is-paddingless is-marginless ${shouldCardBeHiddenOnMobile ? 'is-hidden-mobile' : ''}`}
         >
 
           <div className={`card calendar-day ${dayClass} ${closedThisDay && 'strikeover'}`} onClick={() => { clickDay(day); }}>
@@ -57,14 +59,14 @@ export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openingho
             <div className="card-content is-paddingless">
               <div className="is-inline-flex">
                 <div className="calendar-card-spacer calendar-image" />
-                {!closedThisDay && day.ongoingEventsForDay.map((eventEntry, index) => {
+                {!closedThisDay && day.ongoingEventsForDay && day.ongoingEventsForDay.map((eventEntry, index) => {
                   const event = eventEntry.value;
                   const eventLogo = categories[event.category].image;
                   return (
                     <img key={`event-img-${index}`} className="image is-24x24 is-rounded calendar-image ongoing-event-image" src={eventLogo} alt="" />
                   );
                 })}
-                {day.eventsForDay.map((eventEntry, index) => {
+                {day.eventsForDay && day.eventsForDay.map((eventEntry, index) => {
                   const event = eventEntry.value;
                   const eventLogo = categories[event.category].image;
                   return (

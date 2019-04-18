@@ -84,7 +84,11 @@ export default class ValidatedDateField extends Component {
 
   clickDay(dayLink) {
     const clickMoment = moment(dayLink, 'YYYY/MM/DD');
-    this.updateDateInDB(clickMoment.format('YYYY-MM-DD'), !this.state.isMulti);
+    if (this.state.choosingStart) {
+      this.updateDateInDB(clickMoment.format('YYYY-MM-DD'), !this.state.isMulti);
+    } else {
+      this.updateEndDateInDB(clickMoment.format('YYYY-MM-DD'), !this.state.isMulti);
+    }
   }
 
   changeMonth(amount) {
@@ -93,6 +97,10 @@ export default class ValidatedDateField extends Component {
       viewTime.add(amount, 'month');
       return { viewTime };
     });
+  }
+
+  setChoosingStart(newValue) {
+    this.setState({ choosingStart: newValue });
   }
 
   render() {
@@ -153,8 +161,8 @@ export default class ValidatedDateField extends Component {
               </div>
               {isMulti &&
                 <div className="level-item">
-                  <button className={`button is-small ${this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setState({ choosingStart: true })}><Translate id="startdate" /></button>
-                  <button className={`button is-small ${!this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setState({ choosingStart: false })}><Translate id="enddate" /></button>
+                  <button className={`button is-small ${this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setChoosingStart(true)}><Translate id="startdate" /></button>
+                  <button className={`button is-small ${!this.state.choosingStart && 'is-success is-outlined'}`} onClick={() => this.setChoosingStart(false)}><Translate id="enddate" /></button>
                 </div>
               }
               <div className="level-right">

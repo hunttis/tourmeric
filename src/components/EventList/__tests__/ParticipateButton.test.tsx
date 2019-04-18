@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 import { ParticipateButton } from '../ParticipateButton';
 import { mockEventId, mockParticipations, mockUserId, mockProfile, mockUnorderedEvents } from '../__mocks__/mockData';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const eventApi = require('../../../api/eventApi');
 
 describe('ParticipateButton tests', () => {

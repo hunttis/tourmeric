@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CreditAmounts } from '../CreditAmounts';
 import toJson from 'enzyme-to-json';
+import { CreditAmounts } from '../CreditAmounts';
 
 describe('CreditAmounts Tests', () => {
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import EventCard from '../EventCard/EventCard';
-import {  mockUserId, mockProfile, mockEvents, mockSettings, mockUploadedLogos, mockParticipations, mockCategories, mockUnorderedEvents } from '../__mocks__/mockData';
 import toJson from 'enzyme-to-json';
+import EventCard from '../EventCard/EventCard';
+import { mockUserId, mockProfile, mockEvents, mockSettings, mockUploadedLogos, mockParticipations, mockCategories, mockUnorderedEvents } from '../__mocks__/mockData';
 
 describe('EventCard Tests', () => {
 
@@ -14,7 +14,7 @@ describe('EventCard Tests', () => {
     };
 
     const card = shallow(<EventCard
-      eventId={'mockEvent2'}
+      eventId="mockEvent2"
       userId={mockUserId}
       profile={mockProfile}
       events={mockUnorderedEvents}

@@ -1,4 +1,6 @@
-jest.mock('history')
+/* eslint-disable import/first */
+
+jest.mock('history');
 jest.mock('../../Common/DocumentUtils');
 
 import React from 'react';
@@ -19,7 +21,7 @@ describe('EventList tests', () => {
       events={mockEvents}
       eventsongoing={mockEvents}
       categories={mockCategories}
-      activeLanguage='fi'
+      activeLanguage="fi"
       location={{ pathname: '/events/2018/10' }}
       history={history}
       openinghoursexceptions={{}}
