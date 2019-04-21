@@ -44,7 +44,7 @@ export default class StoreInfoEditor extends Component {
     const exception = _.get(openinghoursexceptions, todayDateString);
 
     if (exception) {
-      if (!exception.open) {
+      if (exception.status === 'closed') {
         return (
           <div className="box">
             <span className="has-text-danger"><Translate id="exceptionallynotopentoday" /></span>

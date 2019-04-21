@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserEditor Tests Compares UserEditor to snapshot 1`] = `
+<Fragment>
+  <Translate
+    id="loading"
+  />
+</Fragment>
+`;

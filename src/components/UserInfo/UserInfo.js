@@ -66,7 +66,7 @@ export default class UserInfo extends Component {
 
       const publishedEvents = events ? Object.values(events).filter(event => event.value.published) : [];
       const futureEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
-      const pastEvents = pastEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
+      const pastEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
       const eventsActive = _.get(settings, 'features.events.active', false);
       const privacyPolicyContent = _.get(settings, 'privacyPolicy', '');
 

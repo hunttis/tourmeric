@@ -6,17 +6,14 @@ import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 
 import ValidatedEditableField from './ValidatedEditableField-container';
-import ValidatedTimeField from './ValidatedTimeField';
 import ValidatedDateField from './ValidatedDateField-container';
 import SelectElement from './SelectElement';
 import EditableTextarea from './EditableTextarea-container';
 
-import { checkTimeStringFormat } from '../../Common/Utils';
-
 export const EditorForm = ({
   event, eventId, categories, cleanedFormatOptions, newEvent, missingFields,
   updateCategory, updateFieldStatus, allowDateEdit, saveEvent, deleteEvent,
-  deleteConfirmation, goBack,
+  deleteConfirmation, goBack, storageUrlPath,
 }) => (
   <div className="columns is-multiline">
     <div className="column is-hidden-mobile">&nbsp;</div>
@@ -30,7 +27,7 @@ export const EditorForm = ({
             labelContent="name"
             placeHolder="eventnameplaceholder"
             defaultValue={event.name}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="name"
             isHorizontal
           />
@@ -48,7 +45,7 @@ export const EditorForm = ({
             placeHolder="categoryplaceholder"
             defaultValue={event.category}
             dropdownItems={categories}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="category"
             nameProp="abbreviation"
             isHorizontal
@@ -60,46 +57,68 @@ export const EditorForm = ({
         </div>
 
         {!_.isEmpty(cleanedFormatOptions) &&
-          <Fragment>
-            <div className="column is-12">
+        <Fragment>
+          <div className="column is-12">
+            <SelectElement
+              isOk={!_.isEmpty(event.format)}
+              updateFieldStatus={updateFieldStatus}
+              labelContent="format"
+              defaultValue={event.format}
+              dropdownItems={cleanedFormatOptions}
+              path={`${storageUrlPath}/${eventId}`}
+              targetName="format"
+              isHorizontal
+            />
+          </div>
+          <div className="column is-12 is-hidden-mobile">
+            <hr />
+          </div>
+        </Fragment>
+          }
+
+        <div className="column is-12">
+          <Translate>
+            {translate => (
               <SelectElement
-                isOk={!_.isEmpty(event.format)}
+                isOk={!_.isEmpty(event.eventType)}
                 updateFieldStatus={updateFieldStatus}
-                labelContent="format"
-                placeHolder="formatplaceholder"
-                defaultValue={event.format}
-                dropdownItems={cleanedFormatOptions}
-                path={`/events/${eventId}`}
-                targetName="format"
+                labelContent="eventtype"
+                defaultValue={event.eventType}
+                dropdownItems={{ singledayevent: translate('singledayevent'), ongoingevent: translate('ongoingevent') }}
+                path={`${storageUrlPath}/${eventId}`}
+                targetName="eventType"
                 isHorizontal
+                isLocked={!eventId.startsWith('DRAFT')}
               />
-            </div>
-            <div className="column is-12 is-hidden-mobile">
-              <hr />
-            </div>
-          </Fragment>
-        }
+              )}
+          </Translate>
+        </div>
 
         <div className="column is-12">
           <ValidatedDateField
             isOk={!_.isEmpty(event.date)}
             defaultValue={event.date}
-            path={`/events/${eventId}`}
+            defaultEndValue={event.endDate}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="date"
             isHorizontal
             disabled={!allowDateEdit}
+            isMulti={event.eventType === 'ongoingevent'}
           />
         </div>
 
         <div className="column is-12">
-          <ValidatedTimeField
-            isOk={!_.isEmpty(event.time) && checkTimeStringFormat(event.time)}
+
+          <ValidatedEditableField
+            isOk
             updateFieldStatus={updateFieldStatus}
             labelContent="eventtime"
             targetName="time"
             placeHolder="timeformat"
             defaultValue={event.time}
-            path={`/events/${eventId}`}
+            inputType="text"
+            path={`${storageUrlPath}/${eventId}`}
+            isHorizontal
           />
         </div>
 
@@ -118,8 +137,8 @@ export const EditorForm = ({
             labelContent="playerslots"
             placeHolder="playerslotsplaceholder"
             defaultValue={event.playerSlots}
-            inputType="number"
-            path={`/events/${eventId}`}
+            inputType="text"
+            path={`${storageUrlPath}/${eventId}`}
             targetName="playerSlots"
             isHorizontal
           />
@@ -127,13 +146,13 @@ export const EditorForm = ({
 
         <div className="column is-12">
           <ValidatedEditableField
-            isOk={!_.isEmpty(event.entryFee)}
+            isOk
             updateFieldStatus={updateFieldStatus}
             labelContent="entryfee"
             placeHolder="entryfeeplaceholder"
             defaultValue={event.entryFee}
-            inputType="number"
-            path={`/events/${eventId}`}
+            inputType="text"
+            path={`${storageUrlPath}/${eventId}`}
             targetName="entryFee"
             isHorizontal
           />
@@ -146,7 +165,7 @@ export const EditorForm = ({
             labelContent="ruleslevel"
             placeHolder="ruleslevelplaceholder"
             defaultValue={event.rulesLevel}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="rulesLevel"
             isHorizontal
           />
@@ -159,7 +178,7 @@ export const EditorForm = ({
             labelContent="link"
             placeHolder="linkplaceholder"
             defaultValue={event.link}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="link"
             isHorizontal
           />
@@ -172,7 +191,7 @@ export const EditorForm = ({
             labelContent="prizes"
             placeHolder="prizesplaceholder"
             defaultValue={event.prizes}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="prizes"
             isHorizontal
           />
@@ -185,7 +204,7 @@ export const EditorForm = ({
             labelContent="notes"
             placeHolder="notesplaceholder"
             defaultValue={event.notes}
-            path={`/events/${eventId}`}
+            path={`${storageUrlPath}/${eventId}`}
             targetName="notes"
             isHorizontal
           />
@@ -210,9 +229,9 @@ export const EditorForm = ({
                   </div>
                 </div>
               </div>
-            )}
+                )}
           </Translate>
-          }
+            }
         </div>
 
         <div className="column has-text-right">
@@ -225,22 +244,22 @@ export const EditorForm = ({
             <Translate id="goback" />
           </button>
           {!newEvent && event.published &&
-            <button className="button is-warning is-outlined" onClick={() => firebase.update(`/events/${eventId}`, { published: false })}><Translate id="hide" /></button>
-          }
+          <button className="button is-warning is-outlined" onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: false })}><Translate id="hide" /></button>
+            }
           {!newEvent && !event.published &&
-            <button className="button is-success is-outlined" disabled={missingFields.length !== 0} onClick={() => firebase.update(`/events/${eventId}`, { published: true })}><Translate id="publish" /></button>
-          }
+          <button className="button is-success is-outlined" disabled={missingFields.length !== 0} onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: true })}><Translate id="publish" /></button>
+            }
 
           {newEvent &&
-            <button className="button is-success is-outlined" disabled={missingFields.length !== 0} onClick={saveEvent}><Translate id="publish" /></button>
-          }
+          <button className="button is-success is-outlined" disabled={missingFields.length !== 0} onClick={saveEvent}><Translate id="publish" /></button>
+            }
         </div>
 
       </div>
     </div>
     <div className="column is-hidden-mobile">&nbsp;</div>
   </div>
-);
+  );
 
 
 EditorForm.propTypes = {
@@ -257,4 +276,5 @@ EditorForm.propTypes = {
   deleteEvent: PropTypes.func,
   deleteConfirmation: PropTypes.bool,
   goBack: PropTypes.func,
+  storageUrlPath: PropTypes.string.isRequired,
 };

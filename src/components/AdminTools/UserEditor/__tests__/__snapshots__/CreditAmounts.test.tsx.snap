@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreditAmounts Tests Compares CreditAmounts to snapshot 1`] = `
+<Fragment>
+  <li
+    key="mockuserid-green"
+  >
+    <span
+      className="has-text-success"
+    >
+      Purchase
+    </span>
+     : 
+    0.00
+     €
+  </li>
+  <li
+    key="mockuserid-red"
+  >
+    <span
+      className="has-text-danger"
+    >
+      Sales
+    </span>
+     : 
+    12.70
+     €
+  </li>
+  <li
+    key="mockuserid-white"
+  >
+    <span
+      className="has-text-white"
+    >
+      Generic
+    </span>
+     : 
+    -12.70
+     €
+  </li>
+  <li
+    key="mockuserid-yellow"
+  >
+    <span
+      className="has-text-warning"
+    >
+      Reward
+    </span>
+     : 
+    0.00
+     €
+  </li>
+  <li>
+     
+  </li>
+  <li
+    className="is-all-caps"
+  >
+    <strong>
+      <Translate
+        id="total"
+      />
+      : 
+      0.00
+       €
+    </strong>
+  </li>
+</Fragment>
+`;

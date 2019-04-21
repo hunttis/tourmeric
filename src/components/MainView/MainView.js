@@ -42,7 +42,6 @@ export default class MainView extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
     const wasProfileLoaded = isLoaded(this.props.profile);
     const isProfileLoaded = isLoaded(nextProps.profile);
     const isLoggedIn = isProfileLoaded && !isEmpty(nextProps.profile);
@@ -56,7 +55,13 @@ export default class MainView extends Component {
     if (!this.state.redirected) {
       if (isLoaded(nextProps.profile) && isEmpty(nextProps.profile) && ['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
         this.props.history.push('/today');
-      } else if (isLoggedIn && (!nextProps.profile.firstName || !nextProps.profile.lastName || !emailOk || !acceptedPrivacyPolicy)) {
+      } else if (
+        isLoggedIn && (
+          !nextProps.profile.firstName ||
+          !nextProps.profile.lastName ||
+          !emailOk ||
+          !acceptedPrivacyPolicy)
+      ) {
         this.props.history.push('/userinfo');
         this.setState({ redirected: true });
       } else if (wasProfileLoaded !== isProfileLoaded) {
@@ -101,19 +106,19 @@ export default class MainView extends Component {
         </div>
 
         {userInfoOk &&
-        <Switch>
-          <Route path="/today" component={Today} />
-          <Route path="/event/:id" component={SingleEvent} />
-          <Route path="/events" component={EventCalendar} />
-          <Route path="/storeinfo" component={StoreInfo} />
-          <Route path="/userinfo" component={UserInfo} />
-          <Route path="/admin/tools" component={AdminTools} />
-          <Route path="/admin/events" component={AdminToolsEvents} />
-          <Route path="/admin/sitesettings" component={AdminSiteSettings} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/companyinfo" component={CompanyInfo} />
-        </Switch>
+          <Switch>
+            <Route path="/today" component={Today} />
+            <Route path="/event/:id" component={SingleEvent} />
+            <Route path="/events" component={EventCalendar} />
+            <Route path="/storeinfo" component={StoreInfo} />
+            <Route path="/userinfo" component={UserInfo} />
+            <Route path="/admin/tools" component={AdminTools} />
+            <Route path="/admin/events" component={AdminToolsEvents} />
+            <Route path="/admin/sitesettings" component={AdminSiteSettings} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/companyinfo" component={CompanyInfo} />
+          </Switch>
         }
 
         {!userInfoOk &&

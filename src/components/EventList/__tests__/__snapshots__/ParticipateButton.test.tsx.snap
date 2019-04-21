@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ParticipateButton tests Compares ParticipateButton to snapshot when the user HAS NOT participated 1`] = `
+<div>
+  <button
+    className="cancelbutton button is-rounded is-danger"
+    onClick={[Function]}
+  >
+    <p>
+      <Translate
+        id="cancelparticipate"
+      />
+    </p>
+    <span
+      className="icon"
+    >
+      <i
+        className="fas fa-sign-out-alt"
+      />
+    </span>
+  </button>
+</div>
+`;
+
+exports[`ParticipateButton tests Compares ParticipateButton to snapshot when the user HAS participated 1`] = `
+<button
+  className="participatebutton button is-rounded is-primary"
+  onClick={[Function]}
+>
+  <p>
+    <Translate
+      id="participate"
+    />
+  </p>
+  <span
+    className="icon"
+  >
+    <i
+      className="fas fa-sign-in-alt"
+    />
+  </span>
+</button>
+`;
+
+exports[`ParticipateButton tests Tries to click cancel participation button 1`] = `
+<div>
+  <button
+    className="cancelbutton button is-rounded is-danger"
+    onClick={[Function]}
+  >
+    <p>
+      <Translate
+        id="cancelparticipate"
+      />
+    </p>
+    <span
+      className="icon"
+    >
+      <i
+        className="fas fa-sign-out-alt"
+      />
+    </span>
+  </button>
+</div>
+`;
+
+exports[`ParticipateButton tests Tries to click participation button 1`] = `
+<button
+  className="participatebutton button is-rounded is-primary"
+  onClick={[Function]}
+>
+  <p>
+    <Translate
+      id="participate"
+    />
+  </p>
+  <span
+    className="icon"
+  >
+    <i
+      className="fas fa-sign-in-alt"
+    />
+  </span>
+</button>
+`;

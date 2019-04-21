@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventCard Tests Compares EventCard to snapshot 1`] = `
+<Fragment>
+  <div
+    className="column is-12 eventcard"
+  >
+    <div
+      className="card card-shadow null"
+    >
+      <div
+        className="card-content card-title card-logo-title null"
+      >
+        <figure
+          className="image event-icon-title event-item"
+        >
+          <img
+            alt=""
+            className="null"
+          />
+        </figure>
+      </div>
+      <div
+        className="card-content"
+      >
+        <div
+          className="media has-icons-right"
+        >
+          <div
+            className="media-content event-card-title"
+          >
+            <p
+              className="subtitle has-text-info"
+            >
+              20.05.2018 (Sunday)
+            </p>
+            <p
+              className="title eventheader"
+            >
+              MtG
+              : 
+              Tapahtuma
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="card-content"
+      >
+        <table
+          className="table eventinfo-table"
+        >
+          <tbody>
+            <CardInfoLine
+              content="10:00"
+              icon="fas fa-clock"
+              title="startingtime"
+            />
+            <CardInfoLine
+              content="6"
+              icon="fas fa-money-bill-alt"
+              title="entryfee"
+            />
+            <CardInfoLine
+              content="0 / 14 "
+              extraClasses=""
+              icon="fas fa-users"
+              title="participants"
+            />
+            <CardInfoLine
+              content="Standard"
+              icon="fas fa-book"
+              title="format"
+            />
+          </tbody>
+        </table>
+        <div
+          className="allinfolink"
+        >
+          <a
+            className="card-footer-link"
+            onClick={[Function]}
+          >
+            <i
+              className="fas fa-trophy"
+            />
+              
+            <Translate
+              id="allinfo"
+            />
+          </a>
+        </div>
+      </div>
+      <Component
+        alreadyParticipated={false}
+        eventId="mockEvent2"
+        thisParticipation={Object {}}
+        userId="mockUserId"
+      />
+      <Component
+        alreadyParticipated={false}
+        eventId="mockEvent2"
+        thisParticipation={Object {}}
+        userId="mockUserId"
+      />
+    </div>
+    <p>
+       
+    </p>
+  </div>
+</Fragment>
+`;

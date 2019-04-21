@@ -78,7 +78,7 @@ a.adminactive {
 }
 
 .calendar-title {
-  padding: .33rem !important;
+  padding: 0.33rem !important;
 }
 
 .calendar-card-spacer {
@@ -95,6 +95,18 @@ a.adminactive {
   margin: 3px;
 }
 
+div.card-content.card-title.card-logo-title.ongoing-event-card-title {
+  border-radius: 5px 5px 0px 0px;
+}
+
+.ongoing-event-card div {
+  background-color: #191919;
+}
+
+.ongoing-event-card div.card-content table {
+  background-color: #191919;
+}
+
 .openinghours-mobile {
   @media (max-width: 400px) {
     padding: 0px;
@@ -104,25 +116,21 @@ a.adminactive {
 }
 
 .strikeover {
-  background: 
-  linear-gradient(to top left,
-      rgba(0,0,0,0) 0%,
-      rgba(0,0,0,0) calc(50% - 3px),
-      rgba(255,0,0,1) 50%,
-      rgba(0,0,0,0) calc(50% + 3px),
-      rgba(0,0,0,0) 100%) !important;
+  background: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) calc(50% - 3px),
+    rgba(255, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0) calc(50% + 3px),
+    rgba(0, 0, 0, 0) 100%
+  ) !important;
 }
 
 .today-view-cards-space {
   padding-top: 10px;
 }
 
-.card-content.card-title-border {
-  background-color: #15181888;
-}
-
 .card-title-border {
-  border: 1px solid #15181888;
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
 }
@@ -132,16 +140,114 @@ a.adminactive {
   animation-duration: 500ms;
 }
 
+div.card-footer.is-hidden-mobile {
+  border-width: 0px;
+  background-color: #282f2f;
+}
+
 figure.is-64x64.image.event-icon {
   height: 64px;
   width: 64px;
 }
 
-figure.event-icon img{
+.event-icon-title {
+  height: 100px;
+}
+
+.category-image {
+  height: 50px;
+}
+
+.category-smallimage {
+  height: 32px;
+  width: 32px;
+}
+
+.imagepicker-box {
+  width: 100%;
+  height: 87.5px;
+}
+
+div.imagepicker-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagepicker-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100px;
+  max-height: 50px;
+}
+
+table.table.eventinfo-table {
+  background-color: #282f2f;
+  // width: 100%;
+}
+
+table.table.eventinfo-table tr td {
+  border-bottom-width: 0px;
+  border-bottom-color: #282f2f;
+  padding: 5px 1em;
+}
+
+table.table.eventinfo-table tr :first-child {
+  width: 0.3em;
+}
+
+table.table.eventinfo-table tr :nth-child(2) {
+  padding-right: 0px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.allinfolink {
+  padding-left: 16px;
+}
+
+div.card-content.card-title.card-logo-title {
+  padding: 10px 0px;
+}
+
+figure.event-icon-title.event-item {
+  display: flex;
+  justify-content: center;
+}
+
+.image.event-icon-title img {
+  height: 100px;
+  width: auto;
+}
+
+figure.event-icon img {
   height: auto;
   width: auto;
   max-width: 100%;
   max-height: 100%;
+}
+
+div.media-content.event-card-title {
+  padding-left: 1em;
+}
+
+div.more-to-scroll {
+  position: fixed;
+  z-index: 1000;
+  bottom: 10px;
+  right: 30%;
+
+  @media (max-width: 400px) {
+    right: 10%;
+  }
+  animation: scrollmarkerin;
+  animation-duration: 1s;
+  opacity: 0.7;
+}
+
+div.more-to-scroll i.fas.fa-angle-double-down {
+  font-size: 50px;
 }
 
 .is-all-caps {
@@ -153,7 +259,6 @@ figure.event-icon img{
   width: auto;
   height: auto;
   position: relative;
-  // background: white;
   padding: 0.5em 1.25em;
   margin-left: 1.5em;
   border-radius: 4px 10px 10px 5px;
@@ -209,6 +314,16 @@ figure.event-icon img{
   animation-duration: 500ms;
 }
 
+.card-header-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.eventcard-header-image {
+  max-height: 200px;
+  width: auto;
+}
+
 .languageflag {
   height: 1em;
   padding-right: 1em;
@@ -257,8 +372,7 @@ thead tr.is-vcentered-title th button.button {
   margin-left: 1em;
 }
 
-
-table thead  th.storecreditreport-categorycolor {
+table thead th.storecreditreport-categorycolor {
   width: 1%;
   max-width: 1%;
 }
@@ -293,7 +407,6 @@ table thead th.storecreditreport-amount {
   max-width: 10%;
 }
 
-
 @keyframes heightgrow {
   0% {
     max-height: 0%;
@@ -307,11 +420,38 @@ table thead th.storecreditreport-amount {
 @keyframes scrollin {
   0% {
     opacity: 0;
-    transform: translate3d(10px, 0px, 0px)
+    transform: translate3d(10px, 0px, 0px);
   }
 
   100% {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scrollmarkerin {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, 0px, -100px);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate3d(0, 0px, 0);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+
+  100% {
+    opacity: 0.7;
     transform: translate3d(0, 0, 0);
   }
 }
@@ -339,4 +479,4 @@ table thead th.storecreditreport-amount {
 }
 
 @import "node_modules/bulma/bulma.sass";
-@import 'node_modules/bulma-extensions/bulma-tooltip/dist/bulma-tooltip.sass';
+@import "node_modules/bulma-extensions/bulma-tooltip/dist/bulma-tooltip.sass";

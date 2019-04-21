@@ -58,7 +58,7 @@ export const EventModal = ({ eventId, events, settings, closeModal, participatio
                 }
 
                 {eventContent.entryFee &&
-                  <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€<br /></Fragment>
+                  <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}<br /></Fragment>
                 }
               </div>
 
