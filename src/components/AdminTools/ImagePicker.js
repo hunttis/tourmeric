@@ -7,13 +7,13 @@ import { Translate } from 'react-localize-redux';
 export default class ImagePicker extends Component {
 
   saveChange(value) {
-    const { path } = this.props;
+    const { path, fieldName } = this.props;
 
-    firebase.update(`/${path}`, { image: value });
+    firebase.update(`/${path}`, { [fieldName]: value });
   }
 
   render() {
-    const { imageList, highlightedImage, size } = this.props;
+    const { imageList, highlightedImage } = this.props;
     if (!imageList || _.isEmpty(imageList)) {
       return <div><Translate id="noimagesforcategories" /></div>;
     }
@@ -25,10 +25,9 @@ export default class ImagePicker extends Component {
           const imageItem = imageEntry[1];
           const highlightedClass = (imageId === highlightedImage || imageItem.downloadURL === highlightedImage) && 'has-background-white';
           return (
-            <div key={`imagePicker-${imageId}`} className={`column is-4 card ${highlightedClass}`} onClick={() => this.saveChange(imageItem.downloadURL)}>
-
-              <div className="box">
-                <img alt="" className={`image ${size}`} src={imageItem.downloadURL} />
+            <div key={`imagePicker-${imageId}`} className={`column card ${highlightedClass} imagepicker-item`} onClick={() => this.saveChange(imageItem.downloadURL)}>
+              <div className="imagepicker-box box">
+                <img alt="" className="image imagepicker-image" src={imageItem.downloadURL} />
               </div>
             </div>
           );
@@ -42,5 +41,5 @@ ImagePicker.propTypes = {
   imageList: PropTypes.object,
   highlightedImage: PropTypes.string,
   path: PropTypes.string.isRequired,
-  size: PropTypes.string,
+  fieldName: PropTypes.string.isRequired,
 };

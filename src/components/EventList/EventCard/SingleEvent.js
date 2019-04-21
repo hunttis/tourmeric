@@ -12,15 +12,26 @@ import { checkParticipation } from '../../../api/eventApi';
 import { CardFooterMobile } from './CardFooterMobile';
 import { CardFooterDesktop } from './CardFooterDesktop';
 
-export const SingleEvent = ({ match, events, categories, settings, participations, auth, activeLanguage }) => {
+export const SingleEvent = ({ match, events, eventsongoing, categories, settings, participations, auth, activeLanguage }) => {
 
   moment.locale(activeLanguage);
 
   const eventId = match.params.id;
-  const eventContent = _.get(events, eventId, {});
+  let eventContent = _.get(events, eventId, null);
+  let singleDay = true;
+  if (!eventContent) {
+    eventContent = _.get(eventsongoing, eventId, {});
+    singleDay = false;
+  }
   const category = _.get(categories, eventContent.category, '');
   const dateFormat = _.get(settings, 'dateFormat', 'DD.MM.YYYY');
-  const formattedDateWithDayName = moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`);
+  const formattedDateWithDayName = singleDay ?
+    moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`) :
+    `${moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`)} - ${moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`)}`;
+
+  const formattedDateWithNoDayNamesInMultiDayEvent = singleDay ?
+  moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`) :
+  `${moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat}`)} - ${moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat}`)}`;
 
   const userId = _.get(auth, 'uid');
   let participationsForEvent = Object.values(_.get(participations, eventId, []));
@@ -61,20 +72,15 @@ export const SingleEvent = ({ match, events, categories, settings, participation
 
         <div className="card">
 
-          <div className="card-header is-vcentered">
+          <div className="card-header is-vcentered card-header-image-container">
             {category &&
-            <figure className="image is-128x128 is-hidden-mobile">
-              <img className="" alt="" src={category.image} />
-            </figure>
+              <img className="image is-hidden-mobile eventcard-header-image" alt="" src={category.image} />
             }
+          </div>
+          <div className="card-header is-vcentered">
             <h1 className="card-header-title is-centered title has-text-success">
               {eventContent.name}
             </h1>
-            {category &&
-            <figure className="image is-128x128 is-hidden-mobile">
-              <img className="" alt="" src={category.image} />
-            </figure>
-            }
           </div>
           <div className="card-header is-vcentered">
             <h2 className="card-header-title is-centered subtitle has-text-info">
@@ -102,7 +108,7 @@ export const SingleEvent = ({ match, events, categories, settings, participation
                   {eventContent.date &&
                     <Fragment>
                       <i className="fas fa-calendar" />&nbsp;&nbsp;
-                      {formattedDateWithDayName}
+                      {formattedDateWithNoDayNamesInMultiDayEvent}
                       <br />
                     </Fragment>
                   }
@@ -120,7 +126,7 @@ export const SingleEvent = ({ match, events, categories, settings, participation
                   }
 
                   {eventContent.entryFee &&
-                    <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}&nbsp;€<br /></Fragment>
+                    <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}<br /></Fragment>
                   }
                 </div>
 
@@ -200,6 +206,7 @@ export const SingleEvent = ({ match, events, categories, settings, participation
 SingleEvent.propTypes = {
   match: PropTypes.object,
   events: PropTypes.object,
+  eventsongoing: PropTypes.object,
   categories: PropTypes.object,
   settings: PropTypes.object,
   participations: PropTypes.object,

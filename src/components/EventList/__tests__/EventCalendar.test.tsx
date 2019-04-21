@@ -1,8 +1,14 @@
+/* eslint-disable import/first */
+
+jest.mock('history');
+jest.mock('../../Common/DocumentUtils');
+
 import React from 'react';
 import { shallow } from 'enzyme';
 import { createBrowserHistory } from 'history';
 import EventCalendar from '../EventCalendar/EventCalendar';
-import { mockEvents, mockParticipations, mockProfile, mockCategories, mockSettings, mockUploadedLogos } from '../__mocks__/mockData';
+import { mockEvents, mockCategories, mockSettings } from '../__mocks__/mockData';
+
 
 describe('EventList tests', () => {
 
@@ -11,14 +17,15 @@ describe('EventList tests', () => {
     const history = createBrowserHistory();
 
     const eventList = shallow(<EventCalendar
-      events={mockEvents}
-      participations={mockParticipations}
-      profile={mockProfile}
-      categories={mockCategories}
       settings={mockSettings}
-      uploadedCategoryLogos={mockUploadedLogos}
-      history={history}
+      events={mockEvents}
+      eventsongoing={mockEvents}
+      categories={mockCategories}
+      activeLanguage="fi"
       location={{ pathname: '/events/2018/10' }}
+      history={history}
+      openinghoursexceptions={{}}
+      isAdmin={false}
       setReturnLocation={() => {}}
     />);
 

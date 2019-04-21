@@ -6,6 +6,7 @@ import { SingleEvent } from './SingleEvent';
 export default compose(
   connect(state => ({
     events: state.firebase.data.events,
+    eventsongoing: state.firebase.data.eventsongoing,
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
     userid: state.firebase.auth.uid,

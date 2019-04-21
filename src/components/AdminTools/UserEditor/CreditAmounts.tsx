@@ -1,12 +1,22 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 
 import { mapCategoryToColor } from '../../Common/Utils';
 
-export const CreditAmounts = ({ userId, storecredit, storecreditcategories }) => (
+interface CreditAmountsProps {
+  userId: string;
+  storecredit: {[key: string]: {[key: string]: StoreCredit}};
+  storecreditcategories: {[key: string]: string};
+}
+
+interface StoreCredit {
+  category: string;
+  value: number;
+}
+
+export const CreditAmounts = ({ userId, storecredit, storecreditcategories }: CreditAmountsProps) => (
   <Fragment>
     {isLoaded(storecreditcategories) &&
       <Fragment>
@@ -20,22 +30,20 @@ export const CreditAmounts = ({ userId, storecredit, storecreditcategories }) =>
             }
             return data.category === categoryKey;
           });
-          const categorySum = _.reduce(dataForCategory, (totalForCategory, data) => totalForCategory + parseFloat(data.value), 0.0).toFixed(2);
+          const categorySum = _.reduce(dataForCategory, (totalForCategory, data) => totalForCategory + data.value, 0.0).toFixed(2);
           return (
             <li key={`${userId}-${categoryKey}`}><span className={`has-text-${mapCategoryToColor(categoryKey)}`}>{categoryValue}</span> : {categorySum} €</li>
           );
         })}
         <li>&nbsp;</li>
         <li className="is-all-caps">
-          <strong><Translate id="total" />: {_.reduce(storecredit[userId], (totalForUser, data) => parseFloat(totalForUser) + parseFloat(data.value), 0).toFixed(2)} €</strong>
+          <strong><Translate id="total" />: {_.reduce(storecredit[userId], (totalForUser, data) => totalForUser + data.value, 0).toFixed(2)} €</strong>
         </li>
       </Fragment>
+    }
+    {!isLoaded(storecreditcategories) && 
+      <div>Loading</div>
     }
   </Fragment>
 );
 
-CreditAmounts.propTypes = {
-  userId: PropTypes.string.isRequired,
-  storecredit: PropTypes.object.isRequired,
-  storecreditcategories: PropTypes.object.isRequired,
-};

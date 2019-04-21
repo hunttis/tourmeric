@@ -1,4 +1,4 @@
-export const mapCategoryToColor = (category) => {
+export const mapCategoryToColor = (category: string) => {
   switch (category) {
     case 'green':
       return 'success';
@@ -13,4 +13,4 @@ export const mapCategoryToColor = (category) => {
   }
 };
 
-export const checkTimeStringFormat = timeString => timeString.match(/[0-9]{1,2}:[0-9]{2}$/) !== null;
+export const checkTimeStringFormat = (timeString: string) => timeString.match(/[0-9]{1,2}:[0-9]{2}$/) !== null;

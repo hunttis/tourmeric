@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventModal tests Compares EventModal to snapshot 1`] = `
+<div
+  className="modal is-active"
+  id="modalmockEventId1"
+  key="modalmockEventId1"
+>
+  <div
+    className="modal-background"
+    onClick={[Function]}
+  />
+  <div
+    className="modal-content"
+  >
+    <div
+      className="box is-rounded"
+    >
+      <div
+        className="columns is-multiline"
+      >
+        <div
+          className="column is-9"
+        >
+          <h1
+            className="title has-text-success"
+          />
+        </div>
+        <div
+          className="column is-12"
+        />
+        <div
+          className="column is-12"
+        >
+          <div
+            className="subtitle has-text-info"
+          >
+            <Translate
+              id="participants"
+            />
+             (
+            1
+             / 
+            )
+          </div>
+        </div>
+        <div
+          className="column is-1"
+        />
+        <div
+          className="column is-11"
+        >
+          <Component
+            maxParticipants={0}
+            participations={
+              Array [
+                Object {
+                  "comment": "Jee",
+                  "date": "2018-06-23T09:40:26.992Z",
+                  "firstName": "Test",
+                  "lastName": "Person",
+                  "userId": "mockUserId",
+                },
+              ]
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    aria-label="close"
+    className="modal-close is-large"
+    onClick={[Function]}
+  />
+</div>
+`;

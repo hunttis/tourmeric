@@ -22,7 +22,7 @@ export default class OpeningHoursExceptionEditor extends Component {
       firebase.update(`/openinghoursexceptions/${this.state.newExceptionDate}`, {
         name: this.state.newExceptionName,
         date: this.state.newExceptionDate,
-        open: this.state.newExceptionOpenStatus,
+        status: this.state.newExceptionOpenStatus,
         openingHours: this.state.newExceptionOpeningHours,
       });
     }
@@ -56,8 +56,8 @@ export default class OpeningHoursExceptionEditor extends Component {
                       <tr key={key}>
                         <td>{data.date}</td>
                         <td>{data.name}</td>
-                        <td>{data.open ? <p className="has-text-success"><Translate id="yes" /></p> : <p className="has-text-danger"><Translate id="no" /></p>}</td>
-                        <td>{data.open ? data.openingHours : '-'}</td>
+                        <td>{data.status === 'open' ? <p className="has-text-success"><Translate id="yes" /></p> : <p className="has-text-danger"><Translate id="no" /></p>}</td>
+                        <td>{data.status === 'open' ? data.openingHours : '-'}</td>
                         <td><button className="button is-danger is-small"><Translate id="remove" /></button></td>
                       </tr>
                     );
@@ -96,13 +96,13 @@ export default class OpeningHoursExceptionEditor extends Component {
                   <label className="label">{translate('open')}?</label>
                   <div className="field has-addons">
                     <div className="control">
-                      <button onClick={() => this.setOpenStatus(true)} className={`button is-success ${!this.state.newExceptionOpenStatus && 'is-outlined'}`}>{translate('open')}</button>
+                      <button onClick={() => this.setOpenStatus('open')} className={`button is-success ${this.state.newExceptionOpenStatus === 'open' && 'is-outlined'}`}>{translate('open')}</button>
                     </div>
                     <div className="control">
-                      <button onClick={() => this.setOpenStatus(false)} className={`button is-danger ${this.state.newExceptionOpenStatus && 'is-outlined'}`}>{translate('closed')}</button>
+                      <button onClick={() => this.setOpenStatus('closed')} className={`button is-danger ${this.state.newExceptionOpenStatus === 'closed' && 'is-outlined'}`}>{translate('closed')}</button>
                     </div>
                     <div className="control">
-                      <input disabled={!this.state.newExceptionOpenStatus} className="input" type="text" value={this.state.newExceptionOpeningHours} placeholder={translate('openinghours')} onChange={event => this.setState({ newExceptionOpeningHours: event.target.value })} />
+                      <input disabled={this.state.newExceptionOpenStatus === 'closed'} className="input" type="text" value={this.state.newExceptionOpeningHours} placeholder={translate('openinghours')} onChange={event => this.setState({ newExceptionOpeningHours: event.target.value })} />
                     </div>
                   </div>
                 </div>

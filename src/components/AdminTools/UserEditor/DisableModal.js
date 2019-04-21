@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 
+const disableUser = (userId) => {
+  firebase.update(`/users/${userId}`, { active: false });
+};
+
 export const DisableModal = ({ userId, userData }) => (
   <Fragment>
     <div className="box">
@@ -34,10 +38,6 @@ export const DisableModal = ({ userId, userData }) => (
     </div>
   </Fragment>
 );
-
-const disableUser = (userId) => {
-  firebase.update(`/users/${userId}`, { active: false });
-};
 
 DisableModal.propTypes = {
   userId: PropTypes.string,

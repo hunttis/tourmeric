@@ -15,6 +15,9 @@
         "image": {
           ".validate": "newData.isString()"
         },
+        "imageSmall": {
+          ".validate": "newData.isString()"
+        },
         "formats": {
           ".validate": "newData.isString()"
         },
@@ -36,7 +39,13 @@
         "createDate": {
           ".validate": "newData.isString()"
         },
+        "editDate": {
+          ".validate": "newData.isString()"
+        },
         "date": {
+          ".validate": "newData.isString()"
+        },
+        "endDate": {
           ".validate": "newData.isString()"
         },
         "entryFee": {
@@ -67,6 +76,69 @@
           ".validate": "newData.isString()"
         },
         "time": {
+          ".validate": "newData.isString()"
+        },
+        "eventType": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && newData.parent().parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+      },
+      ".read": "true",
+      ".write": "(auth != null && newData.parent().child('users').child(auth.uid).child('role').val() == 'admin')"
+    },
+    "eventsongoing": {
+      "$id": {
+        ".validate": "newData.hasChildren()",
+        "category": {
+          ".validate": "newData.isString()"
+        },
+        "createDate": {
+          ".validate": "newData.isString()"
+        },
+        "editDate": {
+          ".validate": "newData.isString()"
+        },
+        "date": {
+          ".validate": "newData.isString()"
+        },
+        "endDate": {
+          ".validate": "newData.isString()"
+        },
+        "entryFee": {
+          ".validate": "newData.isString()"
+        },
+        "format": {
+          ".validate": "newData.isString()"
+        },
+        "link": {
+          ".validate": "newData.isString()"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "notes": {
+          ".validate": "newData.isString()"
+        },
+        "playerSlots": {
+          ".validate": "newData.isString()"
+        },
+        "prizes": {
+          ".validate": "newData.isString()"
+        },
+        "published": {
+          ".validate": "newData.isBoolean()"
+        },
+        "rulesLevel": {
+          ".validate": "newData.isString()"
+        },
+        "time": {
+          ".validate": "newData.isString()"
+        },
+        "eventType": {
           ".validate": "newData.isString()"
         },
         "$other": {

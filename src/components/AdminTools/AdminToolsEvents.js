@@ -12,6 +12,7 @@ import ParticipationEditor from './ParticipationEditor/ParticipationEditor-conta
 import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-container';
 import NewEventEditor from './EventEditor/NewEventEditor-container';
 import ExistingEventEditor from './EventEditor/ExistingEventEditor-container';
+import OngoingEventEditor from './EventEditor/OngoingEventEditor-container';
 
 export default class AdminToolsEvents extends Component {
 
@@ -61,6 +62,7 @@ export default class AdminToolsEvents extends Component {
             <Route path="/admin/events/participations" component={ParticipationEditor} />
             <Route path="/admin/events/newevent" component={NewEventEditor} />
             <Route path="/admin/events/editevent" component={ExistingEventEditor} />
+            <Route path="/admin/events/editongoingevent" component={OngoingEventEditor} />
           </Switch>
         </div>
       );
