@@ -11,6 +11,10 @@
     ],
     "rewrites": [
       {
+        "source": "/event/**",
+        "function": "host"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
@@ -18,5 +22,8 @@
   },
   "storage": {
     "rules": "firebase-rules/storage-rules.json"
+  },
+  "functions": {
+    "source": "functions/"
   }
 }
