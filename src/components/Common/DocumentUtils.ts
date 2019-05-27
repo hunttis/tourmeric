@@ -6,7 +6,7 @@ export function scrollIntoview(elementId: string) {
   }
 }
 
-export function setListener(eventType: string, callback: () => {}) {
+export function setListener(eventType: string, callback: any) {
   document.addEventListener(eventType, callback, false);
 }
 

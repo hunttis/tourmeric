@@ -1,16 +1,23 @@
-export interface EventData {
+export interface TourmericEvent {
   category: string;
   createDate: string;
   date: string;
-  endDate: string;
+  endDate?: string;
+  format: string | null;
   entryFee: string;
-  eventType: string;
+  eventType?: string;
   name: string;
-  published: boolean;
+  published?: boolean;
   time: string;
+  rulesLevel: string;
+  playerSlots: string;
+  prizes: string;
+  link?: string;
+  notes: string;
+  rules?: string;
 }
 
-export interface Event {
+export interface TourmericEventEntry {
   key: string;
-  value: EventData;
+  value: TourmericEvent;
 }

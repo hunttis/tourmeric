@@ -3,4 +3,5 @@ export interface OpeningHoursException {
   name: string;
   openingHours: string;
   status: string;
+  open: boolean;
 }

@@ -77,11 +77,23 @@
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+      "multiline": {
+        "delimiter": "semi",
+        "requireLast": true
+        },
+      "singleline": {
+          "delimiter": "comma",
+          "requireLast": false
+      }
+      }
+    ],
     "import/no-unresolved": 0,
     "object-curly-newline": [
       "error",
       {
-        "minProperties": 10,
         "consistent": true
       }
     ],

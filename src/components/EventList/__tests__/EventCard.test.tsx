@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import EventCard from '../EventCard/EventCard';
-import { mockUserId, mockProfile, mockEvents, mockSettings, mockUploadedLogos, mockParticipations, mockCategories, mockUnorderedEvents } from '../__mocks__/mockData';
+import { mockUserId, mockEvents, mockSettings, mockParticipations, mockCategories, mockUnorderedEvents } from '../__mocks__/mockData';
 
 describe('EventCard Tests', () => {
 
@@ -16,16 +16,14 @@ describe('EventCard Tests', () => {
     const card = shallow(<EventCard
       eventId="mockEvent2"
       userId={mockUserId}
-      profile={mockProfile}
       events={mockUnorderedEvents}
       eventsongoing={mockEventsAsObject}
       settings={mockSettings}
       participations={mockParticipations}
       categories={mockCategories}
-      openModal={() => {}}
-      uploadedCategoryLogos={mockUploadedLogos}
       history={jest.genMockFromModule('history')}
       setReturnLocation={() => {}}
+      isAdmin={false}
     />);
 
     expect(card.exists()).toBe(true);

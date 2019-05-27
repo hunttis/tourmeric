@@ -9,9 +9,9 @@ import {
   addClassToHtml,
 } from '../../Common/DocumentUtils';
 import EventCard from '../EventCard/EventCard-container';
-import OpeningHours from '../../StoreInfo/OpeningHours-container';
+import { OpeningHoursContainer as OpeningHours } from '../../StoreInfo/OpeningHours-container';
 import { OpeningHoursExceptionEditor } from './OpeningHoursExceptionEditor';
-import { Event } from '../../../models/Events';
+import { TourmericEventEntry } from '../../../models/Events';
 import { OpeningHoursException } from '../../../models/OpeningHours';
 
 export interface Props {
@@ -21,9 +21,9 @@ export interface Props {
   showArrow: boolean;
   momentForDay: Moment;
   isAdmin: boolean;
-  eventsForDay: Event[];
+  eventsForDay: TourmericEventEntry[];
   openinghoursexceptions: {[key: string]: OpeningHoursException };
-  ongoingEventsForDay: Event[];
+  ongoingEventsForDay: TourmericEventEntry[];
 }
 
 export interface State {
@@ -97,7 +97,7 @@ export class CalendarDayModal extends Component<Props, State> {
       isLoaded(openinghoursexceptions) &&
       openinghoursexceptions[momentForDay.format('YYYY-MM-DD')];
 
-    const parsedEvents = eventsForDay.map((event: Event) => {
+    const parsedEvents = eventsForDay.map((event: TourmericEventEntry) => {
       const sortId = moment(
         `${event.value.date}-${event.value.time}`,
         'YYYY-MM-DD-HH:mm',
@@ -217,7 +217,7 @@ export class CalendarDayModal extends Component<Props, State> {
                   <Translate id="ongoingevents" />
                 </h2>
                 <div>
-                  {ongoingEventsForDay.map((eventEntry: Event, index: number) => {
+                  {ongoingEventsForDay.map((eventEntry: TourmericEventEntry, index: number) => {
                     const eventId = eventEntry.key;
                     return (
                       <EventCard

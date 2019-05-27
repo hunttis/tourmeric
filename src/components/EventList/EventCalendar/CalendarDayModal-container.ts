@@ -5,16 +5,12 @@ import _ from 'lodash';
 
 import { setReturnLocation } from '../../../actions/eventEditorActions';
 import { CalendarDayModal } from './CalendarDayModal';
-
-interface CalendarDayModalState {
-  firebase: any;
-}
+import { ReduxState } from '~/models/ReduxState';
 
 export default compose(
-  connect((state: CalendarDayModalState) => ({
+  connect((state: ReduxState) => ({
     openinghoursexceptions: state.firebase.data.openinghoursexceptions,
     isAdmin: _.get(state, 'firebase.profile.role', 'user') === 'admin',
-  }), dispatch => ({
-    setReturnLocation: (returnLocation: string) => dispatch(setReturnLocation(returnLocation)),
+    setReturnLocation: (returnLocation: string) => setReturnLocation(returnLocation),
   })),
 )(withRouter<any>(CalendarDayModal));

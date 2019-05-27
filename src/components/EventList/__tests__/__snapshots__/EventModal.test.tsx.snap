@@ -3,8 +3,8 @@
 exports[`EventModal tests Compares EventModal to snapshot 1`] = `
 <div
   className="modal is-active"
-  id="modalmockEventId1"
-  key="modalmockEventId1"
+  id="modalmockEvent1"
+  key="modalmockEvent1"
 >
   <div
     className="modal-background"
@@ -24,11 +24,108 @@ exports[`EventModal tests Compares EventModal to snapshot 1`] = `
         >
           <h1
             className="title has-text-success"
-          />
+          >
+            Warhammer thing
+          </h1>
+        </div>
+        <div
+          className="column is-3 has-text-right"
+        >
+          <figure
+            className="image is-64x64 is-pulled-right"
+          >
+            <img
+              alt=""
+            />
+          </figure>
         </div>
         <div
           className="column is-12"
+        >
+          <i
+            className="fas fa-calendar"
+          />
+            
+          <t
+            ago={false}
+            calendar={false}
+            decimal={false}
+            element="time"
+            filter={[Function]}
+            format="DD.MM.YYYY"
+            fromNow={false}
+            interval={60000}
+            onChange={[Function]}
+            titleFormat=""
+            toNow={false}
+            unit={null}
+            unix={false}
+            utc={false}
+            withTitle={false}
+          >
+            2018-09-24
+          </t>
+          <br />
+          <i
+            className="fas fa-clock"
+          />
+            
+          Kill everything
+          <br />
+          <i
+            className="fas fa-book"
+          />
+            
+          Miniatures
+          <br />
+          <i
+            className="fas fa-balance-scale"
+          />
+            
+          Casual
+          <br />
+          <i
+            className="fas fa-money-bill-alt"
+          />
+            
+          10
+          <br />
+        </div>
+        <Component
+          content="Bring your war face!"
+          translationKey="notes"
         />
+        <Component
+          content="Glory!"
+          translationKey="prizes"
+        />
+        <div
+          className="column is-12"
+        >
+          <div
+            className="subtitle has-text-info"
+          >
+            <Translate
+              id="link"
+            />
+          </div>
+        </div>
+        <div
+          className="column is-1"
+        />
+        <div
+          className="column is-11"
+        >
+          <p>
+            <a
+              href="http://www.google.fi"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              http://www.google.fi
+            </a>
+          </p>
+        </div>
         <div
           className="column is-12"
         >
@@ -39,8 +136,9 @@ exports[`EventModal tests Compares EventModal to snapshot 1`] = `
               id="participants"
             />
              (
-            1
+            0
              / 
+            10
             )
           </div>
         </div>
@@ -51,18 +149,8 @@ exports[`EventModal tests Compares EventModal to snapshot 1`] = `
           className="column is-11"
         >
           <Component
-            maxParticipants={0}
-            participations={
-              Array [
-                Object {
-                  "comment": "Jee",
-                  "date": "2018-06-23T09:40:26.992Z",
-                  "firstName": "Test",
-                  "lastName": "Person",
-                  "userId": "mockUserId",
-                },
-              ]
-            }
+            maxParticipants={10}
+            participations={Array []}
           />
         </div>
       </div>

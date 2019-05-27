@@ -6,13 +6,13 @@ import classnames from 'classnames';
 
 interface Props {
   labelContent: string;
-  defaultValue: string;
+  defaultValue: string | null;
   path: string;
   targetName: string;
   isOk: boolean;
-  updateFieldStatus?: (key: string, isEmpty: boolean, data: string) => void;
+  updateFieldStatus?: (key: string, isEmpty: boolean, data: any) => void;
   isHorizontal: boolean;
-  isLocked: boolean;
+  isLocked?: boolean;
   nameProp?: SelectElementName;
   dropdownItems: { [key: string]: string | SelectElementItem };
 }
@@ -83,13 +83,13 @@ export default class SelectElement extends Component<Props> {
 interface SelectionButtonProps {
   dropdownItems: { [key: string]: SelectElementItem | string };
   nameProp?: SelectElementName;
-  selectedValue: string;
+  selectedValue: string | null;
   onSelectionClick: (selectionId: string) => void;
 }
 
 function LockedButton({ dropdownItems, nameProp, selectedValue }: SelectionButtonProps) {
 
-  const selectedItem = dropdownItems[selectedValue];
+  const selectedItem = dropdownItems[selectedValue!];
   const selectionData = selectedItem;
   const { buttonName, image } = typeof selectionData === 'string' ?
     ({ buttonName: selectionData, image: undefined }) :
