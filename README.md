@@ -26,9 +26,9 @@ Click `Create`. Click `Continue`.
 
 The project is created once the project view opens up.
 
-Open the page `Authentication`. Go into `Sign-in method` and enable the `email/password` signup. Click `Save`.
+Open the page `Develop` > `Authentication`. Go into `Sign-in method` and enable the `email/password` signup. Click `Save`.
 
-Next click the `Web setup`-button that is in the top-right corner of the page.
+Next click the cog icon next to `Project Overview` and select `Project settings`. Then under `General` > `Your apps` click the `</>` icon.
 
 Open a file in the project: `src/config-template.js`.
 
@@ -36,7 +36,7 @@ Copy everything inside `var config` (meaning, everything between the {}-brackets
 
 Add the following key (see example below) to the config: `titleText`. This will be the text that is shown on the page, when it's loaded.
 
-You should have the `fileMetadataFactory` in your config as well. You can copy it from the example below.
+Ensure that you have the `fileMetadataFactory` in your config as well.
 
 Your config.js will look something like this: 
 
