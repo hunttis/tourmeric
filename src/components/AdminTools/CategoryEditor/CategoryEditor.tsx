@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 import ImagePicker from '../ImagePicker';
+import { Category, UploadedFile } from '~/models/Category';
 
 interface State {
   editingCategory?: string | null;
@@ -43,7 +43,6 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
     const { editingCategory, pickingImage, pickingSmallImage } = this.state;
 
     if (isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
-      console.log('updating render!', editingCategory && categories[editingCategory]);
       return (
         <div className="section">
 
@@ -81,8 +80,8 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                   if (editingCategory && categoryId !== editingCategory) {
                     return;
                   }
-                  const categoryImage = _.find(uploadedCategoryLogos, {downloadURL: categoryData.image});
-                  const categoryImageSmall = categoryData.imageSmall && _.find(uploadedCategoryLogos, {downloadURL: categoryData.imageSmall});
+                  const categoryImage = _.find(uploadedCategoryLogos, { downloadURL: categoryData.image });
+                  const categoryImageSmall = categoryData.imageSmall && _.find(uploadedCategoryLogos, { downloadURL: categoryData.imageSmall });
                   const allowedToDelete = !_.find(events, { category: categoryId });
 
                   return (
@@ -155,7 +154,7 @@ const categoryEntry = ({}) => {
 interface CategoryEditorPanelProps {
   categoryId: string;
   categoryData: Category;
-  uploadedCategoryLogos: {[key: string]: CategoryLogo};
+  uploadedCategoryLogos: {[key: string]: UploadedFile};
   pickingImage: boolean;
   pickingSmallImage: boolean;
   chooseImagePicker: (update: State) => void;
@@ -243,58 +242,13 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, 
       fieldName="imageSmall"
     />
     }
-
   </div>
 );
 
-
-interface FileSelectorProps {
-  path: string;
-  files: {[key: string]: {name: string}};
-  defaultValue: string;
-  onChange: (path: string, value: string) => void;
-}
-
-const FileSelector = ({ path, files, defaultValue, onChange }: FileSelectorProps) => (
-  <div>
-    <label className="label">
-      <Translate id="categorylogo" />
-    </label>
-    <div className="control">
-      <div className="select">
-        <select defaultValue={defaultValue} onChange={event => onChange(path, { logo: event.target.value })}>
-          <option value=""><Translate id="select" /></option>
-          {files && Object.keys(files).map(fileKey => <option key={fileKey} value={fileKey}>{files[fileKey].name}</option>)}
-        </select>
-      </div>
-    </div>
-  </div>
-);
 
 interface CategoryEditorProps {
   categories: {[key: string]: Category};
-  uploadedCategoryLogos: {[key: string]: CategoryLogo};
+  uploadedCategoryLogos: {[key: string]: UploadedFile};
   events: {[key: string]: {category: string | null}};
 }
 
-interface Category {
-  abbreviation: string;
-  formats: string;
-  image: string;
-  imageSmall: string | null;
-  logo: string;
-  name: string;
-  type: string;
-}
-
-interface CategoryLogo {
-  downloadURL: string;
-  name: string;
-}
-
-FileSelector.propTypes = {
-  path: PropTypes.string,
-  files: PropTypes.object,
-  defaultValue: PropTypes.string,
-  onChange: PropTypes.func,
-};

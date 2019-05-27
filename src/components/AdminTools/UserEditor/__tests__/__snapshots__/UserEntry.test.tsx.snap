@@ -13,8 +13,23 @@ exports[`UserEntry Tests Compares UserEntry to snapshot 1`] = `
       <div
         className="card-header-title"
       >
+        Mock
          
+        Userton
          - 
+        mock@userton.com
+      </div>
+      <div
+        className="card-header-icon"
+      >
+        <figure
+          className="image is-48x48"
+        >
+          <img
+            alt="User avatar"
+            src="http://www.google.fi/google.png"
+          />
+        </figure>
       </div>
     </div>
     <div
@@ -23,9 +38,52 @@ exports[`UserEntry Tests Compares UserEntry to snapshot 1`] = `
       <ul>
         <li>
           <Translate
+            id="firstname"
+          />
+          : 
+          Mock
+        </li>
+        <li>
+          <Translate
+            id="lastname"
+          />
+          : 
+          Userton
+        </li>
+        <li>
+          <Translate
+            id="username"
+          />
+          : 
+          Mockie
+        </li>
+        <li>
+          <Translate
             id="email"
           />
           : 
+          mock@userton.com
+        </li>
+        <li>
+          <Translate
+            id="avatarurl"
+          />
+          : 
+          <a
+            href="http://www.google.fi/google.png"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            http://www.google.fi
+            ...
+          </a>
+        </li>
+        <li>
+          <Translate
+            id="dcinumber"
+          />
+          : 
+          123456
         </li>
         <li>
            

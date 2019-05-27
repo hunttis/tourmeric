@@ -7,7 +7,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { createBrowserHistory } from 'history';
 import EventCalendar from '../EventCalendar/EventCalendar';
-import { mockEvents, mockCategories, mockSettings } from '../__mocks__/mockData';
+import { mockEvents, mockCategories, mockSettings, mockLocation } from '../__mocks__/mockData';
 
 
 describe('EventList tests', () => {
@@ -22,10 +22,9 @@ describe('EventList tests', () => {
       eventsongoing={mockEvents}
       categories={mockCategories}
       activeLanguage="fi"
-      location={{ pathname: '/events/2018/10' }}
+      location={mockLocation}
       history={history}
       openinghoursexceptions={{}}
-      isAdmin={false}
       setReturnLocation={() => {}}
     />);
 
