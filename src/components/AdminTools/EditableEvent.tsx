@@ -7,13 +7,13 @@ import _ from 'lodash';
 import { Participation } from '~/models/ReduxState';
 import { Category } from '~/models/Category';
 import { Settings } from '~/models/Settings';
-import { History } from 'history';
-import { Event, TourmericEvent } from '~/models/Events';
+import { History } from 'history';
+import { TourmericEvent } from '~/models/Events';
 
 interface Props {
-  tournamentEntry: [string, Event];
-  participations: {[key: string]: Participation};
-  categories: {[key: string]: Category};
+  tournamentEntry: [string, TourmericEvent];
+  participations: { [key: string]: Participation };
+  categories: { [key: string]: Category };
   settings: Settings;
   index: number;
   history: History;
@@ -82,7 +82,7 @@ export class EditableEvent extends Component<Props> {
     firebase.set(`/events/${eventId}`, {});
   }
 
-  renderEventListItem(categories: {[key: string]: Category}, eventId: string, eventContent: TourmericEvent) {
+  renderEventListItem(categories: { [key: string]: Category }, eventId: string, eventContent: TourmericEvent) {
     const { settings, index } = this.props;
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
@@ -135,5 +135,3 @@ export class EditableEvent extends Component<Props> {
     return <div><Translate id="loading" /></div>;
   }
 }
-
-

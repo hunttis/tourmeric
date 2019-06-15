@@ -18,9 +18,9 @@ const filesPath = 'uploadedStoreinfoFiles';
 
 interface Props {
   settings: Settings;
-  uploadedStoreinfoFiles: {[key: string]: UploadedFile};
-  openinghoursexceptions: {[key: string]: OpeningHoursException};
-};
+  uploadedStoreinfoFiles: { [key: string]: UploadedFile };
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
+}
 
 interface State {
   openingHoursExceptionEditorOpen: boolean;
@@ -171,51 +171,51 @@ export default class StoreInfoEditor extends Component<Props, State> {
           <FileDropper path={filesPath} />
           <div>
             {
-        uploadedStoreinfoFiles &&
-          <div>
-            <h1 className="title">
-              <Translate id="uploadedfiles" />
-            </h1>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th><Translate id="image" /></th>
-                  <th><Translate id="filename" /></th>
-                  <th><Translate id="actions" /></th>
-                </tr>
-              </thead>
-              {
-              _.map(uploadedStoreinfoFiles, (file, key) => (
-                <tbody key={file.name + key}>
-                  <tr className={(settings.activeLogo === file.downloadURL) ? 'is-selected' : ''}>
-                    <td>
-                      <img className="thumbnail" src={file.downloadURL} alt="" />
-                    </td>
-                    <td>
-                      <span>{file.name}</span>
-                    </td>
-                    <td>
-                      <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                        <Translate id="deletefile" />
-                      </button>
-                      {(settings.locationImage !== file.downloadURL) &&
-                      <button className="button is-info" onClick={() => this.useAsLocationImage(file)}>
-                        <Translate id="useaslocationimage" />
-                      </button>
-                      }
-                      {(settings.locationImage === file.downloadURL) &&
-                      <button className="button is-warning" onClick={() => this.disableLogo()}>
-                        <Translate id="disableaslogo" />
-                      </button>
-                      }
-                    </td>
-                  </tr>
-                </tbody>
-              ))
-              }
-            </table>
-          </div>
-        }
+              uploadedStoreinfoFiles &&
+              <div>
+                <h1 className="title">
+                  <Translate id="uploadedfiles" />
+                </h1>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th><Translate id="image" /></th>
+                      <th><Translate id="filename" /></th>
+                      <th><Translate id="actions" /></th>
+                    </tr>
+                  </thead>
+                  {
+                    _.map(uploadedStoreinfoFiles, (file, key) => (
+                      <tbody key={file.name + key}>
+                        <tr className={(settings.activeLogo === file.downloadURL) ? 'is-selected' : ''}>
+                          <td>
+                            <img className="thumbnail" src={file.downloadURL} alt="" />
+                          </td>
+                          <td>
+                            <span>{file.name}</span>
+                          </td>
+                          <td>
+                            <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                              <Translate id="deletefile" />
+                            </button>
+                            {(settings.locationImage !== file.downloadURL) &&
+                              <button className="button is-info" onClick={() => this.useAsLocationImage(file)}>
+                                <Translate id="useaslocationimage" />
+                              </button>
+                            }
+                            {(settings.locationImage === file.downloadURL) &&
+                              <button className="button is-warning" onClick={() => this.disableLogo()}>
+                                <Translate id="disableaslogo" />
+                              </button>
+                            }
+                          </td>
+                        </tr>
+                      </tbody>
+                    ))
+                  }
+                </table>
+              </div>
+            }
           </div>
         </Fragment>
       );

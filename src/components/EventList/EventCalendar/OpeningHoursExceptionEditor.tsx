@@ -8,7 +8,7 @@ import { OpeningHoursException } from '../../../models/OpeningHours';
 
 interface OpeningHoursExceptionEditorProps {
   day: moment.Moment;
-  existingExceptions: {[key: string]: OpeningHoursException };
+  existingExceptions: { [key: string]: OpeningHoursException };
   closeEditor: () => void;
 }
 
@@ -54,49 +54,49 @@ export class OpeningHoursExceptionEditor extends Component<OpeningHoursException
             />
 
             {openOk &&
-            <div className="field">
-              <div className="label">
-                <label className="label"><Translate id="description" /></label>
-              </div>
-              <div className="field-body">
-                <div className="field">
-                  <p className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      defaultValue={exceptionForToday ? exceptionForToday.name : ''}
-                      onChange={event => this.delayedSave(pathForToday, 'name', event.target.value)}
-                    />
-                  </p>
+              <div className="field">
+                <div className="label">
+                  <label className="label"><Translate id="description" /></label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <p className="control">
+                      <input
+                        type="text"
+                        className="input"
+                        defaultValue={exceptionForToday ? exceptionForToday.name : ''}
+                        onChange={event => this.delayedSave(pathForToday, 'name', event.target.value)}
+                      />
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          }
+            }
 
             {openOk && descriptionOk && (exceptionForToday && exceptionForToday.status === 'open') &&
-            <div className="field ">
-              <div className="label">
-                <label className="label">{translate('hours')}</label>
-              </div>
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    defaultValue={exceptionForToday ? exceptionForToday.openingHours : ''}
-                    placeholder={translate('openinghoursexample')}
-                    onChange={event => this.delayedSave(pathForToday, 'openingHours', event.target.value)}
-                  />
+              <div className="field ">
+                <div className="label">
+                  <label className="label">{translate('hours')}</label>
+                </div>
+                <div className="field">
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="text"
+                      defaultValue={exceptionForToday ? exceptionForToday.openingHours : ''}
+                      placeholder={translate('openinghoursexample')}
+                      onChange={event => this.delayedSave(pathForToday, 'openingHours', event.target.value)}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          }
+            }
             {hoursOk &&
-            <button className="button is-info is-outlined" onClick={() => closeEditor()}><Translate id="done" /></button>
-          }
+              <button className="button is-info is-outlined" onClick={() => closeEditor()}><Translate id="done" /></button>
+            }
             {exceptionForToday &&
-            <button className="button is-danger is-outlined" onClick={() => this.deleteException(pathForToday)}><Translate id="deleteexception" /></button>
-          }
+              <button className="button is-danger is-outlined" onClick={() => this.deleteException(pathForToday)}><Translate id="deleteexception" /></button>
+            }
           </div>
         )}
       </Translate>

@@ -6,10 +6,10 @@ import StoreCreditTable from '../StoreCredit/StoreCreditTable-container';
 import { TourmericStoreCreditData, StoreCreditCategory } from '~/models/StoreCredit';
 
 interface Props {
-  userId: string; 
-  storecredit: {[key: string]: {[key: string]: TourmericStoreCreditData}};
-  storecreditcategories: {[key: string]: StoreCreditCategory};
-};
+  userId: string;
+  storecredit: { [key: string]: { [key: string]: TourmericStoreCreditData } };
+  storecreditcategories: { [key: string]: StoreCreditCategory };
+}
 
 interface State {
   creditFormAmount: number;
@@ -96,11 +96,12 @@ export default class CreditModal extends Component<Props, State> {
               })}
             </div>
             <div>
-              <button 
-                className="button is-primary" 
-                disabled={this.state.creditFormAmount === 0 || this.state.creditFormNote.length === 0} 
-                onClick={() => this.saveCredit(userId, this.state.creditFormNote, `${this.state.creditFormAmount}`, this.state.creditCategory)}>
-                  <Translate id="save" />
+              <button
+                className="button is-primary"
+                disabled={this.state.creditFormAmount === 0 || this.state.creditFormNote.length === 0}
+                onClick={() => this.saveCredit(userId, this.state.creditFormNote, `${this.state.creditFormAmount}`, this.state.creditCategory)}
+              >
+                <Translate id="save" />
               </button>
             </div>
           </div>

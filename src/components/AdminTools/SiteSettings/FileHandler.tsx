@@ -10,9 +10,9 @@ import { Settings } from '~/models/Settings';
 const filesPath = 'uploadedFiles';
 
 interface Props {
-  uploadedFiles: {[key: string]: UploadedFile};
+  uploadedFiles: { [key: string]: UploadedFile };
   settings: Settings;
-};
+}
 
 export default class FileHandler extends Component<Props> {
 
@@ -48,7 +48,7 @@ export default class FileHandler extends Component<Props> {
         <FileDropper path={filesPath} />
 
         {
-        uploadedFiles &&
+          uploadedFiles &&
           <div>
             <h1 className="title">
               <Translate id="uploadedfiles" />
@@ -62,33 +62,33 @@ export default class FileHandler extends Component<Props> {
                 </tr>
               </thead>
               {
-              map(uploadedFiles, (file, key) => (
-                <tbody key={file.name + key}>
-                  <tr className={(settings.activeLogo === file.downloadURL) ? 'is-selected' : ''}>
-                    <td>
-                      <img className="thumbnail" src={file.downloadURL} alt="" />
-                    </td>
-                    <td>
-                      <span>{file.name}</span>
-                    </td>
-                    <td>
-                      <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                        <Translate id="deletefile" />
-                      </button>
-                      {(settings.activeLogo !== file.downloadURL) &&
-                      <button className="button is-info" onClick={() => this.useAsLogo(file)}>
-                        <Translate id="useaslogo" />
-                      </button>
-                      }
-                      {(settings.activeLogo === file.downloadURL) &&
-                      <button className="button is-warning" onClick={() => this.disableLogo()}>
-                        <Translate id="disableaslogo" />
-                      </button>
-                      }
-                    </td>
-                  </tr>
-                </tbody>
-              ))
+                map(uploadedFiles, (file, key) => (
+                  <tbody key={file.name + key}>
+                    <tr className={(settings.activeLogo === file.downloadURL) ? 'is-selected' : ''}>
+                      <td>
+                        <img className="thumbnail" src={file.downloadURL} alt="" />
+                      </td>
+                      <td>
+                        <span>{file.name}</span>
+                      </td>
+                      <td>
+                        <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                          <Translate id="deletefile" />
+                        </button>
+                        {(settings.activeLogo !== file.downloadURL) &&
+                          <button className="button is-info" onClick={() => this.useAsLogo(file)}>
+                            <Translate id="useaslogo" />
+                          </button>
+                        }
+                        {(settings.activeLogo === file.downloadURL) &&
+                          <button className="button is-warning" onClick={() => this.disableLogo()}>
+                            <Translate id="disableaslogo" />
+                          </button>
+                        }
+                      </td>
+                    </tr>
+                  </tbody>
+                ))
               }
             </table>
           </div>

@@ -4,7 +4,7 @@ import { isLoaded } from 'react-redux-firebase';
 import { Participation } from '~/models/ReduxState';
 
 interface Props {
-  participations: {[key: string]: Participation}
+  participations: { [key: string]: Participation };
 }
 
 export const ParticipationsLoader = ({ participations }: Props) => (

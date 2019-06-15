@@ -9,8 +9,8 @@ interface Props {
   entryMadeBy: string;
   isAdmin: boolean;
   updateCategory: (entryId: string, newCategory: CreditCategories) => void;
-  storecreditcategories: {[key: string]: StoreCreditCategory};
-};
+  storecreditcategories: { [key: string]: StoreCreditCategory };
+}
 
 export const StoreCreditRow = ({ dataId, data, entryMadeBy, isAdmin, updateCategory, storecreditcategories }: Props) => (
   <tr className={`${data.category === 'green' && 'has-text-success'} ${data.category === 'red' && 'has-text-danger'} ${data.category === 'yellow' && 'has-text-warning'} ${data.category === 'blue' && 'has-text-info'}`}>
@@ -48,5 +48,3 @@ export const StoreCreditRow = ({ dataId, data, entryMadeBy, isAdmin, updateCateg
     </td>
   </tr>
 );
-
-

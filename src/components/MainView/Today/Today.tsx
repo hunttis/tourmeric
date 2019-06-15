@@ -15,13 +15,13 @@ import { createMomentFromDateString, createCurrentMoment } from '~/components/Co
 const moment = extendMoment(Moment);
 
 interface Props {
-  events: {key: string, value: TourmericEvent}[];
-  eventsongoing: {key: string, value: TourmericEvent}[];
-  categories: {[key: string]: Category};
-  uploadedCategoryLogos: {[key: string]: UploadedFile};
+  events: { key: string, value: TourmericEvent }[];
+  eventsongoing: { key: string, value: TourmericEvent }[];
+  categories: { [key: string]: Category };
+  uploadedCategoryLogos: { [key: string]: UploadedFile };
   profile: FirebaseProfile;
   activeLanguage: string;
-};
+}
 
 interface State {
   shownItems: string;
@@ -33,17 +33,17 @@ export default class Today extends Component<Props, Partial<State>> {
 
   state = { shownItems: 'today', modalOpenEventId: null, showPastEventsFilter: false }
 
-  findNextEvents(events: {key: string, value: TourmericEvent}[]) {
+  findNextEvents(events: { key: string, value: TourmericEvent }[]) {
     const { profile } = this.props;
     const now = moment();
     const after7Days = moment().add(7, 'days');
-    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories!.trim());
     if (events) {
       const nextEvents = events.filter((eventEntry) => {
         const eventData = eventEntry.value;
         const eventDate = moment(eventData.date, 'YYYY-MM-DD');
         const isWithinAWeek = eventDate.isAfter(now, 'day') && eventDate.isBefore(after7Days, 'day');
-        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;
+        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
         return eventData.published && isWithinAWeek && isFavorite;
       });
       return nextEvents;
@@ -51,16 +51,16 @@ export default class Today extends Component<Props, Partial<State>> {
     return [];
   }
 
-  findNextOngoingEvents(ongoingevents: {key: string, value: TourmericEvent}[]) {
+  findNextOngoingEvents(ongoingevents: { key: string, value: TourmericEvent }[]) {
     const { profile } = this.props;
     const range = moment.range(moment(), moment().add(7, 'days'));
-    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories!.trim());
     if (ongoingevents) {
       const nextEvents = ongoingevents.filter((eventEntry) => {
         const eventData = eventEntry.value;
-        const eventDateRange = moment.range(createMomentFromDateString(eventData.date), createMomentFromDateString(eventData.endDate));
+        const eventDateRange = moment.range(createMomentFromDateString(eventData.date), createMomentFromDateString(eventData.endDate!));
         const isWithinAWeek = range.overlaps(eventDateRange);
-        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;
+        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
         return eventData.published && isWithinAWeek && isFavorite;
       });
       return nextEvents;
@@ -68,14 +68,14 @@ export default class Today extends Component<Props, Partial<State>> {
     return [];
   }
 
-  findTodaysEvents(events: {key: string, value: TourmericEvent}[]) {
+  findTodaysEvents(events: { key: string, value: TourmericEvent }[]) {
     const { profile } = this.props;
-    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories!.trim());
     if (events) {
 
       const todaysEvents = events.filter((eventEntry) => {
         const eventData = eventEntry.value;
-        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;
+        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
 
         if (eventData.published && createMomentFromDateString(eventData.date).isSame(createCurrentMoment(), 'day') && isFavorite) {
           return true;
@@ -87,13 +87,13 @@ export default class Today extends Component<Props, Partial<State>> {
     return [];
   }
 
-  findTodaysOngoingEvents(eventsongoing: {key: string, value: TourmericEvent}[]) {
+  findTodaysOngoingEvents(eventsongoing: { key: string, value: TourmericEvent }[]) {
     const { profile } = this.props;
-    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories.trim());
+    const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories!.trim());
     if (eventsongoing) {
       const todaysOngoingEvents = eventsongoing.filter((eventEntry) => {
         const eventData = eventEntry.value;
-        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories.indexOf(eventData.category) !== -1;
+        const isFavorite = !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
 
         if (eventData.endDate) {
           return isFavorite && createCurrentMoment().isBetween(createMomentFromDateString(eventData.date), createMomentFromDateString(eventData.endDate), 'day', '[]');
@@ -150,7 +150,7 @@ export default class Today extends Component<Props, Partial<State>> {
     return '';
   }
 
-  renderTodaysEventItems(todaysEvents: {key: string, value: TourmericEvent}[]) {
+  renderTodaysEventItems(todaysEvents: { key: string, value: TourmericEvent }[]) {
     if (!_.isEmpty(todaysEvents)) {
       return (
         <Fragment>
@@ -187,7 +187,7 @@ export default class Today extends Component<Props, Partial<State>> {
     );
   }
 
-  renderTodaysOngoingEventItems(eventsongoing: {key: string, value: TourmericEvent}[]) {
+  renderTodaysOngoingEventItems(eventsongoing: { key: string, value: TourmericEvent }[]) {
     if (!_.isEmpty(eventsongoing)) {
       return (
         <Fragment>
@@ -222,7 +222,7 @@ export default class Today extends Component<Props, Partial<State>> {
     );
   }
 
-  renderFutureEventItems(nextEvents: {key: string, value: TourmericEvent}[]) {
+  renderFutureEventItems(nextEvents: { key: string, value: TourmericEvent }[]) {
     if (!_.isEmpty(nextEvents)) {
 
       return (
@@ -266,7 +266,7 @@ export default class Today extends Component<Props, Partial<State>> {
 
   }
 
-  renderFutureOngoingEventItems(nextOngoingEvents: {key: string, value: TourmericEvent}[]) {
+  renderFutureOngoingEventItems(nextOngoingEvents: { key: string, value: TourmericEvent }[]) {
     if (!_.isEmpty(nextOngoingEvents)) {
 
       return (
@@ -348,5 +348,3 @@ export default class Today extends Component<Props, Partial<State>> {
 
   }
 }
-
-

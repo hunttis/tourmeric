@@ -9,47 +9,44 @@ import { Day } from '~/models/Calendar';
 
 interface Props {
   chunkedCalendar: Day[][];
-  categories: {[key: string]: Category};
+  categories: { [key: string]: Category };
   clickDay: (day: Day) => void;
-  openinghoursexceptions: {[key: string]: OpeningHoursException};
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
   settings: Settings;
 }
 
-export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openinghoursexceptions, settings }: Props) => {
-  return (
-    <Fragment>
-      {chunkedCalendar.map((week, weekIndex) => (
-          <div key={`calendar-week-${weekIndex}`} className="column is-12 columns is-marginless">
-            {week.map((day, dayIndex) => {
-      
-              if (day.empty) {
-                return (
-                  <div key={`calendar-day-${dayIndex}`} className="column is-paddingless is-marginless is-hidden-mobile" />
-                );
-              }
-      
-              return (
-                <CalendarDay day={day} openinghoursexceptions={openinghoursexceptions} settings={settings} dayIndex={dayIndex} categories={categories} clickDay={clickDay} />
-              );
-            })}
-          </div>
-        ))
-      }
-    </Fragment>
-  );
-  
-};
+export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openinghoursexceptions, settings }: Props) => (
+  <Fragment>
+    {chunkedCalendar.map((week, weekIndex) => (
+      <div key={`calendar-week-${weekIndex}`} className="column is-12 columns is-marginless">
+        {week.map((day, dayIndex) => {
+
+          if (day.empty) {
+            return (
+              <div key={`calendar-day-${dayIndex}`} className="column is-paddingless is-marginless is-hidden-mobile" />
+            );
+          }
+
+          return (
+            <CalendarDay day={day} openinghoursexceptions={openinghoursexceptions} settings={settings} dayIndex={dayIndex} categories={categories} clickDay={clickDay} />
+          );
+        })}
+      </div>
+    ))
+    }
+  </Fragment>
+);
 
 interface CalendarDay {
   day: Day;
-  openinghoursexceptions: {[key: string]: OpeningHoursException};
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
   settings: Settings;
   dayIndex: number;
-  categories: {[key: string]: Category};
+  categories: { [key: string]: Category };
   clickDay: (day: Day) => void;
 }
 
-const CalendarDay = ({ day, openinghoursexceptions, settings, dayIndex, categories, clickDay }: CalendarDay) => { 
+const CalendarDay = ({ day, openinghoursexceptions, settings, dayIndex, categories, clickDay }: CalendarDay) => {
   let dayClass = '';
   const today = moment();
   const dayMoment = moment(day.dayLink, 'YYYY/MM/DD');
@@ -117,4 +114,4 @@ const CalendarDay = ({ day, openinghoursexceptions, settings, dayIndex, categori
       </div>
     </div>
   );
-}
+};

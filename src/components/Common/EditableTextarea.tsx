@@ -6,13 +6,13 @@ import _ from 'lodash';
 interface Props {
   labelContent: string;
   placeHolder: string;
-  defaultValue: string;
+  defaultValue?: string;
   path: string;
   targetName: string;
   inputClasses?: string;
   leftIcon?: string;
   rows?: number;
-};
+}
 
 interface State {
   saved: boolean;
@@ -47,24 +47,24 @@ export default class EditableTextarea extends Component<Props, State> {
     return (
       <div className="editablefield field is-horizontal">
         {labelContent &&
-        <div className="field-label is-normal">
-          <label className="label">
-            <Translate id={labelContent} />
-          </label>
-        </div>
+          <div className="field-label is-normal">
+            <label className="label">
+              <Translate id={labelContent} />
+            </label>
+          </div>
         }
         <div className="field-body">
           <div className="field">
             <p className={`control is-expanded ${leftIcon && 'has-icons-left'} has-icons-right`}>
               <Translate>
                 {(translate: any) => (
-                <textarea
-                  rows={rows}
-                  className={`textarea ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${inputClasses}`}
-                  placeholder={translate(placeHolder)}
-                  defaultValue={defaultValue}
-                  onChange={event => this.handleChange(path, targetName, event.target.value)}
-                />
+                  <textarea
+                    rows={rows}
+                    className={`textarea ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${inputClasses}`}
+                    placeholder={translate(placeHolder)}
+                    defaultValue={defaultValue}
+                    onChange={event => this.handleChange(path, targetName, event.target.value)}
+                  />
                 )}
               </Translate>
               {leftIcon && <span className="icon is-small is-left"><i className={`fas fa-${leftIcon}`} /></span>}

@@ -43,19 +43,19 @@ export default class TitleBar extends Component<Props> {
               <div className="columns is-marginless">
                 <div className="column is-2 is-vcentered">
                   {settings.activeLogo &&
-                  <a onClick={() => returnToFrontpage()}>
-                    <div id="logo" className="is-paddingless is-marginless">
-                      <figure className="image">
-                        <img src={settings.activeLogo} alt="" />
-                      </figure>
-                    </div>
-                  </a>
-                }
+                    <a onClick={() => returnToFrontpage()}>
+                      <div id="logo" className="is-paddingless is-marginless">
+                        <figure className="image">
+                          <img src={settings.activeLogo} alt="" />
+                        </figure>
+                      </div>
+                    </a>
+                  }
                   {settings.pageTitle &&
-                  <div id="titletext" className="title is-2">
-                    {pageTitle}
-                  </div>
-                }
+                    <div id="titletext" className="title is-2">
+                      {pageTitle}
+                    </div>
+                  }
                 </div>
                 <div className="column button-container">
                   {highlightsActive && <Highlights />}
@@ -63,15 +63,15 @@ export default class TitleBar extends Component<Props> {
                 {introTextActive &&
                   <div className="column introtext-container">
                     <div className="introtext-box">
-                      {introTextParagraphs.map((paragraph: string, index: number) => <p key={`introtextparagraph-${index}`}>{paragraph}&nbsp;</p>) }
+                      {introTextParagraphs.map((paragraph: string, index: number) => <p key={`introtextparagraph-${index}`}>{paragraph}&nbsp;</p>)}
                     </div>
                   </div>
                 }
               </div>
               {pageSubtitle &&
-              <div id="subtitletext" className="subtitle has-text-grey-light is-6 is-paddingless is-marginless">
-                {pageSubtitle}
-              </div>
+                <div id="subtitletext" className="subtitle has-text-grey-light is-6 is-paddingless is-marginless">
+                  {pageSubtitle}
+                </div>
               }
               <div className="is-hidden-mobile">
                 <OpeningHours />
@@ -90,6 +90,3 @@ export default class TitleBar extends Component<Props> {
     );
   }
 }
-
-
-

@@ -20,11 +20,11 @@ const filesPath = 'uploadedNewsImages';
 
 
 interface Props {
-  news: {[key: string]: SingleNewsItem},
-  uploadedNewsImages: {[key: string]: UploadedFile},
-  settings: Settings,
-  updateFieldStatus: (key: string, isEmpty: boolean, data:string) => void;
-};
+  news: { [key: string]: SingleNewsItem };
+  uploadedNewsImages: { [key: string]: UploadedFile };
+  settings: Settings;
+  updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
+}
 
 interface State {
   openNewsModalId: string;
@@ -75,7 +75,7 @@ export default class NewsEditor extends Component<Props, State> {
     firebase.update(`/${path}`, value);
   }
 
-  listNews(news: {[key: string]: SingleNewsItem}) {
+  listNews(news: { [key: string]: SingleNewsItem }) {
     const { dateFormat } = this.props.settings;
 
     return (
@@ -117,7 +117,7 @@ export default class NewsEditor extends Component<Props, State> {
     );
   }
 
-  newsModal(news: {[key: string]: SingleNewsItem}) {
+  newsModal(news: { [key: string]: SingleNewsItem }) {
     const { uploadedNewsImages } = this.props;
     const { openNewsModalId } = this.state;
     return (
@@ -148,7 +148,7 @@ export default class NewsEditor extends Component<Props, State> {
                   />
 
                   <EditableTextarea
-                    updateFieldStatus={() => {}}
+                    updateFieldStatus={() => { }}
                     labelContent="text"
                     placeHolder="newstextplaceholder"
                     defaultValue={newsItem.text}
@@ -157,7 +157,7 @@ export default class NewsEditor extends Component<Props, State> {
                   />
 
                   <EditableField
-                    updateFieldStatus={() => {}}
+                    updateFieldStatus={() => { }}
                     labelContent="linkname"
                     placeHolder="linknameplaceholder"
                     defaultValue={newsItem.linkName}
@@ -166,7 +166,7 @@ export default class NewsEditor extends Component<Props, State> {
                   />
 
                   <EditableField
-                    updateFieldStatus={() => {}}
+                    updateFieldStatus={() => { }}
                     labelContent="link"
                     placeHolder="linkplaceholder"
                     defaultValue={newsItem.link}

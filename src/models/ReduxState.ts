@@ -1,8 +1,8 @@
-import { Settings } from "./Settings";
-import { Category, UploadedFile } from "./Category";
-import { OpeningHoursException } from "./OpeningHours";
+import { Settings } from './Settings';
+import { Category, UploadedFile } from './Category';
+import { OpeningHoursException } from './OpeningHours';
 import { TourmericEvent } from './Events';
-import { TourmericStoreCreditData, StoreCreditCategory } from "./StoreCredit";
+import { TourmericStoreCreditData, StoreCreditCategory } from './StoreCredit';
 
 export interface ReduxState {
   admin: any;
@@ -36,30 +36,30 @@ export interface Location {
 }
 
 interface OrderedFirebaseData {
-  events: [{key: string, value: TourmericEvent}];
-  eventsongoing: [{key: string, value: TourmericEvent}];
-  news: [{key: string, value: SingleNewsItem}];
-  users: [{key: string, value: User}];
+  events: [{ key: string, value: TourmericEvent }];
+  eventsongoing: [{ key: string, value: TourmericEvent }];
+  news: [{ key: string, value: SingleNewsItem }];
+  users: [{ key: string, value: User }];
 }
 
 interface FirebaseData {
   settings: Settings;
-  highlights: {[key: string]: HighLight};
-  events: {[key: string]: TourmericEvent};
-  eventsongoing: {[key: string]: TourmericEvent};
-  categories: {[key: string]: Category};
-  participations: {[key: string]: Participation};
-  uploadedFiles: {[key: string]: UploadedFile};
-  uploadedCategoryLogos: {[key: string]: UploadedFile};
-  uploadedHighlightBanners: {[key: string]: UploadedFile};
-  uploadedNewsImages: {[key: string]: UploadedFile};
-  uploadedFooterItems: {[key: string]: UploadedFile};
-  uploadedStoreinfoFiles: {[key: string]: UploadedFile};
-  openinghoursexceptions: {[key: string]: OpeningHoursException};
-  storecreditcategories: {[key: string]: StoreCreditCategory};
-  users: {[key: string]: User};
-  news: {[key: string]: SingleNewsItem}
-  storecredit: {[key: string]: TourmericStoreCreditData}
+  highlights: { [key: string]: HighLight };
+  events: { [key: string]: TourmericEvent };
+  eventsongoing: { [key: string]: TourmericEvent };
+  categories: { [key: string]: Category };
+  participations: { [key: string]: Participation };
+  uploadedFiles: { [key: string]: UploadedFile };
+  uploadedCategoryLogos: { [key: string]: UploadedFile };
+  uploadedHighlightBanners: { [key: string]: UploadedFile };
+  uploadedNewsImages: { [key: string]: UploadedFile };
+  uploadedFooterItems: { [key: string]: UploadedFile };
+  uploadedStoreinfoFiles: { [key: string]: UploadedFile };
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
+  storecreditcategories: { [key: string]: StoreCreditCategory };
+  users: { [key: string]: User };
+  news: { [key: string]: SingleNewsItem };
+  storecredit: { [key: string]: TourmericStoreCreditData };
 }
 
 export interface SingleNewsItem {
@@ -138,14 +138,14 @@ export interface FirebaseProfile {
 export type PageOption = 'today' | 'events' | 'storeinfo' | 'userinfo' | 'companyinfo' | 'admintools' | 'admintoolsevents' | 'adminsitesettings' | '';
 
 export interface User {
-  avatarUrl: string;
-  displayName: string;
-  providerData: ProviderData;
+  avatarUrl?: string;
+  displayName?: string;
+  providerData?: ProviderData;
   firstName: string;
   lastName: string;
   email: string;
   username: string;
-  dciNumber: string;
-  role: string;
+  dciNumber?: string;
+  role?: string;
   active: boolean;
 }

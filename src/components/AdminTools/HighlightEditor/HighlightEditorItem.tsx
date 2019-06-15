@@ -7,7 +7,7 @@ import { HighLight } from '~/models/ReduxState';
 interface Props {
   highlightEntry: [string, HighLight];
   openModal: (key: string, value: HighLight) => void;
-};
+}
 
 export const HighlightEditorItem = ({ highlightEntry, openModal }: Props) => {
   const highlightId = highlightEntry[0];
@@ -20,10 +20,10 @@ export const HighlightEditorItem = ({ highlightEntry, openModal }: Props) => {
         <div className="column is-4">{highlight.name || 'No name'}</div>
         <div className="column is-2">
           {highlightImageExists &&
-          <figure className="image is-3by1">
-            <img alt="" src={highlight.image} />
-          </figure>
-                }
+            <figure className="image is-3by1">
+              <img alt="" src={highlight.image} />
+            </figure>
+          }
           {!highlightImageExists && 'No image'}
         </div>
 
@@ -35,11 +35,11 @@ export const HighlightEditorItem = ({ highlightEntry, openModal }: Props) => {
         </div>
         <div className="column is-1">
           {highlight.active &&
-          <button className="button is-warning" onClick={() => setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
-              }
+            <button className="button is-warning" onClick={() => setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
+          }
           {!highlight.active &&
-          <button className="button is-success" onClick={() => setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
-              }
+            <button className="button is-success" onClick={() => setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
+          }
         </div>
       </div>
     </Fragment>

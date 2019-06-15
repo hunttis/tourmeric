@@ -8,7 +8,7 @@ interface Props {
   settings: Settings;
   showAcceptance: boolean;
   openModalOnly: boolean;
-};
+}
 
 export default class PrivacyPolicy extends Component<Props> {
 

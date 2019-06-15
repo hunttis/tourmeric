@@ -3,8 +3,8 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { TourmericEvent } from '~/models/Events';
 
 interface Props {
-  events: {[key: string]: TourmericEvent}
-  eventsongoing: {[key: string]: TourmericEvent}
+  events: { [key: string]: TourmericEvent };
+  eventsongoing: { [key: string]: TourmericEvent };
 }
 
 export const EventLoader = ({ events, eventsongoing }: Props) => (

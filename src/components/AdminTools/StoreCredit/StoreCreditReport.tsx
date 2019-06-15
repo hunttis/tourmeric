@@ -7,15 +7,15 @@ import moment from 'moment/min/moment-with-locales';
 
 import { mapCategoryToColor } from '../../Common/Utils';
 import { StoreCreditReportForMonth } from './StoreCreditReportForMonth';
-import { TourmericStoreCreditData } from '~/models/StoreCredit';
-import { StoreCreditCategory, User } from '~/models/ReduxState';
+import { TourmericStoreCreditData, StoreCreditCategory } from '~/models/StoreCredit';
+import { User } from '~/models/ReduxState';
 
 interface Props {
-  users: {[key: string]: User};
-  storecredit: {[key: string]: {[key: string]: TourmericStoreCreditData}};
-  storecreditcategories: {[key: string]: StoreCreditCategory};
+  users: { [key: string]: User };
+  storecredit: { [key: string]: { [key: string]: TourmericStoreCreditData } };
+  storecreditcategories: { [key: string]: StoreCreditCategory };
   activeLanguage: string;
-};
+}
 
 interface State {
   detailedReport: string | null;
@@ -24,6 +24,7 @@ interface State {
 export default class StoreCreditReport extends Component<Props, State> {
 
   state = { detailedReport: null }
+
   timeout!: NodeJS.Timeout;
 
   componentWillUnmount() {
@@ -169,7 +170,7 @@ export default class StoreCreditReport extends Component<Props, State> {
                 users={users}
               />
             </Fragment>
-            }
+          }
 
 
         </div>

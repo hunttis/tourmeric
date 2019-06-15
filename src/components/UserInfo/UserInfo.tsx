@@ -17,15 +17,15 @@ import { TourmericStoreCreditData } from '~/models/StoreCredit';
 import { Category } from '~/models/Category';
 
 interface Props {
-  events: {key: string, value: TourmericEvent}[];
-  participations: {[key: string]: Participation};
+  events: { key: string, value: TourmericEvent }[];
+  participations: { [key: string]: Participation };
   profile: FirebaseProfile;
   userid: string;
   auth: FirebaseAuth;
   settings: Settings;
-  storecredit: {[userId: string]: {[key: string]: TourmericStoreCreditData}};
-  categories: {[key: string]: Category};
-};
+  storecredit: { [userId: string]: { [key: string]: TourmericStoreCreditData } };
+  categories: { [key: string]: Category };
+}
 
 interface State {
   modalOpen: boolean;
@@ -39,7 +39,7 @@ export default class UserInfo extends Component<Props, State> {
     this.state = { modalOpen: false, privacyPolicyModalOpen: false };
   }
 
-  calculateTotal(creditData: {[key: string]: TourmericStoreCreditData}) {
+  calculateTotal(creditData: { [key: string]: TourmericStoreCreditData }) {
     let total = 0.0;
     for (const dataItem of Object.values(creditData)) {
       total += dataItem.value;
@@ -96,11 +96,11 @@ export default class UserInfo extends Component<Props, State> {
           <div className="columns is-multiline">
 
             {!hasAcceptedPrivacyPolicy &&
-            <div className="column is-12">
-              <div className="button is-danger" onClick={() => this.openPrivacyPolicyModal()}>
-                <Translate id="pleaseclickheretoreadourandacceptprivacypolicytoproceed" />
+              <div className="column is-12">
+                <div className="button is-danger" onClick={() => this.openPrivacyPolicyModal()}>
+                  <Translate id="pleaseclickheretoreadourandacceptprivacypolicytoproceed" />
+                </div>
               </div>
-            </div>
             }
 
             <div key="privacyPolicyModal" className={`modal ${this.state.privacyPolicyModalOpen ? 'is-active' : ''}`}>
@@ -149,16 +149,16 @@ export default class UserInfo extends Component<Props, State> {
               {eventsActive &&
                 <Fragment>
                   {!_.isEmpty(futureEvents) &&
-                  <DateBasedEvents
-                    title="nextparticipations"
-                    events={futureEvents}
-                  />}
+                    <DateBasedEvents
+                      title="nextparticipations"
+                      events={futureEvents}
+                    />}
                   <p>&nbsp;</p>
                   {!_.isEmpty(pastEvents) &&
-                  <DateBasedEvents
-                    title="pastparticipations"
-                    events={pastEvents}
-                  />}
+                    <DateBasedEvents
+                      title="pastparticipations"
+                      events={pastEvents}
+                    />}
                 </Fragment>
               }
             </div>
@@ -224,4 +224,3 @@ export default class UserInfo extends Component<Props, State> {
     );
   }
 }
-

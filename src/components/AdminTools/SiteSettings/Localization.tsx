@@ -8,7 +8,7 @@ interface Props {
   settings: Settings;
   showDefaultButton: boolean;
   defaultDateFormat: () => {};
-};
+}
 
 export const Localization = ({ settings, showDefaultButton, defaultDateFormat }: Props) => (
   <div className="columns is-multiline">
@@ -33,20 +33,20 @@ export const Localization = ({ settings, showDefaultButton, defaultDateFormat }:
       <div className="is-hidden-tablet"><Translate id="lookslike" />: <strong><span className="has-text-success">{moment().format(settings.dateFormat)}</span></strong></div>
     </div>
     {showDefaultButton &&
-    <div className="column is-6">
-      <div className="field">
-        <label className="label">
-          <Translate id="clicktousedefaultdateformat" />
-        </label>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded has-icons-right">
-              <button className="button" onClick={() => defaultDateFormat()}>DD.MM.YYYY</button>
-            </p>
+      <div className="column is-6">
+        <div className="field">
+          <label className="label">
+            <Translate id="clicktousedefaultdateformat" />
+          </label>
+          <div className="field-body">
+            <div className="field">
+              <p className="control is-expanded has-icons-right">
+                <button className="button" onClick={() => defaultDateFormat()}>DD.MM.YYYY</button>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     }
     <div className="column is-6">
       <Translate id="help" />: <a href="https://momentjs.com/docs/#/displaying/format/"><Translate id="momentdateformatdocs" /></a>

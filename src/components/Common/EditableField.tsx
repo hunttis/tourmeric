@@ -12,7 +12,7 @@ interface Props {
   inputType?: string;
   inputClasses?: string;
   leftIcon?: string;
-};
+}
 
 interface State {
   editing: boolean;
@@ -34,6 +34,7 @@ export default class EditableField extends Component<Props, State> {
   }, 2000);
 
   state = { saved: false, editing: false }
+
   unmounting: boolean = false;
 
   componentWillUnmount() {
@@ -54,11 +55,11 @@ export default class EditableField extends Component<Props, State> {
     return (
       <div className="editablefield field is-horizontal">
         {labelContent &&
-        <div className="field-label is-normal">
-          <label className="label">
-            <Translate id={labelContent} />
-          </label>
-        </div>
+          <div className="field-label is-normal">
+            <label className="label">
+              <Translate id={labelContent} />
+            </label>
+          </div>
         }
         <div className="field-body">
           <div className="field">

@@ -6,11 +6,11 @@ import { User } from '~/models/ReduxState';
 
 interface Props {
   openEditModal: () => void;
-  openDisableModal: () => void;
+  openDisableModal: () => void;
   openCreditModal: () => void;
   userId: string;
   userData: User;
-};
+}
 
 export const UserEntry = ({ openEditModal, openCreditModal, openDisableModal, userData, userId }: Props) => (
   <div className="userentry column is-half is-one-third-desktop is-one-third-widescreen is-one-quarter-fullhd">
@@ -21,12 +21,12 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDisableModal, us
           {userData.firstName} {userData.lastName} - {userData.email}
         </div>
         {userData.avatarUrl &&
-        <div className="card-header-icon">
-          <figure className="image is-48x48">
-            <img src={userData.avatarUrl} alt="User avatar" />
-          </figure>
-        </div>
-      }
+          <div className="card-header-icon">
+            <figure className="image is-48x48">
+              <img src={userData.avatarUrl} alt="User avatar" />
+            </figure>
+          </div>
+        }
       </div>
 
       <div className="card-content">
@@ -68,5 +68,3 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDisableModal, us
     </div>
   </div>
 );
-
-

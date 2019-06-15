@@ -10,7 +10,7 @@ interface Props {
   path: string;
   targetName: string;
   isOk: boolean;
-  updateFieldStatus: (key: string, isEmpty: boolean, data: {[key: string]: string}) => void;
+  updateFieldStatus: (key: string, isEmpty: boolean, data: { [key: string]: string }) => void;
   isHorizontal: boolean;
 }
 
@@ -23,7 +23,7 @@ export default class EditableTextarea extends Component<Props> {
 
   state = { saved: false, editing: false }
 
-  handleChange(path: string, value: {[key: string]: string}) {
+  handleChange(path: string, value: { [key: string]: string }) {
     this.setState({ editing: true, saved: false });
     this.props.updateFieldStatus(this.props.targetName, !_.isEmpty(value), value);
     this.delayedSave(path, value);
@@ -52,7 +52,7 @@ export default class EditableTextarea extends Component<Props> {
                   defaultValue={defaultValue}
                   onChange={event => this.handleChange(path, { [targetName]: event.target.value })}
                 />)
-              }
+                }
               </Translate>
               {saved && <span className="icon is-small is-right is-fixed-bottom has-text-success"><i className="fas fa-check-circle" /></span>}
               {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
@@ -63,4 +63,3 @@ export default class EditableTextarea extends Component<Props> {
     );
   }
 }
-

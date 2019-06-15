@@ -5,9 +5,9 @@ import EditableField from '../../Common/EditableField';
 import { OpeningHours } from '~/models/Settings';
 
 interface Props {
-  openingHours: OpeningHours;
+  openingHours?: OpeningHours;
   toggleOpeningHourExceptions: () => void;
-};
+}
 
 export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }: Props) => (
   <Fragment>
@@ -100,4 +100,3 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
     </div>
   </Fragment>
 );
-

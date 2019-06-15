@@ -5,18 +5,18 @@ import _ from 'lodash';
 import { checkTimeStringFormat } from '../../Common/Utils';
 
 interface Props {
-  defaultValue: string,
-  path: string,
-  labelContent: string,
-  updateFieldStatus: (key: string, isEmpty: boolean, data:string) => void;
-  targetName: string,
-};
+  defaultValue: string;
+  path: string;
+  labelContent: string;
+  updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
+  targetName: string;
+}
 
 interface State {
   saved: boolean;
   editing: boolean;
   time: string;
-};
+}
 
 export default class ValidatedTimeField extends Component<Props, State> {
 
@@ -92,5 +92,3 @@ export default class ValidatedTimeField extends Component<Props, State> {
     );
   }
 }
-
-

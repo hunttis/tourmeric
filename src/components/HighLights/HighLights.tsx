@@ -4,8 +4,8 @@ import _ from 'lodash';
 import { HighLight } from '~/models/ReduxState';
 
 interface Props {
-  highlights: {[key: string]: HighLight};
-};
+  highlights: { [key: string]: HighLight };
+}
 
 interface State {
   currentlyShowing: string | null;
@@ -14,6 +14,7 @@ interface State {
 
 export default class HighLights extends Component<Props, State> {
   timeout!: NodeJS.Timeout;
+
   unmounting: boolean;
 
   constructor(props: Props) {
@@ -60,11 +61,11 @@ export default class HighLights extends Component<Props, State> {
     }
   }
 
-  findActiveKeys(highlights: {[key: string]: HighLight}): string[] {
+  findActiveKeys(highlights: { [key: string]: HighLight }): string[] {
     const activeKeys = Object.entries(highlights)
       .filter(item => item[1].active)
       .map(item => item[0]);
-    
+
     return activeKeys.sort();
   }
 
@@ -124,4 +125,3 @@ export default class HighLights extends Component<Props, State> {
 
   }
 }
-

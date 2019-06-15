@@ -51,7 +51,8 @@
         "extensions": [
           ".jsx",
           ".tsx",
-          ".js"
+          ".js",
+          ".ts"
         ]
       }
     ],
@@ -80,14 +81,14 @@
     "@typescript-eslint/member-delimiter-style": [
       "error",
       {
-      "multiline": {
-        "delimiter": "semi",
-        "requireLast": true
+        "multiline": {
+          "delimiter": "semi",
+          "requireLast": true
         },
-      "singleline": {
+        "singleline": {
           "delimiter": "comma",
           "requireLast": false
-      }
+        }
       }
     ],
     "import/no-unresolved": 0,

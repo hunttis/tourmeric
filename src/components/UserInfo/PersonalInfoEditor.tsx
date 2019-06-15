@@ -8,7 +8,7 @@ import { FirebaseProfile, FirebaseAuth } from '~/models/ReduxState';
 interface Props {
   profile: FirebaseProfile;
   auth: FirebaseAuth;
-};
+}
 
 export const PersonalInfoEditor = ({ profile, auth }: Props) => (
   <Fragment>
@@ -131,4 +131,3 @@ export const PersonalInfoEditor = ({ profile, auth }: Props) => (
     </div>
   </Fragment>
 );
-

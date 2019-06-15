@@ -16,19 +16,19 @@ import { Settings } from '~/models/Settings';
 import { Category } from '~/models/Category';
 
 interface URLQuery {
-  params: {[key: string]: string}
+  params: { [key: string]: string };
 }
 
 interface Props {
   match: URLQuery;
-  events: {[key: string]: TourmericEvent};
-  eventsongoing: {[key: string]: TourmericEvent};
-  categories: {[key: string]: Category};
+  events: { [key: string]: TourmericEvent };
+  eventsongoing: { [key: string]: TourmericEvent };
+  categories: { [key: string]: Category };
   settings: Settings;
-  participations: {[key: string]: Participation};
+  participations: { [key: string]: Participation };
   auth: FirebaseAuth;
   activeLanguage: string;
-};
+}
 
 export const SingleEvent = ({ match, events, eventsongoing, categories, settings, participations, auth, activeLanguage }: Props) => {
 
@@ -39,7 +39,7 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
       </div>
     );
   }
-  
+
   moment.locale(activeLanguage);
 
   const eventId = match.params.id;
@@ -67,8 +67,8 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
     `${moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`)} - ${moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`)}`;
 
   const formattedDateWithNoDayNamesInMultiDayEvent = singleDay ?
-  moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`) :
-  `${moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat}`)} - ${moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat}`)}`;
+    moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`) :
+    `${moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat}`)} - ${moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat}`)}`;
 
   const userId = _.get(auth, 'uid');
   let participationsForEvent = Object.values(_.get(participations, eventId, []));
@@ -87,11 +87,11 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
         <div className="level is-hidden-tablet">
           <div className="level-item" />
           {category &&
-          <div className="level-item">
-            <div className="image is-128x128 is-hidden-tablet">
-              <img className="" alt="" src={category.image} />
+            <div className="level-item">
+              <div className="image is-128x128 is-hidden-tablet">
+                <img className="" alt="" src={category.image} />
+              </div>
             </div>
-          </div>
           }
           <div className="level-item" />
         </div>
@@ -230,5 +230,3 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
     </div>
   );
 };
-
-

@@ -4,14 +4,14 @@ import moment from 'moment';
 import _ from 'lodash';
 import { mapCategoryToColor } from '../../Common/Utils';
 import { User } from '~/models/ReduxState';
-import { TourmericStoreCreditData } from '~/models/StoreCredit';
+import { TourmericStoreCreditData, StoreCreditCategory } from '~/models/StoreCredit';
 
 interface Props {
-  users: {[key: string]: User};
-  data: [{key: string}, {value: TourmericStoreCreditData}];
-  storecreditcategories: {[key: string]: string};
+  users: { [key: string]: User };
+  data: [{ key: string }, { value: TourmericStoreCreditData }];
+  storecreditcategories: { [key: string]: string | StoreCreditCategory };
   userid: string;
-};
+}
 
 export const StoreCreditReportForMonth = ({ users, data, storecreditcategories, userid }: Props) => {
   const items = _.sortBy(data[1], item => moment(item.date).format('YYYYMMDD'));
@@ -31,7 +31,7 @@ export const StoreCreditReportForMonth = ({ users, data, storecreditcategories, 
           </tr>
         </thead>
         <tbody>
-          { items.map((event, index) => {
+          {items.map((event, index) => {
             const user = users[userid];
             const { firstName, lastName } = user;
             const userName = `${firstName} ${lastName}`;
@@ -70,5 +70,3 @@ export const StoreCreditReportForMonth = ({ users, data, storecreditcategories, 
     </Fragment>
   );
 };
-
-

@@ -8,8 +8,8 @@ interface Props {
   defaultValue: string;
   path: string;
   targetName: string;
-  isOk: boolean;
-  updateFieldStatus: (key: string, isEmpty: boolean, data:string) => void;
+  isOk: boolean | undefined;
+  updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
   dropdownItems: object;
   isHorizontal: boolean;
 }
@@ -84,15 +84,15 @@ export default class ValidatedDropdown extends Component<Props, State> {
                 </Translate>
               </div>
               {saved &&
-              <div className="icon is-small is-right">
-                <i className="fas fa-check-circle has-text-success" />
-              </div>
-                }
+                <div className="icon is-small is-right">
+                  <i className="fas fa-check-circle has-text-success" />
+                </div>
+              }
               {editing &&
-              <div className="icon is-small is-right">
-                <i className="fas fa-pencil-alt has-text-warning" />
-              </div>
-                }
+                <div className="icon is-small is-right">
+                  <i className="fas fa-pencil-alt has-text-warning" />
+                </div>
+              }
             </div>
           </div>
         </div>
@@ -100,5 +100,3 @@ export default class ValidatedDropdown extends Component<Props, State> {
     );
   }
 }
-
-

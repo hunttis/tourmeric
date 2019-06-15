@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
+import { History } from 'history';
 import { logout } from '../../../api/loginApi';
 import { NavbarItem } from './NavbarItem';
 import { FirebaseProfile } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
-import { History } from 'history';
 
 interface Props {
   profile: FirebaseProfile;
@@ -14,11 +14,12 @@ interface Props {
   changeLanguage: (language: string) => void;
   location: Location;
   history: History;
-};
+}
 
 export default class Navbar extends Component<Props> {
 
   state = { burgerOpen: false };
+
   historyListener: any;
 
   componentDidMount() {
@@ -160,4 +161,3 @@ export default class Navbar extends Component<Props> {
     return <div />;
   }
 }
-

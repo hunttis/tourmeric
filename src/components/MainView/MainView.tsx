@@ -5,6 +5,8 @@ import _ from 'lodash';
 import { setActiveLanguage } from 'react-localize-redux';
 import Moment from 'react-moment';
 import { Route, Switch } from 'react-router-dom';
+import { Location, History } from 'history';
+
 import AdminTools from '../AdminTools/AdminTools-container';
 import AdminToolsEvents from '../AdminTools/AdminToolsEvents-container';
 import AdminSiteSettings from '../AdminTools/SiteSettings/AdminSiteSettings-container';
@@ -23,6 +25,7 @@ import FooterBar from './FooterBar-container';
 import SingleEvent from '../EventList/EventCard/SingleEvent-container';
 import { OpeningHoursContainer as OpeningHours } from '../StoreInfo/OpeningHours-container';
 
+
 import EventLoader from './Loaders/EventLoader-container';
 import CategoryLoader from './Loaders/CategoryLoader-container';
 import ParticipationsLoader from './Loaders/ParticipationsLoader-container';
@@ -35,7 +38,6 @@ import OpeningHoursExceptionLoader from './Loaders/OpeningHoursExceptionLoader-c
 import 'bulmaswatch/darkly/bulmaswatch.min.css';
 import { FirebaseProfile } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
-import { Location, History } from 'history';
 
 interface Props {
   dispatch: Dispatch;
@@ -43,7 +45,7 @@ interface Props {
   settings: Settings;
   location: Location;
   history: History;
-};
+}
 
 interface State {
   redirected: boolean;
@@ -61,7 +63,7 @@ export default class MainView extends Component<Props, State> {
     const wasProfileLoaded: boolean = isLoaded(this.props.profile);
     const isProfileLoaded: boolean = isLoaded(nextProps.profile);
     const isLoggedIn: boolean = isProfileLoaded && !isEmpty(nextProps.profile);
-    const acceptedPrivacyPolicy: boolean = _.get(nextProps.profile, 'acceptedPrivacyPolicy') ? true : false;
+    const acceptedPrivacyPolicy: boolean = !!_.get(nextProps.profile, 'acceptedPrivacyPolicy');
     const providerEmail = _.get(nextProps.profile, 'providerData[0].email', null);
     const emailOk = (!nextProps.profile.useOtherEmail && (providerEmail || nextProps.profile.email)) || (nextProps.profile.useOtherEmail && nextProps.profile.otherEmail);
     const namesOk = !!_.get(nextProps, 'profile.firstName', false) && !!_.get(nextProps, 'profile.lastName', false);
@@ -149,4 +151,3 @@ export default class MainView extends Component<Props, State> {
 
   }
 }
-

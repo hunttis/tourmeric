@@ -11,9 +11,9 @@ import { User } from '~/models/ReduxState';
 import { TourmericStoreCreditData } from '~/models/StoreCredit';
 
 interface Props {
-  users: [{key: string, value: User }];
-  storecredit: {[key: string]: {[key: string]: TourmericStoreCreditData}};
-};
+  users: [{ key: string, value: User }];
+  storecredit: { [key: string]: { [key: string]: TourmericStoreCreditData } };
+}
 
 interface State {
   searchingWith: string;
@@ -252,7 +252,7 @@ export default class UserEditor extends Component<Props, State> {
               openCreditModal={() => this.openCreditModal(userEntry.key)}
               openDisableModal={() => this.openDisableModal(userEntry.key)}
               userData={userEntry.value}
-            />)) }
+            />))}
           </div>
         </Fragment>
       );
@@ -260,4 +260,3 @@ export default class UserEditor extends Component<Props, State> {
     return <div><Translate id="loading" /></div>;
   }
 }
-

@@ -1,5 +1,5 @@
-import { ADMIN_CHOOSE_PARTICIPANT } from './actions';
 import { Dispatch } from 'redux';
+import { ADMIN_CHOOSE_PARTICIPANT } from './actions';
 
 export function chooseParticipant(eventId: string, userUID: string) {
   return (dispatch: Dispatch) => dispatch({

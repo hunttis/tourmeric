@@ -9,10 +9,10 @@ import { Settings } from '~/models/Settings';
 import { TourmericEvent } from '~/models/Events';
 
 interface Props {
-  users: [{key: string, value: User }];
-  categories: {[key: string]: Category};
-  participations: {[key: string]: Participation};
-  admin: {[key: string]: string};
+  users: [{ key: string, value: User }];
+  categories: { [key: string]: Category };
+  participations: { [key: string]: Participation };
+  admin: { [key: string]: string };
   chooseParticipant: (eventId: string, userUID: string) => void;
   settings: Settings;
   event: TourmericEvent;
@@ -31,7 +31,8 @@ export default class SingleEventParticipation extends Component<Props, Partial<S
   savePlaceholderuser() {
     const { firstName, lastName } = this.state;
     const { eventId } = this.props;
-    const fakeUser = { key: `Placeholder-${Math.round(Math.random() * 1000)}`, value: { firstName, lastName } };
+    const userData: User = { firstName, lastName, avatarUrl: '', active: true, email: '', username: '' };
+    const fakeUser = { key: `Placeholder-${Math.round(Math.random() * 1000)}`, value: userData };
     adminparticipate(eventId, fakeUser);
   }
 

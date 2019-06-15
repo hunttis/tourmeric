@@ -8,13 +8,13 @@ import { User } from '~/models/ReduxState';
 import { TourmericStoreCreditData, StoreCreditCategory, CreditCategories } from '~/models/StoreCredit';
 
 interface Props {
-  users: {key: string, value: User}[];
+  users: { key: string, value: User }[];
   userId: string;
-  creditData: {[key: string]: TourmericStoreCreditData};
+  creditData: { [key: string]: TourmericStoreCreditData };
   profile: object;
   settings: object;
-  storecreditcategories: {[key: string]: StoreCreditCategory};
-};
+  storecreditcategories: { [key: string]: StoreCreditCategory };
+}
 
 export default class StoreCreditTable extends Component<Props> {
 
@@ -27,7 +27,7 @@ export default class StoreCreditTable extends Component<Props> {
     return foundUser;
   }
 
-  calculateTotal(creditData: {[key: string]: TourmericStoreCreditData}) {
+  calculateTotal(creditData: { [key: string]: TourmericStoreCreditData }) {
     let total = 0.0;
     for (const dataItem of Object.values(creditData)) {
       total += dataItem.value;
@@ -59,7 +59,7 @@ export default class StoreCreditTable extends Component<Props> {
           <thead>
             <tr>
               {isAdmin &&
-              <th><Translate id="transactionid" /></th>
+                <th><Translate id="transactionid" /></th>
               }
               <th><Translate id="date" /></th>
               <th><Translate id="entrymadeby" /></th>

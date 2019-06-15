@@ -9,8 +9,8 @@ import { UploadedFile } from '~/models/Category';
 interface Props {
   highlightId: string;
   highlight: HighLight;
-  uploadedHighlightBanners: {[key: string]: UploadedFile};
-};
+  uploadedHighlightBanners: { [key: string]: UploadedFile };
+}
 
 export default class HighlightEditorModal extends Component<Props> {
 
@@ -48,11 +48,11 @@ export default class HighlightEditorModal extends Component<Props> {
           />
 
           {highlight.active &&
-          <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
-        }
+            <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
+          }
           {!highlight.active &&
-          <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
-        }
+            <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
+          }
 
           <div className="is-hidden">ID: {highlightId}</div>
         </div>
@@ -61,4 +61,3 @@ export default class HighlightEditorModal extends Component<Props> {
     );
   }
 }
-

@@ -3,6 +3,7 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import { Route, Switch } from 'react-router-dom';
+import { Location, History } from 'history';
 import { AdminToolsTab } from './AdminToolsTab';
 import { UnpublishedAdminEventList } from './UnpublishedAdminEventList';
 import { PublishedAdminEventList } from './PublishedAdminEventList';
@@ -10,13 +11,13 @@ import CategoryEditor from './CategoryEditor/CategoryEditor-container';
 import ParticipationEditor from './ParticipationEditor/ParticipationEditor-container';
 import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-container';
 import NewEventEditor from './EventEditor/NewEventEditor-container';
-import ExistingEventEditor from './EventEditor/ExistingEventEditor-container';
+import { ExistingEventEditorContainer as ExistingEventEditor } from './EventEditor/ExistingEventEditor-container';
 import OngoingEventEditor from './EventEditor/OngoingEventEditor-container';
 import { FirebaseProfile } from '~/models/ReduxState';
-import { Location, History } from 'history';
+import { TourmericEvent } from '~/models/Events';
 
 interface Props {
-  events: {[key: string]: TourmericEvent};
+  events: { [key: string]: TourmericEvent };
   profile: FirebaseProfile;
   location: Location;
   history: History;
@@ -85,4 +86,3 @@ export default class AdminToolsEvents extends Component<Props> {
     return <button className="button is-loading"><Translate id="loading" /></button>;
   }
 }
-

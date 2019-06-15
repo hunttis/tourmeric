@@ -9,11 +9,11 @@ import { Settings } from '~/models/Settings';
   'Minty', 'Nuclear', 'Pulse', 'Sandstone', 'Simplex', 'Slate', 'Solar',
   'Spacelab', 'Superhero', 'United', 'Yeti'];
   */
-  // These are not used, since themes are 'hardcoded' now
+// These are not used, since themes are 'hardcoded' now
 
 interface Props {
   settings: Settings;
-};
+}
 
 export const Themes = ({ settings }: Props) => (
   <div className="columns is-multiline">
@@ -93,4 +93,3 @@ export const Themes = ({ settings }: Props) => (
     </div>
   </div>
 );
-

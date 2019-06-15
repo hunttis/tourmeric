@@ -6,8 +6,8 @@ import _ from 'lodash';
 import { Settings } from '~/models/Settings';
 
 interface Props {
-  settings: Settings,
-};
+  settings: Settings;
+}
 
 export default class FeatureEditor extends Component<Props> {
 
@@ -54,5 +54,3 @@ export default class FeatureEditor extends Component<Props> {
     return <div><Translate id="loading" /></div>;
   }
 }
-
-

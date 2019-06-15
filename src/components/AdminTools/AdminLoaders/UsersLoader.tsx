@@ -4,7 +4,7 @@ import { isLoaded } from 'react-redux-firebase';
 import { User } from 'firebase';
 
 interface Props {
-  users: {[key: string]: User};
+  users: { [key: string]: User };
 }
 
 export const UsersLoader = ({ users }: Props) => (

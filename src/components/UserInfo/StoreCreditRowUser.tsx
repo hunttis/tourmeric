@@ -3,8 +3,8 @@ import moment from 'moment';
 import { TourmericStoreCreditData } from '~/models/StoreCredit';
 
 interface Props {
-  data: TourmericStoreCreditData,
-};
+  data: TourmericStoreCreditData;
+}
 
 export const StoreCreditRowUser = ({ data }: Props) => (
   <tr>
@@ -14,4 +14,3 @@ export const StoreCreditRowUser = ({ data }: Props) => (
     <td className={`${data.value > 0 ? 'has-text-success' : 'has-text-danger'}`}>{data.value} €</td>
   </tr>
 );
-

@@ -14,7 +14,7 @@ interface Props {
   idleIcon: string;
   emptyClass: string;
   disabled: boolean;
-};
+}
 
 interface State {
   saved: boolean;

@@ -7,7 +7,7 @@ export interface TourmericStoreCreditData {
   category: CreditCategories;
 }
 
-export type StoreCreditCategory = {[key: string]: string};
+export interface StoreCreditCategory { [key: string]: string }
 
 export const CATEGORY_RED: CreditCategories = 'red';
 export const CATEGORY_YELLOW: CreditCategories = 'yellow';

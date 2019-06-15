@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { History } from 'history';
-import { Translate, TranslateChildFunction, TranslateFunction } from 'react-localize-redux';
+import { Translate } from 'react-localize-redux';
 import { GenericSignupComponent } from './GenericSignupComponent';
 import { loginEmail, resetPassword, loginGoogle, loginFacebook } from '../../../api/loginApi';
 
@@ -89,27 +89,27 @@ export default class Login extends Component<Props, State> {
           <div className="columns is-multiline">
 
             {!passwordResetEmailSent &&
-            <Fragment>
-              <div className="column is-12">
-                <h1 className="title"><Translate id="forgotpassword" /></h1>
-              </div>
-              <div className="column is-1" />
-
-              <div className="column is-11">
-                <div className="field is-grouped">
-                  <p className="control is-expanded has-icons-left">
-                    <span className="icon is-small is-left"><i className="fas fa-envelope" /></span>
-                    <Translate>
-                      {(translate: (value: string) => string) => (
-                        <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={event => this.onChangeResetEmail(event)} />
-                      )}
-                    </Translate>
-                  </p>
-                  <button className="button" onClick={() => this.onResetEmailClick()}><Translate id="resetpassword" /></button>
+              <Fragment>
+                <div className="column is-12">
+                  <h1 className="title"><Translate id="forgotpassword" /></h1>
                 </div>
+                <div className="column is-1" />
 
-              </div>
-            </Fragment>
+                <div className="column is-11">
+                  <div className="field is-grouped">
+                    <p className="control is-expanded has-icons-left">
+                      <span className="icon is-small is-left"><i className="fas fa-envelope" /></span>
+                      <Translate>
+                        {(translate: (value: string) => string) => (
+                          <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={event => this.onChangeResetEmail(event)} />
+                        )}
+                      </Translate>
+                    </p>
+                    <button className="button" onClick={() => this.onResetEmailClick()}><Translate id="resetpassword" /></button>
+                  </div>
+
+                </div>
+              </Fragment>
             }
             {passwordResetEmailSent &&
               <Fragment>
@@ -126,4 +126,3 @@ export default class Login extends Component<Props, State> {
     );
   }
 }
-

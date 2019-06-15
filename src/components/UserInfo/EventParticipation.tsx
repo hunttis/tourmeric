@@ -8,7 +8,7 @@ import { TourmericEventEntry } from '~/models/Events';
 interface Props {
   eventEntry: TourmericEventEntry;
   settings: Settings;
-};
+}
 
 interface State {
   modalOpen: boolean;
@@ -60,4 +60,3 @@ export default class EventParticipation extends Component<Props, State> {
 
   }
 }
-

@@ -4,7 +4,7 @@ import { EventModal } from './EventModal';
 import { ReduxState } from '~/models/ReduxState';
 
 export default compose(
-  connect((state: ReduxState)=> ({
+  connect((state: ReduxState) => ({
     events: state.firebase.data.events,
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,

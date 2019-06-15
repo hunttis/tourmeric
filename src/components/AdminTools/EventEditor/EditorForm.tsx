@@ -11,11 +11,11 @@ import EditableTextarea from './EditableTextarea-container';
 import { Category } from '~/models/Category';
 import { TourmericEvent } from '~/models/Events';
 
-interface Props { 
+interface Props {
   event: TourmericEvent;
   eventId: string;
-  categories: {[key: string]: Category};
-  cleanedFormatOptions: {[key: string]: string};
+  categories: { [key: string]: Category };
+  cleanedFormatOptions: { [key: string]: string };
   newEvent: TourmericEvent;
   missingFields: [string];
   updateCategory: () => {};
@@ -37,7 +37,6 @@ export const EditorForm = ({
     <div className="column is-hidden-mobile">&nbsp;</div>
     <div className="column is-8 ">
       <div className="columns is-multiline">
-
         <div className="column is-12">
           <ValidatedEditableField
             isOk={!_.isEmpty(event.name)}
@@ -74,24 +73,24 @@ export const EditorForm = ({
         </div>
 
         {!_.isEmpty(cleanedFormatOptions) &&
-        <Fragment>
-          <div className="column is-12">
-            <SelectElement
-              isOk={!_.isEmpty(event.format)}
-              updateFieldStatus={updateFieldStatus}
-              labelContent="format"
-              defaultValue={event.format}
-              dropdownItems={cleanedFormatOptions}
-              path={`${storageUrlPath}/${eventId}`}
-              targetName="format"
-              isHorizontal
-            />
-          </div>
-          <div className="column is-12 is-hidden-mobile">
-            <hr />
-          </div>
-        </Fragment>
-          }
+          <Fragment>
+            <div className="column is-12">
+              <SelectElement
+                isOk={!_.isEmpty(event.format)}
+                updateFieldStatus={updateFieldStatus}
+                labelContent="format"
+                defaultValue={event.format}
+                dropdownItems={cleanedFormatOptions}
+                path={`${storageUrlPath}/${eventId}`}
+                targetName="format"
+                isHorizontal
+              />
+            </div>
+            <div className="column is-12 is-hidden-mobile">
+              <hr />
+            </div>
+          </Fragment>
+        }
 
         <div className="column is-12">
           <Translate>
@@ -107,7 +106,7 @@ export const EditorForm = ({
                 isHorizontal
                 isLocked={!eventId.startsWith('DRAFT')}
               />
-              )}
+            )}
           </Translate>
         </div>
 
@@ -228,27 +227,27 @@ export const EditorForm = ({
         </div>
         <div className="column is-12">
           {missingFields.length > 0 &&
-          <Translate>
-            {(translate: any) => (
-              <div className="field is-horizontal">
+            <Translate>
+              {(translate: any) => (
+                <div className="field is-horizontal">
 
-                <div className="field-label is-normal">
-                  <label className="label">{translate('youstillneedtoadd')}</label>
-                </div>
+                  <div className="field-label is-normal">
+                    <label className="label">{translate('youstillneedtoadd')}</label>
+                  </div>
 
-                <div className="field-body">
-                  <div className="field">
-                    <div className="control">
-                      <span className="tags are-medium">
-                        {missingFields.map(field => <span className="tag is-warning has-text-black" key={`missingData-${field}`}>{translate(field)}</span>)}
-                      </span>
+                  <div className="field-body">
+                    <div className="field">
+                      <div className="control">
+                        <span className="tags are-medium">
+                          {missingFields.map(field => <span className="tag is-warning has-text-black" key={`missingData-${field}`}>{translate(field)}</span>)}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-                )}
-          </Translate>
-            }
+              )}
+            </Translate>
+          }
         </div>
 
         <div className="column has-text-right">
@@ -261,15 +260,15 @@ export const EditorForm = ({
             <Translate id="goback" />
           </button>
           {!newEvent && event.published &&
-          <button className="button is-warning is-outlined" onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: false })}><Translate id="hide" /></button>
-            }
+            <button className="button is-warning is-outlined" onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: false })}><Translate id="hide" /></button>
+          }
           {!newEvent && !event.published &&
-          <button className="button is-success is-outlined" disabled={missingFields.length > 0} onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: true })}><Translate id="publish" /></button>
-            }
+            <button className="button is-success is-outlined" disabled={missingFields.length > 0} onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: true })}><Translate id="publish" /></button>
+          }
 
           {newEvent &&
-          <button className="button is-success is-outlined" disabled={missingFields.length > 0} onClick={saveEvent}><Translate id="publish" /></button>
-            }
+            <button className="button is-success is-outlined" disabled={missingFields.length > 0} onClick={saveEvent}><Translate id="publish" /></button>
+          }
         </div>
 
       </div>
@@ -277,4 +276,3 @@ export const EditorForm = ({
     <div className="column is-hidden-mobile">&nbsp;</div>
   </div>
   );
-

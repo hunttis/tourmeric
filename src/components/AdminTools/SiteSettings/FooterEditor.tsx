@@ -13,8 +13,8 @@ const filesPath = 'uploadedFooterItems';
 
 interface Props {
   settings: Settings;
-  uploadedFooterItems: {[key: string]: UploadedFile};
-};
+  uploadedFooterItems: { [key: string]: UploadedFile };
+}
 
 export default class PrivacyPolicyEditor extends Component<Props> {
 
@@ -64,7 +64,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
                 <div className="columns box">
                   <div className="column is-6">
                     <figure className="image is-paddingless is-marginless">
-                      <img className="footerImage" src={settings.footer.first.image} alt="" />
+                      <img className="footerImage" src={_.get(settings, 'footer.first.image', '')} alt="" />
                     </figure>
                   </div>
                   <div className="column is-6">
@@ -83,7 +83,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
                 <div className="columns box">
                   <div className="column is-6">
                     <figure className="image is-paddingless is-marginless">
-                      <img className="footerImage" src={settings.footer.second.image} alt="" />
+                      <img className="footerImage" src={_.get(settings, 'footer.second.image', '')} alt="" />
                     </figure>
                   </div>
                   <div className="column is-6">
@@ -102,7 +102,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
                 <div className="columns box">
                   <div className="column is-6">
                     <figure className="image is-paddingless is-marginless">
-                      <img className="footerImage" src={settings.footer.third.image} alt="" />
+                      <img className="footerImage" src={_.get(settings, 'footer.third.image', '')} alt="" />
                     </figure>
                   </div>
                   <div className="column is-6">
@@ -133,64 +133,64 @@ export default class PrivacyPolicyEditor extends Component<Props> {
                       </tr>
                     </thead>
                     {
-                    _.map(uploadedFooterItems, (file, key) => {
+                      _.map(uploadedFooterItems, (file, key) => {
 
-                      if (!file || !key) {
-                        return <div>No file or key</div>;
-                      }
-                      const firstImage = _.get(settings, 'footer.first.image');
-                      const secondImage = _.get(settings, 'footer.second.image');
-                      const thirdImage = _.get(settings, 'footer.third.image');
+                        if (!file || !key) {
+                          return <div>No file or key</div>;
+                        }
+                        const firstImage = _.get(settings, 'footer.first.image');
+                        const secondImage = _.get(settings, 'footer.second.image');
+                        const thirdImage = _.get(settings, 'footer.third.image');
 
-                      return (
-                        <tbody key={file.name + key}>
-                          <tr className="">
-                            <td>
-                              <img className="footerImage" src={file.downloadURL} alt="" />
-                            </td>
-                            <td>
-                              <span>{file.name}</span>
-                            </td>
-                            <td>
-                              <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                                <Translate id="deletefile" />
-                              </button>
-                              {firstImage !== file.downloadURL &&
-                                <button className="button is-primary" onClick={() => { firebase.update('/settings/footer', { first: { image: file.downloadURL } }); }}>
-                                  <Translate id="first" />
+                        return (
+                          <tbody key={file.name + key}>
+                            <tr className="">
+                              <td>
+                                <img className="footerImage" src={file.downloadURL} alt="" />
+                              </td>
+                              <td>
+                                <span>{file.name}</span>
+                              </td>
+                              <td>
+                                <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                                  <Translate id="deletefile" />
                                 </button>
-                              }
-                              {firstImage === file.downloadURL &&
-                                <button className="button is-info" onClick={() => { firebase.update('/settings/footer', { first: null }); }}>
-                                  <Translate id="first" />
-                                </button>
-                              }
-                              {secondImage !== file.downloadURL &&
-                                <button className="button is-primary" onClick={() => { firebase.update('/settings/footer', { second: { image: file.downloadURL } }); }}>
-                                  <Translate id="second" />
-                                </button>
-                              }
-                              {secondImage === file.downloadURL &&
-                                <button className="button is-info" onClick={() => { firebase.update('/settings/footer', { second: null }); }}>
-                                  <Translate id="second" />
-                                </button>
-                              }
-                              {thirdImage !== file.downloadURL &&
-                                <button className="button is-primary" onClick={() => { firebase.update('/settings/footer', { third: { image: file.downloadURL } }); }}>
-                                  <Translate id="third" />
-                                </button>
-                              }
-                              {thirdImage === file.downloadURL &&
-                                <button className="button is-info" onClick={() => { firebase.update('/settings/footer', { third: null }); }}>
-                                  <Translate id="third" />
-                                </button>
-                              }
+                                {firstImage !== file.downloadURL &&
+                                  <button className="button is-primary" onClick={() => { firebase.update('/settings/footer', { first: { image: file.downloadURL } }); }}>
+                                    <Translate id="first" />
+                                  </button>
+                                }
+                                {firstImage === file.downloadURL &&
+                                  <button className="button is-info" onClick={() => { firebase.update('/settings/footer', { first: null }); }}>
+                                    <Translate id="first" />
+                                  </button>
+                                }
+                                {secondImage !== file.downloadURL &&
+                                  <button className="button is-primary" onClick={() => { firebase.update('/settings/footer', { second: { image: file.downloadURL } }); }}>
+                                    <Translate id="second" />
+                                  </button>
+                                }
+                                {secondImage === file.downloadURL &&
+                                  <button className="button is-info" onClick={() => { firebase.update('/settings/footer', { second: null }); }}>
+                                    <Translate id="second" />
+                                  </button>
+                                }
+                                {thirdImage !== file.downloadURL &&
+                                  <button className="button is-primary" onClick={() => { firebase.update('/settings/footer', { third: { image: file.downloadURL } }); }}>
+                                    <Translate id="third" />
+                                  </button>
+                                }
+                                {thirdImage === file.downloadURL &&
+                                  <button className="button is-info" onClick={() => { firebase.update('/settings/footer', { third: null }); }}>
+                                    <Translate id="third" />
+                                  </button>
+                                }
 
-                            </td>
-                          </tr>
-                        </tbody>
-                      );
-                    })}
+                              </td>
+                            </tr>
+                          </tbody>
+                        );
+                      })}
                   </table>
                 </div>
               }
@@ -205,41 +205,41 @@ export default class PrivacyPolicyEditor extends Component<Props> {
               <div className="columns">
 
                 {hasAtLeastOneSponsor &&
-                <Fragment>
-                  <div className="column has-text-centered is-hidden-desktop">
-                    <Translate id="sponsoredby" />:
-                  </div>
-                  <div className="column has-text-left is-hidden-mobile">
-                    <Translate id="sponsoredby" />:
-                  </div>
-                </Fragment>
+                  <Fragment>
+                    <div className="column has-text-centered is-hidden-desktop">
+                      <Translate id="sponsoredby" />:
+                    </div>
+                    <div className="column has-text-left is-hidden-mobile">
+                      <Translate id="sponsoredby" />:
+                    </div>
+                  </Fragment>
                 }
                 {_.get(settings, 'footer.first.image') &&
-                <div className="column is-vcentered">
-                  <figure className="image is-paddingless is-marginless">
-                    <a href={settings.footer.first.link} target="_blank" rel="noopener noreferrer">
-                      <img className="footerImage" src={settings.footer.first.image} alt="" />
-                    </a>
-                  </figure>
-                </div>
+                  <div className="column is-vcentered">
+                    <figure className="image is-paddingless is-marginless">
+                      <a href={_.get(settings, 'footer.first.link', '')} target="_blank" rel="noopener noreferrer">
+                        <img className="footerImage" src={_.get(settings, 'footer.first.image', '')} alt="" />
+                      </a>
+                    </figure>
+                  </div>
                 }
                 {_.get(settings, 'footer.second.image') &&
-                <div className="column">
-                  <figure className="image is-paddingless is-marginless">
-                    <a href={settings.footer.second.link} target="_blank" rel="noopener noreferrer">
-                      <img className="footerImage" src={settings.footer.second.image} alt="" />
-                    </a>
-                  </figure>
-                </div>
+                  <div className="column">
+                    <figure className="image is-paddingless is-marginless">
+                      <a href={_.get(settings, 'footer.second.link', '')} target="_blank" rel="noopener noreferrer">
+                        <img className="footerImage" src={_.get(settings, 'footer.second.image', '')} alt="" />
+                      </a>
+                    </figure>
+                  </div>
                 }
                 {_.get(settings, 'footer.third.image') &&
-                <div className="column">
-                  <figure className="image is-paddingless is-marginless">
-                    <a href={settings.footer.third.link} target="_blank" rel="noopener noreferrer">
-                      <img className="footerImage" src={settings.footer.third.image} alt="" />
-                    </a>
-                  </figure>
-                </div>
+                  <div className="column">
+                    <figure className="image is-paddingless is-marginless">
+                      <a href={_.get(settings, 'footer.third.link', '')} target="_blank" rel="noopener noreferrer">
+                        <img className="footerImage" src={_.get(settings, 'footer.third.image', '')} alt="" />
+                      </a>
+                    </figure>
+                  </div>
                 }
                 <div className="column has-text-centered is-hidden-desktop">
                   <PrivacyPolicy showAcceptance={false} />
@@ -261,4 +261,3 @@ export default class PrivacyPolicyEditor extends Component<Props> {
     return <div><Translate id="loading" /></div>;
   }
 }
-

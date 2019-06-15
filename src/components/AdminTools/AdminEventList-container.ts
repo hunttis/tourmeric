@@ -11,8 +11,7 @@ export const AdminEventListContainer = compose(
     participations: state.firebase.data.participations,
     categories: state.firebase.data.categories,
     events: state.firebase.data.events,
-  }), dispatch => ({
-    setReturnLocation: (returnLocation: string) => dispatch(setReturnLocation(returnLocation)),
+    setReturnLocation: (returnLocation: string) => setReturnLocation(returnLocation),
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
 )(withRouter<any>(AdminEventList)) as React.ComponentType<any>;

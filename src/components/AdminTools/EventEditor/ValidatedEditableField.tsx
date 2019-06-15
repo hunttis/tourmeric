@@ -4,21 +4,21 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 
 interface Props {
-  labelContent: string,
-  placeHolder: string,
-  defaultValue: string,
-  path: string,
-  targetName: string,
-  inputType: string,
-  isOk: boolean,
-  updateFieldStatus: (key: string, isEmpty: boolean, data:string) => void;
-  isHorizontal: boolean,
-};
+  labelContent: string;
+  placeHolder: string;
+  defaultValue: string;
+  path: string;
+  targetName: string;
+  inputType: string;
+  isOk: boolean;
+  updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
+  isHorizontal: boolean;
+}
 
 interface State {
   saved: boolean;
   editing: boolean;
-};
+}
 
 export default class ValidatedEditableField extends Component<Props, State> {
 
@@ -64,7 +64,7 @@ export default class ValidatedEditableField extends Component<Props, State> {
                   defaultValue={defaultValue}
                   onChange={event => this.handleChange(path, targetName, event.target.value)}
                 />)
-                  }
+                }
               </Translate>
               {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
               {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
@@ -75,4 +75,3 @@ export default class ValidatedEditableField extends Component<Props, State> {
     );
   }
 }
-

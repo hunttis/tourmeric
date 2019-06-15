@@ -9,12 +9,12 @@ import { TourmericEvent } from '~/models/Events';
 import { Category } from '~/models/Category';
 
 interface Props {
-  users: [{key: string, value: User }];
-  categories: {[key: string]: Category};
-  participations: {[key: string]: Participation};
-  events: [{key: string, value: TourmericEvent}];
+  users: [{ key: string, value: User }];
+  categories: { [key: string]: Category };
+  participations: { [key: string]: Participation };
+  events: [{ key: string, value: TourmericEvent }];
   activeLanguage: string;
-};
+}
 
 interface State {
   chosenMonth: Moment;
@@ -89,4 +89,3 @@ export default class ParticipationEditor extends Component<Props, Partial<State>
     return <div><Translate id="loading" /></div>;
   }
 }
-

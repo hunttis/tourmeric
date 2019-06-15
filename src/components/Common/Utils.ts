@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { CATEGORY_GREEN, CATEGORY_RED, CATEGORY_BLUE, CATEGORY_YELLOW } from "~/models/StoreCredit";
+import { CATEGORY_GREEN, CATEGORY_RED, CATEGORY_BLUE, CATEGORY_YELLOW } from '~/models/StoreCredit';
 
 export const mapCategoryToColor = (category: string) => {
   switch (category) {
