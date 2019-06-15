@@ -11,14 +11,14 @@ import CalendarDayModal from './CalendarDayModal-container';
 import { Location } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
 import { Category } from '~/models/Category';
-import { History } from 'history';
+import { History } from 'history';
 import { OpeningHoursException } from '~/models/OpeningHours';
-import { TourmericEvent } from '~/models/Events';
+import { TourmericEvent } from '~/models/Events';
 import { Day } from '~/models/Calendar';
 
-const YEAR_INDEX: number = 2;
-const MONTH_INDEX: number = 3;
-const DAY_INDEX: number = 4;
+const YEAR_INDEX = 2;
+const MONTH_INDEX = 3;
+const DAY_INDEX = 4;
 
 const MODE_MONTH: ViewMode = 'month';
 const MODE_DAY: ViewMode = 'day';
@@ -27,15 +27,15 @@ type ViewMode = 'month' | 'day';
 
 interface Props {
   settings: Settings;
-  events: {key: string, value: TourmericEvent}[];
-  eventsongoing: {key: string, value: TourmericEvent}[];
-  categories: {[key: string]: Category};
+  events: { key: string, value: TourmericEvent }[];
+  eventsongoing: { key: string, value: TourmericEvent }[];
+  categories: { [key: string]: Category };
   activeLanguage: string;
   location: Location;
   history: History;
-  openinghoursexceptions: {[key: string]: OpeningHoursException};
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
   setReturnLocation: (key: string) => void;
-};
+}
 
 interface State {
   targetMonth: string;
@@ -111,7 +111,7 @@ export default class EventCalendar extends Component<Props, State> {
     }
   }
 
-  runEventFilters(events: {key: string, value: TourmericEvent}[]) {
+  runEventFilters(events: { key: string, value: TourmericEvent }[]) {
     const { categoryFilter } = this.state;
 
     const publishedEvents = events.filter(event => event.value.published);
@@ -199,7 +199,7 @@ export default class EventCalendar extends Component<Props, State> {
 
       days.push({
         day: day.format('DD'),
-        dayOfWeek: parseInt(day.format('d')),
+        dayOfWeek: parseInt(day.format('d'), 10),
         dayName: day.format('dddd'),
         dayString: day.format('DD-MMMM-YYYY'),
         dayLink: day.format('YYYY/MM/DD'),
@@ -277,10 +277,10 @@ export default class EventCalendar extends Component<Props, State> {
     const ongoingEventsForDay =
       mode === MODE_DAY
         ? _.get(
-            _.find(calendar, { dayLink: dayInPath }),
-            'ongoingEventsForDay',
-            [],
-          )
+          _.find(calendar, { dayLink: dayInPath }),
+          'ongoingEventsForDay',
+          [],
+        )
         : [];
 
     const momentForDay = mode === MODE_DAY && moment(dayInPath, 'YYYY/MM/DD');

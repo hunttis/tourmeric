@@ -4,21 +4,21 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 
 interface Props {
-  labelContent: string,
-  defaultValue: string,
-  path: string,
-  targetName: string,
-  isOk: boolean,
-  updateFieldStatus: (key: string, isEmpty: boolean, data:string) => void;
-  dropdownItems: [string],
-  isHorizontal: boolean,
-};
+  labelContent: string;
+  defaultValue: string;
+  path: string;
+  targetName: string;
+  isOk: boolean;
+  updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
+  dropdownItems: [string];
+  isHorizontal: boolean;
+}
 
 interface State {
   saved: boolean;
   editing: boolean;
   selectedValue: string;
-};
+}
 
 export default class ValidatedDropdownForArray extends Component<Props, State> {
 
@@ -94,5 +94,3 @@ export default class ValidatedDropdownForArray extends Component<Props, State> {
     );
   }
 }
-
-

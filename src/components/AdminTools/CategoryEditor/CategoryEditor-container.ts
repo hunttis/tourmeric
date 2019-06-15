@@ -15,4 +15,4 @@ export default compose(
     uploadedCategoryLogos: state.firebase.data.uploadedCategoryLogos,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(CategoryEditor);
+)(CategoryEditor) as React.ComponentType<any>;

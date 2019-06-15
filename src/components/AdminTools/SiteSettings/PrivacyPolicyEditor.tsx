@@ -27,7 +27,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
           </h1>
           <EditableTextarea
             isOk
-            updateFieldStatus={() => {}}
+            updateFieldStatus={() => { }}
             labelContent=""
             placeHolder="privacypolicyplaceholder"
             defaultValue={settings.privacyPolicy}

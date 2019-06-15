@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import { isLoaded } from 'react-redux-firebase';
@@ -9,25 +9,21 @@ interface Props {
   settings: Settings;
 }
 
-export default class FooterBar extends Component<Props> {
+const FooterBar = ({ settings }: Props) => {
 
-  render() {
+  const showingSponsors = _.get(settings, 'showSponsors', false);
+  const hasAtLeastOneSponsor = showingSponsors && !_.isEmpty(_.get(settings, 'footer', {}));
 
-    const { settings } = this.props;
+  if (!isLoaded(settings)) {
+    return <div />;
+  }
 
-    const showingSponsors = _.get(settings, 'showSponsors', false);
-    const hasAtLeastOneSponsor = showingSponsors && !_.isEmpty(_.get(settings, 'footer', {}));
+  return (
+    <footer className="footer less-bottompadding">
+      <div className="content">
+        <div className="columns">
 
-    if (!isLoaded(settings)) {
-      return <div />;
-    }
-
-    return (
-      <footer className="footer less-bottompadding">
-        <div className="content">
-          <div className="columns">
-
-            {hasAtLeastOneSponsor &&
+          {hasAtLeastOneSponsor &&
             <Fragment>
               <div className="column has-text-centered is-hidden-desktop">
                 <Translate id="sponsoredby" />:
@@ -36,43 +32,44 @@ export default class FooterBar extends Component<Props> {
                 <Translate id="sponsoredby" />:
               </div>
             </Fragment>
-            }
-            {(showingSponsors && _.get(settings, 'footer.first.image')) &&
+          }
+          {(showingSponsors && _.get(settings, 'footer.first.image')) &&
             <div className="column is-vcentered">
               <figure className="image is-paddingless is-marginless">
-                <a href={settings.footer.first.link} target="_blank" rel="noopener noreferrer">
-                  <img className="footerImage" src={settings.footer.first.image} alt="" />
+                <a href={_.get(settings, 'footer.first.link', '')} target="_blank" rel="noopener noreferrer">
+                  <img className="footerImage" src={_.get(settings, 'footer.first.image', '')} alt="" />
                 </a>
               </figure>
             </div>
-            }
-            {(showingSponsors && _.get(settings, 'footer.second.image')) &&
+          }
+          {(showingSponsors && _.get(settings, 'footer.second.image')) &&
             <div className="column">
               <figure className="image is-paddingless is-marginless">
-                <a href={settings.footer.second.link} target="_blank" rel="noopener noreferrer">
-                  <img className="footerImage" src={settings.footer.second.image} alt="" />
+                <a href={_.get(settings, 'footer.second.link', '')} target="_blank" rel="noopener noreferrer">
+                  <img className="footerImage" src={_.get(settings, 'footer.second.image', '')} alt="" />
                 </a>
               </figure>
             </div>
-            }
-            {(showingSponsors && _.get(settings, 'footer.third.image')) &&
+          }
+          {(showingSponsors && _.get(settings, 'footer.third.image')) &&
             <div className="column">
               <figure className="image is-paddingless is-marginless">
-                <a href={settings.footer.third.link} target="_blank" rel="noopener noreferrer">
-                  <img className="footerImage" src={settings.footer.third.image} alt="" />
+                <a href={_.get(settings, 'footer.third.link', '')} target="_blank" rel="noopener noreferrer">
+                  <img className="footerImage" src={_.get(settings, 'footer.third.image', '')} alt="" />
                 </a>
               </figure>
             </div>
-            }
-            <div className="column has-text-centered is-hidden-desktop">
-              <PrivacyPolicy showAcceptance={false} />
-            </div>
-            <div className="column has-text-right is-hidden-mobile">
-              <PrivacyPolicy showAcceptance={false} />
-            </div>
+          }
+          <div className="column has-text-centered is-hidden-desktop">
+            <PrivacyPolicy showAcceptance={false} />
+          </div>
+          <div className="column has-text-right is-hidden-mobile">
+            <PrivacyPolicy showAcceptance={false} />
           </div>
         </div>
-      </footer>
-    );
-  }
-}
+      </div>
+    </footer>
+  );
+};
+
+export default FooterBar;

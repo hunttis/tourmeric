@@ -5,19 +5,19 @@ import Moment from 'react-moment';
 import { isLoaded } from 'react-redux-firebase';
 import { ModalItem } from './ModalItem';
 import { ParticipantList } from './ParticipantList';
-import { TourmericEvent } from '~/models/Events'
+import { TourmericEvent } from '~/models/Events';
 import { Participation } from '~/models/ReduxState';
 import { Category } from '~/models/Category';
 import { Settings } from '~/models/Settings';
 
 interface Props {
   eventId: string;
-  events: {[key: string]: TourmericEvent};
+  events: { [key: string]: TourmericEvent };
   closeModal: () => void;
-  participations: {[key: string]: Participation};
-  categories: {[key: string]: Category};
+  participations: { [key: string]: Participation };
+  categories: { [key: string]: Category };
   settings: Settings;
-};
+}
 
 export const EventModal = ({ eventId, events, settings, closeModal, participations, categories }: Props) => {
 
@@ -26,7 +26,7 @@ export const EventModal = ({ eventId, events, settings, closeModal, participatio
     const eventContent = _.get(events, eventId);
 
     if (!eventContent) {
-      return <div><Translate id="noevent" /></div>
+      return <div><Translate id="noevent" /></div>;
     }
 
     const category = _.get(categories, eventContent.category);
@@ -83,19 +83,19 @@ export const EventModal = ({ eventId, events, settings, closeModal, participatio
               {eventContent.prizes && <ModalItem translationKey="prizes" content={eventContent.prizes} />}
 
               {eventContent.link &&
-              <Fragment>
-                <div className="column is-12">
-                  <div className="subtitle has-text-info"><Translate id="link" /></div>
-                </div>
+                <Fragment>
+                  <div className="column is-12">
+                    <div className="subtitle has-text-info"><Translate id="link" /></div>
+                  </div>
 
-                <div className="column is-1" />
-                <div className="column is-11">
-                  <p>
-                    <a href={eventContent.link} target="_blank" rel="noopener noreferrer">{eventContent.link}</a>
-                  </p>
-                </div>
-              </Fragment>
-                }
+                  <div className="column is-1" />
+                  <div className="column is-11">
+                    <p>
+                      <a href={eventContent.link} target="_blank" rel="noopener noreferrer">{eventContent.link}</a>
+                    </p>
+                  </div>
+                </Fragment>
+              }
 
               {!_.isEmpty(participations) &&
                 <Fragment>
@@ -119,4 +119,3 @@ export const EventModal = ({ eventId, events, settings, closeModal, participatio
   }
   return <div />;
 };
-

@@ -9,12 +9,12 @@ interface Props {
   thisParticipation: Participation;
   eventId: string;
   userId: string;
-};
+}
 
 export const CardFooterDesktop = ({ alreadyParticipated, thisParticipation, eventId, userId }: Props) => (
   <Fragment>
     <div className="card-footer is-hidden-mobile">
-      { alreadyParticipated &&
+      {alreadyParticipated &&
         <div className="card-footer-item event-card-footer">
           <EditableField
             inputClasses="is-rounded"
@@ -33,4 +33,3 @@ export const CardFooterDesktop = ({ alreadyParticipated, thisParticipation, even
     </div>
   </Fragment>
 );
-

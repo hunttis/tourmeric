@@ -8,9 +8,9 @@ import { Settings } from '~/models/Settings';
 import { SingleNewsItem } from '~/models/ReduxState';
 
 interface Props {
-  news: [{key: string, value: SingleNewsItem}];
+  news: [{ key: string, value: SingleNewsItem }];
   settings: Settings;
-};
+}
 
 export const News = ({ news, settings }: Props) => {
 
@@ -28,5 +28,4 @@ export const News = ({ news, settings }: Props) => {
   }
   return <div><Translate id="loading" /></div>;
 
-}
-
+};

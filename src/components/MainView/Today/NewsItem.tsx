@@ -5,9 +5,9 @@ import _ from 'lodash';
 import { SingleNewsItem } from '~/models/ReduxState';
 
 interface Props {
-  newsItem: {key: string, value: SingleNewsItem};
+  newsItem: { key: string, value: SingleNewsItem };
   dateFormat: string;
-};
+}
 
 interface State {
   activeNewsItem: boolean;
@@ -57,17 +57,17 @@ export default class NewsItem extends Component<Props, State> {
           </div>
 
           {footerNeeded &&
-          <div className="card-footer">
-            {(longNewsItem && !currentActiveNewsItem) &&
-              <a className="card-footer-item" onClick={() => this.setActiveNewsItem(true)}><i className="fas fa-caret-square-down" />&nbsp;&nbsp;<Translate id="showfullnewsitem" /></a>
-            }
-            {currentActiveNewsItem &&
-              <a className="card-footer-item" onClick={() => this.setActiveNewsItem(false)}><i className="fas fa-caret-square-up" />&nbsp;&nbsp;<Translate id="showless" /></a>
-            }
-            {(!newsData.summary && newsData.link) &&
-              <a className="card-footer-item" target="_blank" rel="noopener noreferrer" href={newsData.link}><i className="fas fa-external-link-alt" />&nbsp;&nbsp;{newsData.linkName ? newsData.linkName : newsData.link}</a>
-            }
-          </div>
+            <div className="card-footer">
+              {(longNewsItem && !currentActiveNewsItem) &&
+                <a className="card-footer-item" onClick={() => this.setActiveNewsItem(true)}><i className="fas fa-caret-square-down" />&nbsp;&nbsp;<Translate id="showfullnewsitem" /></a>
+              }
+              {currentActiveNewsItem &&
+                <a className="card-footer-item" onClick={() => this.setActiveNewsItem(false)}><i className="fas fa-caret-square-up" />&nbsp;&nbsp;<Translate id="showless" /></a>
+              }
+              {(!newsData.summary && newsData.link) &&
+                <a className="card-footer-item" target="_blank" rel="noopener noreferrer" href={newsData.link}><i className="fas fa-external-link-alt" />&nbsp;&nbsp;{newsData.linkName ? newsData.linkName : newsData.link}</a>
+              }
+            </div>
           }
 
         </div>
@@ -76,4 +76,3 @@ export default class NewsItem extends Component<Props, State> {
     );
   }
 }
-

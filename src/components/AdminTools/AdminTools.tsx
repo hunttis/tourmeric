@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { Route, Switch } from 'react-router-dom';
 
+import { Location, History } from 'history';
 import UserEditor from './UserEditor/UserEditor-container';
 import HighlightEditor from './HighlightEditor/HighlightEditor-container';
 import StoreInfoEditor from './StoreInfoEditor/StoreInfoEditor-container';
@@ -14,7 +15,6 @@ import UsersLoader from './AdminLoaders/UsersLoader-container';
 import StoreCreditReport from './StoreCredit/StoreCreditReport-container';
 import { AdminToolsTab } from './AdminToolsTab';
 import { FirebaseProfile } from '~/models/ReduxState';
-import { Location, History } from 'history';
 
 interface Props {
   profile: FirebaseProfile;
@@ -73,4 +73,3 @@ export class AdminTools extends Component<Props> {
     );
   }
 }
-

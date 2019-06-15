@@ -3,10 +3,11 @@ import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import classnames from 'classnames';
+import { Category } from '~/models/Category';
 
 interface Props {
   labelContent: string;
-  defaultValue: string | null;
+  defaultValue: string | undefined | null;
   path: string;
   targetName: string;
   isOk: boolean;
@@ -14,7 +15,7 @@ interface Props {
   isHorizontal: boolean;
   isLocked?: boolean;
   nameProp?: SelectElementName;
-  dropdownItems: { [key: string]: string | SelectElementItem };
+  dropdownItems: { [key: string]: string | SelectElementItem | Category };
 }
 
 export default class SelectElement extends Component<Props> {
@@ -81,9 +82,9 @@ export default class SelectElement extends Component<Props> {
 }
 
 interface SelectionButtonProps {
-  dropdownItems: { [key: string]: SelectElementItem | string };
+  dropdownItems: { [key: string]: SelectElementItem | string | Category };
   nameProp?: SelectElementName;
-  selectedValue: string | null;
+  selectedValue: string | undefined | null;
   onSelectionClick: (selectionId: string) => void;
 }
 

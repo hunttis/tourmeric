@@ -7,8 +7,8 @@ import { mapCategoryToColor } from '../../Common/Utils';
 
 interface CreditAmountsProps {
   userId: string;
-  storecredit: {[key: string]: {[key: string]: StoreCredit}};
-  storecreditcategories: {[key: string]: string};
+  storecredit: { [key: string]: { [key: string]: StoreCredit } };
+  storecreditcategories: { [key: string]: string };
 }
 
 interface StoreCredit {
@@ -41,9 +41,8 @@ export const CreditAmounts = ({ userId, storecredit, storecreditcategories }: Cr
         </li>
       </Fragment>
     }
-    {!isLoaded(storecreditcategories) && 
+    {!isLoaded(storecreditcategories) &&
       <div>Loading</div>
     }
   </Fragment>
 );
-

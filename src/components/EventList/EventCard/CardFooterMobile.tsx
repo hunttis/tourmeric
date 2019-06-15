@@ -9,24 +9,24 @@ interface Props {
   thisParticipation: Participation;
   eventId: string;
   userId: string;
-};
+}
 
 export const CardFooterMobile = ({ alreadyParticipated, thisParticipation, eventId, userId }: Props) => (
   <Fragment>
-    { alreadyParticipated &&
-    <div className="card-footer is-hidden-tablet">
-      <div className="card-footer-item event-card-footer">
-        <EditableField
-          inputClasses="is-rounded"
-          leftIcon="comment"
-          labelContent=""
-          placeHolder="comment"
-          defaultValue={thisParticipation.comment}
-          path={`/participations/${eventId}/${userId}`}
-          targetName="comment"
-        />
+    {alreadyParticipated &&
+      <div className="card-footer is-hidden-tablet">
+        <div className="card-footer-item event-card-footer">
+          <EditableField
+            inputClasses="is-rounded"
+            leftIcon="comment"
+            labelContent=""
+            placeHolder="comment"
+            defaultValue={thisParticipation.comment}
+            path={`/participations/${eventId}/${userId}`}
+            targetName="comment"
+          />
+        </div>
       </div>
-    </div>
     }
     <div className="card-footer is-hidden-tablet">
       <div className="card-footer-item event-card-footer">
@@ -35,4 +35,3 @@ export const CardFooterMobile = ({ alreadyParticipated, thisParticipation, event
     </div>
   </Fragment>
 );
-

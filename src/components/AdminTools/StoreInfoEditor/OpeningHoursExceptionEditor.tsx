@@ -9,7 +9,7 @@ import firebase from 'firebase/app';
 interface Props {
   openinghoursexceptions: object;
   settings: object;
-};
+}
 
 interface State {
   newExceptionName: string;
@@ -25,7 +25,7 @@ type ShopStatus = 'open' | 'closed';
 
 export default class OpeningHoursExceptionEditor extends Component<Props, State> {
 
-  state = { 
+  state = {
     newExceptionName: '',
     newExceptionDate: moment().format('YYYY-MM-DD'),
     newExceptionOpenStatus: STATUS_OPEN,
@@ -146,4 +146,3 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
     return <div><Translate id="loading" /></div>;
   }
 }
-

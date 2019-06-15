@@ -7,7 +7,7 @@ import { User } from '~/models/ReduxState';
 interface Props {
   userId: string | undefined;
   userData: User | undefined;
-};
+}
 
 export const EditModal = ({ userId, userData }: Props) => (
   <Fragment>

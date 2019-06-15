@@ -5,14 +5,14 @@ import _ from 'lodash';
 import firebase from 'firebase/app';
 import { participantCount } from '../../../api/eventApi';
 import { Participation, User } from '~/models/ReduxState';
-import { TourmericEvent } from '~/models/Events';
+import { TourmericEvent } from '~/models/Events';
 
 interface Props {
   eventId: string;
-  events: {[key: string]: TourmericEvent};
-  participations: {[key: string]: Participation};
-  users: {[key: string]: User};
-};
+  events: { [key: string]: TourmericEvent };
+  participations: { [key: string]: Participation };
+  users: { [key: string]: User };
+}
 
 export default class EventParticipants extends Component<Props> {
   getParticipantsForEvent(eventId: string) {
@@ -69,4 +69,3 @@ export default class EventParticipants extends Component<Props> {
     );
   }
 }
-

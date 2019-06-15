@@ -8,7 +8,7 @@ interface Props {
   settings: Settings;
 }
 
-export const CompanyInfo = ({settings}: Props) =>{
+export const CompanyInfo = ({ settings }: Props) => {
   if (isLoaded(settings)) {
     const companyInfo = _.get(settings, 'companyinfo', '');
     const formattedCompanyInfo = companyInfo.split('\n');
@@ -23,4 +23,4 @@ export const CompanyInfo = ({settings}: Props) =>{
   return (
     <div>...</div>
   );
-}
+};

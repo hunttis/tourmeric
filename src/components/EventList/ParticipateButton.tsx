@@ -6,12 +6,12 @@ import { FirebaseProfile, Participation } from '~/models/ReduxState';
 import { TourmericEvent } from '~/models/Events';
 
 interface Props {
-  events: {[key: string]: TourmericEvent};
+  events: { [key: string]: TourmericEvent };
   userId: string;
   profile: FirebaseProfile;
   eventId: string;
-  participations: {[key: string]: Participation};
-};
+  participations: { [key: string]: Participation };
+}
 
 export const ParticipateButton = ({
   profile, events, eventId, participations, userId,

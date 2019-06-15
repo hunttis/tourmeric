@@ -7,10 +7,10 @@ import { Category } from '~/models/Category';
 import { FirebaseProfile, FirebaseAuth } from '~/models/ReduxState';
 
 interface Props {
-  categories: {[key: string]: Category};
+  categories: { [key: string]: Category };
   profile: FirebaseProfile;
   auth: FirebaseAuth;
-};
+}
 
 export default class ChooseFavoriteCategories extends Component<Props> {
 
@@ -65,4 +65,3 @@ export default class ChooseFavoriteCategories extends Component<Props> {
     );
   }
 }
-

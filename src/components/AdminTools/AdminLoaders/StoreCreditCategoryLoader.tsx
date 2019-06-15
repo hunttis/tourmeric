@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isLoaded } from 'react-redux-firebase';
-import { StoreCreditCategory } from '~/models/ReduxState';
+import { StoreCreditCategory } from '~/models/StoreCredit';
 
 interface Props {
-  storecreditcategories: {[key: string]: StoreCreditCategory};
+  storecreditcategories: { [key: string]: StoreCreditCategory };
 }
 
 export const StoreCreditCategoryLoader = ({ storecreditcategories }: Props) => (

@@ -6,12 +6,12 @@ import { TourmericStoreCreditData } from '~/models/StoreCredit';
 
 interface Props {
   userId: string;
-  creditData: {[key: string]: TourmericStoreCreditData};
-};
+  creditData: { [key: string]: TourmericStoreCreditData };
+}
 
 export default class StoreCreditTableUser extends Component<Props> {
 
-  calculateTotal(creditData: {[key: string]: TourmericStoreCreditData}) {
+  calculateTotal(creditData: { [key: string]: TourmericStoreCreditData }) {
     let total = 0.0;
     for (const dataItem of Object.values(creditData)) {
       total += dataItem.value;
@@ -57,4 +57,3 @@ export default class StoreCreditTableUser extends Component<Props> {
   }
 
 }
-

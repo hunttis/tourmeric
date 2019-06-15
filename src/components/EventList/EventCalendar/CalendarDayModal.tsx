@@ -22,7 +22,7 @@ export interface Props {
   momentForDay: Moment;
   isAdmin: boolean;
   eventsForDay: TourmericEventEntry[];
-  openinghoursexceptions: {[key: string]: OpeningHoursException };
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
   ongoingEventsForDay: TourmericEventEntry[];
 }
 

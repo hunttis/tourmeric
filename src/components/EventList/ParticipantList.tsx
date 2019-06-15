@@ -5,7 +5,7 @@ import { ParticipationData } from '~/models/ReduxState';
 interface Props {
   participations: ParticipationData[];
   maxParticipants: number;
-};
+}
 
 export const ParticipantList = ({ participations, maxParticipants }: Props) => (
   <div>
@@ -17,9 +17,9 @@ export const ParticipantList = ({ participations, maxParticipants }: Props) => (
             {index + 1}. {participation.firstName} {participation.lastName} {maxParticipants < (index + 1) && <span>&nbsp;(<Translate id="waitlist" />)</span>}
           </div>
           {participation.comment &&
-          <div className={`speech-bubble ${coloration} has-text-justified column`}>
-            {participation.comment}
-          </div>
+            <div className={`speech-bubble ${coloration} has-text-justified column`}>
+              {participation.comment}
+            </div>
           }
           <hr />
         </div>

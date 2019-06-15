@@ -14,9 +14,9 @@ import { HighLight } from '~/models/ReduxState';
 const filesPath = 'uploadedHighlightBanners';
 
 interface Props {
-  highlights: {[key: string]: HighLight};
-  uploadedHighlightBanners: {[key: string]: UploadedFile},
-};
+  highlights: { [key: string]: HighLight };
+  uploadedHighlightBanners: { [key: string]: UploadedFile };
+}
 
 interface State {
   highlightId: string;
@@ -138,4 +138,3 @@ export default class HighlightEditor extends Component<Props, State> {
     return <div><Translate id="loading" /></div>;
   }
 }
-

@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 interface Props {
   linkTarget: string;
   translationKey: string;
-  icon: string
-  styleClass?: string
-};
+  icon: string;
+  styleClass?: string;
+}
 
 
 export const NavbarItem = ({ linkTarget, translationKey, icon, styleClass }: Props) => (
@@ -15,8 +15,7 @@ export const NavbarItem = ({ linkTarget, translationKey, icon, styleClass }: Pro
     <span className="icon">
       <i className={`fas ${icon}`} />
     </span>
-      &nbsp;&nbsp;
+    &nbsp;&nbsp;
     <Translate id={translationKey} />
   </Link>
 );
-

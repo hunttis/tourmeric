@@ -7,7 +7,7 @@ import { FirebaseProfile, FirebaseAuth, PageOption } from '~/models/ReduxState';
 interface Props {
   profile: FirebaseProfile;
   auth: FirebaseAuth;
-};
+}
 
 interface State {
   landingPage: PageOption;
@@ -63,7 +63,7 @@ export default class ChooseLandingPage extends Component<Props, State> {
           <div className="field-body">
             <Translate>
               {(translate: any) => (
-                <select className="input" defaultValue={landingPage} onChange={(event) => this.changeLandingPage(event.target.value as PageOption)}>
+                <select className="input" defaultValue={landingPage} onChange={event => this.changeLandingPage(event.target.value as PageOption)}>
                   <option>{translate('select')}</option>
                   {Object.keys(this.pageOptions).map((pageOption, index) => <option key={`pageoption-${index}`} value={pageOption}>{translate(pageOption)}</option>)}
                 </select>
@@ -118,5 +118,3 @@ export default class ChooseLandingPage extends Component<Props, State> {
   }
 
 }
-
-

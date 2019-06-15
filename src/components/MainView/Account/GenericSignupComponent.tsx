@@ -7,7 +7,7 @@ interface Props {
   onChangeEmail: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangePass: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: () => void;
-  errorState: string;
+  errorState: string | null;
   loginFacebook: () => void;
   loginGoogle: () => void;
 }

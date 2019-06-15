@@ -12,7 +12,7 @@ const disableUser = (userId: string | undefined) => {
 interface Props {
   userId: string | undefined;
   userData: User | undefined;
-};
+}
 
 export const DisableModal = ({ userId, userData }: Props) => (
   <Fragment>
@@ -20,17 +20,17 @@ export const DisableModal = ({ userId, userData }: Props) => (
       <h1 className="title"><Translate id="disablethisuser" /></h1>
       <ul>
         {userData && userData.displayName &&
-        <li><Translate id="displayname" />: {userData.displayName}</li>
-          }
+          <li><Translate id="displayname" />: {userData.displayName}</li>
+        }
         {userData && userData.username &&
-        <li><Translate id="username" />: {userData.username}</li>
-          }
+          <li><Translate id="username" />: {userData.username}</li>
+        }
         <li><Translate id="email" />: {userData && userData.email}</li>
         {userData && userData.avatarUrl &&
-        <li><Translate id="avatarurl" />:&nbsp;
-          <a target="_blank" rel="noopener noreferrer" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
-        </li>
-          }
+          <li><Translate id="avatarurl" />:&nbsp;
+            <a target="_blank" rel="noopener noreferrer" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
+          </li>
+        }
         {userData && userData.dciNumber &&
           <li><Translate id="dcinumber" />: {userData.dciNumber}</li>
         }

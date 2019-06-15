@@ -9,7 +9,7 @@ import { UploadedFile } from '~/models/Category';
 const filesPath = 'uploadedCategoryLogos';
 
 interface Props {
-  uploadedCategoryLogos: {[key: string]: UploadedFile}
+  uploadedCategoryLogos: { [key: string]: UploadedFile };
 }
 
 export default class CategoryLogoUploader extends Component<Props> {
@@ -36,7 +36,7 @@ export default class CategoryLogoUploader extends Component<Props> {
 
           <div className="column is-8">
             {
-            uploadedCategoryLogos &&
+              uploadedCategoryLogos &&
               <div>
                 <h1 className="title">
                   <Translate id="uploadedfiles" />:
@@ -50,29 +50,29 @@ export default class CategoryLogoUploader extends Component<Props> {
                     </tr>
                   </thead>
                   {
-                  map(uploadedCategoryLogos, (file, key) => {
-                    // console.log(file, key);
-                    if (!file || !key) {
-                      return <div>No file or key</div>;
-                    }
-                    return (
-                      <tbody key={file.name + key}>
-                        <tr className="">
-                          <td>
-                            <img className="thumbnail" src={file.downloadURL} alt="" />
-                          </td>
-                          <td>
-                            <span>{file.name}</span>
-                          </td>
-                          <td>
-                            <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                              <Translate id="deletefile" />
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    );
-                  })}
+                    map(uploadedCategoryLogos, (file, key) => {
+                      // console.log(file, key);
+                      if (!file || !key) {
+                        return <div>No file or key</div>;
+                      }
+                      return (
+                        <tbody key={file.name + key}>
+                          <tr className="">
+                            <td>
+                              <img className="thumbnail" src={file.downloadURL} alt="" />
+                            </td>
+                            <td>
+                              <span>{file.name}</span>
+                            </td>
+                            <td>
+                              <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
+                                <Translate id="deletefile" />
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      );
+                    })}
                 </table>
               </div>
             }
@@ -88,6 +88,4 @@ export default class CategoryLogoUploader extends Component<Props> {
       </section>
     );
   }
-
 }
-

@@ -1,4 +1,4 @@
-import { TourmericEvent } from "./Events";
+import { TourmericEvent } from './Events';
 
 export interface Day {
   day?: string;

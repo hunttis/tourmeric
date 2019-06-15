@@ -9,7 +9,7 @@ import { Settings } from '~/models/Settings';
 interface Props {
   day?: string | null;
   settings: Settings;
-  openinghoursexceptions: {[key: string]: OpeningHoursException}
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
 }
 
 export const OpeningHours = ({ day, settings, openinghoursexceptions }: Props) => {
@@ -35,7 +35,7 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }: Props) =
                 <Translate id="exceptionallynotopen" />
               }
             </span>
-              : {exception.name}
+            : {exception.name}
           </Fragment>
         );
       }
@@ -49,7 +49,7 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }: Props) =
               <Translate id="exceptionallyopen" />
             }
           </span>
-            : {exception.openingHours}
+          : {exception.openingHours}
           <p>{exception.name}</p>
         </Fragment>
       );
@@ -81,4 +81,3 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }: Props) =
   return <div />;
 
 };
-

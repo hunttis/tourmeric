@@ -17,18 +17,19 @@ import { Participation } from '~/models/ReduxState';
 interface Props {
   eventId: string;
   userId: string;
-  events: {[key: string]: TourmericEvent};
-  eventsongoing: {[key: string]: TourmericEvent};
-  participations: {[key: string]: Participation};
-  categories: {[key: string]: Category};
+  events: { [key: string]: TourmericEvent };
+  eventsongoing: { [key: string]: TourmericEvent };
+  participations: { [key: string]: Participation };
+  categories: { [key: string]: Category };
   history: History;
   settings: Settings;
   isAdmin: boolean;
   setReturnLocation: (key: string) => void;
-};
+}
 
 interface State {
-  
+  modalOpen: boolean;
+  isOngoingEvent: boolean;
 }
 
 export default class EventCard extends Component<Props, State> {
@@ -69,7 +70,7 @@ export default class EventCard extends Component<Props, State> {
     const category: Category | {} = isLoaded(categories) ? categories[eventContent.category] : {};
     const alreadyParticipated = checkParticipation(userId, eventId, participations);
     const thisParticipation = _.get(participations, `${eventId}.${userId}`, {});
-    const maxParticipants = parseInt(_.get(eventContent, 'playerSlots', '0'));
+    const maxParticipants = parseInt(_.get(eventContent, 'playerSlots', '0'), 10);
     const currentParticipants = participantCount(eventId, participations);
     const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
@@ -80,7 +81,7 @@ export default class EventCard extends Component<Props, State> {
 
     const participantString = `${currentParticipants} ${playerSlotsString}`;
 
-    const columnSpan: number = 4;
+    const columnSpan = 4;
 
     return (
       <Fragment>
@@ -114,8 +115,8 @@ export default class EventCard extends Component<Props, State> {
                   <CardInfoLine icon="fas fa-money-bill-alt" title="entryfee" content={eventContent.entryFee} />
                   <CardInfoLine icon="fas fa-users" title="participants" content={participantString} extraClasses={eventFull ? 'has-text-warning' : ''} />
                   {eventFull && <tr><td colSpan={columnSpan} className="has-text-centered has-text-warning">(<Translate id="eventfull" />)</td></tr>}
-                  {eventContent.format && <CardInfoLine icon="fas fa-book" title="format" content={eventContent.format} /> }
-                  {eventContent.rules && <CardInfoLine icon="fas fa-balance-scale" title="ruleslevel" content={eventContent.rulesLevel} /> }
+                  {eventContent.format && <CardInfoLine icon="fas fa-book" title="format" content={eventContent.format} />}
+                  {eventContent.rules && <CardInfoLine icon="fas fa-balance-scale" title="ruleslevel" content={eventContent.rulesLevel} />}
                 </tbody>
               </table>
 
@@ -142,15 +143,15 @@ export default class EventCard extends Component<Props, State> {
 
           </div>
           <p>&nbsp;</p>
-          { moment(eventContent.date).isSameOrAfter(moment(), 'day') &&
-          <div className="level participation-level">
+          {moment(eventContent.date).isSameOrAfter(moment(), 'day') &&
+            <div className="level participation-level">
 
-            { !alreadyParticipated &&
-              <div className="level-left is-hidden-mobile" />
-            }
+              {!alreadyParticipated &&
+                <div className="level-left is-hidden-mobile" />
+              }
 
-          </div>
-        }
+            </div>
+          }
         </div>
       </Fragment>
     );
@@ -162,7 +163,7 @@ interface CardInfoLineProps {
   title: string;
   content: string;
   extraClasses?: string;
-};
+}
 
 const CardInfoLine = ({ icon, title, content, extraClasses = '' }: CardInfoLineProps) => (
   <Fragment>
@@ -173,7 +174,3 @@ const CardInfoLine = ({ icon, title, content, extraClasses = '' }: CardInfoLineP
     </tr>
   </Fragment>
 );
-
-
-
-

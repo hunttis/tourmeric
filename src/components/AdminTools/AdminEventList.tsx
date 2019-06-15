@@ -5,12 +5,12 @@ import moment from 'moment';
 import { EditableEventContainer as EditableEvent } from './EditableEvent-container';
 import { Category } from '~/models/Category';
 import { History } from 'history';
-import { TourmericEvent } from '~/models/Events';
+import { TourmericEvent } from '~/models/Events';
 
 interface Props {
   showNewEventButton: boolean;
-  events: {[key: string]: TourmericEvent};
-  categories: {[key: string]: Category};
+  events: { [key: string]: TourmericEvent };
+  categories: { [key: string]: Category };
   published: boolean;
   history: History;
   setReturnLocation: (returnLocation: string) => void;
@@ -72,7 +72,7 @@ export class AdminEventList extends Component<Props, State> {
 
         const hasCategory = !!item[1].category;
         const actualCategory = hasCategory ? categories[item[1].category] : '...';
-        const categoryFilterHits = hasCategory && actualCategory != '...' && (
+        const categoryFilterHits = hasCategory && actualCategory !== '...' && (
           actualCategory.name.toLowerCase().indexOf(lowerCaseFilter) !== -1 ||
           actualCategory.abbreviation.toLowerCase().indexOf(lowerCaseFilter) !== -1
         );
@@ -87,7 +87,7 @@ export class AdminEventList extends Component<Props, State> {
 
     const sortedList = _.sortBy(eventList, [e => e[1].date]).reverse();
     const filteredList = this.filterList(sortedList);
-    const result = filteredList.map((tournament, index) => <EditableEvent tournamentEntry={tournament} key={tournament[0]} index={index} />)
+    const result = filteredList.map((tournament, index) => <EditableEvent tournamentEntry={tournament} key={tournament[0]} index={index} />);
     return (
       <div className="columns is-multiline">
         {result}

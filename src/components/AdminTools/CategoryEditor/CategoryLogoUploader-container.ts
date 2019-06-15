@@ -13,4 +13,4 @@ export default compose(
     settings: state.firebase.data.settings,
     uploadedCategoryLogos: state.firebase.data.uploadedCategoryLogos,
   })),
-)(CategoryLogoUploader);
+)(CategoryLogoUploader) as React.ComponentType<any>;

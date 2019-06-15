@@ -6,7 +6,7 @@ import { Settings } from '~/models/Settings';
 
 interface Props {
   settings: Settings;
-};
+}
 
 export const PageTitles = ({ settings }: Props) => (
   <div className="columns is-multiline">

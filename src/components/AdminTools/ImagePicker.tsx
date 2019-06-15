@@ -7,8 +7,8 @@ import { UploadedFile } from '~/models/Category';
 interface Props {
   path: string;
   fieldName: string;
-  imageList: {[key: string]: UploadedFile};
-  highlightedImage: string | null;
+  imageList: { [key: string]: UploadedFile };
+  highlightedImage: string | undefined | null;
 }
 
 export default class ImagePicker extends Component<Props> {

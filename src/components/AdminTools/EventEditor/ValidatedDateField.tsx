@@ -18,9 +18,9 @@ interface Props {
   targetName: string;
   isHorizontal: boolean;
   disabled: boolean;
-  openinghoursexceptions: {[key: string]: OpeningHoursException};
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
   isMulti: boolean;
-};
+}
 
 interface State {
   saved: boolean;
@@ -58,7 +58,7 @@ export default class ValidatedDateField extends Component<Props, Partial<State>>
   updateDateInDB(newDate: string, clearEndDate: boolean) {
     const { targetName } = this.props;
     this.setState({ editing: true, saved: false });
-    const update: {[key: string]: string | null} = { [targetName]: newDate };
+    const update: { [key: string]: string | null } = { [targetName]: newDate };
     if (clearEndDate) {
       update.endDate = null;
     }
@@ -73,7 +73,7 @@ export default class ValidatedDateField extends Component<Props, Partial<State>>
   parseInformationForMonthYear(month: number, year: number): Day[] {
     const targetMonth = moment().month(month).year(year);
     const dayCount = targetMonth.daysInMonth();
-    const days: Day[] = []
+    const days: Day[] = [];
 
     for (let i = 1; i <= dayCount; i += 1) {
       const dayString = `${_.padStart(String(i), 2, '0')}-${targetMonth.format('MM-YYYY')}`;
@@ -81,7 +81,7 @@ export default class ValidatedDateField extends Component<Props, Partial<State>>
 
       days.push({
         day: day.format('DD'),
-        dayOfWeek: parseInt(day.format('d')),
+        dayOfWeek: parseInt(day.format('d'), 10),
         dayName: day.format('dddd'),
         dayString: day.format('DD-MMMM-YYYY'),
         dayLink: day.format('YYYY/MM/DD'),
@@ -164,7 +164,7 @@ export default class ValidatedDateField extends Component<Props, Partial<State>>
     }
 
     const viewDate = moment(viewTime, 'YYYY-MM');
-    const calendarData: Day[]= this.parseInformationForMonthYear(viewDate.month(), viewDate.year());
+    const calendarData: Day[] = this.parseInformationForMonthYear(viewDate.month(), viewDate.year());
     const chunkedCalendar = this.chunkedCalendar(calendarData);
 
     return (
@@ -207,5 +207,3 @@ export default class ValidatedDateField extends Component<Props, Partial<State>>
     );
   }
 }
-
-

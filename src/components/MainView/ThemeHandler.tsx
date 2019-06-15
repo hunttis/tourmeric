@@ -79,5 +79,3 @@ export default class ThemeHandler extends Component<Props> {
     return null;
   }
 }
-
-

@@ -3,7 +3,7 @@ import { isLoaded } from 'react-redux-firebase';
 import { OpeningHoursException } from '~/models/OpeningHours';
 
 interface Props {
-  openinghoursexceptions: {[key: string]: OpeningHoursException}
+  openinghoursexceptions: { [key: string]: OpeningHoursException };
 }
 
 export const OpeningHoursExceptionLoader = ({ openinghoursexceptions }: Props) => (

@@ -5,8 +5,8 @@ import { TourmericEvent } from '~/models/Events';
 
 interface Props {
   title: string;
-  events: {key: string, value: TourmericEvent}[];
-};
+  events: { key: string, value: TourmericEvent }[];
+}
 
 export const DateBasedEvents = ({ title, events }: Props) => (
   <div>

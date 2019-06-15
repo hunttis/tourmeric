@@ -40,7 +40,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
 
   render() {
     const { categories, uploadedCategoryLogos, events } = this.props;
-    const { editingCategory, pickingImage, pickingSmallImage } = this.state;
+    const { editingCategory, pickingImage, pickingSmallImage } = this.state;
 
     if (isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
       return (
@@ -75,39 +75,39 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                 </thead>
                 <tbody>
 
-                {!isEmpty(categories) && Object.entries(categories).map(([categoryId, categoryData]) => {
+                  {!isEmpty(categories) && Object.entries(categories).map(([categoryId, categoryData]) => {
 
-                  if (editingCategory && categoryId !== editingCategory) {
-                    return;
-                  }
-                  const categoryImage = _.find(uploadedCategoryLogos, { downloadURL: categoryData.image });
-                  const categoryImageSmall = categoryData.imageSmall && _.find(uploadedCategoryLogos, { downloadURL: categoryData.imageSmall });
-                  const allowedToDelete = !_.find(events, { category: categoryId });
+                    if (editingCategory && categoryId !== editingCategory) {
+                      return <Fragment />;
+                    }
+                    const categoryImage = _.find(uploadedCategoryLogos, { downloadURL: categoryData.image });
+                    const categoryImageSmall = categoryData.imageSmall && _.find(uploadedCategoryLogos, { downloadURL: categoryData.imageSmall });
+                    const allowedToDelete = !_.find(events, { category: categoryId });
 
-                  return (
-                    <tr key={`categoryeditor-${categoryId}`}>
-                      <td className="media-left">
-                        {categoryImage && <img className="image category-image" src={categoryImage.downloadURL} alt="" />}
-                        {!categoryImage && <Translate id="nologo" />}
-                      </td>
-                      <td>
-                        {categoryImageSmall && <img className="image is-32x32" src={categoryImageSmall.downloadURL} alt="" />}
-                        {!categoryImageSmall && <Translate id="nosmallimage" />}
-                      </td>
-                      <td>
-                        {categoryData.name}
-                      </td>
-                      <td>
-                        {this.state.editingCategory === categoryId && <button className="button is-small is-success has-text-black" onClick={() => this.changeEditedCategory(null) }><Translate id="done" /></button>}
-                        {this.state.editingCategory !== categoryId && <button className="button is-small is-info" onClick={() => this.changeEditedCategory(categoryId) }><Translate id="edit" /></button>}
-                      </td>
-                      <td>
-                        {!allowedToDelete && <button disabled className="button is-small is-danger"><Translate id="cannotdelete" /></button>}
-                        {allowedToDelete && <button className="button is-small is-danger" onClick={() => this.deleteCategory(categoryId)}><Translate id="delete" /></button>}
-                      </td>
-                    </tr>
-                  );
-                })}
+                    return (
+                      <tr key={`categoryeditor-${categoryId}`}>
+                        <td className="media-left">
+                          {categoryImage && <img className="image category-image" src={categoryImage.downloadURL} alt="" />}
+                          {!categoryImage && <Translate id="nologo" />}
+                        </td>
+                        <td>
+                          {categoryImageSmall && <img className="image is-32x32" src={categoryImageSmall.downloadURL} alt="" />}
+                          {!categoryImageSmall && <Translate id="nosmallimage" />}
+                        </td>
+                        <td>
+                          {categoryData.name}
+                        </td>
+                        <td>
+                          {this.state.editingCategory === categoryId && <button className="button is-small is-success has-text-black" onClick={() => this.changeEditedCategory(null)}><Translate id="done" /></button>}
+                          {this.state.editingCategory !== categoryId && <button className="button is-small is-info" onClick={() => this.changeEditedCategory(categoryId)}><Translate id="edit" /></button>}
+                        </td>
+                        <td>
+                          {!allowedToDelete && <button disabled className="button is-small is-danger"><Translate id="cannotdelete" /></button>}
+                          {allowedToDelete && <button className="button is-small is-danger" onClick={() => this.deleteCategory(categoryId)}><Translate id="delete" /></button>}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -115,22 +115,22 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
 
 
             {editingCategory &&
-            <Fragment>
-            <div className="column is-3" />
-            <div className="column is-6">
-                <CategoryEditorPanel 
-                  categoryId={editingCategory}
-                  categoryData={categories[editingCategory]}
-                  uploadedCategoryLogos={uploadedCategoryLogos}
-                  pickingImage={pickingImage}
-                  pickingSmallImage={pickingSmallImage}
-                  chooseImagePicker={(update: State) => this.setState(update)}
-                />
-            </div>
-            <div className="column is-3" />
-            </Fragment>
+              <Fragment>
+                <div className="column is-3" />
+                <div className="column is-6">
+                  <CategoryEditorPanel
+                    categoryId={editingCategory}
+                    categoryData={categories[editingCategory]}
+                    uploadedCategoryLogos={uploadedCategoryLogos}
+                    pickingImage={pickingImage}
+                    pickingSmallImage={pickingSmallImage}
+                    chooseImagePicker={(update: State) => this.setState(update)}
+                  />
+                </div>
+                <div className="column is-3" />
+              </Fragment>
             }
-            
+
           </div>
         </div>
       );
@@ -147,14 +147,10 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
   }
 }
 
-const categoryEntry = ({}) => {
-
-};
-
 interface CategoryEditorPanelProps {
   categoryId: string;
   categoryData: Category;
-  uploadedCategoryLogos: {[key: string]: UploadedFile};
+  uploadedCategoryLogos: { [key: string]: UploadedFile };
   pickingImage: boolean;
   pickingSmallImage: boolean;
   chooseImagePicker: (update: State) => void;
@@ -226,29 +222,28 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, 
     </div>
 
     {pickingImage &&
-    <ImagePicker
-      imageList={uploadedCategoryLogos}
-      highlightedImage={categoryData.image}
-      path={`/categories/${categoryId}`}
-      fieldName="image"
-    />
+      <ImagePicker
+        imageList={uploadedCategoryLogos}
+        highlightedImage={categoryData.image}
+        path={`/categories/${categoryId}`}
+        fieldName="image"
+      />
     }
 
     {pickingSmallImage &&
-    <ImagePicker
-      imageList={uploadedCategoryLogos}
-      highlightedImage={categoryData.imageSmall}
-      path={`/categories/${categoryId}`}
-      fieldName="imageSmall"
-    />
+      <ImagePicker
+        imageList={uploadedCategoryLogos}
+        highlightedImage={categoryData.imageSmall}
+        path={`/categories/${categoryId}`}
+        fieldName="imageSmall"
+      />
     }
   </div>
 );
 
 
 interface CategoryEditorProps {
-  categories: {[key: string]: Category};
-  uploadedCategoryLogos: {[key: string]: UploadedFile};
-  events: {[key: string]: {category: string | null}};
+  categories: { [key: string]: Category };
+  uploadedCategoryLogos: { [key: string]: UploadedFile };
+  events: { [key: string]: { category: string | null } };
 }
-

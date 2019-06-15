@@ -10,7 +10,7 @@ interface Props {
 
 export const OpeningHourRow = ({ settings, dayName }: Props) => {
   const { openingHours } = settings;
-  const storeIsOpen = !_.isEmpty(openingHours[dayName as keyof OpeningHours]);
+  const storeIsOpen = !_.isEmpty(openingHours![dayName as keyof OpeningHours]);
 
   if (!storeIsOpen) {
     return (
@@ -24,7 +24,7 @@ export const OpeningHourRow = ({ settings, dayName }: Props) => {
     return (
       <tr>
         <td><Translate id={dayName} /></td>
-        <td>{openingHours[dayName as keyof OpeningHours]}</td>
+        <td>{openingHours![dayName as keyof OpeningHours]}</td>
       </tr>
     );
   }
