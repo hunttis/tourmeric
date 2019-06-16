@@ -1,11 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import { History } from 'history';
 import { Translate } from 'react-localize-redux';
+import { Dispatch, AnyAction } from 'redux';
 import { GenericSignupComponent } from './GenericSignupComponent';
 import { loginEmail, resetPassword, loginGoogle, loginFacebook } from '../../../api/loginApi';
 
 interface Props {
   history: History;
+  returnLocation: string;
+  dispatch: Dispatch;
+  setReturnLocation: (returnLocation: string) => AnyAction;
 }
 
 interface State {
@@ -36,7 +40,7 @@ export default class Login extends Component<Props, State> {
     this.setState({ errorState: null });
     try {
       await loginEmail(this.state.loginEmail, this.state.loginPass);
-      this.props.history.push('/today');
+      await this.goToReturnLocation();
     } catch (err) {
       this.setState({ errorState: err.code });
     }
@@ -45,7 +49,7 @@ export default class Login extends Component<Props, State> {
   onLoginGoogle = async () => {
     try {
       await loginGoogle();
-      this.props.history.push('/today');
+      await this.goToReturnLocation();
     } catch (err) {
       this.setState({ errorState: err.code });
     }
@@ -54,7 +58,7 @@ export default class Login extends Component<Props, State> {
   onLoginFacebook = async () => {
     try {
       await loginFacebook();
-      this.props.history.push('/today');
+      await this.goToReturnLocation();
     } catch (err) {
       this.setState({ errorState: err.code });
     }
@@ -69,6 +73,11 @@ export default class Login extends Component<Props, State> {
     this.setState({ passwordResetEmailSent: true });
   }
 
+  async goToReturnLocation() {
+    const returnUrl = this.props.returnLocation;
+    await this.props.dispatch(this.props.setReturnLocation(''));
+    await this.props.history.push(returnUrl);
+  }
 
   render() {
     const { errorState, passwordResetEmailSent } = this.state;

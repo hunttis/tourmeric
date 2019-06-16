@@ -1,8 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import { Dispatch } from 'redux';
+import { createMemoryHistory } from 'history';
 import { ParticipateButton } from '../ParticipateButton';
 import { mockEventId, mockParticipations, mockUserId, mockProfile, mockUnorderedEvents } from '../__mocks__/mockData';
+
+jest.mock('history');
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const eventApi = require('../../../api/eventApi');
@@ -25,6 +29,9 @@ describe('ParticipateButton tests', () => {
       profile={mockProfile}
       participations={mockParticipations}
       events={mockUnorderedEvents}
+      history={createMemoryHistory()}
+      dispatch={jest.fn() as Dispatch}
+      setReturnLocation={jest.fn()}
     />);
 
     expect(toJson(modal)).toMatchSnapshot();
@@ -41,6 +48,9 @@ describe('ParticipateButton tests', () => {
       profile={mockProfile}
       participations={mockParticipations}
       events={mockUnorderedEvents}
+      history={createMemoryHistory()}
+      dispatch={jest.fn() as Dispatch}
+      setReturnLocation={jest.fn()}
     />);
 
     expect(toJson(modal)).toMatchSnapshot();
@@ -58,6 +68,9 @@ describe('ParticipateButton tests', () => {
       profile={mockProfile}
       participations={mockParticipations}
       events={mockUnorderedEvents}
+      history={createMemoryHistory()}
+      dispatch={jest.fn() as Dispatch}
+      setReturnLocation={jest.fn()}
     />);
 
     expect(toJson(modal)).toMatchSnapshot();
@@ -76,6 +89,9 @@ describe('ParticipateButton tests', () => {
       profile={mockProfile}
       participations={mockParticipations}
       events={mockUnorderedEvents}
+      history={createMemoryHistory()}
+      dispatch={jest.fn() as Dispatch}
+      setReturnLocation={jest.fn()}
     />);
 
     expect(toJson(modal)).toMatchSnapshot();

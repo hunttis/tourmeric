@@ -28,7 +28,7 @@ export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openingho
           }
 
           return (
-            <CalendarDay day={day} openinghoursexceptions={openinghoursexceptions} settings={settings} dayIndex={dayIndex} categories={categories} clickDay={clickDay} />
+            <CalendarDay key={`calendar-day-${dayIndex}`} day={day} openinghoursexceptions={openinghoursexceptions} settings={settings} dayIndex={dayIndex} categories={categories} clickDay={clickDay} />
           );
         })}
       </div>

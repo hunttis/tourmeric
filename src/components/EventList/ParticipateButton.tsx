@@ -1,6 +1,8 @@
 import React from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
+import { History } from 'history';
+import { Dispatch, AnyAction } from 'redux';
 import { participantCount, participate, checkParticipation, cancelParticipation } from '../../api/eventApi';
 import { FirebaseProfile, Participation } from '~/models/ReduxState';
 import { TourmericEvent } from '~/models/Events';
@@ -11,10 +13,13 @@ interface Props {
   profile: FirebaseProfile;
   eventId: string;
   participations: { [key: string]: Participation };
+  history: History;
+  dispatch: Dispatch;
+  setReturnLocation: (returnLocation: string) => AnyAction;
 }
 
 export const ParticipateButton = ({
-  profile, events, eventId, participations, userId,
+  profile, events, eventId, participations, userId, history, setReturnLocation, dispatch,
 }: Props) => {
 
   const alreadyParticipated = checkParticipation(userId, eventId, participations);
@@ -51,5 +56,15 @@ export const ParticipateButton = ({
         </span>
       </button>);
   }
-  return (<button className="button is-black" disabled><Translate id="signintoparticipate" /></button>);
+  return (
+    <button
+      className="button is-black"
+      onClick={async () => {
+        console.log('Setting return location', history.location.pathname);
+        await dispatch(setReturnLocation(history.location.pathname));
+        history.push('/login');
+      }}
+    >
+      <Translate id="signintoparticipate" />
+    </button>);
 };
