@@ -60,7 +60,6 @@ export const ParticipateButton = ({
     <button
       className="button is-black"
       onClick={async () => {
-        console.log('Setting return location', history.location.pathname);
         await dispatch(setReturnLocation(history.location.pathname));
         history.push('/login');
       }}

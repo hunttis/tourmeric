@@ -14,6 +14,7 @@ interface Props {
 export const CardFooterDesktop = ({ alreadyParticipated, thisParticipation, eventId, userId }: Props) => (
   <Fragment>
     <div className="card-footer is-hidden-mobile">
+
       {alreadyParticipated &&
         <div className="card-footer-item event-card-footer">
           <EditableField

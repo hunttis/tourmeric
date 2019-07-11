@@ -137,7 +137,8 @@ exports[`EventModal tests Compares EventModal to snapshot 1`] = `
             />
              (
             0
-             / 
+             /
+             
             10
             )
           </div>

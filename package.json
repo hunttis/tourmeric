@@ -42,7 +42,7 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
-    "bulma": "^0.7.2",
+    "bulma": "^0.7.5",
     "bulma-extensions": "^1.0.30",
     "bulmaswatch": "^0.7.2",
     "classnames": "^2.2.6",

@@ -2208,10 +2208,10 @@ bulma-extensions@^1.0.30:
   resolved "https://registry.yarnpkg.com/bulma-extensions/-/bulma-extensions-1.1.0.tgz#eb09b3b5c8c9fc1f37f613604d4a6d024a45676d"
   integrity sha512-+fLr5YlIaKY+nvDR1gmGbOe3MWGA+k7b2tlmYU5ulz2XmtxwWwsG4AOPP8CTK5ahDWOCP/aLbddjKr9jJLTaFw==
 
-bulma@^0.7.2:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.4.tgz#7e74512e9118d9799021339e67e365ee0ac4f3f9"
-  integrity sha512-krG2rP6eAX1WE0sf6O0SC/FUVSOBX4m1PBC2+GKLpb2pX0qanaDqcv9U2nu75egFrsHkI0zdWYuk/oGwoszVWg==
+bulma@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
+  integrity sha512-cX98TIn0I6sKba/DhW0FBjtaDpxTelU166pf7ICXpCCuplHWyu6C9LYZmL5PEsnePIeJaiorsTEzzNk3Tsm1hw==
 
 bulmaswatch@^0.7.2:
   version "0.7.2"
