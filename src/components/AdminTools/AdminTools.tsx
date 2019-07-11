@@ -23,7 +23,6 @@ interface Props {
 }
 
 export class AdminTools extends Component<Props> {
-
   switchActiveTab(page: string) {
     this.props.history.push(`/admin/tools/${page}`);
   }
@@ -50,25 +49,71 @@ export class AdminTools extends Component<Props> {
         <UsersLoader />
         <div className="tabs is-boxed is-marginless is-multiline">
           <ul>
-            <AdminToolsTab isActive={activeItem === '/admin/tools/user'} switchAction={() => this.switchActiveTab('user')} icon="fa-users" translationKey="users" />
-            <AdminToolsTab isActive={activeItem === '/admin/tools/highlights'} switchAction={() => this.switchActiveTab('highlights')} icon="fa-lightbulb" translationKey="highlights" />
-            <AdminToolsTab isActive={activeItem === '/admin/tools/storeinfo'} switchAction={() => this.switchActiveTab('storeinfo')} icon="fa-store" translationKey="storeinfo" />
-            <AdminToolsTab isActive={activeItem === '/admin/tools/news'} switchAction={() => this.switchActiveTab('news')} icon="fa-newspaper" translationKey="news" />
-            <AdminToolsTab isActive={activeItem === '/admin/tools/companyinfo'} switchAction={() => this.switchActiveTab('companyinfo')} icon="fa-warehouse" translationKey="companyinfo" />
-            <AdminToolsTab isActive={activeItem === '/admin/tools/storecreditcategory'} switchAction={() => this.switchActiveTab('storecreditcategory')} icon="fa-money-bill" translationKey="storecreditcategories" />
-            <AdminToolsTab isActive={activeItem === '/admin/tools/storecreditreport'} switchAction={() => this.switchActiveTab('storecreditreport')} icon="fa-chart-area" translationKey="storecreditreport" />
+            <AdminToolsTab
+              isActive={activeItem === '/admin/tools/user'}
+              switchAction={() => this.switchActiveTab('user')}
+              icon="fa-users"
+              translationKey="users"
+            />
+            <AdminToolsTab
+              isActive={activeItem === '/admin/tools/highlights'}
+              switchAction={() => this.switchActiveTab('highlights')}
+              icon="fa-lightbulb"
+              translationKey="highlights"
+            />
+            <AdminToolsTab
+              isActive={activeItem === '/admin/tools/storeinfo'}
+              switchAction={() => this.switchActiveTab('storeinfo')}
+              icon="fa-store"
+              translationKey="storeinfo"
+            />
+            <AdminToolsTab
+              isActive={activeItem === '/admin/tools/news'}
+              switchAction={() => this.switchActiveTab('news')}
+              icon="fa-newspaper"
+              translationKey="news"
+            />
+            <AdminToolsTab
+              isActive={activeItem === '/admin/tools/companyinfo'}
+              switchAction={() => this.switchActiveTab('companyinfo')}
+              icon="fa-warehouse"
+              translationKey="companyinfo"
+            />
+            <AdminToolsTab
+              isActive={activeItem === '/admin/tools/storecreditcategory'}
+              switchAction={() => this.switchActiveTab('storecreditcategory')}
+              icon="fa-money-bill"
+              translationKey="storecreditcategories"
+            />
+            <AdminToolsTab
+              isActive={activeItem === '/admin/tools/storecreditreport'}
+              switchAction={() => this.switchActiveTab('storecreditreport')}
+              icon="fa-chart-area"
+              translationKey="storecreditreport"
+            />
           </ul>
         </div>
-        <Switch>
-          <Route exact path="/admin/tools" component={UserEditor} />
-          <Route path="/admin/tools/user" component={UserEditor} />
-          <Route path="/admin/tools/highlights" component={HighlightEditor} />
-          <Route path="/admin/tools/storeinfo" component={StoreInfoEditor} />
-          <Route path="/admin/tools/news" component={NewsEditor} />
-          <Route path="/admin/tools/companyinfo" component={CompanyInfoEditor} />
-          <Route path="/admin/tools/storecreditcategory" component={StoreCreditCategoryEditor} />
-          <Route path="/admin/tools/storecreditreport" component={StoreCreditReport} />
-        </Switch>
+        <div className="section">
+          <Switch>
+            <Route exact path="/admin/tools" component={UserEditor} />
+            <Route path="/admin/tools/user" component={UserEditor} />
+            <Route path="/admin/tools/highlights" component={HighlightEditor} />
+            <Route path="/admin/tools/storeinfo" component={StoreInfoEditor} />
+            <Route path="/admin/tools/news" component={NewsEditor} />
+            <Route
+              path="/admin/tools/companyinfo"
+              component={CompanyInfoEditor}
+            />
+            <Route
+              path="/admin/tools/storecreditcategory"
+              component={StoreCreditCategoryEditor}
+            />
+            <Route
+              path="/admin/tools/storecreditreport"
+              component={StoreCreditReport}
+            />
+          </Switch>
+        </div>
       </div>
     );
   }

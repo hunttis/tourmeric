@@ -14,6 +14,7 @@ import { TourmericEvent } from '~/models/Events';
 import { Participation, FirebaseAuth } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
 import { Category } from '~/models/Category';
+import AddPlaceHolderUser from '~/components/AdminTools/EventEditor/AddPlaceHolderUser-container';
 
 interface URLQuery {
   params: { [key: string]: string };
@@ -28,14 +29,15 @@ interface Props {
   participations: { [key: string]: Participation };
   auth: FirebaseAuth;
   activeLanguage: string;
+  isAdmin: boolean;
 }
 
-export const SingleEvent = ({ match, events, eventsongoing, categories, settings, participations, auth, activeLanguage }: Props) => {
+export const SingleEvent = ({ match, events, eventsongoing, categories, settings, participations, auth, activeLanguage, isAdmin }: Props) => {
 
   if (!isLoaded(events)) {
     return (
       <div className="section has-text-centered">
-        <div className="button is-loading">Loading</div>
+        <div className="button is-loading"><Translate id="loading" /></div>
       </div>
     );
   }
@@ -51,10 +53,10 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
   }
 
   if (!eventContent) {
-    if (!isLoaded(events)) {
+    if (isLoaded(events)) {
       return (
         <div className="section has-text-centered">
-          <div className="button is-loading"><Translate id="no event" /></div>
+          <div className="button is-loading"><Translate id="noevent" /></div>
         </div>
       );
     }
@@ -203,7 +205,7 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
                   <Fragment>
                     <div className="column is-1" />
                     <div className="column is-11">
-                      <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', '0'), 10)} />
+                      <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', '0'), 10)} isAdmin={isAdmin} />
                     </div>
                   </Fragment>
                 }
@@ -224,6 +226,22 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
             eventId={eventId}
             userId={userId}
           />
+
+          {isAdmin &&
+            <Fragment>
+              <div className="card-footer has-background-black">
+                <div className="card-footer-item has-text-warning">
+                  <span className="icon"><i className="fas fa-arrow-down" /></span> ADMIN <span className="icon"><i className="fas fa-arrow-down" /></span>
+                </div>
+              </div>
+              <div className="card-footer">
+                <div className="card-footer-item event-card-footer">
+                  <AddPlaceHolderUser eventId={match.params.id} />
+                </div>
+                <div className="card-footer-item event-card-footer" />
+              </div>
+            </Fragment>
+          }
 
         </div>
       </div>

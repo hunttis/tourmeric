@@ -62,20 +62,29 @@ export const EditModal = ({ userId, userData }: Props) => (
 
       <div className="field is-horizontal">
         <div className="field-label is-normal">
-          <label className="label"><Translate id="role" /></label>
+          <label className="label">
+            <Translate id="role" />
+          </label>
         </div>
         <div className="field-body">
           <div className="field">
             <div className="control is-expanded">
               <div className="select">
-                <select
-                  defaultValue={userData && userData.role}
-                  onChange={event => firebase.update(`/users/${userId}`, { role: event.target.value })}
-                >
-                  <option value={undefined}><Translate id="select" /></option>
-                  <option value="user"><Translate id="roleuser" /></option>
-                  <option value="admin"><Translate id="roleadmin" /></option>
-                </select>
+                <Translate>
+                  {(translate: any) => (
+                    <select
+                      defaultValue={userData && userData.role}
+                      onChange={event => firebase.update(`/users/${userId}`, {
+                          role: event.target.value,
+                        })
+                      }
+                    >
+                      <option value={undefined}>{translate('select')}</option>
+                      <option value="user">{translate('roleuser')}</option>
+                      <option value="admin">{translate('roleadmin')}</option>
+                    </select>
+                  )}
+                </Translate>
               </div>
             </div>
           </div>

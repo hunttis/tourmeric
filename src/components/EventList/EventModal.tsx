@@ -19,101 +19,162 @@ interface Props {
   settings: Settings;
 }
 
-export const EventModal = ({ eventId, events, settings, closeModal, participations, categories }: Props) => {
-
+export const EventModal = ({
+  eventId,
+  events,
+  settings,
+  closeModal,
+  participations,
+  categories,
+}: Props) => {
   if (isLoaded(events) && isLoaded(participations) && isLoaded(settings)) {
-
     const eventContent = _.get(events, eventId);
 
     if (!eventContent) {
-      return <div><Translate id="noevent" /></div>;
+      return (
+        <div>
+          <Translate id="noevent" />
+        </div>
+      );
     }
 
     const category = _.get(categories, eventContent.category);
     const dateFormat = _.get(settings, 'dateFormat');
-    let participationsForEvent = Object.values(_.get(participations, eventId, []));
+    let participationsForEvent = Object.values(
+      _.get(participations, eventId, []),
+    );
     participationsForEvent = _.sortBy(participationsForEvent, ['date']);
 
     return (
-      <div className="modal is-active" id={`modal${eventId}`} key={`modal${eventId}`}>
+      <div
+        className="modal is-active"
+        id={`modal${eventId}`}
+        key={`modal${eventId}`}
+      >
         <div className="modal-background" onClick={closeModal} />
         <div className="modal-content">
           <div className="box is-rounded">
             <div className="columns is-multiline">
-
               <div className="column is-9">
                 <h1 className="title has-text-success">{eventContent.name}</h1>
               </div>
 
-              {category &&
+              {category && (
                 <div className="column is-3 has-text-right">
                   <figure className="image is-64x64 is-pulled-right">
                     <img alt="" src={category.image} />
                   </figure>
                 </div>
-              }
+              )}
 
               <div className="column is-12">
-                {eventContent.date &&
+                {eventContent.date && (
                   <Fragment>
-                    <i className="fas fa-calendar" />&nbsp;&nbsp;
+                    <i className="fas fa-calendar" />
+                    &nbsp;&nbsp;
                     <Moment format={dateFormat}>{eventContent.date}</Moment>
                     <br />
                   </Fragment>
-                }
+                )}
 
-                {eventContent.time &&
-                  <Fragment><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}<br /></Fragment>
-                }
+                {eventContent.time && (
+                  <Fragment>
+                    <i className="fas fa-clock" />
+                    &nbsp;&nbsp;{eventContent.time}
+                    <br />
+                  </Fragment>
+                )}
 
-                {eventContent.format &&
-                  <Fragment><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}<br /></Fragment>
-                }
+                {eventContent.format && (
+                  <Fragment>
+                    <i className="fas fa-book" />
+                    &nbsp;&nbsp;{eventContent.format}
+                    <br />
+                  </Fragment>
+                )}
 
-                {eventContent.rulesLevel &&
-                  <Fragment><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}<br /></Fragment>
-                }
+                {eventContent.rulesLevel && (
+                  <Fragment>
+                    <i className="fas fa-balance-scale" />
+                    &nbsp;&nbsp;{eventContent.rulesLevel}
+                    <br />
+                  </Fragment>
+                )}
 
-                {eventContent.entryFee &&
-                  <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}<br /></Fragment>
-                }
+                {eventContent.entryFee && (
+                  <Fragment>
+                    <i className="fas fa-money-bill-alt" />
+                    &nbsp;&nbsp;{eventContent.entryFee}
+                    <br />
+                  </Fragment>
+                )}
               </div>
 
-              {eventContent.notes && <ModalItem translationKey="notes" content={eventContent.notes} />}
-              {eventContent.prizes && <ModalItem translationKey="prizes" content={eventContent.prizes} />}
+              {eventContent.notes && (
+                <ModalItem
+                  translationKey="notes"
+                  content={eventContent.notes}
+                />
+              )}
+              {eventContent.prizes && (
+                <ModalItem
+                  translationKey="prizes"
+                  content={eventContent.prizes}
+                />
+              )}
 
-              {eventContent.link &&
+              {eventContent.link && (
                 <Fragment>
                   <div className="column is-12">
-                    <div className="subtitle has-text-info"><Translate id="link" /></div>
+                    <div className="subtitle has-text-info">
+                      <Translate id="link" />
+                    </div>
                   </div>
 
                   <div className="column is-1" />
                   <div className="column is-11">
                     <p>
-                      <a href={eventContent.link} target="_blank" rel="noopener noreferrer">{eventContent.link}</a>
+                      <a
+                        href={eventContent.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {eventContent.link}
+                      </a>
                     </p>
                   </div>
                 </Fragment>
-              }
+              )}
 
-              {!_.isEmpty(participations) &&
+              {!_.isEmpty(participations) && (
                 <Fragment>
                   <div className="column is-12">
                     <div className="subtitle has-text-info">
-                      <Translate id="participants" /> ({participationsForEvent.length} / {eventContent.playerSlots})
+                      <Translate id="participants" /> (
+                      {participationsForEvent.length} /{' '}
+                      {eventContent.playerSlots})
                     </div>
                   </div>
                   <div className="column is-1" />
                   <div className="column is-11">
-                    <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', '0'), 10)} />
+                    <ParticipantList
+                      participations={participationsForEvent}
+                      maxParticipants={parseInt(
+                        _.get(eventContent, 'playerSlots', '0'),
+                        10,
+                      )}
+                    />
                   </div>
                 </Fragment>
-              }
+              )}
             </div>
           </div>
         </div>
-        <button className="modal-close is-large" aria-label="close" onClick={closeModal} />
+        <button
+          className="modal-close is-large"
+          aria-label="close"
+          onClick={closeModal}
+        />
       </div>
     );
   }
