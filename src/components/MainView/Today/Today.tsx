@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import * as Moment from 'moment/min/moment-with-locales';
-import { extendMoment } from 'moment-range';
+import moment from 'moment/min/moment-with-locales';
 import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
@@ -11,8 +10,7 @@ import { TourmericEvent, TourmericEventEntry } from '~/models/Events';
 import { Category, UploadedFile } from '~/models/Category';
 import { FirebaseProfile } from '~/models/ReduxState';
 import { createMomentFromDateString, createCurrentMoment } from '~/components/Common/Utils';
-
-const moment = extendMoment(Moment);
+import { doDateRangesOverlap } from '~/components/Common/TimeUtils';
 
 interface Props {
   events: { key: string, value: TourmericEvent }[];
@@ -53,13 +51,11 @@ export default class Today extends Component<Props, Partial<State>> {
 
   findNextOngoingEvents(ongoingevents: { key: string, value: TourmericEvent }[]) {
     const { profile } = this.props;
-    const range = moment.range(moment(), moment().add(7, 'days'));
     const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories!.trim());
     if (ongoingevents) {
       const nextEvents = ongoingevents.filter((eventEntry) => {
         const eventData = eventEntry.value;
-        const eventDateRange = moment.range(createMomentFromDateString(eventData.date), createMomentFromDateString(eventData.endDate!));
-        const isWithinAWeek = range.overlaps(eventDateRange);
+        const isWithinAWeek = doDateRangesOverlap(moment(), moment().add(7, 'days'), createMomentFromDateString(eventData.date), createMomentFromDateString(eventData.endDate!));
         const isFavorite = !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
         return eventData.published && isWithinAWeek && isFavorite;
       });
