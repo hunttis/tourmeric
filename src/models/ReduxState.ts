@@ -59,7 +59,7 @@ interface FirebaseData {
   storecreditcategories: { [key: string]: StoreCreditCategory };
   users: { [key: string]: User };
   news: { [key: string]: SingleNewsItem };
-  storecredit: { [key: string]: TourmericStoreCreditData };
+  storecredit: { [key: string]: { [key: string]: TourmericStoreCreditData }};
 }
 
 export interface SingleNewsItem {
