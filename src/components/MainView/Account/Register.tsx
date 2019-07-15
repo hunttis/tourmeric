@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { History } from 'history';
 import { registerEmail, loginGoogle, loginFacebook } from '../../../api/loginApi';
 import { GenericSignupComponent } from './GenericSignupComponent';
+import { setListener } from '~/components/Common/DocumentUtils';
 
 interface Props {
   history: History;
@@ -55,6 +56,17 @@ export default class Register extends Component<Props, State> {
       this.setState({ errorState: err.code });
     }
   }
+
+  componentDidMount = () => {
+    setListener('keydown', this.enterFunction);
+  }
+
+  enterFunction = (event: KeyboardEvent) => {
+    if (event.keyCode === 13) {
+      this.onRegisterSubmit();
+    }
+  }
+
 
   render() {
     return (
