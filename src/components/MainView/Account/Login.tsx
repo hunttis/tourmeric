@@ -4,6 +4,7 @@ import { Translate } from 'react-localize-redux';
 import { Dispatch, AnyAction } from 'redux';
 import { GenericSignupComponent } from './GenericSignupComponent';
 import { loginEmail, resetPassword, loginGoogle, loginFacebook } from '../../../api/loginApi';
+import { setListener } from '~/components/Common/DocumentUtils';
 
 interface Props {
   history: History;
@@ -77,6 +78,16 @@ export default class Login extends Component<Props, State> {
     const returnUrl = this.props.returnLocation;
     await this.props.dispatch(this.props.setReturnLocation(''));
     await this.props.history.push(returnUrl);
+  }
+
+  componentDidMount = () => {
+    setListener('keydown', this.enterFunction);
+  }
+
+  enterFunction = (event: KeyboardEvent) => {
+    if (event.keyCode === 13) {
+      this.onLoginSubmit();
+    }
   }
 
   render() {
