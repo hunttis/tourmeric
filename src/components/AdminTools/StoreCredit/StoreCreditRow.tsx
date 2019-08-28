@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import _ from 'lodash';
+import { History } from 'history';
 import {
   TourmericStoreCreditData,
   StoreCreditCategory,
@@ -14,6 +15,8 @@ interface Props {
   isAdmin: boolean;
   updateCategory: (entryId: string, newCategory: CreditCategories) => void;
   storecreditcategories: { [key: string]: StoreCreditCategory };
+  history: History;
+  userId: string;
 }
 
 export const StoreCreditRow = ({
@@ -21,8 +24,8 @@ export const StoreCreditRow = ({
   data,
   entryMadeBy,
   isAdmin,
-  updateCategory,
-  storecreditcategories,
+  history,
+  userId,
 }: Props) => (
   <tr
     className={`${data.category === 'green' &&
@@ -30,7 +33,7 @@ export const StoreCreditRow = ({
       'has-text-danger'} ${data.category === 'yellow' &&
       'has-text-warning'} ${data.category === 'blue' && 'has-text-info'}`}
   >
-    {isAdmin && <td className="is-size-7">{dataId}</td>}
+    {/* {isAdmin && <td className="is-size-7">{dataId}</td>} */}
     <td>{moment(data.date).format('DD-MM-YYYY - hh:mm')}</td>
     <td>{entryMadeBy}</td>
     <td>{data.note}</td>
@@ -39,7 +42,7 @@ export const StoreCreditRow = ({
     >
       {data.value} €
     </td>
-    <td>
+    {/* <td>
       <span onClick={() => updateCategory(dataId, '')}>
         <i className="far fa-times-circle has-text-white" />
       </span>
@@ -63,6 +66,7 @@ export const StoreCreditRow = ({
           <i className="fas fa-circle has-text-info" />
         </span>
       )}
-    </td>
+    </td> */}
+    {isAdmin && <td className="has-text-centered"><button className="button is-small" onClick={() => history.push(`/admin/tools/storecreditrow/${userId}/${dataId}`)}><i className="fas fa-pencil-alt" /></button></td>}
   </tr>
 );

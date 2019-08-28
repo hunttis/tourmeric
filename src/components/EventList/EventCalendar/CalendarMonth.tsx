@@ -94,6 +94,9 @@ const CalendarDay = ({ day, openinghoursexceptions, settings, dayIndex, categori
             {!closedThisDay && day.ongoingEventsForDay && day.ongoingEventsForDay.map((eventEntry, index) => {
               const event = eventEntry.value;
               const eventCategory = categories[event.category];
+              if (!eventCategory) {
+                return (<div key={`event-img-${index}`} />);
+              }
               const eventLogo = eventCategory.imageSmall ? eventCategory.imageSmall : eventCategory.image;
               return (
                 <div key={`event-img-${index}`}>
@@ -104,6 +107,9 @@ const CalendarDay = ({ day, openinghoursexceptions, settings, dayIndex, categori
             {day.eventsForDay && day.eventsForDay.map((eventEntry, index) => {
               const event = eventEntry.value;
               const eventCategory = categories[event.category];
+              if (!eventCategory) {
+                return (<div key={`event-img-${index}`} />);
+              }
               const eventLogo = eventCategory.imageSmall ? eventCategory.imageSmall : eventCategory.image;
               return (
                 <img key={`event-img-${index}`} className="image is-24x24 calendar-image" src={eventLogo!} alt="" />

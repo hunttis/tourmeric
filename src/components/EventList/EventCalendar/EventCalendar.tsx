@@ -3,6 +3,7 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import moment, { Moment } from 'moment/min/moment-with-locales';
+import { History } from 'history';
 import { CalendarMonth } from './CalendarMonth';
 import {
   removeClassFromHtml,
@@ -11,10 +12,10 @@ import CalendarDayModal from './CalendarDayModal-container';
 import { Location } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
 import { Category } from '~/models/Category';
-import { History } from 'history';
 import { OpeningHoursException } from '~/models/OpeningHours';
 import { TourmericEvent } from '~/models/Events';
 import { Day } from '~/models/Calendar';
+import { parseInformationForMonthYear } from './CalendarUtils';
 
 const YEAR_INDEX = 2;
 const MONTH_INDEX = 3;
@@ -163,60 +164,6 @@ export default class EventCalendar extends Component<Props, State> {
     );
   }
 
-  parseInformationForMonthYear(month: string, year: string) {
-    const { events, eventsongoing } = this.props;
-
-    const targetMonth = moment(`${month}-${year}`, 'MM-YYYY');
-    const dayCount = targetMonth.daysInMonth();
-    const days: Day[] = [];
-    const publishedEvents = this.runEventFilters(events);
-
-    const publishedOngoingEvents = eventsongoing
-      ? this.runEventFilters(eventsongoing)
-      : [];
-
-    for (let i = 1; i <= dayCount; i += 1) {
-      const dayString = `${_.padStart(`${i}`, 2, '0')}-${targetMonth.format('MM-YYYY')}`;
-      const day = moment(dayString, 'DD-MM-YYYY');
-      const dayStringInEventFormat = moment(dayString, 'DD-MM-YYYY').format(
-        'YYYY-MM-DD',
-      );
-      const eventsForDay = publishedEvents.filter(
-        eventEntry => eventEntry.value.date === dayStringInEventFormat,
-      );
-      const eventsOnGoing = publishedOngoingEvents.filter((eventEntry) => {
-        if (eventEntry.value.endDate) {
-          return day.isBetween(
-            moment(eventEntry.value.date, 'YYYY-MM-DD'),
-            moment(eventEntry.value.endDate, 'YYYY-MM-DD'),
-            'day',
-            '[]',
-          );
-        }
-        return false;
-      });
-
-
-      days.push({
-        day: day.format('DD'),
-        dayOfWeek: parseInt(day.format('d'), 10),
-        dayName: day.format('dddd'),
-        dayString: day.format('DD-MMMM-YYYY'),
-        dayLink: day.format('YYYY/MM/DD'),
-        eventsForDay,
-        ongoingEventsForDay: eventsOnGoing,
-      });
-    }
-
-    const emptyDays = (days[0].dayOfWeek! % 7) - 1;
-    const calendar: Day[] = [];
-    for (let i = 0; i < emptyDays; i += 1) {
-      calendar.push({ empty: true });
-    }
-    _.forEach(days, day => calendar.push(day));
-    return calendar;
-  }
-
   chunkedCalendar(calendar: Day[]) {
     const chunkedCalendar = _.chunk(calendar, 7);
     while (chunkedCalendar[chunkedCalendar.length - 1].length < 7) {
@@ -234,6 +181,7 @@ export default class EventCalendar extends Component<Props, State> {
   render() {
     const {
       events,
+      eventsongoing,
       categories,
       activeLanguage,
       location,
@@ -260,7 +208,7 @@ export default class EventCalendar extends Component<Props, State> {
 
     moment.locale(activeLanguage);
 
-    const calendar = this.parseInformationForMonthYear(targetMonth, targetYear);
+    const calendar = parseInformationForMonthYear(targetMonth, targetYear, events, eventsongoing);
     const chunkedCalendar = this.chunkedCalendar(calendar);
 
     const categoryNames = this.state.categoryFilter

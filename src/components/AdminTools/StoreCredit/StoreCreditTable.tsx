@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import firebase from 'firebase/app';
 import { StoreCreditRow } from './StoreCreditRow';
 import { User } from '~/models/ReduxState';
+import { History } from 'history';
 import { TourmericStoreCreditData, StoreCreditCategory, CreditCategories } from '~/models/StoreCredit';
 
 interface Props {
   users: { key: string, value: User }[];
   userId: string;
   creditData: { [key: string]: TourmericStoreCreditData };
-  profile: object;
-  settings: object;
   storecreditcategories: { [key: string]: StoreCreditCategory };
+  isAdmin: boolean;
+  history: History;
 }
 
 export default class StoreCreditTable extends Component<Props> {
@@ -40,15 +40,10 @@ export default class StoreCreditTable extends Component<Props> {
   }
 
   render() {
-    const { userId, creditData, profile, settings, storecreditcategories } = this.props;
+    const { userId, creditData, storecreditcategories, isAdmin, history } = this.props;
     const user = this.getUser(userId)!.value;
     const username = `${user.firstName} ${user.lastName}`;
     const calculatedTotal = this.calculateTotal(creditData);
-
-
-    const isProfileLoaded = isLoaded(profile) && isLoaded(settings);
-    const isLoggedIn = isProfileLoaded && !isEmpty(profile);
-    const isAdmin = isLoggedIn && _.get(profile, 'role', 'user') === 'admin';
 
     return (
       <div key={userId}>
@@ -58,14 +53,14 @@ export default class StoreCreditTable extends Component<Props> {
         <table className="table is-bordered is-fullwidth">
           <thead>
             <tr>
-              {isAdmin &&
-                <th><Translate id="transactionid" /></th>
-              }
               <th><Translate id="date" /></th>
               <th><Translate id="entrymadeby" /></th>
               <th><Translate id="note" /></th>
               <th><Translate id="value" /></th>
-              <th><Translate id="setcategory" /></th>
+              {/* <th><Translate id="setcategory" /></th> */}
+              {isAdmin &&
+                <th><Translate id="edit" /></th>
+              }
             </tr>
           </thead>
           <tbody>
@@ -77,12 +72,14 @@ export default class StoreCreditTable extends Component<Props> {
               return (
                 <StoreCreditRow
                   key={`${userId}-${dataId}`}
+                  userId={userId}
                   dataId={dataId}
                   data={data}
                   entryMadeBy={entryMadeBy}
                   isAdmin={isAdmin}
                   updateCategory={(entryId: string, category: CreditCategories) => this.updateCategory(entryId, category)}
                   storecreditcategories={storecreditcategories}
+                  history={history}
                 />
               );
             })}
