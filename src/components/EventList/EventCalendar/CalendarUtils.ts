@@ -30,10 +30,12 @@ export function parseInformationForMonthYear(month: string, year: string, filter
     const dayStringInEventFormat = moment(dayString, 'DD-MM-YYYY').format(
       'YYYY-MM-DD',
     );
-    const eventsForDay = filteredEvents.filter(
+    
+    const eventsForDay = filteredEvents ? filteredEvents.filter(
       eventEntry => eventEntry.value.date === dayStringInEventFormat,
-    );
-    const eventsOnGoing = filteredEventsongoing.filter((eventEntry) => {
+    ) : [];
+
+    const eventsOnGoing = filteredEventsongoing ? filteredEventsongoing.filter((eventEntry) => {
       if (eventEntry.value.endDate) {
         return day.isBetween(
           moment(eventEntry.value.date, 'YYYY-MM-DD'),
@@ -43,7 +45,7 @@ export function parseInformationForMonthYear(month: string, year: string, filter
         );
       }
       return false;
-    });
+    }) : [];
 
 
     days.push({
