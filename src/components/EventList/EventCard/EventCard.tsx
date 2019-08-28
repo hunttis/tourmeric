@@ -4,12 +4,12 @@ import moment from 'moment/min/moment-with-locales';
 import _ from 'lodash';
 import { isLoaded } from 'react-redux-firebase';
 
+import { History } from 'history';
 import { participantCount, checkParticipation } from '../../../api/eventApi';
 import EventModal from '../EventModal-container';
 import { CardFooterMobile } from './CardFooterMobile';
 import { CardFooterDesktop } from './CardFooterDesktop';
 import { TourmericEvent } from '~/models/Events';
-import { History } from 'history';
 import { Settings } from '~/models/Settings';
 import { Category } from '~/models/Category';
 import { Participation } from '~/models/ReduxState';
@@ -116,7 +116,7 @@ export default class EventCard extends Component<Props, State> {
                   <CardInfoLine icon="fas fa-users" title="participants" content={participantString} extraClasses={eventFull ? 'has-text-warning' : ''} />
                   {eventFull && <tr><td colSpan={columnSpan} className="has-text-centered has-text-warning">(<Translate id="eventfull" />)</td></tr>}
                   {eventContent.format && <CardInfoLine icon="fas fa-book" title="format" content={eventContent.format} />}
-                  {eventContent.rules && <CardInfoLine icon="fas fa-balance-scale" title="ruleslevel" content={eventContent.rulesLevel} />}
+                  {eventContent.rules && <CardInfoLine icon="fas fa-balance-scale" title="ruleslevel" content={eventContent.rulesLevel!} />}
                 </tbody>
               </table>
 

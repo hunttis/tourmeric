@@ -3,17 +3,17 @@ export interface TourmericEvent {
   createDate: string;
   date: string;
   endDate?: string;
-  format: string | null;
+  format?: string | null;
   entryFee: string;
   eventType?: string;
   name: string;
   published?: boolean;
   time: string;
-  rulesLevel: string;
-  playerSlots: string;
-  prizes: string;
+  rulesLevel?: string;
+  playerSlots?: string;
+  prizes?: string;
   link?: string;
-  notes: string;
+  notes?: string;
   rules?: string;
 }
 

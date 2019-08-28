@@ -108,6 +108,7 @@
     "node-sass": "^4.12.0",
     "p-locate": "^2.0.0",
     "parcel-bundler": "^1.12.3",
+    "prettier": "^1.18.2",
     "sass": "^1.22.4",
     "ts-jest": "^24.0.2"
   }

@@ -13,6 +13,7 @@ import StoreCreditCategoryEditor from './StoreCredit/StoreCreditCategoryEditor-c
 import StoreCreditCategoryLoader from './AdminLoaders/StoreCreditCategoryLoader-container';
 import UsersLoader from './AdminLoaders/UsersLoader-container';
 import StoreCreditReport from './StoreCredit/StoreCreditReport-container';
+import StoreCreditRowEditor from './StoreCredit/StoreCreditRowEditor-container';
 import { AdminToolsTab } from './AdminToolsTab';
 import { FirebaseProfile } from '~/models/ReduxState';
 
@@ -111,6 +112,10 @@ export class AdminTools extends Component<Props> {
             <Route
               path="/admin/tools/storecreditreport"
               component={StoreCreditReport}
+            />
+            <Route
+              path="/admin/tools/storecreditrow/:userid/:id"
+              component={StoreCreditRowEditor}
             />
           </Switch>
         </div>

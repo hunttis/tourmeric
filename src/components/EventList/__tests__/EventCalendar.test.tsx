@@ -30,4 +30,5 @@ describe('EventList tests', () => {
 
     expect(eventList).toMatchSnapshot();
   });
+
 });
