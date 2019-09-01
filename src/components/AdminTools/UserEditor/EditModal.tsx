@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const EditModal = ({ userId, userData }: Props) => (
-  <Fragment>
+  <>
     <div className="box">
       <EditableField
         defaultValue={userData && userData.displayName}
@@ -74,9 +74,9 @@ export const EditModal = ({ userId, userData }: Props) => (
                   {(translate: any) => (
                     <select
                       defaultValue={userData && userData.role}
-                      onChange={event => firebase.update(`/users/${userId}`, {
-                          role: event.target.value,
-                        })
+                      onChange={(event) => firebase.update(`/users/${userId}`, {
+                        role: event.target.value,
+                      })
                       }
                     >
                       <option value={undefined}>{translate('select')}</option>
@@ -91,5 +91,5 @@ export const EditModal = ({ userId, userData }: Props) => (
         </div>
       </div>
     </div>
-  </Fragment>
+  </>
 );

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import moment from 'moment';
 import _ from 'lodash';
@@ -84,9 +84,9 @@ export default class UserInfo extends Component<Props, State> {
       const isAdmin = _.get(profile, 'role', 'user') === 'admin';
       // const betaparticipation = _.get(profile, 'betaparticipation', {});
 
-      const publishedEvents = events ? Object.values(events).filter(event => event.value.published) : [];
-      const futureEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
-      const pastEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter(event => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
+      const publishedEvents = events ? Object.values(events).filter((event) => event.value.published) : [];
+      const futureEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter((event) => moment().isSameOrBefore(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
+      const pastEvents = publishedEvents && isLoaded(participations) && !isEmpty(participations) ? publishedEvents.filter((event) => moment().isAfter(event.value.date) && checkParticipation(userid, event.key, participations)) : [];
       const eventsActive = _.get(settings, 'features.events.active', false);
       const privacyPolicyContent = _.get(settings, 'privacyPolicy', '');
 
@@ -147,7 +147,7 @@ export default class UserInfo extends Component<Props, State> {
               </div>
 
               {eventsActive &&
-                <Fragment>
+                <>
                   {!_.isEmpty(futureEvents) &&
                     <DateBasedEvents
                       title="nextparticipations"
@@ -159,7 +159,7 @@ export default class UserInfo extends Component<Props, State> {
                       title="pastparticipations"
                       events={pastEvents}
                     />}
-                </Fragment>
+                </>
               }
             </div>
 

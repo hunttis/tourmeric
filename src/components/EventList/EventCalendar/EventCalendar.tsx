@@ -115,12 +115,12 @@ export default class EventCalendar extends Component<Props, State> {
   runEventFilters(events: { key: string, value: TourmericEvent }[]) {
     const { categoryFilter } = this.state;
 
-    const publishedEvents = events.filter(event => event.value.published);
+    const publishedEvents = events.filter((event) => event.value.published);
     if (_.isEmpty(categoryFilter)) {
       return publishedEvents;
     }
 
-    const publishedAndFilteredEvents = publishedEvents.filter(event => _.includes(this.state.categoryFilter, event.value.category));
+    const publishedAndFilteredEvents = publishedEvents.filter((event) => _.includes(this.state.categoryFilter, event.value.category));
     return publishedAndFilteredEvents;
   }
 
@@ -212,7 +212,7 @@ export default class EventCalendar extends Component<Props, State> {
     const chunkedCalendar = this.chunkedCalendar(calendar);
 
     const categoryNames = this.state.categoryFilter
-      .map(category => categories[category].name)
+      .map((category) => categories[category].name)
       .join(', ');
 
     const dayInPath = location.pathname.substring('/events/'.length);

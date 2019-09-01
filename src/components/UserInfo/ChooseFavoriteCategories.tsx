@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import _ from 'lodash';
@@ -36,7 +36,7 @@ export default class ChooseFavoriteCategories extends Component<Props> {
     }
 
     return (
-      <Fragment>
+      <>
         <h2 className="subtitle">
           <Translate id="chooseyourfavorites" />
         </h2>
@@ -61,7 +61,7 @@ export default class ChooseFavoriteCategories extends Component<Props> {
 
           );
         })}
-      </Fragment>
+      </>
     );
   }
 }

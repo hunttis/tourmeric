@@ -60,7 +60,7 @@ export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail,
             <span className="icon is-small is-left"><i className="fas fa-envelope" /></span>
             <Translate>
               {(translate: (value: string) => string) => (
-                <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={event => onChangeEmail(event)} />
+                <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={(event) => onChangeEmail(event)} />
               )}
             </Translate>
           </p>
@@ -68,7 +68,7 @@ export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail,
             <span className="icon is-small is-left"><i className="fas fa-lock" /></span>
             <Translate>
               {(translate: (value: string) => string) => (
-                <input placeholder={translate('passwordplaceholder')} className="input password" type="password" onChange={event => onChangePass(event)} />
+                <input placeholder={translate('passwordplaceholder')} className="input password" type="password" onChange={(event) => onChangePass(event)} />
               )}
             </Translate>
           </p>

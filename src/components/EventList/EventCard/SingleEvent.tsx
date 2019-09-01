@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
 import ClipboardJS from 'clipboard';
@@ -80,8 +80,8 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
 
   new ClipboardJS('#sharebutton'); // eslint-disable-line
 
-  const splitNotes = eventContent.notes ? eventContent.notes.split('\n').filter(paragraph => !_.isEmpty(paragraph)) : [];
-  const splitPrizes = eventContent.prizes ? eventContent.prizes.split('\n').filter(paragraph => !_.isEmpty(paragraph)) : [];
+  const splitNotes = eventContent.notes ? eventContent.notes.split('\n').filter((paragraph) => !_.isEmpty(paragraph)) : [];
+  const splitPrizes = eventContent.prizes ? eventContent.prizes.split('\n').filter((paragraph) => !_.isEmpty(paragraph)) : [];
 
   return (
     <div>
@@ -120,7 +120,7 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
           <div className="card-header is-vcentered">
             <h2 className="card-header-title is-centered subtitle has-text-info">
               <p>
-                {eventContent.time && <Fragment>{eventContent.time}</Fragment>}
+                {eventContent.time && <>{eventContent.time}</>}
               </p>
             </h2>
           </div>
@@ -136,27 +136,27 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
                 <div className="column is-11">
 
                   {eventContent.date &&
-                    <Fragment>
+                    <>
                       <i className="fas fa-calendar" />&nbsp;&nbsp;
                       {formattedDateWithNoDayNamesInMultiDayEvent}
                       <br />
-                    </Fragment>
+                    </>
                   }
 
                   {eventContent.time &&
-                    <Fragment><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}<br /></Fragment>
+                    <><i className="fas fa-clock" />&nbsp;&nbsp;{eventContent.time}<br /></>
                   }
 
                   {eventContent.format &&
-                    <Fragment><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}<br /></Fragment>
+                    <><i className="fas fa-book" />&nbsp;&nbsp;{eventContent.format}<br /></>
                   }
 
                   {eventContent.rulesLevel &&
-                    <Fragment><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}<br /></Fragment>
+                    <><i className="fas fa-balance-scale" />&nbsp;&nbsp;{eventContent.rulesLevel}<br /></>
                   }
 
                   {eventContent.entryFee &&
-                    <Fragment><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}<br /></Fragment>
+                    <><i className="fas fa-money-bill-alt" />&nbsp;&nbsp;{eventContent.entryFee}<br /></>
                   }
                 </div>
 
@@ -164,7 +164,7 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
                 {eventContent.prizes && <ModalItem translationKey="prizes" contentArray={splitPrizes} />}
 
                 {eventContent.link &&
-                  <Fragment>
+                  <>
                     <div className="column is-12">
                       <div className="subtitle has-text-info"><Translate id="link" /></div>
                     </div>
@@ -175,7 +175,7 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
                         <a href={eventContent.link} target="_blank" rel="noopener noreferrer">{eventContent.link}</a>
                       </p>
                     </div>
-                  </Fragment>
+                  </>
                 }
                 <div className="column is-12">
                   <button id="sharebutton" className="button is-primary" data-clipboard-text={`${window.location.href}`}>
@@ -188,12 +188,12 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
               </div>
               <div className="column is-6">
                 {isLoaded(events) &&
-                  <Fragment>
+                  <>
                     <div className="subtitle has-text-info"><Translate id="participants" />&nbsp;
-                      {!eventContent.playerSlots && <Fragment>({participationsForEvent.length})</Fragment>}
-                      {eventContent.playerSlots && <Fragment>({participationsForEvent.length} / {eventContent.playerSlots})</Fragment>}
+                      {!eventContent.playerSlots && <>({participationsForEvent.length})</>}
+                      {eventContent.playerSlots && <>({participationsForEvent.length} / {eventContent.playerSlots})</>}
                     </div>
-                  </Fragment>
+                  </>
                 }
                 {!isLoaded(events) &&
                   <div className="button is-loading">Loading</div>
@@ -202,12 +202,12 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
                   <div><Translate id="noparticipants" /></div>
                 }
                 {!_.isEmpty(participations) &&
-                  <Fragment>
+                  <>
                     <div className="column is-1" />
                     <div className="column is-11">
-                      <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', '0'), 10)} isAdmin={isAdmin} />
+                      <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', '0'), 10)} />
                     </div>
-                  </Fragment>
+                  </>
                 }
               </div>
             </div>
@@ -228,7 +228,7 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
           />
 
           {isAdmin &&
-            <Fragment>
+            <>
               <div className="card-footer has-background-black">
                 <div className="card-footer-item has-text-warning">
                   <span className="icon"><i className="fas fa-arrow-down" /></span> ADMIN <span className="icon"><i className="fas fa-arrow-down" /></span>
@@ -240,7 +240,7 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
                 </div>
                 <div className="card-footer-item event-card-footer" />
               </div>
-            </Fragment>
+            </>
           }
 
         </div>

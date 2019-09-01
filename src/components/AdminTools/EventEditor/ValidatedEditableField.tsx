@@ -62,7 +62,7 @@ export default class ValidatedEditableField extends Component<Props, State> {
                   className={`input ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
                   placeholder={translate(placeHolder)}
                   defaultValue={defaultValue}
-                  onChange={event => this.handleChange(path, targetName, event.target.value)}
+                  onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                 />)
                 }
               </Translate>

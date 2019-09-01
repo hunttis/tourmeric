@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
@@ -78,7 +78,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                   {!isEmpty(categories) && Object.entries(categories).map(([categoryId, categoryData]) => {
 
                     if (editingCategory && categoryId !== editingCategory) {
-                      return <Fragment />;
+                      return <></>;
                     }
                     const categoryImage = _.find(uploadedCategoryLogos, { downloadURL: categoryData.image });
                     const categoryImageSmall = categoryData.imageSmall && _.find(uploadedCategoryLogos, { downloadURL: categoryData.imageSmall });
@@ -115,7 +115,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
 
 
             {editingCategory &&
-              <Fragment>
+              <>
                 <div className="column is-3" />
                 <div className="column is-6">
                   <CategoryEditorPanel
@@ -128,7 +128,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                   />
                 </div>
                 <div className="column is-3" />
-              </Fragment>
+              </>
             }
 
           </div>

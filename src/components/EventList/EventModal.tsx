@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import Moment from 'react-moment';
@@ -69,44 +69,44 @@ export const EventModal = ({
 
               <div className="column is-12">
                 {eventContent.date && (
-                  <Fragment>
+                  <>
                     <i className="fas fa-calendar" />
                     &nbsp;&nbsp;
                     <Moment format={dateFormat}>{eventContent.date}</Moment>
                     <br />
-                  </Fragment>
+                  </>
                 )}
 
                 {eventContent.time && (
-                  <Fragment>
+                  <>
                     <i className="fas fa-clock" />
                     &nbsp;&nbsp;{eventContent.time}
                     <br />
-                  </Fragment>
+                  </>
                 )}
 
                 {eventContent.format && (
-                  <Fragment>
+                  <>
                     <i className="fas fa-book" />
                     &nbsp;&nbsp;{eventContent.format}
                     <br />
-                  </Fragment>
+                  </>
                 )}
 
                 {eventContent.rulesLevel && (
-                  <Fragment>
+                  <>
                     <i className="fas fa-balance-scale" />
                     &nbsp;&nbsp;{eventContent.rulesLevel}
                     <br />
-                  </Fragment>
+                  </>
                 )}
 
                 {eventContent.entryFee && (
-                  <Fragment>
+                  <>
                     <i className="fas fa-money-bill-alt" />
                     &nbsp;&nbsp;{eventContent.entryFee}
                     <br />
-                  </Fragment>
+                  </>
                 )}
               </div>
 
@@ -124,7 +124,7 @@ export const EventModal = ({
               )}
 
               {eventContent.link && (
-                <Fragment>
+                <>
                   <div className="column is-12">
                     <div className="subtitle has-text-info">
                       <Translate id="link" />
@@ -143,11 +143,11 @@ export const EventModal = ({
                       </a>
                     </p>
                   </div>
-                </Fragment>
+                </>
               )}
 
               {!_.isEmpty(participations) && (
-                <Fragment>
+                <>
                   <div className="column is-12">
                     <div className="subtitle has-text-info">
                       <Translate id="participants" /> (
@@ -165,7 +165,7 @@ export const EventModal = ({
                       )}
                     />
                   </div>
-                </Fragment>
+                </>
               )}
             </div>
           </div>

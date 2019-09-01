@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
@@ -61,7 +61,7 @@ export default class CreditModal extends Component<Props, State> {
       const userCreditData = storecredit ? storecredit[userId] : {};
 
       return (
-        <Fragment>
+        <>
           <div className="box">
             {userCreditData &&
               <StoreCreditTable key={userId} userId={userId} creditData={userCreditData} />
@@ -73,7 +73,7 @@ export default class CreditModal extends Component<Props, State> {
               <label className="label"><Translate id="note" /></label>
               <Translate>
                 {(translate: any) => (
-                  <input className="input" type="text" value={this.state.creditFormNote} placeholder={translate('creditmessage')} onChange={event => this.changeCreditNote(event)} />
+                  <input className="input" type="text" value={this.state.creditFormNote} placeholder={translate('creditmessage')} onChange={(event) => this.changeCreditNote(event)} />
                 )}
               </Translate>
             </div>
@@ -81,7 +81,7 @@ export default class CreditModal extends Component<Props, State> {
               <label className="label"><Translate id="creditamount" /></label>
               <Translate>
                 {(translate: any) => (
-                  <input className="input" type="number" value={this.state.creditFormAmount} placeholder={translate('creditamount')} onChange={event => this.changeCreditAmount(event)} />
+                  <input className="input" type="number" value={this.state.creditFormAmount} placeholder={translate('creditamount')} onChange={(event) => this.changeCreditAmount(event)} />
                 )}
               </Translate>
             </div>
@@ -105,7 +105,7 @@ export default class CreditModal extends Component<Props, State> {
               </button>
             </div>
           </div>
-        </Fragment>
+        </>
       );
     }
     return <div><Translate id="loading" /></div>;

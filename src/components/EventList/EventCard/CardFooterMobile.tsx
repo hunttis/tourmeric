@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import EditableField from '../../Common/EditableField-container';
 import ParticipateButton from '../ParticipateButton-container';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const CardFooterMobile = ({ alreadyParticipated, thisParticipation, eventId, userId }: Props) => (
-  <Fragment>
+  <>
     {alreadyParticipated &&
       <div className="card-footer is-hidden-tablet">
         <div className="card-footer-item event-card-footer">
@@ -33,5 +33,5 @@ export const CardFooterMobile = ({ alreadyParticipated, thisParticipation, event
         <ParticipateButton eventId={eventId} />
       </div>
     </div>
-  </Fragment>
+  </>
 );

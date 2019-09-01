@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
@@ -14,7 +14,7 @@ export const HighlightEditorItem = ({ highlightEntry, openModal }: Props) => {
   const highlight = highlightEntry[1];
   const highlightImageExists = Boolean(highlight.image);
   return (
-    <Fragment>
+    <>
       <div key={highlightId} className="columns is-tablet card">
         <div className="column is-3">{moment(highlight.createDate).format('DD-MM-YYYY')}</div>
         <div className="column is-4">{highlight.name || 'No name'}</div>
@@ -42,7 +42,7 @@ export const HighlightEditorItem = ({ highlightEntry, openModal }: Props) => {
           }
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

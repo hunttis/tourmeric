@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import { History } from 'history';
@@ -105,11 +105,11 @@ export class CalendarDayModal extends Component<Props, State> {
       return { id: sortId, ...event };
     });
 
-    const sortedEvents = _.sortBy(parsedEvents, event => event.id);
+    const sortedEvents = _.sortBy(parsedEvents, (event) => event.id);
 
 
     return (
-      <Fragment>
+      <>
         <div className="modal is-active">
           <div
             className="modal-background"
@@ -194,7 +194,7 @@ export class CalendarDayModal extends Component<Props, State> {
               </p>
             )}
             {!_.isEmpty(eventsForDay) && (
-              <Fragment>
+              <>
                 <h2 className="subtitle">
                   <Translate id="eventsfortoday" />
                 </h2>
@@ -209,10 +209,10 @@ export class CalendarDayModal extends Component<Props, State> {
                     );
                   })}
                 </div>
-              </Fragment>
+              </>
             )}
             {!_.isEmpty(ongoingEventsForDay) && (
-              <Fragment>
+              <>
                 <h2 className="subtitle">
                   <Translate id="ongoingevents" />
                 </h2>
@@ -227,7 +227,7 @@ export class CalendarDayModal extends Component<Props, State> {
                     );
                   })}
                 </div>
-              </Fragment>
+              </>
             )}
           </div>
           <button
@@ -236,7 +236,7 @@ export class CalendarDayModal extends Component<Props, State> {
             onClick={() => backToCalendar()}
           />
         </div>
-      </Fragment>
+      </>
     );
   }
 }

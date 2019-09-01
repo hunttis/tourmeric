@@ -35,7 +35,7 @@ export default class EditableField extends Component<Props, State> {
 
   state = { saved: false, editing: false }
 
-  unmounting: boolean = false;
+  unmounting = false;
 
   componentWillUnmount() {
     this.unmounting = true;
@@ -71,7 +71,7 @@ export default class EditableField extends Component<Props, State> {
                   className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${inputClasses}`}
                   placeholder={translate(placeHolder)}
                   defaultValue={defaultValue}
-                  onChange={event => this.handleChange(path, targetName, event.target.value)}
+                  onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                 />)
                 }
               </Translate>

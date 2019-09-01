@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 
@@ -47,7 +47,7 @@ export default class InitialSetup extends Component<Props, State> {
       <div className="section">
         <div className="columns is-multiline">
           {!showSetupEnd &&
-            <Fragment>
+            <>
               <div className="column is-12">
                 <h1 className="title">
                   <Translate id="setupnotdoneyet" />
@@ -68,7 +68,7 @@ export default class InitialSetup extends Component<Props, State> {
                     <span className="icon is-small is-left"><i className="fas fa-envelope" /></span>
                     <Translate>
                       {(translate: any) => (
-                        <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={event => this.onChangeEmail(event)} />
+                        <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={(event) => this.onChangeEmail(event)} />
                       )}
                     </Translate>
                   </p>
@@ -76,17 +76,17 @@ export default class InitialSetup extends Component<Props, State> {
                     <span className="icon is-small is-left"><i className="fas fa-lock" /></span>
                     <Translate>
                       {(translate: any) => (
-                        <input placeholder={translate('passwordplaceholder')} className="input password" type="password" onChange={event => this.onChangePass(event)} />
+                        <input placeholder={translate('passwordplaceholder')} className="input password" type="password" onChange={(event) => this.onChangePass(event)} />
                       )}
                     </Translate>
                   </p>
                   <button className="button" onClick={() => this.onRegisterSubmit()}><Translate id="register" /></button>
                 </div>
               </div>
-            </Fragment>
+            </>
           }
           {this.state.errorState &&
-            <Fragment>
+            <>
               <div className="column is-12">
                 <h1 className="title">
                   <Translate id="almostthere" />
@@ -97,7 +97,7 @@ export default class InitialSetup extends Component<Props, State> {
                   <Translate id={String(this.state.errorState)} />
                 </div>
               </div>
-            </Fragment>
+            </>
           }
           {showSetupEnd &&
             <div className="column is-12">

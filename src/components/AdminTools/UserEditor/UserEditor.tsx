@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
@@ -128,7 +128,7 @@ export default class UserEditor extends Component<Props, State> {
     }
 
     if (showOnlyEnabledUsers) {
-      filtered = filtered.filter(user => user.value.active !== false);
+      filtered = filtered.filter((user) => user.value.active !== false);
     }
 
     return filtered;
@@ -155,16 +155,16 @@ export default class UserEditor extends Component<Props, State> {
 
     if (searchingWith === 'letter') {
       return (
-        <Fragment>
+        <>
           <Translate id="searchinglastnamesstartingwith" />&nbsp;<span className="has-text-success">{searchLetter}</span>
-        </Fragment>
+        </>
       );
     }
     if (searchingWith === 'phrase') {
       return (
-        <Fragment>
+        <>
           <Translate id="searchingfirstnamelastnameemailbyphrase" />&nbsp;<span className="has-text-success">{searchPhrase}</span>
-        </Fragment>
+        </>
       );
     }
     return <Translate id="showingallusers" />;
@@ -175,12 +175,12 @@ export default class UserEditor extends Component<Props, State> {
     const { modalOpenClass, modalUser, modalMode } = this.state;
 
     if (!isLoaded(users)) {
-      return <Fragment><Translate id="loading" /></Fragment>;
+      return <><Translate id="loading" /></>;
     }
     if (isLoaded(users) && !this.state.parseReady) {
       const currentAlphabet = this.parseAlphabetFromUsers();
       this.setState({ parseReady: true, searchingWith: 'letter', searchLetter: currentAlphabet[0] });
-      return <Fragment><Translate id="loading" /></Fragment>;
+      return <><Translate id="loading" /></>;
     }
     if (isLoaded(users) && isLoaded(storecredit)) {
       const currentUser = this.getUser(modalUser);
@@ -195,7 +195,7 @@ export default class UserEditor extends Component<Props, State> {
       const alphabet = this.parseAlphabetFromUsers();
 
       return (
-        <Fragment>
+        <>
           <div className={`modal ${modalOpenClass}`}>
             <div className="modal-background" onClick={() => this.closeModal()} />
             <div className="modal-content">
@@ -231,21 +231,21 @@ export default class UserEditor extends Component<Props, State> {
                   <label className="label"><Translate id="textsearch" /></label>
                 </div>
                 <div className="field-body">
-                  <input className="input" type="text" onChange={event => this.searchUsers(event)} />
+                  <input className="input" type="text" onChange={(event) => this.searchUsers(event)} />
                 </div>
               </div>
             </div>
             <div className="level-right">
-              <Fragment>{users.length} <Translate id="usersintotal" /></Fragment>
+              <>{users.length} <Translate id="usersintotal" /></>
               <br />
-              {(userList.length !== users.length) && <Fragment>{userList.length} <Translate id="hitswithsearch" /></Fragment>}
+              {(userList.length !== users.length) && <>{userList.length} <Translate id="hitswithsearch" /></>}
             </div>
           </div>
           <h2 className="subtitle">
             {this.filterInfoString()}
           </h2>
           <div className="columns is-multiline">
-            {userList.map(userEntry => (<UserEntry
+            {userList.map((userEntry) => (<UserEntry
               key={userEntry.key}
               userId={userEntry.key}
               openEditModal={() => this.openEditModal(userEntry.key)}
@@ -254,7 +254,7 @@ export default class UserEditor extends Component<Props, State> {
               userData={userEntry.value}
             />))}
           </div>
-        </Fragment>
+        </>
       );
     }
     return <div><Translate id="loading" /></div>;

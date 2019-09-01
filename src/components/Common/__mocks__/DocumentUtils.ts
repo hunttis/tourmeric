@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+
 
 export default function scrollIntoview(_elementId: string) {
   console.log('scrolling');

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import EditableField from '../../Common/EditableField';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }: Props) => (
-  <Fragment>
+  <>
     <h2 className="subtitle">
       <Translate id="regularopeninghours" />
     </h2>
@@ -98,5 +98,5 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
         </div>
       </div>
     </div>
-  </Fragment>
+  </>
 );

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { History } from 'history';
 import { Translate } from 'react-localize-redux';
 import { Dispatch, AnyAction } from 'redux';
@@ -94,7 +94,7 @@ export default class Login extends Component<Props, State> {
     const { errorState, passwordResetEmailSent } = this.state;
 
     return (
-      <Fragment>
+      <>
         <GenericSignupComponent
           firstTitle="loginwith"
           buttonTitle="login"
@@ -109,7 +109,7 @@ export default class Login extends Component<Props, State> {
           <div className="columns is-multiline">
 
             {!passwordResetEmailSent &&
-              <Fragment>
+              <>
                 <div className="column is-12">
                   <h1 className="title"><Translate id="forgotpassword" /></h1>
                 </div>
@@ -121,7 +121,7 @@ export default class Login extends Component<Props, State> {
                       <span className="icon is-small is-left"><i className="fas fa-envelope" /></span>
                       <Translate>
                         {(translate: (value: string) => string) => (
-                          <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={event => this.onChangeResetEmail(event)} />
+                          <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={(event) => this.onChangeResetEmail(event)} />
                         )}
                       </Translate>
                     </p>
@@ -129,20 +129,20 @@ export default class Login extends Component<Props, State> {
                   </div>
 
                 </div>
-              </Fragment>
+              </>
             }
             {passwordResetEmailSent &&
-              <Fragment>
+              <>
                 <div className="column is-1" />
 
                 <div className="column is-11">
                   <Translate id="resetemailsent" />
                 </div>
-              </Fragment>
+              </>
             }
           </div>
         </section>
-      </Fragment>
+      </>
     );
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
@@ -39,7 +39,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
 
     if (isLoaded(settings)) {
       return (
-        <Fragment>
+        <>
           <h1 className="title">
             <Translate id="footer" />
           </h1>
@@ -205,14 +205,14 @@ export default class PrivacyPolicyEditor extends Component<Props> {
               <div className="columns">
 
                 {hasAtLeastOneSponsor &&
-                  <Fragment>
+                  <>
                     <div className="column has-text-centered is-hidden-desktop">
                       <Translate id="sponsoredby" />:
                     </div>
                     <div className="column has-text-left is-hidden-mobile">
                       <Translate id="sponsoredby" />:
                     </div>
-                  </Fragment>
+                  </>
                 }
                 {_.get(settings, 'footer.first.image') &&
                   <div className="column is-vcentered">
@@ -254,7 +254,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
             -- Demo --
           </p>
 
-        </Fragment>
+        </>
       );
 
     }

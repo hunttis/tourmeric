@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import { isLoaded } from 'react-redux-firebase';
@@ -24,14 +24,14 @@ const FooterBar = ({ settings }: Props) => {
         <div className="columns">
 
           {hasAtLeastOneSponsor &&
-            <Fragment>
+            <>
               <div className="column has-text-centered is-hidden-desktop">
                 <Translate id="sponsoredby" />:
               </div>
               <div className="column has-text-left is-hidden-mobile">
                 <Translate id="sponsoredby" />:
               </div>
-            </Fragment>
+            </>
           }
           {(showingSponsors && _.get(settings, 'footer.first.image')) &&
             <div className="column is-vcentered">

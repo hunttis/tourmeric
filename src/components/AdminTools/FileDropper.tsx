@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
@@ -45,7 +45,7 @@ export default class FileDropper extends Component<Props> {
     const idleState = uploadStatus === 'idle';
     const statusClasses = `${uploadState && 'has-text-warning'} ${doneState && 'has-text-success'} ${idleState && ''}`;
     return (
-      <Fragment>
+      <>
         <Dropzone onDrop={this.onFilesDrop} className={`box ${statusClasses} is-fullwidth`}>
           {idleState &&
             <div className="fade-in">
@@ -65,7 +65,7 @@ export default class FileDropper extends Component<Props> {
             </div>
           }
         </Dropzone>
-      </Fragment>
+      </>
     );
   }
 

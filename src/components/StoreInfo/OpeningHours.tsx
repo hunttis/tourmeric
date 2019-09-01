@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment';
@@ -26,7 +26,7 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }: Props) =
     if (exception) {
       if (exception.status === 'closed') {
         return (
-          <Fragment>
+          <>
             <span className="has-text-danger">
               {isToday &&
                 <Translate id="exceptionallynotopentoday" />
@@ -36,11 +36,11 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }: Props) =
               }
             </span>
             : {exception.name}
-          </Fragment>
+          </>
         );
       }
       return (
-        <Fragment>
+        <>
           <span className="has-text-success">
             {isToday &&
               <Translate id="exceptionallyopentoday" />
@@ -51,30 +51,30 @@ export const OpeningHours = ({ day, settings, openinghoursexceptions }: Props) =
           </span>
           : {exception.openingHours}
           <p>{exception.name}</p>
-        </Fragment>
+        </>
       );
     }
     if (_.isEmpty(daysHours)) {
       return (
-        <Fragment>
+        <>
           {isToday &&
-            <Fragment><Translate id="closedtoday" /></Fragment>
+            <><Translate id="closedtoday" /></>
           }
           {!isToday &&
-            <Fragment><Translate id="closed" /></Fragment>
+            <><Translate id="closed" /></>
           }
-        </Fragment>
+        </>
       );
     }
     return (
-      <Fragment>
+      <>
         {isToday &&
-          <Fragment><Translate id="opentoday" /> : <span className="has-text-success">{daysHours}</span></Fragment>
+          <><Translate id="opentoday" /> : <span className="has-text-success">{daysHours}</span></>
         }
         {!isToday &&
-          <Fragment><Translate id="open" /> : <span className="has-text-success">{daysHours}</span></Fragment>
+          <><Translate id="open" /> : <span className="has-text-success">{daysHours}</span></>
         }
-      </Fragment>
+      </>
     );
 
   }

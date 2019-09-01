@@ -5,7 +5,7 @@ import { TourmericEvent } from '~/models/Events';
 import moment = require('moment');
 
 export function filterEventsByPublishedStatus(events: { key: string, value: TourmericEvent }[]) {
-  return events.filter(event => event.value.published);
+  return events.filter((event) => event.value.published);
 }
 
 export function filterEventsByCategory(events: { key: string, value: TourmericEvent }[], categoryFilter: string[]) {
@@ -13,7 +13,7 @@ export function filterEventsByCategory(events: { key: string, value: TourmericEv
     return events;
   }
 
-  const filteredEvents = events.filter(event => _.includes(categoryFilter, event.value.category));
+  const filteredEvents = events.filter((event) => _.includes(categoryFilter, event.value.category));
   return filteredEvents;
 }
 
@@ -30,9 +30,9 @@ export function parseInformationForMonthYear(month: string, year: string, filter
     const dayStringInEventFormat = moment(dayString, 'DD-MM-YYYY').format(
       'YYYY-MM-DD',
     );
-    
+
     const eventsForDay = filteredEvents ? filteredEvents.filter(
-      eventEntry => eventEntry.value.date === dayStringInEventFormat,
+      (eventEntry) => eventEntry.value.date === dayStringInEventFormat,
     ) : [];
 
     const eventsOnGoing = filteredEventsongoing ? filteredEventsongoing.filter((eventEntry) => {
@@ -68,6 +68,6 @@ export function parseInformationForMonthYear(month: string, year: string, filter
   for (let i = 0; i < emptyDays; i += 1) {
     calendar.push({ empty: true });
   }
-  _.forEach(days, day => calendar.push(day));
+  _.forEach(days, (day) => calendar.push(day));
   return calendar;
 }

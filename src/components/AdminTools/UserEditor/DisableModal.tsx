@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import { User } from '~/models/ReduxState';
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const DisableModal = ({ userId, userData }: Props) => (
-  <Fragment>
+  <>
     <div className="box">
       <h1 className="title"><Translate id="disablethisuser" /></h1>
       <ul>
@@ -43,5 +43,5 @@ export const DisableModal = ({ userId, userData }: Props) => (
         </div>
       </div>
     </div>
-  </Fragment>
+  </>
 );

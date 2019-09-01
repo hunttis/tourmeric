@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import firebase from 'firebase/app';
+import { History } from 'history';
 import { StoreCreditRow } from './StoreCreditRow';
 import { User } from '~/models/ReduxState';
-import { History } from 'history';
 import { TourmericStoreCreditData, StoreCreditCategory, CreditCategories } from '~/models/StoreCredit';
 
 interface Props {

@@ -63,7 +63,7 @@ export default class MainView extends Component<Props, State> {
     const wasProfileLoaded: boolean = isLoaded(this.props.profile);
     const isProfileLoaded: boolean = isLoaded(nextProps.profile);
     const isLoggedIn: boolean = isProfileLoaded && !isEmpty(nextProps.profile);
-    const acceptedPrivacyPolicy: boolean = !!_.get(nextProps.profile, 'acceptedPrivacyPolicy');
+    const acceptedPrivacyPolicy = !!_.get(nextProps.profile, 'acceptedPrivacyPolicy');
     const providerEmail = _.get(nextProps.profile, 'providerData[0].email', null);
     const emailOk = (!nextProps.profile.useOtherEmail && (providerEmail || nextProps.profile.email)) || (nextProps.profile.useOtherEmail && nextProps.profile.otherEmail);
     const namesOk = !!_.get(nextProps, 'profile.firstName', false) && !!_.get(nextProps, 'profile.lastName', false);

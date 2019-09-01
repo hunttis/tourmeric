@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
@@ -56,7 +56,7 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
 
     if (isLoaded(openinghoursexceptions)) {
       return (
-        <Fragment>
+        <>
           <h1 className="title"><Translate id="exceptionstoopeninghours" /></h1>
           {openinghoursexceptions &&
             <div className="box">
@@ -101,7 +101,7 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
                   <div className="control">
                     <SingleDatePicker
                       date={this.state.newExceptionDate ? moment(this.state.newExceptionDate, 'YYYY-MM-DD') : moment()}
-                      onDateChange={date => this.setState({ newExceptionDate: date!.format('YYYY-MM-DD') })}
+                      onDateChange={(date) => this.setState({ newExceptionDate: date!.format('YYYY-MM-DD') })}
                       focused={this.state.focused}
                       onFocusChange={({ focused }) => this.setState({ focused })}
                       id="exception-datepicker"
@@ -112,7 +112,7 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
                 </div>
                 <div className="field column">
                   <label className="label">{translate('name')}</label>
-                  <input className="input" type="text" value={this.state.newExceptionName} placeholder={translate('name')} onChange={event => this.setState({ newExceptionName: event.target.value })} />
+                  <input className="input" type="text" value={this.state.newExceptionName} placeholder={translate('name')} onChange={(event) => this.setState({ newExceptionName: event.target.value })} />
                 </div>
                 <div className="field column">
                   <label className="label">{translate('open')}?</label>
@@ -124,7 +124,7 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
                       <button onClick={() => this.setOpenStatus(STATUS_CLOSED)} className={`button is-danger ${this.state.newExceptionOpenStatus === STATUS_CLOSED && 'is-outlined'}`}>{translate('closed')}</button>
                     </div>
                     <div className="control">
-                      <input disabled={this.state.newExceptionOpenStatus === STATUS_CLOSED} className="input" type="text" value={this.state.newExceptionOpeningHours} placeholder={translate('openinghours')} onChange={event => this.setState({ newExceptionOpeningHours: event.target.value })} />
+                      <input disabled={this.state.newExceptionOpenStatus === STATUS_CLOSED} className="input" type="text" value={this.state.newExceptionOpeningHours} placeholder={translate('openinghours')} onChange={(event) => this.setState({ newExceptionOpeningHours: event.target.value })} />
                     </div>
                   </div>
                 </div>
@@ -139,7 +139,7 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
           </Translate>
 
 
-        </Fragment>
+        </>
 
       );
     }

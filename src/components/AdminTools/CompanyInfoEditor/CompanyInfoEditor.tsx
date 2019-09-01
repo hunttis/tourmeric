@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import EditableTextarea from '../../Common/EditableTextarea-container';
@@ -12,7 +12,7 @@ const CompanyInfoEditor = ({ settings }: Props) => {
 
   if (isLoaded(settings)) {
     return (
-      <Fragment>
+      <>
         <h1 className="title">
           <Translate id="companyinfo" />
         </h1>
@@ -27,7 +27,7 @@ const CompanyInfoEditor = ({ settings }: Props) => {
           rows={10}
         />
         {/* <button className="button" onClick={() => this.setAsUpdated()}><Translate id="setasupdated" /></button> */}
-      </Fragment>
+      </>
     );
 
   }

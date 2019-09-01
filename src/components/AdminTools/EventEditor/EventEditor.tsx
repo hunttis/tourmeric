@@ -88,14 +88,13 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
     const updatedField = { [field]: fieldStatus };
 
     const { eventContent } = this.props;
-    const newState = Object.assign({
-      nameOk: !_.isEmpty(eventContent.name),
+    const newState = { nameOk: !_.isEmpty(eventContent.name),
       categoryOk: !_.isEmpty(eventContent.category),
       formatOk: this.checkIfFormatOk(eventContent.format),
       dateOk: !_.isEmpty(eventContent.date),
       timeOk: !_.isEmpty(eventContent.time),
       entryFeeOk: !_.isEmpty(eventContent.entryFee),
-    }, updatedField);
+      ...updatedField };
 
     this.setState(newState);
   }
@@ -150,7 +149,7 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
 
     const selectedCategory = eventContent.category ? categories[eventContent.category] : { formats: null };
     const formatOptions = _.isEmpty(selectedCategory.formats) || !selectedCategory.formats ? [] : selectedCategory.formats.split(',');
-    const cleanedFormatOptions = formatOptions.map(option => _.trim(option));
+    const cleanedFormatOptions = formatOptions.map((option) => _.trim(option));
 
     return (
       <div className="column is-12 columns is-multiline editableevent box">
@@ -227,7 +226,7 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
           <h2 className="subtitle"><Translate id="date" /></h2>
           <SingleDatePicker
             date={this.state.date ? moment(this.state.date, 'YYYY-MM-DD') : moment()}
-            onDateChange={date => this.saveDate(date!.format('YYYY-MM-DD'))}
+            onDateChange={(date) => this.saveDate(date!.format('YYYY-MM-DD'))}
             focused={!!this.state.focused}
             onFocusChange={({ focused }) => this.setState({ focused: !!focused })}
             id={`${eventId}-datepicker`}
@@ -333,4 +332,3 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
     );
   }
 }
-

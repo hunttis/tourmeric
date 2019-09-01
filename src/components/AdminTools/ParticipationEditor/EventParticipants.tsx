@@ -36,7 +36,7 @@ export default class EventParticipants extends Component<Props> {
     const participantsForEvent = this.getParticipantsForEvent(eventId);
     const hasParticipants = !!participantsForEvent;
     const event = events[eventId];
-    const participants = hasParticipants ? _.sortBy(Object.entries(participantsForEvent), participantEntry => participantEntry[1].date) : [];
+    const participants = hasParticipants ? _.sortBy(Object.entries(participantsForEvent), (participantEntry) => participantEntry[1].date) : [];
 
     return (
       <div className="column is-12 columns is-multiline">

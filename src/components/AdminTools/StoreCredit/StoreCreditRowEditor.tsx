@@ -1,10 +1,10 @@
 import React from 'react';
-import {
-  StoreCreditCategory, TourmericStoreCreditData,
-} from '~/models/StoreCredit';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
+import {
+  StoreCreditCategory, TourmericStoreCreditData,
+} from '~/models/StoreCredit';
 
 interface Props {
   dataId: string;
@@ -14,8 +14,7 @@ interface Props {
   history: History;
 }
 
-export const StoreCreditRowEditor = ({ dataId, storecreditcategories, data, isAdmin, history }: Props) => {
-  console.log(dataId, data, isAdmin);
+export const StoreCreditRowEditor = ({ dataId, data, isAdmin, history }: Props) => {
   if (!isLoaded(data)) {
     return <div>Loading</div>;
   }

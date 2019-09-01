@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
@@ -61,7 +61,7 @@ export default class ValidatedTimeField extends Component<Props, State> {
     const timeOk = this.state.time && checkTimeStringFormat(this.state.time);
 
     return (
-      <Fragment>
+      <>
         <div className={`field ${isHorizontal && 'is-horizontal'}`}>
           <div className="field-label is-normal">
             <label className={`label ${!timeOk && 'has-text-danger'}`}>
@@ -78,7 +78,7 @@ export default class ValidatedTimeField extends Component<Props, State> {
                     className={`input ${!timeOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
                     placeholder={translate('hour')}
                     defaultValue={this.state.time}
-                    onChange={event => this.updateTime(event.target.value)}
+                    onChange={(event) => this.updateTime(event.target.value)}
                   />)
                   }
                 </Translate>
@@ -88,7 +88,7 @@ export default class ValidatedTimeField extends Component<Props, State> {
             </div>
           </div>
         </div>
-      </Fragment>
+      </>
     );
   }
 }

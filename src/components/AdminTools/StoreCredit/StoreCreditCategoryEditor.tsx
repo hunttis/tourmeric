@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
@@ -14,7 +14,7 @@ export const StoreCreditCategoryEditor = ({ storecreditcategories }: Props) => (
     <h1 className="title"><Translate id="storecreditcategories" /></h1>
     {(!storecreditcategories || !isLoaded(storecreditcategories)) && <div><Translate id="loading" /></div>}
     {(isLoaded(storecreditcategories)) &&
-      <Fragment>
+      <>
         <h2 className="subtitle"><Translate id="ifyouwanttouseacategorygiveitaname" /></h2>
         <h2 className="subtitle"><Translate id="namelesscategoriesarehidden" /></h2>
         <div className="columns is-multiline">
@@ -69,7 +69,7 @@ export const StoreCreditCategoryEditor = ({ storecreditcategories }: Props) => (
             />
           </div>
         </div>
-      </Fragment>
+      </>
     }
 
   </section>

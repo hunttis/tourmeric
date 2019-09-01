@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import { Settings } from '~/models/Settings';
@@ -32,7 +32,7 @@ export default class PrivacyPolicy extends Component<Props> {
     const privacyPolicyContent = _.get(settings, 'privacyPolicy', '');
 
     return (
-      <Fragment>
+      <>
 
         <div key="privacyPolicyModal" className={`modal ${shouldModalBeOpen}`}>
           <div className="modal-background" onClick={() => this.closeModal()} />
@@ -53,7 +53,7 @@ export default class PrivacyPolicy extends Component<Props> {
         <button className="button" onClick={() => this.openModal()}>
           <Translate id="privacypolicy" />
         </button>
-      </Fragment>
+      </>
     );
   }
 

@@ -38,7 +38,7 @@ export default class EditableVerticalField extends Component<Props, State> {
     }
   }, 2000);
 
-  unmounting: boolean = false;
+  unmounting = false;
 
   constructor(props: Props) {
     super(props);
@@ -79,7 +79,7 @@ export default class EditableVerticalField extends Component<Props, State> {
                 className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${emptyClass && !fieldValue ? 'is-danger' : ''} ${disabled && 'has-text-info'}`}
                 placeholder={translate(placeHolder)}
                 defaultValue={defaultValue}
-                onChange={event => this.handleChange(path, targetName, event.target.value)}
+                onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                 disabled={disabled}
               />)
               }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import firebase from 'firebase/app';
 
 import _ from 'lodash';
@@ -73,7 +73,7 @@ export const EditorForm = ({
         </div>
 
         {!_.isEmpty(cleanedFormatOptions) &&
-          <Fragment>
+          <>
             <div className="column is-12">
               <SelectElement
                 isOk={!_.isEmpty(event.format)}
@@ -89,7 +89,7 @@ export const EditorForm = ({
             <div className="column is-12 is-hidden-mobile">
               <hr />
             </div>
-          </Fragment>
+          </>
         }
 
         <div className="column is-12">
@@ -239,7 +239,7 @@ export const EditorForm = ({
                     <div className="field">
                       <div className="control">
                         <span className="tags are-medium">
-                          {missingFields.map(field => <span className="tag is-warning has-text-black" key={`missingData-${field}`}>{translate(field)}</span>)}
+                          {missingFields.map((field) => <span className="tag is-warning has-text-black" key={`missingData-${field}`}>{translate(field)}</span>)}
                         </span>
                       </div>
                     </div>
@@ -275,4 +275,4 @@ export const EditorForm = ({
     </div>
     <div className="column is-hidden-mobile">&nbsp;</div>
   </div>
-  );
+);

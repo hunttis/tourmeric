@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import moment from 'moment';
+import { History } from 'history';
 import { EditableEventContainer as EditableEvent } from './EditableEvent-container';
 import { Category } from '~/models/Category';
-import { History } from 'history';
 import { TourmericEvent } from '~/models/Events';
 
 interface Props {
@@ -46,7 +46,7 @@ export class AdminEventList extends Component<Props, State> {
         </label>
         <Translate>
           {(translate: any) => (
-            <input className="input" type="text" value={this.state.creditFormNote} placeholder={translate('filtereventsbynameorcategory')} onChange={event => this.changeFilter(event.target.value)} />
+            <input className="input" type="text" value={this.state.creditFormNote} placeholder={translate('filtereventsbynameorcategory')} onChange={(event) => this.changeFilter(event.target.value)} />
           )}
         </Translate>
       </div>
@@ -85,7 +85,7 @@ export class AdminEventList extends Component<Props, State> {
 
   listEditableEvents(eventList: [string, TourmericEvent][]) {
 
-    const sortedList = _.sortBy(eventList, [e => e[1].date]).reverse();
+    const sortedList = _.sortBy(eventList, [(e) => e[1].date]).reverse();
     const filteredList = this.filterList(sortedList);
     const result = filteredList.map((tournament, index) => <EditableEvent tournamentEntry={tournament} key={tournament[0]} index={index} />);
     return (
@@ -114,7 +114,7 @@ export class AdminEventList extends Component<Props, State> {
     }
 
     const sortedEvents: [string, TourmericEvent][] = _.sortBy(Object.entries(events), ['date', 'time']);
-    const filteredEvents: [string, TourmericEvent][] = sortedEvents.filter(event => !!event[1].published === !!published);
+    const filteredEvents: [string, TourmericEvent][] = sortedEvents.filter((event) => !!event[1].published === !!published);
 
     return (
       <div>

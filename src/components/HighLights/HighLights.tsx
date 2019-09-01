@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import _ from 'lodash';
 import { HighLight } from '~/models/ReduxState';
 
 interface Props {
@@ -63,8 +62,8 @@ export default class HighLights extends Component<Props, State> {
 
   findActiveKeys(highlights: { [key: string]: HighLight }): string[] {
     const activeKeys = Object.entries(highlights)
-      .filter(item => item[1].active)
-      .map(item => item[0]);
+      .filter((item) => item[1].active)
+      .map((item) => item[0]);
 
     return activeKeys.sort();
   }
@@ -99,7 +98,7 @@ export default class HighLights extends Component<Props, State> {
       const highlight = highlights[highlightId];
 
       return (
-        <Fragment>
+        <>
           {this.findActiveKeys(highlights).map((hilite, index) => <div key={`hiddenhilite-${index}`} className="is-hidden"><img alt="" src={highlights[hilite!].image} /></div>)}
           <div className="highlights fadeIn card">
             <figure className="image is-3by1">
@@ -109,18 +108,18 @@ export default class HighLights extends Component<Props, State> {
           <div className="has-text-right is-higher">
             {this.highlightButtons()}
           </div>
-        </Fragment>
+        </>
       );
     }
 
     return (
-      <Fragment>
+      <>
         <div className="highlights fadeIn card">
           <figure className="image is-3by1">
             <button className="is-loading" />
           </figure>
         </div>
-      </Fragment>
+      </>
     );
 
   }

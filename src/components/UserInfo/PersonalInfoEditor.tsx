@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import _ from 'lodash';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const PersonalInfoEditor = ({ profile, auth }: Props) => (
-  <Fragment>
+  <>
     <h1 className="title"><Translate id="personalinfo" /></h1>
     <div className="columns is-multiline">
 
@@ -129,5 +129,5 @@ export const PersonalInfoEditor = ({ profile, auth }: Props) => (
       </div>
 
     </div>
-  </Fragment>
+  </>
 );

@@ -65,11 +65,11 @@ export default class ValidatedDropdownForArray extends Component<Props, State> {
                 {(translate: any) => (
                   <select
                     defaultValue={selectedValue}
-                    onChange={event => this.handleChange(path, targetName, event.target.value)}
+                    onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                     className={`input ${!isOk && 'is-danger'}`}
                   >
                     <option value="">{translate('select')}</option>
-                    {dropdownItems.map(category => (
+                    {dropdownItems.map((category) => (
                       <option key={category} value={category}>
                         {category}
                       </option>
