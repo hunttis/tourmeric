@@ -66,7 +66,7 @@ export default class ValidatedDropdown extends Component<Props, State> {
                   {(translate: any) => (
                     <select
                       defaultValue={selectedValue}
-                      onChange={event => this.handleChange(path, targetName, event.target.value)}
+                      onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                       className={`select ${!isOk && 'is-danger'}`}
                     >
                       <option value="">{translate('select')}</option>

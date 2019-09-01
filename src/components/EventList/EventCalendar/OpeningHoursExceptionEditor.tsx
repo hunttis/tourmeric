@@ -65,7 +65,7 @@ export class OpeningHoursExceptionEditor extends Component<OpeningHoursException
                         type="text"
                         className="input"
                         defaultValue={exceptionForToday ? exceptionForToday.name : ''}
-                        onChange={event => this.delayedSave(pathForToday, 'name', event.target.value)}
+                        onChange={(event) => this.delayedSave(pathForToday, 'name', event.target.value)}
                       />
                     </p>
                   </div>
@@ -85,7 +85,7 @@ export class OpeningHoursExceptionEditor extends Component<OpeningHoursException
                       type="text"
                       defaultValue={exceptionForToday ? exceptionForToday.openingHours : ''}
                       placeholder={translate('openinghoursexample')}
-                      onChange={event => this.delayedSave(pathForToday, 'openingHours', event.target.value)}
+                      onChange={(event) => this.delayedSave(pathForToday, 'openingHours', event.target.value)}
                     />
                   </div>
                 </div>

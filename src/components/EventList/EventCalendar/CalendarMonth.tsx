@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import moment from 'moment/min/moment-with-locales';
 import momentEn from 'moment';
 import _ from 'lodash';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openinghoursexceptions, settings }: Props) => (
-  <Fragment>
+  <>
     {chunkedCalendar.map((week, weekIndex) => (
       <div key={`calendar-week-${weekIndex}`} className="column is-12 columns is-marginless">
         {week.map((day, dayIndex) => {
@@ -34,7 +34,7 @@ export const CalendarMonth = ({ chunkedCalendar, categories, clickDay, openingho
       </div>
     ))
     }
-  </Fragment>
+  </>
 );
 
 interface CalendarDay {

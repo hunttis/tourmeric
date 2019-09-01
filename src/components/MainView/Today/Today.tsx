@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment/min/moment-with-locales';
 import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
@@ -149,7 +149,7 @@ export default class Today extends Component<Props, Partial<State>> {
   renderTodaysEventItems(todaysEvents: { key: string, value: TourmericEvent }[]) {
     if (!_.isEmpty(todaysEvents)) {
       return (
-        <Fragment>
+        <>
           <div className="column is-2" />
           <div className="column is-4">
             <h1 className="title"><Translate id="todaysevents" /></h1>
@@ -167,11 +167,11 @@ export default class Today extends Component<Props, Partial<State>> {
 
             })}
           </div>
-        </Fragment>
+        </>
       );
     }
     return (
-      <Fragment>
+      <>
         <div className="column is-2" />
         <div className="column is-4">
           <h1 className="title"><Translate id="todaysevents" /></h1>
@@ -179,14 +179,14 @@ export default class Today extends Component<Props, Partial<State>> {
           <p>&nbsp;</p>
           <button className="button" onClick={() => this.switchView('future')}><Translate id="shownext7days" /></button>
         </div>
-      </Fragment>
+      </>
     );
   }
 
   renderTodaysOngoingEventItems(eventsongoing: { key: string, value: TourmericEvent }[]) {
     if (!_.isEmpty(eventsongoing)) {
       return (
-        <Fragment>
+        <>
           <div className="column is-4">
             <h1 className="title"><Translate id="ongoingevents" /></h1>
             {eventsongoing.map((eventEntry) => {
@@ -204,17 +204,17 @@ export default class Today extends Component<Props, Partial<State>> {
             })}
           </div>
           <div className="column is-2" />
-        </Fragment>
+        </>
       );
     }
     return (
-      <Fragment>
+      <>
         <div className="column is-4">
           <h1 className="title"><Translate id="ongoingevents" /></h1>
           <div className="has-text-warning"><Translate id="noongoingeventstoday" /></div>
         </div>
         <div className="column is-2" />
-      </Fragment>
+      </>
     );
   }
 
@@ -222,7 +222,7 @@ export default class Today extends Component<Props, Partial<State>> {
     if (!_.isEmpty(nextEvents)) {
 
       return (
-        <Fragment>
+        <>
           <div className="column is-2" />
           <div className="column is-4">
             <h1 className="title"><Translate id="nextevents" /></h1>
@@ -242,11 +242,11 @@ export default class Today extends Component<Props, Partial<State>> {
             <div><Translate id="toseeeventsfurtherinthefuturegotoeventspage" /></div>
 
           </div>
-        </Fragment>
+        </>
       );
     }
     return (
-      <Fragment>
+      <>
         <div className="column is-2" />
         <div className="column is-4">
           <h1 className="title"><Translate id="nextevents" /></h1>
@@ -257,7 +257,7 @@ export default class Today extends Component<Props, Partial<State>> {
           <button className="button" onClick={() => this.switchView('today')}><Translate id="showeventstoday" /></button>
 
         </div>
-      </Fragment>
+      </>
     );
 
   }
@@ -266,7 +266,7 @@ export default class Today extends Component<Props, Partial<State>> {
     if (!_.isEmpty(nextOngoingEvents)) {
 
       return (
-        <Fragment>
+        <>
           <div className="column is-4">
             <h1 className="title"><Translate id="ongoingnext7days" /></h1>
             {nextOngoingEvents.map((eventEntry) => {
@@ -282,11 +282,11 @@ export default class Today extends Component<Props, Partial<State>> {
             })}
           </div>
           <div className="column is-2" />
-        </Fragment>
+        </>
       );
     }
     return (
-      <Fragment>
+      <>
         <div className="column is-4">
           <h1 className="title"><Translate id="nextevents" /></h1>
           <div className="has-text-warning"><Translate id="noeventsinnextsevendays" /></div>
@@ -297,7 +297,7 @@ export default class Today extends Component<Props, Partial<State>> {
         </div>
         <div className="column is-2" />
 
-      </Fragment>
+      </>
     );
 
   }

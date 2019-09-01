@@ -51,7 +51,7 @@ export default class ParticipationEditor extends Component<Props, Partial<State>
 
     if (isLoaded(events) && !isEmpty(events) && isLoaded(categories) && isLoaded(participations) && isLoaded(users)) {
       const publishedEvents = Object.values(events)
-        .filter(event => event.value.published)
+        .filter((event) => event.value.published)
         .filter((event) => {
           const eventDate = event.value.date;
           const occursThisMonth = this.state.chosenMonth.isSame(moment(eventDate, 'YYYY-MM-DD'), 'month');

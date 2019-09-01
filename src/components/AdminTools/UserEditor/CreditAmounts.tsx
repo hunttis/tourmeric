@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
@@ -17,9 +17,9 @@ interface StoreCredit {
 }
 
 export const CreditAmounts = ({ userId, storecredit, storecreditcategories }: CreditAmountsProps) => (
-  <Fragment>
+  <>
     {isLoaded(storecreditcategories) &&
-      <Fragment>
+      <>
         {Object.entries(storecreditcategories).map((categoryEntry) => {
           const categoryKey = categoryEntry[0];
           const categoryValue = categoryEntry[1];
@@ -39,10 +39,10 @@ export const CreditAmounts = ({ userId, storecredit, storecreditcategories }: Cr
         <li className="is-all-caps">
           <strong><Translate id="total" />: {_.reduce(storecredit[userId], (totalForUser, data) => totalForUser + data.value, 0).toFixed(2)} €</strong>
         </li>
-      </Fragment>
+      </>
     }
     {!isLoaded(storecreditcategories) &&
       <div>Loading</div>
     }
-  </Fragment>
+  </>
 );

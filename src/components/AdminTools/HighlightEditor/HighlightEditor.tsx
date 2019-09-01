@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import firebase from 'firebase/app';
@@ -96,7 +96,7 @@ export default class HighlightEditor extends Component<Props, State> {
 
     if (isLoaded(highlights) && isLoaded(uploadedHighlightBanners)) {
       return (
-        <Fragment>
+        <>
 
           <div className="level is-mobile">
             <div className="level-left">
@@ -131,7 +131,7 @@ export default class HighlightEditor extends Component<Props, State> {
 
           {isEmpty(highlights) && <div><Translate id="nohighlightscreated" /></div>}
           {!isEmpty(uploadedHighlightBanners) && this.listHighlightImages()}
-        </Fragment>
+        </>
       );
 
     }

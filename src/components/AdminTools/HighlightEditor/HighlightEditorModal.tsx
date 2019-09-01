@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
@@ -22,7 +22,7 @@ export default class HighlightEditorModal extends Component<Props> {
     const { highlight, highlightId, uploadedHighlightBanners } = this.props;
 
     return (
-      <Fragment>
+      <>
         <div className="box">
 
           <EditableField
@@ -57,7 +57,7 @@ export default class HighlightEditorModal extends Component<Props> {
           <div className="is-hidden">ID: {highlightId}</div>
         </div>
 
-      </Fragment>
+      </>
     );
   }
 }

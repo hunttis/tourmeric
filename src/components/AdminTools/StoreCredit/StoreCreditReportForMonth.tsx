@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Translate } from 'react-localize-redux';
 import moment from 'moment';
 import _ from 'lodash';
@@ -14,9 +14,9 @@ interface Props {
 }
 
 export const StoreCreditReportForMonth = ({ users, data, storecreditcategories, userid }: Props) => {
-  const items = _.sortBy(data[1], item => moment(item.date).format('YYYYMMDD'));
+  const items = _.sortBy(data[1], (item) => moment(item.date).format('YYYYMMDD'));
   return (
-    <Fragment>
+    <>
       <table className="table is-fullwidth">
         <thead>
           <tr>
@@ -67,6 +67,6 @@ export const StoreCreditReportForMonth = ({ users, data, storecreditcategories, 
           })}
         </tbody>
       </table>
-    </Fragment>
+    </>
   );
 };

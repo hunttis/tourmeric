@@ -223,40 +223,40 @@ export const mockParticipations: {[key: string]: Participation} = {
 };
 
 export const mockCategories: {[key: string]: Category} = {
-category1: {
-  abbreviation: 'WH40K',
-  logo: '1527227370219137123',
-  name: 'Warhammer 40,000',
-  type: 'Miniatures',
-},
-category2: {
-  abbreviation: 'MtG',
-  logo: '152722965771313789',
-  name: 'Magic: The Gathering',
-  type: 'TCG',
-},
-'-LAlvCmIWNzYKpa7-7HI': {
-  abbreviation: 'Lautapelit',
-  logo: '152719272536668394',
-  name: 'Lautapelit / Board games',
-  type: 'Boardgame',
-},
-'-LCmESny8m9JVEFQ_qOt': {
-  abbreviation: 'PKM',
-  logo: '152722747904159438',
-  name: 'Pokémon',
-  type: 'TCG',
-},
-'-LDImTAGxkzrorL0tQdi': {
-  abbreviation: 'VG',
-  logo: '152719372155055672',
-  name: 'Videogames',
-  type: 'Videogames',
-},
-'-LDIw-1LFgiM0EJZGfus': {
-  abbreviation: 'Necromunda',
-  logo: '15271953483568546',
-  name: 'Necromunda',
-  type: 'Miniatures',
-},
+  category1: {
+    abbreviation: 'WH40K',
+    logo: '1527227370219137123',
+    name: 'Warhammer 40,000',
+    type: 'Miniatures',
+  },
+  category2: {
+    abbreviation: 'MtG',
+    logo: '152722965771313789',
+    name: 'Magic: The Gathering',
+    type: 'TCG',
+  },
+  '-LAlvCmIWNzYKpa7-7HI': {
+    abbreviation: 'Lautapelit',
+    logo: '152719272536668394',
+    name: 'Lautapelit / Board games',
+    type: 'Boardgame',
+  },
+  '-LCmESny8m9JVEFQ_qOt': {
+    abbreviation: 'PKM',
+    logo: '152722747904159438',
+    name: 'Pokémon',
+    type: 'TCG',
+  },
+  '-LDImTAGxkzrorL0tQdi': {
+    abbreviation: 'VG',
+    logo: '152719372155055672',
+    name: 'Videogames',
+    type: 'Videogames',
+  },
+  '-LDIw-1LFgiM0EJZGfus': {
+    abbreviation: 'Necromunda',
+    logo: '15271953483568546',
+    name: 'Necromunda',
+    type: 'Miniatures',
+  },
 };

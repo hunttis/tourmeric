@@ -121,7 +121,7 @@ export default class NewsEditor extends Component<Props, State> {
     const { uploadedNewsImages } = this.props;
     const { openNewsModalId } = this.state;
     return (
-      <Fragment>
+      <>
         {news && Object.entries(news).map((newsEntry: [string, SingleNewsItem], index: number) => {
           const newsId = newsEntry[0];
           const newsItem = newsEntry[1];
@@ -196,7 +196,7 @@ export default class NewsEditor extends Component<Props, State> {
             </div>
           );
         })}
-      </Fragment>
+      </>
     );
 
   }
@@ -246,7 +246,7 @@ export default class NewsEditor extends Component<Props, State> {
 
     if (isLoaded(news) && isLoaded(uploadedNewsImages)) {
       return (
-        <Fragment>
+        <>
           <div className="level is-mobile">
             <div className="level-left">
               <button className="button" onClick={() => this.createNewsItem()}><Translate id="newnewsitem" /></button>
@@ -259,7 +259,7 @@ export default class NewsEditor extends Component<Props, State> {
           {!isEmpty(news) && this.listNews(news)}
           {isEmpty(news) && <div><Translate id="nonewscreatedyet" /></div>}
           {!isEmpty(uploadedNewsImages) && this.listNewsImages()}
-        </Fragment>
+        </>
       );
 
     }

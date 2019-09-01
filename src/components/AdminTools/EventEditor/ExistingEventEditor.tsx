@@ -5,10 +5,10 @@ import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 
+import { History } from 'history';
 import EditorForm from './EditorForm-container';
 import { Category } from '~/models/Category';
 import { TourmericEvent } from '~/models/Events';
-import { History } from 'history';
 
 interface Props {
   categories: {[key: string]: Category};
@@ -224,4 +224,3 @@ export default class ExistingEventEditor extends Component<Props, State> {
 
   }
 }
-

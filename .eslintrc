@@ -8,7 +8,8 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": "./tsconfig.json"
   },
   "env": {
     "es6": true,
@@ -59,6 +60,7 @@
     "react/forbid-prop-types": 0,
     "react/require-default-props": 0,
     "react/sort-comp": 0,
+    "react/jsx-curly-newline": 0,
     "require-await": 2,
     "max-len": 0,
     "jsx-a11y/accessible-emoji": 0,
@@ -71,13 +73,16 @@
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/control-has-associated-label": 0,
     "react/no-array-index-key": 0,
+    "react/state-in-constructor": 0,
     "no-use-before-define": 0,
     "@typescript-eslint/explicit-member-accessibility": 0,
     "@typescript-eslint/indent": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/member-delimiter-style": [
       "error",
       {
@@ -92,6 +97,7 @@
       }
     ],
     "import/no-unresolved": 0,
+    "no-unused-vars": 2,
     "object-curly-newline": [
       "error",
       {

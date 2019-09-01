@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import { OpeningHourRow } from './OpeningHourRow';
@@ -13,7 +13,7 @@ export const StoreInfo = ({ settings }: Props) => {
   if (isLoaded(settings) && !isEmpty(settings.location) && settings.location) {
     const { openingHours, location } = settings;
     return (
-      <Fragment>
+      <>
         <div className="section">
 
           <h1 className="title">
@@ -25,16 +25,16 @@ export const StoreInfo = ({ settings }: Props) => {
             <div className="column is-6">
               {location.phone &&
                 <div className="box">
-                  <Fragment>
+                  <>
                     <h2 className="subtitle">
                       <span className="icon"><i className="fas fa-phone" /></span>&nbsp;&nbsp;<Translate id="phone" />
                     </h2>
                     <div><a href={`tel:${location.phone}`}>{location.phone}</a></div>
-                  </Fragment>
+                  </>
                 </div>
               }
               {location.email &&
-                <Fragment>
+                <>
                   <div className="box">
 
                     <h2 className="subtitle">
@@ -42,18 +42,18 @@ export const StoreInfo = ({ settings }: Props) => {
                     </h2>
                     <div><a href={`mailto:${location.email}`}>{location.email}</a></div>
                   </div>
-                </Fragment>
+                </>
               }
             </div>
             <div className="column is-6">
               <div className="box">
                 {location.address &&
-                  <Fragment>
+                  <>
                     <h2 className="subtitle">
                       <span className="icon"><i className="fas fa-address-book" /></span>&nbsp;&nbsp;<Translate id="address" />
                     </h2>
                     {location.address.split('\n').map((line, index) => <div key={index}>{line}&nbsp;</div>)}
-                  </Fragment>
+                  </>
                 }
               </div>
             </div>
@@ -109,7 +109,7 @@ export const StoreInfo = ({ settings }: Props) => {
           </div>
 
         </div>
-      </Fragment>
+      </>
     );
   }
   if (isLoaded(settings) && isEmpty(settings.location)) {

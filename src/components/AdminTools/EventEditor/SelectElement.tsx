@@ -67,13 +67,13 @@ export default class SelectElement extends Component<Props> {
             dropdownItems={dropdownItems}
             nameProp={nameProp}
             selectedValue={selectedValue}
-            onSelectionClick={selectionId => this.handleChange(path, targetName, selectionId)}
+            onSelectionClick={(selectionId) => this.handleChange(path, targetName, selectionId)}
           />}
           {!isLocked && <SelectionButtons
             dropdownItems={dropdownItems}
             nameProp={nameProp}
             selectedValue={selectedValue}
-            onSelectionClick={selectionId => this.handleChange(path, targetName, selectionId)}
+            onSelectionClick={(selectionId) => this.handleChange(path, targetName, selectionId)}
           />}
         </div>
       </div>

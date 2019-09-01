@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 
 import { adminparticipate } from '~/api/eventApi';
@@ -32,7 +32,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
         </div>
         <Translate>
           {(translate: any) => (
-            <Fragment>
+            <>
               <div className="column is-5">
                 <div className="field">
                   <div className="field-label">
@@ -69,7 +69,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
                   </div>
                 </div>
               </div>
-            </Fragment>
+            </>
           )}
         </Translate>
 

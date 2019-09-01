@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import moment from 'moment/min/moment-with-locales';
 import momentEn from 'moment';
 import _ from 'lodash';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const SmallCalendarDatePicker = ({ chunkedCalendar, clickDay, openinghoursexceptions, settings, selectedDay, selectedEndDay }: Props) => (
-  <Fragment>
+  <>
     {chunkedCalendar.map((week, weekIndex) => (
       <div key={`calendar-week-${weekIndex}`} className="column is-12 columns is-marginless is-paddingless is-mobile">
         {week.map((day, dayIndex) => {
@@ -69,5 +69,5 @@ export const SmallCalendarDatePicker = ({ chunkedCalendar, clickDay, openinghour
         })}
       </div>
     ))}
-  </Fragment>
+  </>
 );

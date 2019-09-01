@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
@@ -49,7 +49,7 @@ export default class StoreInfoEditor extends Component<Props, State> {
 
   disableLogo = () => {
     // TODO Fix
-    console.log('DOES NOTHING!');
+    // console.log('DOES NOTHING!');
   }
 
   todaysOpeningHours() {
@@ -82,7 +82,7 @@ export default class StoreInfoEditor extends Component<Props, State> {
   }
 
   toggleOpeningHourExceptions() {
-    this.setState(prevState => ({ openingHoursExceptionEditorOpen: !prevState.openingHoursExceptionEditorOpen }));
+    this.setState((prevState) => ({ openingHoursExceptionEditorOpen: !prevState.openingHoursExceptionEditorOpen }));
   }
 
   render() {
@@ -92,7 +92,7 @@ export default class StoreInfoEditor extends Component<Props, State> {
     if (isLoaded(settings)) {
       const { openingHours, location, introText } = settings;
       return (
-        <Fragment>
+        <>
           <h1 className="title">
             <Translate id="storeinfo" />
           </h1>
@@ -217,7 +217,7 @@ export default class StoreInfoEditor extends Component<Props, State> {
               </div>
             }
           </div>
-        </Fragment>
+        </>
       );
 
     }

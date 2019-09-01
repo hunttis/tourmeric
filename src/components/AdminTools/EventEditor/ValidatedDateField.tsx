@@ -93,7 +93,7 @@ export default class ValidatedDateField extends Component<Props, Partial<State>>
     for (let i = 0; i < emptyDays; i += 1) {
       calendar.push({ empty: true });
     }
-    _.forEach(days, day => calendar.push(day));
+    _.forEach(days, (day) => calendar.push(day));
     return calendar;
   }
 
@@ -195,7 +195,7 @@ export default class ValidatedDateField extends Component<Props, Partial<State>>
             </div>
             <SmallCalendarDatePicker
               chunkedCalendar={chunkedCalendar}
-              clickDay={day => this.clickDay(day)}
+              clickDay={(day) => this.clickDay(day)}
               openinghoursexceptions={openinghoursexceptions}
               settings={settings}
               selectedDay={eventDate ? eventDate.format('YYYY-MM-DD') : null}

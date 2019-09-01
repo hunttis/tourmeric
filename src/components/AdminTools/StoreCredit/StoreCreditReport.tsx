@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
@@ -49,7 +49,7 @@ export default class StoreCreditReport extends Component<Props, State> {
       return <div><Translate id="nocreditevents" /></div>;
     } if (isLoaded(users) && isLoaded(storecreditcategories) && isLoaded(storecredit)) {
 
-      const creditEvents = _.flatMap(Object.entries(storecredit).map(storeCreditEntry => _.flatMap(Object.entries(storeCreditEntry[1]).map((storeCreditEventEntry) => {
+      const creditEvents = _.flatMap(Object.entries(storecredit).map((storeCreditEntry) => _.flatMap(Object.entries(storeCreditEntry[1]).map((storeCreditEventEntry) => {
         const userId = storeCreditEntry[0];
         const storeCreditEvent = storeCreditEventEntry[1];
         const { category, value, date, creditAddedByName, note } = storeCreditEvent;
@@ -58,7 +58,7 @@ export default class StoreCreditReport extends Component<Props, State> {
       }))));
 
       const grouped = _.groupBy(creditEvents, 'category');
-      const groupedByMonth = _.groupBy(creditEvents, event => moment(event.date).format('YYYYMM'));
+      const groupedByMonth = _.groupBy(creditEvents, (event) => moment(event.date).format('YYYYMM'));
 
       const totals = Object.entries(grouped).map((groupEntry) => {
         const category = groupEntry[0];
@@ -82,7 +82,7 @@ export default class StoreCreditReport extends Component<Props, State> {
               </tr>
             </thead>
             <tbody>
-              {totals.map(total => (
+              {totals.map((total) => (
                 <tr key={`totalrow-${total.category}`}>
                   <td className={`${total.category && `has-text-${mapCategoryToColor(total.category)}`}`}>
                     <i className="fas fa-circle" />
@@ -138,7 +138,7 @@ export default class StoreCreditReport extends Component<Props, State> {
                       </tr>
                     </thead>
                     <tbody>
-                      {monthTotals.map(total => (
+                      {monthTotals.map((total) => (
                         <tr key={`totalrow-${dateString}-${total.category}`}>
                           <td className={`${total.category && `has-text-${mapCategoryToColor(total.category)}`}`}>
                             <i className="fas fa-circle" />
@@ -159,7 +159,7 @@ export default class StoreCreditReport extends Component<Props, State> {
           </div>
 
           {this.state.detailedReport &&
-            <Fragment>
+            <>
               <h1 id="detailedreport" className="title"><Translate id="showingdetails" /> <span className="has-text-info">{moment(this.state.detailedReport!, 'YYYYMM').format('MMMM, YYYY')}</span>
                 <button className="button is-warning is-outlined is-pulled-right" onClick={() => this.setState({ detailedReport: null })}><Translate id="close" /></button>
               </h1>
@@ -169,7 +169,7 @@ export default class StoreCreditReport extends Component<Props, State> {
                 storecreditcategories={storecreditcategories}
                 users={users}
               />
-            </Fragment>
+            </>
           }
 
 

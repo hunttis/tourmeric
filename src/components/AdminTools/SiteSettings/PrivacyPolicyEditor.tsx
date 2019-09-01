@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import firebase from 'firebase/app';
@@ -21,7 +21,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
 
     if (isLoaded(settings)) {
       return (
-        <Fragment>
+        <>
           <h1 className="title">
             <Translate id="privacypolicy" />
           </h1>
@@ -36,7 +36,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
             rows={100}
           />
           <button className="button" onClick={() => this.setAsUpdated()}><Translate id="setasupdated" /></button>
-        </Fragment>
+        </>
       );
 
     }

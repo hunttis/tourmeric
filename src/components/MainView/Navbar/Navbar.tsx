@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
@@ -137,10 +137,10 @@ export default class Navbar extends Component<Props> {
               </div>
 
               {!isLoggedIn &&
-                <Fragment>
+                <>
                   <NavbarItem linkTarget="/login" translationKey="login" icon="fa-sign-in-alt" />
                   <NavbarItem linkTarget="/register" translationKey="register" icon="fa-pencil-alt" />
-                </Fragment>
+                </>
               }
 
               {isLoggedIn &&

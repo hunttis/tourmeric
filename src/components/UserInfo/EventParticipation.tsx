@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 import EventModal from '../EventList/EventModal-container';
@@ -35,7 +35,7 @@ export default class EventParticipation extends Component<Props, State> {
       const event = eventEntry.value;
 
       return (
-        <Fragment>
+        <>
           {this.state.modalOpen &&
             <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal()} />
           }
@@ -53,7 +53,7 @@ export default class EventParticipation extends Component<Props, State> {
               </div>
             </div>
           </div>
-        </Fragment>
+        </>
       );
     }
     return <div><Translate id="loading" /></div>;

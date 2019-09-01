@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import firebase from 'firebase/app';
@@ -23,7 +23,7 @@ export default class FeatureEditor extends Component<Props> {
 
     if (isLoaded(settings)) {
       return (
-        <Fragment>
+        <>
           <div className="columns is-multiline">
 
             {featureList.map((feature) => {
@@ -47,7 +47,7 @@ export default class FeatureEditor extends Component<Props> {
             })
             }
           </div>
-        </Fragment>
+        </>
       );
 
     }

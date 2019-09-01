@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import _ from 'lodash';
 import { Translate, setActiveLanguage } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import Moment from 'react-moment';
+import { Dispatch } from 'redux';
 import Highlights from '../HighLights/HighLights-container';
 import { OpeningHoursContainer as OpeningHours } from '../StoreInfo/OpeningHours-container';
-import { Dispatch } from 'redux';
 import { Settings } from '~/models/Settings';
 
 interface Props {
@@ -35,7 +35,7 @@ export default class TitleBar extends Component<Props> {
 
     if (settingsLoaded) {
       return (
-        <Fragment>
+        <>
 
           {/* Hero bar only visible in desktop */}
           <section className="hero titlebar is-hidden-mobile">
@@ -78,7 +78,7 @@ export default class TitleBar extends Component<Props> {
               </div>
             </div>
           </section>
-        </Fragment>
+        </>
       );
     }
 

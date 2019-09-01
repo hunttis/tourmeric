@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import moment from 'moment/min/moment-with-locales';
 import _ from 'lodash';
@@ -84,7 +84,7 @@ export default class EventCard extends Component<Props, State> {
     const columnSpan = 4;
 
     return (
-      <Fragment>
+      <>
         {this.state.modalOpen &&
           <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal()} />
         }
@@ -153,7 +153,7 @@ export default class EventCard extends Component<Props, State> {
             </div>
           }
         </div>
-      </Fragment>
+      </>
     );
   }
 }
@@ -166,11 +166,11 @@ interface CardInfoLineProps {
 }
 
 const CardInfoLine = ({ icon, title, content, extraClasses = '' }: CardInfoLineProps) => (
-  <Fragment>
+  <>
     <tr className={extraClasses}>
       <td><i className={icon} /></td>
       <td><Translate id={title} /></td>
       <td>{content}</td>
     </tr>
-  </Fragment>
+  </>
 );
