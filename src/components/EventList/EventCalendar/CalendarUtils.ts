@@ -17,7 +17,10 @@ export function filterEventsByCategory(events: { key: string, value: TourmericEv
   return filteredEvents;
 }
 
-export function parseInformationForMonthYear(month: string, year: string, filteredEvents: { key: string, value: TourmericEvent }[], filteredEventsongoing: { key: string, value: TourmericEvent}[]) {
+export function parseInformationForMonthYear(month: string, year: string, events: { key: string, value: TourmericEvent }[], eventsOngoing: { key: string, value: TourmericEvent}[]) {
+
+  const filteredEvents = filterEventsByPublishedStatus(events);
+  const filteredEventsongoing = filterEventsByPublishedStatus(eventsOngoing);
 
   const targetMonth = moment(`${month}-${year}`, 'MM-YYYY');
   const dayCount = targetMonth.daysInMonth();
