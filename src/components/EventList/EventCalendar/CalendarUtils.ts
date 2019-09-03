@@ -5,7 +5,10 @@ import { TourmericEvent } from '~/models/Events';
 import moment = require('moment');
 
 export function filterEventsByPublishedStatus(events: { key: string, value: TourmericEvent }[]) {
-  return events.filter((event) => event.value.published);
+  if (events) {
+    return events.filter((event) => event.value.published);
+  }
+  return [];
 }
 
 export function filterEventsByCategory(events: { key: string, value: TourmericEvent }[], categoryFilter: string[]) {
