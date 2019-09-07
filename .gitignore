@@ -12,6 +12,8 @@ dist
 build
 deploy
 testing
+functions/lib
+functions/index.html
 
 # Remove these when you have your own, these are ignored for tourmeric development purposes.
 # You probably shouldn't have them in the repo though if your repo is open-source
