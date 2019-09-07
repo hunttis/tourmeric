@@ -2,6 +2,8 @@ import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import * as fs from 'fs';
 import moment from 'moment/min/moment-with-locales';
+import { Category } from '../../src/models/Category';
+import { TourmericEvent } from '../../src/models/Events';
 
 interface Event {
   date: string;
@@ -37,23 +39,32 @@ const setMetaContent = (html: string, [key, value]: [string, string]): string =>
   return html.replace(find, replace);
 };
 
-const getEventMetadata = (event: Event, url: string): Metadata => {
+const getEventMetadata = (event: TourmericEvent, category: Category, url: string): Metadata => {
   const { date, format, name, notes, time } = event;
   const formattedDate = `${moment(date, 'YYYY-MM-DD').format(
     'DD.MM.YYYY (dddd)',
   )} klo ${time}`;
   const formattedFormat = format ? `${format}-turnaus ` : '';
+  const categoryName = category ? `${category.name} - ` : '';
   return {
-    description: `${formattedFormat}${formattedDate}. ${notes || ''}`,
+    description: `${categoryName}${formattedFormat}${formattedDate}. ${notes || ''}`,
     title: name,
     url,
   };
 };
 
-const getEvent = async (id: string): Promise<Event | undefined> => {
+const getEvent = async (id: string): Promise<TourmericEvent | undefined> => {
   const snapshot = await admin
     .database()
     .ref(`/events/${id}`)
+    .once('value');
+  return snapshot.val();
+};
+
+const getCategory = async (id: string): Promise<Category | undefined> => {
+  const snapshot = await admin
+    .database()
+    .ref(`/categories/${id}`)
     .once('value');
   return snapshot.val();
 };
@@ -63,9 +74,10 @@ const getUrl = (req: functions.https.Request): string => `${req.protocol}://${re
 export const addMetadata = functions.https.onRequest(async (req, res) => {
   const match = req.path.match(/^\/event\/([A-z0-9_-]+)/);
   const event = match && await getEvent(match[1]);
+  const category = event && await getCategory(event.category);
   let html = await readFile('index.html');
   if (event) {
-    const metadata = getEventMetadata(event, getUrl(req));
+    const metadata = getEventMetadata(event, category!, getUrl(req));
     html = Object.entries(metadata).reduce(setMetaContent, html);
   }
   res.type('html').send(html);
