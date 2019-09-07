@@ -5,14 +5,6 @@ import moment from 'moment/min/moment-with-locales';
 import { Category } from '../../src/models/Category';
 import { TourmericEvent } from '../../src/models/Events';
 
-interface Event {
-  date: string;
-  time: string;
-  format?: string | null;
-  name: string;
-  notes?: string;
-}
-
 interface Metadata {
   description?: string;
   image?: string;
