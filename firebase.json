@@ -11,8 +11,12 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/event/**",
         "function": "addMetadata"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   },

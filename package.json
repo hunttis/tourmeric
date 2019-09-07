@@ -19,11 +19,11 @@
   "scripts": {
     "dev": "parcel ./src/index.html",
     "clean": "rm -rf .cache; rm -rf deploy; rm -rf testing",
-    "move-html": "mv deploy/index.html functions/index.html",
+    "copy-html": "cp deploy/index.html functions/index.html",
     "dev-testing": "DEPLOYMENT=TESTING NODE_ENV=development parcel ./src/index.html -d testing",
     "dev-production": "NODE_ENV=production parcel ./src/index-prod.html -o index.html ",
-    "build": "PARCEL_WORKERS=1 parcel build ./src/index-prod.html -o index.html  -d deploy --public-url . --no-source-maps --detailed-report; yarn move-html",
-    "build-mapped": "parcel build ./src/index.html -d deploy --public-url .; yarn move-html",
+    "build": "PARCEL_WORKERS=1 parcel build ./src/index-prod.html -o index.html  -d deploy --public-url . --no-source-maps --detailed-report; yarn copy-html",
+    "build-mapped": "parcel build ./src/index.html -d deploy --public-url .; yarn copy-html",
     "bolt": "firebase-bolt < firebase-rules/firebase-rules.bolt > firebase-rules/rules.json",
     "lint": "eslint . --ext tsx,ts,js,jsx",
     "test": "jest",
@@ -36,7 +36,7 @@
     "firebase-deploy": "yarn clean; yarn build; firebase use default; firebase deploy",
     "firebase-quick-deploy": "yarn build; firebase deploy",
     "firebase-deploy-functions": "firebase use default; firebase deploy --only functions",
-    "firebase-deploy-testing": "yarn clean; DEPLOYMENT=TESTING parcel build ./src/index.html -d deploy --public-url . --no-source-maps; yarn move-html; firebase use testing; firebase deploy",
+    "firebase-deploy-testing": "yarn clean; DEPLOYMENT=TESTING parcel build ./src/index.html -d deploy --public-url . --no-source-maps; yarn copy-html; firebase use testing; firebase deploy",
     "firebase-deploy-rules": "firebase use default; firebase deploy --only database",
     "firebase-deploy-rules-testing": "firebase use testing; firebase deploy --only database",
     "firebase-deploy-rules-localdev": "firebase use localdev; firebase deploy --only database"
