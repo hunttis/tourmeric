@@ -36,6 +36,7 @@
     "firebase-deploy": "yarn clean; yarn build; firebase use default; firebase deploy",
     "firebase-quick-deploy": "yarn build; firebase deploy",
     "firebase-deploy-functions": "firebase use default; firebase deploy --only functions",
+    "firebase-deploy-functions-testing": "firebase use testing; firebase deploy --only functions",
     "firebase-deploy-testing": "yarn clean; DEPLOYMENT=TESTING parcel build ./src/index.html -d deploy --public-url . --no-source-maps; yarn copy-html; firebase use testing; firebase deploy",
     "firebase-deploy-rules": "firebase use default; firebase deploy --only database",
     "firebase-deploy-rules-testing": "firebase use testing; firebase deploy --only database",
