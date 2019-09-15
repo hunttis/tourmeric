@@ -7,11 +7,11 @@ import { UploadedFile } from '~/models/Category';
 interface Props {
   path: string;
   fieldName: string;
-  imageList: { [key: string]: UploadedFile };
+  imageList: [{ key: string, value: UploadedFile}];
   highlightedImage: string | undefined | null;
 }
 
-export default class ImagePicker extends Component<Props> {
+export default class OrderedImagePicker extends Component<Props> {
 
   saveChange(value: string) {
     const { path, fieldName } = this.props;
@@ -26,9 +26,9 @@ export default class ImagePicker extends Component<Props> {
 
     return (
       <div className="columns is-multiline">
-        {!_.isEmpty(imageList) && Object.entries(imageList).map((imageEntry) => {
-          const imageId = imageEntry[0];
-          const imageItem = imageEntry[1];
+        {!_.isEmpty(imageList) && _.reverse(imageList).map((imageEntry) => {
+          const imageId: string = imageEntry.key;
+          const imageItem: UploadedFile = imageEntry.value;
           const highlightedClass = (imageId === highlightedImage || imageItem.downloadURL === highlightedImage) && 'has-background-white';
           return (
             <div key={`imagePicker-${imageId}`} className={`column card ${highlightedClass} imagepicker-item`} onClick={() => this.saveChange(imageItem.downloadURL)}>

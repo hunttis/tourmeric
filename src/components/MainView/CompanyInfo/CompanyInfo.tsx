@@ -2,7 +2,7 @@ import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
-import { Settings } from 'http2';
+import { Settings } from '~/models/Settings';
 
 interface Props {
   settings: Settings;

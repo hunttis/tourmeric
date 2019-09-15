@@ -46,10 +46,12 @@ export default class FileDropper extends Component<Props> {
     const statusClasses = `${uploadState && 'has-text-warning'} ${doneState && 'has-text-success'} ${idleState && ''}`;
     return (
       <>
-        <Dropzone onDrop={this.onFilesDrop} className={`box ${statusClasses} is-fullwidth`}>
+        <Dropzone onDrop={this.onFilesDrop} className={`dropzone ${statusClasses} is-fullwidth`}>
           {idleState &&
             <div className="fade-in">
-              <Translate id="dropfileshere" />
+              <p className="icon fa-2x"><i className="fas fa-file-upload" /></p>
+              <p>&nbsp;</p>
+              <p><Translate id="dropfileshere" /></p>
             </div>
           }
 

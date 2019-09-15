@@ -6,10 +6,10 @@ import _ from 'lodash';
 interface Props {
   labelContent: string;
   placeHolder: string;
-  defaultValue: string;
+  defaultValue?: string;
   path: string;
   targetName: string;
-  inputType: string;
+  inputType?: string;
   isOk: boolean;
   updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
   isHorizontal: boolean;
@@ -29,10 +29,18 @@ export default class ValidatedEditableField extends Component<Props, State> {
   }, 300)
 
   delayedNormalize = _.debounce(() => {
-    this.setState({ saved: false, editing: false });
+    if (!this.unmounting) {
+      this.setState({ saved: false, editing: false });
+    }
   }, 2000);
 
   state = { saved: false, editing: false }
+
+  unmounting = false;
+
+  componentWillUnmount() {
+    this.unmounting = true;
+  }
 
   handleChange(path: string, targetName: string, value: string) {
     this.setState({ editing: true, saved: false });
