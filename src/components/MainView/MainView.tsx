@@ -24,8 +24,9 @@ import InitialSetup from './InitialSetup';
 import FooterBar from './FooterBar-container';
 import SingleEvent from '../EventList/EventCard/SingleEvent-container';
 import { OpeningHoursContainer as OpeningHours } from '../StoreInfo/OpeningHours-container';
+import Articles from './Articles/Articles-container';
 
-
+import ArticleLoader from './Loaders/ArticleLoader-container';
 import EventLoader from './Loaders/EventLoader-container';
 import CategoryLoader from './Loaders/CategoryLoader-container';
 import ParticipationsLoader from './Loaders/ParticipationsLoader-container';
@@ -116,6 +117,7 @@ export default class MainView extends Component<Props, State> {
         <ParticipationsLoader />
         <UploadedCategoryLogosLoader />
         <OpeningHoursExceptionLoader />
+        <ArticleLoader />
 
         <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
         <Navbar changeLanguage={this.changeLanguage} />
@@ -136,6 +138,7 @@ export default class MainView extends Component<Props, State> {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/companyinfo" component={CompanyInfo} />
+            <Route path="/articles/" component={Articles} />
           </Switch>
         }
 

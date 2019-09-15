@@ -407,6 +407,24 @@ table thead th.storecreditreport-amount {
   max-width: 10%;
 }
 
+.dropzone {
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
+  border: 4px solid white;
+  border-style: inset;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.articleimage img {
+  max-height: 400px !important;
+}
+
 @keyframes heightgrow {
   0% {
     max-height: 0%;

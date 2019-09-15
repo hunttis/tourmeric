@@ -16,6 +16,8 @@ import StoreCreditReport from './StoreCredit/StoreCreditReport-container';
 import StoreCreditRowEditor from './StoreCredit/StoreCreditRowEditor-container';
 import { AdminToolsTab } from './AdminToolsTab';
 import { FirebaseProfile } from '~/models/ReduxState';
+import ArticleEditor from './ArticleEditor/ArticleEditor-container';
+import ArticleList from './ArticleEditor/ArticleList-container';
 
 interface Props {
   profile: FirebaseProfile;
@@ -75,6 +77,12 @@ export class AdminTools extends Component<Props> {
               translationKey="news"
             />
             <AdminToolsTab
+              isActive={activeItem === '/admin/tools/articles'}
+              switchAction={() => this.switchActiveTab('articles')}
+              icon="fa-newspaper"
+              translationKey="articles"
+            />
+            <AdminToolsTab
               isActive={activeItem === '/admin/tools/companyinfo'}
               switchAction={() => this.switchActiveTab('companyinfo')}
               icon="fa-warehouse"
@@ -101,6 +109,9 @@ export class AdminTools extends Component<Props> {
             <Route path="/admin/tools/highlights" component={HighlightEditor} />
             <Route path="/admin/tools/storeinfo" component={StoreInfoEditor} />
             <Route path="/admin/tools/news" component={NewsEditor} />
+            <Route exact path="/admin/tools/articles" component={ArticleList} />
+            <Route path="/admin/tools/articles/edit" component={ArticleEditor} />
+
             <Route
               path="/admin/tools/companyinfo"
               component={CompanyInfoEditor}

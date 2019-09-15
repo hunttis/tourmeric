@@ -33,14 +33,14 @@
     "firebase-serve": "firebase serve",
     "firebase-login": "firebase login",
     "firebase-init": "firebase init",
-    "firebase-deploy": "yarn clean; yarn build; firebase use default; firebase deploy",
-    "firebase-quick-deploy": "yarn build; firebase deploy",
+    "firebase-deploy": "yarn clean; yarn bolt; yarn build; firebase use default; firebase deploy",
+    "firebase-quick-deploy": "yarn build; yarn bolt; firebase deploy",
+    "firebase-deploy-testing": "yarn clean; yarn bolt; DEPLOYMENT=TESTING parcel build ./src/index.html -d deploy --public-url . --no-source-maps; yarn copy-html; firebase use testing; firebase deploy",
+    "firebase-deploy-rules": "yarn bolt; firebase use default; firebase deploy --only database",
+    "firebase-deploy-rules-testing": "yarn bolt; firebase use testing; firebase deploy --only database",
+    "firebase-deploy-rules-localdev": "yarn bolt; firebase use localdev; firebase deploy --only database",
     "firebase-deploy-functions": "firebase use default; firebase deploy --only functions",
-    "firebase-deploy-functions-testing": "firebase use testing; firebase deploy --only functions",
-    "firebase-deploy-testing": "yarn clean; DEPLOYMENT=TESTING parcel build ./src/index.html -d deploy --public-url . --no-source-maps; yarn copy-html; firebase use testing; firebase deploy",
-    "firebase-deploy-rules": "firebase use default; firebase deploy --only database",
-    "firebase-deploy-rules-testing": "firebase use testing; firebase deploy --only database",
-    "firebase-deploy-rules-localdev": "firebase use localdev; firebase deploy --only database"
+    "firebase-deploy-functions-testing": "firebase use testing; firebase deploy --only functions"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "2.0.0",

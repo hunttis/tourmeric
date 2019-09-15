@@ -40,6 +40,7 @@ interface OrderedFirebaseData {
   eventsongoing: [{ key: string, value: TourmericEvent }];
   news: [{ key: string, value: SingleNewsItem }];
   users: [{ key: string, value: User }];
+  uploadedArticleImages: [{ key: string, value: UploadedFile}];
 }
 
 interface FirebaseData {
@@ -53,12 +54,14 @@ interface FirebaseData {
   uploadedCategoryLogos: { [key: string]: UploadedFile };
   uploadedHighlightBanners: { [key: string]: UploadedFile };
   uploadedNewsImages: { [key: string]: UploadedFile };
+  uploadedArticleImages: { [key: string]: UploadedFile };
   uploadedFooterItems: { [key: string]: UploadedFile };
   uploadedStoreinfoFiles: { [key: string]: UploadedFile };
   openinghoursexceptions: { [key: string]: OpeningHoursException };
   storecreditcategories: { [key: string]: StoreCreditCategory };
   users: { [key: string]: User };
   news: { [key: string]: SingleNewsItem };
+  articles: { [key: string]: Article };
   storecredit: { [key: string]: { [key: string]: TourmericStoreCreditData }};
 }
 
@@ -74,6 +77,22 @@ export interface SingleNewsItem {
   summary: string;
 }
 
+export interface Article {
+  createDate: string;
+  published: boolean;
+  date: string;
+  articleItems: { [key: string]: ArticleItem };
+  title: string;
+  titleLocked?: boolean;
+}
+
+export interface ArticleItem {
+  itemType: string;
+  imageUrl?: string;
+  text?: string;
+  orderNumber: number;
+  locked?: boolean;
+}
 
 export interface HighLight {
   active: boolean;

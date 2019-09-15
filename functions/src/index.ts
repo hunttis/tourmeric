@@ -2,14 +2,41 @@ import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import * as fs from 'fs';
 import moment from 'moment/min/moment-with-locales';
-import { Category } from '../../src/models/Category';
-import { TourmericEvent } from '../../src/models/Events';
 
 interface Metadata {
   description?: string;
   image?: string;
   title?: string;
   url?: string;
+}
+
+interface Category {
+  abbreviation: string;
+  formats?: string;
+  image?: string;
+  imageSmall?: string | null;
+  logo: string;
+  name: string;
+  type: string;
+}
+
+export interface TourmericEvent {
+  category: string;
+  createDate: string;
+  date: string;
+  endDate?: string;
+  format?: string | null;
+  entryFee: string;
+  eventType?: string;
+  name: string;
+  published?: boolean;
+  time: string;
+  rulesLevel?: string;
+  playerSlots?: string;
+  prizes?: string;
+  link?: string;
+  notes?: string;
+  rules?: string;
 }
 
 admin.initializeApp();

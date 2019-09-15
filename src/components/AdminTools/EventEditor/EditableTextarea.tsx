@@ -6,12 +6,13 @@ import _ from 'lodash';
 interface Props {
   labelContent: string;
   placeHolder: string;
-  defaultValue: string;
+  defaultValue?: string;
   path: string;
   targetName: string;
   isOk: boolean;
   updateFieldStatus: (key: string, isEmpty: boolean, data: { [key: string]: string }) => void;
   isHorizontal: boolean;
+  rows?: number;
 }
 
 export default class EditableTextarea extends Component<Props> {
@@ -31,7 +32,7 @@ export default class EditableTextarea extends Component<Props> {
 
   render() {
     const {
-      labelContent, placeHolder, defaultValue, path, targetName, isOk, isHorizontal,
+      labelContent, placeHolder, defaultValue, path, targetName, isOk, isHorizontal, rows = 5,
     } = this.props;
     const { saved, editing } = this.state;
 
@@ -50,6 +51,7 @@ export default class EditableTextarea extends Component<Props> {
                   className={`textarea ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
                   placeholder={translate(placeHolder)}
                   defaultValue={defaultValue}
+                  rows={rows}
                   onChange={(event) => this.handleChange(path, { [targetName]: event.target.value })}
                 />)
                 }
