@@ -254,22 +254,20 @@ export default class ArticleEditor extends Component<Props, State> {
             }
           </div>
           <hr />
-          <div className="level">
-            <div className="level-item">
-              {article.published &&
-                <button className="button is-danger is-outlined" onClick={() => this.setPublishStatus(false)}><Translate id="unpublish" /></button>
-              }
-              {!article.published && !article.articleItems &&
-                <button className="button is-warning is-outlined" disabled><Translate id="addsomecontenttoyourarticle" /></button>
-              }
-              {!article.published && article.articleItems && this.allItemsLocked() &&
+          <div className="buttons is-centered">
+            {article.published &&
+              <button className="button is-danger is-outlined" onClick={() => this.setPublishStatus(false)}><Translate id="unpublish" /></button>
+            }
+            {!article.published && !article.articleItems &&
+              <button className="button is-warning is-outlined" disabled><Translate id="addsomecontenttoyourarticle" /></button>
+            }
+            {!article.published && article.articleItems && this.allItemsLocked() &&
               <button className="button is-success is-outlined" onClick={() => this.setPublishStatus(true)}><Translate id="allitemslockedpresstopublish" /></button>
-                }
-              {!article.published && article.articleItems && !this.allItemsLocked() &&
+            }
+            {!article.published && article.articleItems && !this.allItemsLocked() &&
               <button className="button is-warning is-outlined" disabled><Translate id="lockitemstopublish" /></button>
-                }
-              <button className="button is-info is-outlined" onClick={() => this.props.history.push('/admin/tools/articles')}><Translate id="backtoarticlelist" /></button>
-            </div>
+            }
+            <button className="button is-info is-outlined" onClick={() => this.props.history.push('/admin/tools/articles')}><Translate id="backtoarticlelist" /></button>
           </div>
         </div>
       );
