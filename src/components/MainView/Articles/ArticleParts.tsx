@@ -11,7 +11,7 @@ export const ArticleSubTitle = ({ articleItem, padRight = true }: ArticlePartPro
   <>
     <div className="column is-2" />
     <div className="column is-8">
-      <h2 className="subtitle">{articleItem.text}</h2>
+      <h2 className="subtitle">{articleItem.text ? articleItem.text : ''}</h2>
     </div>
     {padRight && <div className="column is-2" />}
   </>
@@ -24,7 +24,7 @@ export const ArticleTextBlock = ({ articleItem, padRight = true }: ArticlePartPr
       <div className="column is-2" />
       <div className="column is-8">
         <div className="content">
-          {paragraphs && paragraphs.map((paragraph: string, index: number) => <p key={`article-${articleItem.orderNumber}-${index}`}>{paragraph}</p>)}
+          {paragraphs && paragraphs.map((paragraph: string, index: number) => <p key={`article-${articleItem.orderNumber}-${index}`}>{paragraph}&nbsp;</p>)}
         </div>
       </div>
       {padRight && <div className="column is-2" />}
@@ -36,7 +36,7 @@ export const ArticleImage = ({ articleItem, padRight = true }: ArticlePartProps)
   <>
     <div className="column is-2" />
     <div className="column is-8 articleimage has-text-centered">
-      <img src={articleItem.imageUrl} alt="" />
+      <img src={articleItem.imageUrl ? articleItem.imageUrl : ''} alt="" />
     </div>
     {padRight && <div className="column is-2" />}
   </>
