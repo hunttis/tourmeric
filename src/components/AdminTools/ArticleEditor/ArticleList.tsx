@@ -42,30 +42,34 @@ export const ArticleList = ({ articles, settings, history }: Props) => (
               <div className="column is-2"><Translate id="created" />: {moment(articleData.createDate).format(settings.dateFormat)}</div>
               <div className="column is-2">
                 {articleData.published && <span className="has-text-success"><Translate id="published" /></span>}
-                {!articleData.published && <Translate id="notpublished" />}
+                {!articleData.published && <span className="has-text-warning"><Translate id="notpublished" /></span>}
               </div>
               <div className="column is-4">{articleData.title || <Translate id="notitleyet" />}</div>
               <div className="column is-4">
                 <ButtonWithIcon
+                  className="is-outlined is-warning"
                   onClick={() => history.push(`/admin/tools/articles/edit/${articleId}`)}
                   iconName="fa-pencil-alt"
                   translationKey="edit"
                 />
                 <ButtonWithIcon
+                  className="is-outlined is-info"
                   onClick={() => history.push(`/articles/view/${articleId}`)}
                   iconName="fa-glasses"
                   translationKey="view"
                 />
                 {articleData.published &&
                   <ButtonWithIcon
-                    onClick={() => {}}
+                    className="is-outlined is-danger"
+                    onClick={() => { firebase.update(`/articles/${articleId}`, { published: false }); }}
                     iconName="fa-eye-slash"
                     translationKey="unpublish"
                   />
                 }
                 {!articleData.published && allItemsLocked(articleData) &&
                   <ButtonWithIcon
-                    onClick={() => {}}
+                    className="is-outlined is-success"
+                    onClick={() => { firebase.update(`/articles/${articleId}`, { published: true }); }}
                     iconName="fa-eye"
                     translationKey="publish"
                   />
