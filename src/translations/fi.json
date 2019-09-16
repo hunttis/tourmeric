@@ -380,6 +380,7 @@
   "addimage": "Lisää kuva",
   "addtextblock": "Lisää tekstikappale",
   "addsubtitle": "Lisää aliotsikko",
+  "addlist": "Lisää lista",
   "subtitle": "Aliotsikko",
   "textblock": "Tekstikappale",
   "noimages": "Ei kuvia",
@@ -396,6 +397,8 @@
   "created": "Luotu",
   "noarticlesyet": "Ei artikkeleita, vielä",
   "notitleyet": "Ei otsikkoa, vielä",
+  "ordernumber": "#",
+  "articlepublished": "Artikkeli julkaistu",
 
   "today": "Tänään",
   "todaysevents": "Tapahtumat tänään",

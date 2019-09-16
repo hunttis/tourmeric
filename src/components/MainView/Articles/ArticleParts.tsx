@@ -4,12 +4,13 @@ import { ArticleItem } from '~/models/ReduxState';
 
 interface ArticlePartProps {
   articleItem: ArticleItem;
+  padLeft?: boolean;
   padRight?: boolean;
 }
 
-export const ArticleSubTitle = ({ articleItem, padRight = true }: ArticlePartProps) => (
+export const ArticleSubTitle = ({ articleItem, padLeft = true, padRight = true }: ArticlePartProps) => (
   <>
-    <div className="column is-2" />
+    {padLeft && <div className="column is-2" />}
     <div className="column is-8">
       <h2 className="subtitle">{articleItem.text ? articleItem.text : ''}</h2>
     </div>
@@ -17,11 +18,30 @@ export const ArticleSubTitle = ({ articleItem, padRight = true }: ArticlePartPro
   </>
 );
 
-export const ArticleTextBlock = ({ articleItem, padRight = true }: ArticlePartProps) => {
+export const ArticleListBlock = ({ articleItem, padLeft = true, padRight = true }: ArticlePartProps) => {
+  const listItems: string[] | undefined = _.split(articleItem.text!, '\n');
+  return (
+    <>
+      {padLeft && <div className="column is-2" />}
+      <div className="column is-8">
+
+        {listItems &&
+          <ul>
+            {listItems.map((item: string, index: number) => <li key={`list-${articleItem.orderNumber}-${index}`}>{item}</li>)}
+          </ul>
+        }
+
+      </div>
+      {padRight && <div className="column is-2" />}
+    </>
+  );
+};
+
+export const ArticleTextBlock = ({ articleItem, padLeft = true, padRight = true }: ArticlePartProps) => {
   const paragraphs: string[] | undefined = _.split(articleItem.text!, '\n');
   return (
     <>
-      <div className="column is-2" />
+      {padLeft && <div className="column is-2" />}
       <div className="column is-8">
         <div className="content">
           {paragraphs && paragraphs.map((paragraph: string, index: number) => <p key={`article-${articleItem.orderNumber}-${index}`}>{paragraph}&nbsp;</p>)}
@@ -32,9 +52,9 @@ export const ArticleTextBlock = ({ articleItem, padRight = true }: ArticlePartPr
   );
 };
 
-export const ArticleImage = ({ articleItem, padRight = true }: ArticlePartProps) => (
+export const ArticleImage = ({ articleItem, padLeft = true, padRight = true }: ArticlePartProps) => (
   <>
-    <div className="column is-2" />
+    {padLeft && <div className="column is-2" />}
     <div className="column is-8 articleimage has-text-centered">
       <img src={articleItem.imageUrl ? articleItem.imageUrl : ''} alt="" />
     </div>

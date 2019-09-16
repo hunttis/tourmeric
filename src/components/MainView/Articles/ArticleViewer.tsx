@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import { Translate } from 'react-localize-redux';
 import { Article } from '~/models/ReduxState';
-import { ArticleSubTitle, ArticleTextBlock, ArticleImage } from './ArticleParts';
+import { ArticleSubTitle, ArticleTextBlock, ArticleImage, ArticleListBlock } from './ArticleParts';
 
 interface Props {
   article: Article;
@@ -27,6 +27,9 @@ export const ArticleViewer = ({ article }: Props) => (
           }
           case 'image': {
             return <ArticleImage key={`articleItem-${articleItem.orderNumber}`} articleItem={articleItem} />;
+          }
+          case 'list': {
+            return <ArticleListBlock key={`articleItem-${articleItem.orderNumber}`} articleItem={articleItem} />;
           }
           default: {
             return <div className="column is-12"><Translate id="error" /></div>;

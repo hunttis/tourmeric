@@ -357,6 +357,7 @@
   "addimage": "Add image",
   "addtextblock": "Add textblock",
   "addsubtitle": "Add subtitle",
+  "addlist": "Add list",
   "subtitle": "Subtitle",
   "textblock": "Textblock",
   "noimages": "No images",
@@ -373,6 +374,8 @@
   "created": "Created",
   "noarticlesyet": "No articles, yet",
   "notitleyet": "No title, yet",
+  "ordernumber": "#",
+  "articlepublished": "Article published",
 
   "today": "Today",
   "todaysevents": "Today's Events",

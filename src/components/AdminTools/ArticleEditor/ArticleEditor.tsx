@@ -13,7 +13,8 @@ import ValidatedEditableField from '../EventEditor/ValidatedEditableField';
 import EditableTextarea from '../EventEditor/EditableTextarea';
 import OrderedImagePicker from '../OrderedImagePicker';
 import FileDropper from '../FileDropper';
-import { ArticleSubTitle, ArticleTextBlock, ArticleImage } from '~/components/MainView/Articles/ArticleParts';
+import { ArticleSubTitle, ArticleTextBlock, ArticleImage, ArticleListBlock } from '~/components/MainView/Articles/ArticleParts';
+import { ButtonWithIcon } from '~/components/Common/CommonComponents';
 
 const filesPath = 'uploadedArticleImages';
 
@@ -135,7 +136,7 @@ export default class ArticleEditor extends Component<Props, State> {
             }
 
 
-            {articleItems && Object.entries(articleItems).map((articleEntry) => {
+            {articleItems && _.sortBy(Object.entries(articleItems), [(articleEntry) => articleEntry[1].orderNumber]).map((articleEntry) => {
               const itemId = articleEntry[0];
               const item = articleEntry[1];
               switch (item.itemType) {
@@ -143,17 +144,15 @@ export default class ArticleEditor extends Component<Props, State> {
                   if (item.locked) {
                     return (
                       <Fragment key={`articleItem-${itemId}`}>
-                        <ArticleSubTitle articleItem={item} padRight={false} />
-                        <div className="column is-2">
-                          {!article.published && <UnlockButton articleId={articleId} itemId={itemId} />}
-                        </div>
+                        <OrderButtons articleId={articleId} itemId={itemId} articleItems={articleItems} published={article.published} />
+                        <ArticleSubTitle articleItem={item} padLeft={false} padRight={false} />
+                        <UnlockButton articleId={articleId} itemId={itemId} published={article.published} />
                       </Fragment>
                     );
                   }
                   return (
                     <Fragment key={`articleItem-${itemId}`}>
-                      <div className="column is-2" />
-
+                      <OrderButtons articleId={articleId} itemId={itemId} articleItems={articleItems} published={article.published} />
                       <div className="column is-8">
                         <ValidatedEditableField
                           isOk
@@ -174,18 +173,16 @@ export default class ArticleEditor extends Component<Props, State> {
                   if (item.locked) {
                     return (
                       <Fragment key={`articleItem-${itemId}`}>
-                        <ArticleTextBlock articleItem={item} padRight={false} />
-                        <div className="column is-2">
-                          {!article.published && <UnlockButton articleId={articleId} itemId={itemId} />}
-                        </div>
+                        <OrderButtons articleId={articleId} itemId={itemId} articleItems={articleItems} published={article.published} />
+                        <ArticleTextBlock articleItem={item} padLeft={false} padRight={false} />
+                        <UnlockButton articleId={articleId} itemId={itemId} published={article.published} />
                       </Fragment>
                     );
                   }
 
                   return (
                     <Fragment key={`articleItem-${itemId}`}>
-                      <div className="column is-2" />
-
+                      <OrderButtons articleId={articleId} itemId={itemId} articleItems={articleItems} published={article.published} />
                       <div className="column is-8">
                         <EditableTextarea
                           isOk
@@ -207,16 +204,15 @@ export default class ArticleEditor extends Component<Props, State> {
                   if (item.locked) {
                     return (
                       <Fragment key={`articleItem-${itemId}`}>
-                        <ArticleImage articleItem={item} padRight={false} />
-                        <div className="column is-2">
-                          {!article.published && <UnlockButton articleId={articleId} itemId={itemId} />}
-                        </div>
+                        <OrderButtons articleId={articleId} itemId={itemId} articleItems={articleItems} published={article.published} />
+                        <ArticleImage articleItem={item} padLeft={false} padRight={false} />
+                        <UnlockButton articleId={articleId} itemId={itemId} published={article.published} />
                       </Fragment>
                     );
                   }
                   return (
                     <Fragment key={`articleItem-${itemId}`}>
-                      <div className="column is-2" />
+                      <OrderButtons articleId={articleId} itemId={itemId} articleItems={articleItems} published={article.published} />
                       <div className="column is-5">
                         <OrderedImagePicker
                           imageList={uploadedArticleImages}
@@ -232,6 +228,36 @@ export default class ArticleEditor extends Component<Props, State> {
                     </Fragment>
                   );
                 }
+                case 'list': {
+                  if (item.locked) {
+                    return (
+                      <Fragment key={`articleItem-${itemId}`}>
+                        <OrderButtons articleId={articleId} itemId={itemId} articleItems={articleItems} published={article.published} />
+                        <ArticleListBlock articleItem={item} padLeft={false} padRight={false} />
+                        <UnlockButton articleId={articleId} itemId={itemId} published={article.published} />
+                      </Fragment>
+                    );
+                  }
+                  return (
+                    <Fragment key={`articleItem-${itemId}`}>
+                      <OrderButtons articleId={articleId} itemId={itemId} articleItems={articleItems} published={article.published} />
+                      <div className="column is-8">
+                        <EditableTextarea
+                          isOk
+                          updateFieldStatus={() => {}}
+                          labelContent="list"
+                          placeHolder="listplaceholder"
+                          defaultValue={item.text}
+                          path={`/articles/${articleId}/articleItems/${itemId}`}
+                          targetName="text"
+                          isHorizontal={false}
+                          rows={10}
+                        />
+                      </div>
+                      <ModificationButtons articleId={articleId} itemId={itemId} />
+                    </Fragment>
+                  );
+                }
                 default: {
                   return <div>WTF</div>;
                 }
@@ -242,7 +268,7 @@ export default class ArticleEditor extends Component<Props, State> {
           <div className="level">
             {article.published &&
             <div className="level-item">
-              <Translate id="unpublishtoedit" />
+              <Translate id="articlepublished" />. <Translate id="unpublishtoedit" />
             </div>
             }
             {!article.published &&
@@ -250,19 +276,30 @@ export default class ArticleEditor extends Component<Props, State> {
               {this.addItemButtonWithIcon('fa-heading', 'addsubtitle', 'subtitle')}
               {this.addItemButtonWithIcon('fa-align-justify', 'addtextblock', 'textblock')}
               {this.addItemButtonWithIcon('fa-image', 'addimage', 'image')}
+              {this.addItemButtonWithIcon('fa-list', 'addlist', 'list')}
             </div>
             }
           </div>
           <hr />
           <div className="buttons is-centered">
             {article.published &&
-              <button className="button is-danger is-outlined" onClick={() => this.setPublishStatus(false)}><Translate id="unpublish" /></button>
+              <ButtonWithIcon
+                className="is-danger is-outlined"
+                onClick={() => this.setPublishStatus(false)}
+                iconName="fa-eye-slash"
+                translationKey="unpublish"
+              />
             }
             {!article.published && !article.articleItems &&
               <button className="button is-warning is-outlined" disabled><Translate id="addsomecontenttoyourarticle" /></button>
             }
             {!article.published && article.articleItems && this.allItemsLocked() &&
-              <button className="button is-success is-outlined" onClick={() => this.setPublishStatus(true)}><Translate id="allitemslockedpresstopublish" /></button>
+              <ButtonWithIcon
+                className="is-outlined is-success"
+                onClick={() => this.setPublishStatus(true)}
+                iconName="fa-eye"
+                translationKey="allitemslockedpresstopublish"
+              />
             }
             {!article.published && article.articleItems && !this.allItemsLocked() &&
               <button className="button is-warning is-outlined" disabled><Translate id="lockitemstopublish" /></button>
@@ -321,22 +358,96 @@ export default class ArticleEditor extends Component<Props, State> {
     firebase.push(`/articles/${articleId}/articleItems`, { itemType, orderNumber: this.state.nextOrderNumber });
     this.setState((prevState) => ({ nextOrderNumber: prevState.nextOrderNumber + 1 }));
   }
+
 }
 
-interface ButtonsProps {
+interface ModificationButtonsProps {
   articleId: string;
   itemId: string;
 }
 
-const ModificationButtons = ({ articleId, itemId }: ButtonsProps) => (
+interface UnlockButtonsProps {
+  articleId: string;
+  itemId: string;
+  published: boolean;
+}
+
+interface OrderButtonProps {
+  articleId: string;
+  itemId: string;
+  articleItems: {[key: string]: ArticleItem};
+  published: boolean;
+}
+
+const ModificationButtons = ({ articleId, itemId }: ModificationButtonsProps) => (
   <>
-    <div className="column is-2">
+    <div className="column is-2 is-flex is-vertical-center is-aligned-left">
       <button className="button" onClick={() => firebase.update(`/articles/${articleId}/articleItems/${itemId}`, { locked: true })}><i className="fas fa-lock-open" /></button>
       <button className="button" onClick={() => firebase.set(`/articles/${articleId}/articleItems/${itemId}`, {})}><i className="fas fa-trash" /></button>
     </div>
   </>
 );
 
-const UnlockButton = ({ articleId, itemId }: ButtonsProps) => (
-  <button className="button" onClick={() => firebase.update(`/articles/${articleId}/articleItems/${itemId}`, { locked: false })}><i className="fas fa-lock" /></button>
+const UnlockButton = ({ articleId, itemId, published }: UnlockButtonsProps) => (
+  <div className="column is-2 is-flex is-vertical-center is-aligned-left">
+    {!published &&
+      <button className="button" onClick={() => firebase.update(`/articles/${articleId}/articleItems/${itemId}`, { locked: false })}><i className="fas fa-lock" /></button>
+    }
+  </div>
 );
+
+const OrderButtons = ({ articleId, itemId, articleItems, published }: OrderButtonProps) => (
+  <div className="column is-2 is-flex is-vertical-center is-aligned-right">
+    {!published &&
+    <>
+      {hasPreviousItem(itemId, articleItems) &&
+        <button className="button is-outlined is-info" onClick={() => changeOrderWithPrevious(articleId, itemId, articleItems)}><i className="fas fa-arrow-up" /></button>
+      }
+      {!hasPreviousItem(itemId, articleItems) &&
+        <button className="button is-outlined is-info" onClick={() => {}} disabled><i className="fas fa-arrow-up" /></button>
+      }
+      {hasNextItem(itemId, articleItems) &&
+        <button className="button is-outlined is-info" onClick={() => changeOrderWithNext(articleId, itemId, articleItems)}><i className="fas fa-arrow-down" /></button>
+      }
+      {!hasNextItem(itemId, articleItems) &&
+        <button className="button is-outlined is-info" onClick={() => {}} disabled><i className="fas fa-arrow-down" /></button>
+      }
+    </>
+    }
+  </div>
+);
+
+
+function hasPreviousItem(itemId: string, articleItems: {[key: string]: ArticleItem}): boolean {
+  const keyValues = _.sortBy(Object.entries(articleItems).map((articleEntry) => ({ value: articleEntry[1].orderNumber, itemId: articleEntry[0] })), (entry) => entry.value);
+  const currentIndex = keyValues.indexOf(keyValues.find((kv) => kv.itemId === itemId)!);
+  return currentIndex > 0;
+}
+
+function hasNextItem(itemId: string, articleItems: {[key: string]: ArticleItem}): boolean {
+  const keyValues = _.sortBy(Object.entries(articleItems).map((articleEntry) => ({ value: articleEntry[1].orderNumber, itemId: articleEntry[0] })), (entry) => entry.value);
+  const currentIndex = keyValues.indexOf(keyValues.find((kv) => kv.itemId === itemId)!);
+  return currentIndex < (keyValues.length - 1);
+}
+
+function changeOrderWithPrevious(articleId: string, itemId: string, articleItems: {[key: string]: ArticleItem}) {
+  const item = articleItems[itemId];
+  const keyValues = _.sortBy(Object.entries(articleItems).map((articleEntry) => ({ value: articleEntry[1].orderNumber, itemId: articleEntry[0] })), (entry) => entry.value);
+  const currentIndex = keyValues.indexOf(keyValues.find((kv) => kv.itemId === itemId)!);
+  const previousItem = keyValues[currentIndex - 1];
+  const currentOrderNumber = item.orderNumber;
+  const previousOrderNumber = articleItems[previousItem.itemId].orderNumber;
+  firebase.update(`/articles/${articleId}/articleItems/${itemId}`, { orderNumber: previousOrderNumber });
+  firebase.update(`/articles/${articleId}/articleItems/${previousItem.itemId}`, { orderNumber: currentOrderNumber });
+}
+
+function changeOrderWithNext(articleId: string, itemId: string, articleItems: {[key: string]: ArticleItem}) {
+  const item = articleItems[itemId];
+  const keyValues = _.sortBy(Object.entries(articleItems).map((articleEntry) => ({ value: articleEntry[1].orderNumber, itemId: articleEntry[0] })), (entry) => entry.value);
+  const currentIndex = keyValues.indexOf(keyValues.find((kv) => kv.itemId === itemId)!);
+  const nextItem = keyValues[currentIndex + 1];
+  const currentOrderNumber = item.orderNumber;
+  const nextOrderNumber = articleItems[nextItem.itemId].orderNumber;
+  firebase.update(`/articles/${articleId}/articleItems/${itemId}`, { orderNumber: nextOrderNumber });
+  firebase.update(`/articles/${articleId}/articleItems/${nextItem.itemId}`, { orderNumber: currentOrderNumber });
+}

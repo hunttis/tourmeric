@@ -38,6 +38,14 @@ div.introtext-box {
   align-items: center;
 }
 
+.is-aligned-right {
+  justify-content: flex-end;
+}
+
+.is-aligned-left {
+  justify-content: flex-start;
+}
+
 .navbar-item a {
   color: #bbbbbb;
 }
@@ -423,6 +431,11 @@ table thead th.storecreditreport-amount {
 
 .articleimage img {
   max-height: 400px !important;
+}
+
+.ordernumbercontainer {
+  padding: 0px !important;
+  width: 2em;
 }
 
 @keyframes heightgrow {
