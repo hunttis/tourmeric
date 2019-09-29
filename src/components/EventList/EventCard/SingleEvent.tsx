@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import _ from 'lodash';
+import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import ClipboardJS from 'clipboard';
 import { isLoaded } from 'react-redux-firebase';
@@ -11,7 +12,7 @@ import { checkParticipation } from '../../../api/eventApi';
 import { CardFooterMobile } from './CardFooterMobile';
 import { CardFooterDesktop } from './CardFooterDesktop';
 import { TourmericEvent } from '~/models/Events';
-import { Participation, FirebaseAuth } from '~/models/ReduxState';
+import { Participation, FirebaseAuth, ParticipationData } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
 import { Category } from '~/models/Category';
 import AddPlaceHolderUser from '~/components/AdminTools/EventEditor/AddPlaceHolderUser-container';
@@ -33,6 +34,8 @@ interface Props {
 }
 
 export const SingleEvent = ({ match, events, eventsongoing, categories, settings, participations, auth, activeLanguage, isAdmin }: Props) => {
+
+  const [userToCancel, setUserToCancel] = useState(null);
 
   if (!isLoaded(events)) {
     return (
@@ -62,6 +65,14 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
     }
   }
 
+  if (!isLoaded(participations)) {
+    return (
+      <div className="section has-text-centered">
+        <div className="button is-loading" />
+      </div>
+    );
+  }
+
   const category = _.get(categories, eventContent.category, '');
   const dateFormat = _.get(settings, 'dateFormat', 'DD.MM.YYYY');
   const formattedDateWithDayName = singleDay ?
@@ -73,10 +84,14 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
     `${moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat}`)} - ${moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat}`)}`;
 
   const userId = _.get(auth, 'uid');
+  const participationsMap: {[key: string]: ParticipationData} = participations[eventId];
   let participationsForEvent = Object.values(_.get(participations, eventId, []));
   participationsForEvent = _.sortBy(participationsForEvent, ['date']);
   const alreadyParticipated = checkParticipation(userId, eventId, participations);
   const thisParticipation = _.get(participations, `${eventId}.${userId}`, {});
+
+  const participationBeingCancelledId: string = _.findKey(participationsMap, (p) => p.userId === userToCancel) || '';
+  const participationBeingCancelled = participationBeingCancelledId ? participationsMap[participationBeingCancelledId] : null;
 
   new ClipboardJS('#sharebutton'); // eslint-disable-line
 
@@ -195,17 +210,13 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
                     </div>
                   </>
                 }
-                {!isLoaded(events) &&
-                  <div className="button is-loading">Loading</div>
-                }
-                {isLoaded(participations) && _.isEmpty(participations) &&
-                  <div><Translate id="noparticipants" /></div>
-                }
+                {!isLoaded(events) && <div className="button is-loading">Loading</div> }
+                {isLoaded(participations) && _.isEmpty(participations) && <div><Translate id="noparticipants" /></div> }
                 {!_.isEmpty(participations) &&
                   <>
                     <div className="column is-1" />
                     <div className="column is-11">
-                      <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', '0'), 10)} />
+                      <ParticipantList participations={participationsForEvent} maxParticipants={parseInt(_.get(eventContent, 'playerSlots', '0'), 10)} isAdmin={isAdmin} userToCancel={userToCancel} setUserToCancel={setUserToCancel} />
                     </div>
                   </>
                 }
@@ -238,7 +249,35 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
                 <div className="card-footer-item event-card-footer">
                   <AddPlaceHolderUser eventId={match.params.id} />
                 </div>
-                <div className="card-footer-item event-card-footer" />
+                <div className="card-footer-item event-card-footer">
+                  {(userToCancel && participationBeingCancelled) &&
+                    <div>
+                      <h2 className="subtitle has-text-danger has-text-centered">
+                        <Translate id="confirmparticipationcancellation" />
+                      </h2>
+
+                      <p className="has-text-centered">
+                        <Translate id="areyousureyouwanttocancelparticipationforuser" /> <span className="has-text-info">{participationBeingCancelled.firstName} {participationBeingCancelled.lastName}</span>?
+                      </p>
+                      <p className="has-text-centered">
+                        <Translate id="thisactioncannotbereversed" />
+                      </p>
+                      <p>&nbsp;</p>
+                      <div className="level">
+                        <div className="level-item">
+                          <button className="button is-danger is-outlined is-small" onClick={() => firebase.set(`/participations/${eventId}/${participationBeingCancelled.userId}`, {})}>
+                            <Translate id="yes" />
+                          </button>
+                        </div>
+                        <div className="level-item">
+                          <button className="button is-info is-outlined is-small" onClick={() => setUserToCancel(null)}>
+                            <Translate id="no" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
               </div>
             </>
           }

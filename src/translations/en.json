@@ -66,6 +66,10 @@
   "waitlist": "Waitlist",
   "participateforwaitlist": "Register for waitlist",
   "eventfull": "Event full",
+  "confirmcancelbelowintheadmininterface": "Confirm cancellation below in the ADMIN-interface",
+  "confirmparticipationcancellation": "Confirm participation cancellation",
+  "areyousureyouwanttocancelparticipationforuser": "Are you sure you want to cancel participation for user",
+  "thisactioncannotbereversed": "This action cannot be reversed",
 
   "select": "- Select -",
   "date": "Date",

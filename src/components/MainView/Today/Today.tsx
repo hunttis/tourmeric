@@ -5,8 +5,7 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import News from './News-container';
 import EventCard from '../../EventList/EventCard/EventCard-container';
-import EventModal from '../../EventList/EventModal-container';
-import { TourmericEvent, TourmericEventEntry } from '~/models/Events';
+import { TourmericEvent } from '~/models/Events';
 import { Category, UploadedFile } from '~/models/Category';
 import { FirebaseProfile } from '~/models/ReduxState';
 import { createMomentFromDateString, createCurrentMoment } from '~/components/Common/Utils';
@@ -23,13 +22,12 @@ interface Props {
 
 interface State {
   shownItems: string;
-  modalOpenEventId: string | null;
   showPastEventsFilter: boolean;
 }
 
 export default class Today extends Component<Props, Partial<State>> {
 
-  state = { shownItems: 'today', modalOpenEventId: null, showPastEventsFilter: false }
+  state = { shownItems: 'today', showPastEventsFilter: false }
 
   findNextEvents(events: { key: string, value: TourmericEvent }[]) {
     const { profile } = this.props;
@@ -102,14 +100,6 @@ export default class Today extends Component<Props, Partial<State>> {
     return [];
   }
 
-  closeModal() {
-    this.setState({ modalOpenEventId: null });
-  }
-
-  openModal(eventId: string) {
-    this.setState({ modalOpenEventId: eventId });
-  }
-
   togglePastEventFilter() {
     const { showPastEventsFilter } = this.state;
     this.setState({ showPastEventsFilter: !showPastEventsFilter });
@@ -134,18 +124,6 @@ export default class Today extends Component<Props, Partial<State>> {
     this.setState({ shownItems: newView });
   }
 
-  renderEventModal(eventEntry: TourmericEventEntry) {
-    const eventId = eventEntry.key;
-    if (eventEntry.key === this.state.modalOpenEventId) {
-      return <EventModal
-        key={`modal${eventId}`}
-        eventId={eventId}
-        closeModal={() => this.closeModal()}
-      />;
-    }
-    return '';
-  }
-
   renderTodaysEventItems(todaysEvents: { key: string, value: TourmericEvent }[]) {
     if (!_.isEmpty(todaysEvents)) {
       return (
@@ -160,7 +138,6 @@ export default class Today extends Component<Props, Partial<State>> {
                 <div key={eventId} className="columns today-view-cards-space">
                   <EventCard
                     eventId={eventId}
-                    openModal={() => this.openModal(eventId)}
                   />
                 </div>
               );
@@ -196,7 +173,7 @@ export default class Today extends Component<Props, Partial<State>> {
                 <div key={eventId} className="columns today-view-cards-space">
                   <EventCard
                     eventId={eventId}
-                    openModal={() => this.openModal(eventId)}
+                    // openModal={() => this.openModal(eventId)}
                   />
                 </div>
               );
@@ -231,10 +208,7 @@ export default class Today extends Component<Props, Partial<State>> {
               const eventId = eventEntry.key;
               return (
                 <div key={eventId} className="columns today-view-cards-space">
-                  <EventCard
-                    eventId={eventId}
-                    openModal={() => this.openModal(eventId)}
-                  />
+                  <EventCard eventId={eventId} />
                 </div>
               );
 
@@ -273,10 +247,7 @@ export default class Today extends Component<Props, Partial<State>> {
               const eventId = eventEntry.key;
               return (
                 <div key={eventId} className="columns today-view-cards-space">
-                  <EventCard
-                    eventId={eventId}
-                    openModal={() => this.openModal(eventId)}
-                  />
+                  <EventCard eventId={eventId} />
                 </div>
               );
             })}
@@ -321,9 +292,6 @@ export default class Today extends Component<Props, Partial<State>> {
       return (
         <div className="section">
           <div className="columns is-multiline">
-
-            {isLoaded(events) && todaysEvents.map((eventEntry: TourmericEventEntry) => this.renderEventModal(eventEntry))}
-            {isLoaded(events) && nextEvents.map((eventEntry: TourmericEventEntry) => this.renderEventModal(eventEntry))}
 
             {shownItems === 'today' && this.renderTodaysEventItems(todaysEvents)}
             {shownItems === 'today' && this.renderTodaysOngoingEventItems(todaysOngoingEvents)}
