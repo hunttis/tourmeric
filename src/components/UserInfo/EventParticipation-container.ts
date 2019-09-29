@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import EventParticipation from './EventParticipation';
+import { withRouter } from 'react-router';
+import { EventParticipation } from './EventParticipation';
 import { ReduxState } from '~/models/ReduxState';
 
 export default compose(
@@ -10,4 +11,4 @@ export default compose(
     events: state.firebase.data.events,
     settings: state.firebase.data.settings,
   })),
-)(EventParticipation) as React.ComponentType<any>;
+)(withRouter<any>(EventParticipation)) as React.ComponentType<any>;

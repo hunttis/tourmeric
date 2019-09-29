@@ -6,7 +6,6 @@ import { isLoaded } from 'react-redux-firebase';
 
 import { History } from 'history';
 import { participantCount, checkParticipation } from '../../../api/eventApi';
-import EventModal from '../EventModal-container';
 import { CardFooterMobile } from './CardFooterMobile';
 import { CardFooterDesktop } from './CardFooterDesktop';
 import { TourmericEvent } from '~/models/Events';
@@ -28,21 +27,12 @@ interface Props {
 }
 
 interface State {
-  modalOpen: boolean;
   isOngoingEvent: boolean;
 }
 
 export default class EventCard extends Component<Props, State> {
 
-  state = { modalOpen: false, isOngoingEvent: !this.props.events[this.props.eventId] };
-
-  openModal() {
-    this.setState({ modalOpen: true });
-  }
-
-  closeModal() {
-    this.setState({ modalOpen: false });
-  }
+  state = { isOngoingEvent: !this.props.events[this.props.eventId] };
 
   async editEvent() {
     const { eventId, history } = this.props;
@@ -85,9 +75,6 @@ export default class EventCard extends Component<Props, State> {
 
     return (
       <>
-        {this.state.modalOpen &&
-          <EventModal key={`modal${eventId}`} eventId={eventId} closeModal={() => this.closeModal()} />
-        }
         <div className="column is-12 eventcard">
           <div className={`card card-shadow ${formattedEndDateWithDayName && 'ongoing-event-card'}`}>
 
