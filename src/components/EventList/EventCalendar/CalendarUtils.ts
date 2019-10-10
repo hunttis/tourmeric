@@ -20,10 +20,10 @@ export function filterEventsByCategory(events: { key: string, value: TourmericEv
   return filteredEvents;
 }
 
-export function parseInformationForMonthYear(month: string, year: string, events: { key: string, value: TourmericEvent }[], eventsOngoing: { key: string, value: TourmericEvent}[]) {
+export function parseInformationForMonthYear(month: string, year: string, events: { key: string, value: TourmericEvent }[], eventsOngoing: { key: string, value: TourmericEvent}[], categoryFilter: string[]) {
 
-  const filteredEvents = filterEventsByPublishedStatus(events);
-  const filteredEventsongoing = filterEventsByPublishedStatus(eventsOngoing);
+  const filteredEvents = filterEventsByCategory(filterEventsByPublishedStatus(events), categoryFilter);
+  const filteredEventsongoing = filterEventsByCategory(filterEventsByPublishedStatus(eventsOngoing), categoryFilter);
 
   const targetMonth = moment(`${month}-${year}`, 'MM-YYYY');
   const dayCount = targetMonth.daysInMonth();

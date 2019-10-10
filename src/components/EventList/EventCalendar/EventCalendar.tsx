@@ -189,7 +189,7 @@ export default class EventCalendar extends Component<Props, State> {
       settings,
     } = this.props;
 
-    const { targetMonth, targetYear, mode } = this.state;
+    const { targetMonth, targetYear, mode, categoryFilter } = this.state;
 
     if (!isLoaded(events) || !isLoaded(categories)) {
       return (
@@ -208,7 +208,7 @@ export default class EventCalendar extends Component<Props, State> {
 
     moment.locale(activeLanguage);
 
-    const calendar = parseInformationForMonthYear(targetMonth, targetYear, events, eventsongoing);
+    const calendar = parseInformationForMonthYear(targetMonth, targetYear, events, eventsongoing, categoryFilter);
     const chunkedCalendar = this.chunkedCalendar(calendar);
 
     const categoryNames = this.state.categoryFilter
