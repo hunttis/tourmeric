@@ -3,7 +3,7 @@ import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import { History } from 'history';
 import { Translate } from 'react-localize-redux';
-import moment, { Moment } from 'moment/min/moment-with-locales';
+import { Moment } from 'moment/min/moment-with-locales';
 import {
   removeClassFromHtml,
   addClassToHtml,
@@ -11,8 +11,8 @@ import {
 import EventCard from '../EventCard/EventCard-container';
 import { OpeningHoursContainer as OpeningHours } from '../../StoreInfo/OpeningHours-container';
 import { OpeningHoursExceptionEditor } from './OpeningHoursExceptionEditor';
-import { TourmericEventEntry } from '../../../models/Events';
 import { OpeningHoursException } from '../../../models/OpeningHours';
+import { getOngoingEventsForDay, getEventsForDay } from '~/components/Common/EventUtils';
 
 export interface Props {
   history: History;
@@ -21,9 +21,7 @@ export interface Props {
   showArrow: boolean;
   momentForDay: Moment;
   isAdmin: boolean;
-  eventsForDay: TourmericEventEntry[];
   openinghoursexceptions: { [key: string]: OpeningHoursException };
-  ongoingEventsForDay: TourmericEventEntry[];
 }
 
 export interface State {
@@ -90,23 +88,15 @@ export class CalendarDayModal extends Component<Props, State> {
   };
 
   render() {
-    const { backToCalendar, momentForDay, isAdmin, eventsForDay, ongoingEventsForDay, openinghoursexceptions } = this.props;
+    const { backToCalendar, momentForDay, isAdmin, openinghoursexceptions } = this.props;
     const { editingException } = this.state;
 
     const exceptionForDayExists =
       isLoaded(openinghoursexceptions) &&
       openinghoursexceptions[momentForDay.format('YYYY-MM-DD')];
 
-    const parsedEvents = eventsForDay.map((event: TourmericEventEntry) => {
-      const sortId = moment(
-        `${event.value.date}-${event.value.time}`,
-        'YYYY-MM-DD-HH:mm',
-      ).format('YYYYMMDDHHmm');
-      return { id: sortId, ...event };
-    });
-
-    const sortedEvents = _.sortBy(parsedEvents, (event) => event.id);
-
+    const allEventsForDay = _.concat(getEventsForDay(momentForDay), getOngoingEventsForDay(momentForDay));
+    const sortedEvents = _.sortBy(allEventsForDay, (event) => _.padStart(event.value.time, 5, '0'));
 
     return (
       <>
@@ -188,36 +178,18 @@ export class CalendarDayModal extends Component<Props, State> {
               </div>
             </div>
             <p>&nbsp;</p>
-            {_.isEmpty(eventsForDay) && _.isEmpty(ongoingEventsForDay) && (
+            {_.isEmpty(sortedEvents) && (
               <p>
                 <Translate id="noeventsforthisday" />
               </p>
             )}
-            {!_.isEmpty(eventsForDay) && (
+            {!_.isEmpty(sortedEvents) && (
               <>
                 <h2 className="subtitle">
                   <Translate id="eventsfortoday" />
                 </h2>
                 <div>
                   {sortedEvents.map((eventEntry, index) => {
-                    const eventId = eventEntry.key;
-                    return (
-                      <EventCard
-                        key={`events-for-day-${index}`}
-                        eventId={eventId}
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
-            {!_.isEmpty(ongoingEventsForDay) && (
-              <>
-                <h2 className="subtitle">
-                  <Translate id="ongoingevents" />
-                </h2>
-                <div>
-                  {ongoingEventsForDay.map((eventEntry: TourmericEventEntry, index: number) => {
                     const eventId = eventEntry.key;
                     return (
                       <EventCard

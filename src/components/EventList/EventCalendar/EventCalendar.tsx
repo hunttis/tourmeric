@@ -217,20 +217,6 @@ export default class EventCalendar extends Component<Props, State> {
 
     const dayInPath = location.pathname.substring('/events/'.length);
 
-    const eventsForDay =
-      mode === MODE_DAY
-        ? _.get(_.find(calendar, { dayLink: dayInPath }), 'eventsForDay', [])
-        : [];
-
-    const ongoingEventsForDay =
-      mode === MODE_DAY
-        ? _.get(
-          _.find(calendar, { dayLink: dayInPath }),
-          'ongoingEventsForDay',
-          [],
-        )
-        : [];
-
     const momentForDay = mode === MODE_DAY && moment(dayInPath, 'YYYY/MM/DD');
 
     return (
@@ -240,8 +226,6 @@ export default class EventCalendar extends Component<Props, State> {
           <CalendarDayModal
             backToCalendar={this.backToCalendar}
             momentForDay={momentForDay}
-            eventsForDay={eventsForDay}
-            ongoingEventsForDay={ongoingEventsForDay}
           />
         }
 
