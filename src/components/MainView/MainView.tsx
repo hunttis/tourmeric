@@ -32,6 +32,7 @@ import CategoryLoader from './Loaders/CategoryLoader-container';
 import ParticipationsLoader from './Loaders/ParticipationsLoader-container';
 import UploadedCategoryLogosLoader from './Loaders/UploadedCategoryLogosLoader-container';
 import OpeningHoursExceptionLoader from './Loaders/OpeningHoursExceptionLoader-container';
+import UsersLoader from './Loaders/UsersLoader-container';
 
 // ******************
 // Set the theme here
@@ -46,6 +47,7 @@ interface Props {
   settings: Settings;
   location: Location;
   history: History;
+  isAdmin: boolean;
 }
 
 interface State {
@@ -101,7 +103,7 @@ export default class MainView extends Component<Props, State> {
   }
 
   render() {
-    const { profile, settings } = this.props;
+    const { profile, settings, isAdmin } = this.props;
     const { userInfoOk } = this.state;
 
     if (isLoaded(settings) && isEmpty(settings)) {
@@ -118,6 +120,7 @@ export default class MainView extends Component<Props, State> {
         <UploadedCategoryLogosLoader />
         <OpeningHoursExceptionLoader />
         <ArticleLoader />
+        {isAdmin && <UsersLoader />}
 
         <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
         <Navbar changeLanguage={this.changeLanguage} />
