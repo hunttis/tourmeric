@@ -11,9 +11,9 @@ export const getEventsForDay = (day: Moment): { key: string, value: TourmericEve
   const reduxState: ReduxState = store.getState();
 
   const { data, profile } = reduxState.firebase;
+  const { events } = data;
 
   const hasDefinedFavorites: boolean = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories!.trim());
-  const { events } = data;
 
   if (events) {
     const todaysEvents = Object.entries(events).map((eventEntry) => {
@@ -38,6 +38,7 @@ export const getOngoingEventsForDay = (day: Moment): { key: string, value: Tourm
   const { eventsongoing } = data;
 
   const hasDefinedFavorites = !_.isEmpty(profile.favoriteCategories) && !_.isEmpty(profile.favoriteCategories!.trim());
+
   if (eventsongoing) {
     const todaysOngoingEvents = Object.entries(eventsongoing).map((eventEntry) => {
       const eventKey = eventEntry[0];
