@@ -11,7 +11,6 @@ import NewsEditor from './NewsEditor/NewsEditor-container';
 import CompanyInfoEditor from './CompanyInfoEditor/CompanyInfoEditor-container';
 import StoreCreditCategoryEditor from './StoreCredit/StoreCreditCategoryEditor-container';
 import StoreCreditCategoryLoader from './AdminLoaders/StoreCreditCategoryLoader-container';
-import UsersLoader from './AdminLoaders/UsersLoader-container';
 import StoreCreditReport from './StoreCredit/StoreCreditReport-container';
 import StoreCreditRowEditor from './StoreCredit/StoreCreditRowEditor-container';
 import { AdminToolsTab } from './AdminToolsTab';
@@ -49,7 +48,6 @@ export class AdminTools extends Component<Props> {
     return (
       <div>
         <StoreCreditCategoryLoader />
-        <UsersLoader />
         <div className="tabs is-boxed is-marginless is-multiline">
           <ul>
             <AdminToolsTab

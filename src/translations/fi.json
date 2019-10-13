@@ -70,6 +70,8 @@
   "confirmparticipationcancellation": "Vahvista osallistumisen peruutus",
   "areyousureyouwanttocancelparticipationforuser": "Oletko varma, että haluat peruuttaa osallistumisen käyttäjälle",
   "thisactioncannotbereversed": "Tätä toimintoa ei voi peruuttaa",
+  "showplayerlist": "Näytä pelaajalista",
+  "hideplayerlist": "Piilota pelaajalista",
 
   "select": "- Valitse -",
   "date": "Päivämäärä",

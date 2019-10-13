@@ -70,6 +70,8 @@
   "confirmparticipationcancellation": "Confirm participation cancellation",
   "areyousureyouwanttocancelparticipationforuser": "Are you sure you want to cancel participation for user",
   "thisactioncannotbereversed": "This action cannot be reversed",
+  "showplayerlist": "Show player list",
+  "hideplayerlist": "Hide player list",
 
   "select": "- Select -",
   "date": "Date",

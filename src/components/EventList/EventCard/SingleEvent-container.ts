@@ -16,6 +16,7 @@ export default compose(
     languages: state.locale.languages,
     activeLanguage: getActiveLanguage(state.locale).code,
     isAdmin: _.get(state, 'firebase.profile.role', 'user') === 'admin',
+    users: state.firebase.data.users,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
 )(SingleEvent) as React.ComponentType<any>;
