@@ -5,6 +5,7 @@ import { Translate } from 'react-localize-redux';
 import ClipboardJS from 'clipboard';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment/min/moment-with-locales';
+import { History } from 'history';
 
 import { ModalItem } from '../ModalItem';
 import { ParticipantList } from '../ParticipantList';
@@ -12,7 +13,7 @@ import { checkParticipation } from '../../../api/eventApi';
 import { CardFooterMobile } from './CardFooterMobile';
 import { CardFooterDesktop } from './CardFooterDesktop';
 import { TourmericEvent } from '~/models/Events';
-import { Participation, FirebaseAuth, ParticipationData, User } from '~/models/ReduxState';
+import { Participation, FirebaseAuth, ParticipationData } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
 import { Category } from '~/models/Category';
 import AddPlaceHolderUser from '~/components/AdminTools/EventEditor/AddPlaceHolderUser-container';
@@ -31,13 +32,12 @@ interface Props {
   auth: FirebaseAuth;
   activeLanguage: string;
   isAdmin: boolean;
-  users: { [key: string]: User };
+  history: History;
 }
 
-export const SingleEvent = ({ match, events, eventsongoing, categories, settings, participations, auth, activeLanguage, isAdmin, users }: Props) => {
+export const SingleEvent = ({ match, events, eventsongoing, categories, settings, participations, auth, activeLanguage, isAdmin, history }: Props) => {
 
-  const [userToCancel, setUserToCancel] = useState(null);
-  const [showPlayerList, setShowPlayerList] = useState(false);
+  const [userToCancel, setUserToCancel] = useState<null | string>(null);
 
   if (!isLoaded(events)) {
     return (
@@ -91,7 +91,6 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
   participationsForEvent = _.sortBy(participationsForEvent, ['date']);
   const alreadyParticipated = checkParticipation(userId, eventId, participations);
   const thisParticipation = _.get(participations, `${eventId}.${userId}`, {});
-  const participationsSortedByLastname = _.sortBy(participationsForEvent, ['lastName']);
 
   const participationBeingCancelledId: string = _.findKey(participationsMap, (p) => p.userId === userToCancel) || '';
   const participationBeingCancelled = participationBeingCancelledId ? participationsMap[participationBeingCancelledId] : null;
@@ -285,49 +284,12 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
               </div>
               <div className="card-footer">
                 <div className="card-footer-item event-card-footer">
-                  {!showPlayerList &&
-                    <button className="button is-outlined is-success" onClick={() => setShowPlayerList(true)}><Translate id="showplayerlist" /></button>
-                  }
-                  {showPlayerList &&
-                    <>
-                      <div className="columns is-multiline is-fullwidth">
-                        <div className="column is-12 has-text-centered">
-                          <button className="button is-outlined is-warning" onClick={() => setShowPlayerList(false)}><Translate id="hideplayerlist" /></button>
-                        </div>
-                        <div className="column is-12">
-                          <table className="table is-fullwidth is-bordered is-family-monospace">
-
-                            <thead>
-                              <tr className="has-text-info">
-                                <th><Translate id="lastname" /></th>
-                                <th><Translate id="firstname" /></th>
-                                <th><Translate id="dcinumber" /></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {participationsSortedByLastname.map((participation, index) => {
-                                const dciNumber = _.get(users, `${participation.userId}.dciNumber`, '-');
-                                return (
-                                  <tr key={`participation-${index}`}>
-                                    <td>{participation.lastName}</td>
-                                    <td>{participation.firstName}</td>
-                                    <td>{dciNumber}</td>
-                                  </tr>
-                                );
-
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </>
-                  }
+                  <button className="button is-outlined is-success" onClick={() => history.push(`/event/${eventId}/printplayerlist`)}><Translate id="showplayerlist" /></button>
                 </div>
                 <div className="card-footer-item event-card-footer" />
               </div>
             </>
           }
-
         </div>
       </div>
     </div>
