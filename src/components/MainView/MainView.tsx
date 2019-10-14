@@ -23,6 +23,7 @@ import CompanyInfo from './CompanyInfo/CompanyInfo-container';
 import InitialSetup from './InitialSetup';
 import FooterBar from './FooterBar-container';
 import SingleEvent from '../EventList/EventCard/SingleEvent-container';
+import EventPlayerList from '../EventList/EventCard/EventPlayerList-container';
 import { OpeningHoursContainer as OpeningHours } from '../StoreInfo/OpeningHours-container';
 import Articles from './Articles/Articles-container';
 
@@ -103,12 +104,14 @@ export default class MainView extends Component<Props, State> {
   }
 
   render() {
-    const { profile, settings, isAdmin } = this.props;
+    const { profile, settings, isAdmin, location } = this.props;
     const { userInfoOk } = this.state;
 
     if (isLoaded(settings) && isEmpty(settings)) {
       return <InitialSetup profile={profile} />;
     }
+
+    const printPage = location.pathname.indexOf('print') !== -1;
 
     return (
       <div>
@@ -122,15 +125,20 @@ export default class MainView extends Component<Props, State> {
         <ArticleLoader />
         {isAdmin && <UsersLoader />}
 
-        <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
-        <Navbar changeLanguage={this.changeLanguage} />
-        <div className="is-hidden-tablet is-centered is-fullwidth level box">
-          <div className="level-item openinghours-mobile"><OpeningHours /></div>
-        </div>
+        {!printPage &&
+          <>
+            <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
+            <Navbar changeLanguage={this.changeLanguage} />
+            <div className="is-hidden-tablet is-centered is-fullwidth level box">
+              <div className="level-item openinghours-mobile"><OpeningHours /></div>
+            </div>
+          </>
+        }
 
         {userInfoOk &&
           <Switch>
             <Route path="/today" component={Today} />
+            <Route path="/event/:id/printplayerlist" component={EventPlayerList} />
             <Route path="/event/:id" component={SingleEvent} />
             <Route path="/events" component={EventCalendar} />
             <Route path="/storeinfo" component={StoreInfo} />
@@ -149,7 +157,7 @@ export default class MainView extends Component<Props, State> {
           <UserInfo />
         }
 
-        {isLoaded(settings) &&
+        {(isLoaded(settings) && !printPage) &&
           <FooterBar />
         }
       </div>
