@@ -7,7 +7,7 @@ import { TourmericEvent } from '~/models/Events';
 
 const notNull = <T>(x: T | null): x is T => x !== null;
 
-export const getEventsForDay = (day: Moment): { key: string, value: TourmericEvent }[] => {
+export const getEventsForDay = (day: Moment, returnAllNotJustFavorites = false): { key: string, value: TourmericEvent }[] => {
   const reduxState: ReduxState = store.getState();
 
   const { data, profile } = reduxState.firebase;
@@ -20,7 +20,7 @@ export const getEventsForDay = (day: Moment): { key: string, value: TourmericEve
       const eventKey = eventEntry[0];
       const eventData = eventEntry[1];
 
-      const isFavorite = !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
+      const isFavorite = returnAllNotJustFavorites || !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
 
       if (eventData.published && createMomentFromDateString(eventData.date).isSame(day, 'day') && isFavorite) {
         return { key: eventKey, value: eventData };
@@ -32,7 +32,7 @@ export const getEventsForDay = (day: Moment): { key: string, value: TourmericEve
   return [];
 };
 
-export const getOngoingEventsForDay = (day: Moment): { key: string, value: TourmericEvent }[] => {
+export const getOngoingEventsForDay = (day: Moment, returnAllNotJustFavorites = false): { key: string, value: TourmericEvent }[] => {
   const reduxState: ReduxState = store.getState();
   const { data, profile } = reduxState.firebase;
   const { eventsongoing } = data;
@@ -43,7 +43,7 @@ export const getOngoingEventsForDay = (day: Moment): { key: string, value: Tourm
     const todaysOngoingEvents = Object.entries(eventsongoing).map((eventEntry) => {
       const eventKey = eventEntry[0];
       const eventData = eventEntry[1];
-      const isFavorite = !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
+      const isFavorite = returnAllNotJustFavorites || !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
 
       if (eventData.published && eventData.endDate && isFavorite && day.isBetween(createMomentFromDateString(eventData.date), createMomentFromDateString(eventData.endDate), 'day', '[]')) {
         return { key: eventKey, value: eventData };

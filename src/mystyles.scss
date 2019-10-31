@@ -115,6 +115,11 @@ div.card-content.card-title.card-logo-title.ongoing-event-card-title {
   background-color: #191919;
 }
 
+.ongoing-event-image {
+  border: 2px solid hsl(204, 86%, 43%);
+  border-radius: 16px;
+}
+
 .openinghours-mobile {
   @media (max-width: 400px) {
     padding: 0px;

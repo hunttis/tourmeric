@@ -6,17 +6,16 @@ exports[`EventCard Tests Compares EventCard to snapshot 1`] = `
     className="column is-12 eventcard"
   >
     <div
-      className="card card-shadow null"
+      className="card card-shadow "
     >
       <div
-        className="card-content card-title card-logo-title null"
+        className="card-content card-title card-logo-title "
       >
         <figure
           className="image event-icon-title event-item"
         >
           <img
             alt=""
-            className="null"
           />
         </figure>
       </div>
