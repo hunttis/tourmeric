@@ -19,12 +19,11 @@ interface Props {
 interface State {
   activeFilter: string;
   showPastEvents: boolean;
-  creditFormNote: string;
 }
 
 export class AdminEventList extends Component<Props, State> {
 
-  state = { activeFilter: '', showPastEvents: false, creditFormNote: '' };
+  state = { activeFilter: '', showPastEvents: false };
 
   changeFilter(value: string) {
     this.setState({ activeFilter: value });
@@ -46,7 +45,7 @@ export class AdminEventList extends Component<Props, State> {
         </label>
         <Translate>
           {(translate: any) => (
-            <input className="input" type="text" value={this.state.creditFormNote} placeholder={translate('filtereventsbynameorcategory')} onChange={(event) => this.changeFilter(event.target.value)} />
+            <input className="input" type="text" value={this.state.activeFilter} placeholder={translate('filtereventsbynameorcategory')} onChange={(event) => this.changeFilter(event.target.value)} />
           )}
         </Translate>
       </div>
