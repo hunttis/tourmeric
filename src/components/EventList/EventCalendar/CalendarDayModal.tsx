@@ -22,6 +22,7 @@ export interface Props {
   momentForDay: Moment;
   isAdmin: boolean;
   openinghoursexceptions: { [key: string]: OpeningHoursException };
+  categoryFilter: string[];
 }
 
 export interface State {
@@ -88,15 +89,16 @@ export class CalendarDayModal extends Component<Props, State> {
   };
 
   render() {
-    const { backToCalendar, momentForDay, isAdmin, openinghoursexceptions } = this.props;
+    const { backToCalendar, momentForDay, isAdmin, openinghoursexceptions, categoryFilter } = this.props;
     const { editingException } = this.state;
 
     const exceptionForDayExists =
       isLoaded(openinghoursexceptions) &&
       openinghoursexceptions[momentForDay.format('YYYY-MM-DD')];
 
-    const allEventsForDay = _.concat(getEventsForDay(momentForDay), getOngoingEventsForDay(momentForDay));
-    const sortedEvents = _.sortBy(allEventsForDay, (event) => _.padStart(event.value.time, 5, '0'));
+    const eventsForDay = _.sortBy(getEventsForDay(momentForDay, true), (event) => _.padStart(event.value.time, 5, '0'));
+    const ongoingEventsForDay = _.sortBy(getOngoingEventsForDay(momentForDay, true), (event) => _.padStart(event.value.time, 5, '0'));
+    const allEventsForDay = _.concat(eventsForDay, ongoingEventsForDay).filter((event) => categoryFilter.includes(event.value.category));
 
     return (
       <>
@@ -178,18 +180,18 @@ export class CalendarDayModal extends Component<Props, State> {
               </div>
             </div>
             <p>&nbsp;</p>
-            {_.isEmpty(sortedEvents) && (
+            {_.isEmpty(allEventsForDay) && (
               <p>
                 <Translate id="noeventsforthisday" />
               </p>
             )}
-            {!_.isEmpty(sortedEvents) && (
+            {!_.isEmpty(allEventsForDay) && (
               <>
                 <h2 className="subtitle">
                   <Translate id="eventsfortoday" />
                 </h2>
                 <div>
-                  {sortedEvents.map((eventEntry, index) => {
+                  {allEventsForDay.map((eventEntry, index) => {
                     const eventId = eventEntry.key;
                     return (
                       <EventCard

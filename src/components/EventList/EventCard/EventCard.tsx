@@ -66,6 +66,7 @@ export default class EventCard extends Component<Props, State> {
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
     const formattedDateWithDayName = moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`);
     const formattedEndDateWithDayName = eventContent.endDate ? moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`) : null;
+    const isOngoingEvent = !!formattedEndDateWithDayName;
 
     const playerSlotsString = eventContent.playerSlots ? `/ ${eventContent.playerSlots} ` : '';
 
@@ -76,11 +77,11 @@ export default class EventCard extends Component<Props, State> {
     return (
       <>
         <div className="column is-12 eventcard">
-          <div className={`card card-shadow ${formattedEndDateWithDayName && 'ongoing-event-card'}`}>
+          <div className={`card card-shadow ${isOngoingEvent ? 'ongoing-event-card' : ''}`}>
 
-            <div className={`card-content card-title card-logo-title ${formattedEndDateWithDayName && 'ongoing-event-card-title'}`}>
+            <div className={`card-content card-title card-logo-title ${isOngoingEvent ? 'ongoing-event-card-title' : ''}`}>
               <figure className="image event-icon-title event-item">
-                <img className={`${formattedEndDateWithDayName && 'ongoing-event-image'}`} src={_.get(category, 'image')} alt="" />
+                <img src={_.get(category, 'image')} alt="" />
               </figure>
             </div>
             <div className="card-content">
@@ -96,6 +97,7 @@ export default class EventCard extends Component<Props, State> {
             </div>
 
             <div className="card-content">
+              {!isOngoingEvent &&
               <table className="table eventinfo-table">
                 <tbody>
                   <CardInfoLine icon="fas fa-clock" title="startingtime" content={eventContent.time} />
@@ -106,6 +108,7 @@ export default class EventCard extends Component<Props, State> {
                   {eventContent.rules && <CardInfoLine icon="fas fa-balance-scale" title="ruleslevel" content={eventContent.rulesLevel!} />}
                 </tbody>
               </table>
+              }
 
               <div className="allinfolink">
                 <a onClick={() => this.props.history.push(`/event/${eventId}`)} className="card-footer-link">

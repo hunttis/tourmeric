@@ -9,7 +9,7 @@ import {
   removeClassFromHtml,
 } from '../../Common/DocumentUtils';
 import CalendarDayModal from './CalendarDayModal-container';
-import { Location } from '~/models/ReduxState';
+import { Location, FirebaseProfile } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
 import { Category } from '~/models/Category';
 import { OpeningHoursException } from '~/models/OpeningHours';
@@ -36,6 +36,7 @@ interface Props {
   history: History;
   openinghoursexceptions: { [key: string]: OpeningHoursException };
   setReturnLocation: (key: string) => void;
+  profile: FirebaseProfile;
 }
 
 interface State {
@@ -50,18 +51,21 @@ export default class EventCalendar extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const favoriteCategories = _.get(props, 'profile.favoriteCategories', '');
-    const defaultFilter = favoriteCategories.split(' ');
-
     const targetData = this.parseTargetMonthYearAndMode(props.location);
 
     this.state = {
-      categoryFilter: _.compact(defaultFilter),
+      categoryFilter: [],
       ...targetData,
     };
   }
 
   componentWillReceiveProps(nextProps: Props) {
+    if (isEmpty(this.props.profile) && !isEmpty(nextProps.profile)) {
+      const favoriteCategories = _.get(nextProps, 'profile.favoriteCategories', '');
+      const defaultFilter = favoriteCategories.split(' ');
+      this.setState({ categoryFilter: _.compact(defaultFilter) });
+    }
+
     if (!_.isEqual(this.props.location, nextProps.location)) {
       const targetData = this.parseTargetMonthYearAndMode(nextProps.location);
       this.setState({ ...targetData });
@@ -187,11 +191,12 @@ export default class EventCalendar extends Component<Props, State> {
       location,
       openinghoursexceptions,
       settings,
+      profile,
     } = this.props;
 
     const { targetMonth, targetYear, mode, categoryFilter } = this.state;
 
-    if (!isLoaded(events) || !isLoaded(categories)) {
+    if (!isLoaded(events) || !isLoaded(categories) || !isLoaded(profile)) {
       return (
         <div className="is-loading">
           <Translate id="loading" />
@@ -226,6 +231,7 @@ export default class EventCalendar extends Component<Props, State> {
           <CalendarDayModal
             backToCalendar={this.backToCalendar}
             momentForDay={momentForDay}
+            categoryFilter={this.state.categoryFilter}
           />
         }
 
