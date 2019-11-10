@@ -98,7 +98,7 @@ export class CalendarDayModal extends Component<Props, State> {
 
     const eventsForDay = _.sortBy(getEventsForDay(momentForDay, true), (event) => _.padStart(event.value.time, 5, '0'));
     const ongoingEventsForDay = _.sortBy(getOngoingEventsForDay(momentForDay, true), (event) => _.padStart(event.value.time, 5, '0'));
-    const allEventsForDay = _.concat(eventsForDay, ongoingEventsForDay).filter((event) => categoryFilter.includes(event.value.category));
+    const allEventsForDay = _.concat(eventsForDay, ongoingEventsForDay).filter((event) => _.isEmpty(categoryFilter) || categoryFilter.includes(event.value.category));
 
     return (
       <>
