@@ -66,14 +66,16 @@ export class AdminEventList extends Component<Props, State> {
       pastOrFutureList :
       pastOrFutureList.filter((item) => {
         const lowerCaseFilter = this.state.activeFilter.toLowerCase();
-        const hasName = !!item[1].name;
-        const nameFilterHits = hasName && item[1].name.toLowerCase().indexOf(lowerCaseFilter) !== -1;
+        const itemOk = item && item[1];
+        const hasName = itemOk && item[1].name;
 
-        const hasCategory = !!item[1].category;
+        const nameFilterHits = hasName && _.get(item[1], 'name', '').toLowerCase().indexOf(lowerCaseFilter) !== -1;
+
+        const hasCategory = itemOk && item[1].category;
         const actualCategory = hasCategory ? categories[item[1].category] : '...';
         const categoryFilterHits = hasCategory && actualCategory !== '...' && (
-          actualCategory.name.toLowerCase().indexOf(lowerCaseFilter) !== -1 ||
-          actualCategory.abbreviation.toLowerCase().indexOf(lowerCaseFilter) !== -1
+          _.get(actualCategory, 'name', '').toLowerCase().indexOf(lowerCaseFilter) !== -1 ||
+          _.get(actualCategory, 'abbreviation', '').toLowerCase().indexOf(lowerCaseFilter) !== -1
         );
 
         return categoryFilterHits || nameFilterHits;
