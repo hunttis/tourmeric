@@ -21,4 +21,4 @@ export default compose(
     });
   }),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withRouter<any>(ExistingEventEditor)) as React.ComponentType<any>;
+)(withRouter<any, any>(ExistingEventEditor)) as React.ComponentType<any>;

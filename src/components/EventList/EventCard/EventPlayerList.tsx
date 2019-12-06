@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import { Translate, Language } from 'react-localize-redux';
 import ClipboardJS from 'clipboard';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment/min/moment-with-locales';
@@ -20,7 +20,7 @@ interface Props {
   eventsongoing: { [key: string]: TourmericEvent };
   settings: Settings;
   participations: { [key: string]: Participation };
-  activeLanguage: string;
+  activeLanguage: Language;
   isAdmin: boolean;
   users: { [key: string]: User };
 }
@@ -35,7 +35,7 @@ export const EventPlayerList = ({ match, events, eventsongoing, settings, partic
     );
   }
 
-  moment.locale(activeLanguage);
+  moment.locale(activeLanguage.code);
 
   const eventId = match.params.id;
   let eventContent = _.get(events, eventId, null);

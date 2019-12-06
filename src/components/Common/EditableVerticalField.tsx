@@ -74,10 +74,10 @@ export default class EditableVerticalField extends Component<Props, State> {
           <p className={`control is-expanded ${idleIcon ? 'has-icons-left' : 'has-icons-right'}`}>
 
             <Translate>
-              {(translate: any) => (<input
+              {({ translate }) => (<input
                 type={inputType}
                 className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${emptyClass && !fieldValue ? 'is-danger' : ''} ${disabled && 'has-text-info'}`}
-                placeholder={translate(placeHolder)}
+                placeholder={`${translate(placeHolder)}`}
                 defaultValue={defaultValue}
                 onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                 disabled={disabled}

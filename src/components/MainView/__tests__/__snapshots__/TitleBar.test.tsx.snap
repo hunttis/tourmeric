@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitleBar tests Renders titlebar before anything is loaded 1`] = `
+<div
+  className="title has-text-centered"
+>
+  <div
+    className="level"
+  />
+  <button
+    className="button is-loading is-black"
+    disabled={true}
+  >
+    <Translate
+      id="loading"
+    />
+    .
+  </button>
+</div>
+`;
+
+exports[`TitleBar tests something something 1`] = `
+<Fragment>
+  <section
+    className="hero titlebar is-hidden-mobile"
+  >
+    <div
+      className="hero-body is-hidden-mobile"
+    >
+      <div
+        className="columns is-marginless"
+      >
+        <div
+          className="column is-2 is-vcentered"
+        />
+        <div
+          className="column button-container"
+        />
+      </div>
+      <div
+        className="is-hidden-mobile"
+      >
+        <Connect(Connect(Component)) />
+      </div>
+    </div>
+  </section>
+</Fragment>
+`;

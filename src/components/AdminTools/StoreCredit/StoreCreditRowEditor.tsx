@@ -2,6 +2,7 @@ import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
+import { History } from 'history';
 import {
   StoreCreditCategory, TourmericStoreCreditData,
 } from '~/models/StoreCredit';

@@ -41,7 +41,7 @@ export class CalendarDayModal extends Component<Props, State> {
     this.scrollElement = null;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     addClassToHtml('is-clipped');
   }
 

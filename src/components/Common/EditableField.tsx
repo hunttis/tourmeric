@@ -66,10 +66,10 @@ export default class EditableField extends Component<Props, State> {
             <p className={`control is-expanded ${leftIcon && 'has-icons-left'} has-icons-right`}>
 
               <Translate>
-                {(translate: any) => (<input
+                {({ translate }) => (<input
                   type={inputType}
                   className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${inputClasses}`}
-                  placeholder={translate(placeHolder)}
+                  placeholder={`${translate(placeHolder)}`}
                   defaultValue={defaultValue}
                   onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                 />)

@@ -47,9 +47,9 @@ export default class EditableTextarea extends Component<Props> {
           <div className="field">
             <div className="control is-expanded has-icons-right">
               <Translate>
-                {(translate: any) => (<textarea
+                {({ translate }) => (<textarea
                   className={`textarea ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
-                  placeholder={translate(placeHolder)}
+                  placeholder={`${translate(placeHolder)}`}
                   defaultValue={defaultValue}
                   rows={rows}
                   onChange={(event) => this.handleChange(path, { [targetName]: event.target.value })}

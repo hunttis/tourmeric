@@ -91,7 +91,7 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
           {!openinghoursexceptions && <p><Translate id="none" /></p>}
 
           <Translate>
-            {(translate: any) => (
+            {({ translate }) => (
               <div className="columns box is-multiline">
                 <div className="column is-12">
                   <h1 className="title">{translate('addexception')}</h1>
@@ -112,7 +112,7 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
                 </div>
                 <div className="field column">
                   <label className="label">{translate('name')}</label>
-                  <input className="input" type="text" value={this.state.newExceptionName} placeholder={translate('name')} onChange={(event) => this.setState({ newExceptionName: event.target.value })} />
+                  <input className="input" type="text" value={this.state.newExceptionName} placeholder={`${translate('name')}`} onChange={(event) => this.setState({ newExceptionName: event.target.value })} />
                 </div>
                 <div className="field column">
                   <label className="label">{translate('open')}?</label>
@@ -124,7 +124,7 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
                       <button onClick={() => this.setOpenStatus(STATUS_CLOSED)} className={`button is-danger ${this.state.newExceptionOpenStatus === STATUS_CLOSED && 'is-outlined'}`}>{translate('closed')}</button>
                     </div>
                     <div className="control">
-                      <input disabled={this.state.newExceptionOpenStatus === STATUS_CLOSED} className="input" type="text" value={this.state.newExceptionOpeningHours} placeholder={translate('openinghours')} onChange={(event) => this.setState({ newExceptionOpeningHours: event.target.value })} />
+                      <input disabled={this.state.newExceptionOpenStatus === STATUS_CLOSED} className="input" type="text" value={this.state.newExceptionOpeningHours} placeholder={`${translate('openinghours')}`} onChange={(event) => this.setState({ newExceptionOpeningHours: event.target.value })} />
                     </div>
                   </div>
                 </div>

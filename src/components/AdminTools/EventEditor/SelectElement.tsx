@@ -89,7 +89,6 @@ interface SelectionButtonProps {
 }
 
 function LockedButton({ dropdownItems, nameProp, selectedValue }: SelectionButtonProps) {
-
   const selectedItem = dropdownItems[selectedValue!];
   const selectionData = selectedItem;
   const { buttonName, image } = typeof selectionData === 'string' ?

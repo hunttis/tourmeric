@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { getActiveLanguage } from 'react-localize-redux';
+import { withLocalize } from 'react-localize-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 import ParticipationEditor from './ParticipationEditor';
 import { ReduxState } from '~/models/ReduxState';
@@ -16,7 +16,6 @@ export default compose(
     users: state.firebase.ordered.users,
     admin: state.admin,
     settings: state.firebase.data.settings,
-    activeLanguage: getActiveLanguage(state.locale).code,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(ParticipationEditor) as React.ComponentType<any>;
+)(withLocalize<any>(ParticipationEditor)) as React.ComponentType<any>;

@@ -1,8 +1,9 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { reactReduxFirebase, firebaseReducer, getFirebase } from 'react-redux-firebase';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { firebaseReducer, getFirebase } from 'react-redux-firebase';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import { localeReducer as locale, initialize, addTranslationForLanguage } from 'react-localize-redux';
+import { localizeReducer, addTranslationForLanguage } from 'react-localize-redux';
+
 import firebase from 'firebase/app';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
@@ -18,36 +19,32 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 /* eslint-disable-next-line import/no-unresolved */
-const config = require('./config').get(process.env.NODE_ENV, process.env.DEPLOYMENT);
+import { get } from '~/config';
+
+const activeConfig = get(process.env.NODE_ENV, process.env.DEPLOYMENT);
 
 if (firebase.apps.length === 0) {
-  firebase.initializeApp(config);
+  firebase.initializeApp(activeConfig);
 } else {
   firebase.app();
 }
 
-document.title = config.titleText;
+document.title = activeConfig.titleText;
 
-const rrfConfig = {
-  userProfile: 'users',
-  preserveOnLogout: ['events', 'participations', 'categories'],
-};
+export const history = createBrowserHistory();
 
-const createStoreWithFirebase = compose(reactReduxFirebase(firebase, rrfConfig))(createStore);
-
-const rootReducer = combineReducers({
+const createRootReducer = () => combineReducers({
   firebase: firebaseReducer,
-  locale,
+  localize: localizeReducer,
   admin: eventReducer,
   editor: eventEditorReducer,
+  router: connectRouter(history),
 });
 
 const initialState = {};
 
-export const history = createBrowserHistory();
-
-export const store = createStoreWithFirebase(
-  connectRouter(history)(rootReducer),
+export const store = createStore(
+  createRootReducer(history),
   initialState,
   composeWithDevTools(
     applyMiddleware(
@@ -57,14 +54,25 @@ export const store = createStoreWithFirebase(
   ),
 );
 
-const languages = ['en', 'fi'];
+const rrfConfig = {
+  userProfile: 'users',
+  preserveOnLogout: ['events', 'participations', 'categories'],
+};
+
+export const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+};
+
+// const languages = ['en', 'fi'];
 
 const defaultLanguage = 'fi';
 
 Moment.globalMoment = moment;
 Moment.globalLocale = defaultLanguage;
 
-store.dispatch(initialize(languages, { defaultLanguage }));
+// store.dispatch(initialize(languages, { defaultLanguage }));
 
 store.dispatch(addTranslationForLanguage(englishTranslations, 'en'));
 store.dispatch(addTranslationForLanguage(finnishTranslations, 'fi'));

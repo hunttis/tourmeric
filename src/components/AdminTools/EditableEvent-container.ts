@@ -14,4 +14,4 @@ export const EditableEventContainer = compose(
     setReturnLocation: (returnLocation: string) => setReturnLocation(returnLocation),
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withRouter<any>(EditableEvent)) as React.ComponentType<any>;
+)(withRouter<any, any>(EditableEvent)) as React.ComponentType<any>;

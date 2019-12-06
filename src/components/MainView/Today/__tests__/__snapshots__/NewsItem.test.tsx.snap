@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`News tests should render a newsitem 1`] = `
+<Fragment
+  key="first"
+>
+  <div
+    className="card"
+  >
+    <div
+      className="card-header"
+    >
+      <div
+        className="card-header-title"
+      >
+        First News Item
+      </div>
+      <div
+        className="card-header-title"
+      >
+        19-12-2031
+      </div>
+    </div>
+    <div
+      className="card-content"
+    >
+      <div
+        className="content"
+      >
+        <p
+          key="first-0"
+        >
+          First
+           
+        </p>
+        <p
+          key="first-1"
+        >
+          News
+           
+        </p>
+        <p>
+          ...
+          <Translate
+            id="continues"
+          />
+        </p>
+      </div>
+    </div>
+    <div
+      className="card-footer"
+    >
+      <a
+        className="card-footer-item"
+        onClick={[Function]}
+      >
+        <i
+          className="fas fa-caret-square-down"
+        />
+          
+        <Translate
+          id="showfullnewsitem"
+        />
+      </a>
+    </div>
+  </div>
+  <div>
+     
+  </div>
+</Fragment>
+`;
+
+exports[`News tests should render a newsitem 2`] = `
+<Fragment
+  key="first"
+>
+  <div
+    className="card"
+  >
+    <div
+      className="card-header"
+    >
+      <div
+        className="card-header-title"
+      >
+        First News Item
+      </div>
+      <div
+        className="card-header-title"
+      >
+        19-12-2031
+      </div>
+    </div>
+    <div
+      className="card-content"
+    >
+      <div
+        className="content"
+      >
+        <p
+          key="first-0"
+        >
+          First
+        </p>
+        <p
+          key="first-1"
+        >
+          News
+        </p>
+        <p
+          key="first-2"
+        >
+          Item
+        </p>
+        <p
+          key="first-3"
+        >
+          Text
+        </p>
+      </div>
+    </div>
+    <div
+      className="card-footer"
+    >
+      <a
+        className="card-footer-item"
+        onClick={[Function]}
+      >
+        <i
+          className="fas fa-caret-square-up"
+        />
+          
+        <Translate
+          id="showless"
+        />
+      </a>
+    </div>
+  </div>
+  <div>
+     
+  </div>
+</Fragment>
+`;

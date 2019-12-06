@@ -94,13 +94,13 @@ export const EditorForm = ({
 
         <div className="column is-12">
           <Translate>
-            {(translate: any) => (
+            {({ translate }) => (
               <SelectElement
                 isOk={!_.isEmpty(event.eventType)}
                 updateFieldStatus={updateFieldStatus}
                 labelContent="eventtype"
                 defaultValue={event.eventType}
-                dropdownItems={{ singledayevent: translate('singledayevent'), ongoingevent: translate('ongoingevent') }}
+                dropdownItems={{ singledayevent: `${translate('singledayevent')}`, ongoingevent: `${translate('ongoingevent')}` }}
                 path={`${storageUrlPath}/${eventId}`}
                 targetName="eventType"
                 isHorizontal
@@ -227,26 +227,22 @@ export const EditorForm = ({
         </div>
         <div className="column is-12">
           {missingFields.length > 0 &&
-            <Translate>
-              {(translate: any) => (
-                <div className="field is-horizontal">
+            <div className="field is-horizontal">
 
-                  <div className="field-label is-normal">
-                    <label className="label">{translate('youstillneedtoadd')}</label>
-                  </div>
+              <div className="field-label is-normal">
+                <label className="label"><Translate id="youstillneedtoadd" /></label>
+              </div>
 
-                  <div className="field-body">
-                    <div className="field">
-                      <div className="control">
-                        <span className="tags are-medium">
-                          {missingFields.map((field) => <span className="tag is-warning has-text-black" key={`missingData-${field}`}>{translate(field)}</span>)}
-                        </span>
-                      </div>
-                    </div>
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <span className="tags are-medium">
+                      {missingFields.map((field) => <span className="tag is-warning has-text-black" key={`missingData-${field}`}><Translate id={field} /></span>)}
+                    </span>
                   </div>
                 </div>
-              )}
-            </Translate>
+              </div>
+            </div>
           }
         </div>
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { Translate } from 'react-localize-redux';
+import { Translate, Language } from 'react-localize-redux';
 import moment, { Moment } from 'moment/min/moment-with-locales';
 import _ from 'lodash';
 import SingleEventParticipation from './SingleEventParticipation-container';
@@ -13,7 +13,7 @@ interface Props {
   categories: { [key: string]: Category };
   participations: { [key: string]: Participation };
   events: [{ key: string, value: TourmericEvent }];
-  activeLanguage: string;
+  activeLanguage: Language;
 }
 
 interface State {
@@ -47,7 +47,7 @@ export default class ParticipationEditor extends Component<Props, Partial<State>
       users, categories, participations, events, activeLanguage,
     } = this.props;
 
-    moment.locale(activeLanguage);
+    moment.locale(activeLanguage.code);
 
     if (isLoaded(events) && !isEmpty(events) && isLoaded(categories) && isLoaded(participations) && isLoaded(users)) {
       const publishedEvents = Object.values(events)

@@ -7,7 +7,7 @@ import { TourmericStoreCreditData, StoreCreditCategory } from './StoreCredit';
 export interface ReduxState {
   admin: any;
   firebase: FirebaseObject;
-  locale: any;
+  localize: any;
   router: Router;
   editor: Editor;
 }
@@ -36,11 +36,11 @@ export interface Location {
 }
 
 interface OrderedFirebaseData {
-  events: [{ key: string, value: TourmericEvent }];
-  eventsongoing: [{ key: string, value: TourmericEvent }];
-  news: [{ key: string, value: SingleNewsItem }];
-  users: [{ key: string, value: User }];
-  uploadedArticleImages: [{ key: string, value: UploadedFile}];
+  events: { key: string, value: TourmericEvent }[];
+  eventsongoing: { key: string, value: TourmericEvent }[];
+  news: { key: string, value: SingleNewsItem }[];
+  users: { key: string, value: User }[];
+  uploadedArticleImages: { key: string, value: UploadedFile}[];
 }
 
 interface FirebaseData {

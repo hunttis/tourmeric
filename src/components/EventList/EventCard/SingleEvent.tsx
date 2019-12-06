@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { Translate, Language } from 'react-localize-redux';
 import ClipboardJS from 'clipboard';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment/min/moment-with-locales';
@@ -30,7 +30,7 @@ interface Props {
   settings: Settings;
   participations: { [key: string]: Participation };
   auth: FirebaseAuth;
-  activeLanguage: string;
+  activeLanguage: Language;
   isAdmin: boolean;
   history: History;
 }
@@ -47,7 +47,7 @@ export const SingleEvent = ({ match, events, eventsongoing, categories, settings
     );
   }
 
-  moment.locale(activeLanguage);
+  moment.locale(activeLanguage.code);
 
   const eventId = match.params.id;
   let eventContent = _.get(events, eventId, null);

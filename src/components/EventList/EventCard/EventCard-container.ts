@@ -15,9 +15,9 @@ export default compose(
     categories: state.firebase.data.categories,
     userId: state.firebase.auth.uid,
     settings: state.firebase.data.settings,
-    languages: state.locale.languages,
+    languages: state.localize.languages,
     isAdmin: _.get(state, 'firebase.profile.role', 'user') === 'admin',
     setReturnLocation: (returnLocation: string) => setReturnLocation(returnLocation),
   })),
   connect(({ firebase: { profile } }: ReduxState) => ({ profile })),
-)(withRouter<any>(EventCard)) as React.ComponentType<any>;
+)(withRouter<any, any>(EventCard)) as React.ComponentType<any>;

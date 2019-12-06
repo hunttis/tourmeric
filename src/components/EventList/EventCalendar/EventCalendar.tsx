@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import { Translate, Language } from 'react-localize-redux';
 import moment, { Moment } from 'moment/min/moment-with-locales';
 import { History } from 'history';
-import { CalendarMonth } from './CalendarMonth';
-import {
-  removeClassFromHtml,
-} from '../../Common/DocumentUtils';
+import { CalendarMonth } from '~/components/EventList/EventCalendar/CalendarMonth';
+import { removeClassFromHtml } from '~/components/Common/DocumentUtils';
 import CalendarDayModal from './CalendarDayModal-container';
 import { Location, FirebaseProfile } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
@@ -24,14 +22,14 @@ const DAY_INDEX = 4;
 const MODE_MONTH: ViewMode = 'month';
 const MODE_DAY: ViewMode = 'day';
 
-type ViewMode = 'month' | 'day';
+export type ViewMode = 'month' | 'day';
 
 interface Props {
   settings: Settings;
   events: { key: string, value: TourmericEvent }[];
   eventsongoing: { key: string, value: TourmericEvent }[];
   categories: { [key: string]: Category };
-  activeLanguage: string;
+  activeLanguage: Language;
   location: Location;
   history: History;
   openinghoursexceptions: { [key: string]: OpeningHoursException };
@@ -59,7 +57,7 @@ export default class EventCalendar extends Component<Props, State> {
     };
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     if (isEmpty(this.props.profile) && !isEmpty(nextProps.profile)) {
       const favoriteCategories = _.get(nextProps, 'profile.favoriteCategories', '');
       const defaultFilter = favoriteCategories.split(' ');
@@ -211,7 +209,7 @@ export default class EventCalendar extends Component<Props, State> {
       );
     }
 
-    moment.locale(activeLanguage);
+    moment.locale(activeLanguage.code);
 
     const calendar = parseInformationForMonthYear(targetMonth, targetYear, events, eventsongoing, categoryFilter);
     const chunkedCalendar = this.chunkedCalendar(calendar);
@@ -244,7 +242,7 @@ export default class EventCalendar extends Component<Props, State> {
             <div className="column is-12">
               <Translate id="filtereventsbychoosingcategories" />
               <Translate>
-                {(translate: any) => (
+                {({ translate }) => (
                   <div>
                     {translate('currentlyshowing')}
                     {_.isEmpty(this.state.categoryFilter)

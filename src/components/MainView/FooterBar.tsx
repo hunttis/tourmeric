@@ -34,7 +34,7 @@ const FooterBar = ({ settings }: Props) => {
             </>
           }
           {(showingSponsors && _.get(settings, 'footer.first.image')) &&
-            <div className="column is-vcentered">
+            <div className="column is-vcentered sponsor">
               <figure className="image is-paddingless is-marginless">
                 <a href={_.get(settings, 'footer.first.link', '')} target="_blank" rel="noopener noreferrer">
                   <img className="footerImage" src={_.get(settings, 'footer.first.image', '')} alt="" />
@@ -43,7 +43,7 @@ const FooterBar = ({ settings }: Props) => {
             </div>
           }
           {(showingSponsors && _.get(settings, 'footer.second.image')) &&
-            <div className="column">
+            <div className="column sponsor">
               <figure className="image is-paddingless is-marginless">
                 <a href={_.get(settings, 'footer.second.link', '')} target="_blank" rel="noopener noreferrer">
                   <img className="footerImage" src={_.get(settings, 'footer.second.image', '')} alt="" />
@@ -52,7 +52,7 @@ const FooterBar = ({ settings }: Props) => {
             </div>
           }
           {(showingSponsors && _.get(settings, 'footer.third.image')) &&
-            <div className="column">
+            <div className="column sponsor">
               <figure className="image is-paddingless is-marginless">
                 <a href={_.get(settings, 'footer.third.link', '')} target="_blank" rel="noopener noreferrer">
                   <img className="footerImage" src={_.get(settings, 'footer.third.image', '')} alt="" />

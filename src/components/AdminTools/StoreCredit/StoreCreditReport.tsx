@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { Translate, Language } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 
@@ -7,14 +7,14 @@ import moment from 'moment/min/moment-with-locales';
 
 import { mapCategoryToColor } from '../../Common/Utils';
 import { StoreCreditReportForMonth } from './StoreCreditReportForMonth';
-import { TourmericStoreCreditData, StoreCreditCategory } from '~/models/StoreCredit';
+import { TourmericStoreCreditData, StoreCreditCategory, CreditCategories } from '~/models/StoreCredit';
 import { User } from '~/models/ReduxState';
 
 interface Props {
   users: { [key: string]: User };
   storecredit: { [key: string]: { [key: string]: TourmericStoreCreditData } };
   storecreditcategories: { [key: string]: StoreCreditCategory };
-  activeLanguage: string;
+  activeLanguage: Language;
 }
 
 interface State {
@@ -47,15 +47,18 @@ export default class StoreCreditReport extends Component<Props, State> {
 
     if (isLoaded(storecredit) && isEmpty(storecredit)) {
       return <div><Translate id="nocreditevents" /></div>;
-    } if (isLoaded(users) && isLoaded(storecreditcategories) && isLoaded(storecredit)) {
+    }
 
-      const creditEvents = _.flatMap(Object.entries(storecredit).map((storeCreditEntry) => _.flatMap(Object.entries(storeCreditEntry[1]).map((storeCreditEventEntry) => {
-        const userId = storeCreditEntry[0];
-        const storeCreditEvent = storeCreditEventEntry[1];
-        const { category, value, date, creditAddedByName, note } = storeCreditEvent;
-        const processedCategory = !category || category.toString().length === 0 ? 'uncategorized' : category;
-        return { category: processedCategory, value, date, userId, creditAddedByName, note };
-      }))));
+    if (isLoaded(users) && isLoaded(storecreditcategories) && isLoaded(storecredit)) {
+
+      const creditEvents: TourmericStoreCreditData[] = _.flatMap(Object.entries(storecredit)
+        .map((storeCreditEntry) => _.flatMap(Object.entries(storeCreditEntry[1]).map((storeCreditEventEntry) => {
+          const userId = storeCreditEntry[0];
+          const storeCreditEvent = storeCreditEventEntry[1];
+          const { category, value, date, creditAddedByName, note } = storeCreditEvent;
+          const processedCategory: CreditCategories = !category || category.toString().length === 0 ? 'uncategorized' : category;
+          return { category: processedCategory, value, date, userId, creditAddedByName, note };
+        }))));
 
       const grouped = _.groupBy(creditEvents, 'category');
       const groupedByMonth = _.groupBy(creditEvents, (event) => moment(event.date).format('YYYYMM'));
@@ -67,7 +70,7 @@ export default class StoreCreditReport extends Component<Props, State> {
         return { category, total };
       });
 
-      moment.locale(activeLanguage);
+      moment.locale(activeLanguage.code);
 
       return (
         <div>
@@ -165,7 +168,7 @@ export default class StoreCreditReport extends Component<Props, State> {
               </h1>
               {this.delayedScrollToShow()}
               <StoreCreditReportForMonth
-                data={[this.state.detailedReport!, groupedByMonth[this.state.detailedReport!]]}
+                data={groupedByMonth[this.state.detailedReport!]}
                 storecreditcategories={storecreditcategories}
                 users={users}
               />

@@ -73,10 +73,10 @@ export default class ValidatedTimeField extends Component<Props, State> {
             <div className="field">
               <p className="control is-expanded has-icons-right">
                 <Translate>
-                  {(translate: any) => (<input
+                  {({ translate }) => (<input
                     type="text"
                     className={`input ${!timeOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                    placeholder={translate('hour')}
+                    placeholder={`${translate('hour')}`}
                     defaultValue={this.state.time}
                     onChange={(event) => this.updateTime(event.target.value)}
                   />)

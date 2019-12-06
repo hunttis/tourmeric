@@ -44,8 +44,8 @@ export class AdminEventList extends Component<Props, State> {
           <Translate id="filter" />
         </label>
         <Translate>
-          {(translate: any) => (
-            <input className="input" type="text" value={this.state.activeFilter} placeholder={translate('filtereventsbynameorcategory')} onChange={(event) => this.changeFilter(event.target.value)} />
+          {({ translate }) => (
+            <input className="input" type="text" value={this.state.activeFilter} placeholder={`${translate('filtereventsbynameorcategory')}`} onChange={(event) => this.changeFilter(event.target.value)} />
           )}
         </Translate>
       </div>

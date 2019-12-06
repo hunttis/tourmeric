@@ -9,6 +9,7 @@ import CreditModal from './CreditModal-container';
 import { setListener } from '../../Common/DocumentUtils';
 import { User } from '~/models/ReduxState';
 import { TourmericStoreCreditData } from '~/models/StoreCredit';
+import { parseStartingLettersFromUserLastnames } from '../../Common/UserUtils';
 
 interface Props {
   users: [{ key: string, value: User }];
@@ -22,7 +23,6 @@ interface State {
   modalOpenClass: string;
   modalUser: string;
   modalMode: string;
-  parseReady: boolean;
   showOnlyEnabledUsers: boolean;
 }
 
@@ -40,13 +40,20 @@ export default class UserEditor extends Component<Props, State> {
       modalOpenClass: '',
       modalUser: '',
       modalMode: '',
-      parseReady: false,
       showOnlyEnabledUsers: true,
     };
   }
 
   componentDidMount = () => {
     setListener('keydown', this.escFunction);
+  }
+
+  static getDerivedStateFromProps = (nextProps: Props, prevState: State) => {
+    if (prevState.searchingWith === '' && isLoaded(nextProps.users)) {
+      const alphabet: string[] = parseStartingLettersFromUserLastnames(nextProps.users);
+      return { searchingWith: 'letter', searchLetter: alphabet[0] };
+    }
+    return null;
   }
 
   getUser(userid: string) {
@@ -62,19 +69,6 @@ export default class UserEditor extends Component<Props, State> {
     if (event.keyCode === 27) {
       this.closeModal();
     }
-  }
-
-  parseAlphabetFromUsers() {
-    if (!isLoaded(this.props.users)) {
-      return [];
-    }
-    const alphabet = _.compact(_.uniq(Object.values(this.props.users).map((user) => {
-      if (user.value.lastName && !_.isEmpty(user.value.lastName)) {
-        return user.value.lastName.substring(0, 1).toUpperCase();
-      }
-      return null;
-    })));
-    return alphabet;
   }
 
   searchByAlphabet(searchLetter: string) {
@@ -101,7 +95,7 @@ export default class UserEditor extends Component<Props, State> {
   }
 
   resetSearches() {
-    const alphabet = this.parseAlphabetFromUsers();
+    const alphabet = parseStartingLettersFromUserLastnames(this.props.users);
     this.setState({ searchingWith: 'letter', searchPhrase: '', searchLetter: alphabet[0] });
   }
 
@@ -112,11 +106,11 @@ export default class UserEditor extends Component<Props, State> {
     if (searchingWith === 'phrase') {
       filtered = Object.values(users).filter((userEntry) => {
         const user = userEntry.value;
-        return (user.email && user.email.toLowerCase().indexOf(searchPhrase) !== -1) ||
-          (user.displayName && user.displayName.toLowerCase().indexOf(searchPhrase) !== -1) ||
-          (user.username && user.username.toLowerCase().indexOf(searchPhrase) !== -1) ||
-          (user.firstName && user.firstName.toLowerCase().indexOf(searchPhrase) !== -1) ||
-          (user.lastName && user.lastName.toLowerCase().indexOf(searchPhrase) !== -1);
+        return (user.email && user.email.toLowerCase().indexOf(searchPhrase.toLowerCase()) !== -1) ||
+          (user && user.displayName && user.displayName.toLowerCase().indexOf(searchPhrase.toLowerCase()) !== -1) ||
+          (user && user.username && user.username.toLowerCase().indexOf(searchPhrase.toLowerCase()) !== -1) ||
+          (user && user.firstName && user.firstName.toLowerCase().indexOf(searchPhrase.toLowerCase()) !== -1) ||
+          (user && user.lastName && user.lastName.toLowerCase().indexOf(searchPhrase.toLowerCase()) !== -1);
       });
     }
 
@@ -174,89 +168,79 @@ export default class UserEditor extends Component<Props, State> {
     const { users, storecredit } = this.props;
     const { modalOpenClass, modalUser, modalMode } = this.state;
 
-    if (!isLoaded(users)) {
+    if (!isLoaded(users) || !isLoaded(storecredit)) {
       return <><Translate id="loading" /></>;
     }
-    if (isLoaded(users) && !this.state.parseReady) {
-      const currentAlphabet = this.parseAlphabetFromUsers();
-      this.setState({ parseReady: true, searchingWith: 'letter', searchLetter: currentAlphabet[0] });
-      return <><Translate id="loading" /></>;
-    }
-    if (isLoaded(users) && isLoaded(storecredit)) {
-      const currentUser = this.getUser(modalUser);
 
-      // if (!currentUser) {
-      //   return <div><Translate id="nouserfound" /></div>
-      // }
+    const currentUser = this.getUser(modalUser);
 
-      const userId = _.get(currentUser, 'key');
-      const userData = _.get(currentUser, 'value');
-      const userList = this.filterUsers();
-      const alphabet = this.parseAlphabetFromUsers();
+    const userId = _.get(currentUser, 'key');
+    const userData = _.get(currentUser, 'value');
+    const userList = this.filterUsers();
+    const alphabet = parseStartingLettersFromUserLastnames(users);
 
-      return (
-        <>
-          <div className={`modal ${modalOpenClass}`}>
-            <div className="modal-background" onClick={() => this.closeModal()} />
-            <div className="modal-content">
-              {modalMode === 'edit' && <EditModal userId={userId} userData={userData} />}
-              {modalMode === 'credit' && <CreditModal userId={userId} />}
-              {modalMode === 'disable' && <DisableModal userId={userId} userData={userData} />}
-            </div>
-            <button className="modal-close is-large" aria-label="close" onClick={() => this.closeModal()} />
+    return (
+      <>
+        <div className={`modal ${modalOpenClass}`}>
+          <div className="modal-background" onClick={() => this.closeModal()} />
+          <div className="modal-content">
+            {modalMode === 'edit' && <EditModal userId={userId} userData={userData} />}
+            {modalMode === 'credit' && <CreditModal userId={userId} />}
+            {modalMode === 'disable' && <DisableModal userId={userId} userData={userData} />}
           </div>
-          <div className="level">
+          <button className="modal-close is-large" aria-label="close" onClick={() => this.closeModal()} />
+        </div>
+        <div className="level">
 
-            <div className="level-left">
-              <div className="field">
-                <div className="field-label is-normal">
-                  <label className="label"><Translate id="filterlastname" /></label>
-                </div>
-                <div className="field-body">
-                  {alphabet.map((letter: string, index: number) => (
+          <div className="level-left">
+            <div className="field">
+              <div className="field-label is-normal">
+                <label className="label"><Translate id="filterlastname" /></label>
+              </div>
+              <div className="field-body">
+                {alphabet.map((letter: string, index: number) => (
 
-                    <button
-                      onClick={() => this.searchByAlphabet(letter)}
-                      className={`button is-grouped is-small ${this.state.searchLetter === letter && 'is-success'}`}
-                      key={`letterSearch-${index}`}
-                    >{letter}
-                    </button>
-                  ))}
-                </div>
+                  <button
+                    onClick={() => this.searchByAlphabet(letter)}
+                    className={`button is-grouped is-small ${this.state.searchLetter === letter && 'is-success'}`}
+                    key={`letterSearch-${index}`}
+                  >{letter}
+                  </button>
+                ))}
               </div>
             </div>
-            <div className="level-item">
-              <div className="field">
-                <div className="field-label has-text-left">
-                  <label className="label"><Translate id="textsearch" /></label>
-                </div>
-                <div className="field-body">
-                  <input className="input" type="text" onChange={(event) => this.searchUsers(event)} />
-                </div>
+          </div>
+          <div className="level-item">
+            <div className="field">
+              <div className="field-label has-text-left">
+                <label className="label"><Translate id="textsearch" /></label>
+              </div>
+              <div className="field-body">
+                <input className="input" type="text" onChange={(event) => this.searchUsers(event)} />
               </div>
             </div>
-            <div className="level-right">
-              <>{users.length} <Translate id="usersintotal" /></>
-              <br />
-              {(userList.length !== users.length) && <>{userList.length} <Translate id="hitswithsearch" /></>}
-            </div>
           </div>
-          <h2 className="subtitle">
-            {this.filterInfoString()}
-          </h2>
-          <div className="columns is-multiline">
-            {userList.map((userEntry) => (<UserEntry
-              key={userEntry.key}
-              userId={userEntry.key}
-              openEditModal={() => this.openEditModal(userEntry.key)}
-              openCreditModal={() => this.openCreditModal(userEntry.key)}
-              openDisableModal={() => this.openDisableModal(userEntry.key)}
-              userData={userEntry.value}
-            />))}
+          <div className="level-right">
+            <>{users.length} <Translate id="usersintotal" /></>
+            <br />
+            {(userList.length !== users.length) && <>{userList.length} <Translate id="hitswithsearch" /></>}
           </div>
-        </>
-      );
-    }
-    return <div><Translate id="loading" /></div>;
+        </div>
+        <h2 className="subtitle">
+          {this.filterInfoString()}
+        </h2>
+        <div className="columns is-multiline">
+          {userList.map((userEntry) => (<UserEntry
+            key={userEntry.key}
+            userId={userEntry.key}
+            openEditModal={() => this.openEditModal(userEntry.key)}
+            openCreditModal={() => this.openCreditModal(userEntry.key)}
+            openDisableModal={() => this.openDisableModal(userEntry.key)}
+            userData={userEntry.value}
+          />))}
+        </div>
+      </>
+    );
+
   }
 }
