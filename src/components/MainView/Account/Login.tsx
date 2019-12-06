@@ -121,7 +121,7 @@ export default class Login extends Component<Props, State> {
                       <span className="icon is-small is-left"><i className="fas fa-envelope" /></span>
                       <Translate>
                         {(translate: (value: string) => string) => (
-                          <input placeholder={translate('emailplaceholder')} className="input email" type="email" onChange={(event) => this.onChangeResetEmail(event)} />
+                          <input placeholder={`${translate('emailplaceholder')}`} className="input email" type="email" onChange={(event) => this.onChangeResetEmail(event)} />
                         )}
                       </Translate>
                     </p>

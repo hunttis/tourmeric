@@ -63,7 +63,7 @@ export default class ValidatedDropdown extends Component<Props, State> {
             <div className="control is-expanded has-icons-right">
               <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
                 <Translate>
-                  {(translate: any) => (
+                  {({ translate }) => (
                     <select
                       defaultValue={selectedValue}
                       onChange={(event) => this.handleChange(path, targetName, event.target.value)}

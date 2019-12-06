@@ -1,35 +1,90 @@
 /* eslint-disable import/first */
 
-jest.mock('history');
-jest.mock('../../Common/DocumentUtils');
-jest.mock('../../../init-app');
+import rrf from 'react-redux-firebase';
+import React from 'react';
+import { shallow } from 'enzyme';
+import { createBrowserHistory } from 'history';
+import EventCalendar from '../EventCalendar/EventCalendar';
+import { mockEvents, mockCategories, mockSettings, mockLocation, mockProfile } from '../__mocks__/mockData';
+import '~/__mocks__/config';
 
-// import React from 'react';
-// import { shallow } from 'enzyme';
-// import { createBrowserHistory } from 'history';
-// import EventCalendar from '../EventCalendar/EventCalendar';
-// import { mockEvents, mockCategories, mockSettings, mockLocation } from '../__mocks__/mockData';
-
+jest.mock('~/components/Common/DocumentUtils');
+jest.mock('~/components/EventList/EventCalendar/CalendarMonth', () => ({ CalendarMonth: () => 'CalendarMonth' }));
+jest.mock('~/config', () => ({ get: () => ({ titleText: 'Titletext' }) }));
 
 describe('EventList tests', () => {
 
-  it('Compares EventList to snapshot', () => {
+  beforeEach(() => {
+    rrf.isLoaded = () => true;
+    rrf.isEmpty = () => true;
+  });
 
-    // const history = createBrowserHistory();
+  it('Renders EventCalendar, there are no events', () => {
 
-    // const eventList = shallow(<EventCalendar
-    //   settings={mockSettings}
-    //   events={mockEvents}
-    //   eventsongoing={mockEvents}
-    //   categories={mockCategories}
-    //   activeLanguage="fi"
-    //   location={mockLocation}
-    //   history={history}
-    //   openinghoursexceptions={{}}
-    //   setReturnLocation={() => {}}
-    // />);
+    const history = createBrowserHistory();
 
-    // expect(eventList).toMatchSnapshot();
+    const eventList = shallow(<EventCalendar
+      settings={mockSettings}
+      events={mockEvents}
+      eventsongoing={mockEvents}
+      categories={mockCategories}
+      activeLanguage={jest.fn as any}
+      location={mockLocation}
+      history={history}
+      openinghoursexceptions={{}}
+      setReturnLocation={() => {}}
+      profile={mockProfile}
+    />);
+
+    expect(eventList).toMatchSnapshot();
+  });
+
+  it('Renders EventCalendar, month mode', () => {
+    rrf.isLoaded = () => true;
+    rrf.isEmpty = () => false;
+
+    const history = createBrowserHistory();
+
+    const eventList = shallow(<EventCalendar
+      settings={mockSettings}
+      events={mockEvents}
+      eventsongoing={mockEvents}
+      categories={mockCategories}
+      activeLanguage={jest.fn as any}
+      location={mockLocation}
+      history={history}
+      openinghoursexceptions={{}}
+      setReturnLocation={() => {}}
+      profile={mockProfile}
+    />);
+
+    eventList.setState({ viewMode: 'month' });
+
+    expect(eventList).toMatchSnapshot();
+  });
+
+  it('Renders EventCalendar, day mode', () => {
+    rrf.isLoaded = () => true;
+    rrf.isEmpty = () => false;
+
+    const history = createBrowserHistory();
+
+    const eventList = shallow(<EventCalendar
+      settings={mockSettings}
+      events={mockEvents}
+      eventsongoing={mockEvents}
+      categories={mockCategories}
+      activeLanguage={jest.fn as any}
+      location={mockLocation}
+      history={history}
+      openinghoursexceptions={{}}
+      setReturnLocation={() => {}}
+      profile={mockProfile}
+    />);
+
+    eventList.setState({ viewMode: 'day' });
+
+    expect(eventList).toMatchSnapshot();
   });
 
 });

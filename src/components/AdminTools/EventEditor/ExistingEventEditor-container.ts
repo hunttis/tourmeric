@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom';
+import { withLocalize } from 'react-localize-redux';
 
 import ExistingEventEditor from './ExistingEventEditor';
 import { ReduxState } from '~/models/ReduxState';
@@ -20,4 +21,4 @@ export const ExistingEventEditorContainer = compose(
     });
   }),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withRouter<any>(ExistingEventEditor)) as React.ComponentType<any>;
+)(withLocalize<any>(withRouter<any, any>(ExistingEventEditor))) as React.ComponentType<any>;

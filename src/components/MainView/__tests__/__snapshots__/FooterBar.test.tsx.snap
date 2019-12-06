@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FooterBar tests Snapshot, sponsors not shown 1`] = `
+<footer
+  className="footer less-bottompadding"
+>
+  <div
+    className="content"
+  >
+    <div
+      className="columns"
+    >
+      <div
+        className="column has-text-centered is-hidden-desktop"
+      >
+        <Connect(Connect(PrivacyPolicy))
+          showAcceptance={false}
+        />
+      </div>
+      <div
+        className="column has-text-right is-hidden-mobile"
+      >
+        <Connect(Connect(PrivacyPolicy))
+          showAcceptance={false}
+        />
+      </div>
+    </div>
+  </div>
+</footer>
+`;

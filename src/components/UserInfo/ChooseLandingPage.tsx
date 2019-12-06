@@ -62,7 +62,7 @@ export default class ChooseLandingPage extends Component<Props, State> {
           </label>
           <div className="field-body">
             <Translate>
-              {(translate: any) => (
+              {({ translate }) => (
                 <select className="input" defaultValue={landingPage} onChange={(event) => this.changeLandingPage(event.target.value as PageOption)}>
                   <option>{translate('select')}</option>
                   {Object.keys(this.pageOptions).map((pageOption, index) => <option key={`pageoption-${index}`} value={pageOption}>{translate(pageOption)}</option>)}
@@ -80,7 +80,7 @@ export default class ChooseLandingPage extends Component<Props, State> {
               </label>
               <div className="field-body">
                 <Translate>
-                  {(translate: any) => (
+                  {({ translate }) => (
                     <select className="input" defaultValue={landingSubpage!} onChange={(event) => this.changeLandingSubpage(event.target.value)}>
                       <option>{translate('select')}</option>
                       {_.get(this.pageOptions, landingPage, []).map((subpageOption: string, index: number) => <option key={`subpageoption-${index}`} value={subpageOption}>{translate(subpageOption)}</option>)}
@@ -99,7 +99,7 @@ export default class ChooseLandingPage extends Component<Props, State> {
               </label>
               <div className="field-body">
                 <Translate>
-                  {(translate: any) => (
+                  {({ translate }) => (
                     <select disabled className="input" defaultValue={landingSubpage!} onChange={(event) => this.changeLandingSubpage(event.target.value)}>
                       <option>{translate('nosubpage')}</option>
                     </select>

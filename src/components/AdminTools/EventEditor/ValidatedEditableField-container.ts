@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { withLocalize } from 'react-localize-redux';
 
 import ValidatedEditableField from './ValidatedEditableField';
 import { ReduxState } from '~/models/ReduxState';
@@ -9,4 +10,4 @@ export default compose(
     categories: state.firebase.data.categories,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(ValidatedEditableField) as React.ComponentType<any>;
+)(withLocalize<any>(ValidatedEditableField)) as React.ComponentType<any>;

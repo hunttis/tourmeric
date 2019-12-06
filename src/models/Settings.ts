@@ -56,8 +56,8 @@ export interface OpeningHours {
 
 interface Footers {
   first: Footer;
-  second: Footer;
-  third: Footer;
+  second?: Footer;
+  third?: Footer;
 }
 
 interface Footer {

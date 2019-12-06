@@ -200,6 +200,20 @@ export const mockSettings: Settings = {
   titleTextColor: '',
 };
 
+export const emptyMockSettings: Settings = {
+  activeLogo: '',
+  dateFormat: '',
+  pageSubtitle: '',
+  pageTitle: '',
+  subtitleTextColor: '',
+  theme: '',
+  titleBarAngle: '',
+  titleBarColor: '',
+  titleBarColor2: '',
+  titleBarPercentage: '',
+  titleTextColor: '',
+};
+
 export const mockUploadedLogos: {[key: string]: UploadedFile} =
   {
     15271953483568546: { downloadURL: 'http://foo.com/image.png', name: 'image' },

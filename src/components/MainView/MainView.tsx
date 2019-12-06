@@ -2,38 +2,30 @@ import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
-import { setActiveLanguage } from 'react-localize-redux';
+import { setActiveLanguage, InitializePayload, SingleLanguageTranslation } from 'react-localize-redux';
 import Moment from 'react-moment';
-import { Route, Switch } from 'react-router-dom';
 import { Location, History } from 'history';
+import { renderToStaticMarkup } from 'react-dom/server';
+import englishTranslations from '~/translations/en.json';
+import finnishTranslations from '~/translations/fi.json';
 
-import AdminTools from '../AdminTools/AdminTools-container';
-import AdminToolsEvents from '../AdminTools/AdminToolsEvents-container';
-import AdminSiteSettings from '../AdminTools/SiteSettings/AdminSiteSettings-container';
-import UserInfo from '../UserInfo/UserInfo-container';
-import EventCalendar from '../EventList/EventCalendar/EventCalendar-container';
-import TitleBar from './TitleBar-container';
-import Login from './Account/Login-container';
-import Register from './Account/Register-container';
-import ThemeHandler from './ThemeHandler-container';
-import StoreInfo from '../StoreInfo/StoreInfo-container';
-import Navbar from './Navbar/Navbar-container';
-import Today from './Today/Today-container';
-import CompanyInfo from './CompanyInfo/CompanyInfo-container';
-import InitialSetup from './InitialSetup';
-import FooterBar from './FooterBar-container';
-import SingleEvent from '../EventList/EventCard/SingleEvent-container';
-import EventPlayerList from '../EventList/EventCard/EventPlayerList-container';
-import { OpeningHoursContainer as OpeningHours } from '../StoreInfo/OpeningHours-container';
-import Articles from './Articles/Articles-container';
+import UserInfo from '~/components/UserInfo/UserInfo-container';
+import TitleBar from '~/components/MainView/TitleBar-container';
+import ThemeHandler from '~/components/MainView/ThemeHandler-container';
+import Navbar from '~/components/MainView/Navbar/Navbar-container';
+import InitialSetup from '~/components/MainView/InitialSetup';
+import FooterBar from '~/components/MainView/FooterBar-container';
+import { OpeningHoursContainer as OpeningHours } from '~/components/StoreInfo/OpeningHours-container';
 
-import ArticleLoader from './Loaders/ArticleLoader-container';
-import EventLoader from './Loaders/EventLoader-container';
-import CategoryLoader from './Loaders/CategoryLoader-container';
-import ParticipationsLoader from './Loaders/ParticipationsLoader-container';
-import UploadedCategoryLogosLoader from './Loaders/UploadedCategoryLogosLoader-container';
-import OpeningHoursExceptionLoader from './Loaders/OpeningHoursExceptionLoader-container';
-import UsersLoader from './Loaders/UsersLoader-container';
+import ArticleLoader from '~/components/MainView/Loaders/ArticleLoader-container';
+import EventLoader from '~/components/MainView/Loaders/EventLoader-container';
+import CategoryLoader from '~/components/MainView/Loaders/CategoryLoader-container';
+import ParticipationsLoader from '~/components/MainView/Loaders/ParticipationsLoader-container';
+import UploadedCategoryLogosLoader from '~/components/MainView/Loaders/UploadedCategoryLogosLoader-container';
+import OpeningHoursExceptionLoader from '~/components/MainView/Loaders/OpeningHoursExceptionLoader-container';
+import UsersLoader from '~/components/MainView/Loaders/UsersLoader-container';
+import HighLightsLoader from '~/components/MainView/Loaders/HighLightsLoader-container';
+import MainViewRoutes from '~/components/MainView/MainView-routes';
 
 // ******************
 // Set the theme here
@@ -49,6 +41,11 @@ interface Props {
   location: Location;
   history: History;
   isAdmin: boolean;
+  initialize: (payload: InitializePayload) => void;
+  addTranslationForLanguage: (
+    translation: SingleLanguageTranslation,
+    language: string
+  ) => void;
 }
 
 interface State {
@@ -59,11 +56,21 @@ interface State {
 export default class MainView extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    this.props.initialize({
+      languages: [
+        { name: 'English', code: 'en' },
+        { name: 'Finnish', code: 'fi' },
+      ],
+      options: { renderToStaticMarkup },
+    });
+    this.props.addTranslationForLanguage(englishTranslations, 'en');
+    this.props.addTranslationForLanguage(finnishTranslations, 'fi');
+
     this.changeLanguage = this.changeLanguage.bind(this);
     this.state = { redirected: false, userInfoOk: false };
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const wasProfileLoaded: boolean = isLoaded(this.props.profile);
     const isProfileLoaded: boolean = isLoaded(nextProps.profile);
     const isLoggedIn: boolean = isProfileLoaded && !isEmpty(nextProps.profile);
@@ -123,6 +130,7 @@ export default class MainView extends Component<Props, State> {
         <UploadedCategoryLogosLoader />
         <OpeningHoursExceptionLoader />
         <ArticleLoader />
+        <HighLightsLoader />
         {isAdmin && <UsersLoader />}
 
         {!printPage &&
@@ -136,21 +144,7 @@ export default class MainView extends Component<Props, State> {
         }
 
         {userInfoOk &&
-          <Switch>
-            <Route path="/today" component={Today} />
-            <Route path="/event/:id/printplayerlist" component={EventPlayerList} />
-            <Route path="/event/:id" component={SingleEvent} />
-            <Route path="/events" component={EventCalendar} />
-            <Route path="/storeinfo" component={StoreInfo} />
-            <Route path="/userinfo" component={UserInfo} />
-            <Route path="/admin/tools" component={AdminTools} />
-            <Route path="/admin/events" component={AdminToolsEvents} />
-            <Route path="/admin/sitesettings" component={AdminSiteSettings} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/companyinfo" component={CompanyInfo} />
-            <Route path="/articles/" component={Articles} />
-          </Switch>
+          <MainViewRoutes isAdmin={isAdmin} />
         }
 
         {!userInfoOk &&

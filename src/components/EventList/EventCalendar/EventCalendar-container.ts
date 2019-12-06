@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { getActiveLanguage } from 'react-localize-redux';
 import { withRouter } from 'react-router-dom';
+import { withLocalize } from 'react-localize-redux';
 
 import { setReturnLocation } from '../../../actions/eventEditorActions';
 import EventCalendar from './EventCalendar';
@@ -13,10 +13,9 @@ export default compose(
     events: state.firebase.ordered.events,
     eventsongoing: state.firebase.ordered.eventsongoing,
     categories: state.firebase.data.categories,
-    activeLanguage: getActiveLanguage(state.locale).code,
     location: state.router.location,
     openinghoursexceptions: state.firebase.data.openinghoursexceptions,
     setReturnLocation: (returnLocation: string) => setReturnLocation(returnLocation),
   })),
   connect(({ firebase: { profile } }: ReduxState) => ({ profile })),
-)(withRouter<any>(EventCalendar)) as React.ComponentType<any>;
+)(withLocalize<any>(withRouter<any, any>(EventCalendar))) as React.ComponentType<any>;

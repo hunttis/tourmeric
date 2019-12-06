@@ -2,8 +2,99 @@
 
 exports[`UserEditor Tests Compares UserEditor to snapshot 1`] = `
 <Fragment>
-  <Translate
-    id="loading"
+  <div
+    className="modal "
+  >
+    <div
+      className="modal-background"
+      onClick={[Function]}
+    />
+    <div
+      className="modal-content"
+    />
+    <button
+      aria-label="close"
+      className="modal-close is-large"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="level"
+  >
+    <div
+      className="level-left"
+    >
+      <div
+        className="field"
+      >
+        <div
+          className="field-label is-normal"
+        >
+          <label
+            className="label"
+          >
+            <Translate
+              id="filterlastname"
+            />
+          </label>
+        </div>
+        <div
+          className="field-body"
+        />
+      </div>
+    </div>
+    <div
+      className="level-item"
+    >
+      <div
+        className="field"
+      >
+        <div
+          className="field-label has-text-left"
+        >
+          <label
+            className="label"
+          >
+            <Translate
+              id="textsearch"
+            />
+          </label>
+        </div>
+        <div
+          className="field-body"
+        >
+          <input
+            className="input"
+            onChange={[Function]}
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="level-right"
+    >
+      0
+       
+      <Translate
+        id="usersintotal"
+      />
+      <br />
+    </div>
+  </div>
+  <h2
+    className="subtitle"
+  >
+    <Translate
+      id="searchinglastnamesstartingwith"
+    />
+     
+    <span
+      className="has-text-success"
+    />
+  </h2>
+  <div
+    className="columns is-multiline"
   />
 </Fragment>
 `;

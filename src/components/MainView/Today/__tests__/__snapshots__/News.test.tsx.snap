@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`News tests should render empty news list 1`] = `
+<Fragment>
+  <h1
+    className="title"
+  >
+    <Translate
+      id="news"
+    />
+  </h1>
+  <div>
+     
+  </div>
+</Fragment>
+`;
+
+exports[`News tests should render loading div 1`] = `
+<div>
+  <Translate
+    id="loading"
+  />
+</div>
+`;
+
+exports[`News tests should render news list with two items 1`] = `
+<Fragment>
+  <h1
+    className="title"
+  >
+    <Translate
+      id="news"
+    />
+  </h1>
+  <div>
+     
+  </div>
+  <NewsItem
+    dateFormat="DD.MM.YYYY"
+    key="newsItem-first"
+    newsItem={
+      Object {
+        "key": "first",
+        "value": Object {
+          "active": true,
+          "createDate": "1-1-1990",
+          "date": "31-12-1990",
+          "image": "http://someimage/pic.png",
+          "link": "http://tosomesite.com",
+          "linkName": "Link",
+          "name": "First News Item",
+          "summary": "First Short summary",
+          "text": "First News Item Text",
+        },
+      }
+    }
+  />
+  <NewsItem
+    dateFormat="DD.MM.YYYY"
+    key="newsItem-second"
+    newsItem={
+      Object {
+        "key": "second",
+        "value": Object {
+          "active": true,
+          "createDate": "1-1-2010",
+          "date": "31-12-2010",
+          "image": "http://someimage/pic2.png",
+          "link": "http://tosomeothersite.com",
+          "linkName": "Other Link",
+          "name": "Second News Item",
+          "summary": "Second Short summary",
+          "text": "Second News Item Text",
+        },
+      }
+    }
+  />
+</Fragment>
+`;

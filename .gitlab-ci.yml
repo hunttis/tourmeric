@@ -5,12 +5,23 @@ cache:
   - node_modules/
 
 stages:
+  - get_dependencies
   - test
 
-test:
+get_dependencies:
+  stage: get_dependencies
+  script: yarn
+
+test_translations:
+  stage: test
+  script: yarn check-translations
+
+test_linter:
+  stage: test
+  script: yarn lint
+
+test_jest:
   stage: test
   script: 
-    - yarn
-    - yarn check-translations
-    - yarn lint
+    - cp src/__mocks__/config.js src/config.js
     - yarn test

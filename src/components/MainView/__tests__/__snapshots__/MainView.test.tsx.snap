@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainView tests Renders MainView, initial setup only 1`] = `
+<InitialSetup
+  profile={
+    Object {
+      "avatarUrl": "https://foo.com/picture",
+      "dciNumber": "123512351112",
+      "displayName": "Test Person",
+      "email": "fake@fake.com",
+      "firstName": "Test",
+      "isEmpty": false,
+      "isLoaded": true,
+      "lastName": "Person",
+      "providerData": Array [
+        Object {
+          "displayName": "Test Person",
+          "email": "fake@fake.com",
+          "photoURL": "https://foo.com/picture",
+          "providerId": "facebook.com",
+          "uid": "1234567890",
+        },
+      ],
+      "role": "admin",
+    }
+  }
+/>
+`;
+
+exports[`MainView tests Renders MainView, settings are loaded, admin 1`] = `
+<div>
+  <ThemeHandler />
+  <EventLoader />
+  <CategoryLoader />
+  <ParticipationsLoader />
+  <UploadedCategoryLogosLoader />
+  <OpeningHoursExceptionLoader />
+  <ArticleLoader />
+  <HighLightsLoader />
+  <UsersLoader />
+  <TitleBar
+    returnToFrontpage={[Function]}
+  />
+  <Navbar
+    changeLanguage={[Function]}
+  />
+  <div
+    className="is-hidden-tablet is-centered is-fullwidth level box"
+  >
+    <div
+      className="level-item openinghours-mobile"
+    >
+      <Component />
+    </div>
+  </div>
+  <MainViewRoutes
+    isAdmin={true}
+  />
+  <FooterBar />
+</div>
+`;
+
+exports[`MainView tests Renders MainView, settings are loaded, ordinary logged out user 1`] = `
+<div>
+  <ThemeHandler />
+  <EventLoader />
+  <CategoryLoader />
+  <ParticipationsLoader />
+  <UploadedCategoryLogosLoader />
+  <OpeningHoursExceptionLoader />
+  <ArticleLoader />
+  <HighLightsLoader />
+  <TitleBar
+    returnToFrontpage={[Function]}
+  />
+  <Navbar
+    changeLanguage={[Function]}
+  />
+  <div
+    className="is-hidden-tablet is-centered is-fullwidth level box"
+  >
+    <div
+      className="level-item openinghours-mobile"
+    >
+      <Component />
+    </div>
+  </div>
+  <UserInfo />
+  <FooterBar />
+</div>
+`;
+
+exports[`MainView tests Renders MainView, settings are loaded, printpage 1`] = `
+<div>
+  <ThemeHandler />
+  <EventLoader />
+  <CategoryLoader />
+  <ParticipationsLoader />
+  <UploadedCategoryLogosLoader />
+  <OpeningHoursExceptionLoader />
+  <ArticleLoader />
+  <HighLightsLoader />
+  <UsersLoader />
+  <MainViewRoutes
+    isAdmin={true}
+  />
+</div>
+`;
+
+exports[`MainView tests Renders MainView, settings are not loaded 1`] = `
+<div>
+  <ThemeHandler />
+  <EventLoader />
+  <CategoryLoader />
+  <ParticipationsLoader />
+  <UploadedCategoryLogosLoader />
+  <OpeningHoursExceptionLoader />
+  <ArticleLoader />
+  <HighLightsLoader />
+  <TitleBar
+    returnToFrontpage={[Function]}
+  />
+  <Navbar
+    changeLanguage={[Function]}
+  />
+  <div
+    className="is-hidden-tablet is-centered is-fullwidth level box"
+  >
+    <div
+      className="level-item openinghours-mobile"
+    >
+      <Component />
+    </div>
+  </div>
+  <UserInfo />
+</div>
+`;

@@ -11,4 +11,4 @@ export default compose(
     setReturnLocation: (returnLocation: string) => setReturnLocation(returnLocation),
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withRouter<any>(Login)) as React.ComponentType<any>;
+)(withRouter<any, any>(Login)) as React.ComponentType<any>;

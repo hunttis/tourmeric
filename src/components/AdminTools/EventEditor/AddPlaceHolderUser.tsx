@@ -31,7 +31,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
           <h2 className="subtitle"><Translate id="addplaceholderuser" /></h2>
         </div>
         <Translate>
-          {(translate: any) => (
+          {({ translate }) => (
             <>
               <div className="column is-5">
                 <div className="field">
@@ -41,7 +41,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
                     </div>
                   </div>
                   <div className="field-body">
-                    <input className="input" placeholder={translate('firstname')} onChange={(change) => { this.setState({ firstName: change.target.value }); }} />
+                    <input className="input" placeholder={`${translate('firstname')}`} onChange={(change) => { this.setState({ firstName: change.target.value }); }} />
                   </div>
                 </div>
               </div>
@@ -53,7 +53,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
                     </div>
                   </div>
                   <div className="field-body">
-                    <input className="input" placeholder={translate('lastname')} onChange={(change) => { this.setState({ lastName: change.target.value }); }} />
+                    <input className="input" placeholder={`${translate('lastname')}`} onChange={(change) => { this.setState({ lastName: change.target.value }); }} />
                   </div>
                 </div>
               </div>

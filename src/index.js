@@ -6,15 +6,21 @@ import { ConnectedRouter } from 'connected-react-router';
 
 import 'bulma/css/bulma.css';
 import './mystyles.scss';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { LocalizeProvider } from 'react-localize-redux';
 import MainView from './components/MainView/MainView-container';
 
-import { store, history } from './init-app';
+import { store, history, rrfProps } from './init-app';
 
 const Main = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <MainView />
-    </ConnectedRouter>
+    <LocalizeProvider store={store}>
+      <ReactReduxFirebaseProvider firebase={rrfProps.firebase} config={rrfProps.config} dispatch={rrfProps.dispatch}>
+        <ConnectedRouter history={history}>
+          <MainView />
+        </ConnectedRouter>
+      </ReactReduxFirebaseProvider>
+    </LocalizeProvider>
   </Provider>
 );
 

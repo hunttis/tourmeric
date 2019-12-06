@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment/min/moment-with-locales';
 import { isLoaded } from 'react-redux-firebase';
-import { Translate } from 'react-localize-redux';
+import { Translate, Language } from 'react-localize-redux';
 import _ from 'lodash';
 import News from './News-container';
 import EventCard from '../../EventList/EventCard/EventCard-container';
@@ -18,8 +18,8 @@ interface Props {
   categories: { [key: string]: Category };
   uploadedCategoryLogos: { [key: string]: UploadedFile };
   profile: FirebaseProfile;
-  activeLanguage: string;
   settings: Settings;
+  activeLanguage: Language;
 }
 
 interface State {
@@ -47,9 +47,9 @@ export default class Today extends Component<Props, State> {
     } = this.props;
 
     const { showingDay } = this.state;
-    moment.locale(activeLanguage);
+    moment.locale(activeLanguage.code);
 
-    if (isLoaded(events) && isLoaded(eventsongoing) && isLoaded(categories) && isLoaded(uploadedCategoryLogos)) {
+    if (isLoaded(events) && isLoaded(eventsongoing) && isLoaded(categories) && isLoaded(uploadedCategoryLogos) && isLoaded(settings)) {
 
       const allEventsForDay = _.concat(getEventsForDay(showingDay), getOngoingEventsForDay(showingDay));
       const sortedEvents = _.sortBy(allEventsForDay, (event) => _.padStart(event.value.time, 5, '0'));

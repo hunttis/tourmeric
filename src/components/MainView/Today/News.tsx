@@ -8,7 +8,7 @@ import { Settings } from '~/models/Settings';
 import { SingleNewsItem } from '~/models/ReduxState';
 
 interface Props {
-  news: [{ key: string, value: SingleNewsItem }];
+  news: { key: string, value: SingleNewsItem }[];
   settings: Settings;
 }
 
@@ -16,7 +16,7 @@ export const News = ({ news, settings }: Props) => {
 
   const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
 
-  if (isLoaded(news)) {
+  if (isLoaded(news) && isLoaded(settings)) {
     const publishedNews = news ? news.filter((newsItem) => newsItem.value.active) : [];
     return (
       <>

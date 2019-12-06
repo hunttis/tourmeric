@@ -71,7 +71,7 @@ export const EditModal = ({ userId, userData }: Props) => (
             <div className="control is-expanded">
               <div className="select">
                 <Translate>
-                  {(translate: any) => (
+                  {({ translate }) => (
                     <select
                       defaultValue={userData && userData.role}
                       onChange={(event) => firebase.update(`/users/${userId}`, {

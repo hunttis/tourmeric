@@ -11,4 +11,4 @@ export default compose(
     events: state.firebase.data.events,
     settings: state.firebase.data.settings,
   })),
-)(withRouter<any>(EventParticipation)) as React.ComponentType<any>;
+)(withRouter<any, any>(EventParticipation)) as React.ComponentType<any>;

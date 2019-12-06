@@ -8,7 +8,7 @@ interface Props {
 
 export default class ThemeHandler extends Component<Props> {
 
-  componentWillMount() {
+  componentDidMount() {
     const { settings } = this.props;
     if (_.isEmpty(settings)) {
       return;
@@ -18,7 +18,7 @@ export default class ThemeHandler extends Component<Props> {
     this.handleSubtitleTextColor(null, settings.subtitleTextColor);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const { settings } = this.props;
 
     let nextSettings: any = _.get(nextProps, 'settings');

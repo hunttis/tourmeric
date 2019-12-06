@@ -1,4 +1,3 @@
-
 export function scrollIntoview(elementId: string) {
   const element = document.getElementById(elementId);
   if (element) {

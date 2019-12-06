@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
@@ -16,7 +18,7 @@ export default class FileDropper extends Component<Props> {
 
   state = { uploadStatus: 'idle', uploadedFiles: '' };
 
-  onFilesDrop = async (files: any) => {
+  onFilesDrop = async (files: File[]) => {
     const { path } = this.props;
 
     const uploadedFiles = await files.map(async (file: File) => {
@@ -28,12 +30,10 @@ export default class FileDropper extends Component<Props> {
 
     this.setState({ uploadStatus: 'uploading' });
 
-    Promise.all(uploadedFiles).then(() => {
+    await Promise.all(uploadedFiles).then(() => {
       this.setState({ uploadedFiles, uploadStatus: 'done' });
       this.delayedNormalize();
     });
-
-    return uploadedFiles;
   }
 
 
@@ -45,29 +45,34 @@ export default class FileDropper extends Component<Props> {
     const idleState = uploadStatus === 'idle';
     const statusClasses = `${uploadState && 'has-text-warning'} ${doneState && 'has-text-success'} ${idleState && ''}`;
     return (
-      <>
-        <Dropzone onDrop={this.onFilesDrop} className={`dropzone ${statusClasses} is-fullwidth`}>
-          {idleState &&
-            <div className="fade-in">
-              <p className="icon fa-2x"><i className="fas fa-file-upload" /></p>
-              <p>&nbsp;</p>
-              <p><Translate id="dropfileshere" /></p>
-            </div>
-          }
+      <Dropzone onDrop={this.onFilesDrop}>
+        {({ getRootProps, getInputProps }) => (
+          <div {...getRootProps() as object} className={`dropzone ${statusClasses} is-fullwidth`}>
+            <input {...getInputProps() as object} />
+            <>
+              {idleState &&
+                <div className="fade-in">
+                  <p className="icon fa-2x"><i className="fas fa-file-upload" /></p>
+                  <p>&nbsp;</p>
+                  <p><Translate id="dropfileshere" /></p>
+                </div>
+              }
 
-          {uploadState &&
-            <div className="fade-in">
-              <Translate id="uploadingfiles" />
-            </div>
-          }
+              {uploadState &&
+                <div className="fade-in">
+                  <Translate id="uploadingfiles" />
+                </div>
+              }
 
-          {doneState &&
-            <div className="fade-in">
-              <Translate id="filessent" />: {uploadedFiles.length}
-            </div>
-          }
-        </Dropzone>
-      </>
+              {doneState &&
+                <div className="fade-in">
+                  <Translate id="filessent" />: {uploadedFiles.length}
+                </div>
+              }
+            </>
+          </div>
+        )}
+      </Dropzone>
     );
   }
 

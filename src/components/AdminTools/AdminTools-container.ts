@@ -17,4 +17,4 @@ export default compose(
     location: state.router.location,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withRouter<any>(AdminTools)) as React.ComponentType<any>;
+)(withRouter<any, any>(AdminTools)) as React.ComponentType<any>;

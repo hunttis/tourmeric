@@ -67,8 +67,8 @@ export default class StoreCreditTable extends Component<Props> {
             {Object.entries(creditData).map((dataItem) => {
               const dataId = dataItem[0];
               const data = dataItem[1];
-              const dataEntryUser = this.getUser(data.creditAddedBy)!.value;
-              const entryMadeBy = `${dataEntryUser.firstName} ${dataEntryUser.lastName}`;
+              const dataEntryUser = data.creditAddedBy ? this.getUser(data.creditAddedBy)!.value : null;
+              const entryMadeBy = dataEntryUser ? `${dataEntryUser.firstName} ${dataEntryUser.lastName}` : '';
               return (
                 <StoreCreditRow
                   key={`${userId}-${dataId}`}

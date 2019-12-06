@@ -11,4 +11,4 @@ export default compose(
     articles: state.firebase.data.articles,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withRouter<any>(ArticleListing)) as React.ComponentType<any>;
+)(withRouter<any, any>(ArticleListing)) as React.ComponentType<any>;

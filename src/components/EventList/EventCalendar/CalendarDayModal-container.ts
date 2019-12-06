@@ -13,4 +13,4 @@ export default compose(
     isAdmin: _.get(state, 'firebase.profile.role', 'user') === 'admin',
     setReturnLocation: (returnLocation: string) => setReturnLocation(returnLocation),
   })),
-)(withRouter<any>(CalendarDayModal));
+)(withRouter<any, any>(CalendarDayModal));

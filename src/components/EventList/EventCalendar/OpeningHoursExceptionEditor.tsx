@@ -40,12 +40,12 @@ export class OpeningHoursExceptionEditor extends Component<OpeningHoursException
 
     return (
       <Translate>
-        {(translate: any) => (
+        {({ translate }) => (
           <div>
             <SelectElement
               labelContent="open"
               defaultValue={exceptionForToday ? exceptionForToday.status : 'none'}
-              dropdownItems={{ open: translate('open'), closed: translate('closed') }}
+              dropdownItems={{ open: `${translate('open')}`, closed: `${translate('closed')}` }}
               isOk={exceptionForToday && !_.isNil(exceptionForToday.status)}
               targetName="status"
               path={pathForToday}
@@ -84,7 +84,7 @@ export class OpeningHoursExceptionEditor extends Component<OpeningHoursException
                       className="input"
                       type="text"
                       defaultValue={exceptionForToday ? exceptionForToday.openingHours : ''}
-                      placeholder={translate('openinghoursexample')}
+                      placeholder={`${translate('openinghoursexample')}`}
                       onChange={(event) => this.delayedSave(pathForToday, 'openingHours', event.target.value)}
                     />
                   </div>

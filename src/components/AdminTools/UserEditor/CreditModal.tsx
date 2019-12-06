@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
+import _ from 'lodash';
 import StoreCreditTable from '../StoreCredit/StoreCreditTable-container';
 import { TourmericStoreCreditData, StoreCreditCategory } from '~/models/StoreCredit';
 
@@ -34,7 +35,8 @@ export default class CreditModal extends Component<Props, State> {
   }
 
   saveCredit(userId: string, note: string, amount: string, category: string) {
-    const storedObject = { creditAddedBy: firebase.auth().currentUser!.uid, creditAddedByName: firebase.auth().currentUser!.displayName, date: new Date().toUTCString(), note, value: Number.parseFloat(amount), category };
+    const displayName = _.get(firebase.auth(), 'currentUser.displayName', '');
+    const storedObject = { creditAddedBy: firebase.auth().currentUser!.uid, creditAddedByName: displayName, date: new Date().toUTCString(), note, value: Number.parseFloat(amount), category };
     firebase.push(`/storecredit/${userId}`, storedObject);
     this.setState({ creditFormNote: '', creditFormAmount: 0.0 });
   }
@@ -72,16 +74,16 @@ export default class CreditModal extends Component<Props, State> {
             <div className="field">
               <label className="label"><Translate id="note" /></label>
               <Translate>
-                {(translate: any) => (
-                  <input className="input" type="text" value={this.state.creditFormNote} placeholder={translate('creditmessage')} onChange={(event) => this.changeCreditNote(event)} />
+                {({ translate }) => (
+                  <input className="input" type="text" value={this.state.creditFormNote} placeholder={`${translate('creditmessage')}`} onChange={(event) => this.changeCreditNote(event)} />
                 )}
               </Translate>
             </div>
             <div className="field">
               <label className="label"><Translate id="creditamount" /></label>
               <Translate>
-                {(translate: any) => (
-                  <input className="input" type="number" value={this.state.creditFormAmount} placeholder={translate('creditamount')} onChange={(event) => this.changeCreditAmount(event)} />
+                {({ translate }) => (
+                  <input className="input" type="number" value={this.state.creditFormAmount} placeholder={`${translate('creditamount')}`} onChange={(event) => this.changeCreditAmount(event)} />
                 )}
               </Translate>
             </div>

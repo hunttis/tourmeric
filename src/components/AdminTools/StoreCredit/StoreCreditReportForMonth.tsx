@@ -8,13 +8,12 @@ import { TourmericStoreCreditData, StoreCreditCategory } from '~/models/StoreCre
 
 interface Props {
   users: { [key: string]: User };
-  data: [{ key: string }, { value: TourmericStoreCreditData }];
+  data: TourmericStoreCreditData[];
   storecreditcategories: { [key: string]: string | StoreCreditCategory };
-  userid: string;
 }
 
-export const StoreCreditReportForMonth = ({ users, data, storecreditcategories, userid }: Props) => {
-  const items = _.sortBy(data[1], (item) => moment(item.date).format('YYYYMMDD'));
+export const StoreCreditReportForMonth = ({ users, data, storecreditcategories }: Props) => {
+  const items = _.sortBy(data, (item) => moment(item.date).format('YYYYMMDD'));
   return (
     <>
       <table className="table is-fullwidth">
@@ -32,7 +31,7 @@ export const StoreCreditReportForMonth = ({ users, data, storecreditcategories, 
         </thead>
         <tbody>
           {items.map((event, index) => {
-            const user = users[userid];
+            const user = users[event.userId];
             const { firstName, lastName } = user;
             const userName = `${firstName} ${lastName}`;
             const keyString = `detailedreport-${event.date}-${index}`;

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { withLocalize } from 'react-localize-redux';
 
 import { EditorForm } from './EditorForm';
 import { ReduxState } from '~/models/ReduxState';
@@ -12,4 +13,4 @@ export default compose(
     location: state.router.location,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(EditorForm) as React.ComponentType<any>;
+)(withLocalize<any>(EditorForm)) as React.ComponentType<any>;

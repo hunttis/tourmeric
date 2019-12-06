@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { Translate, Language } from 'react-localize-redux';
 import _ from 'lodash';
 import moment, { Moment } from 'moment/min/moment-with-locales';
 
@@ -10,7 +10,7 @@ import { OpeningHoursException } from '~/models/OpeningHours';
 import { Day } from '~/models/Calendar';
 
 interface Props {
-  activeLanguage: string;
+  activeLanguage: Language;
   defaultValue: string;
   defaultEndValue: string;
   path: string;
@@ -128,11 +128,11 @@ export default class ValidatedDateField extends Component<Props, Partial<State>>
 
   render() {
     const { saved, editing, viewTime } = this.state;
-    const { isHorizontal, disabled, settings, openinghoursexceptions, defaultValue, isMulti, defaultEndValue } = this.props;
+    const { isHorizontal, disabled, settings, openinghoursexceptions, defaultValue, isMulti, defaultEndValue, activeLanguage } = this.props;
 
     const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
 
-    moment.locale(this.props.activeLanguage);
+    moment.locale(activeLanguage.code);
 
     const eventDate = defaultValue ? moment(defaultValue, 'YYYY-MM-DD') : null;
     const eventEndDate = defaultEndValue ? moment(defaultEndValue, 'YYYY-MM-DD') : null;

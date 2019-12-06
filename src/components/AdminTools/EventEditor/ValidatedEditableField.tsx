@@ -65,10 +65,10 @@ export default class ValidatedEditableField extends Component<Props, State> {
           <div className="field">
             <p className="control is-expanded has-icons-right">
               <Translate>
-                {(translate: any) => (<input
+                {({ translate }) => (<input
                   type={inputType}
                   className={`input ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
-                  placeholder={translate(placeHolder)}
+                  placeholder={`${translate(placeHolder)}`}
                   defaultValue={defaultValue}
                   onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                 />)

@@ -13,4 +13,4 @@ export default compose(
     isAdmin: _.get(state, 'firebase.profile.role', 'user') === 'admin',
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withRouter<any>(Articles)) as React.ComponentType<any>;
+)(withRouter<any, any>(Articles)) as React.ComponentType<any>;
