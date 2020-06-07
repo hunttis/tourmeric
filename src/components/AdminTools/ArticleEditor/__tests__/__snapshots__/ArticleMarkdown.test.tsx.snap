@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleMarkdown Tests has empty markdown content 1`] = `
+<div
+  class="column is-6"
+  id="preview"
+>
+  <h1
+    class="title has-text-info has-text-centered"
+  >
+    Test title
+  </h1>
+  <div />
+</div>
+`;
+
+exports[`ArticleMarkdown Tests has small article with title, subtitle and text 1`] = `
+<div
+  class="column is-6"
+  id="preview"
+>
+  <h1
+    class="title has-text-info has-text-centered"
+  >
+    Test title
+  </h1>
+  <div>
+    <h1
+      class="title"
+      id="title"
+    >
+      Title
+    </h1>
+    
+
+    <h2
+      class="subtitle"
+      id="subtitle"
+    >
+      Subtitle
+    </h2>
+    
+
+    <p
+      class="content has-text-justified"
+    >
+      Text
+More text
+    </p>
+  </div>
+</div>
+`;

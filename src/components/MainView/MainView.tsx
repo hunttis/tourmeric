@@ -71,37 +71,46 @@ export default class MainView extends Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    const wasProfileLoaded: boolean = isLoaded(this.props.profile);
-    const isProfileLoaded: boolean = isLoaded(nextProps.profile);
-    const isLoggedIn: boolean = isProfileLoaded && !isEmpty(nextProps.profile);
-    const acceptedPrivacyPolicy = !!_.get(nextProps.profile, 'acceptedPrivacyPolicy');
-    const providerEmail = _.get(nextProps.profile, 'providerData[0].email', null);
-    const emailOk = (!nextProps.profile.useOtherEmail && (providerEmail || nextProps.profile.email)) || (nextProps.profile.useOtherEmail && nextProps.profile.otherEmail);
-    const namesOk = !!_.get(nextProps, 'profile.firstName', false) && !!_.get(nextProps, 'profile.lastName', false);
-
-    this.setState({ userInfoOk: !isLoggedIn || (emailOk && namesOk && acceptedPrivacyPolicy) });
-
     if (!this.state.redirected) {
-      if (isLoaded(nextProps.profile) && isEmpty(nextProps.profile) && ['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
-        this.props.history.push('/today');
+
+      const wasProfileLoaded: boolean = isLoaded(this.props.profile);
+      const nextProfile = nextProps.profile;
+      const isProfileLoaded: boolean = isLoaded(nextProfile);
+      const isLoggedIn: boolean = isProfileLoaded && !isEmpty(nextProfile);
+      const acceptedPrivacyPolicy = !!_.get(nextProfile, 'acceptedPrivacyPolicy');
+      const providerEmail = _.get(nextProfile, 'providerData[0].email', null);
+      const emailOk = (!nextProfile.useOtherEmail && (providerEmail || nextProfile.email)) || (nextProfile.useOtherEmail && nextProfile.otherEmail);
+      const namesOk = !!_.get(nextProps, 'profile.firstName', false) && !!_.get(nextProps, 'profile.lastName', false);
+      const everythingOk = !isLoggedIn || (emailOk && namesOk && acceptedPrivacyPolicy);
+
+      this.setState({ userInfoOk: everythingOk });
+
+      if (isLoaded(nextProfile) && isEmpty(nextProfile) && ['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
+        this.triggerDelayedLocationChange('/today');
       } else if (
         isLoggedIn && (
-          !nextProps.profile.firstName ||
-          !nextProps.profile.lastName ||
+          !nextProfile.firstName ||
+          !nextProfile.lastName ||
           !emailOk ||
           !acceptedPrivacyPolicy)
       ) {
-        this.props.history.push('/userinfo');
+        this.triggerDelayedLocationChange('/userinfo');
         this.setState({ redirected: true });
       } else if (wasProfileLoaded !== isProfileLoaded) {
         const currentLocation = this.props.location.pathname.substring(1);
-        const landingPage = _.get(nextProps.profile, 'landingPage', 'today');
+        const landingPage = _.get(nextProfile, 'landingPage', 'today');
         if (_.isEmpty(currentLocation) && !_.isEmpty(landingPage)) {
-          this.props.history.push(`/${landingPage}`);
+          this.triggerDelayedLocationChange(`/${landingPage}`);
         }
         this.setState({ redirected: true });
       }
     }
+  }
+
+  triggerDelayedLocationChange(newLocation: string) {
+    setTimeout(() => {
+      this.props.history.push(newLocation);
+    }, 100);
   }
 
   changeLanguage(newLanguage: string) {
@@ -144,7 +153,9 @@ export default class MainView extends Component<Props, State> {
         }
 
         {userInfoOk &&
-          <MainViewRoutes isAdmin={isAdmin} />
+          <>
+            <MainViewRoutes isAdmin={isAdmin} />
+          </>
         }
 
         {!userInfoOk &&

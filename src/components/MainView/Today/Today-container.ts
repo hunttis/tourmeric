@@ -5,7 +5,7 @@ import { withLocalize } from 'react-localize-redux';
 import Today from './Today';
 import { ReduxState } from '~/models/ReduxState';
 
-export default compose(
+const componentWrapper = compose(
   connect((state: ReduxState) => ({
     events: state.firebase.ordered.events,
     eventsongoing: state.firebase.ordered.eventsongoing,
@@ -19,3 +19,7 @@ export default compose(
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
 )(withLocalize<any>(Today)) as React.ComponentType<any>;
+
+componentWrapper.displayName = 'Today';
+
+export default componentWrapper;

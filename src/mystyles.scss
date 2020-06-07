@@ -187,6 +187,12 @@ div.imagepicker-box {
   align-items: center;
 }
 
+.articleimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .imagepicker-image {
   display: block;
   margin-left: auto;
@@ -364,6 +370,17 @@ button.image-square {
   animation-duration: 250ms;
 }
 
+ol.articlelistitem {
+  margin-bottom: 2em;
+  margin-left: 1em;
+}
+
+ul.articlelistitem {
+  list-style: disc;
+  margin-bottom: 2em;
+  margin-left: 1em;
+}
+
 .card.today-card {
   border: 2px solid #797f7f;
   background-color: #383f3f;
@@ -443,8 +460,8 @@ table thead th.storecreditreport-amount {
   justify-content: center;
 }
 
-.articleimage img {
-  max-height: 400px !important;
+.image.articleimage {
+  max-height: 400px;
 }
 
 .ordernumbercontainer {

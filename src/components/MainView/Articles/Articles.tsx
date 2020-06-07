@@ -4,7 +4,7 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 
 import { Location, History } from 'history';
-import { Switch, Route } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import { Article } from '~/models/ReduxState';
 import { Settings } from '~/models/Settings';
 import ArticleViewer from './ArticleViewer-container';
@@ -18,34 +18,33 @@ interface Props {
   isAdmin: boolean;
 }
 
-export const Articles = ({ articles, history, location, isAdmin }: Props) => {
-  if (!isLoaded(articles)) {
+export const Articles = ({ articles, history, location, isAdmin, settings }: Props) => {
+  if (!isLoaded(articles) || !isLoaded(settings)) {
     return (
       <div className="section has-text-centered">
         <div className="button is-loading"><Translate id="loading" /></div>
       </div>
     );
-  } if (isLoaded(articles)) {
-    const rootView = _.endsWith(location.pathname, 'articles');
+  }
 
+  if (isLoaded(articles) && isLoaded(settings)) {
+    const rootView = _.endsWith(location.pathname, 'articles');
     return (
       <div className="section">
-
         <div className="level">
           <div className="level-left">
             <h1 className="title"><Translate id="articles" /></h1>
           </div>
           <div className="level-right">
             {!rootView &&
-              <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}><Translate id="backtoarticlelist" /></button>
-            }
+            <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}><Translate id="backtoarticlelist" /></button>
+          }
             {isAdmin &&
-              <button className="button is-warning is-outlined" onClick={() => { history.push('/admin/tools/articles'); }}>
-                <span className="icon"><i className="fas fa-pencil-alt" /></span>
-                <span>ADMIN: <Translate id="articleeditor" /></span>
-              </button>
-            }
-
+            <button className="button is-warning is-outlined" onClick={() => { history.push('/admin/tools/articles'); }}>
+              <span className="icon"><i className="fas fa-pencil-alt" /></span>
+              <span>ADMIN: <Translate id="articleeditor" /></span>
+            </button>
+          }
           </div>
         </div>
         <Switch>
@@ -54,12 +53,13 @@ export const Articles = ({ articles, history, location, isAdmin }: Props) => {
         </Switch>
         <div className="has-text-centered">
           {!rootView &&
-            <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}><Translate id="backtoarticlelist" /></button>
-          }
+          <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}><Translate id="backtoarticlelist" /></button>
+        }
         </div>
       </div>
     );
   }
+
   return (
     <div>...</div>
   );

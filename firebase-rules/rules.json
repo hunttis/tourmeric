@@ -256,6 +256,9 @@
         "titleLocked": {
           ".validate": "newData.isBoolean()"
         },
+        "content": {
+          ".validate": "newData.isString()"
+        },
         "$other": {
           ".validate": "false"
         },
