@@ -81,9 +81,10 @@ export interface Article {
   createDate: string;
   published: boolean;
   date: string;
-  articleItems: { [key: string]: ArticleItem };
+  articleItems?: { [key: string]: ArticleItem };
   title: string;
   titleLocked?: boolean;
+  content?: string;
 }
 
 export interface ArticleItem {

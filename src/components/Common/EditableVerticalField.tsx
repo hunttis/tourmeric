@@ -10,10 +10,10 @@ interface Props {
   defaultValue: string;
   path: string;
   targetName: string;
-  inputType: string;
-  idleIcon: string;
-  emptyClass: string;
-  disabled: boolean;
+  inputType?: string;
+  idleIcon?: string;
+  emptyClass?: string;
+  disabled?: boolean;
 }
 
 interface State {
@@ -67,15 +67,17 @@ export default class EditableVerticalField extends Component<Props, State> {
 
     return (
       <div className="field">
-        <label className={`label ${disabled && 'has-text-info'}`}>
-          <Translate id={labelContent} />
-        </label>
+        {labelContent &&
+          <label className={`label ${disabled && 'has-text-info'}`}>
+            <Translate id={labelContent} />
+          </label>
+        }
         <div className="field">
           <p className={`control is-expanded ${idleIcon ? 'has-icons-left' : 'has-icons-right'}`}>
 
             <Translate>
               {({ translate }) => (<input
-                type={inputType}
+                type={inputType || 'text'}
                 className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${emptyClass && !fieldValue ? 'is-danger' : ''} ${disabled && 'has-text-info'}`}
                 placeholder={`${translate(placeHolder)}`}
                 defaultValue={defaultValue}

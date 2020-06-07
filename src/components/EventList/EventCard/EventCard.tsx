@@ -97,18 +97,26 @@ export default class EventCard extends Component<Props, State> {
             </div>
 
             <div className="card-content">
-              {!isOngoingEvent &&
+
               <table className="table eventinfo-table">
                 <tbody>
-                  <CardInfoLine icon="fas fa-clock" title="startingtime" content={eventContent.time} />
-                  <CardInfoLine icon="fas fa-money-bill-alt" title="entryfee" content={eventContent.entryFee} />
+                  {!isOngoingEvent &&
+                    <>
+                      <CardInfoLine icon="fas fa-clock" title="startingtime" content={eventContent.time} />
+                      <CardInfoLine icon="fas fa-money-bill-alt" title="entryfee" content={eventContent.entryFee} />
+                    </>
+                  }
                   <CardInfoLine icon="fas fa-users" title="participants" content={participantString} extraClasses={eventFull ? 'has-text-warning' : ''} />
                   {eventFull && <tr><td colSpan={columnSpan} className="has-text-centered has-text-warning">(<Translate id="eventfull" />)</td></tr>}
-                  {eventContent.format && <CardInfoLine icon="fas fa-book" title="format" content={eventContent.format} />}
-                  {eventContent.rules && <CardInfoLine icon="fas fa-balance-scale" title="ruleslevel" content={eventContent.rulesLevel!} />}
+                  {!isOngoingEvent &&
+                    <>
+                      {eventContent.format && <CardInfoLine icon="fas fa-book" title="format" content={eventContent.format} />}
+                      {eventContent.rules && <CardInfoLine icon="fas fa-balance-scale" title="ruleslevel" content={eventContent.rulesLevel!} />}
+                    </>
+                  }
                 </tbody>
               </table>
-              }
+
 
               <div className="allinfolink">
                 <a onClick={() => this.props.history.push(`/event/${eventId}`)} className="card-footer-link">

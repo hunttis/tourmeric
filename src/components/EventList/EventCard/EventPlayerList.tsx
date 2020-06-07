@@ -86,6 +86,7 @@ export const EventPlayerList = ({ match, events, eventsongoing, settings, partic
             <table className="table is-narrow is-family-monospace has-background-white has-text-black">
               <thead>
                 <tr className="">
+                  <th />
                   <th><h2 className="subtitle"><Translate id="lastname" /></h2></th>
                   <th><h2 className="subtitle"><Translate id="firstname" /></h2></th>
                   <th><h2 className="subtitle"><Translate id="dcinumber" /></h2></th>
@@ -96,6 +97,7 @@ export const EventPlayerList = ({ match, events, eventsongoing, settings, partic
                   const dciNumber = _.get(users, `${participation.userId}.dciNumber`, '-');
                   return (
                     <tr key={`participation-${index}`}>
+                      <td>{index + 1}.</td>
                       <td>{participation.lastName}</td>
                       <td>{participation.firstName}</td>
                       <td>{dciNumber}</td>

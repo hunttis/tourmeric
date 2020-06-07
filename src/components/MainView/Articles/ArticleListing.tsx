@@ -28,7 +28,7 @@ const ArticleCard = ({ articleId, articleData, settings, firstParagraph, history
       <p className="title">
         {articleData.title}
       </p>
-      <p>{moment(articleData.createDate).format(settings.dateFormat)}</p>
+      <p>{moment(articleData.createDate).format(settings ? settings.dateFormat : 'yyyy-MM-dd')}</p>
     </div>
     <div className="card-content">
       <div>{firstParagraph}</div>
@@ -43,22 +43,27 @@ const ArticleCard = ({ articleId, articleData, settings, firstParagraph, history
 
 export const ArticleListing = ({ settings, articles, history }: Props) => (
   <div className="columns is-multiline">
-    {!articles &&
+    {!settings && <div className="loading" />}
+    {settings &&
+    <>
+      {!articles &&
       <div className="content"><p><Translate id="noarticlesyet" /></p></div>
-    }
-    {articles && _.reverse(_.sortBy(Object.entries(articles), (article) => article[1].createDate)).map((article, index) => {
-      const articleId = article[0];
-      const articleData: Article = article[1];
-      const firstWithText = _.find(articleData.articleItems, (item) => _.isEqual(item.itemType, 'textblock'));
-      const firstParagraph = firstWithText && firstWithText.text ? _.first(_.get(firstWithText, 'text', '').split('\n'))! : '';
-      if (!articleData.published) {
-        return '';
       }
-      return (
-        <div className="column is-6" key={`article-${articleId}-textblock-${index}`}>
-          <ArticleCard articleId={articleId} articleData={articleData} settings={settings} firstParagraph={firstParagraph} history={history} />
-        </div>
-      );
-    })}
+      {articles && _.reverse(_.sortBy(Object.entries(articles), (article) => article[1].createDate)).map((article, index) => {
+        const articleId = article[0];
+        const articleData: Article = article[1];
+        const firstWithText = _.find(articleData.articleItems, (item) => _.isEqual(item.itemType, 'textblock'));
+        const firstParagraph = firstWithText && firstWithText.text ? _.first(_.get(firstWithText, 'text', '').split('\n'))! : '';
+        if (!articleData.published) {
+          return '';
+        }
+        return (
+          <div className="column is-6" key={`article-${articleId}-textblock-${index}`}>
+            <ArticleCard articleId={articleId} articleData={articleData} settings={settings} firstParagraph={firstParagraph} history={history} />
+          </div>
+        );
+      })}
+    </>
+    }
   </div>
 );

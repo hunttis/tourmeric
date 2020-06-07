@@ -44,7 +44,7 @@ export const ArticleList = ({ articles, settings, history }: Props) => (
                 {articleData.published && <span className="has-text-success"><Translate id="published" /></span>}
                 {!articleData.published && <span className="has-text-warning"><Translate id="notpublished" /></span>}
               </div>
-              <div className="column is-4">{articleData.title || <Translate id="notitleyet" />}</div>
+              <div className="column is-4">{articleData.title || <span className="has-text-danger"><Translate id="notitleyet" /></span>}</div>
               <div className="column is-4">
                 <ButtonWithIcon
                   className="is-outlined is-warning"
@@ -66,15 +66,23 @@ export const ArticleList = ({ articles, settings, history }: Props) => (
                     translationKey="unpublish"
                   />
                 }
-                {!articleData.published && allItemsLocked(articleData) &&
+                {!articleData.published && articleData.content &&
                   <ButtonWithIcon
                     className="is-outlined is-success"
                     onClick={() => { firebase.update(`/articles/${articleId}`, { published: true }); }}
                     iconName="fa-eye"
                     translationKey="publish"
                   />
-              }
-                {!articleData.published && !allItemsLocked(articleData) &&
+                }
+                {!articleData.content && articleData.articleItems &&
+                  <ButtonWithIcon
+                    className="is-primary is-light"
+                    onClick={() => { convertArticleToNewForm(articleId, articleData); }}
+                    iconName="fa-star"
+                    translationKey="converttonewform"
+                  />
+                }
+                {!articleData.published && !articleData.content &&
                   <button className="button is-outlined is-disabled" disabled><Translate id="articlenotreadytopublish" /></button>
                 }
               </div>
@@ -86,12 +94,32 @@ export const ArticleList = ({ articles, settings, history }: Props) => (
   </div>
 );
 
-function allItemsLocked(article: Article): boolean {
+function convertArticleToNewForm(articleId: string, article: Article) {
+  const sortedArticleItems = _.sortBy(Object.entries(article.articleItems!), (itemEntry) => itemEntry[1].orderNumber);
 
-  if (!article.articleItems) {
-    return false;
-  }
+  const newContentForm = sortedArticleItems.map((itemEntry) => {
+    const itemData = itemEntry[1];
+    if (_.get(itemData, 'text', false) && _.get(itemData, 'imageUrl', false)) {
+      return '';
+    }
+    if (itemData.itemType === 'subtitle') {
+      return `## ${itemData.text}`;
+    }
+    if (itemData.itemType === 'title') {
+      return `# ${itemData.text}`;
+    }
+    if (itemData.itemType === 'textblock') {
+      return itemData.text;
+    }
+    if (itemData.itemType === 'image') {
+      return `![alt text](${itemData.imageUrl} "image hover text")`;
+    }
+    if (itemData.itemType === 'list') {
+      const listItems = itemData.text ? itemData.text.split('\n') : [];
+      return listItems.map((item) => `- ${item}`).join('\n');
+    }
+    return '';
+  }).join('\n\n');
+  firebase.update(`/articles/${articleId}`, { content: newContentForm });
 
-  const result = _.find(article.articleItems, (item) => !item.locked);
-  return !result;
 }
