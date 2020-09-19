@@ -8,17 +8,10 @@ exports[`FooterBar tests Snapshot, sponsors not shown 1`] = `
     className="content"
   >
     <div
-      className="columns"
+      className="columns is-multiline"
     >
       <div
-        className="column has-text-centered is-hidden-desktop"
-      >
-        <Connect(Connect(PrivacyPolicy))
-          showAcceptance={false}
-        />
-      </div>
-      <div
-        className="column has-text-right is-hidden-mobile"
+        className="column is-12 has-text-centered is-hidden-tablet"
       >
         <Connect(Connect(PrivacyPolicy))
           showAcceptance={false}

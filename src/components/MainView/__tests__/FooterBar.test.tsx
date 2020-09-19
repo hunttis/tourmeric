@@ -37,14 +37,14 @@ describe('FooterBar tests', () => {
     const footerBar = shallow(<FooterBar settings={testSettings} />);
 
     expect(footerBar.find('.sponsor').length).toBe(0);
-    expect(footerBar.find('.column').length).toBe(2);
+    expect(footerBar.find('.column').length).toBe(1);
     expect(footerBar).toMatchSnapshot();
   });
 
   it('Snapshot, sponsors shown, one sponsor', () => {
     const testSettings: Settings = {
       footer: {
-        first: { image: 'foo.png', link: 'http://link' },
+        first: { image: 'foo.png', link: 'http://link', text: 'first' },
       },
       showSponsors: true,
       ...settings,
@@ -57,8 +57,8 @@ describe('FooterBar tests', () => {
   it('Snapshot, sponsors shown, two sponsors', () => {
     const testSettings: Settings = {
       footer: {
-        first: { image: 'foo.png', link: 'http://link' },
-        second: { image: 'foo2.png', link: 'http://link2' },
+        first: { image: 'foo.png', link: 'http://link', text: 'first' },
+        second: { image: 'foo2.png', link: 'http://link2', text: 'second' },
       },
       showSponsors: true,
       ...settings,
@@ -71,9 +71,9 @@ describe('FooterBar tests', () => {
   it('Snapshot, sponsors shown, three sponsors', () => {
     const testSettings: Settings = {
       footer: {
-        first: { image: 'foo.png', link: 'http://link' },
-        second: { image: 'foo2.png', link: 'http://link2' },
-        third: { image: 'foo3.png', link: 'http://link3' },
+        first: { image: 'foo.png', link: 'http://link', text: 'first' },
+        second: { image: 'foo2.png', link: 'http://link2', text: 'second' },
+        third: { image: 'foo3.png', link: 'http://link3', text: 'third' },
       },
       showSponsors: true,
       ...settings,

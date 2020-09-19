@@ -20,7 +20,7 @@ export interface Settings {
   titleBarColor2: string;
   titleBarPercentage: string;
   titleTextColor: string;
-  footer?: Footers;
+  footer?: {[key: string]: Footer};
   locationImage?: string;
 }
 
@@ -54,13 +54,8 @@ export interface OpeningHours {
   sunday: string;
 }
 
-interface Footers {
-  first: Footer;
-  second?: Footer;
-  third?: Footer;
-}
-
-interface Footer {
+export interface Footer {
   link: string;
   image: string;
+  text: string;
 }
