@@ -21,51 +21,46 @@ const FooterBar = ({ settings }: Props) => {
   return (
     <footer className="footer less-bottompadding">
       <div className="content">
-        <div className="columns">
+        <div className="columns is-multiline">
 
           {hasAtLeastOneSponsor &&
             <>
-              <div className="column has-text-centered is-hidden-desktop">
+              <div className="column is-12 has-text-centered is-hidden-tablet">
                 <Translate id="sponsoredby" />:
               </div>
-              <div className="column has-text-left is-hidden-mobile">
+              <div className="column is-6 has-text-left is-hidden-mobile">
                 <Translate id="sponsoredby" />:
+              </div>
+              <div className="column is-6 has-text-right is-hidden-mobile">
+                <PrivacyPolicy showAcceptance={false} />
               </div>
             </>
           }
-          {(showingSponsors && _.get(settings, 'footer.first.image')) &&
-            <div className="column is-vcentered sponsor">
-              <figure className="image is-paddingless is-marginless">
-                <a href={_.get(settings, 'footer.first.link', '')} target="_blank" rel="noopener noreferrer">
-                  <img className="footerImage" src={_.get(settings, 'footer.first.image', '')} alt="" />
-                </a>
-              </figure>
-            </div>
+
+          {showingSponsors &&
+            <>
+              {settings.footer && Object.entries(settings.footer).map((footerEntry) => {
+
+                const key = footerEntry[0];
+                const value = footerEntry[1];
+
+                return (
+                  <div key={`Footer-${key}`} className="column sponsor">
+                    <figure className="image is-paddingless is-marginless">
+                      <a href={value.link} target="_blank" rel="noopener noreferrer" title={value.text}>
+                        <img className="footerImage" src={value.image} alt="" />
+                      </a>
+                    </figure>
+                  </div>
+                );
+              })}
+            </>
           }
-          {(showingSponsors && _.get(settings, 'footer.second.image')) &&
-            <div className="column sponsor">
-              <figure className="image is-paddingless is-marginless">
-                <a href={_.get(settings, 'footer.second.link', '')} target="_blank" rel="noopener noreferrer">
-                  <img className="footerImage" src={_.get(settings, 'footer.second.image', '')} alt="" />
-                </a>
-              </figure>
-            </div>
-          }
-          {(showingSponsors && _.get(settings, 'footer.third.image')) &&
-            <div className="column sponsor">
-              <figure className="image is-paddingless is-marginless">
-                <a href={_.get(settings, 'footer.third.link', '')} target="_blank" rel="noopener noreferrer">
-                  <img className="footerImage" src={_.get(settings, 'footer.third.image', '')} alt="" />
-                </a>
-              </figure>
-            </div>
-          }
-          <div className="column has-text-centered is-hidden-desktop">
+
+          <div className="column is-12 has-text-centered is-hidden-tablet">
             <PrivacyPolicy showAcceptance={false} />
           </div>
-          <div className="column has-text-right is-hidden-mobile">
-            <PrivacyPolicy showAcceptance={false} />
-          </div>
+
         </div>
       </div>
     </footer>
