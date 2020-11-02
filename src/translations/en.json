@@ -212,6 +212,8 @@
   "avatarurl": "Avatar URL",
   "firstname": "First name",
   "lastname": "Last name",
+  "nofirstname": "No first name",
+  "nolastname": "No last name",
   "firstnameplaceholder": "Your first name",
   "lastnameplaceholder": "Your last name",
   "emailplaceholder": "Your email address",
