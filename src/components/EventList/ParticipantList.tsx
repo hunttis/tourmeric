@@ -32,18 +32,18 @@ export const ParticipantList = ({ participations, maxParticipants, isAdmin, user
               {isAdmin &&
                 <button className="button is-small is-danger cancel-participation-button" disabled={beingCancelled} onClick={() => setUserToCancel(participation.userId)}><i title="remove" className="fas fa-ban" /></button>
               }
-              <span className={`${beingCancelled ? 'has-text-danger' : ''}`}>{' '}{index + 1}. 
+              <span className={`${beingCancelled ? 'has-text-danger' : ''}`}>{' '}{index + 1}.
                 <Translate>
-                {({ translate }) => (
-                  <>
-                    {beingCancelled
-                      ? <Translate id="confirmcancelbelowintheadmininterface" />
-                      : `${participation && participation.firstName ? participation.firstName : translate("nofirstname")} ${participation && participation.lastName ? participation.lastName : translate("nolastname")}`}
-                  </>
-                )}
+                  {({ translate }) => (
+                    <>
+                      {beingCancelled
+                        ? <Translate id="confirmcancelbelowintheadmininterface" />
+                        : `${participation && participation.firstName ? participation.firstName : translate('nofirstname')} ${participation && participation.lastName ? participation.lastName : translate('nolastname')}`}
+                    </>
+                  )}
                 </Translate>
               </span>
-                
+
               <span className="icon">{placeHolder && <i title="placeholder" className="has-text-warning fas fa-map-pin" />}</span>
               {maxParticipants < index + 1 && (
                 <span>
