@@ -228,6 +228,8 @@
   "avatarurl": "Avatar URL",
   "firstname": "Etunimi",
   "lastname": "Sukunimi",
+  "nofirstname": "Etunimi puuttuu",
+  "nolastname": "Sukunimi puuttuu",
   "firstnameplaceholder": "Etunimesi",
   "lastnameplaceholder": "Sukunimesi",
   "emailplaceholder": "Sähköpostiosoitteesi",
