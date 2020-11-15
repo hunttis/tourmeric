@@ -46,6 +46,13 @@
   "forgotpassword": "Unohdin salasanani",
   "resetpassword": "Palauta salasana",
   "resetemailsent": "Lähetimme sinulle sähköpostia, jolla voit palauttaa salasanasi. Mikäli sitä ei pian näy, tarkista roskapostilaatikkosi",
+  "loggedinbutneedinfo": "Olet kirjautunut, mutta käyttäjätiedoistasi puuttuu vielä tietoja.",
+  "youcantparticipatebeforeyoudo": "Et voi osallistua tapahtumiin ennenkuin täytät tietosi ja hyväksyt yksityisyysehdot.",
+  "pleasefillinfobelow": "Please fill info below",
+  "thingstodo": "Tee vielä nämä:",
+  "acceptprivacypolicy": "Lue ja hyväksy tietosuojaselosteemme",
+  "addfirstname": "Lisää etunimi",
+  "addlastname": "Lisää sukunimi",
 
   "auth/email-already-in-use": "Sähköpostitili on jo käytössä",
   "auth/user-not-found": "Sähköposti tai salasana väärin",
@@ -177,6 +184,7 @@
   "afternoon": "Iltapäivällä",
   "evening": "Illalla",
   
+  "clickhere": "Klikkaa tästä",
   "dropfileshere": "Pudota tiedosto(t) tähän, tai klikkaa tässä",
   "uploadedfiles": "Lähetetyt tiedostot",
   "uploadingfiles": "Tiedostoja lähetetään",
