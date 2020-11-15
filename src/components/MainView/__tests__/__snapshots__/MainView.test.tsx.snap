@@ -53,6 +53,7 @@ exports[`MainView tests Renders MainView, settings are loaded, admin 1`] = `
       <Component />
     </div>
   </div>
+  <UserInfoNotice />
   <MainViewRoutes
     isAdmin={true}
   />
@@ -85,7 +86,10 @@ exports[`MainView tests Renders MainView, settings are loaded, ordinary logged o
       <Component />
     </div>
   </div>
-  <UserInfo />
+  <UserInfoNotice />
+  <MainViewRoutes
+    isAdmin={false}
+  />
   <FooterBar />
 </div>
 `;
@@ -101,6 +105,7 @@ exports[`MainView tests Renders MainView, settings are loaded, printpage 1`] = `
   <ArticleLoader />
   <HighLightsLoader />
   <UsersLoader />
+  <UserInfoNotice />
   <MainViewRoutes
     isAdmin={true}
   />
@@ -132,6 +137,8 @@ exports[`MainView tests Renders MainView, settings are not loaded 1`] = `
       <Component />
     </div>
   </div>
-  <UserInfo />
+  <MainViewRoutes
+    isAdmin={false}
+  />
 </div>
 `;

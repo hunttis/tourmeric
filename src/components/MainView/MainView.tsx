@@ -9,8 +9,9 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import englishTranslations from '~/translations/en.json';
 import finnishTranslations from '~/translations/fi.json';
 
-import UserInfo from '~/components/UserInfo/UserInfo-container';
+// import UserInfo from '~/components/UserInfo/UserInfo-container';
 import TitleBar from '~/components/MainView/TitleBar-container';
+import UserInfoNotice from '~/components/MainView/UserInfoNotice-container';
 import ThemeHandler from '~/components/MainView/ThemeHandler-container';
 import Navbar from '~/components/MainView/Navbar/Navbar-container';
 import InitialSetup from '~/components/MainView/InitialSetup';
@@ -50,7 +51,6 @@ interface Props {
 
 interface State {
   redirected: boolean;
-  userInfoOk: boolean;
 }
 
 export default class MainView extends Component<Props, State> {
@@ -67,7 +67,7 @@ export default class MainView extends Component<Props, State> {
     this.props.addTranslationForLanguage(finnishTranslations, 'fi');
 
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.state = { redirected: false, userInfoOk: false };
+    this.state = { redirected: false };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
@@ -77,25 +77,9 @@ export default class MainView extends Component<Props, State> {
       const nextProfile = nextProps.profile;
       const isProfileLoaded: boolean = isLoaded(nextProfile);
       const isLoggedIn: boolean = isProfileLoaded && !isEmpty(nextProfile);
-      const acceptedPrivacyPolicy = !!_.get(nextProfile, 'acceptedPrivacyPolicy');
-      const providerEmail = _.get(nextProfile, 'providerData[0].email', null);
-      const emailOk = (!nextProfile.useOtherEmail && (providerEmail || nextProfile.email)) || (nextProfile.useOtherEmail && nextProfile.otherEmail);
-      const namesOk = !!_.get(nextProps, 'profile.firstName', false) && !!_.get(nextProps, 'profile.lastName', false);
-      const everythingOk = !isLoggedIn || (emailOk && namesOk && acceptedPrivacyPolicy);
-
-      this.setState({ userInfoOk: everythingOk });
 
       if (isLoaded(nextProfile) && isEmpty(nextProfile) && ['/userinfo'].indexOf(this.props.location.pathname) !== -1 && !isLoggedIn) {
         this.triggerDelayedLocationChange('/today');
-      } else if (
-        isLoggedIn && (
-          !nextProfile.firstName ||
-          !nextProfile.lastName ||
-          !emailOk ||
-          !acceptedPrivacyPolicy)
-      ) {
-        this.triggerDelayedLocationChange('/userinfo');
-        this.setState({ redirected: true });
       } else if (wasProfileLoaded !== isProfileLoaded) {
         const currentLocation = this.props.location.pathname.substring(1);
         const landingPage = _.get(nextProfile, 'landingPage', 'today');
@@ -119,9 +103,21 @@ export default class MainView extends Component<Props, State> {
     Moment.globalLocale = newLanguage;
   }
 
+  isUserInfoOk() {
+    const isProfileLoaded: boolean = isLoaded(this.props.profile);
+    const { profile } = this.props;
+    const isLoggedIn: boolean = isProfileLoaded && !isEmpty(profile);
+    const acceptedPrivacyPolicy = !!_.get(profile, 'acceptedPrivacyPolicy');
+    const providerEmail = _.get(profile, 'providerData[0].email', null);
+    const emailOk = (!profile.useOtherEmail && (providerEmail || profile.email)) || (profile.useOtherEmail && profile.otherEmail);
+    const namesOk = !!_.get(profile, 'firstName', false) && !!_.get(profile, 'lastName', false);
+    const everythingOk = !isLoggedIn || (emailOk && namesOk && acceptedPrivacyPolicy);
+    return everythingOk;
+  }
+
   render() {
     const { profile, settings, isAdmin, location } = this.props;
-    const { userInfoOk } = this.state;
+    const userInfoOk = this.isUserInfoOk();
 
     if (isLoaded(settings) && isEmpty(settings)) {
       return <InitialSetup profile={profile} />;
@@ -152,19 +148,14 @@ export default class MainView extends Component<Props, State> {
           </>
         }
 
-        {userInfoOk &&
-          <>
-            <MainViewRoutes isAdmin={isAdmin} />
-          </>
-        }
+        {!userInfoOk && <UserInfoNotice />}
 
-        {!userInfoOk &&
-          <UserInfo />
-        }
+        <MainViewRoutes isAdmin={isAdmin} />
 
         {(isLoaded(settings) && !printPage) &&
           <FooterBar />
         }
+
       </div>
     );
 

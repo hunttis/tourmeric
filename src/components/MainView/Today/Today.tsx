@@ -47,7 +47,10 @@ export default class Today extends Component<Props, State> {
     } = this.props;
 
     const { showingDay } = this.state;
-    moment.locale(activeLanguage.code);
+
+    if (activeLanguage) {
+      moment.locale(activeLanguage.code);
+    }
 
     if (isLoaded(events) && isLoaded(eventsongoing) && isLoaded(categories) && isLoaded(uploadedCategoryLogos) && isLoaded(settings)) {
 

@@ -46,6 +46,13 @@
   "forgotpassword": "Forgot password",
   "resetpassword": "Reset password",
   "resetemailsent": "We sent you some email that will help you in resetting your password. If you don't see it soon, check your junk email.",
+  "loggedinbutneedinfo": "You're logged in, but your user info is incomplete.",
+  "youcantparticipatebeforeyoudo": "You cannot participate in events before you complete the info and accept our privacy policy.",
+  "pleasefillinfobelow": "Please fill info below",
+  "thingstodo": "Things to do:",
+  "acceptprivacypolicy": "Read and accept privacy policy",
+  "addfirstname": "Add first name",
+  "addlastname": "Add last name",
 
   "auth/email-already-in-use": "Email address already in use",
   "auth/user-not-found": "Email or password wrong",
@@ -169,6 +176,7 @@
   "afternoon": "In the Afternoon",
   "evening": "In the Evening",
   
+  "clickhere": "Click here",
   "dropfileshere": "Drop file(s) here, or click here",
   "uploadedfiles": "Uploaded files",
   "uploadingfiles": "Files are being uploaded",

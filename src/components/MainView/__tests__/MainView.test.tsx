@@ -36,6 +36,7 @@ jest.mock('~/components/MainView/Loaders/OpeningHoursExceptionLoader-container',
 jest.mock('~/components/MainView/Loaders/UsersLoader-container', () => 'UsersLoader');
 jest.mock('~/components/MainView/Loaders/HighLightsLoader-container', () => 'HighLightsLoader');
 jest.mock('~/components/MainView/MainView-routes', () => 'MainViewRoutes');
+jest.mock('~/components/MainView/UserInfoNotice-container', () => 'UserInfoNotice');
 
 jest.mock('~/components/EventList/EventCalendar/EventCalendar-container', () => 'EventCalendar');
 jest.mock('~/components/EventList/EventCard/SingleEvent-container', () => 'SingleEventContainer');
