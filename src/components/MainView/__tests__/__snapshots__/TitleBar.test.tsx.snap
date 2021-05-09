@@ -40,7 +40,7 @@ exports[`TitleBar tests something something 1`] = `
       <div
         className="is-hidden-mobile"
       >
-        <Connect(Connect(Component)) />
+        <OpeningHours />
       </div>
     </div>
   </section>

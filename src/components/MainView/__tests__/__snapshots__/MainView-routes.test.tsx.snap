@@ -6,108 +6,30 @@ exports[`MainView Routes tests for NON-ADMIN USER Should NOT render AdminToolsEv
 
 exports[`MainView Routes tests for NON-ADMIN USER Should NOT render SiteSettings-Component, because user is not admin 1`] = `null`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render Articles-Component 1`] = `
-<articles
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render Articles-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render CompanyInfo-Component 1`] = `
-<companyinfo
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render CompanyInfo-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render EventCalendar-Component 1`] = `
-<eventcalendar
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render EventCalendar-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render EventPlayerList-Component 1`] = `
-<eventplayerlist
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render EventPlayerList-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render Login-Component 1`] = `
-<login
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render Login-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render Register-Component 1`] = `
-<register
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render Register-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render Single Event-Component 1`] = `
-<singleevent
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render Single Event-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render StoreInfo-Component 1`] = `
-<storeinfo
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render StoreInfo-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render Today-Component 1`] = `
-<today
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render Today-Component 1`] = `<div />`;
 
-exports[`MainView Routes tests for NON-ADMIN USER Should Render UserInfo-Component 1`] = `
-<userinfo
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Routes tests for NON-ADMIN USER Should Render UserInfo-Component 1`] = `<div />`;
 
 exports[`MainView Routes tests for NON-ADMIN USER Should Render null with an empty path 1`] = `null`;
 
-exports[`MainView Tests for Admin user Should render AdminTools-Component 1`] = `
-<admintools
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Tests for Admin user Should render AdminTools-Component 1`] = `<div />`;
 
-exports[`MainView Tests for Admin user Should render AdminToolsEvents-Component 1`] = `
-<admintoolsevents
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Tests for Admin user Should render AdminToolsEvents-Component 1`] = `<div />`;
 
-exports[`MainView Tests for Admin user Should render SiteSettings-Component 1`] = `
-<adminsitesettings
-  history="[object Object]"
-  location="[object Object]"
-  match="[object Object]"
-/>
-`;
+exports[`MainView Tests for Admin user Should render SiteSettings-Component 1`] = `<div />`;

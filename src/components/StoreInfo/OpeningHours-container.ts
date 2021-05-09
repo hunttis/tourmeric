@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { OpeningHours } from './OpeningHours';
 import { ReduxState } from '~/models/ReduxState';
 
-export const OpeningHoursContainer = compose(
+export default compose(
   connect((state: ReduxState) => ({
     settings: state.firebase.data.settings,
     openinghoursexceptions: state.firebase.data.openinghoursexceptions,
