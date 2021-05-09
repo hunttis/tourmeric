@@ -4,17 +4,14 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
     },
     "module": "commonjs",
     "moduleResolution": "node",
-    "jsx": "react", 
+    "jsx": "react",
     "noEmit": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
@@ -23,11 +20,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "target": "esnext",
+    "target": "esnext"
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js"]
 }

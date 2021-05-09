@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This project is for a tournament calendar that let's you create events, edit them and then allows users to pre-register for the events",
   "main": "index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/hunttis/tourmeric.git"
@@ -41,11 +42,14 @@
     "firebase-deploy-rules-testing": "yarn bolt; firebase use testing; firebase deploy --only database",
     "firebase-deploy-rules-localdev": "yarn bolt; firebase use localdev; firebase deploy --only database",
     "firebase-deploy-functions": "firebase use default; firebase deploy --only functions",
-    "firebase-deploy-functions-testing": "firebase use testing; firebase deploy --only functions"
+    "firebase-deploy-functions-testing": "firebase use testing; firebase deploy --only functions",
+    "vite": "vite",
+    "vite-build": "vite build"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "2.8.0",
     "@typescript-eslint/parser": "2.8.0",
+    "@vitejs/plugin-react-refresh": "^1.3.3",
     "bulma": "^0.7.5",
     "bulma-extensions": "^1.0.30",
     "bulmaswatch": "^0.7.5",
@@ -64,7 +68,6 @@
     "react-dom": "^16.12.0",
     "react-dropzone": "^10.2.0",
     "react-image-fallback": "^7.0.1",
-    "react-localize-redux": "3.5.3",
     "react-moment": "^0.9.6",
     "react-redux": "^7.1.3",
     "react-redux-firebase": "^3.0.5",
@@ -75,7 +78,8 @@
     "redux-thunk": "^2.2.0",
     "showdown": "^1.9.1",
     "translate": "^1.1.0",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "vite": "^2.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
@@ -115,7 +119,6 @@
     "jest": "^26.6.3",
     "node-sass": "^4.12.0",
     "p-locate": "^2.0.0",
-    "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1",
     "redux-mock-store": "^1.5.3",
     "sass": "^1.23.0",
