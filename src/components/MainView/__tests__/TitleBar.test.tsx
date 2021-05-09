@@ -8,7 +8,8 @@ import { emptyMockSettings as settings } from '~/components/EventList/__mocks__/
 import { Settings } from '~/models/Settings';
 
 jest.mock('react-redux-firebase');
-jest.mock('~/components/HighLights/HighLights-container', () => 'HighLights');
+jest.mock('~/components/HighLights/HighLights-container', () => { const HighLights = () => <div />; return HighLights; });
+jest.mock('~/components/StoreInfo/OpeningHours-container', () => { const OpeningHours = () => <div />; return OpeningHours; });
 
 describe('TitleBar tests', () => {
   beforeEach(() => {

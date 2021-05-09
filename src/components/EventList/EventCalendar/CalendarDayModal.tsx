@@ -9,7 +9,7 @@ import {
   addClassToHtml,
 } from '../../Common/DocumentUtils';
 import EventCard from '../EventCard/EventCard-container';
-import { OpeningHoursContainer as OpeningHours } from '../../StoreInfo/OpeningHours-container';
+import OpeningHours from '../../StoreInfo/OpeningHours-container';
 import { OpeningHoursExceptionEditor } from './OpeningHoursExceptionEditor';
 import { OpeningHoursException } from '../../../models/OpeningHours';
 import { getOngoingEventsForDay, getEventsForDay } from '~/components/Common/EventUtils';

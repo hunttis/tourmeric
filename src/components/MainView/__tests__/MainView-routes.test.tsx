@@ -5,20 +5,20 @@ import MainviewRoutes from '../MainView-routes';
 
 jest.mock('react-redux-firebase');
 
-jest.mock('~/components/AdminTools/AdminTools-container', () => 'AdminTools');
-jest.mock('~/components/AdminTools/AdminToolsEvents-container', () => 'AdminToolsEvents');
-jest.mock('~/components/AdminTools/SiteSettings/AdminSiteSettings-container', () => 'AdminSiteSettings');
-jest.mock('~/components/EventList/EventCalendar/EventCalendar-container', () => 'EventCalendar');
-jest.mock('~/components/MainView/Today/News-container', () => 'News');
-jest.mock('~/components/MainView/Today/Today-container', () => 'Today');
-jest.mock('~/components/UserInfo/UserInfo-container', () => 'UserInfo');
-jest.mock('~/components/EventList/EventCard/SingleEvent-container', () => 'SingleEvent');
-jest.mock('~/components/EventList/EventCard/EventPlayerList-container', () => 'EventPlayerList');
-jest.mock('~/components/StoreInfo/StoreInfo-container', () => 'StoreInfo');
-jest.mock('~/components/MainView/Account/Register-container', () => 'Register');
-jest.mock('~/components/MainView/Account/Login-container', () => 'Login');
-jest.mock('~/components/MainView/Articles/Articles-container', () => 'Articles');
-jest.mock('~/components/MainView/CompanyInfo/CompanyInfo-container', () => 'CompanyInfo');
+jest.mock('~/components/AdminTools/AdminTools-container', () => { const AdminTools = () => <div />; return AdminTools; });
+jest.mock('~/components/AdminTools/AdminToolsEvents-container', () => { const AdminToolsEvents = () => <div />; return AdminToolsEvents; });
+jest.mock('~/components/AdminTools/SiteSettings/AdminSiteSettings-container', () => { const AdminSiteSettings = () => <div />; return AdminSiteSettings; });
+jest.mock('~/components/EventList/EventCalendar/EventCalendar-container', () => { const EventCalendar = () => <div />; return EventCalendar; });
+jest.mock('~/components/MainView/Today/News-container', () => { const News = () => <div />; return News; });
+jest.mock('~/components/MainView/Today/Today-container', () => { const Today = () => <div />; return Today; });
+jest.mock('~/components/UserInfo/UserInfo-container', () => { const UserInfo = () => <div />; return UserInfo; });
+jest.mock('~/components/EventList/EventCard/SingleEvent-container', () => { const SingleEvent = () => <div />; return SingleEvent; });
+jest.mock('~/components/EventList/EventCard/EventPlayerList-container', () => { const EventPlayerList = () => <div />; return EventPlayerList; });
+jest.mock('~/components/StoreInfo/StoreInfo-container', () => { const StoreInfo = () => <div />; return StoreInfo; });
+jest.mock('~/components/MainView/Account/Register-container', () => { const Register = () => <div />; return Register; });
+jest.mock('~/components/MainView/Account/Login-container', () => { const Login = () => <div />; return Login; });
+jest.mock('~/components/MainView/Articles/Articles-container', () => { const Articles = () => <div />; return Articles; });
+jest.mock('~/components/MainView/CompanyInfo/CompanyInfo-container', () => { const CompanyInfo = () => <div />; return CompanyInfo; });
 
 describe('MainView Routes tests for NON-ADMIN USER', () => {
 

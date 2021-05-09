@@ -16,7 +16,7 @@ import ThemeHandler from '~/components/MainView/ThemeHandler-container';
 import Navbar from '~/components/MainView/Navbar/Navbar-container';
 import InitialSetup from '~/components/MainView/InitialSetup';
 import FooterBar from '~/components/MainView/FooterBar-container';
-import { OpeningHoursContainer as OpeningHours } from '~/components/StoreInfo/OpeningHours-container';
+import OpeningHours from '~/components/StoreInfo/OpeningHours-container';
 
 import ArticleLoader from '~/components/MainView/Loaders/ArticleLoader-container';
 import EventLoader from '~/components/MainView/Loaders/EventLoader-container';
@@ -143,7 +143,9 @@ export default class MainView extends Component<Props, State> {
             <TitleBar returnToFrontpage={() => this.props.history.push('/today')} />
             <Navbar changeLanguage={this.changeLanguage} />
             <div className="is-hidden-tablet is-centered is-fullwidth level box">
-              <div className="level-item openinghours-mobile"><OpeningHours /></div>
+              <div className="level-item openinghours-mobile">
+                <OpeningHours />
+              </div>
             </div>
           </>
         }

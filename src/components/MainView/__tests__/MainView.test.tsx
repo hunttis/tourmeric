@@ -10,41 +10,41 @@ import {
 } from '~/components/EventList/__mocks__/mockData';
 import { Settings } from '~/models/Settings';
 
-jest.mock('~/components/AdminTools/AdminTools-container', () => 'AdminTools');
-jest.mock('~/components/AdminTools/AdminToolsEvents-container', () => 'AdminToolsEvents');
-jest.mock('~/components/AdminTools/SiteSettings/AdminSiteSettings-container', () => 'AdminSiteSettings');
-jest.mock('~/components/AdminTools/ArticleEditor/ArticleList-container', () => 'ArticleList');
+jest.mock('~/components/AdminTools/AdminTools-container', () => { const AdminTools = () => <div />; return AdminTools; });
+jest.mock('~/components/AdminTools/AdminToolsEvents-container', () => { const AdminToolsEvents = () => <div />; return AdminToolsEvents; });
+jest.mock('~/components/AdminTools/SiteSettings/AdminSiteSettings-container', () => { const AdminSiteSettings = () => <div />; return AdminSiteSettings; });
+jest.mock('~/components/AdminTools/ArticleEditor/ArticleList-container', () => { const ArticleList = () => <div />; return ArticleList; });
 
-jest.mock('~/components/MainView/InitialSetup', () => 'InitialSetup');
-jest.mock('~/components/MainView/FooterBar-container', () => 'FooterBar');
-jest.mock('~/components/MainView/TitleBar-container', () => 'TitleBar');
-jest.mock('~/components/MainView/ThemeHandler-container', () => 'ThemeHandler');
+jest.mock('~/components/MainView/InitialSetup', () => { const InitialSetup = () => <div />; return InitialSetup; });
+jest.mock('~/components/MainView/FooterBar-container', () => { const FooterBar = () => <div />; return FooterBar; });
+jest.mock('~/components/MainView/TitleBar-container', () => { const TitleBar = () => <div />; return TitleBar; });
+jest.mock('~/components/MainView/ThemeHandler-container', () => { const ThemeHandler = () => <div />; return ThemeHandler; });
 
-jest.mock('~/components/MainView/Account/Register-container', () => 'Register');
-jest.mock('~/components/MainView/Account/Login-container', () => 'Login');
-jest.mock('~/components/MainView/Navbar/Navbar-container', () => 'Navbar');
-jest.mock('~/components/MainView/Today/Today-container', () => 'Today');
-jest.mock('~/components/MainView/Articles/Articles-container', () => 'Articles');
-jest.mock('~/components/MainView/CompanyInfo/CompanyInfo-container', () => 'CompanyInfo');
+jest.mock('~/components/MainView/Account/Register-container', () => { const Register = () => <div />; return Register; });
+jest.mock('~/components/MainView/Account/Login-container', () => { const Login = () => <div />; return Login; });
+jest.mock('~/components/MainView/Navbar/Navbar-container', () => { const Navbar = () => <div />; return Navbar; });
+jest.mock('~/components/MainView/Today/Today-container', () => { const Today = () => <div />; return Today; });
+jest.mock('~/components/MainView/Articles/Articles-container', () => { const Articles = () => <div />; return Articles; });
+jest.mock('~/components/MainView/CompanyInfo/CompanyInfo-container', () => { const CompanyInfo = () => <div />; return CompanyInfo; });
 
-jest.mock('~/components/MainView/Loaders/ArticleLoader-container', () => 'ArticleLoader');
-jest.mock('~/components/MainView/Loaders/EventLoader-container', () => 'EventLoader');
-jest.mock('~/components/MainView/Loaders/CategoryLoader-container', () => 'CategoryLoader');
-jest.mock('~/components/MainView/Loaders/ParticipationsLoader-container', () => 'ParticipationsLoader');
-jest.mock('~/components/MainView/Loaders/UploadedCategoryLogosLoader-container', () => 'UploadedCategoryLogosLoader');
-jest.mock('~/components/MainView/Loaders/OpeningHoursExceptionLoader-container', () => 'OpeningHoursExceptionLoader');
-jest.mock('~/components/MainView/Loaders/UsersLoader-container', () => 'UsersLoader');
-jest.mock('~/components/MainView/Loaders/HighLightsLoader-container', () => 'HighLightsLoader');
-jest.mock('~/components/MainView/MainView-routes', () => 'MainViewRoutes');
-jest.mock('~/components/MainView/UserInfoNotice-container', () => 'UserInfoNotice');
+jest.mock('~/components/MainView/Loaders/ArticleLoader-container', () => { const ArticleLoader = () => <div />; return ArticleLoader; });
+jest.mock('~/components/MainView/Loaders/EventLoader-container', () => { const EventLoader = () => <div />; return EventLoader; });
+jest.mock('~/components/MainView/Loaders/CategoryLoader-container', () => { const CategoryLoader = () => <div />; return CategoryLoader; });
+jest.mock('~/components/MainView/Loaders/ParticipationsLoader-container', () => { const ParticipationsLoader = () => <div />; return ParticipationsLoader; });
+jest.mock('~/components/MainView/Loaders/UploadedCategoryLogosLoader-container', () => { const UploadedCategoryLogosLoader = () => <div />; return UploadedCategoryLogosLoader; });
+jest.mock('~/components/MainView/Loaders/OpeningHoursExceptionLoader-container', () => { const OpeningHoursExceptionLoader = () => <div />; return OpeningHoursExceptionLoader; });
+jest.mock('~/components/MainView/Loaders/UsersLoader-container', () => { const UsersLoader = () => <div />; return UsersLoader; });
+jest.mock('~/components/MainView/Loaders/HighLightsLoader-container', () => { const HighLightsLoader = () => <div />; return HighLightsLoader; });
+jest.mock('~/components/MainView/MainView-routes', () => { const MainViewRoutes = () => <div />; return MainViewRoutes; });
+jest.mock('~/components/MainView/UserInfoNotice-container', () => { const UserInfoNotice = () => <div />; return UserInfoNotice; });
 
-jest.mock('~/components/EventList/EventCalendar/EventCalendar-container', () => 'EventCalendar');
-jest.mock('~/components/EventList/EventCard/SingleEvent-container', () => 'SingleEventContainer');
-jest.mock('~/components/EventList/EventCard/EventPlayerList-container', () => 'EventPlayerList');
+jest.mock('~/components/EventList/EventCalendar/EventCalendar-container', () => { const EventCalendar = () => <div />; return EventCalendar; });
+jest.mock('~/components/EventList/EventCard/SingleEvent-container', () => { const SingleEventContainer = () => <div />; return SingleEventContainer; });
+jest.mock('~/components/EventList/EventCard/EventPlayerList-container', () => { const EventPlayerList = () => <div />; return EventPlayerList; });
 
-jest.mock('~/components/StoreInfo/StoreInfo-container', () => 'StoreInfo');
-jest.mock('~/components/StoreInfo/OpeningHours-container', () => 'OpeningHours');
-jest.mock('~/components/UserInfo/UserInfo-container', () => 'UserInfo');
+jest.mock('~/components/StoreInfo/StoreInfo-container', () => { const StoreInfo = () => <div />; return StoreInfo; });
+jest.mock('~/components/StoreInfo/OpeningHours-container', () => { const OpeningHours = () => <div />; return OpeningHours; });
+jest.mock('~/components/UserInfo/UserInfo-container', () => { const UserInfo = () => <div />; return UserInfo; });
 
 
 describe('MainView tests', () => {

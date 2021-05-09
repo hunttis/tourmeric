@@ -5,7 +5,7 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 import Moment from 'react-moment';
 import { Dispatch } from 'redux';
 import Highlights from '~/components/HighLights/HighLights-container';
-import { OpeningHoursContainer as OpeningHours } from '../StoreInfo/OpeningHours-container';
+import OpeningHours from '../StoreInfo/OpeningHours-container';
 import { Settings } from '~/models/Settings';
 
 interface Props {

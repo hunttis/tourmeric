@@ -50,7 +50,7 @@ exports[`MainView tests Renders MainView, settings are loaded, admin 1`] = `
     <div
       className="level-item openinghours-mobile"
     >
-      <Component />
+      <OpeningHours />
     </div>
   </div>
   <UserInfoNotice />
@@ -83,7 +83,7 @@ exports[`MainView tests Renders MainView, settings are loaded, ordinary logged o
     <div
       className="level-item openinghours-mobile"
     >
-      <Component />
+      <OpeningHours />
     </div>
   </div>
   <UserInfoNotice />
@@ -134,7 +134,7 @@ exports[`MainView tests Renders MainView, settings are not loaded 1`] = `
     <div
       className="level-item openinghours-mobile"
     >
-      <Component />
+      <OpeningHours />
     </div>
   </div>
   <MainViewRoutes
