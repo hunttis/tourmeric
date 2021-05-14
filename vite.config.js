@@ -1,5 +1,5 @@
+import reactRefresh from "@vitejs/plugin-react-refresh";
+
 export default {
-  esbuild: {
-    jsxInject: `import React from 'react'`,
-  },
+  plugins: [reactRefresh()]
 };
