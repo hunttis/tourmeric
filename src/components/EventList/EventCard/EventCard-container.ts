@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import { setReturnLocation } from '../../../actions/eventEditorActions';
 import EventCard from './EventCard';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => ({

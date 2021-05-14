@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { ParticipateButton } from './ParticipateButton';
-import { ReduxState } from '~/models/ReduxState';
-import { setReturnLocation } from '~/actions/eventEditorActions';
+import { ReduxState } from '../../models/ReduxState';
+import { setReturnLocation } from '../../actions/eventEditorActions';
 
 export default compose(
   connect((state: ReduxState) => ({

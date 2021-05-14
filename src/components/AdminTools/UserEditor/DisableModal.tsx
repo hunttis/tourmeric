@@ -1,7 +1,7 @@
 import React from 'react';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
-import { User } from '~/models/ReduxState';
+import { User } from '../../../models/ReduxState';
 
 const disableUser = (userId: string | undefined) => {
   if (userId) {

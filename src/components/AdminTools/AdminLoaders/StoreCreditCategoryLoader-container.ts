@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 
 import { StoreCreditCategoryLoader } from './StoreCreditCategoryLoader';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   firebaseConnect([

@@ -3,7 +3,7 @@ import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import firebase from 'firebase/app';
 import _ from 'lodash';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../../models/Settings';
 
 interface Props {
   settings: Settings;

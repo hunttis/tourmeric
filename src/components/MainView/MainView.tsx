@@ -8,34 +8,34 @@ import _ from "lodash";
 import Moment from "react-moment";
 import { Location, History } from "history";
 import { renderToStaticMarkup } from "react-dom/server";
-import englishTranslations from "~/translations/en.json";
-import finnishTranslations from "~/translations/fi.json";
+import englishTranslations from "../../translations/en.json";
+import finnishTranslations from "../../translations/fi.json";
 
-// import UserInfo from '~/components/UserInfo/UserInfo-container';
-import TitleBar from "~/components/MainView/TitleBar-container";
-import UserInfoNotice from "~/components/MainView/UserInfoNotice-container";
-import ThemeHandler from "~/components/MainView/ThemeHandler-container";
-import Navbar from "~/components/MainView/Navbar/Navbar-container";
-import InitialSetup from "~/components/MainView/InitialSetup";
-import FooterBar from "~/components/MainView/FooterBar-container";
-import OpeningHours from "~/components/StoreInfo/OpeningHours-container";
+// import UserInfo from '../../components/UserInfo/UserInfo-container';
+import TitleBar from "../../components/MainView/TitleBar-container";
+import UserInfoNotice from "../../components/MainView/UserInfoNotice-container";
+import ThemeHandler from "../../components/MainView/ThemeHandler-container";
+import Navbar from "../../components/MainView/Navbar/Navbar-container";
+import InitialSetup from "../../components/MainView/InitialSetup";
+import FooterBar from "../../components/MainView/FooterBar-container";
+import OpeningHours from "../../components/StoreInfo/OpeningHours-container";
 
-import ArticleLoader from "~/components/MainView/Loaders/ArticleLoader-container";
-import EventLoader from "~/components/MainView/Loaders/EventLoader-container";
-import CategoryLoader from "~/components/MainView/Loaders/CategoryLoader-container";
-import ParticipationsLoader from "~/components/MainView/Loaders/ParticipationsLoader-container";
-import UploadedCategoryLogosLoader from "~/components/MainView/Loaders/UploadedCategoryLogosLoader-container";
-import OpeningHoursExceptionLoader from "~/components/MainView/Loaders/OpeningHoursExceptionLoader-container";
-import UsersLoader from "~/components/MainView/Loaders/UsersLoader-container";
-import HighLightsLoader from "~/components/MainView/Loaders/HighLightsLoader-container";
-import MainViewRoutes from "~/components/MainView/MainView-routes";
+import ArticleLoader from "../../components/MainView/Loaders/ArticleLoader-container";
+import EventLoader from "../../components/MainView/Loaders/EventLoader-container";
+import CategoryLoader from "../../components/MainView/Loaders/CategoryLoader-container";
+import ParticipationsLoader from "../../components/MainView/Loaders/ParticipationsLoader-container";
+import UploadedCategoryLogosLoader from "../../components/MainView/Loaders/UploadedCategoryLogosLoader-container";
+import OpeningHoursExceptionLoader from "../../components/MainView/Loaders/OpeningHoursExceptionLoader-container";
+import UsersLoader from "../../components/MainView/Loaders/UsersLoader-container";
+import HighLightsLoader from "../../components/MainView/Loaders/HighLightsLoader-container";
+import MainViewRoutes from "../../components/MainView/MainView-routes";
 
 // ******************
 // Set the theme here
 // ******************
 import "bulmaswatch/darkly/bulmaswatch.min.css";
-import { FirebaseProfile } from "~/models/ReduxState";
-import { Settings } from "~/models/Settings";
+import { FirebaseProfile } from "../../models/ReduxState";
+import { Settings } from "../../models/Settings";
 
 interface Props {
   dispatch: Dispatch;

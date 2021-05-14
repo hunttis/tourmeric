@@ -4,8 +4,8 @@ import _ from 'lodash';
 import { History } from 'history';
 import { Dispatch, AnyAction } from 'redux';
 import { participantCount, participate, checkParticipation, cancelParticipation } from '../../api/eventApi';
-import { FirebaseProfile, Participation } from '~/models/ReduxState';
-import { TourmericEvent } from '~/models/Events';
+import { FirebaseProfile, Participation } from '../../models/ReduxState';
+import { TourmericEvent } from '../../models/Events';
 
 interface Props {
   events: { [key: string]: TourmericEvent };

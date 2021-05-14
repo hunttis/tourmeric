@@ -4,7 +4,7 @@ import { isLoaded } from 'react-redux-firebase';
 import firebase from 'firebase/app';
 import moment from 'moment';
 import EditableTextarea from '../../Common/EditableTextarea-container';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../../models/Settings';
 
 interface Props {
   settings: Settings;

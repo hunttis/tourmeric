@@ -4,9 +4,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import rrf from 'react-redux-firebase';
 import { News } from '../News';
-import { mockSettings } from '~/components/EventList/__mocks__/mockData';
-import { Settings } from '~/models/Settings';
-import { SingleNewsItem } from '~/models/ReduxState';
+import { mockSettings } from '../../../../components/EventList/__mocks__/mockData';
+import { Settings } from '../../../../models/Settings';
+import { SingleNewsItem } from '../../../../models/ReduxState';
 
 jest.mock('react-redux-firebase');
 

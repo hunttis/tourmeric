@@ -1,4 +1,4 @@
-import { TourmericEvent, TourmericEventEntry } from '~/models/Events';
+import { TourmericEvent, TourmericEventEntry } from '../../../models/Events';
 import {
   filterEventsByPublishedStatus,
   filterEventsByCategory,

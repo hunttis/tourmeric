@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, render } from 'enzyme';
 import { ArticleMarkdown } from '../ArticleMarkdown';
-import { Article } from '~/models/ReduxState';
+import { Article } from '../../../../models/ReduxState';
 
 describe('ArticleMarkdown Tests', () => {
 

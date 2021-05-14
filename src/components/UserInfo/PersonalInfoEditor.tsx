@@ -3,7 +3,7 @@ import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import EditableVerticalField from '../Common/EditableVerticalField-container';
-import { FirebaseProfile, FirebaseAuth } from '~/models/ReduxState';
+import { FirebaseProfile, FirebaseAuth } from '../../models/ReduxState';
 
 interface Props {
   profile: FirebaseProfile;

@@ -2,7 +2,7 @@ import React from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { Translate } from 'react-localize-redux';
 import { OpeningHourRow } from './OpeningHourRow';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../models/Settings';
 
 interface Props {
   settings: Settings;

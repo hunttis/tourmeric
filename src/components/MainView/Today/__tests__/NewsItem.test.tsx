@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import rrf from 'react-redux-firebase';
 import NewsItem from '../NewsItem';
-import { SingleNewsItem } from '~/models/ReduxState';
+import { SingleNewsItem } from '../../../../models/ReduxState';
 
 jest.mock('react-redux-firebase');
 

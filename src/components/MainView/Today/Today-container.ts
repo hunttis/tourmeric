@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withLocalize } from 'react-localize-redux';
 
 import Today from './Today';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 const componentWrapper = compose(
   connect((state: ReduxState) => ({

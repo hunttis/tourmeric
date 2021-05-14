@@ -1,6 +1,6 @@
 import React from 'react';
 import { Translate } from 'react-localize-redux';
-import { ParticipationData } from '~/models/ReduxState';
+import { ParticipationData } from '../../models/ReduxState';
 
 interface Props {
   participations: ParticipationData[];

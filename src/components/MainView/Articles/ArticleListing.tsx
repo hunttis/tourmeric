@@ -4,8 +4,8 @@ import _ from 'lodash';
 
 import { Location, History } from 'history';
 import moment from 'moment';
-import { Article } from '~/models/ReduxState';
-import { Settings } from '~/models/Settings';
+import { Article } from '../../../models/ReduxState';
+import { Settings } from '../../../models/Settings';
 
 interface Props {
   settings: Settings;

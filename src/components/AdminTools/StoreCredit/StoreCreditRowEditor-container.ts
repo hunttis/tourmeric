@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import _ from 'lodash';
 import { StoreCreditRowEditor } from './StoreCreditRowEditor';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => {

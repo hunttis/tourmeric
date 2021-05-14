@@ -4,8 +4,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import rrf from 'react-redux-firebase';
 import TitleBar from '../TitleBar';
-import { emptyMockSettings as settings } from '~/components/EventList/__mocks__/mockData';
-import { Settings } from '~/models/Settings';
+import { emptyMockSettings as settings } from '../../../components/EventList/__mocks__/mockData';
+import { Settings } from '../../../models/Settings';
 
 jest.mock('react-redux-firebase');
 jest.mock('~/components/HighLights/HighLights-container', () => { const HighLights = () => <div />; return HighLights; });

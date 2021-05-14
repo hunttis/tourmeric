@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { firebaseConnect } from 'react-redux-firebase';
 
 import AdminSiteSettings from './AdminSiteSettings';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   firebaseConnect([

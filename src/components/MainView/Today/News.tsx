@@ -4,8 +4,8 @@ import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import NewsItem from './NewsItem';
-import { Settings } from '~/models/Settings';
-import { SingleNewsItem } from '~/models/ReduxState';
+import { Settings } from '../../../models/Settings';
+import { SingleNewsItem } from '../../../models/ReduxState';
 
 interface Props {
   news: { key: string, value: SingleNewsItem }[];

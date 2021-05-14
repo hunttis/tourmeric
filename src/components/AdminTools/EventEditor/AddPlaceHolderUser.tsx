@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 
-import { adminparticipate } from '~/api/eventApi';
-import { User } from '~/models/ReduxState';
+import { adminparticipate } from '../../../api/eventApi';
+import { User } from '../../../models/ReduxState';
 
 interface Props {
   eventId: string;

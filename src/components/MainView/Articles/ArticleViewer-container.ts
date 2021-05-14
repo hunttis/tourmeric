@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import _ from 'lodash';
 import { ArticleViewer } from './ArticleViewer';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => {

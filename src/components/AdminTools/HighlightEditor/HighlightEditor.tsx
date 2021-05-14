@@ -8,8 +8,8 @@ import FileDropper from '../FileDropper';
 
 import { HighlightEditorItem } from './HighlightEditorItem';
 import HighlightEditorModal from './HighlightEditorModal';
-import { UploadedFile } from '~/models/Category';
-import { HighLight } from '~/models/ReduxState';
+import { UploadedFile } from '../../../models/Category';
+import { HighLight } from '../../../models/ReduxState';
 
 const filesPath = 'uploadedHighlightBanners';
 

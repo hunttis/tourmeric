@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { UserInfoNotice } from './UserInfoNotice';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => ({

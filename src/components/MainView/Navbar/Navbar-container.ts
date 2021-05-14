@@ -4,7 +4,7 @@ import { firebaseConnect } from 'react-redux-firebase';
 import { withRouter } from 'react-router-dom';
 
 import Navbar from './Navbar';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   firebaseConnect([

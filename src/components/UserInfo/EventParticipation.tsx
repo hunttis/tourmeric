@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 import { History } from 'history';
-import { Settings } from '~/models/Settings';
-import { TourmericEventEntry } from '~/models/Events';
+import { Settings } from '../../models/Settings';
+import { TourmericEventEntry } from '../../models/Events';
 
 interface Props {
   eventEntry: TourmericEventEntry;

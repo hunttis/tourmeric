@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 
 import { StoreCreditRowUser } from './StoreCreditRowUser';
-import { TourmericStoreCreditData } from '~/models/StoreCredit';
+import { TourmericStoreCreditData } from '../../models/StoreCredit';
 
 interface Props {
   userId: string;

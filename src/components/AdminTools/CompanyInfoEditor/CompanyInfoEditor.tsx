@@ -2,7 +2,7 @@ import React from 'react';
 import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import EditableTextarea from '../../Common/EditableTextarea-container';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../../models/Settings';
 
 interface Props {
   settings: Settings;

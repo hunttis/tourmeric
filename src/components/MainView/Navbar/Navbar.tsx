@@ -5,8 +5,8 @@ import _ from 'lodash';
 import { History } from 'history';
 import { logout } from '../../../api/loginApi';
 import { NavbarItem } from './NavbarItem';
-import { FirebaseProfile } from '~/models/ReduxState';
-import { Settings } from '~/models/Settings';
+import { FirebaseProfile } from '../../../models/ReduxState';
+import { Settings } from '../../../models/Settings';
 
 interface Props {
   profile: FirebaseProfile;

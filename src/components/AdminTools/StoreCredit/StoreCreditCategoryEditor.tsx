@@ -3,7 +3,7 @@ import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
-import { StoreCreditCategory } from '~/models/StoreCredit';
+import { StoreCreditCategory } from '../../../models/StoreCredit';
 
 interface Props {
   storecreditcategories: { [key: string]: StoreCreditCategory };

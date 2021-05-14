@@ -1,7 +1,7 @@
 // import { connect } from 'react-redux';
 // import { compose } from 'redux';
 
-// import { ReduxState } from '~/models/ReduxState';
+// import { ReduxState } from '../../../models/ReduxState';
 
 // interface Props {
 //   articleId: string;

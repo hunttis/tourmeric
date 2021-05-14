@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { Day } from '~/models/Calendar';
-import { TourmericEvent } from '~/models/Events';
+import { Day } from '../../../models/Calendar';
+import { TourmericEvent } from '../../../models/Events';
 
 import moment = require('moment');
 

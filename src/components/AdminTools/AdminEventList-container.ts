@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { setReturnLocation } from '../../actions/eventEditorActions';
 import { AdminEventList } from './AdminEventList';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../models/ReduxState';
 
 export const AdminEventListContainer = compose(
   connect((state: ReduxState) => ({

@@ -3,7 +3,7 @@ import { Translate } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 import { registerEmail } from '../../api/loginApi';
-import { FirebaseProfile } from '~/models/ReduxState';
+import { FirebaseProfile } from '../../models/ReduxState';
 
 interface Props {
   profile: FirebaseProfile;

@@ -5,7 +5,7 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 import ImagePicker from '../ImagePicker';
-import { Category, UploadedFile } from '~/models/Category';
+import { Category, UploadedFile } from '../../../models/Category';
 
 interface State {
   editingCategory?: string | null;

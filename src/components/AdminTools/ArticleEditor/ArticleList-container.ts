@@ -3,7 +3,7 @@ import { compose } from 'redux';
 
 import { withRouter } from 'react-router-dom';
 import { ArticleList } from './ArticleList';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect(

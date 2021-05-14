@@ -4,8 +4,8 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import { Translate } from 'react-localize-redux';
 import FileDropper from '../FileDropper';
-import { UploadedFile } from '~/models/Category';
-import { Settings } from '~/models/Settings';
+import { UploadedFile } from '../../../models/Category';
+import { Settings } from '../../../models/Settings';
 
 const filesPath = 'uploadedFiles';
 

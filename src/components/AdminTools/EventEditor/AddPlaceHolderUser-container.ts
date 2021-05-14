@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import _ from 'lodash';
 
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 import { AddPlaceHolderUser } from './AddPlaceHolderUser';
 
 export default compose(

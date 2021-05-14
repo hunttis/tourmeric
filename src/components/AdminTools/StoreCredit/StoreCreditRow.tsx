@@ -5,7 +5,7 @@ import {
   TourmericStoreCreditData,
   StoreCreditCategory,
   CreditCategories,
-} from '~/models/StoreCredit';
+} from '../../../models/StoreCredit';
 
 interface Props {
   dataId: string;

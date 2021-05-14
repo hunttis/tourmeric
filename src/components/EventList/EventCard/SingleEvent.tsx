@@ -12,11 +12,11 @@ import { ParticipantList } from '../ParticipantList';
 import { checkParticipation } from '../../../api/eventApi';
 import { CardFooterMobile } from './CardFooterMobile';
 import { CardFooterDesktop } from './CardFooterDesktop';
-import { TourmericEvent } from '~/models/Events';
-import { Participation, FirebaseAuth, ParticipationData } from '~/models/ReduxState';
-import { Settings } from '~/models/Settings';
-import { Category } from '~/models/Category';
-import AddPlaceHolderUser from '~/components/AdminTools/EventEditor/AddPlaceHolderUser-container';
+import { TourmericEvent } from '../../../models/Events';
+import { Participation, FirebaseAuth, ParticipationData } from '../../../models/ReduxState';
+import { Settings } from '../../../models/Settings';
+import { Category } from '../../../models/Category';
+import AddPlaceHolderUser from '../../../components/AdminTools/EventEditor/AddPlaceHolderUser-container';
 
 interface URLQuery {
   params: { [key: string]: string };

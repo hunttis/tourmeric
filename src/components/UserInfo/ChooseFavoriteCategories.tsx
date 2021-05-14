@@ -3,8 +3,8 @@ import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { Category } from '~/models/Category';
-import { FirebaseProfile, FirebaseAuth } from '~/models/ReduxState';
+import { Category } from '../../models/Category';
+import { FirebaseProfile, FirebaseAuth } from '../../models/ReduxState';
 
 interface Props {
   categories: { [key: string]: Category };

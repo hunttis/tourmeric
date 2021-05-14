@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import classnames from 'classnames';
-import { Category } from '~/models/Category';
+import { Category } from '../../../models/Category';
 
 interface Props {
   labelContent: string;

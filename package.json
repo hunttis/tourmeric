@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This project is for a tournament calendar that let's you create events, edit them and then allows users to pre-register for the events",
   "main": "index.js",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/hunttis/tourmeric.git"

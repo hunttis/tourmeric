@@ -8,10 +8,10 @@ import { History } from 'history';
 import { participantCount, checkParticipation } from '../../../api/eventApi';
 import { CardFooterMobile } from './CardFooterMobile';
 import { CardFooterDesktop } from './CardFooterDesktop';
-import { TourmericEvent } from '~/models/Events';
-import { Settings } from '~/models/Settings';
-import { Category } from '~/models/Category';
-import { Participation } from '~/models/ReduxState';
+import { TourmericEvent } from '../../../models/Events';
+import { Settings } from '../../../models/Settings';
+import { Category } from '../../../models/Category';
+import { Participation } from '../../../models/ReduxState';
 
 interface Props {
   eventId: string;

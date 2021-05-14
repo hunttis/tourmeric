@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import _ from 'lodash';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../models/Settings';
 
 interface Props {
   settings: Settings;

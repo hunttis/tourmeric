@@ -3,10 +3,10 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import Moment from 'react-moment';
 import { participantCount, adminparticipate } from '../../../api/eventApi';
-import { User, Participation } from '~/models/ReduxState';
-import { Category } from '~/models/Category';
-import { Settings } from '~/models/Settings';
-import { TourmericEvent } from '~/models/Events';
+import { User, Participation } from '../../../models/ReduxState';
+import { Category } from '../../../models/Category';
+import { Settings } from '../../../models/Settings';
+import { TourmericEvent } from '../../../models/Events';
 
 interface Props {
   users: [{ key: string, value: User }];

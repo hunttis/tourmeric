@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import { withRouter } from 'react-router-dom';
 import StoreCreditTable from './StoreCreditTable';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => ({

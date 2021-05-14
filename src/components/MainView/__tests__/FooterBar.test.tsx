@@ -4,8 +4,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import rrf from 'react-redux-firebase';
 import FooterBar from '../FooterBar';
-import { Settings } from '~/models/Settings';
-import { emptyMockSettings as settings } from '~/components/EventList/__mocks__/mockData';
+import { Settings } from '../../../models/Settings';
+import { emptyMockSettings as settings } from '../../../components/EventList/__mocks__/mockData';
 
 jest.mock('react-redux-firebase');
 

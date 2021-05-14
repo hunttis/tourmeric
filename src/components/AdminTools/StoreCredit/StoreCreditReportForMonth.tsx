@@ -3,8 +3,8 @@ import { Translate } from 'react-localize-redux';
 import moment from 'moment';
 import _ from 'lodash';
 import { mapCategoryToColor } from '../../Common/Utils';
-import { User } from '~/models/ReduxState';
-import { TourmericStoreCreditData, StoreCreditCategory } from '~/models/StoreCredit';
+import { User } from '../../../models/ReduxState';
+import { TourmericStoreCreditData, StoreCreditCategory } from '../../../models/StoreCredit';
 
 interface Props {
   users: { [key: string]: User };

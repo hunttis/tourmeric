@@ -5,12 +5,12 @@ import { Translate, Language } from 'react-localize-redux';
 import _ from 'lodash';
 import News from './News-container';
 import EventCard from '../../EventList/EventCard/EventCard-container';
-import { TourmericEvent } from '~/models/Events';
-import { Category, UploadedFile } from '~/models/Category';
-import { FirebaseProfile } from '~/models/ReduxState';
+import { TourmericEvent } from '../../../models/Events';
+import { Category, UploadedFile } from '../../../models/Category';
+import { FirebaseProfile } from '../../../models/ReduxState';
 
-import { getEventsForDay, getOngoingEventsForDay } from '~/components/Common/EventUtils';
-import { Settings } from '~/models/Settings';
+import { getEventsForDay, getOngoingEventsForDay } from '../../../components/Common/EventUtils';
+import { Settings } from '../../../models/Settings';
 
 interface Props {
   events: { key: string, value: TourmericEvent }[];

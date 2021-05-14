@@ -1,7 +1,7 @@
 import React from 'react';
 import { Translate } from 'react-localize-redux';
 import EventParticipation from './EventParticipation-container';
-import { TourmericEvent } from '~/models/Events';
+import { TourmericEvent } from '../../models/Events';
 
 interface Props {
   title: string;

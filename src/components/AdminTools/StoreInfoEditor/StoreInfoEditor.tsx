@@ -9,10 +9,10 @@ import EditableField from '../../Common/EditableField';
 import EditableTextarea from '../../Common/EditableTextarea';
 import { OpeningHoursEditor } from './OpeningHoursEditor';
 import OpeningHoursExceptionEditor from './OpeningHoursExceptionEditor-container';
-import { Settings } from '~/models/Settings';
-import { UploadedFile } from '~/models/Category';
-import { OpeningHoursException } from '~/models/OpeningHours';
-import { OpeningHours } from '~/components/StoreInfo/OpeningHours';
+import { Settings } from '../../../models/Settings';
+import { UploadedFile } from '../../../models/Category';
+import { OpeningHoursException } from '../../../models/OpeningHours';
+import { OpeningHours } from '../../../components/StoreInfo/OpeningHours';
 
 const filesPath = 'uploadedStoreinfoFiles';
 

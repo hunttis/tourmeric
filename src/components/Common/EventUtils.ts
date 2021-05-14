@@ -1,9 +1,9 @@
 import { Moment } from 'moment';
 import _ from 'lodash';
-import { store } from '~/init-app';
-import { ReduxState } from '~/models/ReduxState';
+import { store } from '../../init-app';
+import { ReduxState } from '../../models/ReduxState';
 import { createMomentFromDateString } from './Utils';
-import { TourmericEvent } from '~/models/Events';
+import { TourmericEvent } from '../../models/Events';
 
 const notNull = <T>(x: T | null): x is T => x !== null;
 

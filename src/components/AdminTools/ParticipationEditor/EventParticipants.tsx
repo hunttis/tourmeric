@@ -4,8 +4,8 @@ import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import firebase from 'firebase/app';
 import { participantCount } from '../../../api/eventApi';
-import { Participation, User } from '~/models/ReduxState';
-import { TourmericEvent } from '~/models/Events';
+import { Participation, User } from '../../../models/ReduxState';
+import { TourmericEvent } from '../../../models/Events';
 
 interface Props {
   eventId: string;

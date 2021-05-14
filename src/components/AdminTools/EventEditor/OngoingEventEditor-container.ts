@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { withRouter } from 'react-router-dom';
 
 import ExistingEventEditor from './ExistingEventEditor';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => {

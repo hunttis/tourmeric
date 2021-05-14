@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
-import { Category } from '~/models/Category';
+import { Category } from '../../../models/Category';
 
 interface Props {
   categories: { [key: string]: Category };

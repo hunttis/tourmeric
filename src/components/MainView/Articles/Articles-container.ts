@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import _ from 'lodash';
 import { Articles } from './Articles';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 const componentWrapper = compose(
   connect((state: ReduxState) => ({

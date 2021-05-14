@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { TourmericEvent } from '~/models/Events';
+import { TourmericEvent } from '../../../models/Events';
 
 interface Props {
   events: { [key: string]: TourmericEvent };

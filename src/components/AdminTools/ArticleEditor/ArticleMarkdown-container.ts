@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import { withRouter } from 'react-router-dom';
 import { ArticleMarkdown } from './ArticleMarkdown';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect(

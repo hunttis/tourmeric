@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../../models/Settings';
 
 interface Props {
   settings: Settings;

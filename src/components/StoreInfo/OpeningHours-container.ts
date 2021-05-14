@@ -2,7 +2,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import { OpeningHours } from './OpeningHours';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => ({

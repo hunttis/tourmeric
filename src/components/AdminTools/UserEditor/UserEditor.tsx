@@ -7,8 +7,8 @@ import { DisableModal } from './DisableModal';
 import { EditModal } from './EditModal';
 import CreditModal from './CreditModal-container';
 import { setListener } from '../../Common/DocumentUtils';
-import { User } from '~/models/ReduxState';
-import { TourmericStoreCreditData } from '~/models/StoreCredit';
+import { User } from '../../../models/ReduxState';
+import { TourmericStoreCreditData } from '../../../models/StoreCredit';
 import { parseStartingLettersFromUserLastnames } from '../../Common/UserUtils';
 
 interface Props {

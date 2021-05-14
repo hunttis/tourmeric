@@ -17,8 +17,8 @@ import ValidatedDropdown from './ValidatedDropdown';
 import ValidatedDropdownForArray from './ValidatedDropdownForArray';
 
 import { TourmericEvent } from '../../../models/Events';
-import { Settings } from '~/models/Settings';
-import { Category } from '~/models/Category';
+import { Settings } from '../../../models/Settings';
+import { Category } from '../../../models/Category';
 
 interface Props {
   categories: {[key: string]: Category};

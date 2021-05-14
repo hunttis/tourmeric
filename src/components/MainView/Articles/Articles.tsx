@@ -5,8 +5,8 @@ import _ from 'lodash';
 
 import { Location, History } from 'history';
 import { Route, Switch } from 'react-router-dom';
-import { Article } from '~/models/ReduxState';
-import { Settings } from '~/models/Settings';
+import { Article } from '../../../models/ReduxState';
+import { Settings } from '../../../models/Settings';
 import ArticleViewer from './ArticleViewer-container';
 import ArticleListing from './ArticleListing-container';
 

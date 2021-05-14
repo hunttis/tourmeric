@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
-import { UploadedFile } from '~/models/Category';
+import { UploadedFile } from '../../../models/Category';
 
 interface Props {
   uploadedCategoryLogos: { [key: string]: UploadedFile };

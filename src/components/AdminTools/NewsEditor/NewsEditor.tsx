@@ -11,10 +11,10 @@ import EditableField from '../../Common/EditableField-container';
 import EditableTextarea from '../../Common/EditableTextarea-container';
 import ImagePicker from '../ImagePicker';
 
-import { UploadedFile } from '~/models/Category';
-import { Settings } from '~/models/Settings';
-import { SingleNewsItem } from '~/models/ReduxState';
-import NewsItem from '~/components/MainView/Today/NewsItem';
+import { UploadedFile } from '../../../models/Category';
+import { Settings } from '../../../models/Settings';
+import { SingleNewsItem } from '../../../models/ReduxState';
+import NewsItem from '../../../components/MainView/Today/NewsItem';
 
 const filesPath = 'uploadedNewsImages';
 

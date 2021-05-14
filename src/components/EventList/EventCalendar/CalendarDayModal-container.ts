@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import { setReturnLocation } from '../../../actions/eventEditorActions';
 import { CalendarDayModal } from './CalendarDayModal';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => ({

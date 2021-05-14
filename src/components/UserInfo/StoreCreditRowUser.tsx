@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { TourmericStoreCreditData } from '~/models/StoreCredit';
+import { TourmericStoreCreditData } from '../../models/StoreCredit';
 
 interface Props {
   data: TourmericStoreCreditData;

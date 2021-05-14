@@ -2,7 +2,7 @@ import React from 'react';
 import { Translate } from 'react-localize-redux';
 
 import { History, Location } from 'history';
-import { FirebaseProfile } from '~/models/ReduxState';
+import { FirebaseProfile } from '../../models/ReduxState';
 
 interface Props {
   profile: FirebaseProfile;

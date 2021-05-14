@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { ArticleItem } from '~/models/ReduxState';
+import { ArticleItem } from '../../../models/ReduxState';
 
 interface ArticlePartProps {
   articleItem: ArticleItem;

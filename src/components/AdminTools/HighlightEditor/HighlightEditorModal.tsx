@@ -3,8 +3,8 @@ import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
 import ImagePicker from '../ImagePicker';
-import { HighLight } from '~/models/ReduxState';
-import { UploadedFile } from '~/models/Category';
+import { HighLight } from '../../../models/ReduxState';
+import { UploadedFile } from '../../../models/Category';
 
 interface Props {
   highlightId: string;

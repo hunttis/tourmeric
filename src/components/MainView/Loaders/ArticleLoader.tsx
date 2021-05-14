@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
-import { Article } from '~/models/ReduxState';
+import { Article } from '../../../models/ReduxState';
 
 interface Props {
   articles: { [key: string]: Article };

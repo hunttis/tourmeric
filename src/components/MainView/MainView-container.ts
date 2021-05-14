@@ -7,7 +7,7 @@ import { withLocalize } from 'react-localize-redux';
 
 
 import MainView from './MainView';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../models/ReduxState';
 
 export default compose(
   firebaseConnect([

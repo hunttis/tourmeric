@@ -3,8 +3,8 @@ import { Translate } from 'react-localize-redux';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment';
 import _ from 'lodash';
-import { OpeningHoursException } from '~/models/OpeningHours';
-import { Settings } from '~/models/Settings';
+import { OpeningHoursException } from '../../models/OpeningHours';
+import { Settings } from '../../models/Settings';
 
 interface Props {
   day?: string | null;

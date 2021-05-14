@@ -2,7 +2,7 @@ import React from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
 import EditableField from '../../Common/EditableField';
-import { OpeningHours } from '~/models/Settings';
+import { OpeningHours } from '../../../models/Settings';
 
 interface Props {
   openingHours?: OpeningHours;

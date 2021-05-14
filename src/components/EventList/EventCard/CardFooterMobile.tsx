@@ -2,7 +2,7 @@ import React from 'react';
 
 import EditableField from '../../Common/EditableField-container';
 import ParticipateButton from '../ParticipateButton-container';
-import { Participation } from '~/models/ReduxState';
+import { Participation } from '../../../models/ReduxState';
 
 interface Props {
   alreadyParticipated: boolean;

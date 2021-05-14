@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
-import { UploadedFile } from '~/models/Category';
+import { UploadedFile } from '../../models/Category';
 
 interface Props {
   imageList: [{ key: string, value: UploadedFile}];

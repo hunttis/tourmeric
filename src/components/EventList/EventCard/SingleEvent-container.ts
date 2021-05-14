@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { withLocalize } from 'react-localize-redux';
 
 import { SingleEvent } from './SingleEvent';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect((state: ReduxState) => ({

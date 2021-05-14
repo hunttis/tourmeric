@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { History } from 'history';
 import { registerEmail, loginGoogle, loginFacebook } from '../../../api/loginApi';
 import { GenericSignupComponent } from './GenericSignupComponent';
-import { setListener } from '~/components/Common/DocumentUtils';
+import { setListener } from '../../../components/Common/DocumentUtils';
 
 interface Props {
   history: History;

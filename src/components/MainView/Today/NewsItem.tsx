@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
-import { SingleNewsItem } from '~/models/ReduxState';
+import { SingleNewsItem } from '../../../models/ReduxState';
 
 interface Props {
   newsItem: { key: string, value: SingleNewsItem };

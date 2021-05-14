@@ -7,8 +7,8 @@ import MainView from '../MainView';
 import {
   mockSettings,
   mockProfile,
-} from '~/components/EventList/__mocks__/mockData';
-import { Settings } from '~/models/Settings';
+} from '../../../components/EventList/__mocks__/mockData';
+import { Settings } from '../../../models/Settings';
 
 jest.mock('~/components/AdminTools/AdminTools-container', () => { const AdminTools = () => <div />; return AdminTools; });
 jest.mock('~/components/AdminTools/AdminToolsEvents-container', () => { const AdminToolsEvents = () => <div />; return AdminToolsEvents; });

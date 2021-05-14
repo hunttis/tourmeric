@@ -5,8 +5,8 @@ import _ from 'lodash';
 import firebase from 'firebase/app';
 import FileDropper from '../FileDropper';
 import EditableField from '../../Common/EditableField-container';
-import { Settings } from '~/models/Settings';
-import { UploadedFile } from '~/models/Category';
+import { Settings } from '../../../models/Settings';
+import { UploadedFile } from '../../../models/Category';
 
 const filesPath = 'uploadedFooterItems';
 

@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { withFirebase, firebaseConnect } from 'react-redux-firebase';
 
 import UserInfo from './UserInfo';
-import { ReduxState, FirebaseObject } from '~/models/ReduxState';
+import { ReduxState, FirebaseObject } from '../../models/ReduxState';
 
 export default compose(
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),

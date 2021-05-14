@@ -2,9 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 
 import { Translate } from 'react-localize-redux';
-import { Article } from '~/models/ReduxState';
+import { Article } from '../../../models/ReduxState';
 import { ArticleSubTitle, ArticleTextBlock, ArticleImage, ArticleListBlock } from './ArticleParts';
-import { MarkdownElement } from '~/components/Common/MarkdownElement';
+import { MarkdownElement } from '../../../components/Common/MarkdownElement';
 
 interface Props {
   article: Article;

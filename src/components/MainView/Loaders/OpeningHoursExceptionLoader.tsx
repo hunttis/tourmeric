@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
-import { OpeningHoursException } from '~/models/OpeningHours';
+import { OpeningHoursException } from '../../../models/OpeningHours';
 
 interface Props {
   openinghoursexceptions: { [key: string]: OpeningHoursException };

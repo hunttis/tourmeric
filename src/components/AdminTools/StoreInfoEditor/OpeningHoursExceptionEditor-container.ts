@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { firebaseConnect } from 'react-redux-firebase';
 
 import OpeningHoursExceptionEditor from './OpeningHoursExceptionEditor';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   firebaseConnect([

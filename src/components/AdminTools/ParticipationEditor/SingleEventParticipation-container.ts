@@ -3,7 +3,7 @@ import { compose, Dispatch } from 'redux';
 import { chooseParticipant } from '../../../actions/adminActions';
 
 import SingleEventParticipation from './SingleEventParticipation';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../../models/ReduxState';
 
 export default compose(
   connect(

@@ -1,20 +1,20 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import AdminTools from '~/components/AdminTools/AdminTools-container';
-import AdminToolsEvents from '~/components/AdminTools/AdminToolsEvents-container';
-import AdminSiteSettings from '~/components/AdminTools/SiteSettings/AdminSiteSettings-container';
+import AdminTools from '../../components/AdminTools/AdminTools-container';
+import AdminToolsEvents from '../../components/AdminTools/AdminToolsEvents-container';
+import AdminSiteSettings from '../../components/AdminTools/SiteSettings/AdminSiteSettings-container';
 
-import EventCalendar from '~/components/EventList/EventCalendar/EventCalendar-container';
-import Login from '~/components/MainView/Account/Login-container';
-import StoreInfo from '~/components/StoreInfo/StoreInfo-container';
-import Register from '~/components/MainView/Account/Register-container';
-import Today from '~/components/MainView/Today/Today-container';
-import CompanyInfo from '~/components/MainView/CompanyInfo/CompanyInfo-container';
-import SingleEvent from '~/components/EventList/EventCard/SingleEvent-container';
-import EventPlayerList from '~/components/EventList/EventCard/EventPlayerList-container';
-import Articles from '~/components/MainView/Articles/Articles-container';
-import UserInfo from '~/components/UserInfo/UserInfo-container';
+import EventCalendar from '../../components/EventList/EventCalendar/EventCalendar-container';
+import Login from '../../components/MainView/Account/Login-container';
+import StoreInfo from '../../components/StoreInfo/StoreInfo-container';
+import Register from '../../components/MainView/Account/Register-container';
+import Today from '../../components/MainView/Today/Today-container';
+import CompanyInfo from '../../components/MainView/CompanyInfo/CompanyInfo-container';
+import SingleEvent from '../../components/EventList/EventCard/SingleEvent-container';
+import EventPlayerList from '../../components/EventList/EventCard/EventPlayerList-container';
+import Articles from '../../components/MainView/Articles/Articles-container';
+import UserInfo from '../../components/UserInfo/UserInfo-container';
 
 interface Props {
   isAdmin: boolean;

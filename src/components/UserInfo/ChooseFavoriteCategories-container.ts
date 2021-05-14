@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import ChooseFavoriteCategories from './ChooseFavoriteCategories';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../models/ReduxState';
 
 export default compose(
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),

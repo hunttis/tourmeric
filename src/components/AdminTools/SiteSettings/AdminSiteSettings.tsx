@@ -12,8 +12,8 @@ import FeatureEditor from '../FeatureEditor/FeatureEditor-container';
 import PrivacyPolicyEditor from './PrivacyPolicyEditor-container';
 import FooterEditor from './FooterEditor-container';
 import { AdminToolsTab } from '../AdminToolsTab';
-import { Settings } from '~/models/Settings';
-import { FirebaseProfile } from '~/models/ReduxState';
+import { Settings } from '../../../models/Settings';
+import { FirebaseProfile } from '../../../models/ReduxState';
 
 
 interface Props {

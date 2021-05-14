@@ -4,7 +4,7 @@ import { Translate } from 'react-localize-redux';
 import { Dispatch, AnyAction } from 'redux';
 import { GenericSignupComponent } from './GenericSignupComponent';
 import { loginEmail, resetPassword, loginGoogle, loginFacebook } from '../../../api/loginApi';
-import { setListener } from '~/components/Common/DocumentUtils';
+import { setListener } from '../../../components/Common/DocumentUtils';
 
 interface Props {
   history: History;

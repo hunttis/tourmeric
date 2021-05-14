@@ -8,8 +8,8 @@ import ValidatedEditableField from './ValidatedEditableField-container';
 import ValidatedDateField from './ValidatedDateField-container';
 import SelectElement from './SelectElement';
 import EditableTextarea from './EditableTextarea-container';
-import { Category } from '~/models/Category';
-import { TourmericEvent } from '~/models/Events';
+import { Category } from '../../../models/Category';
+import { TourmericEvent } from '../../../models/Events';
 
 interface Props {
   event: TourmericEvent;

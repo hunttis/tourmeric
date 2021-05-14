@@ -1,7 +1,7 @@
 import React from 'react';
 import { Translate } from 'react-localize-redux';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../../models/Settings';
 
 /* eslint-disable-next-line no-unused-vars */
 /* const themes = ['Default', 'Cerulean', 'Cosmo', 'Cyborg',

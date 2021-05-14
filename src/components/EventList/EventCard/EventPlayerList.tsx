@@ -5,9 +5,9 @@ import ClipboardJS from 'clipboard';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment/min/moment-with-locales';
 
-import { TourmericEvent } from '~/models/Events';
-import { Participation, User } from '~/models/ReduxState';
-import { Settings } from '~/models/Settings';
+import { TourmericEvent } from '../../../models/Events';
+import { Participation, User } from '../../../models/ReduxState';
+import { Settings } from '../../../models/Settings';
 
 
 interface URLQuery {

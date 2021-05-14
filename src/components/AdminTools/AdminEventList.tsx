@@ -4,8 +4,8 @@ import _ from 'lodash';
 import moment from 'moment';
 import { History } from 'history';
 import { EditableEventContainer as EditableEvent } from './EditableEvent-container';
-import { Category } from '~/models/Category';
-import { TourmericEvent } from '~/models/Events';
+import { Category } from '../../models/Category';
+import { TourmericEvent } from '../../models/Events';
 
 interface Props {
   showNewEventButton: boolean;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import { Translate } from 'react-localize-redux';
-import { MarkdownElement } from '~/components/Common/MarkdownElement';
-import { Article } from '~/models/ReduxState';
-import EditableTextarea from '~/components/Common/EditableTextarea';
-import EditableVerticalField from '~/components/Common/EditableVerticalField';
-import { UploadedFile } from '~/models/Category';
+import { MarkdownElement } from '../../../components/Common/MarkdownElement';
+import { Article } from '../../../models/ReduxState';
+import EditableTextarea from '../../../components/Common/EditableTextarea';
+import EditableVerticalField from '../../../components/Common/EditableVerticalField';
+import { UploadedFile } from '../../../models/Category';
 import { ImagePickerWithCallback } from '../ImagePickerWithCallback';
 
 interface Props {

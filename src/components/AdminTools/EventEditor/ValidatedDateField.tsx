@@ -5,9 +5,9 @@ import _ from 'lodash';
 import moment, { Moment } from 'moment/min/moment-with-locales';
 
 import { SmallCalendarDatePicker } from './SmallCalendarDatePicker';
-import { Settings } from '~/models/Settings';
-import { OpeningHoursException } from '~/models/OpeningHours';
-import { Day } from '~/models/Calendar';
+import { Settings } from '../../../models/Settings';
+import { OpeningHoursException } from '../../../models/OpeningHours';
+import { Day } from '../../../models/Calendar';
 
 interface Props {
   activeLanguage: Language;

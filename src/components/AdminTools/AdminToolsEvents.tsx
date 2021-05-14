@@ -13,8 +13,8 @@ import CategoryLogoUploader from './CategoryEditor/CategoryLogoUploader-containe
 import NewEventEditor from './EventEditor/NewEventEditor-container';
 import { ExistingEventEditorContainer as ExistingEventEditor } from './EventEditor/ExistingEventEditor-container';
 import OngoingEventEditor from './EventEditor/OngoingEventEditor-container';
-import { FirebaseProfile } from '~/models/ReduxState';
-import { TourmericEvent } from '~/models/Events';
+import { FirebaseProfile } from '../../models/ReduxState';
+import { TourmericEvent } from '../../models/Events';
 
 interface Props {
   events: { [key: string]: TourmericEvent };

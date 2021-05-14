@@ -4,9 +4,9 @@ import { Translate, Language } from 'react-localize-redux';
 import moment, { Moment } from 'moment/min/moment-with-locales';
 import _ from 'lodash';
 import SingleEventParticipation from './SingleEventParticipation-container';
-import { User, Participation } from '~/models/ReduxState';
-import { TourmericEvent } from '~/models/Events';
-import { Category } from '~/models/Category';
+import { User, Participation } from '../../../models/ReduxState';
+import { TourmericEvent } from '../../../models/Events';
+import { Category } from '../../../models/Category';
 
 interface Props {
   users: [{ key: string, value: User }];

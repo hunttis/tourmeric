@@ -14,7 +14,7 @@ import StoreCreditCategoryLoader from './AdminLoaders/StoreCreditCategoryLoader-
 import StoreCreditReport from './StoreCredit/StoreCreditReport-container';
 import StoreCreditRowEditor from './StoreCredit/StoreCreditRowEditor-container';
 import { AdminToolsTab } from './AdminToolsTab';
-import { FirebaseProfile } from '~/models/ReduxState';
+import { FirebaseProfile } from '../../models/ReduxState';
 import ArticleEditor from './ArticleEditor/ArticleEditor-container';
 import ArticleList from './ArticleEditor/ArticleList-container';
 

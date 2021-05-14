@@ -7,8 +7,8 @@ import moment from 'moment/min/moment-with-locales';
 
 import { mapCategoryToColor } from '../../Common/Utils';
 import { StoreCreditReportForMonth } from './StoreCreditReportForMonth';
-import { TourmericStoreCreditData, StoreCreditCategory, CreditCategories } from '~/models/StoreCredit';
-import { User } from '~/models/ReduxState';
+import { TourmericStoreCreditData, StoreCreditCategory, CreditCategories } from '../../../models/StoreCredit';
+import { User } from '../../../models/ReduxState';
 
 interface Props {
   users: { [key: string]: User };

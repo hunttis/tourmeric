@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { isLoaded } from 'react-redux-firebase';
-import { Participation } from '~/models/ReduxState';
+import { Participation } from '../../../models/ReduxState';
 
 interface Props {
   participations: { [key: string]: Participation };

@@ -7,8 +7,8 @@ import { isLoaded } from 'react-redux-firebase';
 
 import { History } from 'history';
 import EditorForm from './EditorForm-container';
-import { Category } from '~/models/Category';
-import { TourmericEvent } from '~/models/Events';
+import { Category } from '../../../models/Category';
+import { TourmericEvent } from '../../../models/Events';
 
 interface Props {
   categories: {[key: string]: Category};

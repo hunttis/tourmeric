@@ -5,7 +5,7 @@ import { Translate } from 'react-localize-redux';
 import { History } from 'history';
 import {
   StoreCreditCategory, TourmericStoreCreditData,
-} from '~/models/StoreCredit';
+} from '../../../models/StoreCredit';
 
 interface Props {
   dataId: string;

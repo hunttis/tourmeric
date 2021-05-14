@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../../models/Settings';
 
 
 interface Props {

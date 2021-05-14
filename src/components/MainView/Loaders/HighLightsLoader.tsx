@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
-import { HighLight } from '~/models/ReduxState';
+import { HighLight } from '../../../models/ReduxState';
 
 interface Props {
   highlights: { [key: string]: HighLight };

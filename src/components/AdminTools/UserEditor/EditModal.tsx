@@ -2,7 +2,7 @@ import React from 'react';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
-import { User } from '~/models/ReduxState';
+import { User } from '../../../models/ReduxState';
 
 interface Props {
   userId: string | undefined;

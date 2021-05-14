@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
-import { HighLight } from '~/models/ReduxState';
+import { HighLight } from '../../../models/ReduxState';
 
 interface Props {
   highlightEntry: [string, HighLight];

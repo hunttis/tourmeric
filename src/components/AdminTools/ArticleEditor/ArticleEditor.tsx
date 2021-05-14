@@ -7,9 +7,9 @@ import firebase from 'firebase/app';
 import moment from 'moment';
 
 import _ from 'lodash';
-import { UploadedFile } from '~/models/Category';
-import { Article, ArticleItem } from '~/models/ReduxState';
-import { ButtonWithIcon } from '~/components/Common/CommonComponents';
+import { UploadedFile } from '../../../models/Category';
+import { Article, ArticleItem } from '../../../models/ReduxState';
+import { ButtonWithIcon } from '../../../components/Common/CommonComponents';
 import ArticleMarkdown from './ArticleMarkdown-container';
 
 const filesPath = 'uploadedArticleImages';

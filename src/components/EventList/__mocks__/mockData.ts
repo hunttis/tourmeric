@@ -1,7 +1,7 @@
-import { FirebaseProfile, Participation, User, ProviderData, Location } from '~/models/ReduxState';
-import { TourmericEvent } from '~/models/Events';
-import { Settings } from '~/models/Settings';
-import { UploadedFile, Category } from '~/models/Category';
+import { FirebaseProfile, Participation, User, ProviderData, Location } from '../../../models/ReduxState';
+import { TourmericEvent } from '../../../models/Events';
+import { Settings } from '../../../models/Settings';
+import { UploadedFile, Category } from '../../../models/Category';
 
 export const mockEventId = 'mockEvent1';
 

@@ -2,8 +2,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Login from './Login';
-import { ReduxState } from '~/models/ReduxState';
-import { setReturnLocation } from '~/actions/eventEditorActions';
+import { ReduxState } from '../../../models/ReduxState';
+import { setReturnLocation } from '../../../actions/eventEditorActions';
 
 export default compose(
   connect((state: ReduxState) => ({

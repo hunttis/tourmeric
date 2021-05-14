@@ -10,11 +10,11 @@ import { DateBasedEvents } from './DateBasedEvents';
 import ChooseFavoriteCategories from './ChooseFavoriteCategories-container';
 import PersonalInfoEditor from './PersonalInfoEditor-container';
 import ChooseLandingPage from './ChooseLandingPage-container';
-import { TourmericEvent } from '~/models/Events';
-import { Settings } from '~/models/Settings';
-import { Participation, FirebaseProfile, FirebaseAuth } from '~/models/ReduxState';
-import { TourmericStoreCreditData } from '~/models/StoreCredit';
-import { Category } from '~/models/Category';
+import { TourmericEvent } from '../../models/Events';
+import { Settings } from '../../models/Settings';
+import { Participation, FirebaseProfile, FirebaseAuth } from '../../models/ReduxState';
+import { TourmericStoreCreditData } from '../../models/StoreCredit';
+import { Category } from '../../models/Category';
 
 interface Props {
   events: { key: string, value: TourmericEvent }[];

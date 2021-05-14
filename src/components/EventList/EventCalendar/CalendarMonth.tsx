@@ -2,10 +2,10 @@ import React from 'react';
 import moment from 'moment/min/moment-with-locales';
 import momentEn from 'moment';
 import _ from 'lodash';
-import { Settings } from '~/models/Settings';
-import { OpeningHoursException } from '~/models/OpeningHours';
-import { Category } from '~/models/Category';
-import { Day } from '~/models/Calendar';
+import { Settings } from '../../../models/Settings';
+import { OpeningHoursException } from '../../../models/OpeningHours';
+import { Category } from '../../../models/Category';
+import { Day } from '../../../models/Calendar';
 
 interface Props {
   chunkedCalendar: Day[][];

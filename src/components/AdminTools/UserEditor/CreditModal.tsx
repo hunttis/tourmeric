@@ -4,7 +4,7 @@ import { Translate } from 'react-localize-redux';
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import StoreCreditTable from '../StoreCredit/StoreCreditTable-container';
-import { TourmericStoreCreditData, StoreCreditCategory } from '~/models/StoreCredit';
+import { TourmericStoreCreditData, StoreCreditCategory } from '../../../models/StoreCredit';
 
 interface Props {
   userId: string;

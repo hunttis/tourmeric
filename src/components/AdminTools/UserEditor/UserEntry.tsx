@@ -2,7 +2,7 @@ import React from 'react';
 import { Translate } from 'react-localize-redux';
 
 import CreditAmounts from './CreditAmounts-container';
-import { User } from '~/models/ReduxState';
+import { User } from '../../../models/ReduxState';
 
 interface Props {
   openEditModal: () => void;

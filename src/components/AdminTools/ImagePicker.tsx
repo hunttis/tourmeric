@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import { Translate } from 'react-localize-redux';
-import { UploadedFile } from '~/models/Category';
+import { UploadedFile } from '../../models/Category';
 
 interface Props {
   path: string;

@@ -5,10 +5,10 @@ import { Translate } from 'react-localize-redux';
 import moment from 'moment';
 import _ from 'lodash';
 import { History } from 'history';
-import { Participation } from '~/models/ReduxState';
-import { Category } from '~/models/Category';
-import { Settings } from '~/models/Settings';
-import { TourmericEvent } from '~/models/Events';
+import { Participation } from '../../models/ReduxState';
+import { Category } from '../../models/Category';
+import { Settings } from '../../models/Settings';
+import { TourmericEvent } from '../../models/Events';
 
 interface Props {
   tournamentEntry: [string, TourmericEvent];

@@ -5,9 +5,9 @@ import { History } from 'history';
 
 import { Translate } from 'react-localize-redux';
 import _ from 'lodash';
-import { Article } from '~/models/ReduxState';
-import { Settings } from '~/models/Settings';
-import { ButtonWithIcon } from '~/components/Common/CommonComponents';
+import { Article } from '../../../models/ReduxState';
+import { Settings } from '../../../models/Settings';
+import { ButtonWithIcon } from '../../../components/Common/CommonComponents';
 
 interface Props {
   articles: { [key: string]: Article };

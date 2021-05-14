@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { User } from '~/models/ReduxState';
+import { User } from '../../models/ReduxState';
 
 export const parseStartingLettersFromUserLastnames = (users: [{ key: string, value: User }]): string[] => {
   const alphabet = _.compact(_.uniq(Object.values(users).map((user) => {

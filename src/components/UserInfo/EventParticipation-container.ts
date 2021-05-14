@@ -3,7 +3,7 @@ import { compose } from 'redux';
 
 import { withRouter } from 'react-router';
 import { EventParticipation } from './EventParticipation';
-import { ReduxState } from '~/models/ReduxState';
+import { ReduxState } from '../../models/ReduxState';
 
 export default compose(
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),

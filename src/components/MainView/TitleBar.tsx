@@ -4,9 +4,9 @@ import { Translate, setActiveLanguage } from 'react-localize-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import Moment from 'react-moment';
 import { Dispatch } from 'redux';
-import Highlights from '~/components/HighLights/HighLights-container';
+import Highlights from '../../components/HighLights/HighLights-container';
 import OpeningHours from '../StoreInfo/OpeningHours-container';
-import { Settings } from '~/models/Settings';
+import { Settings } from '../../models/Settings';
 
 interface Props {
   settings: Settings;
