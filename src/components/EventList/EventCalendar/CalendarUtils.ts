@@ -1,65 +1,87 @@
-import _ from 'lodash';
-import { Day } from '../../../models/Calendar';
-import { TourmericEvent } from '../../../models/Events';
+import _ from "lodash";
+import { Day } from "../../../models/Calendar";
+import { TourmericEvent } from "../../../models/Events";
 
-import moment = require('moment');
+// import moment = require('moment');
 
-export function filterEventsByPublishedStatus(events: { key: string, value: TourmericEvent }[]) {
+export function filterEventsByPublishedStatus(
+  events: { key: string; value: TourmericEvent }[]
+) {
   if (events) {
     return events.filter((event) => event.value.published);
   }
   return [];
 }
 
-export function filterEventsByCategory(events: { key: string, value: TourmericEvent }[], categoryFilter: string[]) {
+export function filterEventsByCategory(
+  events: { key: string; value: TourmericEvent }[],
+  categoryFilter: string[]
+) {
   if (_.isEmpty(categoryFilter)) {
     return events;
   }
 
-  const filteredEvents = events.filter((event) => _.includes(categoryFilter, event.value.category));
+  const filteredEvents = events.filter((event) =>
+    _.includes(categoryFilter, event.value.category)
+  );
   return filteredEvents;
 }
 
-export function parseInformationForMonthYear(month: string, year: string, events: { key: string, value: TourmericEvent }[], eventsOngoing: { key: string, value: TourmericEvent}[], categoryFilter: string[]) {
+export function parseInformationForMonthYear(
+  month: string,
+  year: string,
+  events: { key: string; value: TourmericEvent }[],
+  eventsOngoing: { key: string; value: TourmericEvent }[],
+  categoryFilter: string[]
+) {
+  const filteredEvents = filterEventsByCategory(
+    filterEventsByPublishedStatus(events),
+    categoryFilter
+  );
+  const filteredEventsongoing = filterEventsByCategory(
+    filterEventsByPublishedStatus(eventsOngoing),
+    categoryFilter
+  );
 
-  const filteredEvents = filterEventsByCategory(filterEventsByPublishedStatus(events), categoryFilter);
-  const filteredEventsongoing = filterEventsByCategory(filterEventsByPublishedStatus(eventsOngoing), categoryFilter);
-
-  const targetMonth = moment(`${month}-${year}`, 'MM-YYYY');
+  const targetMonth = moment(`${month}-${year}`, "MM-YYYY");
   const dayCount = targetMonth.daysInMonth();
   const days: Day[] = [];
 
-
   for (let i = 1; i <= dayCount; i += 1) {
-    const dayString = `${_.padStart(`${i}`, 2, '0')}-${targetMonth.format('MM-YYYY')}`;
-    const day = moment(dayString, 'DD-MM-YYYY');
-    const dayStringInEventFormat = moment(dayString, 'DD-MM-YYYY').format(
-      'YYYY-MM-DD',
+    const dayString = `${_.padStart(`${i}`, 2, "0")}-${targetMonth.format(
+      "MM-YYYY"
+    )}`;
+    const day = moment(dayString, "DD-MM-YYYY");
+    const dayStringInEventFormat = moment(dayString, "DD-MM-YYYY").format(
+      "YYYY-MM-DD"
     );
 
-    const eventsForDay = filteredEvents ? filteredEvents.filter(
-      (eventEntry) => eventEntry.value.date === dayStringInEventFormat,
-    ) : [];
+    const eventsForDay = filteredEvents
+      ? filteredEvents.filter(
+          (eventEntry) => eventEntry.value.date === dayStringInEventFormat
+        )
+      : [];
 
-    const eventsOnGoing = filteredEventsongoing ? filteredEventsongoing.filter((eventEntry) => {
-      if (eventEntry.value.endDate) {
-        return day.isBetween(
-          moment(eventEntry.value.date, 'YYYY-MM-DD'),
-          moment(eventEntry.value.endDate, 'YYYY-MM-DD'),
-          'day',
-          '[]',
-        );
-      }
-      return false;
-    }) : [];
-
+    const eventsOnGoing = filteredEventsongoing
+      ? filteredEventsongoing.filter((eventEntry) => {
+          if (eventEntry.value.endDate) {
+            return day.isBetween(
+              moment(eventEntry.value.date, "YYYY-MM-DD"),
+              moment(eventEntry.value.endDate, "YYYY-MM-DD"),
+              "day",
+              "[]"
+            );
+          }
+          return false;
+        })
+      : [];
 
     days.push({
-      day: day.format('DD'),
-      dayOfWeek: parseInt(day.format('d'), 10),
-      dayName: day.format('dddd'),
-      dayString: day.format('DD-MMMM-YYYY'),
-      dayLink: day.format('YYYY/MM/DD'),
+      day: day.format("DD"),
+      dayOfWeek: parseInt(day.format("d"), 10),
+      dayName: day.format("dddd"),
+      dayString: day.format("DD-MMMM-YYYY"),
+      dayLink: day.format("YYYY/MM/DD"),
       eventsForDay,
       ongoingEventsForDay: eventsOnGoing,
     });

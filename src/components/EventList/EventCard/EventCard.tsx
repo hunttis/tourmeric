@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
-import moment from 'moment/min/moment-with-locales';
-import _ from 'lodash';
-import { isLoaded } from 'react-redux-firebase';
+import React, { Component } from "react";
+import { Translate } from "react-localize-redux";
+{
+  /* import moment from 'moment/min/moment-with-locales'; */
+} // TODO FIX
+import _ from "lodash";
+import { isLoaded } from "react-redux-firebase";
 
-import { History } from 'history';
-import { participantCount, checkParticipation } from '../../../api/eventApi';
-import { CardFooterMobile } from './CardFooterMobile';
-import { CardFooterDesktop } from './CardFooterDesktop';
-import { TourmericEvent } from '../../../models/Events';
-import { Settings } from '../../../models/Settings';
-import { Category } from '../../../models/Category';
-import { Participation } from '../../../models/ReduxState';
+import { History } from "history";
+import { participantCount, checkParticipation } from "../../../api/eventApi";
+import { CardFooterMobile } from "./CardFooterMobile";
+import { CardFooterDesktop } from "./CardFooterDesktop";
+import { TourmericEvent } from "../../../models/Events";
+import { Settings } from "../../../models/Settings";
+import { Category } from "../../../models/Category";
+import { Participation } from "../../../models/ReduxState";
 
 interface Props {
   eventId: string;
@@ -31,7 +33,6 @@ interface State {
 }
 
 export default class EventCard extends Component<Props, State> {
-
   state = { isOngoingEvent: !this.props.events[this.props.eventId] };
 
   async editEvent() {
@@ -45,30 +46,65 @@ export default class EventCard extends Component<Props, State> {
   }
 
   render() {
-    const { eventId, events, eventsongoing, userId, participations, categories, settings, isAdmin } = this.props;
+    const {
+      eventId,
+      events,
+      eventsongoing,
+      userId,
+      participations,
+      categories,
+      settings,
+      isAdmin,
+    } = this.props;
 
     if (!isLoaded(events) && !isLoaded(eventsongoing)) {
       return <div />;
     }
 
-    const eventContent = events[eventId] ? events[eventId] : eventsongoing[eventId];
+    const eventContent = events[eventId]
+      ? events[eventId]
+      : eventsongoing[eventId];
 
     if (!eventContent || !eventContent.date) {
-      return <div><Translate id="eventidnotfound" /></div>;
+      return (
+        <div>
+          <Translate id="eventidnotfound" />
+        </div>
+      );
     }
 
-    const category: Category | {} = isLoaded(categories) ? categories[eventContent.category] : {};
-    const alreadyParticipated = checkParticipation(userId, eventId, participations);
+    const category: Category | {} = isLoaded(categories)
+      ? categories[eventContent.category]
+      : {};
+    const alreadyParticipated = checkParticipation(
+      userId,
+      eventId,
+      participations
+    );
     const thisParticipation = _.get(participations, `${eventId}.${userId}`, {});
-    const maxParticipants = parseInt(_.get(eventContent, 'playerSlots', '0'), 10);
+    const maxParticipants = parseInt(
+      _.get(eventContent, "playerSlots", "0"),
+      10
+    );
     const currentParticipants = participantCount(eventId, participations);
-    const eventFull = Boolean(maxParticipants && maxParticipants <= currentParticipants);
-    const dateFormat = _.get(settings, 'dateFormat', 'DD-MM-YYYY');
-    const formattedDateWithDayName = moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`);
-    const formattedEndDateWithDayName = eventContent.endDate ? moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`) : null;
+    const eventFull = Boolean(
+      maxParticipants && maxParticipants <= currentParticipants
+    );
+    const dateFormat = _.get(settings, "dateFormat", "DD-MM-YYYY");
+    const formattedDateWithDayName = moment(
+      eventContent.date,
+      "YYYY-MM-DD"
+    ).format(`${dateFormat} (dddd)`);
+    const formattedEndDateWithDayName = eventContent.endDate
+      ? moment(eventContent.endDate, "YYYY-MM-DD").format(
+          `${dateFormat} (dddd)`
+        )
+      : null;
     const isOngoingEvent = !!formattedEndDateWithDayName;
 
-    const playerSlotsString = eventContent.playerSlots ? `/ ${eventContent.playerSlots} ` : '';
+    const playerSlotsString = eventContent.playerSlots
+      ? `/ ${eventContent.playerSlots} `
+      : "";
 
     const participantString = `${currentParticipants} ${playerSlotsString}`;
 
@@ -77,50 +113,112 @@ export default class EventCard extends Component<Props, State> {
     return (
       <>
         <div className="column is-12 eventcard">
-          <div className={`card card-shadow ${isOngoingEvent ? 'ongoing-event-card' : ''}`}>
-
-            <div className={`card-content card-title card-logo-title ${isOngoingEvent ? 'ongoing-event-card-title' : ''}`}>
+          <div
+            className={`card card-shadow ${
+              isOngoingEvent ? "ongoing-event-card" : ""
+            }`}
+          >
+            <div
+              className={`card-content card-title card-logo-title ${
+                isOngoingEvent ? "ongoing-event-card-title" : ""
+              }`}
+            >
               <figure className="image event-icon-title event-item">
-                <img src={_.get(category, 'image')} alt="" />
+                <img src={_.get(category, "image")} alt="" />
               </figure>
             </div>
             <div className="card-content">
               <div className="media has-icons-right">
                 <div className="media-content event-card-title">
-                  <p className={`subtitle ${formattedEndDateWithDayName ? 'has-text-success' : 'has-text-info'}`}>{formattedDateWithDayName}{formattedEndDateWithDayName ? ` - ${formattedEndDateWithDayName}` : ''}</p>
-                  <p className="title eventheader">{_.get(category, 'abbreviation')}: {eventContent.name}</p>
+                  <p
+                    className={`subtitle ${
+                      formattedEndDateWithDayName
+                        ? "has-text-success"
+                        : "has-text-info"
+                    }`}
+                  >
+                    {formattedDateWithDayName}
+                    {formattedEndDateWithDayName
+                      ? ` - ${formattedEndDateWithDayName}`
+                      : ""}
+                  </p>
+                  <p className="title eventheader">
+                    {_.get(category, "abbreviation")}: {eventContent.name}
+                  </p>
                 </div>
-                {isAdmin &&
-                  <button className="button is-small" onClick={() => this.editEvent()}><i className="fas fa-pencil-alt" /></button>
-                }
+                {isAdmin && (
+                  <button
+                    className="button is-small"
+                    onClick={() => this.editEvent()}
+                  >
+                    <i className="fas fa-pencil-alt" />
+                  </button>
+                )}
               </div>
             </div>
 
             <div className="card-content">
-
               <table className="table eventinfo-table">
                 <tbody>
-                  {!isOngoingEvent &&
+                  {!isOngoingEvent && (
                     <>
-                      <CardInfoLine icon="fas fa-clock" title="startingtime" content={eventContent.time} />
-                      <CardInfoLine icon="fas fa-money-bill-alt" title="entryfee" content={eventContent.entryFee} />
+                      <CardInfoLine
+                        icon="fas fa-clock"
+                        title="startingtime"
+                        content={eventContent.time}
+                      />
+                      <CardInfoLine
+                        icon="fas fa-money-bill-alt"
+                        title="entryfee"
+                        content={eventContent.entryFee}
+                      />
                     </>
-                  }
-                  <CardInfoLine icon="fas fa-users" title="participants" content={participantString} extraClasses={eventFull ? 'has-text-warning' : ''} />
-                  {eventFull && <tr><td colSpan={columnSpan} className="has-text-centered has-text-warning">(<Translate id="eventfull" />)</td></tr>}
-                  {!isOngoingEvent &&
+                  )}
+                  <CardInfoLine
+                    icon="fas fa-users"
+                    title="participants"
+                    content={participantString}
+                    extraClasses={eventFull ? "has-text-warning" : ""}
+                  />
+                  {eventFull && (
+                    <tr>
+                      <td
+                        colSpan={columnSpan}
+                        className="has-text-centered has-text-warning"
+                      >
+                        (<Translate id="eventfull" />)
+                      </td>
+                    </tr>
+                  )}
+                  {!isOngoingEvent && (
                     <>
-                      {eventContent.format && <CardInfoLine icon="fas fa-book" title="format" content={eventContent.format} />}
-                      {eventContent.rules && <CardInfoLine icon="fas fa-balance-scale" title="ruleslevel" content={eventContent.rulesLevel!} />}
+                      {eventContent.format && (
+                        <CardInfoLine
+                          icon="fas fa-book"
+                          title="format"
+                          content={eventContent.format}
+                        />
+                      )}
+                      {eventContent.rules && (
+                        <CardInfoLine
+                          icon="fas fa-balance-scale"
+                          title="ruleslevel"
+                          content={eventContent.rulesLevel!}
+                        />
+                      )}
                     </>
-                  }
+                  )}
                 </tbody>
               </table>
 
-
               <div className="allinfolink">
-                <a onClick={() => this.props.history.push(`/event/${eventId}`)} className="card-footer-link">
-                  <i className="fas fa-trophy" />&nbsp;&nbsp;<Translate id="allinfo" />
+                <a
+                  onClick={() => this.props.history.push(`/event/${eventId}`)}
+                  className="card-footer-link"
+                >
+                  <i className="fas fa-trophy" />
+                  &nbsp;&nbsp;
+                  <Translate id="allinfo" />
                 </a>
               </div>
             </div>
@@ -138,18 +236,15 @@ export default class EventCard extends Component<Props, State> {
               eventId={eventId}
               userId={userId}
             />
-
           </div>
           <p>&nbsp;</p>
-          {moment(eventContent.date).isSameOrAfter(moment(), 'day') &&
+          {moment(eventContent.date).isSameOrAfter(moment(), "day") && (
             <div className="level participation-level">
-
-              {!alreadyParticipated &&
+              {!alreadyParticipated && (
                 <div className="level-left is-hidden-mobile" />
-              }
-
+              )}
             </div>
-          }
+          )}
         </div>
       </>
     );
@@ -163,11 +258,20 @@ interface CardInfoLineProps {
   extraClasses?: string;
 }
 
-const CardInfoLine = ({ icon, title, content, extraClasses = '' }: CardInfoLineProps) => (
+const CardInfoLine = ({
+  icon,
+  title,
+  content,
+  extraClasses = "",
+}: CardInfoLineProps) => (
   <>
     <tr className={extraClasses}>
-      <td><i className={icon} /></td>
-      <td><Translate id={title} /></td>
+      <td>
+        <i className={icon} />
+      </td>
+      <td>
+        <Translate id={title} />
+      </td>
       <td>{content}</td>
     </tr>
   </>

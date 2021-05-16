@@ -1,60 +1,84 @@
-import React, { Component } from 'react';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { Translate, Language } from 'react-localize-redux';
-import moment, { Moment } from 'moment/min/moment-with-locales';
-import _ from 'lodash';
-import SingleEventParticipation from './SingleEventParticipation-container';
-import { User, Participation } from '../../../models/ReduxState';
-import { TourmericEvent } from '../../../models/Events';
-import { Category } from '../../../models/Category';
+import React, { Component } from "react";
+import { isLoaded, isEmpty } from "react-redux-firebase";
+import { Translate, Language } from "react-localize-redux";
+import _ from "lodash";
+import SingleEventParticipation from "./SingleEventParticipation-container";
+import { User, Participation } from "../../../models/ReduxState";
+import { TourmericEvent } from "../../../models/Events";
+import { Category } from "../../../models/Category";
 
 interface Props {
-  users: [{ key: string, value: User }];
+  users: [{ key: string; value: User }];
   categories: { [key: string]: Category };
   participations: { [key: string]: Participation };
-  events: [{ key: string, value: TourmericEvent }];
+  events: [{ key: string; value: TourmericEvent }];
   activeLanguage: Language;
 }
 
 interface State {
-  chosenMonth: Moment;
+  chosenMonth: DateTime;
   participantsHidden: boolean;
 }
 
-export default class ParticipationEditor extends Component<Props, Partial<State>> {
-
+export default class ParticipationEditor extends Component<
+  Props,
+  Partial<State>
+> {
   constructor(props: Props) {
     super(props);
-    this.toggleParticipantVisibility = this.toggleParticipantVisibility.bind(this);
+    this.toggleParticipantVisibility = this.toggleParticipantVisibility.bind(
+      this
+    );
   }
 
-  state = { chosenMonth: moment() }
+  state = { chosenMonth: luxon.DateTime.now() };
 
   toggleParticipantVisibility() {
-    this.setState((prevState: Partial<State>) => ({ participantsHidden: !prevState.participantsHidden }));
+    this.setState((prevState: Partial<State>) => ({
+      participantsHidden: !prevState.participantsHidden,
+    }));
   }
 
   forwardMonth() {
-    this.setState((prevState: Partial<State>) => ({ chosenMonth: prevState.chosenMonth!.add(1, 'month') }));
+    this.setState((prevState: Partial<State>) => ({
+      chosenMonth: prevState.chosenMonth!.plus({ months: 1 }),
+    }));
   }
 
   backMonth() {
-    this.setState((prevState: Partial<State>) => ({ chosenMonth: prevState.chosenMonth!.subtract(1, 'month') }));
+    this.setState((prevState: Partial<State>) => ({
+      chosenMonth: prevState.chosenMonth!.minus({ months: 1 }),
+    }));
   }
 
   render() {
     const {
-      users, categories, participations, events, activeLanguage,
+      users,
+      categories,
+      participations,
+      events,
+      activeLanguage,
     } = this.props;
 
-    moment.locale(activeLanguage.code);
+    const { chosenMonth } = this.state;
 
-    if (isLoaded(events) && !isEmpty(events) && isLoaded(categories) && isLoaded(participations) && isLoaded(users)) {
+    chosenMonth.setLocale(activeLanguage.code);
+
+    if (
+      isLoaded(events) &&
+      !isEmpty(events) &&
+      isLoaded(categories) &&
+      isLoaded(participations) &&
+      isLoaded(users)
+    ) {
       const publishedEvents = Object.values(events)
         .filter((event) => event.value.published)
         .filter((event) => {
           const eventDate = event.value.date;
-          const occursThisMonth = this.state.chosenMonth.isSame(moment(eventDate, 'YYYY-MM-DD'), 'month');
+          const occursThisMonth = chosenMonth.hasSame(
+            luxon.DateTime.fromFormat(eventDate, "YYYY-MM-DD"),
+            "month"
+          );
           return occursThisMonth;
         });
 
@@ -62,19 +86,41 @@ export default class ParticipationEditor extends Component<Props, Partial<State>
         <div>
           <div className="columns is-multiline">
             <div className="column is-6">
-              <h1 className="title">{_.capitalize(this.state.chosenMonth.format('MMMM, YYYY'))}</h1>
+              <h1 className="title">
+                {_.capitalize(chosenMonth.toFormat("MMMM, YYYY"))}
+              </h1>
             </div>
             <div className="column is-6">
               <div className="buttons has-addons is-right">
-                <button className="button" onClick={() => { this.backMonth(); }}><Translate id="previousmonth" /></button>
-                <button className="button" onClick={() => { this.forwardMonth(); }}><Translate id="nextmonth" /></button>
+                <button
+                  className="button"
+                  onClick={() => {
+                    this.backMonth();
+                  }}
+                >
+                  <Translate id="previousmonth" />
+                </button>
+                <button
+                  className="button"
+                  onClick={() => {
+                    this.forwardMonth();
+                  }}
+                >
+                  <Translate id="nextmonth" />
+                </button>
               </div>
             </div>
 
             {publishedEvents.map((eventEntry, index) => {
               const eventId = eventEntry.key;
               const event = eventEntry.value;
-              return <SingleEventParticipation key={`singleevent-${index}`} event={event} eventId={eventId} />;
+              return (
+                <SingleEventParticipation
+                  key={`singleevent-${index}`}
+                  event={event}
+                  eventId={eventId}
+                />
+              );
             })}
           </div>
         </div>
@@ -82,10 +128,19 @@ export default class ParticipationEditor extends Component<Props, Partial<State>
     }
     if (isLoaded(events) && isLoaded(participations)) {
       if (isEmpty(events)) {
-        return <div><Translate id="noevents" />. <Translate id="youmusthaveeventsbeforeparticipationscanhappen" />.</div>;
+        return (
+          <div>
+            <Translate id="noevents" />.{" "}
+            <Translate id="youmusthaveeventsbeforeparticipationscanhappen" />.
+          </div>
+        );
       }
     }
 
-    return <div><Translate id="loading" /></div>;
+    return (
+      <div>
+        <Translate id="loading" />
+      </div>
+    );
   }
 }

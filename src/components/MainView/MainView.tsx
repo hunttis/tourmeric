@@ -5,7 +5,9 @@ import _ from "lodash";
 {
   /* import { setActiveLanguage, InitializePayload, SingleLanguageTranslation } from 'react-localize-redux'; */
 }
-import Moment from "react-moment";
+{
+  /* import Moment from "react-moment"; */
+}
 import { Location, History } from "history";
 import { renderToStaticMarkup } from "react-dom/server";
 import englishTranslations from "../../translations/en.json";

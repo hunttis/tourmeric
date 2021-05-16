@@ -1,14 +1,15 @@
-import React from 'react';
-import _ from 'lodash';
-import { Translate, Language } from 'react-localize-redux';
-import ClipboardJS from 'clipboard';
-import { isLoaded } from 'react-redux-firebase';
-import moment from 'moment/min/moment-with-locales';
+import React from "react";
+import _ from "lodash";
+import { Translate, Language } from "react-localize-redux";
+import ClipboardJS from "clipboard";
+import { isLoaded } from "react-redux-firebase";
+{
+  /* import moment from 'moment/min/moment-with-locales'; */
+}
 
-import { TourmericEvent } from '../../../models/Events';
-import { Participation, User } from '../../../models/ReduxState';
-import { Settings } from '../../../models/Settings';
-
+import { TourmericEvent } from "../../../models/Events";
+import { Participation, User } from "../../../models/ReduxState";
+import { Settings } from "../../../models/Settings";
 
 interface URLQuery {
   params: { [key: string]: string };
@@ -25,12 +26,21 @@ interface Props {
   users: { [key: string]: User };
 }
 
-export const EventPlayerList = ({ match, events, eventsongoing, settings, participations, activeLanguage, users }: Props) => {
-
+export const EventPlayerList = ({
+  match,
+  events,
+  eventsongoing,
+  settings,
+  participations,
+  activeLanguage,
+  users,
+}: Props) => {
   if (!isLoaded(events)) {
     return (
       <div className="section has-text-centered">
-        <div className="button is-loading"><Translate id="loading" /></div>
+        <div className="button is-loading">
+          <Translate id="loading" />
+        </div>
       </div>
     );
   }
@@ -49,7 +59,9 @@ export const EventPlayerList = ({ match, events, eventsongoing, settings, partic
     if (isLoaded(events)) {
       return (
         <div className="section has-text-centered">
-          <div className="button is-loading"><Translate id="noevent" /></div>
+          <div className="button is-loading">
+            <Translate id="noevent" />
+          </div>
         </div>
       );
     }
@@ -63,17 +75,24 @@ export const EventPlayerList = ({ match, events, eventsongoing, settings, partic
     );
   }
 
-  const dateFormat = _.get(settings, 'dateFormat', 'DD.MM.YYYY');
-  const formattedDateWithDayName = singleDay ?
-    moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`) :
-    `${moment(eventContent.date, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`)} - ${moment(eventContent.endDate, 'YYYY-MM-DD').format(`${dateFormat} (dddd)`)}`;
+  const dateFormat = _.get(settings, "dateFormat", "DD.MM.YYYY");
+  const formattedDateWithDayName = singleDay
+    ? moment(eventContent.date, "YYYY-MM-DD").format(`${dateFormat} (dddd)`)
+    : `${moment(eventContent.date, "YYYY-MM-DD").format(
+        `${dateFormat} (dddd)`
+      )} - ${moment(eventContent.endDate, "YYYY-MM-DD").format(
+        `${dateFormat} (dddd)`
+      )}`;
 
-  let participationsForEvent = Object.values(_.get(participations, eventId, []));
-  participationsForEvent = _.sortBy(participationsForEvent, ['date']);
-  const participationsSortedByLastname = _.sortBy(participationsForEvent, ['lastName']);
+  let participationsForEvent = Object.values(
+    _.get(participations, eventId, [])
+  );
+  participationsForEvent = _.sortBy(participationsForEvent, ["date"]);
+  const participationsSortedByLastname = _.sortBy(participationsForEvent, [
+    "lastName",
+  ]);
 
-
-  new ClipboardJS('#sharebutton'); // eslint-disable-line
+  new ClipboardJS("#sharebutton"); // eslint-disable-line
 
   return (
     <div>
@@ -87,14 +106,30 @@ export const EventPlayerList = ({ match, events, eventsongoing, settings, partic
               <thead>
                 <tr className="">
                   <th />
-                  <th><h2 className="subtitle"><Translate id="lastname" /></h2></th>
-                  <th><h2 className="subtitle"><Translate id="firstname" /></h2></th>
-                  <th><h2 className="subtitle"><Translate id="dcinumber" /></h2></th>
+                  <th>
+                    <h2 className="subtitle">
+                      <Translate id="lastname" />
+                    </h2>
+                  </th>
+                  <th>
+                    <h2 className="subtitle">
+                      <Translate id="firstname" />
+                    </h2>
+                  </th>
+                  <th>
+                    <h2 className="subtitle">
+                      <Translate id="dcinumber" />
+                    </h2>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {participationsSortedByLastname.map((participation, index) => {
-                  const dciNumber = _.get(users, `${participation.userId}.dciNumber`, '-');
+                  const dciNumber = _.get(
+                    users,
+                    `${participation.userId}.dciNumber`,
+                    "-"
+                  );
                   return (
                     <tr key={`participation-${index}`}>
                       <td>{index + 1}.</td>

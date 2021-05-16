@@ -4,14 +4,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import {
   localizeReducer,
-  addTranslationForLanguage
+  addTranslationForLanguage,
 } from "react-localize-redux";
 
 import firebase from "firebase/app";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { createBrowserHistory } from "history";
-import moment from "moment/min/moment-with-locales";
-import Moment from "react-moment";
 import englishTranslations from "./translations/en.json";
 import finnishTranslations from "./translations/fi.json";
 import eventReducer from "./reducers/eventReducer";
@@ -21,10 +19,9 @@ import "firebase/database";
 import "firebase/auth";
 import "firebase/storage";
 
-/* eslint-disable-next-line import/no-unresolved */
 import { get } from "./config";
 
-const activeConfig = get(process.env.NODE_ENV, process.env.DEPLOYMENT);
+const activeConfig = get(import.meta.env.NODE_ENV, import.meta.env.DEPLOYMENT);
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(activeConfig);
@@ -39,10 +36,10 @@ export const history = createBrowserHistory();
 const createRootReducer = () =>
   combineReducers({
     firebase: firebaseReducer,
-    // localize: localizeReducer,
+    localize: localizeReducer,
     admin: eventReducer,
     editor: eventEditorReducer,
-    router: connectRouter(history)
+    router: connectRouter(history),
   });
 
 const initialState = {};
@@ -60,21 +57,18 @@ export const store = createStore(
 
 const rrfConfig = {
   userProfile: "users",
-  preserveOnLogout: ["events", "participations", "categories"]
+  preserveOnLogout: ["events", "participations", "categories"],
 };
 
 export const rrfProps = {
   firebase,
   config: rrfConfig,
-  dispatch: store.dispatch
+  dispatch: store.dispatch,
 };
 
 // const languages = ['en', 'fi'];
 
 const defaultLanguage = "fi";
-
-Moment.globalMoment = moment;
-Moment.globalLocale = defaultLanguage;
 
 // store.dispatch(initialize(languages, { defaultLanguage }));
 

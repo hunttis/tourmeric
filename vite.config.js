@@ -1,5 +1,6 @@
-import reactRefresh from "@vitejs/plugin-react-refresh";
+// import reactRefresh from "@vitejs/plugin-react-refresh";
 
 export default {
-  plugins: [reactRefresh()]
+  // plugins: [reactRefresh()],
+  build: { sourcemap: true, minify: false },
 };

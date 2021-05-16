@@ -2,12 +2,13 @@ import { Moment } from 'moment';
 import _ from 'lodash';
 import { store } from '../../init-app';
 import { ReduxState } from '../../models/ReduxState';
-import { createMomentFromDateString } from './Utils';
+import { createMomentFromDateString, createDateFromDateString } from './Utils';
 import { TourmericEvent } from '../../models/Events';
+import { isSameDay, isWithinInterval } from 'date-fns';
 
 const notNull = <T>(x: T | null): x is T => x !== null;
 
-export const getEventsForDay = (day: Moment, returnAllNotJustFavorites = false): { key: string, value: TourmericEvent }[] => {
+export const getEventsForDay = (day: Date, returnAllNotJustFavorites = false): { key: string, value: TourmericEvent }[] => {
   const reduxState: ReduxState = store.getState();
 
   const { data, profile } = reduxState.firebase;
@@ -22,7 +23,8 @@ export const getEventsForDay = (day: Moment, returnAllNotJustFavorites = false):
 
       const isFavorite = returnAllNotJustFavorites || !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
 
-      if (eventData.published && createMomentFromDateString(eventData.date).isSame(day, 'day') && isFavorite) {
+      const eventDate = createDateFromDateString(eventData.date)
+      if (eventData.published && isSameDay(day, eventDate) && isFavorite) {
         return { key: eventKey, value: eventData };
       }
       return null;
@@ -32,7 +34,7 @@ export const getEventsForDay = (day: Moment, returnAllNotJustFavorites = false):
   return [];
 };
 
-export const getOngoingEventsForDay = (day: Moment, returnAllNotJustFavorites = false): { key: string, value: TourmericEvent }[] => {
+export const getOngoingEventsForDay = (day: Date, returnAllNotJustFavorites = false): { key: string, value: TourmericEvent }[] => {
   const reduxState: ReduxState = store.getState();
   const { data, profile } = reduxState.firebase;
   const { eventsongoing } = data;
@@ -45,7 +47,14 @@ export const getOngoingEventsForDay = (day: Moment, returnAllNotJustFavorites = 
       const eventData = eventEntry[1];
       const isFavorite = returnAllNotJustFavorites || !hasDefinedFavorites || profile.favoriteCategories!.indexOf(eventData.category) !== -1;
 
-      if (eventData.published && eventData.endDate && isFavorite && day.isBetween(createMomentFromDateString(eventData.date), createMomentFromDateString(eventData.endDate), 'day', '[]')) {
+      const eventStartDate = createDateFromDateString(eventData.date)
+      if (!eventData.endDate) {
+        return null;
+      }
+      const eventEndDate = createDateFromDateString(eventData.endDate)
+
+      // TODO Write with filter
+      if (eventData.published && eventData.endDate && isFavorite && isWithinInterval(day, {start: eventStartDate, end: eventEndDate})) {
         return { key: eventKey, value: eventData };
       }
       return null;

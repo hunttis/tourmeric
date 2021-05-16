@@ -1,15 +1,17 @@
-import React from 'react';
-import firebase from 'firebase/app';
+import React from "react";
+import firebase from "firebase/app";
 
-import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import _ from "lodash";
+import { Translate } from "react-localize-redux";
 
-import ValidatedEditableField from './ValidatedEditableField-container';
-import ValidatedDateField from './ValidatedDateField-container';
-import SelectElement from './SelectElement';
-import EditableTextarea from './EditableTextarea-container';
-import { Category } from '../../../models/Category';
-import { TourmericEvent } from '../../../models/Events';
+import ValidatedEditableField from "./ValidatedEditableField-container";
+{
+  /* import ValidatedDateField from './ValidatedDateField-container'; */
+}
+import SelectElement from "./SelectElement";
+import EditableTextarea from "./EditableTextarea-container";
+import { Category } from "../../../models/Category";
+import { TourmericEvent } from "../../../models/Events";
 
 interface Props {
   event: TourmericEvent;
@@ -29,9 +31,20 @@ interface Props {
 }
 
 export const EditorForm = ({
-  event, eventId, categories, cleanedFormatOptions, newEvent, missingFields,
-  updateCategory, updateFieldStatus, allowDateEdit, saveEvent, deleteEvent,
-  deleteConfirmation, goBack, storageUrlPath,
+  event,
+  eventId,
+  categories,
+  cleanedFormatOptions,
+  newEvent,
+  missingFields,
+  updateCategory,
+  updateFieldStatus,
+  allowDateEdit,
+  saveEvent,
+  deleteEvent,
+  deleteConfirmation,
+  goBack,
+  storageUrlPath,
 }: Props) => (
   <div className="columns is-multiline">
     <div className="column is-hidden-mobile">&nbsp;</div>
@@ -72,7 +85,7 @@ export const EditorForm = ({
           <hr />
         </div>
 
-        {!_.isEmpty(cleanedFormatOptions) &&
+        {!_.isEmpty(cleanedFormatOptions) && (
           <>
             <div className="column is-12">
               <SelectElement
@@ -90,7 +103,7 @@ export const EditorForm = ({
               <hr />
             </div>
           </>
-        }
+        )}
 
         <div className="column is-12">
           <Translate>
@@ -100,18 +113,21 @@ export const EditorForm = ({
                 updateFieldStatus={updateFieldStatus}
                 labelContent="eventtype"
                 defaultValue={event.eventType}
-                dropdownItems={{ singledayevent: `${translate('singledayevent')}`, ongoingevent: `${translate('ongoingevent')}` }}
+                dropdownItems={{
+                  singledayevent: `${translate("singledayevent")}`,
+                  ongoingevent: `${translate("ongoingevent")}`,
+                }}
                 path={`${storageUrlPath}/${eventId}`}
                 targetName="eventType"
                 isHorizontal
-                isLocked={!eventId.startsWith('DRAFT')}
+                isLocked={!eventId.startsWith("DRAFT")}
               />
             )}
           </Translate>
         </div>
 
         <div className="column is-12">
-          <ValidatedDateField
+          {/* <ValidatedDateField
             isOk={!_.isEmpty(event.date)}
             defaultValue={event.date}
             defaultEndValue={event.endDate}
@@ -120,11 +136,10 @@ export const EditorForm = ({
             isHorizontal
             disabled={!allowDateEdit}
             isMulti={event.eventType === 'ongoingevent'}
-          />
+          /> */}
         </div>
 
         <div className="column is-12">
-
           <ValidatedEditableField
             isOk
             updateFieldStatus={updateFieldStatus}
@@ -143,7 +158,9 @@ export const EditorForm = ({
         </div>
 
         <div className="column is-12">
-          <h2 className="subtitle"><Translate id="eventinfo" /></h2>
+          <h2 className="subtitle">
+            <Translate id="eventinfo" />
+          </h2>
         </div>
 
         <div className="column is-12">
@@ -226,47 +243,83 @@ export const EditorForm = ({
           />
         </div>
         <div className="column is-12">
-          {missingFields.length > 0 &&
+          {missingFields.length > 0 && (
             <div className="field is-horizontal">
-
               <div className="field-label is-normal">
-                <label className="label"><Translate id="youstillneedtoadd" /></label>
+                <label className="label">
+                  <Translate id="youstillneedtoadd" />
+                </label>
               </div>
 
               <div className="field-body">
                 <div className="field">
                   <div className="control">
                     <span className="tags are-medium">
-                      {missingFields.map((field) => <span className="tag is-warning has-text-black" key={`missingData-${field}`}><Translate id={field} /></span>)}
+                      {missingFields.map((field) => (
+                        <span
+                          className="tag is-warning has-text-black"
+                          key={`missingData-${field}`}
+                        >
+                          <Translate id={field} />
+                        </span>
+                      ))}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-          }
+          )}
         </div>
 
         <div className="column has-text-right">
-
-          <button className={`button ${deleteConfirmation ? 'is-danger' : 'is-warning has-text-black'}`} onClick={deleteEvent}>
+          <button
+            className={`button ${
+              deleteConfirmation ? "is-danger" : "is-warning has-text-black"
+            }`}
+            onClick={deleteEvent}
+          >
             {deleteConfirmation && <Translate id="reallydelete" />}
             {!deleteConfirmation && <Translate id="delete" />}
           </button>
           <button className="button is-info is-outlined" onClick={goBack}>
             <Translate id="goback" />
           </button>
-          {!newEvent && event.published &&
-            <button className="button is-warning is-outlined" onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: false })}><Translate id="hide" /></button>
-          }
-          {!newEvent && !event.published &&
-            <button className="button is-success is-outlined" disabled={missingFields.length > 0} onClick={() => firebase.update(`${storageUrlPath}/${eventId}`, { published: true })}><Translate id="publish" /></button>
-          }
+          {!newEvent && event.published && (
+            <button
+              className="button is-warning is-outlined"
+              onClick={() =>
+                firebase.update(`${storageUrlPath}/${eventId}`, {
+                  published: false,
+                })
+              }
+            >
+              <Translate id="hide" />
+            </button>
+          )}
+          {!newEvent && !event.published && (
+            <button
+              className="button is-success is-outlined"
+              disabled={missingFields.length > 0}
+              onClick={() =>
+                firebase.update(`${storageUrlPath}/${eventId}`, {
+                  published: true,
+                })
+              }
+            >
+              <Translate id="publish" />
+            </button>
+          )}
 
-          {newEvent &&
-            <button className="button is-success is-outlined" disabled={missingFields.length > 0} onClick={saveEvent}><Translate id="publish" /></button>
-          }
+          {newEvent && (
+            <button
+              className="button is-success is-outlined"
+              disabled={missingFields.length > 0}
+              onClick={saveEvent}
+            >
+              <Translate id="publish" />
+            </button>
+          )}
         </div>
-
       </div>
     </div>
     <div className="column is-hidden-mobile">&nbsp;</div>

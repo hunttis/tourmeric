@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
-import { Translate, Language } from 'react-localize-redux';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
-import _ from 'lodash';
+import React, { Component } from "react";
+import { Translate, Language } from "react-localize-redux";
+import { isLoaded, isEmpty } from "react-redux-firebase";
+import _ from "lodash";
 
-import moment from 'moment/min/moment-with-locales';
+{
+  /* import * as moment from "moment/min/moment-with-locales"; */
+}
 
-import { mapCategoryToColor } from '../../Common/Utils';
-import { StoreCreditReportForMonth } from './StoreCreditReportForMonth';
-import { TourmericStoreCreditData, StoreCreditCategory, CreditCategories } from '../../../models/StoreCredit';
-import { User } from '../../../models/ReduxState';
+import { mapCategoryToColor } from "../../Common/Utils";
+import { StoreCreditReportForMonth } from "./StoreCreditReportForMonth";
+import {
+  TourmericStoreCreditData,
+  StoreCreditCategory,
+  CreditCategories,
+} from "../../../models/StoreCredit";
+import { User } from "../../../models/ReduxState";
 
 interface Props {
   users: { [key: string]: User };
@@ -22,8 +28,7 @@ interface State {
 }
 
 export default class StoreCreditReport extends Component<Props, State> {
-
-  state = { detailedReport: null }
+  state = { detailedReport: null };
 
   timeout!: NodeJS.Timeout;
 
@@ -34,39 +39,79 @@ export default class StoreCreditReport extends Component<Props, State> {
   delayedScrollToShow() {
     if (this.state.detailedReport) {
       this.timeout = setTimeout(() => {
-        const element = document.getElementById('detailedreport');
+        const element = document.getElementById("detailedreport");
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }
       }, 250);
     }
   }
 
   render() {
-    const { users, storecreditcategories, storecredit, activeLanguage } = this.props;
+    const {
+      users,
+      storecreditcategories,
+      storecredit,
+      activeLanguage,
+    } = this.props;
 
     if (isLoaded(storecredit) && isEmpty(storecredit)) {
-      return <div><Translate id="nocreditevents" /></div>;
+      return (
+        <div>
+          <Translate id="nocreditevents" />
+        </div>
+      );
     }
 
-    if (isLoaded(users) && isLoaded(storecreditcategories) && isLoaded(storecredit)) {
+    if (
+      isLoaded(users) &&
+      isLoaded(storecreditcategories) &&
+      isLoaded(storecredit)
+    ) {
+      const creditEvents: TourmericStoreCreditData[] = _.flatMap(
+        Object.entries(storecredit).map((storeCreditEntry) =>
+          _.flatMap(
+            Object.entries(storeCreditEntry[1]).map((storeCreditEventEntry) => {
+              const userId = storeCreditEntry[0];
+              const storeCreditEvent = storeCreditEventEntry[1];
+              const {
+                category,
+                value,
+                date,
+                creditAddedByName,
+                note,
+              } = storeCreditEvent;
+              const processedCategory: CreditCategories =
+                !category || category.toString().length === 0
+                  ? "uncategorized"
+                  : category;
+              return {
+                category: processedCategory,
+                value,
+                date,
+                userId,
+                creditAddedByName,
+                note,
+              };
+            })
+          )
+        )
+      );
 
-      const creditEvents: TourmericStoreCreditData[] = _.flatMap(Object.entries(storecredit)
-        .map((storeCreditEntry) => _.flatMap(Object.entries(storeCreditEntry[1]).map((storeCreditEventEntry) => {
-          const userId = storeCreditEntry[0];
-          const storeCreditEvent = storeCreditEventEntry[1];
-          const { category, value, date, creditAddedByName, note } = storeCreditEvent;
-          const processedCategory: CreditCategories = !category || category.toString().length === 0 ? 'uncategorized' : category;
-          return { category: processedCategory, value, date, userId, creditAddedByName, note };
-        }))));
-
-      const grouped = _.groupBy(creditEvents, 'category');
-      const groupedByMonth = _.groupBy(creditEvents, (event) => moment(event.date).format('YYYYMM'));
+      const grouped = _.groupBy(creditEvents, "category");
+      const groupedByMonth = _.groupBy(creditEvents, (event) =>
+        moment(event.date).format("YYYYMM")
+      );
 
       const totals = Object.entries(grouped).map((groupEntry) => {
         const category = groupEntry[0];
         const entries = groupEntry[1];
-        const total = _.reduce(entries, (totalForCategory, event) => totalForCategory + parseFloat(`${event.value}`), 0);
+        const total = _.reduce(
+          entries,
+          (totalForCategory, event) =>
+            totalForCategory + parseFloat(`${event.value}`),
+          0
+        );
         return { category, total };
       });
 
@@ -74,80 +119,136 @@ export default class StoreCreditReport extends Component<Props, State> {
 
       return (
         <div>
-          <h1 className="title"><Translate id="creditsbycategory" /></h1>
-          <h2 className="subtitle"><Translate id="alltime" /></h2>
+          <h1 className="title">
+            <Translate id="creditsbycategory" />
+          </h1>
+          <h2 className="subtitle">
+            <Translate id="alltime" />
+          </h2>
           <table className="table">
             <thead>
               <tr>
                 <th />
-                <th><Translate id="category" /></th>
-                <th className="has-text-right"><Translate id="total" /></th>
+                <th>
+                  <Translate id="category" />
+                </th>
+                <th className="has-text-right">
+                  <Translate id="total" />
+                </th>
               </tr>
             </thead>
             <tbody>
               {totals.map((total) => (
                 <tr key={`totalrow-${total.category}`}>
-                  <td className={`${total.category && `has-text-${mapCategoryToColor(total.category)}`}`}>
+                  <td
+                    className={`${total.category &&
+                      `has-text-${mapCategoryToColor(total.category)}`}`}
+                  >
                     <i className="fas fa-circle" />
                   </td>
                   <td>
-                    {storecreditcategories[total.category] || <Translate id="nocategory" />}
+                    {storecreditcategories[total.category] || (
+                      <Translate id="nocategory" />
+                    )}
                   </td>
-                  <td className="has-text-right">
-                    {total.total}
-                  </td>
+                  <td className="has-text-right">{total.total}</td>
                 </tr>
               ))}
             </tbody>
           </table>
 
-          <h1 className="title"><Translate id="bymonth" /></h1>
+          <h1 className="title">
+            <Translate id="bymonth" />
+          </h1>
           <div className="columns is-multiline">
             {Object.entries(groupedByMonth).map((monthGroupEntry) => {
-              const dateString = moment(monthGroupEntry[0], 'YYYY-MM').format('MMMM, YYYY');
+              const dateString = moment(monthGroupEntry[0], "YYYY-MM").format(
+                "MMMM, YYYY"
+              );
               const monthData = monthGroupEntry[1];
-              const groupedMonthData = _.groupBy(monthData, 'category');
-              const monthTotals = Object.entries(groupedMonthData).map((groupEntry) => {
-                const category = groupEntry[0];
-                const entries = groupEntry[1];
-                const total = _.reduce(entries, (totalForCategory, event) => totalForCategory + parseFloat(`${event.value}`), 0);
-                return { category, total };
-              });
-              const backGroundClass = this.state.detailedReport && this.state.detailedReport === monthGroupEntry[0] ? '' : 'has-background-grey-darker';
+              const groupedMonthData = _.groupBy(monthData, "category");
+              const monthTotals = Object.entries(groupedMonthData).map(
+                (groupEntry) => {
+                  const category = groupEntry[0];
+                  const entries = groupEntry[1];
+                  const total = _.reduce(
+                    entries,
+                    (totalForCategory, event) =>
+                      totalForCategory + parseFloat(`${event.value}`),
+                    0
+                  );
+                  return { category, total };
+                }
+              );
+              const backGroundClass =
+                this.state.detailedReport &&
+                this.state.detailedReport === monthGroupEntry[0]
+                  ? ""
+                  : "has-background-grey-darker";
               return (
-                <div className="column is-one-third-desktop is-half-tablet" key={`totals-for-${dateString}`}>
-
+                <div
+                  className="column is-one-third-desktop is-half-tablet"
+                  key={`totals-for-${dateString}`}
+                >
                   <table className={`table ${backGroundClass}`}>
                     <thead>
                       <tr className="is-vcentered-title">
                         <th colSpan={2}>{dateString}</th>
                         <th className="has-text-right">
-                          {(this.state.detailedReport && this.state.detailedReport === monthGroupEntry[0]) &&
-                            <button className="button is-small" onClick={() => this.setState({ detailedReport: null })}>
-                              <Translate id="close" />
-                            </button>
-                          }
-                          {!(this.state.detailedReport && this.state.detailedReport === monthGroupEntry[0]) &&
-                            <button className="button is-small" onClick={() => this.setState({ detailedReport: monthGroupEntry[0] })}>
+                          {this.state.detailedReport &&
+                            this.state.detailedReport ===
+                              monthGroupEntry[0] && (
+                              <button
+                                className="button is-small"
+                                onClick={() =>
+                                  this.setState({ detailedReport: null })
+                                }
+                              >
+                                <Translate id="close" />
+                              </button>
+                            )}
+                          {!(
+                            this.state.detailedReport &&
+                            this.state.detailedReport === monthGroupEntry[0]
+                          ) && (
+                            <button
+                              className="button is-small"
+                              onClick={() =>
+                                this.setState({
+                                  detailedReport: monthGroupEntry[0],
+                                })
+                              }
+                            >
                               <Translate id="showdetails" />
                             </button>
-                          }
+                          )}
                         </th>
                       </tr>
                       <tr>
                         <th />
-                        <th><Translate id="category" /></th>
-                        <th className="has-text-right"><Translate id="total" /></th>
+                        <th>
+                          <Translate id="category" />
+                        </th>
+                        <th className="has-text-right">
+                          <Translate id="total" />
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {monthTotals.map((total) => (
                         <tr key={`totalrow-${dateString}-${total.category}`}>
-                          <td className={`${total.category && `has-text-${mapCategoryToColor(total.category)}`}`}>
+                          <td
+                            className={`${total.category &&
+                              `has-text-${mapCategoryToColor(
+                                total.category
+                              )}`}`}
+                          >
                             <i className="fas fa-circle" />
                           </td>
                           <td>
-                            {storecreditcategories[total.category] || <Translate id="nocategory" />}
+                            {storecreditcategories[total.category] || (
+                              <Translate id="nocategory" />
+                            )}
                           </td>
                           <td className="has-text-right">
                             {total.total.toFixed(2)}
@@ -161,10 +262,21 @@ export default class StoreCreditReport extends Component<Props, State> {
             })}
           </div>
 
-          {this.state.detailedReport &&
+          {this.state.detailedReport && (
             <>
-              <h1 id="detailedreport" className="title"><Translate id="showingdetails" /> <span className="has-text-info">{moment(this.state.detailedReport!, 'YYYYMM').format('MMMM, YYYY')}</span>
-                <button className="button is-warning is-outlined is-pulled-right" onClick={() => this.setState({ detailedReport: null })}><Translate id="close" /></button>
+              <h1 id="detailedreport" className="title">
+                <Translate id="showingdetails" />{" "}
+                <span className="has-text-info">
+                  {moment(this.state.detailedReport!, "YYYYMM").format(
+                    "MMMM, YYYY"
+                  )}
+                </span>
+                <button
+                  className="button is-warning is-outlined is-pulled-right"
+                  onClick={() => this.setState({ detailedReport: null })}
+                >
+                  <Translate id="close" />
+                </button>
               </h1>
               {this.delayedScrollToShow()}
               <StoreCreditReportForMonth
@@ -173,13 +285,14 @@ export default class StoreCreditReport extends Component<Props, State> {
                 users={users}
               />
             </>
-          }
-
-
+          )}
         </div>
       );
     }
-    return <div><Translate id="loading" /></div>;
+    return (
+      <div>
+        <Translate id="loading" />
+      </div>
+    );
   }
-
 }

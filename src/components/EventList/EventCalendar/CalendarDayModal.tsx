@@ -1,18 +1,23 @@
-import React, { Component } from 'react';
-import { isLoaded } from 'react-redux-firebase';
-import _ from 'lodash';
-import { History } from 'history';
-import { Translate } from 'react-localize-redux';
-import { Moment } from 'moment/min/moment-with-locales';
+import React, { Component } from "react";
+import { isLoaded } from "react-redux-firebase";
+import _ from "lodash";
+import { History } from "history";
+import { Translate } from "react-localize-redux";
+{
+  /* import { Moment } from 'moment/min/moment-with-locales'; */
+}
 import {
   removeClassFromHtml,
   addClassToHtml,
-} from '../../Common/DocumentUtils';
-import EventCard from '../EventCard/EventCard-container';
-import OpeningHours from '../../StoreInfo/OpeningHours-container';
-import { OpeningHoursExceptionEditor } from './OpeningHoursExceptionEditor';
-import { OpeningHoursException } from '../../../models/OpeningHours';
-import { getOngoingEventsForDay, getEventsForDay } from '../../../components/Common/EventUtils';
+} from "../../Common/DocumentUtils";
+import EventCard from "../EventCard/EventCard-container";
+import OpeningHours from "../../StoreInfo/OpeningHours-container";
+import { OpeningHoursExceptionEditor } from "./OpeningHoursExceptionEditor";
+import { OpeningHoursException } from "../../../models/OpeningHours";
+import {
+  getOngoingEventsForDay,
+  getEventsForDay,
+} from "../../../components/Common/EventUtils";
 
 export interface Props {
   history: History;
@@ -31,7 +36,6 @@ export interface State {
 }
 
 export class CalendarDayModal extends Component<Props, State> {
-
   state = { showArrow: false, editingException: false };
 
   scrollElement: HTMLDivElement | null;
@@ -42,17 +46,17 @@ export class CalendarDayModal extends Component<Props, State> {
   }
 
   componentDidMount() {
-    addClassToHtml('is-clipped');
+    addClassToHtml("is-clipped");
   }
 
   componentWillUnmount() {
     if (this.scrollElement) {
       this.scrollElement.removeEventListener(
-        'scroll',
-        this.checkStateShouldShowArrow,
+        "scroll",
+        this.checkStateShouldShowArrow
       );
     }
-    removeClassFromHtml('is-clipped');
+    removeClassFromHtml("is-clipped");
   }
 
   closeExceptionEditor() {
@@ -68,15 +72,14 @@ export class CalendarDayModal extends Component<Props, State> {
   async goToEventEditor(momentForDay: Moment) {
     const { history, setReturnLocation } = this.props;
     await setReturnLocation(history.location.pathname);
-    history.push(`/admin/events/newevent/${momentForDay.format('YYYY-MM-DD')}`);
+    history.push(`/admin/events/newevent/${momentForDay.format("YYYY-MM-DD")}`);
   }
-
 
   updateScrollRef = (element: HTMLDivElement) => {
     if (element) {
       this.scrollElement = element;
       this.checkStateShouldShowArrow();
-      element.addEventListener('scroll', this.checkStateShouldShowArrow);
+      element.addEventListener("scroll", this.checkStateShouldShowArrow);
     }
   };
 
@@ -89,24 +92,37 @@ export class CalendarDayModal extends Component<Props, State> {
   };
 
   render() {
-    const { backToCalendar, momentForDay, isAdmin, openinghoursexceptions, categoryFilter } = this.props;
+    const {
+      backToCalendar,
+      momentForDay,
+      isAdmin,
+      openinghoursexceptions,
+      categoryFilter,
+    } = this.props;
     const { editingException } = this.state;
 
     const exceptionForDayExists =
       isLoaded(openinghoursexceptions) &&
-      openinghoursexceptions[momentForDay.format('YYYY-MM-DD')];
+      openinghoursexceptions[momentForDay.format("YYYY-MM-DD")];
 
-    const eventsForDay = _.sortBy(getEventsForDay(momentForDay, true), (event) => _.padStart(event.value.time, 5, '0'));
-    const ongoingEventsForDay = _.sortBy(getOngoingEventsForDay(momentForDay, true), (event) => _.padStart(event.value.time, 5, '0'));
-    const allEventsForDay = _.concat(eventsForDay, ongoingEventsForDay).filter((event) => _.isEmpty(categoryFilter) || categoryFilter.includes(event.value.category));
+    const eventsForDay = _.sortBy(
+      getEventsForDay(momentForDay, true),
+      (event) => _.padStart(event.value.time, 5, "0")
+    );
+    const ongoingEventsForDay = _.sortBy(
+      getOngoingEventsForDay(momentForDay, true),
+      (event) => _.padStart(event.value.time, 5, "0")
+    );
+    const allEventsForDay = _.concat(eventsForDay, ongoingEventsForDay).filter(
+      (event) =>
+        _.isEmpty(categoryFilter) ||
+        categoryFilter.includes(event.value.category)
+    );
 
     return (
       <>
         <div className="modal is-active">
-          <div
-            className="modal-background"
-            onClick={() => backToCalendar()}
-          />
+          <div className="modal-background" onClick={() => backToCalendar()} />
           <div className="modal-content box" ref={this.updateScrollRef}>
             {this.state.showArrow && (
               <div className="more-to-scroll">
@@ -117,7 +133,7 @@ export class CalendarDayModal extends Component<Props, State> {
             <div className="columns is-multiline">
               <div className="column is-6">
                 <h2 className="subtitle is-capitalized">
-                  {momentForDay.format('dddd, MMMM YYYY')}
+                  {momentForDay.format("dddd, MMMM YYYY")}
                 </h2>
               </div>
               <div className="column is-6 has-text-right">
@@ -136,7 +152,7 @@ export class CalendarDayModal extends Component<Props, State> {
               </div>
               {!editingException && (
                 <div className="column is-8">
-                  <OpeningHours day={momentForDay.format('YYYY-MM-DD')} />
+                  <OpeningHours day={momentForDay.format("YYYY-MM-DD")} />
                 </div>
               )}
               {editingException && (
