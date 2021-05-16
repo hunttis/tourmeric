@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { Day } from "../../../models/Calendar";
 import { TourmericEvent } from "../../../models/Events";
+import { parse, getDaysInMonth, format, isWithinInterval } from "date-fns";
 
 // import moment = require('moment');
 
@@ -43,18 +44,17 @@ export function parseInformationForMonthYear(
     categoryFilter
   );
 
-  const targetMonth = moment(`${month}-${year}`, "MM-YYYY");
-  const dayCount = targetMonth.daysInMonth();
+  const targetMonth = parse(`${month}-${year}`, "MM-yyyy", new Date());
+  const dayCount = getDaysInMonth(targetMonth);
   const days: Day[] = [];
 
   for (let i = 1; i <= dayCount; i += 1) {
-    const dayString = `${_.padStart(`${i}`, 2, "0")}-${targetMonth.format(
-      "MM-YYYY"
+    const dayString = `${_.padStart(`${i}`, 2, "0")}-${format(
+      targetMonth,
+      "MM-yyyy"
     )}`;
-    const day = moment(dayString, "DD-MM-YYYY");
-    const dayStringInEventFormat = moment(dayString, "DD-MM-YYYY").format(
-      "YYYY-MM-DD"
-    );
+    const day = parse(dayString, "dd-MM-yyyy", new Date());
+    const dayStringInEventFormat = format(day, "yyyy-MM-dd");
 
     const eventsForDay = filteredEvents
       ? filteredEvents.filter(
@@ -65,23 +65,33 @@ export function parseInformationForMonthYear(
     const eventsOnGoing = filteredEventsongoing
       ? filteredEventsongoing.filter((eventEntry) => {
           if (eventEntry.value.endDate) {
-            return day.isBetween(
-              moment(eventEntry.value.date, "YYYY-MM-DD"),
-              moment(eventEntry.value.endDate, "YYYY-MM-DD"),
-              "day",
-              "[]"
+            // TODO Move this row to separate filter
+            const eventStart = parse(
+              eventEntry.value.date,
+              "yyyy-MM-dd",
+              new Date()
             );
+            const eventEnd = parse(
+              eventEntry.value.endDate,
+              "yyyy-MM-dd",
+              new Date()
+            );
+            const isValid = isWithinInterval(day, {
+              start: eventStart,
+              end: eventEnd,
+            });
+            return isValid;
           }
           return false;
         })
       : [];
 
     days.push({
-      day: day.format("DD"),
-      dayOfWeek: parseInt(day.format("d"), 10),
-      dayName: day.format("dddd"),
-      dayString: day.format("DD-MMMM-YYYY"),
-      dayLink: day.format("YYYY/MM/DD"),
+      day: format(day, "dd"),
+      dayOfWeek: parseInt(format(day, "d"), 10),
+      dayName: format(day, "dddd"),
+      dayString: format(day, "dd-MMMM-yyyy"),
+      dayLink: format(day, "yyyy/MM/dd"),
       eventsForDay,
       ongoingEventsForDay: eventsOnGoing,
     });

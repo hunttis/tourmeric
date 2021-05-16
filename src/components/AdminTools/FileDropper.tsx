@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 
 interface Props {
@@ -54,19 +54,19 @@ export default class FileDropper extends Component<Props> {
                 <div className="fade-in">
                   <p className="icon fa-2x"><i className="fas fa-file-upload" /></p>
                   <p>&nbsp;</p>
-                  <p><Translate id="dropfileshere" /></p>
+                  <p><FormattedMessage id="dropfileshere" /></p>
                 </div>
               }
 
               {uploadState &&
                 <div className="fade-in">
-                  <Translate id="uploadingfiles" />
+                  <FormattedMessage id="uploadingfiles" />
                 </div>
               }
 
               {doneState &&
                 <div className="fade-in">
-                  <Translate id="filessent" />: {uploadedFiles.length}
+                  <FormattedMessage id="filessent" />: {uploadedFiles.length}
                 </div>
               }
             </>

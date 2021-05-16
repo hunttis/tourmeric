@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 import { Settings } from '../../../models/Settings';
 
@@ -14,7 +14,7 @@ export const Localization = ({ settings, showDefaultButton, defaultDateFormat }:
   <div className="columns is-multiline">
     <div className="column is-12">
       <h1 className="title">
-        <Translate id="dateformat" />
+        <FormattedMessage id="dateformat" />
       </h1>
     </div>
 
@@ -29,14 +29,14 @@ export const Localization = ({ settings, showDefaultButton, defaultDateFormat }:
     </div>
 
     <div className="column is-6">
-      <div className="dateformattext is-hidden-mobile"><Translate id="lookslike" />: <strong><span className="has-text-success">{moment().format(settings.dateFormat)}</span></strong></div>
-      <div className="is-hidden-tablet"><Translate id="lookslike" />: <strong><span className="has-text-success">{moment().format(settings.dateFormat)}</span></strong></div>
+      <div className="dateformattext is-hidden-mobile"><FormattedMessage id="lookslike" />: <strong><span className="has-text-success">{moment().format(settings.dateFormat)}</span></strong></div>
+      <div className="is-hidden-tablet"><FormattedMessage id="lookslike" />: <strong><span className="has-text-success">{moment().format(settings.dateFormat)}</span></strong></div>
     </div>
     {showDefaultButton &&
       <div className="column is-6">
         <div className="field">
           <label className="label">
-            <Translate id="clicktousedefaultdateformat" />
+            <FormattedMessage id="clicktousedefaultdateformat" />
           </label>
           <div className="field-body">
             <div className="field">
@@ -49,7 +49,7 @@ export const Localization = ({ settings, showDefaultButton, defaultDateFormat }:
       </div>
     }
     <div className="column is-6">
-      <Translate id="help" />: <a href="https://momentjs.com/docs/#/displaying/format/"><Translate id="momentdateformatdocs" /></a>
+      <FormattedMessage id="help" />: <a href="https://momentjs.com/docs/#/displaying/format/"><FormattedMessage id="momentdateformatdocs" /></a>
     </div>
 
   </div>

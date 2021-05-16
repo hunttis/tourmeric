@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
 import { User } from '../../../models/ReduxState';
@@ -63,15 +63,15 @@ export const EditModal = ({ userId, userData }: Props) => (
       <div className="field is-horizontal">
         <div className="field-label is-normal">
           <label className="label">
-            <Translate id="role" />
+            <FormattedMessage id="role" />
           </label>
         </div>
         <div className="field-body">
           <div className="field">
             <div className="control is-expanded">
               <div className="select">
-                <Translate>
-                  {({ translate }) => (
+                
+                  
                     <select
                       defaultValue={userData && userData.role}
                       onChange={(event) => firebase.update(`/users/${userId}`, {
@@ -83,8 +83,7 @@ export const EditModal = ({ userId, userData }: Props) => (
                       <option value="user">{translate('roleuser')}</option>
                       <option value="admin">{translate('roleadmin')}</option>
                     </select>
-                  )}
-                </Translate>
+                
               </div>
             </div>
           </div>

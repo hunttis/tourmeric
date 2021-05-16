@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import { isLoaded } from 'react-redux-firebase';
 import PrivacyPolicy from './PrivacyPolicy/PrivacyPolicy-container';
@@ -26,10 +26,10 @@ const FooterBar = ({ settings }: Props) => {
           {hasAtLeastOneSponsor &&
             <>
               <div className="column is-12 has-text-centered is-hidden-tablet">
-                <Translate id="sponsoredby" />:
+                <FormattedMessage id="sponsoredby" />:
               </div>
               <div className="column is-6 has-text-left is-hidden-mobile">
-                <Translate id="sponsoredby" />:
+                <FormattedMessage id="sponsoredby" />:
               </div>
               <div className="column is-6 has-text-right is-hidden-mobile">
                 <PrivacyPolicy showAcceptance={false} />

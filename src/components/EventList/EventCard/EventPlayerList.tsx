@@ -39,7 +39,7 @@ export const EventPlayerList = ({
     return (
       <div className="section has-text-centered">
         <div className="button is-loading">
-          <Translate id="loading" />
+          <FormattedMessage id="loading" />
         </div>
       </div>
     );
@@ -60,7 +60,7 @@ export const EventPlayerList = ({
       return (
         <div className="section has-text-centered">
           <div className="button is-loading">
-            <Translate id="noevent" />
+            <FormattedMessage id="noevent" />
           </div>
         </div>
       );
@@ -108,17 +108,17 @@ export const EventPlayerList = ({
                   <th />
                   <th>
                     <h2 className="subtitle">
-                      <Translate id="lastname" />
+                      <FormattedMessage id="lastname" />
                     </h2>
                   </th>
                   <th>
                     <h2 className="subtitle">
-                      <Translate id="firstname" />
+                      <FormattedMessage id="firstname" />
                     </h2>
                   </th>
                   <th>
                     <h2 className="subtitle">
-                      <Translate id="dcinumber" />
+                      <FormattedMessage id="dcinumber" />
                     </h2>
                   </th>
                 </tr>

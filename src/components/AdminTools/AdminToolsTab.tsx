@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   isActive: boolean;
@@ -12,7 +12,7 @@ export const AdminToolsTab = ({ isActive, switchAction, icon, translationKey }: 
   <li className={`has-icon ${isActive && 'is-active'}`}>
     <a onClick={switchAction}>
       <span className="icon is-small"><i className={`fas ${icon}`} aria-hidden="true" /></span>
-      <span><Translate id={translationKey} /></span>
+      <span><FormattedMessage id={translationKey} /></span>
     </a>
   </li>
 );

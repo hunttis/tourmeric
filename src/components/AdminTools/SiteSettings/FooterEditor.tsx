@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import firebase from 'firebase/app';
@@ -39,16 +39,16 @@ export default class PrivacyPolicyEditor extends Component<Props> {
       return (
         <div className="section">
           <h1 className="title">
-            <Translate id="footer" />
+            <FormattedMessage id="footer" />
           </h1>
           <div className="columns is-multiline">
 
             <div className="column is-12">
-              <h2 className="subtitle"><Translate id="showsponsors" /></h2>
+              <h2 className="subtitle"><FormattedMessage id="showsponsors" /></h2>
 
               <div className="content">
-                <button onClick={() => { firebase.update('/settings', { showSponsors: true }); }} className={`button ${showingSponsors && 'is-info'}`}><Translate id="yes" /></button>
-                <button onClick={() => { firebase.update('/settings', { showSponsors: false }); }} className={`button ${!showingSponsors && 'is-info'}`}><Translate id="no" /></button>
+                <button onClick={() => { firebase.update('/settings', { showSponsors: true }); }} className={`button ${showingSponsors && 'is-info'}`}><FormattedMessage id="yes" /></button>
+                <button onClick={() => { firebase.update('/settings', { showSponsors: false }); }} className={`button ${!showingSponsors && 'is-info'}`}><FormattedMessage id="no" /></button>
               </div>
             </div>
 
@@ -56,14 +56,14 @@ export default class PrivacyPolicyEditor extends Component<Props> {
               {uploadedFooterItems &&
                 <div>
                   <h1 className="title">
-                    <Translate id="uploadedfiles" />:
+                    <FormattedMessage id="uploadedfiles" />:
                   </h1>
                   <table className="table">
                     <thead>
                       <tr>
-                        <th><Translate id="image" /></th>
-                        <th><Translate id="filename" /></th>
-                        <th><Translate id="actions" /></th>
+                        <th><FormattedMessage id="image" /></th>
+                        <th><FormattedMessage id="filename" /></th>
+                        <th><FormattedMessage id="actions" /></th>
                       </tr>
                     </thead>
                     {
@@ -88,18 +88,18 @@ export default class PrivacyPolicyEditor extends Component<Props> {
 
                                 {!imageChosen &&
                                   <button className="button is-info is-outlined" onClick={() => { firebase.update(`/settings/footer/${key}`, { image: file.downloadURL }); }}>
-                                    <Translate id="activate" />
+                                    <FormattedMessage id="activate" />
                                   </button>
                                 }
                                 {imageChosen &&
                                   <button className="button is-warning is-outlined" onClick={() => { firebase.update('/settings/footer', { [key]: null }); }}>
-                                    <Translate id="deactivate" />
+                                    <FormattedMessage id="deactivate" />
                                   </button>
                                 }
 
                                 {!imageChosen &&
                                 <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                                  <Translate id="deletefile" />
+                                  <FormattedMessage id="deletefile" />
                                 </button>
                                 }
 
@@ -119,7 +119,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
             </div>
 
             <div className="column is-12">
-              <h1 className="title"><Translate id="chosensponsors" /> :</h1>
+              <h1 className="title"><FormattedMessage id="chosensponsors" /> :</h1>
               <div className="columns is-multiline">
                 {settings.footer && Object.entries(settings.footer).map((footerEntry) => {
 
@@ -159,7 +159,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
 
                         <div className="card-footer buttons is-right">
                           <button className="button is-warning is-outlined" onClick={() => { firebase.update('/settings/footer', { [key]: null }); }}>
-                            <Translate id="deactivate" />
+                            <FormattedMessage id="deactivate" />
                           </button>
                         </div>
                       </div>
@@ -176,6 +176,6 @@ export default class PrivacyPolicyEditor extends Component<Props> {
       );
 
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

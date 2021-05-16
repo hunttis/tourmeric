@@ -1,9 +1,8 @@
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { withLocalize } from 'react-localize-redux';
+import { compose } from "redux";
+import { connect } from "react-redux";
 
-import Today from './Today';
-import { ReduxState } from '../../../models/ReduxState';
+import Today from "./Today";
+import { ReduxState } from "../../../models/ReduxState";
 
 const componentWrapper = compose(
   connect((state: ReduxState) => ({
@@ -13,13 +12,12 @@ const componentWrapper = compose(
     categories: state.firebase.data.categories,
     userid: state.firebase.auth.uid,
     settings: state.firebase.data.settings,
-    languages: state.localize.languages,
     uploadedCategoryLogos: state.firebase.data.uploadedCategoryLogos,
     openinghoursexceptions: state.firebase.data.openinghoursexceptions,
   })),
-  connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withLocalize<any>(Today)) as React.ComponentType<any>;
+  connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile }))
+)(Today) as React.ComponentType<any>;
 
-componentWrapper.displayName = 'Today';
+componentWrapper.displayName = "Today";
 
 export default componentWrapper;

@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { isLoaded } from "react-redux-firebase";
 import _ from "lodash";
 import { History } from "history";
-import { Translate } from "react-localize-redux";
-{
-  /* import { Moment } from 'moment/min/moment-with-locales'; */
-}
+import { FormattedMessage } from "react-intl";
 import {
   removeClassFromHtml,
   addClassToHtml,
@@ -18,13 +15,14 @@ import {
   getOngoingEventsForDay,
   getEventsForDay,
 } from "../../../components/Common/EventUtils";
+import { format } from "date-fns";
 
 export interface Props {
   history: History;
   setReturnLocation: (returnLocation: string) => void;
   backToCalendar: () => void;
   showArrow: boolean;
-  momentForDay: Moment;
+  momentForDay: Date;
   isAdmin: boolean;
   openinghoursexceptions: { [key: string]: OpeningHoursException };
   categoryFilter: string[];
@@ -69,10 +67,12 @@ export class CalendarDayModal extends Component<Props, State> {
     }));
   }
 
-  async goToEventEditor(momentForDay: Moment) {
+  async goToEventEditor(momentForDay: Date) {
     const { history, setReturnLocation } = this.props;
     await setReturnLocation(history.location.pathname);
-    history.push(`/admin/events/newevent/${momentForDay.format("YYYY-MM-DD")}`);
+    history.push(
+      `/admin/events/newevent/${format(momentForDay, "yyyy-MM-dd")}`
+    );
   }
 
   updateScrollRef = (element: HTMLDivElement) => {
@@ -103,7 +103,7 @@ export class CalendarDayModal extends Component<Props, State> {
 
     const exceptionForDayExists =
       isLoaded(openinghoursexceptions) &&
-      openinghoursexceptions[momentForDay.format("YYYY-MM-DD")];
+      openinghoursexceptions[format(momentForDay, "yyyy-MM-dd")];
 
     const eventsForDay = _.sortBy(
       getEventsForDay(momentForDay, true),
@@ -133,7 +133,7 @@ export class CalendarDayModal extends Component<Props, State> {
             <div className="columns is-multiline">
               <div className="column is-6">
                 <h2 className="subtitle is-capitalized">
-                  {momentForDay.format("dddd, MMMM YYYY")}
+                  {format(momentForDay, "EEEE, d. MMMM yyyy")}
                 </h2>
               </div>
               <div className="column is-6 has-text-right">
@@ -146,13 +146,13 @@ export class CalendarDayModal extends Component<Props, State> {
                   >
                     <i className="fas fa-calendar" />
                     &nbsp;
-                    <Translate id="addevent" />
+                    <FormattedMessage id="addevent" />
                   </button>
                 )}
               </div>
               {!editingException && (
                 <div className="column is-8">
-                  <OpeningHours day={momentForDay.format("YYYY-MM-DD")} />
+                  <OpeningHours day={format(momentForDay, "yyyy-MM-dd")} />
                 </div>
               )}
               {editingException && (
@@ -178,17 +178,18 @@ export class CalendarDayModal extends Component<Props, State> {
                     </span>
                     {!editingException && exceptionForDayExists && (
                       <span>
-                        <Translate id="modifyexception" />
+                        <FormattedMessage id="modifyexception" />
                       </span>
                     )}
                     {!editingException && !exceptionForDayExists && (
                       <span>
-                        <Translate id="addexception" />
+                        <FormattedMessage id="addexception" />
                       </span>
                     )}
                     {editingException && (
                       <span>
-                        <Translate id="exception" /> <Translate id="done" />
+                        <FormattedMessage id="exception" />{" "}
+                        <FormattedMessage id="done" />
                       </span>
                     )}
                   </button>
@@ -198,13 +199,13 @@ export class CalendarDayModal extends Component<Props, State> {
             <p>&nbsp;</p>
             {_.isEmpty(allEventsForDay) && (
               <p>
-                <Translate id="noeventsforthisday" />
+                <FormattedMessage id="noeventsforthisday" />
               </p>
             )}
             {!_.isEmpty(allEventsForDay) && (
               <>
                 <h2 className="subtitle">
-                  <Translate id="eventsfortoday" />
+                  <FormattedMessage id="eventsfortoday" />
                 </h2>
                 <div>
                   {allEventsForDay.map((eventEntry, index) => {

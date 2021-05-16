@@ -1,5 +1,4 @@
 import React from "react";
-import momentEn from "moment";
 import _ from "lodash";
 import { Settings } from "../../../models/Settings";
 import { OpeningHoursException } from "../../../models/OpeningHours";
@@ -74,7 +73,7 @@ const CalendarDay = ({
 }: CalendarDay) => {
   let dayClass = "";
   const today = new Date();
-  const dayMoment = parse(day.dayLink || "", "YYYY/MM/DD", new Date()); // TODO Needs re-thinking?
+  const dayMoment = parse(day.dayLink || "", "yyyy/MM/dd", new Date()); // TODO Needs re-thinking?
   if (isSameDay(dayMoment, today)) {
     dayClass = "today-card";
   } else if (isBefore(dayMoment, today)) {

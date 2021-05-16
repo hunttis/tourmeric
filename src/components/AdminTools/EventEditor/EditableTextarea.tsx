@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 
 interface Props {
@@ -40,22 +40,21 @@ export default class EditableTextarea extends Component<Props> {
       <div className={`field ${isHorizontal && 'is-horizontal'}`}>
         <div className={`${!isHorizontal && 'label'} ${isHorizontal && 'field-label is-normal'}`}>
           <label className={`label ${!isOk && 'has-text-danger'}`}>
-            <Translate id={labelContent} />
+            <FormattedMessage id={labelContent} />
           </label>
         </div>
         <div className="field-body">
           <div className="field">
             <div className="control is-expanded has-icons-right">
-              <Translate>
-                {({ translate }) => (<textarea
+              
+                <textarea
                   className={`textarea ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
                   placeholder={`${translate(placeHolder)}`}
                   defaultValue={defaultValue}
                   rows={rows}
                   onChange={(event) => this.handleChange(path, { [targetName]: event.target.value })}
-                />)
-                }
-              </Translate>
+                />
+              
               {saved && <span className="icon is-small is-right is-fixed-bottom has-text-success"><i className="fas fa-check-circle" /></span>}
               {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
             </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
@@ -38,11 +38,11 @@ export default class ChooseFavoriteCategories extends Component<Props> {
     return (
       <>
         <h2 className="subtitle">
-          <Translate id="chooseyourfavorites" />
+          <FormattedMessage id="chooseyourfavorites" />
         </h2>
         <div className="content">
-          <p><Translate id="thesewillbeinyourtodayviewanddefaultfilterforevents" /></p>
-          <p><Translate id="choosingnonewillfilternothing" /></p>
+          <p><FormattedMessage id="thesewillbeinyourtodayviewanddefaultfilterforevents" /></p>
+          <p><FormattedMessage id="choosingnonewillfilternothing" /></p>
         </div>
         {Object.entries(categories).map((categoryEntry) => {
           const categoryId = categoryEntry[0];

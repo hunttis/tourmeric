@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Translate } from "react-localize-redux";
+import { FormattedMessage } from "react-intl";
 import _ from "lodash";
 import { participantCount, adminparticipate } from "../../../api/eventApi";
 import { User, Participation } from "../../../models/ReduxState";
@@ -104,7 +104,7 @@ export default class SingleEventParticipation extends Component<
                     }}
                   >
                     <option value="">
-                      <Translate id="select" />
+                      <FormattedMessage id="select" />
                     </option>
                     {users.map((userEntry) => {
                       const userId = userEntry.key;
@@ -136,7 +136,7 @@ export default class SingleEventParticipation extends Component<
                     )
                   }
                 >
-                  <Translate id="adduserparticipation" />
+                  <FormattedMessage id="adduserparticipation" />
                 </button>
               </div>
             </div>
@@ -144,13 +144,13 @@ export default class SingleEventParticipation extends Component<
         </div>
         <div className="columns">
           <div className="column is-2">
-            <Translate id="addplaceholderuser" />
+            <FormattedMessage id="addplaceholderuser" />
           </div>
           <div className="column is-4">
             <div className="field is-horizontal">
               <div className="field-label is-normal">
                 <label className="label">
-                  <Translate id="firstname" />
+                  <FormattedMessage id="firstname" />
                 </label>
               </div>
               <div className="field-body">
@@ -167,7 +167,7 @@ export default class SingleEventParticipation extends Component<
             <div className="field is-horizontal">
               <div className="field-label is-normal">
                 <label className="label">
-                  <Translate id="lastname" />
+                  <FormattedMessage id="lastname" />
                 </label>
               </div>
               <div className="field-body">
@@ -185,7 +185,7 @@ export default class SingleEventParticipation extends Component<
               className="button"
               onClick={() => this.savePlaceholderuser()}
             >
-              <Translate id="add" />
+              <FormattedMessage id="add" />
             </button>
           </div>
         </div>

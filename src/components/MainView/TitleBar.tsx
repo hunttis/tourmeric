@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { Translate, setActiveLanguage } from "react-localize-redux";
+import { FormattedMessage } from "react-intl";
 import { isLoaded, isEmpty } from "react-redux-firebase";
 import { Dispatch } from "redux";
 import Highlights from "../../components/HighLights/HighLights-container";
@@ -103,7 +103,7 @@ export default class TitleBar extends Component<Props> {
       <div className="title has-text-centered">
         <div className="level" />
         <button disabled className="button is-loading is-black">
-          <Translate id="loading" />.
+          <FormattedMessage id="loading" />.
         </button>
       </div>
     );

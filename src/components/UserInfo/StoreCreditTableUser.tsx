@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 
 import { StoreCreditRowUser } from './StoreCreditRowUser';
 import { TourmericStoreCreditData } from '../../models/StoreCredit';
@@ -28,10 +28,10 @@ export default class StoreCreditTableUser extends Component<Props> {
         <table className="table is-bordered is-fullwidth">
           <thead>
             <tr>
-              <th><Translate id="date" /></th>
-              <th><Translate id="entrymadeby" /></th>
-              <th><Translate id="note" /></th>
-              <th><Translate id="value" /></th>
+              <th><FormattedMessage id="date" /></th>
+              <th><FormattedMessage id="entrymadeby" /></th>
+              <th><FormattedMessage id="note" /></th>
+              <th><FormattedMessage id="value" /></th>
             </tr>
           </thead>
           <tbody>
@@ -44,7 +44,7 @@ export default class StoreCreditTableUser extends Component<Props> {
           <tfoot>
             <tr>
               <th colSpan={3} className="has-text-right">
-                <Translate id="total" />
+                <FormattedMessage id="total" />
               </th>
               <th>
                 {calculatedTotal} €

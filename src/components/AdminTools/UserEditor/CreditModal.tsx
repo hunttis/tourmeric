@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isLoaded } from 'react-redux-firebase';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import StoreCreditTable from '../StoreCredit/StoreCreditTable-container';
@@ -70,26 +70,24 @@ export default class CreditModal extends Component<Props, State> {
             }
           </div>
           <div className="box">
-            <h2 className="subtitle"><Translate id="newcreditrow" /></h2>
+            <h2 className="subtitle"><FormattedMessage id="newcreditrow" /></h2>
             <div className="field">
-              <label className="label"><Translate id="note" /></label>
-              <Translate>
-                {({ translate }) => (
+              <label className="label"><FormattedMessage id="note" /></label>
+              
+                
                   <input className="input" type="text" value={this.state.creditFormNote} placeholder={`${translate('creditmessage')}`} onChange={(event) => this.changeCreditNote(event)} />
-                )}
-              </Translate>
+              
             </div>
             <div className="field">
-              <label className="label"><Translate id="creditamount" /></label>
-              <Translate>
-                {({ translate }) => (
+              <label className="label"><FormattedMessage id="creditamount" /></label>
+              
+                
                   <input className="input" type="number" value={this.state.creditFormAmount} placeholder={`${translate('creditamount')}`} onChange={(event) => this.changeCreditAmount(event)} />
-                )}
-              </Translate>
+              
             </div>
             <div className="field">
-              <label className="label"><Translate id="itemcategory" /></label>
-              <button className={`button is-white ${this.state.creditCategory !== '' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: 'white' }); }}><Translate id="none" /></button>
+              <label className="label"><FormattedMessage id="itemcategory" /></label>
+              <button className={`button is-white ${this.state.creditCategory !== '' && 'is-outlined'}`} onClick={() => { this.setState({ creditCategory: 'white' }); }}><FormattedMessage id="none" /></button>
               {storecreditcategories && Object.entries(storecreditcategories).map((categoryEntry, index) => {
                 const categoryColor = categoryEntry[0];
                 const mappedColor = this.parseMappedColor(categoryEntry[0]);
@@ -103,14 +101,14 @@ export default class CreditModal extends Component<Props, State> {
                 disabled={this.state.creditFormAmount === 0 || this.state.creditFormNote.length === 0}
                 onClick={() => this.saveCredit(userId, this.state.creditFormNote, `${this.state.creditFormAmount}`, this.state.creditCategory)}
               >
-                <Translate id="save" />
+                <FormattedMessage id="save" />
               </button>
             </div>
           </div>
         </>
       );
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
 
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import firebase from 'firebase/app';
 import { participantCount } from '../../../api/eventApi';
@@ -41,11 +41,11 @@ export default class EventParticipants extends Component<Props> {
     return (
       <div className="column is-12 columns is-multiline">
         {!hasParticipants &&
-          <div><Translate id="noparticipants" /></div>
+          <div><FormattedMessage id="noparticipants" /></div>
         }
         {hasParticipants &&
           <div className="column is-8">
-            <h2 className="subtitle">{participantCount(eventId, participations)} / {event.playerSlots} <Translate id="participants" /></h2>
+            <h2 className="subtitle">{participantCount(eventId, participations)} / {event.playerSlots} <FormattedMessage id="participants" /></h2>
           </div>
         }
         <div className="column is-12">

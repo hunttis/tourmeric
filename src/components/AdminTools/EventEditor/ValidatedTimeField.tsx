@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import { checkTimeStringFormat } from '../../Common/Utils';
 
@@ -65,23 +65,22 @@ export default class ValidatedTimeField extends Component<Props, State> {
         <div className={`field ${isHorizontal && 'is-horizontal'}`}>
           <div className="field-label is-normal">
             <label className={`label ${!timeOk && 'has-text-danger'}`}>
-              <Translate id={labelContent} /> {'(24h -> 18:30)'}
+              <FormattedMessage id={labelContent} /> {'(24h -> 18:30)'}
             </label>
           </div>
 
           <div className="field-body">
             <div className="field">
               <p className="control is-expanded has-icons-right">
-                <Translate>
-                  {({ translate }) => (<input
+                
+                  <input
                     type="text"
                     className={`input ${!timeOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
                     placeholder={`${translate('hour')}`}
                     defaultValue={this.state.time}
                     onChange={(event) => this.updateTime(event.target.value)}
-                  />)
-                  }
-                </Translate>
+                  />
+                
                 {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
                 {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
               </p>

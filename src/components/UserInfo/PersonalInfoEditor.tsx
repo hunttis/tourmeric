@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import EditableVerticalField from '../Common/EditableVerticalField-container';
@@ -12,17 +12,17 @@ interface Props {
 
 export const PersonalInfoEditor = ({ profile, auth }: Props) => (
   <>
-    <h1 className="title"><Translate id="personalinfo" /></h1>
+    <h1 className="title"><FormattedMessage id="personalinfo" /></h1>
     <div className="columns is-multiline">
 
       <div className="column is-12 has-text-info">
-        <p><Translate id="alltheinformationenteredhereissavedautomatically" /></p>
+        <p><FormattedMessage id="alltheinformationenteredhereissavedautomatically" /></p>
       </div>
 
       <div className="column is-12">
         <hr />
         <h2 className="subtitle">
-          <Translate id="name" />
+          <FormattedMessage id="name" />
         </h2>
       </div>
 
@@ -53,7 +53,7 @@ export const PersonalInfoEditor = ({ profile, auth }: Props) => (
       <div className="column is-12">
         <hr />
         <h2 className="subtitle">
-          <Translate id="emailinfo" />
+          <FormattedMessage id="emailinfo" />
         </h2>
       </div>
 
@@ -74,11 +74,11 @@ export const PersonalInfoEditor = ({ profile, auth }: Props) => (
       <div className="column is-12">
         <div className="level">
           <div className="level-left">
-            <Translate id="useotheremail" />:
+            <FormattedMessage id="useotheremail" />:
           </div>
           <div className="level-right">
-            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { useOtherEmail: true }); }} className={`button ${profile.useOtherEmail && 'is-success'}`}><Translate id="yes" /></button>
-            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { useOtherEmail: false }); }} className={`button ${!profile.useOtherEmail && 'is-danger'}`}><Translate id="no" /></button>
+            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { useOtherEmail: true }); }} className={`button ${profile.useOtherEmail && 'is-success'}`}><FormattedMessage id="yes" /></button>
+            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { useOtherEmail: false }); }} className={`button ${!profile.useOtherEmail && 'is-danger'}`}><FormattedMessage id="no" /></button>
           </div>
         </div>
       </div>
@@ -100,12 +100,12 @@ export const PersonalInfoEditor = ({ profile, auth }: Props) => (
       <div className="column is-12">
         <div className="level">
           <div className="level-left">
-            <Translate id="youcansendmeanewsletter" />:
+            <FormattedMessage id="youcansendmeanewsletter" />:
           </div>
 
           <div className="level-right">
-            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { acceptsNewsletter: true }); }} className={`button ${profile.acceptsNewsLetter && 'is-success'}`}><Translate id="yes" /></button>
-            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { acceptsNewsletter: false }); }} className={`button ${!profile.acceptsNewsLetter && 'is-danger'}`}><Translate id="no" /></button>
+            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { acceptsNewsletter: true }); }} className={`button ${profile.acceptsNewsLetter && 'is-success'}`}><FormattedMessage id="yes" /></button>
+            <button onClick={() => { firebase.update(`/users/${auth.uid}`, { acceptsNewsletter: false }); }} className={`button ${!profile.acceptsNewsLetter && 'is-danger'}`}><FormattedMessage id="no" /></button>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@ export const PersonalInfoEditor = ({ profile, auth }: Props) => (
       <div className="column is-12">
         <hr />
         <h2 className="subtitle">
-          <Translate id="otherinfo" />
+          <FormattedMessage id="otherinfo" />
         </h2>
       </div>
 

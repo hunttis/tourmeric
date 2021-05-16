@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import { HighLight } from '../../../models/ReduxState';
 
@@ -28,17 +28,17 @@ export const HighlightEditorItem = ({ highlightEntry, openModal }: Props) => {
         </div>
 
         <div className="column is-1">
-          <button className="button" onClick={() => openModal(highlightId, highlight)}><Translate id="edit" /></button>
+          <button className="button" onClick={() => openModal(highlightId, highlight)}><FormattedMessage id="edit" /></button>
         </div>
         <div className="column is-1">
-          <button className="button is-danger" onClick={() => deleteHighlight(highlightId)}><Translate id="delete" /></button>
+          <button className="button is-danger" onClick={() => deleteHighlight(highlightId)}><FormattedMessage id="delete" /></button>
         </div>
         <div className="column is-1">
           {highlight.active &&
-            <button className="button is-warning" onClick={() => setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
+            <button className="button is-warning" onClick={() => setActiveStatus(highlightId, false)}><FormattedMessage id="deactivate" /></button>
           }
           {!highlight.active &&
-            <button className="button is-success" onClick={() => setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
+            <button className="button is-success" onClick={() => setActiveStatus(highlightId, true)}><FormattedMessage id="activate" /></button>
           }
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import FileHandler from './FileHandler-container';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 import { Settings } from '../../../models/Settings';
@@ -12,7 +12,7 @@ export const PageTitles = ({ settings }: Props) => (
   <div className="columns is-multiline">
     <div className="column is-12">
       <h1 className="title">
-        <Translate id="pagetitles" />
+        <FormattedMessage id="pagetitles" />
       </h1>
     </div>
 

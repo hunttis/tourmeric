@@ -1,10 +1,9 @@
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import _ from 'lodash';
-import { withLocalize } from 'react-localize-redux';
+import { connect } from "react-redux";
+import { compose } from "redux";
+import _ from "lodash";
 
-import { SingleEvent } from './SingleEvent';
-import { ReduxState } from '../../../models/ReduxState';
+import { SingleEvent } from "./SingleEvent";
+import { ReduxState } from "../../../models/ReduxState";
 
 export default compose(
   connect((state: ReduxState) => ({
@@ -15,8 +14,8 @@ export default compose(
     userid: state.firebase.auth.uid,
     settings: state.firebase.data.settings,
     languages: state.localize.languages,
-    isAdmin: _.get(state, 'firebase.profile.role', 'user') === 'admin',
+    isAdmin: _.get(state, "firebase.profile.role", "user") === "admin",
     users: state.firebase.data.users,
   })),
-  connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withLocalize<any>(SingleEvent)) as React.ComponentType<any>;
+  connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile }))
+)(SingleEvent) as React.ComponentType<any>;

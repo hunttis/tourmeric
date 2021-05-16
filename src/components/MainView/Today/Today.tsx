@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { isLoaded } from "react-redux-firebase";
 import { Translate, Language } from "react-localize-redux";
+import { FormattedMessage } from "react-intl";
 import _ from "lodash";
 import News from "./News-container";
 import EventCard from "../../EventList/EventCard/EventCard-container";
@@ -88,7 +89,7 @@ export default class Today extends Component<Props, State> {
               <div className="level">
                 <div className="level-left">
                   <h1 className="title">
-                    <Translate id="events" />
+                    <FormattedMessage id="events" />
                   </h1>
                 </div>
                 <div className="level-right">
@@ -132,7 +133,7 @@ export default class Today extends Component<Props, State> {
               ))}
               {!eventsToDisplay && (
                 <div className="has-text-warning">
-                  <Translate id="noevents" />
+                  <FormattedMessage id="noevents" />
                 </div>
               )}
             </div>

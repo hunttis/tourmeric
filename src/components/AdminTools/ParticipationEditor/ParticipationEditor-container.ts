@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withLocalize } from 'react-localize-redux';
+import { injectIntl } from 'react-intl';
 import { firebaseConnect } from 'react-redux-firebase';
 import ParticipationEditor from './ParticipationEditor';
 import { ReduxState } from '../../../models/ReduxState';
@@ -18,4 +18,4 @@ export default compose(
     settings: state.firebase.data.settings,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withLocalize<any>(ParticipationEditor)) as React.ComponentType<any>;
+)(injectIntl<any>(ParticipationEditor)) as React.ComponentType<any>;

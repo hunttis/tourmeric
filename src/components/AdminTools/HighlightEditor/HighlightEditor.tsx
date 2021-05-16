@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import firebase from 'firebase/app';
 import moment from 'moment';
@@ -57,9 +57,9 @@ export default class HighlightEditor extends Component<Props, State> {
       <table className="table">
         <thead>
           <tr>
-            <th><Translate id="image" /></th>
-            <th><Translate id="filename" /></th>
-            <th><Translate id="actions" /></th>
+            <th><FormattedMessage id="image" /></th>
+            <th><FormattedMessage id="filename" /></th>
+            <th><FormattedMessage id="actions" /></th>
           </tr>
         </thead>
         {
@@ -79,7 +79,7 @@ export default class HighlightEditor extends Component<Props, State> {
                   </td>
                   <td>
                     <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                      <Translate id="deletefile" />
+                      <FormattedMessage id="deletefile" />
                     </button>
                   </td>
                 </tr>
@@ -100,7 +100,7 @@ export default class HighlightEditor extends Component<Props, State> {
 
           <div className="level is-mobile">
             <div className="level-left">
-              <button className="button" onClick={() => this.createNewHighlight()}><Translate id="newhighlight" /></button>
+              <button className="button" onClick={() => this.createNewHighlight()}><FormattedMessage id="newhighlight" /></button>
             </div>
             <div className="level-right">
               <FileDropper path={filesPath} />
@@ -129,12 +129,12 @@ export default class HighlightEditor extends Component<Props, State> {
             />)
           }
 
-          {isEmpty(highlights) && <div><Translate id="nohighlightscreated" /></div>}
+          {isEmpty(highlights) && <div><FormattedMessage id="nohighlightscreated" /></div>}
           {!isEmpty(uploadedHighlightBanners) && this.listHighlightImages()}
         </>
       );
 
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

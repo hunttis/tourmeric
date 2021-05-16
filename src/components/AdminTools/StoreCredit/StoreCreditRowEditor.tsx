@@ -1,7 +1,7 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import moment from 'moment';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { History } from 'history';
 import {
   StoreCreditCategory, TourmericStoreCreditData,
@@ -23,13 +23,13 @@ export const StoreCreditRowEditor = ({ dataId, data, isAdmin, history }: Props) 
     <table>
       <thead>
         <tr>
-          <th><Translate id="date" /></th>
-          <th><Translate id="entrymadeby" /></th>
-          <th><Translate id="note" /></th>
-          <th><Translate id="value" /></th>
-          {/* <th><Translate id="setcategory" /></th> */}
+          <th><FormattedMessage id="date" /></th>
+          <th><FormattedMessage id="entrymadeby" /></th>
+          <th><FormattedMessage id="note" /></th>
+          <th><FormattedMessage id="value" /></th>
+          {/* <th><FormattedMessage id="setcategory" /></th> */}
           {isAdmin &&
-          <th><Translate id="edit" /></th>
+          <th><FormattedMessage id="edit" /></th>
               }
         </tr>
       </thead>

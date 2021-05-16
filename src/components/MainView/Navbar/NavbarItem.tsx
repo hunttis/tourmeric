@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -16,6 +16,6 @@ export const NavbarItem = ({ linkTarget, translationKey, icon, styleClass }: Pro
       <i className={`fas ${icon}`} />
     </span>
     &nbsp;&nbsp;
-    <Translate id={translationKey} />
+    <FormattedMessage id={translationKey} />
   </Link>
 );

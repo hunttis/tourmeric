@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 
 import { Location, History } from 'history';
@@ -35,7 +35,7 @@ const ArticleCard = ({ articleId, articleData, settings, firstParagraph, history
     </div>
     <div className="card-footer">
       <div className="card-footer-item">
-        <button className="button" onClick={() => history.push(`/articles/view/${articleId}`)}><Translate id="read" /></button>
+        <button className="button" onClick={() => history.push(`/articles/view/${articleId}`)}><FormattedMessage id="read" /></button>
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@ export const ArticleListing = ({ settings, articles, history }: Props) => (
     {settings &&
     <>
       {!articles &&
-      <div className="content"><p><Translate id="noarticlesyet" /></p></div>
+      <div className="content"><p><FormattedMessage id="noarticlesyet" /></p></div>
       }
       {articles && _.reverse(_.sortBy(Object.entries(articles), (article) => article[1].createDate)).map((article, index) => {
         const articleId = article[0];

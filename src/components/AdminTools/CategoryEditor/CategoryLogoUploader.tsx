@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { map } from 'lodash';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import 'firebase/storage';
 import FileDropper from '../FileDropper';
 import { UploadedFile } from '../../../models/Category';
@@ -39,14 +39,14 @@ export default class CategoryLogoUploader extends Component<Props> {
               uploadedCategoryLogos &&
               <div>
                 <h1 className="title">
-                  <Translate id="uploadedfiles" />:
+                  <FormattedMessage id="uploadedfiles" />:
                 </h1>
                 <table className="table">
                   <thead>
                     <tr>
-                      <th><Translate id="image" /></th>
-                      <th><Translate id="filename" /></th>
-                      <th><Translate id="actions" /></th>
+                      <th><FormattedMessage id="image" /></th>
+                      <th><FormattedMessage id="filename" /></th>
+                      <th><FormattedMessage id="actions" /></th>
                     </tr>
                   </thead>
                   {
@@ -66,7 +66,7 @@ export default class CategoryLogoUploader extends Component<Props> {
                             </td>
                             <td>
                               <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                                <Translate id="deletefile" />
+                                <FormattedMessage id="deletefile" />
                               </button>
                             </td>
                           </tr>

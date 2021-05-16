@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 
 
@@ -69,23 +69,22 @@ export default class EditableVerticalField extends Component<Props, State> {
       <div className="field">
         {labelContent &&
           <label className={`label ${disabled && 'has-text-info'}`}>
-            <Translate id={labelContent} />
+            <FormattedMessage id={labelContent} />
           </label>
         }
         <div className="field">
           <p className={`control is-expanded ${idleIcon ? 'has-icons-left' : 'has-icons-right'}`}>
 
-            <Translate>
-              {({ translate }) => (<input
+            
+              <input
                 type={inputType || 'text'}
                 className={`input ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'} ${emptyClass && !fieldValue ? 'is-danger' : ''} ${disabled && 'has-text-info'}`}
                 placeholder={`${translate(placeHolder)}`}
                 defaultValue={defaultValue}
                 onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                 disabled={disabled}
-              />)
-              }
-            </Translate>
+              />
+            
             {(idleIcon && !saved && !editing) && <span className="icon is-small is-left"><i className={`fas ${idleIcon} ${disabled && 'has-text-black'}`} /></span>}
             {saved &&
               <span className={`icon is-small ${idleIcon ? 'is-left' : 'is-right'} ${emptyClass && !fieldValue ? 'has-text-danger' : 'has-text-success'}`}>

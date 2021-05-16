@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import { History } from 'history';
 import { Dispatch, AnyAction } from 'redux';
@@ -32,7 +32,7 @@ export const ParticipateButton = ({
     return (
       <div>
         <button className="cancelbutton button is-rounded is-danger" onClick={() => cancelParticipation(eventId, userId)}>
-          <p><Translate id="cancelparticipate" /></p>
+          <p><FormattedMessage id="cancelparticipate" /></p>
           <span className="icon">
             <i className="fas fa-sign-out-alt" />
           </span>
@@ -45,10 +45,10 @@ export const ParticipateButton = ({
     return (
       <button className="participatebutton button is-rounded is-primary" onClick={() => participate(eventId, userId, profile.firstName, profile.lastName)}>
         {!eventFull &&
-          <p><Translate id="participate" /></p>
+          <p><FormattedMessage id="participate" /></p>
         }
         {eventFull &&
-          <p><Translate id="participateforwaitlist" /></p>
+          <p><FormattedMessage id="participateforwaitlist" /></p>
         }
 
         <span className="icon">
@@ -64,6 +64,6 @@ export const ParticipateButton = ({
         history.push('/login');
       }}
     >
-      <Translate id="signintoparticipate" />
+      <FormattedMessage id="signintoparticipate" />
     </button>);
 };

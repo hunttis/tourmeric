@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import { FirebaseProfile, FirebaseAuth, PageOption } from '../../models/ReduxState';
@@ -55,20 +55,19 @@ export default class ChooseLandingPage extends Component<Props, State> {
 
     return (
       <>
-        <h1 className="title"><Translate id="chooseyourlandingpage" /></h1>
+        <h1 className="title"><FormattedMessage id="chooseyourlandingpage" /></h1>
         <div className="field">
           <label className="label">
-            <Translate id="page" />
+            <FormattedMessage id="page" />
           </label>
           <div className="field-body">
-            <Translate>
-              {({ translate }) => (
+            
+              
                 <select className="input" defaultValue={landingPage} onChange={(event) => this.changeLandingPage(event.target.value as PageOption)}>
                   <option>{translate('select')}</option>
                   {Object.keys(this.pageOptions).map((pageOption, index) => <option key={`pageoption-${index}`} value={pageOption}>{translate(pageOption)}</option>)}
                 </select>
-              )}
-            </Translate>
+            
           </div>
         </div>
         <p>&nbsp;</p>
@@ -76,17 +75,16 @@ export default class ChooseLandingPage extends Component<Props, State> {
           <>
             <div className="field">
               <label className="label">
-                <Translate id="page" />
+                <FormattedMessage id="page" />
               </label>
               <div className="field-body">
-                <Translate>
-                  {({ translate }) => (
+                
+                  
                     <select className="input" defaultValue={landingSubpage!} onChange={(event) => this.changeLandingSubpage(event.target.value)}>
                       <option>{translate('select')}</option>
                       {_.get(this.pageOptions, landingPage, []).map((subpageOption: string, index: number) => <option key={`subpageoption-${index}`} value={subpageOption}>{translate(subpageOption)}</option>)}
                     </select>
-                  )}
-                </Translate>
+                
               </div>
             </div>
           </>
@@ -95,22 +93,21 @@ export default class ChooseLandingPage extends Component<Props, State> {
           <>
             <div className="field">
               <label className="label">
-                <Translate id="subpage" />
+                <FormattedMessage id="subpage" />
               </label>
               <div className="field-body">
-                <Translate>
-                  {({ translate }) => (
+                
+                  
                     <select disabled className="input" defaultValue={landingSubpage!} onChange={(event) => this.changeLandingSubpage(event.target.value)}>
                       <option>{translate('nosubpage')}</option>
                     </select>
-                  )}
-                </Translate>
+                
               </div>
             </div>
           </>
         }
         <button className="button" onClick={() => this.saveLandingpage()}>
-          <Translate id="savelandingpage" />
+          <FormattedMessage id="savelandingpage" />
         </button>
       </>
     );

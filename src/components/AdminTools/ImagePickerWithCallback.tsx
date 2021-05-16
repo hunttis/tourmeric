@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { UploadedFile } from '../../models/Category';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 export const ImagePickerWithCallback = ({ imageList, onClickCallback }: Props) => {
 
   if (!imageList || _.isEmpty(imageList)) {
-    return <div><Translate id="noimages" /></div>;
+    return <div><FormattedMessage id="noimages" /></div>;
   }
 
   return (

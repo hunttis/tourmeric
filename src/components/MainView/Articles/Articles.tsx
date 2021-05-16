@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 
 import { Location, History } from 'history';
@@ -22,7 +22,7 @@ export const Articles = ({ articles, history, location, isAdmin, settings }: Pro
   if (!isLoaded(articles) || !isLoaded(settings)) {
     return (
       <div className="section has-text-centered">
-        <div className="button is-loading"><Translate id="loading" /></div>
+        <div className="button is-loading"><FormattedMessage id="loading" /></div>
       </div>
     );
   }
@@ -33,16 +33,16 @@ export const Articles = ({ articles, history, location, isAdmin, settings }: Pro
       <div className="section">
         <div className="level">
           <div className="level-left">
-            <h1 className="title"><Translate id="articles" /></h1>
+            <h1 className="title"><FormattedMessage id="articles" /></h1>
           </div>
           <div className="level-right">
             {!rootView &&
-            <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}><Translate id="backtoarticlelist" /></button>
+            <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}><FormattedMessage id="backtoarticlelist" /></button>
           }
             {isAdmin &&
             <button className="button is-warning is-outlined" onClick={() => { history.push('/admin/tools/articles'); }}>
               <span className="icon"><i className="fas fa-pencil-alt" /></span>
-              <span>ADMIN: <Translate id="articleeditor" /></span>
+              <span>ADMIN: <FormattedMessage id="articleeditor" /></span>
             </button>
           }
           </div>
@@ -53,7 +53,7 @@ export const Articles = ({ articles, history, location, isAdmin, settings }: Pro
         </Switch>
         <div className="has-text-centered">
           {!rootView &&
-          <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}><Translate id="backtoarticlelist" /></button>
+          <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}><FormattedMessage id="backtoarticlelist" /></button>
         }
         </div>
       </div>

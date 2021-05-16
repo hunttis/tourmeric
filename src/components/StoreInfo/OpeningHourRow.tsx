@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import { Settings, OpeningHours } from '../../models/Settings';
 
@@ -15,22 +15,22 @@ export const OpeningHourRow = ({ settings, dayName }: Props) => {
   if (!storeIsOpen) {
     return (
       <tr>
-        <td><Translate id={dayName} /></td>
-        <td><Translate id="closed" /></td>
+        <td><FormattedMessage id={dayName} /></td>
+        <td><FormattedMessage id="closed" /></td>
       </tr>
     );
   }
   if (storeIsOpen) {
     return (
       <tr>
-        <td><Translate id={dayName} /></td>
+        <td><FormattedMessage id={dayName} /></td>
         <td>{openingHours![dayName as keyof OpeningHours]}</td>
       </tr>
     );
   }
   return (
     <tr>
-      <td><Translate id="error" /></td>
+      <td><FormattedMessage id="error" /></td>
     </tr>
   );
 };

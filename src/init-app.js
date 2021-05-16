@@ -2,10 +2,6 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { firebaseReducer, getFirebase } from "react-redux-firebase";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import {
-  localizeReducer,
-  addTranslationForLanguage,
-} from "react-localize-redux";
 
 import firebase from "firebase/app";
 import { connectRouter, routerMiddleware } from "connected-react-router";
@@ -36,7 +32,6 @@ export const history = createBrowserHistory();
 const createRootReducer = () =>
   combineReducers({
     firebase: firebaseReducer,
-    localize: localizeReducer,
     admin: eventReducer,
     editor: eventEditorReducer,
     router: connectRouter(history),
@@ -72,5 +67,5 @@ const defaultLanguage = "fi";
 
 // store.dispatch(initialize(languages, { defaultLanguage }));
 
-store.dispatch(addTranslationForLanguage(englishTranslations, "en"));
-store.dispatch(addTranslationForLanguage(finnishTranslations, "fi"));
+// store.dispatch(addTranslationForLanguage(englishTranslations, "en"));
+// store.dispatch(addTranslationForLanguage(finnishTranslations, "fi"));

@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { History } from 'history';
 import { Settings } from '../../models/Settings';
 import { TourmericEventEntry } from '../../models/Events';
@@ -30,13 +30,13 @@ export const EventParticipation = ({ eventEntry, settings, history }: Props) => 
               </div>
             </div>
             <div className="level-right">
-              <button className="button is-primary" onClick={() => history.push(`/event/${eventId}`)}><Translate id="moreinfo" /></button>
+              <button className="button is-primary" onClick={() => history.push(`/event/${eventId}`)}><FormattedMessage id="moreinfo" /></button>
             </div>
           </div>
         </div>
       </>
     );
   }
-  return <div><Translate id="loading" /></div>;
+  return <div><FormattedMessage id="loading" /></div>;
 
 };

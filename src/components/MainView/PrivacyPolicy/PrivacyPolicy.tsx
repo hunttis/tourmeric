@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import { Settings } from '../../../models/Settings';
 
@@ -42,7 +42,7 @@ export default class PrivacyPolicy extends Component<Props> {
             </div>
             {showAcceptance &&
               <div className="button">
-                <Translate id="accept" />
+                <FormattedMessage id="accept" />
               </div>
             }
           </div>
@@ -51,7 +51,7 @@ export default class PrivacyPolicy extends Component<Props> {
 
 
         <button className="button" onClick={() => this.openModal()}>
-          <Translate id="privacypolicy" />
+          <FormattedMessage id="privacypolicy" />
         </button>
       </>
     );

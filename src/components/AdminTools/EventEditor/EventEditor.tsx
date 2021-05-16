@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import Moment from 'react-moment';
 import moment from 'moment';
@@ -68,16 +68,16 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
   addPublishAndDeleteButtons(eventId: string, published: boolean, allFieldsOk: boolean) {
     return (
       <div>
-        <div><Translate id="published" />: {published ? <Translate id="yes" /> : <Translate id="no" />}</div>
+        <div><FormattedMessage id="published" />: {published ? <FormattedMessage id="yes" /> : <FormattedMessage id="no" />}</div>
 
         {published &&
-          <button className="button is-warning" onClick={() => firebase.update(`/events/${eventId}`, { published: false })}><Translate id="unpublish" /></button>
+          <button className="button is-warning" onClick={() => firebase.update(`/events/${eventId}`, { published: false })}><FormattedMessage id="unpublish" /></button>
         }
         {!published &&
-          <button className="button is-primary" disabled={!allFieldsOk} onClick={() => firebase.update(`/events/${eventId}`, { published: true })}><Translate id="publish" /></button>
+          <button className="button is-primary" disabled={!allFieldsOk} onClick={() => firebase.update(`/events/${eventId}`, { published: true })}><FormattedMessage id="publish" /></button>
         }
         {!published &&
-          <button className="button is-danger" onClick={() => firebase.set(`/events/${eventId}`, {})}><Translate id="delete" /></button>
+          <button className="button is-danger" onClick={() => firebase.set(`/events/${eventId}`, {})}><FormattedMessage id="delete" /></button>
         }
       </div>
     );
@@ -110,23 +110,23 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
       const hourNumber = parseInt(hour, 10);
 
       if (hourNumber >= 0 && hourNumber < 6) {
-        return <Translate id="night" />;
+        return <FormattedMessage id="night" />;
       }
 
       if (hourNumber >= 6 && hourNumber < 10) {
-        return <Translate id="morning" />;
+        return <FormattedMessage id="morning" />;
       }
 
       if (hourNumber >= 10 && hourNumber < 14) {
-        return <Translate id="daytime" />;
+        return <FormattedMessage id="daytime" />;
       }
 
       if (hourNumber >= 14 && hourNumber < 18) {
-        return <Translate id="afternoon" />;
+        return <FormattedMessage id="afternoon" />;
       }
 
       if (hourNumber >= 18 && hourNumber <= 23) {
-        return <Translate id="evening" />;
+        return <FormattedMessage id="evening" />;
       }
 
     } catch (error) {
@@ -154,14 +154,14 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
     return (
       <div className="column is-12 columns is-multiline editableevent box">
         <div className="column is-6">
-          <div className="has-text-right is-small is-disabled is-hidden"><Translate id="editing" /> <Translate id="eventid" />: {eventId}</div>
+          <div className="has-text-right is-small is-disabled is-hidden"><FormattedMessage id="editing" /> <FormattedMessage id="eventid" />: {eventId}</div>
         </div>
         <div className="column is-6">
 
           <div className="level">
             <div className="level-left" />
             <div className="level-right">
-              <button className="button is-right" onClick={() => this.props.toggleEventVisibility()}><Translate id="minimize" /></button>
+              <button className="button is-right" onClick={() => this.props.toggleEventVisibility()}><FormattedMessage id="minimize" /></button>
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
         </div>
 
         <div className="column is-12">
-          <h2 className="subtitle"><Translate id="time" /></h2>
+          <h2 className="subtitle"><FormattedMessage id="time" /></h2>
           <ValidatedTimeField
             isOk={this.state.timeOk}
             updateFieldStatus={this.updateFieldStatus}
@@ -223,7 +223,7 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
         </div>
 
         <div className="column is-12">
-          <h2 className="subtitle"><Translate id="date" /></h2>
+          <h2 className="subtitle"><FormattedMessage id="date" /></h2>
           <SingleDatePicker
             date={this.state.date ? moment(this.state.date, 'YYYY-MM-DD') : moment()}
             onDateChange={(date) => this.saveDate(date!.format('YYYY-MM-DD'))}
@@ -236,7 +236,7 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
         </div>
 
         <div className="column is-12">
-          <Translate id="abovedateinterpretedas" /> : <span className="has-text-success"><Moment format={dateFormat}>{eventContent.date}</Moment></span> <span className="has-text-info">{eventContent.time}</span> <span className="has-text-warning">{this.dayPhase(eventContent.time)}</span>
+          <FormattedMessage id="abovedateinterpretedas" /> : <span className="has-text-success"><Moment format={dateFormat}>{eventContent.date}</Moment></span> <span className="has-text-info">{eventContent.time}</span> <span className="has-text-warning">{this.dayPhase(eventContent.time)}</span>
         </div>
 
         <div className="column is-12 is-hidden-mobile">
@@ -322,7 +322,7 @@ export default class EditableEvent extends Component<Props, Partial<State>> {
           <div className="level">
             <div className="level-left is-hidden-tablet" />
             <div className="level-item is-hidden-tablet" />
-            <div className="level-item has-text-right">{!allFieldsOk && <span className="has-text-warning"><Translate id="fillmissingdatatopublish" /></span>}</div>
+            <div className="level-item has-text-right">{!allFieldsOk && <span className="has-text-warning"><FormattedMessage id="fillmissingdatatopublish" /></span>}</div>
             <div className="level-right">
               {this.addPublishAndDeleteButtons(eventId, eventContent.published, allFieldsOk)}
             </div>

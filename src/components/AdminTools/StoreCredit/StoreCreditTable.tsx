@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import firebase from 'firebase/app';
 import { History } from 'history';
@@ -48,18 +48,18 @@ export default class StoreCreditTable extends Component<Props> {
     return (
       <div key={userId}>
         <h2 className="subtitle">
-          <Translate id="username" /> <strong>{username}</strong>
+          <FormattedMessage id="username" /> <strong>{username}</strong>
         </h2>
         <table className="table is-bordered is-fullwidth">
           <thead>
             <tr>
-              <th><Translate id="date" /></th>
-              <th><Translate id="entrymadeby" /></th>
-              <th><Translate id="note" /></th>
-              <th><Translate id="value" /></th>
-              {/* <th><Translate id="setcategory" /></th> */}
+              <th><FormattedMessage id="date" /></th>
+              <th><FormattedMessage id="entrymadeby" /></th>
+              <th><FormattedMessage id="note" /></th>
+              <th><FormattedMessage id="value" /></th>
+              {/* <th><FormattedMessage id="setcategory" /></th> */}
               {isAdmin &&
-                <th><Translate id="edit" /></th>
+                <th><FormattedMessage id="edit" /></th>
               }
             </tr>
           </thead>
@@ -87,7 +87,7 @@ export default class StoreCreditTable extends Component<Props> {
           <tfoot>
             <tr>
               <th colSpan={3} className="has-text-right">
-                <Translate id="total" />
+                <FormattedMessage id="total" />
               </th>
               <th>
                 {calculatedTotal}&nbsp;€

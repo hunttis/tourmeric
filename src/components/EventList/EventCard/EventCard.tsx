@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Translate } from "react-localize-redux";
+import { FormattedMessage } from "react-intl";
 {
   /* import moment from 'moment/min/moment-with-locales'; */
 } // TODO FIX
@@ -68,7 +68,7 @@ export default class EventCard extends Component<Props, State> {
     if (!eventContent || !eventContent.date) {
       return (
         <div>
-          <Translate id="eventidnotfound" />
+          <FormattedMessage id="eventidnotfound" />
         </div>
       );
     }
@@ -186,7 +186,7 @@ export default class EventCard extends Component<Props, State> {
                         colSpan={columnSpan}
                         className="has-text-centered has-text-warning"
                       >
-                        (<Translate id="eventfull" />)
+                        (<FormattedMessage id="eventfull" />)
                       </td>
                     </tr>
                   )}
@@ -218,7 +218,7 @@ export default class EventCard extends Component<Props, State> {
                 >
                   <i className="fas fa-trophy" />
                   &nbsp;&nbsp;
-                  <Translate id="allinfo" />
+                  <FormattedMessage id="allinfo" />
                 </a>
               </div>
             </div>
@@ -270,7 +270,7 @@ const CardInfoLine = ({
         <i className={icon} />
       </td>
       <td>
-        <Translate id={title} />
+        <FormattedMessage id={title} />
       </td>
       <td>{content}</td>
     </tr>

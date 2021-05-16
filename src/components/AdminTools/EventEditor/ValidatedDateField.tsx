@@ -170,7 +170,7 @@ export default class ValidatedDateField extends Component<
       return (
         <div className={`field ${isHorizontal && "is-horizontal"}`}>
           <div className="field-label is-normal">
-            <Translate id="date" />
+            <FormattedMessage id="date" />
           </div>
           <div className="field-body">
             <div className="field">
@@ -219,7 +219,7 @@ export default class ValidatedDateField extends Component<
                 &nbsp;&nbsp;
               </span>
             )}
-            <Translate id="date" />
+            <FormattedMessage id="date" />
           </label>
         </div>
         <div className="field-body">
@@ -235,14 +235,14 @@ export default class ValidatedDateField extends Component<
                       "is-success is-outlined"}`}
                     onClick={() => this.setChoosingStart(true)}
                   >
-                    <Translate id="startdate" />
+                    <FormattedMessage id="startdate" />
                   </button>
                   <button
                     className={`button is-small ${!this.state.choosingStart &&
                       "is-success is-outlined"}`}
                     onClick={() => this.setChoosingStart(false)}
                   >
-                    <Translate id="enddate" />
+                    <FormattedMessage id="enddate" />
                   </button>
                 </div>
               )}

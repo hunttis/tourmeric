@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import NewsItem from './NewsItem';
@@ -20,12 +20,12 @@ export const News = ({ news, settings }: Props) => {
     const publishedNews = news ? news.filter((newsItem) => newsItem.value.active) : [];
     return (
       <>
-        <h1 className="title"><Translate id="news" /></h1>
+        <h1 className="title"><FormattedMessage id="news" /></h1>
         <div>&nbsp;</div>
         {publishedNews.map((newsItem) => <NewsItem key={`newsItem-${newsItem.key}`} newsItem={newsItem} dateFormat={dateFormat} />)}
       </>
     );
   }
-  return <div><Translate id="loading" /></div>;
+  return <div><FormattedMessage id="loading" /></div>;
 
 };

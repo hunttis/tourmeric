@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { OpeningHourRow } from './OpeningHourRow';
 import { Settings } from '../../models/Settings';
 
@@ -17,7 +17,7 @@ export const StoreInfo = ({ settings }: Props) => {
         <div className="section">
 
           <h1 className="title">
-            <Translate id="contactinfo" />
+            <FormattedMessage id="contactinfo" />
           </h1>
 
           <div className="columns is-multiline">
@@ -27,7 +27,7 @@ export const StoreInfo = ({ settings }: Props) => {
                 <div className="box">
                   <>
                     <h2 className="subtitle">
-                      <span className="icon"><i className="fas fa-phone" /></span>&nbsp;&nbsp;<Translate id="phone" />
+                      <span className="icon"><i className="fas fa-phone" /></span>&nbsp;&nbsp;<FormattedMessage id="phone" />
                     </h2>
                     <div><a href={`tel:${location.phone}`}>{location.phone}</a></div>
                   </>
@@ -38,7 +38,7 @@ export const StoreInfo = ({ settings }: Props) => {
                   <div className="box">
 
                     <h2 className="subtitle">
-                      <span className="icon"><i className="fas fa-envelope" /></span>&nbsp;&nbsp;<Translate id="email" />
+                      <span className="icon"><i className="fas fa-envelope" /></span>&nbsp;&nbsp;<FormattedMessage id="email" />
                     </h2>
                     <div><a href={`mailto:${location.email}`}>{location.email}</a></div>
                   </div>
@@ -50,7 +50,7 @@ export const StoreInfo = ({ settings }: Props) => {
                 {location.address &&
                   <>
                     <h2 className="subtitle">
-                      <span className="icon"><i className="fas fa-address-book" /></span>&nbsp;&nbsp;<Translate id="address" />
+                      <span className="icon"><i className="fas fa-address-book" /></span>&nbsp;&nbsp;<FormattedMessage id="address" />
                     </h2>
                     {location.address.split('\n').map((line, index) => <div key={index}>{line}&nbsp;</div>)}
                   </>
@@ -61,7 +61,7 @@ export const StoreInfo = ({ settings }: Props) => {
             <div className="column is-6">
               <div className="box">
                 <h2 className="subtitle">
-                  <Translate id="regularopeninghours" />
+                  <FormattedMessage id="regularopeninghours" />
                 </h2>
                 <table className="table">
                   <tbody>
@@ -90,7 +90,7 @@ export const StoreInfo = ({ settings }: Props) => {
               <div className="column is-6">
                 <div className="box">
                   <h2 className="subtitle">
-                    <Translate id="directions" />
+                    <FormattedMessage id="directions" />
                   </h2>
 
                   {settings.activeLocationImage &&
@@ -113,8 +113,8 @@ export const StoreInfo = ({ settings }: Props) => {
     );
   }
   if (isLoaded(settings) && isEmpty(settings.location)) {
-    return <div><Translate id="nostoreinfo" /></div>;
+    return <div><FormattedMessage id="nostoreinfo" /></div>;
   }
-  return <div><Translate id="loading" /></div>;
+  return <div><FormattedMessage id="loading" /></div>;
 
 };

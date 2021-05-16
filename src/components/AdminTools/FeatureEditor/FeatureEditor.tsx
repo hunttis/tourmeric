@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import firebase from 'firebase/app';
 import _ from 'lodash';
@@ -37,8 +37,8 @@ export default class FeatureEditor extends Component<Props> {
                         {feature}
                       </div>
                       <div className="level-right">
-                        {featureActive && <button className="button is-danger is-outlined" onClick={() => this.setFeatureStatus(feature, false)}><Translate id="deactivate" /></button>}
-                        {!featureActive && <button className="button is-success is-outlined" onClick={() => this.setFeatureStatus(feature, true)}><Translate id="activate" /></button>}
+                        {featureActive && <button className="button is-danger is-outlined" onClick={() => this.setFeatureStatus(feature, false)}><FormattedMessage id="deactivate" /></button>}
+                        {!featureActive && <button className="button is-success is-outlined" onClick={() => this.setFeatureStatus(feature, true)}><FormattedMessage id="activate" /></button>}
                       </div>
                     </div>
                   </div>
@@ -51,6 +51,6 @@ export default class FeatureEditor extends Component<Props> {
       );
 
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

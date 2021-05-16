@@ -1,7 +1,7 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 
 import { mapCategoryToColor } from '../../Common/Utils';
 
@@ -37,7 +37,7 @@ export const CreditAmounts = ({ userId, storecredit, storecreditcategories }: Cr
         })}
         <li>&nbsp;</li>
         <li className="is-all-caps">
-          <strong><Translate id="total" />: {_.reduce(storecredit[userId], (totalForUser, data) => totalForUser + data.value, 0).toFixed(2)} €</strong>
+          <strong><FormattedMessage id="total" />: {_.reduce(storecredit[userId], (totalForUser, data) => totalForUser + data.value, 0).toFixed(2)} €</strong>
         </li>
       </>
     }

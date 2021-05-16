@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 
 interface Props {
@@ -55,15 +55,15 @@ export default class ValidatedDropdown extends Component<Props, State> {
       <div className={`field ${isHorizontal && 'is-horizontal'}`}>
         <div className={`${!isHorizontal && 'label'} ${isHorizontal && 'field-label is-normal'}`}>
           <label className="label">
-            <Translate id={labelContent} />
+            <FormattedMessage id={labelContent} />
           </label>
         </div>
         <div className="field-body">
           <div className="field">
             <div className="control is-expanded has-icons-right">
               <div className={`select ${saved && 'is-success'} ${editing && 'is-warning'}`}>
-                <Translate>
-                  {({ translate }) => (
+                
+                  
                     <select
                       defaultValue={selectedValue}
                       onChange={(event) => this.handleChange(path, targetName, event.target.value)}
@@ -80,8 +80,7 @@ export default class ValidatedDropdown extends Component<Props, State> {
                         );
                       })}
                     </select>
-                  )}
-                </Translate>
+                
               </div>
               {saved &&
                 <div className="icon is-small is-right">

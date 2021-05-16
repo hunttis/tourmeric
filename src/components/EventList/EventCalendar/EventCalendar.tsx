@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { isLoaded, isEmpty } from "react-redux-firebase";
 import _ from "lodash";
-import { Translate, Language } from "react-localize-redux";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { History } from "history";
 import { CalendarMonth } from "../../../components/EventList/EventCalendar/CalendarMonth";
 import { removeClassFromHtml } from "../../../components/Common/DocumentUtils";
@@ -13,6 +13,7 @@ import { OpeningHoursException } from "../../../models/OpeningHours";
 import { TourmericEvent } from "../../../models/Events";
 import { Day } from "../../../models/Calendar";
 import { parseInformationForMonthYear } from "./CalendarUtils";
+import { format, addMonths, subMonths, parse } from "date-fns";
 
 const YEAR_INDEX = 2;
 const MONTH_INDEX = 3;
@@ -28,12 +29,12 @@ interface Props {
   events: { key: string; value: TourmericEvent }[];
   eventsongoing: { key: string; value: TourmericEvent }[];
   categories: { [key: string]: Category };
-  activeLanguage: Language;
   location: Location;
   history: History;
   openinghoursexceptions: { [key: string]: OpeningHoursException };
   setReturnLocation: (key: string) => void;
   profile: FirebaseProfile;
+  intl: IntlShape;
 }
 
 interface State {
@@ -78,9 +79,9 @@ export default class EventCalendar extends Component<Props, State> {
   }
 
   parseTargetMonthYearAndMode(location: Location) {
-    let targetYear = moment().format("YYYY");
-    let targetMonth = moment().format("MM");
-    let targetDay = moment().format("DD");
+    let targetYear = format(new Date(), "yyyy");
+    let targetMonth = format(new Date(), "MM");
+    let targetDay = format(new Date(), "dd");
     let mode: ViewMode = MODE_MONTH;
 
     const splitPath = location.pathname.split("/");
@@ -136,7 +137,7 @@ export default class EventCalendar extends Component<Props, State> {
       return (
         <div className="column is-12">
           <div className="title">
-            <Translate id={translationKey} />
+            <FormattedMessage id={translationKey} />
           </div>
           <p>{content}</p>
         </div>
@@ -146,19 +147,23 @@ export default class EventCalendar extends Component<Props, State> {
   }
 
   forwardMonth() {
-    const newMonth = moment(
+    const originalMonth = parse(
       `${this.state.targetMonth}-${this.state.targetYear}`,
-      "MM-YYYY"
-    ).add(1, "month");
-    this.props.history.push(`/events/${newMonth.format("YYYY/MM")}`);
+      "MM-yyyy",
+      new Date()
+    );
+    const newMonth = addMonths(originalMonth, 1);
+    this.props.history.push(`/events/${format(newMonth, "yyyy/MM")}`);
   }
 
   backMonth() {
-    const newMonth = moment(
+    const originalMonth = parse(
       `${this.state.targetMonth}-${this.state.targetYear}`,
-      "MM-YYYY"
-    ).subtract(1, "month");
-    this.props.history.push(`/events/${newMonth.format("YYYY/MM")}`);
+      "MM-yyyy",
+      new Date()
+    );
+    const newMonth = subMonths(originalMonth, 1);
+    this.props.history.push(`/events/${format(newMonth, "yyyy/MM")}`);
   }
 
   clickDay(day: Day) {
@@ -179,10 +184,12 @@ export default class EventCalendar extends Component<Props, State> {
     return chunkedCalendar;
   }
 
-  async goToEventEditor(momentForDay: Moment) {
+  async goToEventEditor(momentForDay: Date) {
     const { history, setReturnLocation } = this.props;
     await setReturnLocation(history.location.pathname);
-    history.push(`/admin/events/newevent/${momentForDay.format("YYYY-MM-DD")}`);
+    history.push(
+      `/admin/events/newevent/${format(momentForDay, "yyyy-MM-dd")}`
+    );
   }
 
   render() {
@@ -190,11 +197,11 @@ export default class EventCalendar extends Component<Props, State> {
       events,
       eventsongoing,
       categories,
-      activeLanguage,
       location,
       openinghoursexceptions,
       settings,
       profile,
+      intl,
     } = this.props;
 
     const { targetMonth, targetYear, mode, categoryFilter } = this.state;
@@ -202,19 +209,21 @@ export default class EventCalendar extends Component<Props, State> {
     if (!isLoaded(events) || !isLoaded(categories) || !isLoaded(profile)) {
       return (
         <div className="is-loading">
-          <Translate id="loading" />
+          <FormattedMessage id="loading" />
         </div>
       );
     }
     if (isLoaded(events) && isEmpty(events)) {
       return (
         <div>
-          <Translate id="noevents" />
+          <FormattedMessage id="noevents" />
         </div>
       );
     }
 
-    moment.locale(activeLanguage.code);
+    {
+      /* moment.locale(activeLanguage.code); */
+    } // TODO Does this need fixing?
 
     const calendar = parseInformationForMonthYear(
       targetMonth,
@@ -231,7 +240,8 @@ export default class EventCalendar extends Component<Props, State> {
 
     const dayInPath = location.pathname.substring("/events/".length);
 
-    const momentForDay = mode === MODE_DAY && moment(dayInPath, "YYYY/MM/DD");
+    const momentForDay =
+      mode === MODE_DAY && parse(dayInPath, "yyyy/MM/dd", new Date());
 
     return (
       <section className="section">
@@ -245,24 +255,20 @@ export default class EventCalendar extends Component<Props, State> {
 
         <div className="container">
           <h1 className="title">
-            <Translate id="nextevents" />
+            <FormattedMessage id="nextevents" />
           </h1>
 
           <div className="columns is-multiline">
             <div className="column is-12">
-              <Translate id="filtereventsbychoosingcategories" />
-              <Translate>
-                {({ translate }) => (
-                  <div>
-                    {translate("currentlyshowing")}
-                    {_.isEmpty(this.state.categoryFilter)
-                      ? translate("all")
-                      : translate("only")}{" "}
-                    <span className="has-text-success">{categoryNames}</span>{" "}
-                    {translate("events")}
-                  </div>
-                )}
-              </Translate>
+              <FormattedMessage id="filtereventsbychoosingcategories" />
+              <div>
+                {intl.formatMessage({ id: "currentlyshowing" })}
+                {_.isEmpty(this.state.categoryFilter)
+                  ? intl.formatMessage({ id: "all" })
+                  : intl.formatMessage({ id: "only" })}{" "}
+                <span className="has-text-success">{categoryNames}</span>{" "}
+                {intl.formatMessage({ id: "events" })}
+              </div>
             </div>
 
             <div className="column is-12 is-mobile has-text-centered">
@@ -319,7 +325,12 @@ export default class EventCalendar extends Component<Props, State> {
             <div className="column is-6">
               <h1 className="title">
                 {_.capitalize(
-                  moment(`${targetMonth}-${targetYear}`, "MM-YYYY").format(
+                  format(
+                    parse(
+                      `${targetMonth}-${targetYear}`,
+                      "MM-yyyy",
+                      new Date()
+                    ),
                     "MMMM"
                   )
                 )}
@@ -333,7 +344,7 @@ export default class EventCalendar extends Component<Props, State> {
                     this.backMonth();
                   }}
                 >
-                  <Translate id="previousmonth" />
+                  <FormattedMessage id="previousmonth" />
                 </button>
                 <button
                   className="button"
@@ -341,18 +352,18 @@ export default class EventCalendar extends Component<Props, State> {
                     this.forwardMonth();
                   }}
                 >
-                  <Translate id="nextmonth" />
+                  <FormattedMessage id="nextmonth" />
                 </button>
               </div>
             </div>
 
-            {/* <CalendarMonth
+            <CalendarMonth
               chunkedCalendar={chunkedCalendar}
               categories={categories}
               clickDay={(day: Day) => this.clickDay(day)}
               openinghoursexceptions={openinghoursexceptions}
               settings={settings}
-            /> */}
+            />
           </div>
         </div>
       </section>

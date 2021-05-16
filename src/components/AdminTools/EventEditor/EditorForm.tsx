@@ -2,7 +2,7 @@ import React from "react";
 import firebase from "firebase/app";
 
 import _ from "lodash";
-import { Translate } from "react-localize-redux";
+import { FormattedMessage } from "react-intl";
 
 import ValidatedEditableField from "./ValidatedEditableField-container";
 {
@@ -106,24 +106,20 @@ export const EditorForm = ({
         )}
 
         <div className="column is-12">
-          <Translate>
-            {({ translate }) => (
-              <SelectElement
-                isOk={!_.isEmpty(event.eventType)}
-                updateFieldStatus={updateFieldStatus}
-                labelContent="eventtype"
-                defaultValue={event.eventType}
-                dropdownItems={{
-                  singledayevent: `${translate("singledayevent")}`,
-                  ongoingevent: `${translate("ongoingevent")}`,
-                }}
-                path={`${storageUrlPath}/${eventId}`}
-                targetName="eventType"
-                isHorizontal
-                isLocked={!eventId.startsWith("DRAFT")}
-              />
-            )}
-          </Translate>
+          <SelectElement
+            isOk={!_.isEmpty(event.eventType)}
+            updateFieldStatus={updateFieldStatus}
+            labelContent="eventtype"
+            defaultValue={event.eventType}
+            dropdownItems={{
+              singledayevent: `${intl.formatMessage({ id: "singledayevent" })}`,
+              ongoingevent: `${intl.formatMessage({ id: "ongoingevent" })}`,
+            }}
+            path={`${storageUrlPath}/${eventId}`}
+            targetName="eventType"
+            isHorizontal
+            isLocked={!eventId.startsWith("DRAFT")}
+          />
         </div>
 
         <div className="column is-12">
@@ -159,7 +155,7 @@ export const EditorForm = ({
 
         <div className="column is-12">
           <h2 className="subtitle">
-            <Translate id="eventinfo" />
+            <FormattedMessage id="eventinfo" />
           </h2>
         </div>
 
@@ -247,7 +243,7 @@ export const EditorForm = ({
             <div className="field is-horizontal">
               <div className="field-label is-normal">
                 <label className="label">
-                  <Translate id="youstillneedtoadd" />
+                  <FormattedMessage id="youstillneedtoadd" />
                 </label>
               </div>
 
@@ -260,7 +256,7 @@ export const EditorForm = ({
                           className="tag is-warning has-text-black"
                           key={`missingData-${field}`}
                         >
-                          <Translate id={field} />
+                          <FormattedMessage id={field} />
                         </span>
                       ))}
                     </span>
@@ -278,11 +274,11 @@ export const EditorForm = ({
             }`}
             onClick={deleteEvent}
           >
-            {deleteConfirmation && <Translate id="reallydelete" />}
-            {!deleteConfirmation && <Translate id="delete" />}
+            {deleteConfirmation && <FormattedMessage id="reallydelete" />}
+            {!deleteConfirmation && <FormattedMessage id="delete" />}
           </button>
           <button className="button is-info is-outlined" onClick={goBack}>
-            <Translate id="goback" />
+            <FormattedMessage id="goback" />
           </button>
           {!newEvent && event.published && (
             <button
@@ -293,7 +289,7 @@ export const EditorForm = ({
                 })
               }
             >
-              <Translate id="hide" />
+              <FormattedMessage id="hide" />
             </button>
           )}
           {!newEvent && !event.published && (
@@ -306,7 +302,7 @@ export const EditorForm = ({
                 })
               }
             >
-              <Translate id="publish" />
+              <FormattedMessage id="publish" />
             </button>
           )}
 
@@ -316,7 +312,7 @@ export const EditorForm = ({
               disabled={missingFields.length > 0}
               onClick={saveEvent}
             >
-              <Translate id="publish" />
+              <FormattedMessage id="publish" />
             </button>
           )}
         </div>

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import { SingleNewsItem } from '../../../models/ReduxState';
 
@@ -52,17 +52,17 @@ export default class NewsItem extends Component<Props, State> {
                 }
                 return '';
               })}
-              {(longNewsItem && !currentActiveNewsItem) && <p>...<Translate id="continues" /></p>}
+              {(longNewsItem && !currentActiveNewsItem) && <p>...<FormattedMessage id="continues" /></p>}
             </div>
           </div>
 
           {footerNeeded &&
             <div className="card-footer">
               {(longNewsItem && !currentActiveNewsItem) &&
-                <a className="card-footer-item" onClick={() => this.setActiveNewsItem(true)}><i className="fas fa-caret-square-down" />&nbsp;&nbsp;<Translate id="showfullnewsitem" /></a>
+                <a className="card-footer-item" onClick={() => this.setActiveNewsItem(true)}><i className="fas fa-caret-square-down" />&nbsp;&nbsp;<FormattedMessage id="showfullnewsitem" /></a>
               }
               {currentActiveNewsItem &&
-                <a className="card-footer-item" onClick={() => this.setActiveNewsItem(false)}><i className="fas fa-caret-square-up" />&nbsp;&nbsp;<Translate id="showless" /></a>
+                <a className="card-footer-item" onClick={() => this.setActiveNewsItem(false)}><i className="fas fa-caret-square-up" />&nbsp;&nbsp;<FormattedMessage id="showless" /></a>
               }
               {(!newsData.summary && newsData.link) &&
                 <a className="card-footer-item" target="_blank" rel="noopener noreferrer" href={newsData.link}><i className="fas fa-external-link-alt" />&nbsp;&nbsp;{newsData.linkName ? newsData.linkName : newsData.link}</a>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { Route, Switch } from 'react-router-dom';
 import { Location, History } from 'history';
 import { AdminToolsTab } from './AdminToolsTab';
@@ -79,10 +79,10 @@ export default class AdminToolsEvents extends Component<Props> {
 
     if (isLoaded(events) && isEmpty(events)) {
       return (
-        <div><Translate id="noevents" /></div>
+        <div><FormattedMessage id="noevents" /></div>
       );
     }
 
-    return <button className="button is-loading"><Translate id="loading" /></button>;
+    return <button className="button is-loading"><FormattedMessage id="loading" /></button>;
   }
 }

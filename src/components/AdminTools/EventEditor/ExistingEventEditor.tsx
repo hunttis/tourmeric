@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import moment from 'moment';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 
 import { History } from 'history';
@@ -201,8 +201,8 @@ export default class ExistingEventEditor extends Component<Props, State> {
     return (
       <div className="section">
         <h1 className="title">
-          {newEvent && <Translate id="newevent" />}
-          {!newEvent && <Translate id="editevent" />}
+          {newEvent && <FormattedMessage id="newevent" />}
+          {!newEvent && <FormattedMessage id="editevent" />}
         </h1>
         <EditorForm
           eventId={eventId}

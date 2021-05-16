@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 import { Settings } from '../../../models/Settings';
 
@@ -19,13 +19,13 @@ export const Themes = ({ settings }: Props) => (
   <div className="columns is-multiline">
     <div className="column is-12">
       <h1 className="title">
-        <Translate id="looks" />
+        <FormattedMessage id="looks" />
       </h1>
     </div>
 
     <div className="column is-12">
       <h1 className="title">
-        <Translate id="themecoloroverrides" />
+        <FormattedMessage id="themecoloroverrides" />
       </h1>
     </div>
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { UploadedFile } from '../../models/Category';
 
 interface Props {
@@ -21,7 +21,7 @@ export default class ImagePicker extends Component<Props> {
   render() {
     const { imageList, highlightedImage } = this.props;
     if (!imageList || _.isEmpty(imageList)) {
-      return <div><Translate id="noimages" /></div>;
+      return <div><FormattedMessage id="noimages" /></div>;
     }
 
     return (

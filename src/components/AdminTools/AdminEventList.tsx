@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Translate } from "react-localize-redux";
+import { FormattedMessage, IntlShape } from "react-intl";
 import _ from "lodash";
+
+import { parse, isBefore, isAfter, isSameDay } from "date-fns";
 
 import { History } from "history";
 import { EditableEventContainer as EditableEvent } from "./EditableEvent-container";
@@ -14,6 +16,7 @@ interface Props {
   published: boolean;
   history: History;
   setReturnLocation: (returnLocation: string) => void;
+  intl: IntlShape;
 }
 
 interface State {
@@ -36,41 +39,41 @@ export class AdminEventList extends Component<Props, State> {
     history.push(`/admin/events/newevent/${randomDraft}`);
   }
 
-  addFilterField() {
+  addFilterField(intl: IntlShape) {
     return (
       <div className="field is-horizontal">
         <label className="field-label is-normal">
-          <Translate id="filter" />
+          <FormattedMessage id="filter" />
         </label>
-        <Translate>
-          {({ translate }) => (
-            <input
-              className="input"
-              type="text"
-              value={this.state.activeFilter}
-              placeholder={`${translate("filtereventsbynameorcategory")}`}
-              onChange={(event) => this.changeFilter(event.target.value)}
-            />
-          )}
-        </Translate>
+
+        <input
+          className="input"
+          type="text"
+          value={this.state.activeFilter}
+          placeholder={`${intl.formatMessage({
+            id: "filtereventsbynameorcategory",
+          })}`}
+          onChange={(event) => this.changeFilter(event.target.value)}
+        />
       </div>
     );
   }
 
   filterList(sortedList: [string, TourmericEvent][]) {
-    const { categories } = this.props;
+    const { categories, intl } = this.props;
 
-    const pastOrFutureList = sortedList.filter((item) => {
-      if (this.state.showPastEvents) {
+    const pastOrFutureList = sortedList
+      .filter((item) => !item[1].date)
+      .filter((item) => {
+        const eventDate = parse(item[1].date, "yyyy-MM-dd", new Date());
+
+        if (this.state.showPastEvents) {
+          return isBefore(eventDate, new Date());
+        }
         return (
-          !item[1].date || moment(item[1].date, "YYYY-MM-DD").isBefore(moment())
+          isAfter(eventDate, new Date()) || isSameDay(eventDate, new Date())
         );
-      }
-      return (
-        !item[1].date ||
-        moment(item[1].date, "YYYY-MM-DD").isSameOrAfter(moment())
-      );
-    });
+      });
 
     const filteredList =
       _.isEmpty(this.state.activeFilter) || _.isEmpty(sortedList)
@@ -120,7 +123,7 @@ export class AdminEventList extends Component<Props, State> {
   }
 
   render() {
-    const { events, published } = this.props;
+    const { events, published, intl } = this.props;
 
     if (_.isEmpty(events)) {
       return (
@@ -131,12 +134,12 @@ export class AdminEventList extends Component<Props, State> {
                 className="button is-small"
                 onClick={() => this.addEvent()}
               >
-                <Translate id="addevent" />
+                <FormattedMessage id="addevent" />
               </button>
             )}
           </div>
           <div>
-            <Translate id="noevents" />
+            <FormattedMessage id="noevents" />
           </div>
         </div>
       );
@@ -159,7 +162,7 @@ export class AdminEventList extends Component<Props, State> {
                 className="button is-small"
                 onClick={() => this.addEvent()}
               >
-                <Translate id="addevent" />
+                <FormattedMessage id="addevent" />
               </button>
             )}
           </div>
@@ -167,7 +170,7 @@ export class AdminEventList extends Component<Props, State> {
             <div className="field is-horizontal">
               <div className="field-label is-normal">
                 <label>
-                  <Translate id="showing" />
+                  <FormattedMessage id="showing" />
                 </label>
               </div>
               <div className="field-body">
@@ -176,19 +179,19 @@ export class AdminEventList extends Component<Props, State> {
                     "is-success"}`}
                   onClick={() => this.setState({ showPastEvents: false })}
                 >
-                  <Translate id="future" />
+                  <FormattedMessage id="future" />
                 </button>
                 <button
                   className={`button is-small ${this.state.showPastEvents &&
                     "is-success"}`}
                   onClick={() => this.setState({ showPastEvents: true })}
                 >
-                  <Translate id="past" />
+                  <FormattedMessage id="past" />
                 </button>
               </div>
             </div>
           </div>
-          <div className="column is-6">{this.addFilterField()}</div>
+          <div className="column is-6">{this.addFilterField(intl)}</div>
         </div>
         <p>&nbsp;</p>
         {this.listEditableEvents(filteredEvents)}

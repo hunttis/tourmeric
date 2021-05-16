@@ -1,6 +1,6 @@
-import React from 'react';
-import { Translate } from 'react-localize-redux';
-import { ParticipationData } from '../../models/ReduxState';
+import React from "react";
+import { FormattedMessage, IntlShape, injectIntl } from "react-intl";
+import { ParticipationData } from "../../models/ReduxState";
 
 interface Props {
   participations: ParticipationData[];
@@ -8,15 +8,23 @@ interface Props {
   isAdmin: boolean;
   userToCancel: string | null;
   setUserToCancel: React.Dispatch<React.SetStateAction<null | string>>;
+  intl: IntlShape;
 }
 
-export const ParticipantList = ({ participations, maxParticipants, isAdmin, userToCancel, setUserToCancel }: Props) => (
+const ParticipantListComponent = ({
+  participations,
+  maxParticipants,
+  isAdmin,
+  userToCancel,
+  setUserToCancel,
+}: Props) => (
   <div>
     {participations &&
       participations.map((participation, index) => {
         const coloration =
-          index % 2 === 0 ? 'speech-bubble-even' : 'speech-bubble-odd';
-        const placeHolder = isAdmin && participation.userId.startsWith('placeholder');
+          index % 2 === 0 ? "speech-bubble-even" : "speech-bubble-odd";
+        const placeHolder =
+          isAdmin && participation.userId.startsWith("placeholder");
         const beingCancelled = participation.userId === userToCancel;
         return (
           <div
@@ -27,28 +35,49 @@ export const ParticipantList = ({ participations, maxParticipants, isAdmin, user
               className={`column is-narrow is-mobile has-text-left is-fixed-bottom commenter ${maxParticipants !==
                 0 &&
                 maxParticipants < index + 1 &&
-                'has-text-warning'}`}
+                "has-text-warning"}`}
             >
-              {isAdmin &&
-                <button className="button is-small is-danger cancel-participation-button" disabled={beingCancelled} onClick={() => setUserToCancel(participation.userId)}><i title="remove" className="fas fa-ban" /></button>
-              }
-              <span className={`${beingCancelled ? 'has-text-danger' : ''}`}>{' '}{index + 1}.
-                <Translate>
-                  {({ translate }) => (
-                    <>
-                      {beingCancelled
-                        ? <Translate id="confirmcancelbelowintheadmininterface" />
-                        : `${participation && participation.firstName ? participation.firstName : translate('nofirstname')} ${participation && participation.lastName ? participation.lastName : translate('nolastname')}`}
-                    </>
+              {isAdmin && (
+                <button
+                  className="button is-small is-danger cancel-participation-button"
+                  disabled={beingCancelled}
+                  onClick={() => setUserToCancel(participation.userId)}
+                >
+                  <i title="remove" className="fas fa-ban" />
+                </button>
+              )}
+              <span className={`${beingCancelled ? "has-text-danger" : ""}`}>
+                {" "}
+                {index + 1}.
+                <>
+                  {beingCancelled ? (
+                    <FormattedMessage id="confirmcancelbelowintheadmininterface" />
+                  ) : (
+                    `${
+                      participation && participation.firstName
+                        ? participation.firstName
+                        : intl.formatMessage({ id: "nofirstname" })
+                    } ${
+                      participation && participation.lastName
+                        ? participation.lastName
+                        : intl.formatMessage({ id: "nolastname" })
+                    }`
                   )}
-                </Translate>
+                </>
               </span>
 
-              <span className="icon">{placeHolder && <i title="placeholder" className="has-text-warning fas fa-map-pin" />}</span>
+              <span className="icon">
+                {placeHolder && (
+                  <i
+                    title="placeholder"
+                    className="has-text-warning fas fa-map-pin"
+                  />
+                )}
+              </span>
               {maxParticipants < index + 1 && (
                 <span>
                   &nbsp;(
-                  <Translate id="waitlist" />)
+                  <FormattedMessage id="waitlist" />)
                 </span>
               )}
             </div>
@@ -65,3 +94,5 @@ export const ParticipantList = ({ participations, maxParticipants, isAdmin, user
       })}
   </div>
 );
+
+export const ParticipantList = injectIntl(ParticipantListComponent);

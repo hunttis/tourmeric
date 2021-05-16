@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 
 import CreditAmounts from './CreditAmounts-container';
 import { User } from '../../../models/ReduxState';
@@ -32,37 +32,37 @@ export const UserEntry = ({ openEditModal, openCreditModal, openDisableModal, us
       <div className="card-content">
         <ul>
           {userData.firstName &&
-            <li><Translate id="firstname" />: {userData.firstName}</li>
+            <li><FormattedMessage id="firstname" />: {userData.firstName}</li>
           }
           {userData.lastName &&
-            <li><Translate id="lastname" />: {userData.lastName}</li>
+            <li><FormattedMessage id="lastname" />: {userData.lastName}</li>
           }
           {userData.username &&
-            <li><Translate id="username" />: {userData.username}</li>
+            <li><FormattedMessage id="username" />: {userData.username}</li>
           }
-          <li><Translate id="email" />: {userData.email}</li>
+          <li><FormattedMessage id="email" />: {userData.email}</li>
           {userData.avatarUrl &&
-            <li><Translate id="avatarurl" />:&nbsp;
+            <li><FormattedMessage id="avatarurl" />:&nbsp;
               <a target="_blank" rel="noopener noreferrer" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
             </li>
           }
           {userData.dciNumber &&
-            <li><Translate id="dcinumber" />: {userData.dciNumber}</li>
+            <li><FormattedMessage id="dcinumber" />: {userData.dciNumber}</li>
           }
           <li>&nbsp;</li>
-          <li><strong><Translate id="storecredit" /></strong></li>
+          <li><strong><FormattedMessage id="storecredit" /></strong></li>
           <CreditAmounts userId={userId} />
         </ul>
       </div>
       <div className="card-footer">
         <div className="card-footer-item button is-primary" onClick={openEditModal}>
-          <Translate id="edit" />
+          <FormattedMessage id="edit" />
         </div>
         <div className="card-footer-item button is-info" onClick={openCreditModal}>
-          <Translate id="storecredit" />
+          <FormattedMessage id="storecredit" />
         </div>
         <div className="card-footer-item button is-danger" onClick={openDisableModal}>
-          <Translate id="delete" />
+          <FormattedMessage id="delete" />
         </div>
       </div>
     </div>

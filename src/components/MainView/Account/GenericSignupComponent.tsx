@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage, useIntl, IntlShape, injectIntl } from "react-intl";
 
 interface Props {
   firstTitle: string;
@@ -10,20 +10,21 @@ interface Props {
   errorState: string | null;
   loginFacebook: () => void;
   loginGoogle: () => void;
+  intl: IntlShape;
 }
 
-export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail, onChangePass, onSubmit, errorState, loginFacebook, loginGoogle }: Props) => (
+export const GenericSignup = ({ firstTitle, buttonTitle, onChangeEmail, onChangePass, onSubmit, errorState, loginFacebook, loginGoogle, intl }: Props) => (
   <section className="section">
 
     <div className="columns is-multiline">
 
       <div className="column is-12">
-        <h1 className="title"><Translate id={firstTitle} /></h1>
+        <h1 className="title"><FormattedMessage id={firstTitle} /></h1>
       </div>
 
       <div className="column is-1" />
       <div className="column is-11">
-        <h2 className="subtitle"><Translate id="asocialmediaaccount" /></h2>
+        <h2 className="subtitle"><FormattedMessage id="asocialmediaaccount" /></h2>
       </div>
 
       <div className="column is-1" />
@@ -45,12 +46,12 @@ export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail,
       </div>
 
       <div className="column is-12">
-        <h1 className="title"><Translate id="or" /></h1>
+        <h1 className="title"><FormattedMessage id="or" /></h1>
       </div>
 
       <div className="column is-1" />
       <div className="column is-11">
-        <h2 className="subtitle"><Translate id="fillinyouremailaddressandinputpassword" /></h2>
+        <h2 className="subtitle"><FormattedMessage id="fillinyouremailaddressandinputpassword" /></h2>
       </div>
 
       <div className="column is-1" />
@@ -58,29 +59,23 @@ export const GenericSignupComponent = ({ firstTitle, buttonTitle, onChangeEmail,
         <div className="field is-grouped">
           <p className="control is-expanded has-icons-left">
             <span className="icon is-small is-left"><i className="fas fa-envelope" /></span>
-            <Translate>
-              {({ translate }) => (
-                <input placeholder={`${translate('emailplaceholder')}`} className="input email" type="email" onChange={(event) => onChangeEmail(event)} />
-              )}
-            </Translate>
+              <input placeholder={`${intl.formatMessage({id: 'emailplaceholder'})}`} className="input email" type="email" onChange={(event) => onChangeEmail(event)} />
           </p>
           <p className="control is-expanded has-icons-left">
             <span className="icon is-small is-left"><i className="fas fa-lock" /></span>
-            <Translate>
-              {({ translate }) => (
-                <input placeholder={`${translate('passwordplaceholder')}`} className="input password" type="password" onChange={(event) => onChangePass(event)} />
-              )}
-            </Translate>
+                <input placeholder={`${intl.formatMessage({id: 'passwordplaceholder'})}`} className="input password" type="password" onChange={(event) => onChangePass(event)} />
           </p>
-          <button className="button" onClick={() => onSubmit()}><Translate id={buttonTitle} /></button>
+          <button className="button" onClick={() => onSubmit()}><FormattedMessage id={buttonTitle} /></button>
         </div>
       </div>
 
     </div>
     {errorState &&
       <div className="box">
-        <Translate id={errorState} />
+        <FormattedMessage id={errorState} />
       </div>
     }
   </section>
 );
+
+export const GenericSignupComponent = injectIntl(GenericSignup)

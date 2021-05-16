@@ -59,7 +59,7 @@ export const SingleEvent = ({
     return (
       <div className="section has-text-centered">
         <div className="button is-loading">
-          <Translate id="loading" />
+          <FormattedMessage id="loading" />
         </div>
       </div>
     );
@@ -80,7 +80,7 @@ export const SingleEvent = ({
       return (
         <div className="section has-text-centered">
           <div className="button is-loading">
-            <Translate id="noevent" />
+            <FormattedMessage id="noevent" />
           </div>
         </div>
       );
@@ -193,7 +193,7 @@ export const SingleEvent = ({
               <div className="column is-6 columns is-multiline">
                 <div className="column is-12">
                   <div className="subtitle has-text-info">
-                    <Translate id="eventdetails" />
+                    <FormattedMessage id="eventdetails" />
                   </div>
                 </div>
                 <div className="column is-1" />
@@ -254,7 +254,7 @@ export const SingleEvent = ({
                   <>
                     <div className="column is-12">
                       <div className="subtitle has-text-info">
-                        <Translate id="link" />
+                        <FormattedMessage id="link" />
                       </div>
                     </div>
 
@@ -280,7 +280,7 @@ export const SingleEvent = ({
                   >
                     <i className="fas fa-copy" />
                     &nbsp;&nbsp;
-                    <Translate id="copylinktoevent" />
+                    <FormattedMessage id="copylinktoevent" />
                   </button>
                 </div>
               </div>
@@ -288,7 +288,7 @@ export const SingleEvent = ({
                 {isLoaded(events) && (
                   <>
                     <div className="subtitle has-text-info">
-                      <Translate id="participants" />
+                      <FormattedMessage id="participants" />
                       &nbsp;
                       {!eventContent.playerSlots && (
                         <>({participationsForEvent.length})</>
@@ -307,7 +307,7 @@ export const SingleEvent = ({
                 )}
                 {isLoaded(participations) && _.isEmpty(participations) && (
                   <div>
-                    <Translate id="noparticipants" />
+                    <FormattedMessage id="noparticipants" />
                   </div>
                 )}
                 {!_.isEmpty(participations) && (
@@ -366,11 +366,11 @@ export const SingleEvent = ({
                   {userToCancel && participationBeingCancelled && (
                     <div>
                       <h2 className="subtitle has-text-danger has-text-centered">
-                        <Translate id="confirmparticipationcancellation" />
+                        <FormattedMessage id="confirmparticipationcancellation" />
                       </h2>
 
                       <p className="has-text-centered">
-                        <Translate id="areyousureyouwanttocancelparticipationforuser" />{" "}
+                        <FormattedMessage id="areyousureyouwanttocancelparticipationforuser" />{" "}
                         <span className="has-text-info">
                           {participationBeingCancelled.firstName}{" "}
                           {participationBeingCancelled.lastName}
@@ -378,7 +378,7 @@ export const SingleEvent = ({
                         ?
                       </p>
                       <p className="has-text-centered">
-                        <Translate id="thisactioncannotbereversed" />
+                        <FormattedMessage id="thisactioncannotbereversed" />
                       </p>
                       <p>&nbsp;</p>
                       <div className="level">
@@ -392,7 +392,7 @@ export const SingleEvent = ({
                               )
                             }
                           >
-                            <Translate id="yes" />
+                            <FormattedMessage id="yes" />
                           </button>
                         </div>
                         <div className="level-item">
@@ -400,7 +400,7 @@ export const SingleEvent = ({
                             className="button is-info is-outlined is-small"
                             onClick={() => setUserToCancel(null)}
                           >
-                            <Translate id="no" />
+                            <FormattedMessage id="no" />
                           </button>
                         </div>
                       </div>
@@ -416,7 +416,7 @@ export const SingleEvent = ({
                       history.push(`/event/${eventId}/printplayerlist`)
                     }
                   >
-                    <Translate id="showplayerlist" />
+                    <FormattedMessage id="showplayerlist" />
                   </button>
                 </div>
                 <div className="card-footer-item event-card-footer" />

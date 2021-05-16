@@ -17,9 +17,9 @@ exports[`EditableVerticalField Tests Compares EditableVerticalField to snapshot 
     <p
       className="control is-expanded has-icons-right"
     >
-      <Translate>
+      
         <Component />
-      </Translate>
+      
     </p>
   </div>
 </div>

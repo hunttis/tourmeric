@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import { Location, History } from 'history';
 
@@ -100,17 +100,17 @@ export default class ArticleEditor extends Component<Props, Partial<State>> {
             }
             {!article.published && !article.content &&
               <button className="button is-outlined is-danger" disabled>
-                <Translate id="addsomecontenttoyourarticle" />
+                <FormattedMessage id="addsomecontenttoyourarticle" />
               </button>
             }
-            <button className="button is-info is-outlined" onClick={() => this.props.history.push('/admin/tools/articles')}><Translate id="backtoarticlelist" /></button>
+            <button className="button is-info is-outlined" onClick={() => this.props.history.push('/admin/tools/articles')}><FormattedMessage id="backtoarticlelist" /></button>
           </div>
         </div>
       );
     } if (_.isEmpty(articleId)) {
       return <div>ID?</div>;
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 
   setPublishStatus(newPublishStatus: boolean) {

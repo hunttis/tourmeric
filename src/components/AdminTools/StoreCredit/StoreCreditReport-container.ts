@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withLocalize } from 'react-localize-redux';
+import { injectIntl } from 'react-intl';
 
 import StoreCreditReport from './StoreCreditReport';
 import { ReduxState } from '../../../models/ReduxState';
@@ -12,4 +12,4 @@ export default compose(
     storecredit: state.firebase.data.storecredit,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withLocalize<any>(StoreCreditReport)) as React.ComponentType<any>;
+)(injectIntl<any>(StoreCreditReport)) as React.ComponentType<any>;

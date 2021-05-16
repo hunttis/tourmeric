@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 
 import { adminparticipate } from '../../../api/eventApi';
 import { User } from '../../../models/ReduxState';
@@ -28,16 +28,16 @@ export class AddPlaceHolderUser extends Component<Props, State> {
     return (
       <div className="columns is-multiline">
         <div className="column is-12">
-          <h2 className="subtitle"><Translate id="addplaceholderuser" /></h2>
+          <h2 className="subtitle"><FormattedMessage id="addplaceholderuser" /></h2>
         </div>
-        <Translate>
-          {({ translate }) => (
+        
+          
             <>
               <div className="column is-5">
                 <div className="field">
                   <div className="field-label">
                     <div className="control">
-                      <label className="label"><Translate id="firstname" /></label>
+                      <label className="label"><FormattedMessage id="firstname" /></label>
                     </div>
                   </div>
                   <div className="field-body">
@@ -49,7 +49,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
                 <div className="field">
                   <div className="field-label">
                     <div className="control">
-                      <label className="label"><Translate id="lastname" /></label>
+                      <label className="label"><FormattedMessage id="lastname" /></label>
                     </div>
                   </div>
                   <div className="field-body">
@@ -65,13 +65,12 @@ export class AddPlaceHolderUser extends Component<Props, State> {
                     </div>
                   </div>
                   <div className="field-body">
-                    <button className="button is-success is-outlined" onClick={() => this.savePlaceholderuser()}><Translate id="add" /></button>
+                    <button className="button is-success is-outlined" onClick={() => this.savePlaceholderuser()}><FormattedMessage id="add" /></button>
                   </div>
                 </div>
               </div>
             </>
-          )}
-        </Translate>
+        
 
       </div>
     );

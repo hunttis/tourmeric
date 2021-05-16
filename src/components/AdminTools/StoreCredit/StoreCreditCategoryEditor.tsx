@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
@@ -11,12 +11,12 @@ interface Props {
 
 export const StoreCreditCategoryEditor = ({ storecreditcategories }: Props) => (
   <section>
-    <h1 className="title"><Translate id="storecreditcategories" /></h1>
-    {(!storecreditcategories || !isLoaded(storecreditcategories)) && <div><Translate id="loading" /></div>}
+    <h1 className="title"><FormattedMessage id="storecreditcategories" /></h1>
+    {(!storecreditcategories || !isLoaded(storecreditcategories)) && <div><FormattedMessage id="loading" /></div>}
     {(isLoaded(storecreditcategories)) &&
       <>
-        <h2 className="subtitle"><Translate id="ifyouwanttouseacategorygiveitaname" /></h2>
-        <h2 className="subtitle"><Translate id="namelesscategoriesarehidden" /></h2>
+        <h2 className="subtitle"><FormattedMessage id="ifyouwanttouseacategorygiveitaname" /></h2>
+        <h2 className="subtitle"><FormattedMessage id="namelesscategoriesarehidden" /></h2>
         <div className="columns is-multiline">
           <div className="column is-6">
             <EditableVerticalField

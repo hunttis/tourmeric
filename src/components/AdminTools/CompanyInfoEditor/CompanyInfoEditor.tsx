@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import EditableTextarea from '../../Common/EditableTextarea-container';
 import { Settings } from '../../../models/Settings';
@@ -14,7 +14,7 @@ const CompanyInfoEditor = ({ settings }: Props) => {
     return (
       <>
         <h1 className="title">
-          <Translate id="companyinfo" />
+          <FormattedMessage id="companyinfo" />
         </h1>
         <EditableTextarea
           isOk
@@ -26,12 +26,12 @@ const CompanyInfoEditor = ({ settings }: Props) => {
           targetName="companyinfo"
           rows={10}
         />
-        {/* <button className="button" onClick={() => this.setAsUpdated()}><Translate id="setasupdated" /></button> */}
+        {/* <button className="button" onClick={() => this.setAsUpdated()}><FormattedMessage id="setasupdated" /></button> */}
       </>
     );
 
   }
-  return <div><Translate id="loading" /></div>;
+  return <div><FormattedMessage id="loading" /></div>;
 };
 
 export default CompanyInfoEditor;

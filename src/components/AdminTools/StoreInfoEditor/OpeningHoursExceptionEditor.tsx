@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import moment from 'moment';
@@ -57,17 +57,17 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
     if (isLoaded(openinghoursexceptions)) {
       return (
         <>
-          <h1 className="title"><Translate id="exceptionstoopeninghours" /></h1>
+          <h1 className="title"><FormattedMessage id="exceptionstoopeninghours" /></h1>
           {openinghoursexceptions &&
             <div className="box">
               <table className="table">
                 <thead>
                   <tr>
-                    <th><Translate id="date" /></th>
-                    <th><Translate id="name" /></th>
-                    <th><Translate id="open" /></th>
-                    <th><Translate id="openinghours" /></th>
-                    <th><Translate id="remove" /></th>
+                    <th><FormattedMessage id="date" /></th>
+                    <th><FormattedMessage id="name" /></th>
+                    <th><FormattedMessage id="open" /></th>
+                    <th><FormattedMessage id="openinghours" /></th>
+                    <th><FormattedMessage id="remove" /></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,9 +78,9 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
                       <tr key={key}>
                         <td>{data.date}</td>
                         <td>{data.name}</td>
-                        <td>{data.status === 'open' ? <p className="has-text-success"><Translate id="yes" /></p> : <p className="has-text-danger"><Translate id="no" /></p>}</td>
+                        <td>{data.status === 'open' ? <p className="has-text-success"><FormattedMessage id="yes" /></p> : <p className="has-text-danger"><FormattedMessage id="no" /></p>}</td>
                         <td>{data.status === 'open' ? data.openingHours : '-'}</td>
-                        <td><button className="button is-danger is-small"><Translate id="remove" /></button></td>
+                        <td><button className="button is-danger is-small"><FormattedMessage id="remove" /></button></td>
                       </tr>
                     );
                   })}
@@ -88,10 +88,10 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
               </table>
             </div>
           }
-          {!openinghoursexceptions && <p><Translate id="none" /></p>}
+          {!openinghoursexceptions && <p><FormattedMessage id="none" /></p>}
 
-          <Translate>
-            {({ translate }) => (
+          
+            
               <div className="columns box is-multiline">
                 <div className="column is-12">
                   <h1 className="title">{translate('addexception')}</h1>
@@ -135,14 +135,13 @@ export default class OpeningHoursExceptionEditor extends Component<Props, State>
                   </div>
                 </div>
               </div>
-            )}
-          </Translate>
+          
 
 
         </>
 
       );
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

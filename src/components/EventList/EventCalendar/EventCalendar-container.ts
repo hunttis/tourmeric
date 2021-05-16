@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
-import { withLocalize } from 'react-localize-redux';
+import { injectIntl } from "react-intl";
 
 import { setReturnLocation } from '../../../actions/eventEditorActions';
 import EventCalendar from './EventCalendar';
@@ -18,4 +18,4 @@ export default compose(
     setReturnLocation: (returnLocation: string) => setReturnLocation(returnLocation),
   })),
   connect(({ firebase: { profile } }: ReduxState) => ({ profile })),
-)(withLocalize<any>(withRouter<any, any>(EventCalendar))) as React.ComponentType<any>;
+)(injectIntl<any>(withRouter<any, any>(EventCalendar))) as React.ComponentType<any>;

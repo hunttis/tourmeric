@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import { History } from 'history';
@@ -102,7 +102,7 @@ export default class Navbar extends Component<Props> {
                       <i className="fas fa-star" />
                     </span>
                     &nbsp;&nbsp;
-                    <Translate id="admin" />
+                    <FormattedMessage id="admin" />
                   </a>
                   <div className="navbar-dropdown">
                     <NavbarItem linkTarget="/admin/tools" translationKey="admingeneric" icon="fa-calendar" styleClass={activeItem === 'admin/tools' ? activeClass : ''} />
@@ -121,17 +121,17 @@ export default class Navbar extends Component<Props> {
                   <span className="icon">
                     <i className="fas fa-globe" />
                   </span>
-                  <span className="is-hidden-desktop">&nbsp;&nbsp;<Translate id="changelanguage" /></span>
+                  <span className="is-hidden-desktop">&nbsp;&nbsp;<FormattedMessage id="changelanguage" /></span>
                 </a>
                 <div className="navbar-dropdown">
                   <div className="navbar-item">
                     <a onClick={() => { changeLanguage('en'); }}>
-                      <Translate id="english" />
+                      <FormattedMessage id="english" />
                     </a>
                   </div>
                   <div className="navbar-item">
                     <a onClick={() => { changeLanguage('fi'); }}>
-                      <Translate id="finnish" />
+                      <FormattedMessage id="finnish" />
                     </a>
                   </div>
                 </div>
@@ -150,7 +150,7 @@ export default class Navbar extends Component<Props> {
                   <span className="icon">
                     <i className="fas fa-sign-out-alt" />
                   </span>
-                  <p><Translate id="logout" /></p>
+                  <p><FormattedMessage id="logout" /></p>
                 </a>
               }
             </div>

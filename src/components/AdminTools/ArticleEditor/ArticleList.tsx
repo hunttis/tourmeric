@@ -3,7 +3,7 @@ import moment from 'moment';
 import firebase from 'firebase/app';
 import { History } from 'history';
 
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import { Article } from '../../../models/ReduxState';
 import { Settings } from '../../../models/Settings';
@@ -19,16 +19,16 @@ export const ArticleList = ({ articles, settings, history }: Props) => (
   <div className="segment">
     <div className="level">
       <div className="level-left">
-        <h1 className="title"><Translate id="articles" /></h1>
+        <h1 className="title"><FormattedMessage id="articles" /></h1>
       </div>
       <div className="level-right">
         <button className="button is-info is-outlined" onClick={() => { history.push('/articles'); }}>
           <span className="icon"><i className="fas fa-list" /></span>
-          <span><Translate id="userarticlelist" /></span>
+          <span><FormattedMessage id="userarticlelist" /></span>
         </button>
         <button className="button is-success is-outlined" onClick={() => firebase.push('/articles', { createDate: moment().toISOString(), date: moment().format('YYYY-MM-DD') })}>
           <span className="icon"><i className="fas fa-pencil-alt" /></span>
-          <span><Translate id="newarticle" /></span>
+          <span><FormattedMessage id="newarticle" /></span>
         </button>
       </div>
     </div>
@@ -39,12 +39,12 @@ export const ArticleList = ({ articles, settings, history }: Props) => (
         return (
           <div className="column is-12" key={`article-${articleId}`}>
             <div className="columns card">
-              <div className="column is-2"><Translate id="created" />: {moment(articleData.createDate).format(settings.dateFormat)}</div>
+              <div className="column is-2"><FormattedMessage id="created" />: {moment(articleData.createDate).format(settings.dateFormat)}</div>
               <div className="column is-2">
-                {articleData.published && <span className="has-text-success"><Translate id="published" /></span>}
-                {!articleData.published && <span className="has-text-warning"><Translate id="notpublished" /></span>}
+                {articleData.published && <span className="has-text-success"><FormattedMessage id="published" /></span>}
+                {!articleData.published && <span className="has-text-warning"><FormattedMessage id="notpublished" /></span>}
               </div>
-              <div className="column is-4">{articleData.title || <span className="has-text-danger"><Translate id="notitleyet" /></span>}</div>
+              <div className="column is-4">{articleData.title || <span className="has-text-danger"><FormattedMessage id="notitleyet" /></span>}</div>
               <div className="column is-4">
                 <ButtonWithIcon
                   className="is-outlined is-warning"
@@ -83,7 +83,7 @@ export const ArticleList = ({ articles, settings, history }: Props) => (
                   />
                 }
                 {!articleData.published && !articleData.content &&
-                  <button className="button is-outlined is-disabled" disabled><Translate id="articlenotreadytopublish" /></button>
+                  <button className="button is-outlined is-disabled" disabled><FormattedMessage id="articlenotreadytopublish" /></button>
                 }
               </div>
             </div>

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withLocalize } from 'react-localize-redux';
+import { injectIntl } from 'react-intl';
 
 import ValidatedDateField from './ValidatedDateField';
 import { ReduxState } from '../../../models/ReduxState';
@@ -11,4 +11,4 @@ export default compose(
     settings: state.firebase.data.settings,
   })),
   connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withLocalize<any>(ValidatedDateField)) as React.ComponentType<any>;
+)(injectIntl<any>(ValidatedDateField)) as React.ComponentType<any>;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import EditableField from '../../Common/EditableField';
 import { OpeningHours } from '../../../models/Settings';
@@ -12,7 +12,7 @@ interface Props {
 export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }: Props) => (
   <>
     <h2 className="subtitle">
-      <Translate id="regularopeninghours" />
+      <FormattedMessage id="regularopeninghours" />
     </h2>
     <div className="box columns is-multiline">
       <div className="column is-6">
@@ -93,7 +93,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       <div className="column is-6">
         <div className="field is-grouped is-pulled-right">
           <p className="control">
-            <button className="button is-primary" onClick={() => toggleOpeningHourExceptions()}><Translate id="showcurrentexceptions" /></button>
+            <button className="button is-primary" onClick={() => toggleOpeningHourExceptions()}><FormattedMessage id="showcurrentexceptions" /></button>
           </p>
         </div>
       </div>

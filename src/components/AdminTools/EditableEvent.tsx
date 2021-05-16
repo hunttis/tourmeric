@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import moment from 'moment';
 import _ from 'lodash';
 import { History } from 'history';
@@ -99,21 +99,21 @@ export class EditableEvent extends Component<Props> {
           {eventContent.category && categories[eventContent.category].abbreviation} - {eventContent.name}
         </div>
         <div className="column is-2">
-          <button className="button is-small is-info" onClick={() => this.editEvent(eventId)}><i className="fas fa-edit" />&nbsp;&nbsp;<Translate id="edit" /></button>
+          <button className="button is-small is-info" onClick={() => this.editEvent(eventId)}><i className="fas fa-edit" />&nbsp;&nbsp;<FormattedMessage id="edit" /></button>
           {!eventContent.published &&
-            <button className="button is-small is-primary" onClick={() => this.publishEvent(eventId)}><i className="fas fa-door-open" />&nbsp;&nbsp;<Translate id="publish" /></button>
+            <button className="button is-small is-primary" onClick={() => this.publishEvent(eventId)}><i className="fas fa-door-open" />&nbsp;&nbsp;<FormattedMessage id="publish" /></button>
           }
           {(!eventContent.published && this.participantCount() === 0) &&
             <button className="button is-small is-danger" onClick={() => this.deleteEvent(eventId)}><i className="fas fa-trash" /></button>
           }
           {eventContent.published &&
-            <button className="button is-small is-warning" onClick={() => this.unpublishEvent(eventId)}><i className="fas fa-door-closed" />&nbsp;&nbsp;<Translate id="unpublish" /></button>
+            <button className="button is-small is-warning" onClick={() => this.unpublishEvent(eventId)}><i className="fas fa-door-closed" />&nbsp;&nbsp;<FormattedMessage id="unpublish" /></button>
           }
         </div>
         <div className="column is-4">
-          <button className="button is-small" onClick={() => this.copyEvent()}><i className="fas fa-copy" />&nbsp;&nbsp;<Translate id="sameday" /></button>
-          <button className="button is-small" onClick={() => this.copyEventForNextDay()}><i className="fas fa-copy" />&nbsp;&nbsp;<Translate id="nextday" /></button>
-          <button className="button is-small" onClick={() => this.copyEventForNextWeek()}><i className="fas fa-copy" />&nbsp;&nbsp;<Translate id="nextweek" /></button>
+          <button className="button is-small" onClick={() => this.copyEvent()}><i className="fas fa-copy" />&nbsp;&nbsp;<FormattedMessage id="sameday" /></button>
+          <button className="button is-small" onClick={() => this.copyEventForNextDay()}><i className="fas fa-copy" />&nbsp;&nbsp;<FormattedMessage id="nextday" /></button>
+          <button className="button is-small" onClick={() => this.copyEventForNextWeek()}><i className="fas fa-copy" />&nbsp;&nbsp;<FormattedMessage id="nextweek" /></button>
         </div>
       </div>
     );
@@ -130,8 +130,8 @@ export class EditableEvent extends Component<Props> {
     }
 
     if (isLoaded(categories) && isEmpty(categories)) {
-      return <div><Translate id="nocategoriesgocreatesome" /></div>;
+      return <div><FormattedMessage id="nocategoriesgocreatesome" /></div>;
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 import firebase from 'firebase/app';
@@ -95,13 +95,13 @@ export default class NewsEditor extends Component<Props, State> {
                   </div>
                   <div className="level-right">
                     <span className={`${newsData.active && 'has-text-success'} ${!newsData.active && 'has-text-warning'}`}>
-                      {newsData.active && <Translate id="published" />}
-                      {!newsData.active && <Translate id="notpublished" />}
+                      {newsData.active && <FormattedMessage id="published" />}
+                      {!newsData.active && <FormattedMessage id="notpublished" />}
                     </span>
                     &nbsp;&nbsp;&nbsp;
-                    <button className="button" onClick={() => this.openModal(newsId)}><Translate id="edit" /></button>
-                    {newsData.active && <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><Translate id="unpublish" /></button>}
-                    {!newsData.active && <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}><Translate id="publish" /></button>}
+                    <button className="button" onClick={() => this.openModal(newsId)}><FormattedMessage id="edit" /></button>
+                    {newsData.active && <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><FormattedMessage id="unpublish" /></button>}
+                    {!newsData.active && <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}><FormattedMessage id="publish" /></button>}
                   </div>
                 </div>
                 <div className="is-marginless is-paddingless">
@@ -182,10 +182,10 @@ export default class NewsEditor extends Component<Props, State> {
                   />
 
                   {news.active &&
-                    <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><Translate id="deactivate" /></button>
+                    <button className="button is-danger" onClick={() => this.setActiveStatus(newsId, false)}><FormattedMessage id="deactivate" /></button>
                   }
                   {!news.active &&
-                    <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}><Translate id="activate" /></button>
+                    <button className="button is-success" onClick={() => this.setActiveStatus(newsId, true)}><FormattedMessage id="activate" /></button>
                   }
 
                   <div>ID: {newsId}</div>
@@ -208,9 +208,9 @@ export default class NewsEditor extends Component<Props, State> {
       <table className="table">
         <thead>
           <tr>
-            <th><Translate id="image" /></th>
-            <th><Translate id="filename" /></th>
-            <th><Translate id="actions" /></th>
+            <th><FormattedMessage id="image" /></th>
+            <th><FormattedMessage id="filename" /></th>
+            <th><FormattedMessage id="actions" /></th>
           </tr>
         </thead>
         {
@@ -230,7 +230,7 @@ export default class NewsEditor extends Component<Props, State> {
                   </td>
                   <td>
                     <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                      <Translate id="deletefile" />
+                      <FormattedMessage id="deletefile" />
                     </button>
                   </td>
                 </tr>
@@ -249,7 +249,7 @@ export default class NewsEditor extends Component<Props, State> {
         <>
           <div className="level is-mobile">
             <div className="level-left">
-              <button className="button" onClick={() => this.createNewsItem()}><Translate id="newnewsitem" /></button>
+              <button className="button" onClick={() => this.createNewsItem()}><FormattedMessage id="newnewsitem" /></button>
             </div>
             <div className="level-right">
               <FileDropper path={filesPath} />
@@ -257,12 +257,12 @@ export default class NewsEditor extends Component<Props, State> {
           </div>
           {this.newsModal(news)}
           {!isEmpty(news) && this.listNews(news)}
-          {isEmpty(news) && <div><Translate id="nonewscreatedyet" /></div>}
+          {isEmpty(news) && <div><FormattedMessage id="nonewscreatedyet" /></div>}
           {!isEmpty(uploadedNewsImages) && this.listNewsImages()}
         </>
       );
 
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

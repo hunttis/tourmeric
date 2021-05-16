@@ -1,7 +1,6 @@
 import React from "react";
-import { Translate } from "react-localize-redux";
-import { isLoaded } from "react-redux-firebase";
 import { FormattedMessage } from "react-intl";
+import { isLoaded } from "react-redux-firebase";
 import moment from "moment";
 import _ from "lodash";
 import { OpeningHoursException } from "../../models/OpeningHours";
@@ -31,8 +30,8 @@ export const OpeningHours = ({
         return (
           <>
             <span className="has-text-danger">
-              {isToday && <Translate id="exceptionallynotopentoday" />}
-              {!isToday && <Translate id="exceptionallynotopen" />}
+              {isToday && <FormattedMessage id="exceptionallynotopentoday" />}
+              {!isToday && <FormattedMessage id="exceptionallynotopen" />}
             </span>
             : {exception.name}
           </>
@@ -41,8 +40,8 @@ export const OpeningHours = ({
       return (
         <>
           <span className="has-text-success">
-            {isToday && <Translate id="exceptionallyopentoday" />}
-            {!isToday && <Translate id="exceptionallyopen" />}
+            {isToday && <FormattedMessage id="exceptionallyopentoday" />}
+            {!isToday && <FormattedMessage id="exceptionallyopen" />}
           </span>
           : {exception.openingHours}
           <p>{exception.name}</p>
@@ -55,12 +54,11 @@ export const OpeningHours = ({
           {isToday && (
             <>
               <FormattedMessage id="closedtoday" />
-              <Translate id="closedtoday" />
             </>
           )}
           {!isToday && (
             <>
-              <Translate id="closed" />
+              <FormattedMessage id="closed" />
             </>
           )}
         </>
@@ -70,13 +68,13 @@ export const OpeningHours = ({
       <>
         {isToday && (
           <>
-            <Translate id="opentoday" /> :{" "}
+            <FormattedMessage id="opentoday" /> :{" "}
             <span className="has-text-success">{daysHours}</span>
           </>
         )}
         {!isToday && (
           <>
-            <Translate id="open" /> :{" "}
+            <FormattedMessage id="open" /> :{" "}
             <span className="has-text-success">{daysHours}</span>
           </>
         )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import moment from 'moment';
 import _ from 'lodash';
 import { mapCategoryToColor } from '../../Common/Utils';
@@ -20,13 +20,13 @@ export const StoreCreditReportForMonth = ({ users, data, storecreditcategories }
         <thead>
           <tr>
             <th className="storecreditreport-categorycolor" />
-            <th className="storecreditreport-category"><Translate id="category" /></th>
-            <th className="storecreditreport-name"><Translate id="creditaddedbyname" /></th>
-            <th className="storecreditreport-name"><Translate id="customer" /></th>
-            <th className="storecreditreport-note"><Translate id="note" /></th>
-            <th className="storecreditreport-day"><Translate id="daymonthyearshort" /></th>
-            <th className="storecreditreport-year"><Translate id="clockshort" /></th>
-            <th className="storecreditreport-amount has-text-right"><Translate id="amount" /></th>
+            <th className="storecreditreport-category"><FormattedMessage id="category" /></th>
+            <th className="storecreditreport-name"><FormattedMessage id="creditaddedbyname" /></th>
+            <th className="storecreditreport-name"><FormattedMessage id="customer" /></th>
+            <th className="storecreditreport-note"><FormattedMessage id="note" /></th>
+            <th className="storecreditreport-day"><FormattedMessage id="daymonthyearshort" /></th>
+            <th className="storecreditreport-year"><FormattedMessage id="clockshort" /></th>
+            <th className="storecreditreport-amount has-text-right"><FormattedMessage id="amount" /></th>
           </tr>
         </thead>
         <tbody>
@@ -41,7 +41,7 @@ export const StoreCreditReportForMonth = ({ users, data, storecreditcategories }
                   <i className="fas fa-circle" />
                 </td>
                 <td>
-                  {storecreditcategories[event.category] || <Translate id="nocategory" />}
+                  {storecreditcategories[event.category] || <FormattedMessage id="nocategory" />}
                 </td>
                 <td>
                   {event.creditAddedByName}

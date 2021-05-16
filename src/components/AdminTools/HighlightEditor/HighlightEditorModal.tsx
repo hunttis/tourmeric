@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
 import ImagePicker from '../ImagePicker';
@@ -48,10 +48,10 @@ export default class HighlightEditorModal extends Component<Props> {
           />
 
           {highlight.active &&
-            <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}><Translate id="deactivate" /></button>
+            <button className="button is-danger" onClick={() => this.setActiveStatus(highlightId, false)}><FormattedMessage id="deactivate" /></button>
           }
           {!highlight.active &&
-            <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><Translate id="activate" /></button>
+            <button className="button is-success" onClick={() => this.setActiveStatus(highlightId, true)}><FormattedMessage id="activate" /></button>
           }
 
           <div className="is-hidden">ID: {highlightId}</div>

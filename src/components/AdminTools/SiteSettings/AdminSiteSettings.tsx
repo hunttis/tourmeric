@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import { Route, Switch } from 'react-router-dom';
@@ -80,6 +80,6 @@ export default class AdminSiteSettings extends Component<Props> {
         </div>
       );
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

@@ -58,7 +58,7 @@ export default class StoreCreditReport extends Component<Props, State> {
     if (isLoaded(storecredit) && isEmpty(storecredit)) {
       return (
         <div>
-          <Translate id="nocreditevents" />
+          <FormattedMessage id="nocreditevents" />
         </div>
       );
     }
@@ -120,20 +120,20 @@ export default class StoreCreditReport extends Component<Props, State> {
       return (
         <div>
           <h1 className="title">
-            <Translate id="creditsbycategory" />
+            <FormattedMessage id="creditsbycategory" />
           </h1>
           <h2 className="subtitle">
-            <Translate id="alltime" />
+            <FormattedMessage id="alltime" />
           </h2>
           <table className="table">
             <thead>
               <tr>
                 <th />
                 <th>
-                  <Translate id="category" />
+                  <FormattedMessage id="category" />
                 </th>
                 <th className="has-text-right">
-                  <Translate id="total" />
+                  <FormattedMessage id="total" />
                 </th>
               </tr>
             </thead>
@@ -148,7 +148,7 @@ export default class StoreCreditReport extends Component<Props, State> {
                   </td>
                   <td>
                     {storecreditcategories[total.category] || (
-                      <Translate id="nocategory" />
+                      <FormattedMessage id="nocategory" />
                     )}
                   </td>
                   <td className="has-text-right">{total.total}</td>
@@ -158,7 +158,7 @@ export default class StoreCreditReport extends Component<Props, State> {
           </table>
 
           <h1 className="title">
-            <Translate id="bymonth" />
+            <FormattedMessage id="bymonth" />
           </h1>
           <div className="columns is-multiline">
             {Object.entries(groupedByMonth).map((monthGroupEntry) => {
@@ -204,7 +204,7 @@ export default class StoreCreditReport extends Component<Props, State> {
                                   this.setState({ detailedReport: null })
                                 }
                               >
-                                <Translate id="close" />
+                                <FormattedMessage id="close" />
                               </button>
                             )}
                           {!(
@@ -219,7 +219,7 @@ export default class StoreCreditReport extends Component<Props, State> {
                                 })
                               }
                             >
-                              <Translate id="showdetails" />
+                              <FormattedMessage id="showdetails" />
                             </button>
                           )}
                         </th>
@@ -227,10 +227,10 @@ export default class StoreCreditReport extends Component<Props, State> {
                       <tr>
                         <th />
                         <th>
-                          <Translate id="category" />
+                          <FormattedMessage id="category" />
                         </th>
                         <th className="has-text-right">
-                          <Translate id="total" />
+                          <FormattedMessage id="total" />
                         </th>
                       </tr>
                     </thead>
@@ -247,7 +247,7 @@ export default class StoreCreditReport extends Component<Props, State> {
                           </td>
                           <td>
                             {storecreditcategories[total.category] || (
-                              <Translate id="nocategory" />
+                              <FormattedMessage id="nocategory" />
                             )}
                           </td>
                           <td className="has-text-right">
@@ -265,7 +265,7 @@ export default class StoreCreditReport extends Component<Props, State> {
           {this.state.detailedReport && (
             <>
               <h1 id="detailedreport" className="title">
-                <Translate id="showingdetails" />{" "}
+                <FormattedMessage id="showingdetails" />{" "}
                 <span className="has-text-info">
                   {moment(this.state.detailedReport!, "YYYYMM").format(
                     "MMMM, YYYY"
@@ -275,7 +275,7 @@ export default class StoreCreditReport extends Component<Props, State> {
                   className="button is-warning is-outlined is-pulled-right"
                   onClick={() => this.setState({ detailedReport: null })}
                 >
-                  <Translate id="close" />
+                  <FormattedMessage id="close" />
                 </button>
               </h1>
               {this.delayedScrollToShow()}
@@ -291,7 +291,7 @@ export default class StoreCreditReport extends Component<Props, State> {
     }
     return (
       <div>
-        <Translate id="loading" />
+        <FormattedMessage id="loading" />
       </div>
     );
   }

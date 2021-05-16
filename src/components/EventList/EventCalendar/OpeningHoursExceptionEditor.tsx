@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Translate } from "react-localize-redux";
+import { FormattedMessage, IntlShape, injectIntl } from "react-intl";
 import firebase from "firebase/app";
 import { format } from "date-fns";
 import _ from "lodash";
@@ -10,9 +10,10 @@ interface OpeningHoursExceptionEditorProps {
   day: Date;
   existingExceptions: { [key: string]: OpeningHoursException };
   closeEditor: () => void;
+  intl: IntlShape;
 }
 
-export class OpeningHoursExceptionEditor extends Component<
+export class OpeningHoursExceptionEditorComponent extends Component<
   OpeningHoursExceptionEditorProps
 > {
   delayedSave = _.debounce(async (path, item, value) => {
@@ -30,7 +31,7 @@ export class OpeningHoursExceptionEditor extends Component<
   }
 
   render() {
-    const { day, existingExceptions, closeEditor } = this.props;
+    const { day, existingExceptions, closeEditor, intl } = this.props;
     const todayString = format(day, "yyyy-MM-dd");
     const exceptionForToday = existingExceptions[todayString];
     const pathForToday = `/openinghoursexceptions/${todayString}/`;
@@ -44,104 +45,101 @@ export class OpeningHoursExceptionEditor extends Component<
           exceptionForToday.openingHours));
 
     return (
-      <Translate>
-        {({ translate }) => (
-          <div>
-            <SelectElement
-              labelContent="open"
-              defaultValue={
-                exceptionForToday ? exceptionForToday.status : "none"
-              }
-              dropdownItems={{
-                open: `${translate("open")}`,
-                closed: `${translate("closed")}`,
-              }}
-              isOk={exceptionForToday && !_.isNil(exceptionForToday.status)}
-              targetName="status"
-              path={pathForToday}
-              isLocked={false}
-              isHorizontal={false}
-            />
+      <div>
+        <SelectElement
+          labelContent="open"
+          defaultValue={exceptionForToday ? exceptionForToday.status : "none"}
+          dropdownItems={{
+            open: `${intl.formatMessage({ id: "open" })}`,
+            closed: `${intl.formatMessage({ id: "closed" })}`,
+          }}
+          isOk={exceptionForToday && !_.isNil(exceptionForToday.status)}
+          targetName="status"
+          path={pathForToday}
+          isLocked={false}
+          isHorizontal={false}
+        />
 
-            {openOk && (
+        {openOk && (
+          <div className="field">
+            <div className="label">
+              <label className="label">
+                <FormattedMessage id="description" />
+              </label>
+            </div>
+            <div className="field-body">
               <div className="field">
-                <div className="label">
-                  <label className="label">
-                    <Translate id="description" />
-                  </label>
-                </div>
-                <div className="field-body">
-                  <div className="field">
-                    <p className="control">
-                      <input
-                        type="text"
-                        className="input"
-                        defaultValue={
-                          exceptionForToday ? exceptionForToday.name : ""
-                        }
-                        onChange={(event) =>
-                          this.delayedSave(
-                            pathForToday,
-                            "name",
-                            event.target.value
-                          )
-                        }
-                      />
-                    </p>
-                  </div>
-                </div>
+                <p className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    defaultValue={
+                      exceptionForToday ? exceptionForToday.name : ""
+                    }
+                    onChange={(event) =>
+                      this.delayedSave(pathForToday, "name", event.target.value)
+                    }
+                  />
+                </p>
               </div>
-            )}
-
-            {openOk &&
-              descriptionOk &&
-              exceptionForToday && exceptionForToday.status === "open" && (
-                <div className="field ">
-                  <div className="label">
-                    <label className="label">{translate("hours")}</label>
-                  </div>
-                  <div className="field">
-                    <div className="control">
-                      <input
-                        className="input"
-                        type="text"
-                        defaultValue={
-                          exceptionForToday
-                            ? exceptionForToday.openingHours
-                            : ""
-                        }
-                        placeholder={`${translate("openinghoursexample")}`}
-                        onChange={(event) =>
-                          this.delayedSave(
-                            pathForToday,
-                            "openingHours",
-                            event.target.value
-                          )
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-            {hoursOk && (
-              <button
-                className="button is-info is-outlined"
-                onClick={() => closeEditor()}
-              >
-                <Translate id="done" />
-              </button>
-            )}
-            {exceptionForToday && (
-              <button
-                className="button is-danger is-outlined"
-                onClick={() => this.deleteException(pathForToday)}
-              >
-                <Translate id="deleteexception" />
-              </button>
-            )}
+            </div>
           </div>
         )}
-      </Translate>
+
+        {openOk &&
+          descriptionOk &&
+          exceptionForToday &&
+          exceptionForToday.status === "open" && (
+            <div className="field ">
+              <div className="label">
+                <label className="label">
+                  {intl.formatMessage({ id: "hours" })}
+                </label>
+              </div>
+              <div className="field">
+                <div className="control">
+                  <input
+                    className="input"
+                    type="text"
+                    defaultValue={
+                      exceptionForToday ? exceptionForToday.openingHours : ""
+                    }
+                    placeholder={`${intl.formatMessage({
+                      id: "openinghoursexample",
+                    })}`}
+                    onChange={(event) =>
+                      this.delayedSave(
+                        pathForToday,
+                        "openingHours",
+                        event.target.value
+                      )
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+        {hoursOk && (
+          <button
+            className="button is-info is-outlined"
+            onClick={() => closeEditor()}
+          >
+            <FormattedMessage id="done" />
+          </button>
+        )}
+        {exceptionForToday && (
+          <button
+            className="button is-danger is-outlined"
+            onClick={() => this.deleteException(pathForToday)}
+          >
+            <FormattedMessage id="deleteexception" />
+          </button>
+        )}
+      </div>
     );
   }
 }
+
+export const OpeningHoursExceptionEditor = injectIntl(
+  OpeningHoursExceptionEditorComponent
+);

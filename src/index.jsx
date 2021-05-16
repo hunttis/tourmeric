@@ -8,8 +8,6 @@ import "bulma/css/bulma.css";
 import "./mystyles.scss";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 
-import { LocalizeProvider } from "react-localize-redux";
-
 import { IntlProvider } from "react-intl";
 import englishTranslations from "./translations/en.json";
 import finnishTranslations from "./translations/fi.json";
@@ -27,17 +25,15 @@ const messages = {
 const Main = () => (
   <Provider store={store}>
     <IntlProvider locale={language} messages={messages[language]}>
-      <LocalizeProvider store={store}>
-        <ReactReduxFirebaseProvider
-          firebase={rrfProps.firebase}
-          config={rrfProps.config}
-          dispatch={rrfProps.dispatch}
-        >
-          <ConnectedRouter history={history}>
-            <MainView />
-          </ConnectedRouter>
-        </ReactReduxFirebaseProvider>
-      </LocalizeProvider>
+      <ReactReduxFirebaseProvider
+        firebase={rrfProps.firebase}
+        config={rrfProps.config}
+        dispatch={rrfProps.dispatch}
+      >
+        <ConnectedRouter history={history}>
+          <MainView />
+        </ConnectedRouter>
+      </ReactReduxFirebaseProvider>
     </IntlProvider>
   </Provider>
 );

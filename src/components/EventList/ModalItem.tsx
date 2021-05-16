@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   translationKey: string;
@@ -11,7 +11,7 @@ export const ModalItem = ({ translationKey, content, contentArray }: Props) => (
   <>
     <>
       <div className="column is-12">
-        <div className="subtitle has-text-info"><Translate id={translationKey} /></div>
+        <div className="subtitle has-text-info"><FormattedMessage id={translationKey} /></div>
       </div>
 
       {content &&

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import UserEntry from './UserEntry-container';
 import { DisableModal } from './DisableModal';
 import { EditModal } from './EditModal';
@@ -150,18 +150,18 @@ export default class UserEditor extends Component<Props, State> {
     if (searchingWith === 'letter') {
       return (
         <>
-          <Translate id="searchinglastnamesstartingwith" />&nbsp;<span className="has-text-success">{searchLetter}</span>
+          <FormattedMessage id="searchinglastnamesstartingwith" />&nbsp;<span className="has-text-success">{searchLetter}</span>
         </>
       );
     }
     if (searchingWith === 'phrase') {
       return (
         <>
-          <Translate id="searchingfirstnamelastnameemailbyphrase" />&nbsp;<span className="has-text-success">{searchPhrase}</span>
+          <FormattedMessage id="searchingfirstnamelastnameemailbyphrase" />&nbsp;<span className="has-text-success">{searchPhrase}</span>
         </>
       );
     }
-    return <Translate id="showingallusers" />;
+    return <FormattedMessage id="showingallusers" />;
   }
 
   render() {
@@ -169,7 +169,7 @@ export default class UserEditor extends Component<Props, State> {
     const { modalOpenClass, modalUser, modalMode } = this.state;
 
     if (!isLoaded(users) || !isLoaded(storecredit)) {
-      return <><Translate id="loading" /></>;
+      return <><FormattedMessage id="loading" /></>;
     }
 
     const currentUser = this.getUser(modalUser);
@@ -195,7 +195,7 @@ export default class UserEditor extends Component<Props, State> {
           <div className="level-left">
             <div className="field">
               <div className="field-label is-normal">
-                <label className="label"><Translate id="filterlastname" /></label>
+                <label className="label"><FormattedMessage id="filterlastname" /></label>
               </div>
               <div className="field-body">
                 {alphabet.map((letter: string, index: number) => (
@@ -213,7 +213,7 @@ export default class UserEditor extends Component<Props, State> {
           <div className="level-item">
             <div className="field">
               <div className="field-label has-text-left">
-                <label className="label"><Translate id="textsearch" /></label>
+                <label className="label"><FormattedMessage id="textsearch" /></label>
               </div>
               <div className="field-body">
                 <input className="input" type="text" onChange={(event) => this.searchUsers(event)} />
@@ -221,9 +221,9 @@ export default class UserEditor extends Component<Props, State> {
             </div>
           </div>
           <div className="level-right">
-            <>{users.length} <Translate id="usersintotal" /></>
+            <>{users.length} <FormattedMessage id="usersintotal" /></>
             <br />
-            {(userList.length !== users.length) && <>{userList.length} <Translate id="hitswithsearch" /></>}
+            {(userList.length !== users.length) && <>{userList.length} <FormattedMessage id="hitswithsearch" /></>}
           </div>
         </div>
         <h2 className="subtitle">

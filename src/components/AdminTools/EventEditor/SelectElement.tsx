@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import classnames from 'classnames';
 import { Category } from '../../../models/Category';
@@ -59,7 +59,7 @@ export default class SelectElement extends Component<Props> {
               </span>
             }
             &nbsp;&nbsp;
-            <Translate id={labelContent} />
+            <FormattedMessage id={labelContent} />
           </label>
         </div>
         <div className="field-body columns is-multiline is-mobile">

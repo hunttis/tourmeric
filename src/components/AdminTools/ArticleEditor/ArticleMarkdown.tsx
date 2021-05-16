@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { MarkdownElement } from '../../../components/Common/MarkdownElement';
 import { Article } from '../../../models/ReduxState';
 import EditableTextarea from '../../../components/Common/EditableTextarea';
@@ -26,17 +26,17 @@ export const ArticleMarkdown = ({ articleId, article, uploadedArticleImages }: P
     <div className="section">
       <div className="columns is-multiline">
         <div className="column is-4">
-          <h1 className="title"><Translate id="editarticle" /></h1>
+          <h1 className="title"><FormattedMessage id="editarticle" /></h1>
         </div>
         <div className="column is-2 has-text-right">
           <ImagePickerButton imagePickerOpen={imagePickerOpen} setImagePickerOpen={setImagePickerOpen} />
         </div>
         <div className="column is-6">
-          <h1 className="title"><Translate id="preview" /></h1>
+          <h1 className="title"><FormattedMessage id="preview" /></h1>
         </div>
         {!imagePickerOpen &&
           <div className="column is-6">
-            <p className="content is-marginless"><Translate id="articletitle" /></p>
+            <p className="content is-marginless"><FormattedMessage id="articletitle" /></p>
             <EditableVerticalField
               labelContent=""
               placeHolder="articletitle"
@@ -44,7 +44,7 @@ export const ArticleMarkdown = ({ articleId, article, uploadedArticleImages }: P
               path={`/articles/${articleId}`}
               targetName="title"
             />
-            <p className="content is-marginless"><Translate id="articlecontent" /></p>
+            <p className="content is-marginless"><FormattedMessage id="articlecontent" /></p>
             <EditableTextarea
               labelContent=""
               placeHolder="contentplaceholder"
@@ -70,11 +70,11 @@ export const ArticleMarkdown = ({ articleId, article, uploadedArticleImages }: P
         <div className="column is-6 has-text-right">
           <a className="button is-small is-primary" target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/cheat-sheet/">
             <span className="icon has-text-success is-paddingless is-marginless"><i className="fas fa-question" /></span>
-            <Translate id="help" /> - <Translate id="markdowncheatsheet" />
+            <FormattedMessage id="help" /> - <FormattedMessage id="markdowncheatsheet" />
           </a>
         </div>
         <div className="column is-6">
-          <Translate id="allbasicfeaturessupported" />
+          <FormattedMessage id="allbasicfeaturessupported" />
         </div>
       </div>
     </div>
@@ -92,14 +92,14 @@ const ImagePickerButton = ({ imagePickerOpen, setImagePickerOpen }: ImagePickerB
       <button className="button has-icon-left" onClick={() => setImagePickerOpen(true)}>
         <span className="icon has-text-success is-paddingless is-marginless"><i className="fas fa-plus" /></span>
         <span className="icon is-paddingless is-marginless"><i className="fas fa-image" /></span>
-        <span><Translate id="addimage" /></span>
+        <span><FormattedMessage id="addimage" /></span>
       </button>
     }
     {imagePickerOpen &&
       <button className="button has-icon-left is-warning is-outlined" onClick={() => setImagePickerOpen(false)}>
         <span className="icon has-text-success is-paddingless is-marginless"><i className="fas fa-plus" /></span>
         <span className="icon is-paddingless is-marginless"><i className="fas fa-image" /></span>
-        <span><Translate id="closeimagepicker" /></span>
+        <span><FormattedMessage id="closeimagepicker" /></span>
       </button>
     }
   </>

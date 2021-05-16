@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import moment from 'moment';
 import _ from 'lodash';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import StoreCreditTableUser from './StoreCreditTableUser';
 import { checkParticipation } from '../../api/eventApi';
@@ -98,7 +98,7 @@ export default class UserInfo extends Component<Props, State> {
             {!hasAcceptedPrivacyPolicy &&
               <div className="column is-12">
                 <div className="button is-danger" onClick={() => this.openPrivacyPolicyModal()}>
-                  <Translate id="pleaseclickheretoreadourandacceptprivacypolicytoproceed" />
+                  <FormattedMessage id="pleaseclickheretoreadourandacceptprivacypolicytoproceed" />
                 </div>
               </div>
             }
@@ -111,10 +111,10 @@ export default class UserInfo extends Component<Props, State> {
                     {!_.isEmpty(privacyPolicyContent) && privacyPolicyContent.split('\n').map((paragraph, index) => <p key={`privacyPolicy-userinfo-${index}`}>{paragraph}</p>)}
                   </div>
                   <div className="button" onClick={() => this.acceptPrivacyPolicy()}>
-                    <Translate id="accept" />
+                    <FormattedMessage id="accept" />
                   </div>
                   <div className="button" onClick={() => this.closePrivacyPolicyModal()}>
-                    <Translate id="decline" />
+                    <FormattedMessage id="decline" />
                   </div>
                 </div>
               </div>
@@ -130,7 +130,7 @@ export default class UserInfo extends Component<Props, State> {
             </div>
             <div className="column is-6">
 
-              <h1 className="title"><Translate id="storecredit" /></h1>
+              <h1 className="title"><FormattedMessage id="storecredit" /></h1>
               <div className="box">
                 <div className="columns is-mobile">
                   <div className="column is-6 has-text-left">
@@ -139,7 +139,7 @@ export default class UserInfo extends Component<Props, State> {
                   <div className="column is-6 has-text-right">
                     {userCredit &&
                       <button className="button is-primary" onClick={() => this.openCreditModal()}>
-                        <Translate id="credithistory" />
+                        <FormattedMessage id="credithistory" />
                       </button>
                     }
                   </div>
@@ -210,13 +210,13 @@ export default class UserInfo extends Component<Props, State> {
         {allInfoNotEntered &&
           <h2 className="subtitle has-text-warning has-icon-left">
             <i className="fas has-text-danger fa-exclamation-triangle" />&nbsp;
-            <Translate id="someinformationismissing" />
+            <FormattedMessage id="someinformationismissing" />
           </h2>
         }
         {profileAllGood &&
           <h2 className="subtitle has-text-info has-icon-left">
             <i className="fas has-text-success fa-thumbs-up" />&nbsp;
-            <Translate id="yourprofilelooksgoodtogo" />
+            <FormattedMessage id="yourprofilelooksgoodtogo" />
           </h2>
         }
         {this.userInfoBox()}

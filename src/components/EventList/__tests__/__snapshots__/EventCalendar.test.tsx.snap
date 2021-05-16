@@ -23,9 +23,9 @@ exports[`EventList tests Renders EventCalendar, day mode 1`] = `
         <Translate
           id="filtereventsbychoosingcategories"
         />
-        <Translate>
+        
           <Component />
-        </Translate>
+        
       </div>
       <div
         className="column is-12 is-mobile has-text-centered"
@@ -594,9 +594,9 @@ exports[`EventList tests Renders EventCalendar, month mode 1`] = `
         <Translate
           id="filtereventsbychoosingcategories"
         />
-        <Translate>
+        
           <Component />
-        </Translate>
+        
       </div>
       <div
         className="column is-12 is-mobile has-text-centered"

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import firebase from 'firebase/app';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import _ from 'lodash';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 import ImagePicker from '../ImagePicker';
@@ -48,7 +48,7 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
 
           <div className="field">
             <button className="button" onClick={this.addCategory}>
-              <Translate id="addcategory" />
+              <FormattedMessage id="addcategory" />
             </button>
           </div>
 
@@ -60,17 +60,17 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                 <thead>
                   <tr>
                     <th>
-                      <Translate id="image" />
+                      <FormattedMessage id="image" />
                       <br />
                       <span className="has-text-info" />
                     </th>
                     <th>
-                      <Translate id="smallimage" />
+                      <FormattedMessage id="smallimage" />
                       <br />
                       <span className="has-text-info" />
                     </th>
-                    <th><Translate id="name" /></th>
-                    <th colSpan={2}><Translate id="actions" /></th>
+                    <th><FormattedMessage id="name" /></th>
+                    <th colSpan={2}><FormattedMessage id="actions" /></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -88,22 +88,22 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
                       <tr key={`categoryeditor-${categoryId}`}>
                         <td className="media-left">
                           {categoryImage && <img className="image category-image" src={categoryImage.downloadURL} alt="" />}
-                          {!categoryImage && <Translate id="nologo" />}
+                          {!categoryImage && <FormattedMessage id="nologo" />}
                         </td>
                         <td>
                           {categoryImageSmall && <img className="image is-32x32" src={categoryImageSmall.downloadURL} alt="" />}
-                          {!categoryImageSmall && <Translate id="nosmallimage" />}
+                          {!categoryImageSmall && <FormattedMessage id="nosmallimage" />}
                         </td>
                         <td>
                           {categoryData.name}
                         </td>
                         <td>
-                          {this.state.editingCategory === categoryId && <button className="button is-small is-success has-text-black" onClick={() => this.changeEditedCategory(null)}><Translate id="done" /></button>}
-                          {this.state.editingCategory !== categoryId && <button className="button is-small is-info" onClick={() => this.changeEditedCategory(categoryId)}><Translate id="edit" /></button>}
+                          {this.state.editingCategory === categoryId && <button className="button is-small is-success has-text-black" onClick={() => this.changeEditedCategory(null)}><FormattedMessage id="done" /></button>}
+                          {this.state.editingCategory !== categoryId && <button className="button is-small is-info" onClick={() => this.changeEditedCategory(categoryId)}><FormattedMessage id="edit" /></button>}
                         </td>
                         <td>
-                          {!allowedToDelete && <button disabled className="button is-small is-danger"><Translate id="cannotdelete" /></button>}
-                          {allowedToDelete && <button className="button is-small is-danger" onClick={() => this.deleteCategory(categoryId)}><Translate id="delete" /></button>}
+                          {!allowedToDelete && <button disabled className="button is-small is-danger"><FormattedMessage id="cannotdelete" /></button>}
+                          {allowedToDelete && <button className="button is-small is-danger" onClick={() => this.deleteCategory(categoryId)}><FormattedMessage id="delete" /></button>}
                         </td>
                       </tr>
                     );
@@ -135,13 +135,13 @@ export default class CategoryEditor extends Component<CategoryEditorProps, State
         </div>
       );
     } if (!isLoaded(categories)) {
-      return <div><Translate id="loading" /></div>;
+      return <div><FormattedMessage id="loading" /></div>;
     }
 
     return (
       <div>
-        <div><Translate id="nocategories" /></div>
-        <div className="field"><button className="button is-primary" onClick={() => firebase.push('/categories/', { name: 'New' })}><Translate id="addcategory" /></button></div>
+        <div><FormattedMessage id="nocategories" /></div>
+        <div className="field"><button className="button is-primary" onClick={() => firebase.push('/categories/', { name: 'New' })}><FormattedMessage id="addcategory" /></button></div>
       </div>
     );
   }
@@ -190,12 +190,12 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, 
     <div className="columns is-multiline">
       <div className="column is-6">
         <p>
-          <Translate id="usedineventcards" />
+          <FormattedMessage id="usedineventcards" />
         </p>
         <div className="level">
           <div className="level-left">
             <button className={`button categoryeditor-button is-outlined ${pickingImage && 'is-success'}`} onClick={() => chooseImagePicker({ pickingImage: true, pickingSmallImage: false })}>
-              <Translate id="chooseimage" />
+              <FormattedMessage id="chooseimage" />
             </button>
           </div>
           <div className="level-right">
@@ -205,13 +205,13 @@ const CategoryEditorPanel = ({ categoryId, categoryData, uploadedCategoryLogos, 
       </div>
       <div className="column is-6 box">
         <p>
-          <Translate id="usedineventcalendar" />
+          <FormattedMessage id="usedineventcalendar" />
         </p>
 
         <div className="level">
           <div className="level-left">
             <button className={`button categoryeditor-button is-outlined ${pickingSmallImage && 'is-success'}`} onClick={() => chooseImagePicker({ pickingImage: false, pickingSmallImage: true })}>
-              <Translate id="choosesmallimage" />
+              <FormattedMessage id="choosesmallimage" />
             </button>
           </div>
           <div className="level-right">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import firebase from 'firebase/app';
 import moment from 'moment';
@@ -23,7 +23,7 @@ export default class PrivacyPolicyEditor extends Component<Props> {
       return (
         <>
           <h1 className="title">
-            <Translate id="privacypolicy" />
+            <FormattedMessage id="privacypolicy" />
           </h1>
           <EditableTextarea
             isOk
@@ -35,11 +35,11 @@ export default class PrivacyPolicyEditor extends Component<Props> {
             targetName="privacyPolicy"
             rows={100}
           />
-          <button className="button" onClick={() => this.setAsUpdated()}><Translate id="setasupdated" /></button>
+          <button className="button" onClick={() => this.setAsUpdated()}><FormattedMessage id="setasupdated" /></button>
         </>
       );
 
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

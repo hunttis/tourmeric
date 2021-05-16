@@ -24,9 +24,9 @@ exports[`EditableField Tests Compares EditableField to snapshot 1`] = `
       <p
         className="control is-expanded has-icons-left has-icons-right"
       >
-        <Translate>
+        
           <Component />
-        </Translate>
+        
         <span
           className="icon is-small is-left"
         >

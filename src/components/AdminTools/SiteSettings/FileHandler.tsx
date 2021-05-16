@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { map } from 'lodash';
 import firebase from 'firebase/app';
 import 'firebase/storage';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import FileDropper from '../FileDropper';
 import { UploadedFile } from '../../../models/Category';
 import { Settings } from '../../../models/Settings';
@@ -51,14 +51,14 @@ export default class FileHandler extends Component<Props> {
           uploadedFiles &&
           <div>
             <h1 className="title">
-              <Translate id="uploadedfiles" />
+              <FormattedMessage id="uploadedfiles" />
             </h1>
             <table className="table">
               <thead>
                 <tr>
-                  <th><Translate id="image" /></th>
-                  <th><Translate id="filename" /></th>
-                  <th><Translate id="actions" /></th>
+                  <th><FormattedMessage id="image" /></th>
+                  <th><FormattedMessage id="filename" /></th>
+                  <th><FormattedMessage id="actions" /></th>
                 </tr>
               </thead>
               {
@@ -73,16 +73,16 @@ export default class FileHandler extends Component<Props> {
                       </td>
                       <td>
                         <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                          <Translate id="deletefile" />
+                          <FormattedMessage id="deletefile" />
                         </button>
                         {(settings.activeLogo !== file.downloadURL) &&
                           <button className="button is-info" onClick={() => this.useAsLogo(file)}>
-                            <Translate id="useaslogo" />
+                            <FormattedMessage id="useaslogo" />
                           </button>
                         }
                         {(settings.activeLogo === file.downloadURL) &&
                           <button className="button is-warning" onClick={() => this.disableLogo()}>
-                            <Translate id="disableaslogo" />
+                            <FormattedMessage id="disableaslogo" />
                           </button>
                         }
                       </td>

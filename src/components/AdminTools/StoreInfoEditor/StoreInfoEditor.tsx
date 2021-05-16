@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
 import moment from 'moment';
@@ -64,20 +64,20 @@ export default class StoreInfoEditor extends Component<Props, State> {
       if (exception.status === 'closed') {
         return (
           <div className="box">
-            <span className="has-text-danger"><Translate id="exceptionallynotopentoday" /></span>
+            <span className="has-text-danger"><FormattedMessage id="exceptionallynotopentoday" /></span>
             : {exception.name}
           </div>
         );
       }
       return (
         <div className="box">
-          <span className="has-text-success"><Translate id="exceptionallyopentoday" /></span>
+          <span className="has-text-success"><FormattedMessage id="exceptionallyopentoday" /></span>
           : {exception.openingHours}
         </div>
       );
     }
     return (
-      <div className="box"><Translate id="opentoday" /> : <span className="has-text-success">{todaysHours}</span></div>
+      <div className="box"><FormattedMessage id="opentoday" /> : <span className="has-text-success">{todaysHours}</span></div>
     );
   }
 
@@ -94,11 +94,11 @@ export default class StoreInfoEditor extends Component<Props, State> {
       return (
         <>
           <h1 className="title">
-            <Translate id="storeinfo" />
+            <FormattedMessage id="storeinfo" />
           </h1>
 
           <h2 className="subtitle">
-            <Translate id="introtext" />
+            <FormattedMessage id="introtext" />
           </h2>
           <div className="box">
             <EditableTextarea
@@ -110,11 +110,11 @@ export default class StoreInfoEditor extends Component<Props, State> {
             />
             <div className="level">
               <div className="level-left">
-                <Translate id="featureactive" />:
+                <FormattedMessage id="featureactive" />:
               </div>
               <div className="level-right">
-                <button onClick={() => { firebase.update('/settings/features/storeinfo/', { introtext: true }); }} className={`button ${introTextActive && 'is-success'}`}><Translate id="on" /></button>
-                <button onClick={() => { firebase.update('/settings/features/storeinfo/', { introtext: false }); }} className={`button ${!introTextActive && 'is-danger'}`}><Translate id="off" /></button>
+                <button onClick={() => { firebase.update('/settings/features/storeinfo/', { introtext: true }); }} className={`button ${introTextActive && 'is-success'}`}><FormattedMessage id="on" /></button>
+                <button onClick={() => { firebase.update('/settings/features/storeinfo/', { introtext: false }); }} className={`button ${!introTextActive && 'is-danger'}`}><FormattedMessage id="off" /></button>
               </div>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default class StoreInfoEditor extends Component<Props, State> {
           {this.state.openingHoursExceptionEditorOpen && <OpeningHoursExceptionEditor openinghoursexceptions={openinghoursexceptions} />}
 
           <h2 className="subtitle">
-            <Translate id="storelocation" />
+            <FormattedMessage id="storelocation" />
           </h2>
           <div className="box columns is-multiline">
             <div className="column is-6">
@@ -174,14 +174,14 @@ export default class StoreInfoEditor extends Component<Props, State> {
               uploadedStoreinfoFiles &&
               <div>
                 <h1 className="title">
-                  <Translate id="uploadedfiles" />
+                  <FormattedMessage id="uploadedfiles" />
                 </h1>
                 <table className="table">
                   <thead>
                     <tr>
-                      <th><Translate id="image" /></th>
-                      <th><Translate id="filename" /></th>
-                      <th><Translate id="actions" /></th>
+                      <th><FormattedMessage id="image" /></th>
+                      <th><FormattedMessage id="filename" /></th>
+                      <th><FormattedMessage id="actions" /></th>
                     </tr>
                   </thead>
                   {
@@ -196,16 +196,16 @@ export default class StoreInfoEditor extends Component<Props, State> {
                           </td>
                           <td>
                             <button className="button is-danger" onClick={() => this.deleteFile(file, key)}>
-                              <Translate id="deletefile" />
+                              <FormattedMessage id="deletefile" />
                             </button>
                             {(settings.locationImage !== file.downloadURL) &&
                               <button className="button is-info" onClick={() => this.useAsLocationImage(file)}>
-                                <Translate id="useaslocationimage" />
+                                <FormattedMessage id="useaslocationimage" />
                               </button>
                             }
                             {(settings.locationImage === file.downloadURL) &&
                               <button className="button is-warning" onClick={() => this.disableLogo()}>
-                                <Translate id="disableaslogo" />
+                                <FormattedMessage id="disableaslogo" />
                               </button>
                             }
                           </td>
@@ -221,6 +221,6 @@ export default class StoreInfoEditor extends Component<Props, State> {
       );
 
     }
-    return <div><Translate id="loading" /></div>;
+    return <div><FormattedMessage id="loading" /></div>;
   }
 }

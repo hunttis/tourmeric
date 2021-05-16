@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import firebase from 'firebase/app';
 import { User } from '../../../models/ReduxState';
 
@@ -17,22 +17,22 @@ interface Props {
 export const DisableModal = ({ userId, userData }: Props) => (
   <>
     <div className="box">
-      <h1 className="title"><Translate id="disablethisuser" /></h1>
+      <h1 className="title"><FormattedMessage id="disablethisuser" /></h1>
       <ul>
         {userData && userData.displayName &&
-          <li><Translate id="displayname" />: {userData.displayName}</li>
+          <li><FormattedMessage id="displayname" />: {userData.displayName}</li>
         }
         {userData && userData.username &&
-          <li><Translate id="username" />: {userData.username}</li>
+          <li><FormattedMessage id="username" />: {userData.username}</li>
         }
-        <li><Translate id="email" />: {userData && userData.email}</li>
+        <li><FormattedMessage id="email" />: {userData && userData.email}</li>
         {userData && userData.avatarUrl &&
-          <li><Translate id="avatarurl" />:&nbsp;
+          <li><FormattedMessage id="avatarurl" />:&nbsp;
             <a target="_blank" rel="noopener noreferrer" href={userData.avatarUrl}>{userData.avatarUrl.substr(0, 20)}...</a>
           </li>
         }
         {userData && userData.dciNumber &&
-          <li><Translate id="dcinumber" />: {userData.dciNumber}</li>
+          <li><FormattedMessage id="dcinumber" />: {userData.dciNumber}</li>
         }
       </ul>
       <hr />

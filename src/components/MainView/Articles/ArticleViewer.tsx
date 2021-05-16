@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import { Translate } from 'react-localize-redux';
+import { FormattedMessage } from "react-intl";
 import { Article } from '../../../models/ReduxState';
 import { ArticleSubTitle, ArticleTextBlock, ArticleImage, ArticleListBlock } from './ArticleParts';
 import { MarkdownElement } from '../../../components/Common/MarkdownElement';
@@ -46,7 +46,7 @@ export const ArticleViewer = ({ article }: Props) => (
             return <ArticleListBlock key={`articleItem-${articleItem.orderNumber}`} articleItem={articleItem} />;
           }
           default: {
-            return <div className="column is-12"><Translate id="error" /></div>;
+            return <div className="column is-12"><FormattedMessage id="error" /></div>;
           }
         }
       })}

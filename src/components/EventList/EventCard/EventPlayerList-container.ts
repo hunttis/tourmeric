@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { withLocalize } from 'react-localize-redux';
-import { EventPlayerList } from './EventPlayerList';
-import { ReduxState } from '../../../models/ReduxState';
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { injectIntl } from "react-intl";
+import { EventPlayerList } from "./EventPlayerList";
+import { ReduxState } from "../../../models/ReduxState";
 
 export default compose(
   connect((state: ReduxState) => ({
@@ -13,5 +13,5 @@ export default compose(
     languages: state.localize.languages,
     users: state.firebase.data.users,
   })),
-  connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(withLocalize<any>(EventPlayerList)) as React.ComponentType<any>;
+  connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile }))
+)(injectIntl<any>(EventPlayerList)) as React.ComponentType<any>;

@@ -98,7 +98,7 @@ export default class ParticipationEditor extends Component<
                     this.backMonth();
                   }}
                 >
-                  <Translate id="previousmonth" />
+                  <FormattedMessage id="previousmonth" />
                 </button>
                 <button
                   className="button"
@@ -106,7 +106,7 @@ export default class ParticipationEditor extends Component<
                     this.forwardMonth();
                   }}
                 >
-                  <Translate id="nextmonth" />
+                  <FormattedMessage id="nextmonth" />
                 </button>
               </div>
             </div>
@@ -130,8 +130,8 @@ export default class ParticipationEditor extends Component<
       if (isEmpty(events)) {
         return (
           <div>
-            <Translate id="noevents" />.{" "}
-            <Translate id="youmusthaveeventsbeforeparticipationscanhappen" />.
+            <FormattedMessage id="noevents" />.{" "}
+            <FormattedMessage id="youmusthaveeventsbeforeparticipationscanhappen" />.
           </div>
         );
       }
@@ -139,7 +139,7 @@ export default class ParticipationEditor extends Component<
 
     return (
       <div>
-        <Translate id="loading" />
+        <FormattedMessage id="loading" />
       </div>
     );
   }

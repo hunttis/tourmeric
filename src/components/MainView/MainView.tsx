@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import { Dispatch } from "redux";
 import { isLoaded, isEmpty } from "react-redux-firebase";
 import _ from "lodash";
-{
-  /* import { setActiveLanguage, InitializePayload, SingleLanguageTranslation } from 'react-localize-redux'; */
-}
-{
-  /* import Moment from "react-moment"; */
-}
 import { Location, History } from "history";
 import { renderToStaticMarkup } from "react-dom/server";
 import englishTranslations from "../../translations/en.json";
@@ -46,11 +40,6 @@ interface Props {
   location: Location;
   history: History;
   isAdmin: boolean;
-  //   initialize: (payload: InitializePayload) => void;
-  //  addTranslationForLanguage: (
-  //    translation: SingleLanguageTranslation,
-  //    language: string
-  //  ) => void;
 }
 
 interface State {
@@ -60,17 +49,6 @@ interface State {
 export default class MainView extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    {
-      /* this.props.initialize({
-      languages: [
-        { name: 'English', code: 'en' },
-        { name: 'Finnish', code: 'fi' },
-      ],
-      options: { renderToStaticMarkup },
-    });
-    this.props.addTranslationForLanguage(englishTranslations, 'en');
-    this.props.addTranslationForLanguage(finnishTranslations, 'fi'); */
-    }
 
     this.changeLanguage = this.changeLanguage.bind(this);
     this.state = { redirected: false };
@@ -109,10 +87,11 @@ export default class MainView extends Component<Props, State> {
 
   changeLanguage(newLanguage: string) {
     const { dispatch } = this.props;
+    console.log("IMPLEMENT WITH REACT-INTL");
     {
+      // TODO Implement with react-intl
       /* dispatch(setActiveLanguage(newLanguage)); */
     }
-    Moment.globalLocale = newLanguage;
   }
 
   isUserInfoOk() {
