@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { Route, Switch } from 'react-router-dom';
 import { Location, History } from 'history';
 import { AdminToolsTab } from './AdminToolsTab';

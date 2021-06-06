@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import _ from 'lodash';
 import firebase from 'firebase/app';
 import { participantCount } from '../../../api/eventApi';

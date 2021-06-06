@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 {
   /* import moment from 'moment/min/moment-with-locales'; */
 } // TODO FIX

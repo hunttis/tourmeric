@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 
 interface Props {
   translationKey: string;

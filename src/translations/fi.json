@@ -159,6 +159,9 @@
   "linkplaceholder": "Mistä löytyy lisätietoa",
   "abovedateinterpretedas": "Ylläoleva päivämäärä tulkittuna",
   "dateformatplaceholder": "Esimerkiksi: DD.MM.YYYY",
+  "addressplaceholder": "Osoite",
+  "linknameplaceholder": "Linkin nimi",
+  "newstextplaceholder": "Uutisteksti",
   "previousmonth": "Edellinen kuukausi",
   "nextmonth": "Seuraava kuukausi",
   "eventdetails": "Tapahtuman tiedot",
@@ -180,10 +183,10 @@
 
   "night": "Yöllä",
   "morning": "Aamulla",
-  "daytime": "Päivällä", 
+  "daytime": "Päivällä",
   "afternoon": "Iltapäivällä",
   "evening": "Illalla",
-  
+
   "clickhere": "Klikkaa tästä",
   "dropfileshere": "Pudota tiedosto(t) tähän, tai klikkaa tässä",
   "uploadedfiles": "Lähetetyt tiedostot",
@@ -299,7 +302,12 @@
   "yellowcategoryname": "Keltaisen kategorian nimi",
   "bluecategoryname": "Sinisen kategorian nimi",
   "whitecategoryname": "Valkoisen kategorian nimi",
-  
+  "green": "Vihreä",
+  "red": "Punainen",
+  "yellow": "Keltainen",
+  "blue": "Sininen",
+  "white": "Valkoinen",
+
   "storecreditreport": "Krediittitapahtumaraportti",
   "creditsbycategory": "Krediittitapahtumat kategorioittain",
   "nocategory": "Ei kategoriaa",
@@ -448,6 +456,7 @@
   "subpage": "Alasivu",
   "nosubpage": "Ei alasivuja",
   "savelandingpage": "Tallenna aloitussivu",
+  "companyinfoplaceholder": "Yritysesittely",
 
   "showingallusers": "Näytetään kaikki käyttäjät",
   "filterlastname": "Suodata sukunimen alkukirjaimella",

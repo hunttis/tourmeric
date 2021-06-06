@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import moment from 'moment';
 import _ from 'lodash';
 import { History } from 'history';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 
 import { StoreCreditRowUser } from './StoreCreditRowUser';
 import { TourmericStoreCreditData } from '../../models/StoreCredit';

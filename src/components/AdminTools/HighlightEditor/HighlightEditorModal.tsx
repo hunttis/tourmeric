@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
 import ImagePicker from '../ImagePicker';

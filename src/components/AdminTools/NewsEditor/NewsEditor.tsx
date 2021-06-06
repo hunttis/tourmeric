@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 import firebase from 'firebase/app';

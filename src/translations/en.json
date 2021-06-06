@@ -159,6 +159,9 @@
   "linkplaceholder": "Where to find additional info",
   "abovedateinterpretedas": "Above date interpreted as",
   "dateformatplaceholder": "For example: DD.MM.YYYY",
+  "addressplaceholder": "Address",
+  "linknameplaceholder": "Link name",
+  "newstextplaceholder": "News text",
   "previousmonth": "Previous Month",
   "nextmonth": "Next Month",
   "eventdetails": "Event details",
@@ -172,10 +175,10 @@
 
   "night": "At Night",
   "morning": "In the Morning",
-  "daytime": "During Daytime", 
+  "daytime": "During Daytime",
   "afternoon": "In the Afternoon",
   "evening": "In the Evening",
-  
+
   "clickhere": "Click here",
   "dropfileshere": "Drop file(s) here, or click here",
   "uploadedfiles": "Uploaded files",
@@ -282,6 +285,11 @@
   "yellowcategoryname": "Yellow category name",
   "bluecategoryname": "Blue category name",
   "whitecategoryname": "White category name",
+  "green": "Green",
+  "red": "Red",
+  "yellow": "Yellow",
+  "blue": "Blue",
+  "white": "White",
 
   "storecreditreport": "Store Credit Report",
   "creditsbycategory": "Credit Events by Category",
@@ -341,7 +349,7 @@
   "exceptionallyopen": "Exceptionally open",
   "closedtoday": "Closed today",
   "remove": "Remove",
-  
+
   "locationinfo": "Location info",
   "directions": "Directions",
   "directionsplaceholder": "For example 'South on 6th ave, turn left at the 43rd street and it's on your left'",
@@ -359,7 +367,7 @@
   "noimage": "No image",
   "newsimage": "News image",
   "newnewsitem": "New news item",
-  "linkname": "Name for the link, if no name is input, the URL will be shown",
+  "linkname": "Name for the link. If no name is input, the URL will be shown",
   "showfullnewsitem": "Show full text",
   "showless": "Show less",
   "continues": "Continues...",
@@ -410,7 +418,6 @@
   "showeventstoday": "Show events for today",
   "noeventsforthisday": "No events for this day",
 
-
   "privacypolicy": "Privacy Policy",
   "accept": "Accept",
   "decline": "Decline",
@@ -426,6 +433,7 @@
   "subpage": "Subpage",
   "nosubpage": "No sub page",
   "savelandingpage": "Save landing page",
+  "companyinfoplaceholder": "Company info",
 
   "showingallusers": "Showing all users",
   "filterlastname": "Filter by the first letter in the last name",
@@ -473,5 +481,4 @@
   "openinghoursexample": "Opening hours eg. 9-14",
   "exception": "Exception",
   "description": "Description"
-
 }

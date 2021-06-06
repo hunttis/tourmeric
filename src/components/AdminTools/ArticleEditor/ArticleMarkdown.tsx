@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { MarkdownElement } from '../../../components/Common/MarkdownElement';
 import { Article } from '../../../models/ReduxState';
 import EditableTextarea from '../../../components/Common/EditableTextarea';

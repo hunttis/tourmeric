@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 
 import { adminparticipate } from '../../../api/eventApi';
 import { User } from '../../../models/ReduxState';
@@ -7,6 +7,7 @@ import { User } from '../../../models/ReduxState';
 interface Props {
   eventId: string;
   isAdmin: boolean;
+  intl: IntlShape;
 }
 
 interface State {
@@ -18,7 +19,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
 
   savePlaceholderuser() {
     const { firstName, lastName } = this.state;
-    const { eventId } = this.props;
+    const { eventId, intl } = this.props;
     const userData: User = { firstName, lastName, avatarUrl: '', active: true, email: '', username: '' };
     const fakeUser = { key: `placeholder-${Math.round(Math.random() * 1000)}`, value: userData };
     adminparticipate(eventId, fakeUser);
@@ -41,7 +42,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
                     </div>
                   </div>
                   <div className="field-body">
-                    <input className="input" placeholder={`${translate('firstname')}`} onChange={(change) => { this.setState({ firstName: change.target.value }); }} />
+                    <input className="input" placeholder={`${intl.formatMessage({id: 'firstname'})}`} onChange={(change) => { this.setState({ firstName: change.target.value }); }} />
                   </div>
                 </div>
               </div>
@@ -53,7 +54,7 @@ export class AddPlaceHolderUser extends Component<Props, State> {
                     </div>
                   </div>
                   <div className="field-body">
-                    <input className="input" placeholder={`${translate('lastname')}`} onChange={(change) => { this.setState({ lastName: change.target.value }); }} />
+                    <input className="input" placeholder={`${intl.formatMessage({id: 'lastname'})}`} onChange={(change) => { this.setState({ lastName: change.target.value }); }} />
                   </div>
                 </div>
               </div>

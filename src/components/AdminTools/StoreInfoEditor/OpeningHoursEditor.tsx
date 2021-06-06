@@ -1,15 +1,18 @@
-import React from 'react';
-import { FormattedMessage } from "react-intl";
-import _ from 'lodash';
-import EditableField from '../../Common/EditableField';
-import { OpeningHours } from '../../../models/Settings';
+import React from "react";
+import { FormattedMessage, IntlShape } from "react-intl";
+import _ from "lodash";
+import EditableField from "../../Common/EditableField-container";
+import { OpeningHours } from "../../../models/Settings";
 
 interface Props {
   openingHours?: OpeningHours;
   toggleOpeningHourExceptions: () => void;
 }
 
-export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }: Props) => (
+export const OpeningHoursEditor = ({
+  openingHours,
+  toggleOpeningHourExceptions,
+}: Props) => (
   <>
     <h2 className="subtitle">
       <FormattedMessage id="regularopeninghours" />
@@ -17,7 +20,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
     <div className="box columns is-multiline">
       <div className="column is-6">
         <EditableField
-          defaultValue={_.get(openingHours, 'monday', '')}
+          defaultValue={_.get(openingHours, "monday", "")}
           labelContent="monday"
           placeHolder="openinghoursfordayplaceholder"
           path="/settings/openingHours"
@@ -26,7 +29,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       </div>
       <div className="column is-6">
         <EditableField
-          defaultValue={_.get(openingHours, 'tuesday', '')}
+          defaultValue={_.get(openingHours, "tuesday", "")}
           labelContent="tuesday"
           placeHolder="openinghoursfordayplaceholder"
           path="/settings/openingHours"
@@ -35,7 +38,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       </div>
       <div className="column is-6">
         <EditableField
-          defaultValue={_.get(openingHours, 'wednesday', '')}
+          defaultValue={_.get(openingHours, "wednesday", "")}
           labelContent="wednesday"
           placeHolder="openinghoursfordayplaceholder"
           path="/settings/openingHours"
@@ -44,7 +47,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       </div>
       <div className="column is-6">
         <EditableField
-          defaultValue={_.get(openingHours, 'thursday', '')}
+          defaultValue={_.get(openingHours, "thursday", "")}
           labelContent="thursday"
           placeHolder="openinghoursfordayplaceholder"
           path="/settings/openingHours"
@@ -53,7 +56,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       </div>
       <div className="column is-6">
         <EditableField
-          defaultValue={_.get(openingHours, 'friday', '')}
+          defaultValue={_.get(openingHours, "friday", "")}
           labelContent="friday"
           placeHolder="openinghoursfordayplaceholder"
           path="/settings/openingHours"
@@ -62,7 +65,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       </div>
       <div className="column is-6">
         <EditableField
-          defaultValue={_.get(openingHours, 'saturday', '')}
+          defaultValue={_.get(openingHours, "saturday", "")}
           labelContent="saturday"
           placeHolder="openinghoursfordayplaceholder"
           path="/settings/openingHours"
@@ -71,7 +74,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       </div>
       <div className="column is-6">
         <EditableField
-          defaultValue={_.get(openingHours, 'sunday', '')}
+          defaultValue={_.get(openingHours, "sunday", "")}
           labelContent="sunday"
           placeHolder="openinghoursfordayplaceholder"
           path="/settings/openingHours"
@@ -83,7 +86,7 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       </div>
       <div className="column is-6">
         <EditableField
-          defaultValue={_.get(openingHours, 'additionalinfo', '')}
+          defaultValue={_.get(openingHours, "additionalinfo", "")}
           labelContent="additionalinfo"
           placeHolder="additionalopeninghoursinfo"
           path="/settings/openingHours"
@@ -93,7 +96,12 @@ export const OpeningHoursEditor = ({ openingHours, toggleOpeningHourExceptions }
       <div className="column is-6">
         <div className="field is-grouped is-pulled-right">
           <p className="control">
-            <button className="button is-primary" onClick={() => toggleOpeningHourExceptions()}><FormattedMessage id="showcurrentexceptions" /></button>
+            <button
+              className="button is-primary"
+              onClick={() => toggleOpeningHourExceptions()}
+            >
+              <FormattedMessage id="showcurrentexceptions" />
+            </button>
           </p>
         </div>
       </div>

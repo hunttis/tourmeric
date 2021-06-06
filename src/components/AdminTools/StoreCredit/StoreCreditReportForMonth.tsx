@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import moment from 'moment';
 import _ from 'lodash';
 import { mapCategoryToColor } from '../../Common/Utils';

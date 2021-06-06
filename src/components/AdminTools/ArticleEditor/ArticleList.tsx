@@ -3,7 +3,7 @@ import moment from 'moment';
 import firebase from 'firebase/app';
 import { History } from 'history';
 
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import _ from 'lodash';
 import { Article } from '../../../models/ReduxState';
 import { Settings } from '../../../models/Settings';

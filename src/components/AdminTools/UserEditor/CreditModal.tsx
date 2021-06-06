@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isLoaded } from 'react-redux-firebase';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import firebase from 'firebase/app';
 import _ from 'lodash';
 import StoreCreditTable from '../StoreCredit/StoreCreditTable-container';
@@ -10,6 +10,7 @@ interface Props {
   userId: string;
   storecredit: { [key: string]: { [key: string]: TourmericStoreCreditData } };
   storecreditcategories: { [key: string]: StoreCreditCategory };
+  intl: IntlShape;
 }
 
 interface State {
@@ -57,7 +58,7 @@ export default class CreditModal extends Component<Props, State> {
   }
 
   render() {
-    const { userId, storecredit, storecreditcategories } = this.props;
+    const { userId, storecredit, storecreditcategories, intl } = this.props;
 
     if (isLoaded(storecredit) && isLoaded(storecreditcategories)) {
       const userCreditData = storecredit ? storecredit[userId] : {};
@@ -75,14 +76,14 @@ export default class CreditModal extends Component<Props, State> {
               <label className="label"><FormattedMessage id="note" /></label>
               
                 
-                  <input className="input" type="text" value={this.state.creditFormNote} placeholder={`${translate('creditmessage')}`} onChange={(event) => this.changeCreditNote(event)} />
+                  <input className="input" type="text" value={this.state.creditFormNote} placeholder={`${intl.formatMessage({id:'creditmessage'})}`} onChange={(event) => this.changeCreditNote(event)} />
               
             </div>
             <div className="field">
               <label className="label"><FormattedMessage id="creditamount" /></label>
               
                 
-                  <input className="input" type="number" value={this.state.creditFormAmount} placeholder={`${translate('creditamount')}`} onChange={(event) => this.changeCreditAmount(event)} />
+                  <input className="input" type="number" value={this.state.creditFormAmount} placeholder={`${intl.formatMessage({id:'creditamount'})}`} onChange={(event) => this.changeCreditAmount(event)} />
               
             </div>
             <div className="field">

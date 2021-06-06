@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import firebase from 'firebase/app';
 import EditableField from '../../Common/EditableField-container';
 import { User } from '../../../models/ReduxState';
@@ -7,9 +7,10 @@ import { User } from '../../../models/ReduxState';
 interface Props {
   userId: string | undefined;
   userData: User | undefined;
+  intl: IntlShape;
 }
 
-export const EditModal = ({ userId, userData }: Props) => (
+export const EditModal = ({ userId, userData, intl }: Props) => (
   <>
     <div className="box">
       <EditableField
@@ -79,9 +80,9 @@ export const EditModal = ({ userId, userData }: Props) => (
                       })
                       }
                     >
-                      <option value={undefined}>{translate('select')}</option>
-                      <option value="user">{translate('roleuser')}</option>
-                      <option value="admin">{translate('roleadmin')}</option>
+                      <option value={undefined}>{intl.formatMessage({id: 'select'})}</option>
+                      <option value="user">{intl.formatMessage({id: 'roleuser'})}</option>
+                      <option value="admin">{intl.formatMessage({id: 'roleadmin'})}</option>
                     </select>
                 
               </div>

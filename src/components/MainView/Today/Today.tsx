@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { isLoaded } from "react-redux-firebase";
 import { Translate, Language } from "react-localize-redux";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import _ from "lodash";
 import News from "./News-container";
 import EventCard from "../../EventList/EventCard/EventCard-container";

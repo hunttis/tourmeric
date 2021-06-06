@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { OpeningHourRow } from './OpeningHourRow';
 import { Settings } from '../../models/Settings';
 

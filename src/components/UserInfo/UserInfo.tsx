@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import moment from 'moment';
 import _ from 'lodash';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import firebase from 'firebase/app';
 import StoreCreditTableUser from './StoreCreditTableUser';
 import { checkParticipation } from '../../api/eventApi';

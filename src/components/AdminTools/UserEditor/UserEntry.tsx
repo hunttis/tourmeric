@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 
 import CreditAmounts from './CreditAmounts-container';
 import { User } from '../../../models/ReduxState';

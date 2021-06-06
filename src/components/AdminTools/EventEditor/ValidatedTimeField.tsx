@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import firebase from 'firebase/app';
-import { FormattedMessage } from "react-intl";
-import _ from 'lodash';
-import { checkTimeStringFormat } from '../../Common/Utils';
+import React, { Component } from "react";
+import firebase from "firebase/app";
+import { FormattedMessage, IntlShape, injectIntl } from "react-intl";
+import _ from "lodash";
+import { checkTimeStringFormat } from "../../Common/Utils";
 
 interface Props {
   defaultValue: string;
@@ -10,6 +10,7 @@ interface Props {
   labelContent: string;
   updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
   targetName: string;
+  intl: IntlShape;
 }
 
 interface State {
@@ -18,13 +19,12 @@ interface State {
   time: string;
 }
 
-export default class ValidatedTimeField extends Component<Props, State> {
-
+class ValidatedTimeField extends Component<Props, State> {
   delayedSave = _.debounce((value) => {
     firebase.update(this.props.path, value);
     this.setState({ saved: true, editing: false });
     this.delayedNormalize();
-  }, 300)
+  }, 300);
 
   delayedNormalize = _.debounce(() => {
     this.setState({ saved: false, editing: false });
@@ -40,7 +40,6 @@ export default class ValidatedTimeField extends Component<Props, State> {
     };
   }
 
-
   updateDateInDB(time: string) {
     this.setState({ editing: true, saved: false });
     this.delayedSave({ time });
@@ -54,7 +53,7 @@ export default class ValidatedTimeField extends Component<Props, State> {
 
   render() {
     const { saved, editing } = this.state;
-    const { labelContent } = this.props;
+    const { labelContent, intl } = this.props;
 
     const isHorizontal = true;
 
@@ -62,27 +61,37 @@ export default class ValidatedTimeField extends Component<Props, State> {
 
     return (
       <>
-        <div className={`field ${isHorizontal && 'is-horizontal'}`}>
+        <div className={`field ${isHorizontal && "is-horizontal"}`}>
           <div className="field-label is-normal">
-            <label className={`label ${!timeOk && 'has-text-danger'}`}>
-              <FormattedMessage id={labelContent} /> {'(24h -> 18:30)'}
+            <label className={`label ${!timeOk && "has-text-danger"}`}>
+              <FormattedMessage id={labelContent} /> {"(24h -> 18:30)"}
             </label>
           </div>
 
           <div className="field-body">
             <div className="field">
               <p className="control is-expanded has-icons-right">
-                
-                  <input
-                    type="text"
-                    className={`input ${!timeOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'} ${(!editing && !saved) && 'is-normal'}`}
-                    placeholder={`${translate('hour')}`}
-                    defaultValue={this.state.time}
-                    onChange={(event) => this.updateTime(event.target.value)}
-                  />
-                
-                {saved && <span className="icon is-small is-right has-text-success"><i className="fas fa-check-circle" /></span>}
-                {editing && <span className="icon is-small is-right has-text-warning"><i className="fas fa-pencil-alt" /></span>}
+                <input
+                  type="text"
+                  className={`input ${!timeOk && "is-danger"} ${saved &&
+                    "is-success"} ${editing && "is-warning"} ${!editing &&
+                    !saved &&
+                    "is-normal"}`}
+                  placeholder={`${intl.formatMessage({ id: "hour" })}`}
+                  defaultValue={this.state.time}
+                  onChange={(event) => this.updateTime(event.target.value)}
+                />
+
+                {saved && (
+                  <span className="icon is-small is-right has-text-success">
+                    <i className="fas fa-check-circle" />
+                  </span>
+                )}
+                {editing && (
+                  <span className="icon is-small is-right has-text-warning">
+                    <i className="fas fa-pencil-alt" />
+                  </span>
+                )}
               </p>
             </div>
           </div>
@@ -91,3 +100,7 @@ export default class ValidatedTimeField extends Component<Props, State> {
     );
   }
 }
+
+const ValidatedTimeFieldContainer = injectIntl<any>(ValidatedTimeField);
+
+export default ValidatedTimeFieldContainer;

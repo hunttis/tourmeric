@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { isLoaded } from 'react-redux-firebase';
 import EditableTextarea from '../../Common/EditableTextarea-container';
 import { Settings } from '../../../models/Settings';

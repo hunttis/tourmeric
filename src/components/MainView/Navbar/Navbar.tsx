@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import _ from 'lodash';
 import { History } from 'history';

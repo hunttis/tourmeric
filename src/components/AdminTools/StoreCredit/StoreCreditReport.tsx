@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Translate, Language } from "react-localize-redux";
 import { isLoaded, isEmpty } from "react-redux-firebase";
 import _ from "lodash";
+
+import { FormattedMessage } from "react-intl";
+import { format, parse } from "date-fns";
 
 {
   /* import * as moment from "moment/min/moment-with-locales"; */
@@ -20,7 +22,6 @@ interface Props {
   users: { [key: string]: User };
   storecredit: { [key: string]: { [key: string]: TourmericStoreCreditData } };
   storecreditcategories: { [key: string]: StoreCreditCategory };
-  activeLanguage: Language;
 }
 
 interface State {
@@ -48,12 +49,7 @@ export default class StoreCreditReport extends Component<Props, State> {
   }
 
   render() {
-    const {
-      users,
-      storecreditcategories,
-      storecredit,
-      activeLanguage,
-    } = this.props;
+    const { users, storecreditcategories, storecredit } = this.props;
 
     if (isLoaded(storecredit) && isEmpty(storecredit)) {
       return (
@@ -100,7 +96,7 @@ export default class StoreCreditReport extends Component<Props, State> {
 
       const grouped = _.groupBy(creditEvents, "category");
       const groupedByMonth = _.groupBy(creditEvents, (event) =>
-        moment(event.date).format("YYYYMM")
+        format(new Date(event.date), "yyyyMM")
       );
 
       const totals = Object.entries(grouped).map((groupEntry) => {
@@ -114,8 +110,6 @@ export default class StoreCreditReport extends Component<Props, State> {
         );
         return { category, total };
       });
-
-      moment.locale(activeLanguage.code);
 
       return (
         <div>
@@ -162,8 +156,9 @@ export default class StoreCreditReport extends Component<Props, State> {
           </h1>
           <div className="columns is-multiline">
             {Object.entries(groupedByMonth).map((monthGroupEntry) => {
-              const dateString = moment(monthGroupEntry[0], "YYYY-MM").format(
-                "MMMM, YYYY"
+              const dateString = format(
+                parse(monthGroupEntry[0], "yyyyMM", new Date()),
+                "MMMM, yyyy"
               );
               const monthData = monthGroupEntry[1];
               const groupedMonthData = _.groupBy(monthData, "category");
@@ -267,8 +262,9 @@ export default class StoreCreditReport extends Component<Props, State> {
               <h1 id="detailedreport" className="title">
                 <FormattedMessage id="showingdetails" />{" "}
                 <span className="has-text-info">
-                  {moment(this.state.detailedReport!, "YYYYMM").format(
-                    "MMMM, YYYY"
+                  {format(
+                    parse(this.state.detailedReport!, "yyyyMM", new Date()),
+                    "MMMM, yyyy"
                   )}
                 </span>
                 <button

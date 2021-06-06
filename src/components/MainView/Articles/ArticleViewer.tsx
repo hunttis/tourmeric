@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { Article } from '../../../models/ReduxState';
 import { ArticleSubTitle, ArticleTextBlock, ArticleImage, ArticleListBlock } from './ArticleParts';
 import { MarkdownElement } from '../../../components/Common/MarkdownElement';

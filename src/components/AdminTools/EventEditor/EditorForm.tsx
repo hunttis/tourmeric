@@ -2,7 +2,7 @@ import React from "react";
 import firebase from "firebase/app";
 
 import _ from "lodash";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 
 import ValidatedEditableField from "./ValidatedEditableField-container";
 {

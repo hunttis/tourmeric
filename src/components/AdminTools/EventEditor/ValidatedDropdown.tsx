@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import _ from 'lodash';
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
   updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
   dropdownItems: object;
   isHorizontal: boolean;
+  intl: IntlShape;
 }
 
 interface State {
@@ -47,7 +48,7 @@ export default class ValidatedDropdown extends Component<Props, State> {
 
   render() {
     const {
-      labelContent, path, targetName, isOk, dropdownItems, isHorizontal,
+      labelContent, path, targetName, isOk, dropdownItems, isHorizontal, intl,
     } = this.props;
     const { saved, editing, selectedValue } = this.state;
 
@@ -69,7 +70,7 @@ export default class ValidatedDropdown extends Component<Props, State> {
                       onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                       className={`select ${!isOk && 'is-danger'}`}
                     >
-                      <option value="">{translate('select')}</option>
+                      <option value="">{intl.formatMessage({id: 'select'})}</option>
                       {Object.entries(dropdownItems).map((categoryEntry) => {
                         const categoryId = categoryEntry[0];
                         const category = categoryEntry[1];

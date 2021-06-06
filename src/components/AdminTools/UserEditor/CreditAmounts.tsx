@@ -1,7 +1,7 @@
 import React from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 
 import { mapCategoryToColor } from '../../Common/Utils';
 

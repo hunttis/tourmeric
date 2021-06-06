@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import _ from "lodash";
 import { participantCount, adminparticipate } from "../../../api/eventApi";
 import { User, Participation } from "../../../models/ReduxState";

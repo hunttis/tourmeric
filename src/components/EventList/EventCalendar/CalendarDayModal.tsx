@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { isLoaded } from "react-redux-firebase";
 import _ from "lodash";
 import { History } from "history";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import {
   removeClassFromHtml,
   addClassToHtml,

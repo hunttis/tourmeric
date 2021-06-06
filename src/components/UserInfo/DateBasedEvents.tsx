@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import EventParticipation from './EventParticipation-container';
 import { TourmericEvent } from '../../models/Events';
 

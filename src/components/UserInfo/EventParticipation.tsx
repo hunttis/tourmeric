@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { History } from 'history';
 import { Settings } from '../../models/Settings';
 import { TourmericEventEntry } from '../../models/Events';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isLoaded } from 'react-redux-firebase';
 import _ from 'lodash';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import UserEntry from './UserEntry-container';
 import { DisableModal } from './DisableModal';
 import { EditModal } from './EditModal';

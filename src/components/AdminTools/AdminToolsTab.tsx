@@ -1,5 +1,5 @@
-import React from 'react';
-import { FormattedMessage } from "react-intl";
+import React from "react";
+import { FormattedMessage, IntlShape } from "react-intl";
 
 interface Props {
   isActive: boolean;
@@ -8,11 +8,20 @@ interface Props {
   translationKey: string;
 }
 
-export const AdminToolsTab = ({ isActive, switchAction, icon, translationKey }: Props) => (
-  <li className={`has-icon ${isActive && 'is-active'}`}>
+export const AdminToolsTab = ({
+  isActive,
+  switchAction,
+  icon,
+  translationKey,
+}: Props) => (
+  <li className={`has-icon ${isActive && "is-active"}`}>
     <a onClick={switchAction}>
-      <span className="icon is-small"><i className={`fas ${icon}`} aria-hidden="true" /></span>
-      <span><FormattedMessage id={translationKey} /></span>
+      <span className="icon is-small">
+        <i className={`fas ${icon}`} aria-hidden="true" />
+      </span>
+      <span>
+        <FormattedMessage id={translationKey} />
+      </span>
     </a>
   </li>
 );

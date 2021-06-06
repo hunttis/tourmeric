@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import { isLoaded, isEmpty } from "react-redux-firebase";
 import { Dispatch } from "redux";
 import Highlights from "../../components/HighLights/HighLights-container";

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import _ from 'lodash';
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
   isOk: boolean;
   updateFieldStatus: (key: string, isEmpty: boolean, data: string) => void;
   isHorizontal: boolean;
+  intl: IntlShape;
 }
 
 interface State {
@@ -50,7 +51,7 @@ export default class ValidatedEditableField extends Component<Props, State> {
 
   render() {
     const {
-      labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', isOk, isHorizontal,
+      labelContent, placeHolder, defaultValue, path, targetName, inputType = 'text', isOk, isHorizontal, intl,
     } = this.props;
     const { saved, editing } = this.state;
 
@@ -68,7 +69,7 @@ export default class ValidatedEditableField extends Component<Props, State> {
                 <input
                   type={inputType}
                   className={`input ${!isOk && 'is-danger'} ${saved && 'is-success'} ${editing && 'is-warning'}`}
-                  placeholder={`${translate(placeHolder)}`}
+                  placeholder={`${intl.formatMessage({id: placeHolder})}`}
                   defaultValue={defaultValue}
                   onChange={(event) => this.handleChange(path, targetName, event.target.value)}
                 />

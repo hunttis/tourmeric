@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import firebase from 'firebase/app';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import _ from 'lodash';
 import EditableVerticalField from '../../Common/EditableVerticalField-container';
 import ImagePicker from '../ImagePicker';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { map } from 'lodash';
 import firebase from 'firebase/app';
 import 'firebase/storage';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import FileDropper from '../FileDropper';
 import { UploadedFile } from '../../../models/Category';
 import { Settings } from '../../../models/Settings';
