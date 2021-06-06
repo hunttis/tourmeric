@@ -1,9 +1,10 @@
-import { connect } from 'react-redux';
-import { compose, Dispatch } from 'redux';
-import { chooseParticipant } from '../../../actions/adminActions';
+import { connect } from "react-redux";
+import { compose, Dispatch } from "redux";
+import { chooseParticipant } from "../../../actions/adminActions";
 
-import SingleEventParticipation from './SingleEventParticipation';
-import { ReduxState } from '../../../models/ReduxState';
+import { SingleEventParticipation } from "./SingleEventParticipation";
+import { ReduxState } from "../../../models/ReduxState";
+import { injectIntl } from "react-intl";
 
 export default compose(
   connect(
@@ -16,8 +17,9 @@ export default compose(
       settings: state.firebase.data.settings,
     }),
     (dispatch: Dispatch) => ({
-      chooseParticipant: (eventId: string, userUID: string) => chooseParticipant(dispatch, eventId, userUID),
-    }),
+      chooseParticipant: (eventId: string, userUID: string) =>
+        chooseParticipant(dispatch, eventId, userUID),
+    })
   ),
-  connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile })),
-)(SingleEventParticipation) as React.ComponentType<any>;
+  connect(({ firebase: { auth, profile } }: ReduxState) => ({ auth, profile }))
+)(injectIntl(SingleEventParticipation)) as React.ComponentType<any>;

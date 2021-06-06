@@ -22,7 +22,7 @@ interface State {
   fieldValue: string;
 }
 
-export default class EditableVerticalField extends Component<Props, State> {
+export class EditableVerticalField extends Component<Props, State> {
   delayedSave = _.debounce((path, value) => {
     firebase.update(path, value); // Error handling?
     if (!this.unmounting) {

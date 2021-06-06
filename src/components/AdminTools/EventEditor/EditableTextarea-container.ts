@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-import EditableTextarea from "./EditableTextarea";
+import { EditableTextarea } from "./EditableTextarea";
 import { ReduxState } from "../../../models/ReduxState";
 import { injectIntl } from "react-intl";
 

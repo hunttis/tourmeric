@@ -6,6 +6,7 @@ import { User, Participation } from "../../../models/ReduxState";
 import { Category } from "../../../models/Category";
 import { Settings } from "../../../models/Settings";
 import { TourmericEvent } from "../../../models/Events";
+import { format, parse } from "date-fns";
 
 interface Props {
   users: [{ key: string; value: User }];
@@ -16,6 +17,7 @@ interface Props {
   settings: Settings;
   event: TourmericEvent;
   eventId: string;
+  intl: IntlShape;
 }
 
 interface State {
@@ -23,10 +25,7 @@ interface State {
   lastName: string;
 }
 
-export default class SingleEventParticipation extends Component<
-  Props,
-  Partial<State>
-> {
+export class SingleEventParticipation extends Component<Props, Partial<State>> {
   state = { firstName: "", lastName: "" };
 
   savePlaceholderuser() {
@@ -77,7 +76,7 @@ export default class SingleEventParticipation extends Component<
               <span className="icon is-small is-left">
                 <i className="fas fa-calendar" />
               </span>
-              <Moment format={dateFormat}>{event.date}</Moment>
+              {format(parse(event.date, "yyyy-MM-dd", new Date()), dateFormat)}
             </div>
             <div>
               <span className="icon is-small is-left">

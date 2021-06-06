@@ -20,7 +20,7 @@ interface Props {
   intl: IntlShape;
 }
 
-export default class EditableTextarea extends Component<Props> {
+export class EditableTextarea extends Component<Props> {
   delayedSave = _.debounce((path, value) => {
     firebase.update(path, value);
     this.setState({ saved: true, editing: false });
